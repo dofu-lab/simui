@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import {
-	AboutComponent,
 	AlertComponent,
 	AvatarComponent,
 	BadgeComponent,
@@ -10,6 +9,7 @@ import {
 	CheckboxComponent,
 	CompLayoutComponent,
 	HomeComponent,
+	IntroductionComponent,
 	NotificationComponent,
 } from './pages';
 
@@ -19,8 +19,8 @@ export const routes: Routes = [
 		component: HomeComponent,
 	},
 	{
-		path: 'about',
-		component: AboutComponent,
+		path: 'introduction',
+		component: IntroductionComponent,
 	},
 	{
 		path: 'components',

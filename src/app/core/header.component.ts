@@ -4,6 +4,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub, lucideMoon, lucideSun } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { REPO_LINK, X_LINK } from './constants';
+import { NavigationService } from './navigation.service';
 import { DarkMode, ThemeService } from './theme.service';
 
 @Component({
@@ -23,8 +24,10 @@ import { DarkMode, ThemeService } from './theme.service';
 							Beta
 						</div>
 					</a>
-					<a class="relative mr-6 inline-flex items-center gap-0.5 space-x-2 text-sm hover:underline" href="/about">
-						About
+					<a
+						class="relative mr-6 inline-flex cursor-pointer items-center gap-0.5 space-x-2 text-sm hover:underline"
+						(click)="goToIntroduction()">
+						Introduction
 					</a>
 				</div>
 				<div class="flex flex-1 items-center justify-between gap-2 md:justify-end">
@@ -66,6 +69,7 @@ export class HeaderComponent {
 
 	protected themeIcon = computed(() => (this.currentTheme() === 'light' ? 'lucideSun' : 'lucideMoon'));
 	private _themeService = inject(ThemeService);
+	private _navigation = inject(NavigationService);
 
 	onChangeTheme() {
 		const newTheme = this.currentTheme() === 'light' ? 'dark' : 'light';
@@ -79,5 +83,9 @@ export class HeaderComponent {
 
 	openX() {
 		window.open(X_LINK, '_blank');
+	}
+
+	goToIntroduction() {
+		this._navigation.navigateTo('introduction');
 	}
 }

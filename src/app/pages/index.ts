@@ -1,4 +1,4 @@
-export * from './about.component';
+export * from './intro.component';
 export * from './alert.component';
 export * from './avatar.component';
 export * from './badge.component';
