@@ -22,6 +22,7 @@
 		"@angular/platform-server": "^19.2.0",
 		"@angular/router": "^19.2.0",
 		"@angular/ssr": "^19.2.0",
+		"@netlify/angular-runtime": "^2.3.1",
 		"@ng-icons/core": "29.10.0",
 		"@ng-icons/lucide": "30.3.0",
 		"@spartan-ng/brain": "0.0.1-alpha.433",

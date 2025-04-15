@@ -2560,6 +2560,14 @@
     "@emnapi/runtime" "^1.1.0"
     "@tybys/wasm-util" "^0.9.0"
 
+"@netlify/angular-runtime@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@netlify/angular-runtime/-/angular-runtime-2.3.1.tgz#3eb0ec8c059a8577d2b9c4990443825dce9f1771"
+  integrity sha512-lcY7GVO+P9GEXUeBEAw/+gaCEF+M/SNkupzzPctNAiUa7iVfjuvy/b/+ZVIc7wfcq5/BENOsc+8ciwbPu1WNqQ==
+  dependencies:
+    fs-extra "^11.1.1"
+    semver "^7.5.4"
+
 "@ng-icons/core@29.10.0":
   version "29.10.0"
   resolved "https://registry.yarnpkg.com/@ng-icons/core/-/core-29.10.0.tgz#04f98a8ac2bba77d263cc1864e5a6ae0f00c5935"
@@ -6182,6 +6190,15 @@ fs-extra@^10.0.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.1.0.tgz#02873cfbc4084dde127eaa5f9905eef2325d1abf"
   integrity sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==
+  dependencies:
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
+
+fs-extra@^11.1.1:
+  version "11.3.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.3.0.tgz#0daced136bbaf65a555a326719af931adc7a314d"
+  integrity sha512-Z4XaCL6dUDHfP/jT25jJKMmtxvuwbkrD1vNSMFlo9lNLY2c5FHYSQgHPRZUjAB26TpDEoW9HCOgplrdbaPV/ew==
   dependencies:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
