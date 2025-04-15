@@ -6,9 +6,9 @@ import { DISCUSSION_LINK } from './constants';
 	selector: 'app-suggestion',
 	imports: [HlmButtonDirective],
 	template: `
-		<div class="flex items-center justify-center">
-			<span>Do you have new idea?</span>
-			<button hlmBtn (click)="goToDiscussion()">Suggest new component</button>
+		<div class="flex flex-col items-center justify-center gap-4">
+			<span class="text-2xl font-bold">Didn't find what you were looking for?</span>
+			<button hlmBtn (click)="goToDiscussion()" class="rounded-full">Suggest new component</button>
 		</div>
 	`,
 })

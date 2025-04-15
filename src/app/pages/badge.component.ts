@@ -1,26 +1,17 @@
 import { Component } from '@angular/core';
 import { badgeComponents } from '../constants';
-import { ComponentCardComponent, ComponentHeaderComponent, PageGridComponent } from '../core';
+import { ComponentHeaderComponent, PageGridComponent } from '../core';
 
 @Component({
 	selector: 'app-badge',
 	standalone: true,
-	imports: [PageGridComponent, ComponentCardComponent, ComponentHeaderComponent],
+	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
 		<component-header
 			name="Badge"
 			description="Badges help highlight important information, such as notifications or
         new and unread messages." />
-		<page-grid>
-			@for (component of components; track component.id) {
-				<component-card
-					[componentName]="component.id"
-					[colNumber]="component.colNumber"
-					[itemStyle]="component.itemStyle"
-					[component]="component.component"
-					[code]="component.code" />
-			}
-		</page-grid>
+		<page-grid [components]="components" />
 	`,
 })
 export class BadgeComponent {

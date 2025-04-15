@@ -1,23 +1,14 @@
 import { Component } from '@angular/core';
 import { alertComponents } from '../constants';
-import { ComponentCardComponent, ComponentHeaderComponent, PageGridComponent } from '../core';
+import { ComponentHeaderComponent, PageGridComponent } from '../core';
 
 @Component({
 	selector: 'app-alert',
 	standalone: true,
-	imports: [PageGridComponent, ComponentCardComponent, ComponentHeaderComponent],
+	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
 		<component-header name="Alert" description="A component to display alert messages" />
-		<page-grid>
-			@for (component of components; track component.id) {
-				<component-card
-					[componentName]="component.id"
-					[colNumber]="component.colNumber"
-					[itemStyle]="component.itemStyle"
-					[component]="component.component"
-					[code]="component.code" />
-			}
-		</page-grid>
+		<page-grid [components]="components" />
 	`,
 })
 export class AlertComponent {
