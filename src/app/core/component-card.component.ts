@@ -50,9 +50,7 @@ import { CodePreviewComponent } from './code-preview.component';
 				<hlm-dialog-header>
 					<h3 hlmDialogTitle>Code</h3>
 				</hlm-dialog-header>
-				<div class="grid gap-4 py-4">
-					<code-preview [code]="code()" class="w-full overflow-auto" />
-				</div>
+				<code-preview [code]="code()" class="w-full overflow-auto" />
 			</hlm-dialog-content>
 		</hlm-dialog>
 	`,
