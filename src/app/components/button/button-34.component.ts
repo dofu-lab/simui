@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
-import { BrnToggleDirective, BrnToggleGroupComponent } from '@spartan-ng/brain/toggle';
+import { BrnToggleDirective } from '@spartan-ng/brain/toggle';
+import { BrnToggleGroupComponent } from '@spartan-ng/brain/toggle-group';
 import { HlmToggleDirective } from '@spartan-ng/ui-toggle-helm';
 
 @Component({
@@ -7,7 +8,7 @@ import { HlmToggleDirective } from '@spartan-ng/ui-toggle-helm';
 	standalone: true,
 	imports: [HlmToggleDirective, BrnToggleDirective, BrnToggleGroupComponent],
 	template: `
-		<brn-toggle-group>
+		<brn-toggle-group multiple="false">
 			<button
 				hlmToggle
 				value="left"
@@ -46,54 +47,50 @@ export class Button34Component {
 
 export const button34Code = `
 import { Component, signal } from '@angular/core';
+import { BrnToggleDirective } from '@spartan-ng/brain/toggle';
+import { BrnToggleGroupComponent } from '@spartan-ng/brain/toggle-group';
 import { HlmToggleDirective } from '@spartan-ng/ui-toggle-helm';
-import {
-  BrnToggleDirective,
-  BrnToggleGroupComponent,
-} from '@spartan-ng/brain/toggle';
 
 @Component({
-  selector: 'sim-button-34',
-  standalone: true,
-  imports: [HlmToggleDirective, BrnToggleDirective, BrnToggleGroupComponent],
-  template: \`
-    <brn-toggle-group>
-      <button
-        hlmToggle
-        value="left"
-        variant="outline"
-        data-variant="outline"
-        class="min-w-0 shrink-0 rounded-none rounded-l-md border-l shadow-none focus:z-10 focus-visible:z-10"
-      >
-        Left
-      </button>
-      <button
-        hlmToggle
-        value="top"
-        variant="outline"
-        data-variant="outline"
-        class="min-w-0 shrink-0 rounded-none border-l-0 shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10"
-      >
-        Center
-      </button>
+	selector: 'sim-button-34',
+	standalone: true,
+	imports: [HlmToggleDirective, BrnToggleDirective, BrnToggleGroupComponent],
+	template: \`
+		<brn-toggle-group multiple="false">
+			<button
+				hlmToggle
+				value="left"
+				variant="outline"
+				data-variant="outline"
+				class="min-w-0 shrink-0 rounded-none rounded-l-md border-l shadow-none focus:z-10 focus-visible:z-10">
+				Left
+			</button>
+			<button
+				hlmToggle
+				value="top"
+				variant="outline"
+				data-variant="outline"
+				class="min-w-0 shrink-0 rounded-none border-l-0 shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10">
+				Center
+			</button>
 
-      <button
-        hlmToggle
-        value="right"
-        variant="outline"
-        data-variant="outline"
-        class="min-w-0 shrink-0 rounded-none rounded-r-md border-l-0 shadow-none focus:z-10 focus-visible:z-10"
-      >
-        Right
-      </button>
-    </brn-toggle-group>
-  \`,
+			<button
+				hlmToggle
+				value="right"
+				variant="outline"
+				data-variant="outline"
+				class="min-w-0 shrink-0 rounded-none rounded-r-md border-l-0 shadow-none focus:z-10 focus-visible:z-10">
+				Right
+			</button>
+		</brn-toggle-group>
+	\`,
 })
 export class Button34Component {
-  theme = signal<'light' | 'dark'>('light');
+	theme = signal<'light' | 'dark'>('light');
 
-  changeTheme() {
-    this.theme.set(this.theme() === 'light' ? 'dark' : 'light');
-  }
+	changeTheme() {
+		this.theme.set(this.theme() === 'light' ? 'dark' : 'light');
+	}
 }
+
 `;
