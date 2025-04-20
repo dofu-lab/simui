@@ -37,7 +37,7 @@ declare const Prism: typeof import('prismjs');
 			<ng-icon hlm size="xs" [name]="copied ? 'lucideCheck' : 'lucideClipboard'" />
 		</button>
 		<div class="max-h-[650px] w-full overflow-auto p-4 whitespace-nowrap">
-			<div class="max-w-full max-w-screen" [innerHTML]="_content"></div>
+			<div class="max-w-full" [innerHTML]="_content"></div>
 		</div>
 	`,
 	styles: [

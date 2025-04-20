@@ -1,11 +1,8 @@
-@import '@angular/cdk/overlay-prebuilt.css';
-
-/* You can add global styles to this file, and also import other style files */
-
-@layer ng-icon;
+@layer ng-icon, theme, base, components, utilities;
 @import 'tailwindcss';
 
 @import '@spartan-ng/brain/hlm-tailwind-preset.css';
+@import '@angular/cdk/overlay-prebuilt.css';
 
 :root {
 	--background: 0 0% 100%;
