@@ -41,6 +41,8 @@ import {
 	Avatar20Component,
 	avatar21Code,
 	Avatar21Component,
+	avatar22Code,
+	Avatar22Component,
 } from '../components/avatar';
 import { ComponentCardItem } from '../core';
 
@@ -140,6 +142,13 @@ export const avatarComponents: ComponentCardItem[] = [
 		component: Avatar14Component,
 		code: avatar14Code,
 		id: 'avatar-14',
+		colNumber: 4,
+		itemStyle: 1,
+	},
+	{
+		component: Avatar22Component,
+		code: avatar22Code,
+		id: 'avatar-21',
 		colNumber: 4,
 		itemStyle: 1,
 	},

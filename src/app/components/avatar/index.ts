@@ -19,3 +19,4 @@ export * from './avatar-18.component';
 export * from './avatar-19.component';
 export * from './avatar-20.component';
 export * from './avatar-21.component';
+export * from './avatar-22.component';
