@@ -75,6 +75,9 @@
       ],
       "@spartan-ng/ui-togglegroup-helm": [
         "./src/libs/ui/ui-togglegroup-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-accordion-helm": [
+        "./src/libs/ui/ui-accordion-helm/src/index.ts"
       ]
     }
   },

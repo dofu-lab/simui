@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import {
+	AccordionComponent,
 	AlertComponent,
 	AvatarComponent,
 	BadgeComponent,
@@ -26,6 +27,7 @@ export const routes: Routes = [
 		path: 'components',
 		component: CompLayoutComponent,
 		children: [
+			{ path: 'accordion', component: AccordionComponent },
 			{ path: 'alert', component: AlertComponent },
 			{ path: 'avatar', component: AvatarComponent },
 			{ path: 'badge', component: BadgeComponent },

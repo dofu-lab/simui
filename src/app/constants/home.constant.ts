@@ -1,4 +1,5 @@
 import { ComponentInfo } from '../types';
+import { accordionComponents } from './accordion.constant';
 import { alertComponents } from './alert.constant';
 import { avatarComponents } from './avatar.constant';
 import { badgeComponents } from './badge.constant';
@@ -9,6 +10,12 @@ import { checkBoxComponents } from './checkbox.constant';
 import { notificationComponents } from './notification.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Accordion',
+		compNumber: accordionComponents.length,
+		image: 'assets/thumbnails/accordion.png',
+		path: 'components/accordion',
+	},
 	{
 		name: 'Alert',
 		compNumber: alertComponents.length,

@@ -1,3 +1,4 @@
+export * from './accordion.constant';
 export * from './alert.constant';
 export * from './avatar.constant';
 export * from './badge.constant';
