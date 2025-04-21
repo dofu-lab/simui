@@ -4,4 +4,5 @@ export type ComponentInfo = {
 	compNumber: number;
 	image: string;
 	path: string;
+	isNew?: boolean;
 };

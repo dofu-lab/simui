@@ -15,6 +15,7 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: accordionComponents.length,
 		image: 'assets/thumbnails/accordion.png',
 		path: 'components/accordion',
+		isNew: true,
 	},
 	{
 		name: 'Alert',

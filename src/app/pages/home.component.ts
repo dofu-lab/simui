@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
 import { previewComponents } from '../constants/home.constant';
 import { CardBodyDirective, CardDirective } from '../core/card';
 import { NavigationService } from '../core/navigation.service';
@@ -7,7 +8,7 @@ import { NavigationService } from '../core/navigation.service';
 	selector: 'app-home',
 	standalone: true,
 	providers: [NavigationService],
-	imports: [CardDirective, CardBodyDirective],
+	imports: [CardDirective, CardBodyDirective, HlmBadgeDirective],
 	template: `
 		<div class="mx-auto max-w-[1700px] grow px-28">
 			<div class="flex-1 items-start">
@@ -24,8 +25,11 @@ import { NavigationService } from '../core/navigation.service';
 						<div dfCard class="h-[256px] w-full cursor-pointer" (click)="onNavigate(component.path)">
 							<img [src]="component.image" class="h-[170px] w-full object-cover" />
 							<div dfCardBody>
-								<div class="text-text-md font-semibold">
+								<div class="text-text-md flex items-center gap-2 font-semibold">
 									{{ component.name }}
+									@if (component.isNew) {
+										<span hlmBadge variant="outline">New</span>
+									}
 								</div>
 								<div class="text-text-sm">{{ component.compNumber }} components</div>
 							</div>
