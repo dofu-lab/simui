@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronDown, lucideColumns3, lucideGroup, lucideLaptop, lucideZap } from '@ng-icons/lucide';
+import { lucideChevronDown, lucideGroup, lucideLaptop, lucideServerCog, lucideZap } from '@ng-icons/lucide';
 import {
 	HlmAccordionContentComponent,
 	HlmAccordionDirective,
@@ -21,7 +21,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		HlmIconDirective,
 		NgIcon,
 	],
-	viewProviders: [provideIcons({ lucideChevronDown, lucideGroup, lucideLaptop, lucideColumns3, lucideZap })],
+	viewProviders: [provideIcons({ lucideChevronDown, lucideGroup, lucideLaptop, lucideServerCog, lucideZap })],
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ icon and chevron</h2>
@@ -59,7 +59,7 @@ export class Accordion05Component {
 				'Absolutely. SimUI components are designed with a consistent API, comprehensive documentation, and ready-to-use examples to make implementation straightforward and intuitive.',
 		},
 		{
-			icon: 'lucideColumns3',
+			icon: 'lucideServerCog',
 			title: 'Can I customize it?',
 			content:
 				'Yes. With Tailwind CSS integration, SimUI components can be easily styled to match your brand.  The underlying architecture supports theming and allows for component variants with minimal effort.',
@@ -76,7 +76,7 @@ export class Accordion05Component {
 export const accordion05Code = `
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronDown, lucideColumns3, lucideGroup, lucideLaptop, lucideZap } from '@ng-icons/lucide';
+import { lucideChevronDown, lucideServerCog, lucideGroup, lucideLaptop, lucideZap } from '@ng-icons/lucide';
 import {
 	HlmAccordionContentComponent,
 	HlmAccordionDirective,
@@ -97,7 +97,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		HlmIconDirective,
 		NgIcon,
 	],
-	viewProviders: [provideIcons({ lucideChevronDown, lucideGroup, lucideLaptop, lucideColumns3, lucideZap })],
+	viewProviders: [provideIcons({ lucideChevronDown, lucideGroup, lucideLaptop, lucideServerCog, lucideZap })],
 	template: \`
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ icon and chevron</h2>
@@ -135,7 +135,7 @@ export class Accordion05Component {
 				'Absolutely. SimUI components are designed with a consistent API, comprehensive documentation, and ready-to-use examples to make implementation straightforward and intuitive.',
 		},
 		{
-			icon: 'lucideColumns3',
+			icon: 'lucideServerCog',
 			title: 'Can I customize it?',
 			content:
 				'Yes. With Tailwind CSS integration, SimUI components can be easily styled to match your brand.  The underlying architecture supports theming and allows for component variants with minimal effort.',
