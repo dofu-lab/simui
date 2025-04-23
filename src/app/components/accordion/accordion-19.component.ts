@@ -26,7 +26,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Multi-level</h2>
 			<div hlmAccordion>
-				@for (item of items; track item.title) {
+				@for (item of items; track item.id) {
 					<div
 						hlmAccordionItem
 						class="bg-background has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative border border-b-0 outline-none first:rounded-t-md last:rounded-b-md last:border-b has-focus-visible:z-10 has-focus-visible:ring-[3px]">
@@ -66,6 +66,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 export class Accordion19Component {
 	items = [
 		{
+			id: 'acc-19-1',
 			title: 'Why choose SimUI?',
 			subItem: [
 				{
@@ -85,6 +86,7 @@ export class Accordion19Component {
 				'SimUI offers a carefully crafted component library that balances aesthetics with functionality. Built on Angular and Spartan UI, it provides a solid foundation for modern web applications.',
 		},
 		{
+			id: 'acc-19-2',
 			title: 'Is it developer-friendly?',
 			subItem: [
 				{
@@ -104,6 +106,7 @@ export class Accordion19Component {
 				'Absolutely. SimUI components are designed with a consistent API, comprehensive documentation, and ready-to-use examples to make implementation straightforward and intuitive.',
 		},
 		{
+			id: 'acc-19-3',
 			title: 'Can I customize it?',
 			subItem: [
 				{
@@ -123,6 +126,7 @@ export class Accordion19Component {
 				'Yes. With Tailwind CSS integration, SimUI components can be easily styled to match your brand. The underlying architecture supports theming and allows for component variants with minimal effort.',
 		},
 		{
+			id: 'acc-19-4',
 			title: 'What about performance?',
 			subItem: [
 				{
@@ -173,7 +177,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Multi-level</h2>
 			<div hlmAccordion>
-				@for (item of items; track item.title) {
+				@for (item of items; track item.id) {
 					<div
 						hlmAccordionItem
 						class="bg-background has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative border border-b-0 outline-none first:rounded-t-md last:rounded-b-md last:border-b has-focus-visible:z-10 has-focus-visible:ring-[3px]">
@@ -213,6 +217,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 export class Accordion19Component {
 	items = [
 		{
+			id: 'acc-19-1',
 			title: 'Why choose SimUI?',
 			subItem: [
 				{
@@ -232,6 +237,7 @@ export class Accordion19Component {
 				'SimUI offers a carefully crafted component library that balances aesthetics with functionality. Built on Angular and Spartan UI, it provides a solid foundation for modern web applications.',
 		},
 		{
+			id: 'acc-19-2',
 			title: 'Is it developer-friendly?',
 			subItem: [
 				{
@@ -251,6 +257,7 @@ export class Accordion19Component {
 				'Absolutely. SimUI components are designed with a consistent API, comprehensive documentation, and ready-to-use examples to make implementation straightforward and intuitive.',
 		},
 		{
+			id: 'acc-19-3',
 			title: 'Can I customize it?',
 			subItem: [
 				{
@@ -270,6 +277,7 @@ export class Accordion19Component {
 				'Yes. With Tailwind CSS integration, SimUI components can be easily styled to match your brand. The underlying architecture supports theming and allows for component variants with minimal effort.',
 		},
 		{
+			id: 'acc-19-4',
 			title: 'What about performance?',
 			subItem: [
 				{

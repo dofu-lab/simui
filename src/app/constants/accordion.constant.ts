@@ -39,6 +39,8 @@ import {
 	Accordion19Component,
 	accordion20Code,
 	Accordion20Component,
+	accordion21Code,
+	Accordion21Component,
 } from '../components/accordion';
 import { ComponentCardItem } from '../core';
 
@@ -180,6 +182,13 @@ export const accordionComponents: ComponentCardItem[] = [
 		id: 'accordion-20',
 		component: Accordion20Component,
 		code: accordion20Code,
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		id: 'accordion-21',
+		component: Accordion21Component,
+		code: accordion21Code,
 		colNumber: 2,
 		itemStyle: 1,
 	},

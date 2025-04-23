@@ -26,11 +26,11 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ icon, sub-header and plus-minus</h2>
 			<div hlmAccordion>
-				@for (item of items; track item.title) {
+				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="py-2">
 						<button
 							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
+							class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
 							<span class="flex items-center gap-3">
 								<span class="flex size-10 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
 									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
@@ -56,6 +56,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 export class Accordion10Component {
 	items = [
 		{
+			id: 'acc-10-1',
 			title: 'Connected accounts',
 			subTitle: 'Manage your linked social and work accounts',
 			icon: 'lucideLink',
@@ -63,6 +64,7 @@ export class Accordion10Component {
 				'Connect your accounts from Google, GitHub, or Microsoft to enable single sign-on and streamline your workflow. Connected accounts can be used for quick login and importing your preferences across platforms. You can revoke access to any connected account at any time.',
 		},
 		{
+			id: 'acc-10-2',
 			title: 'Notifications',
 			subTitle: 'Customize your notification preferences',
 			icon: 'lucideBell',
@@ -70,6 +72,7 @@ export class Accordion10Component {
 				'Choose which updates you want to receive. You can get notifications for: security alerts, billing updates, newsletter and product announcements, usage reports, and scheduled maintenance. Notifications can be delivered via email, SMS, or push notifications on your devices.',
 		},
 		{
+			id: 'acc-10-3',
 			title: '2-step verification',
 			subTitle: 'Add an extra layer of security to your account',
 			icon: 'lucideShieldCheck',
@@ -77,6 +80,7 @@ export class Accordion10Component {
 				'Protect your account with two-factor authentication. You can use authenticator apps like Google Authenticator or Authy, receive SMS codes, or use security keys like YubiKey. We recommend using an authenticator app for the most secure experience.',
 		},
 		{
+			id: 'acc-10-4',
 			title: 'Contact support',
 			subTitle: "We're here to help 24/7",
 			icon: 'lucideLifeBuoy',
@@ -115,11 +119,11 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ icon, sub-header and plus-minus</h2>
 			<div hlmAccordion>
-				@for (item of items; track item.title) {
+				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="py-2">
 						<button
 							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
+							class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
 							<span class="flex items-center gap-3">
 								<span class="flex size-10 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
 									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
@@ -145,6 +149,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 export class Accordion10Component {
 	items = [
 		{
+			id: 'acc-10-1',
 			title: 'Connected accounts',
 			subTitle: 'Manage your linked social and work accounts',
 			icon: 'lucideLink',
@@ -152,6 +157,7 @@ export class Accordion10Component {
 				'Connect your accounts from Google, GitHub, or Microsoft to enable single sign-on and streamline your workflow. Connected accounts can be used for quick login and importing your preferences across platforms. You can revoke access to any connected account at any time.',
 		},
 		{
+			id: 'acc-10-2',
 			title: 'Notifications',
 			subTitle: 'Customize your notification preferences',
 			icon: 'lucideBell',
@@ -159,6 +165,7 @@ export class Accordion10Component {
 				'Choose which updates you want to receive. You can get notifications for: security alerts, billing updates, newsletter and product announcements, usage reports, and scheduled maintenance. Notifications can be delivered via email, SMS, or push notifications on your devices.',
 		},
 		{
+			id: 'acc-10-3',
 			title: '2-step verification',
 			subTitle: 'Add an extra layer of security to your account',
 			icon: 'lucideShieldCheck',
@@ -166,6 +173,7 @@ export class Accordion10Component {
 				'Protect your account with two-factor authentication. You can use authenticator apps like Google Authenticator or Authy, receive SMS codes, or use security keys like YubiKey. We recommend using an authenticator app for the most secure experience.',
 		},
 		{
+			id: 'acc-10-4',
 			title: 'Contact support',
 			subTitle: "We're here to help 24/7",
 			icon: 'lucideLifeBuoy',

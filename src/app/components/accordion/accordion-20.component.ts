@@ -69,7 +69,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 						</button>
 						<hlm-accordion-content class="[&>div>p]:p-0">
 							<div hlmAccordion>
-								@for (subItem of item.subItem; track subItem.title) {
+								@for (subItem of item.subItem; track subItem.id) {
 									<div hlmAccordionItem class="border-t border-b-0 py-3 ps-6 pe-4">
 										<button
 											hlmAccordionTrigger
@@ -254,7 +254,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 						</button>
 						<hlm-accordion-content class="[&>div>p]:p-0">
 							<div hlmAccordion>
-								@for (subItem of item.subItem; track subItem.title) {
+								@for (subItem of item.subItem; track subItem.id) {
 									<div hlmAccordionItem class="border-t border-b-0 py-3 ps-6 pe-4">
 										<button
 											hlmAccordionTrigger

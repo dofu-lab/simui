@@ -11,7 +11,7 @@ import {
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 
 @Component({
-	selector: 'sim-accordion-09',
+	selector: 'sim-accordion-21',
 	imports: [
 		HlmAccordionDirective,
 		HlmAccordionItemDirective,
@@ -24,36 +24,34 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 	viewProviders: [provideIcons({ lucideChevronDown, lucideLink, lucideBell, lucideShieldCheck, lucideLifeBuoy })],
 	template: `
 		<div class="space-y-4">
-			<h2 class="text-xl font-bold">W/ icon, sub-title and chevron</h2>
+			<h2 class="text-xl font-bold">Connected W/ icon and chevron</h2>
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
-					<div hlmAccordionItem class="py-2">
+					<div hlmAccordionItem class="border-b-0">
 						<button
 							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-2 hover:no-underline">
+							class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-0 hover:no-underline">
 							<span class="flex items-center gap-3">
 								<span class="flex size-10 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
 									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
 								</span>
-								<span class="flex flex-col items-start gap-1 text-[15px] leading-6 font-semibold">
-									<span>
-										{{ item.title }}
-									</span>
-									<span class="text-sm font-normal">{{ item.subTitle }}</span>
+								<span class="text-[15px] leading-6 font-semibold">
+									{{ item.title }}
 								</span>
 							</span>
 							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
 						</button>
-						<hlm-accordion-content class="text-muted-foreground ps-13">
+						<hlm-accordion-content class="text-muted-foreground ml-5 border-l ps-8">
 							{{ item.content }}
 						</hlm-accordion-content>
 					</div>
+					<div class="ml-5 h-4 border-l ps-8 last:hidden"></div>
 				}
 			</div>
 		</div>
 	`,
 })
-export class Accordion09Component {
+export class Accordion21Component {
 	items = [
 		{
 			id: 'acc-09-1',
@@ -90,7 +88,7 @@ export class Accordion09Component {
 	];
 }
 
-export const accordion09Code = `
+export const accordion21Code = `
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell, lucideChevronDown, lucideLifeBuoy, lucideLink, lucideShieldCheck } from '@ng-icons/lucide';
@@ -104,7 +102,7 @@ import {
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 
 @Component({
-	selector: 'sim-accordion-09',
+	selector: 'sim-accordion-21',
 	imports: [
 		HlmAccordionDirective,
 		HlmAccordionItemDirective,
@@ -117,36 +115,34 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 	viewProviders: [provideIcons({ lucideChevronDown, lucideLink, lucideBell, lucideShieldCheck, lucideLifeBuoy })],
 	template: \`
 		<div class="space-y-4">
-			<h2 class="text-xl font-bold">W/ icon, sub-title and chevron</h2>
+			<h2 class="text-xl font-bold">Connected W/ icon and chevron</h2>
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
-					<div hlmAccordionItem class="py-2">
+					<div hlmAccordionItem class="border-b-0">
 						<button
 							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-2 hover:no-underline">
+							class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-0 hover:no-underline">
 							<span class="flex items-center gap-3">
 								<span class="flex size-10 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
 									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
 								</span>
-								<span class="flex flex-col items-start gap-1 text-[15px] leading-6 font-semibold">
-									<span>
-										{{ item.title }}
-									</span>
-									<span class="text-sm font-normal">{{ item.subTitle }}</span>
+								<span class="text-[15px] leading-6 font-semibold">
+									{{ item.title }}
 								</span>
 							</span>
 							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
 						</button>
-						<hlm-accordion-content class="text-muted-foreground ps-13">
+						<hlm-accordion-content class="text-muted-foreground ml-5 border-l ps-8">
 							{{ item.content }}
 						</hlm-accordion-content>
 					</div>
+					<div class="ml-5 h-4 border-l ps-8 last:hidden"></div>
 				}
 			</div>
 		</div>
 	\`,
 })
-export class Accordion09Component {
+export class Accordion21Component {
 	items = [
 		{
 			id: 'acc-09-1',
