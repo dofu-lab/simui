@@ -52,6 +52,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 			lucidePackageCheck,
 		}),
 	],
+	host: { ngSkipHydration: 'true' },
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Multi-level W/ icon</h2>

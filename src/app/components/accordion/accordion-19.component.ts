@@ -22,6 +22,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		NgIcon,
 	],
 	viewProviders: [provideIcons({ lucideChevronDown })],
+	host: { ngSkipHydration: 'true' },
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Multi-level</h2>
@@ -38,7 +39,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 							</span>
 							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
 						</button>
-						<hlm-accordion-content class="">
+						<hlm-accordion-content class="[&>div>p]:p-0">
 							<div hlmAccordion class="bg-accent">
 								@for (subItem of item.subItem; track subItem.id) {
 									<div hlmAccordionItem class="border-t border-b-0 px-4 py-3">

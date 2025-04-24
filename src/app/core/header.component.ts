@@ -1,11 +1,12 @@
 import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub, lucideMoon, lucideSun } from '@ng-icons/lucide';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { REPO_LINK, X_LINK } from './constants';
 import { NavigationService } from './navigation.service';
-import { DarkMode, ThemeService } from './theme.service';
+import { ThemeService } from './theme.service';
 
 @Component({
 	selector: 'app-header',
@@ -65,15 +66,13 @@ import { DarkMode, ThemeService } from './theme.service';
 	`,
 })
 export class HeaderComponent {
-	currentTheme = signal<DarkMode>('light');
-
-	protected themeIcon = computed(() => (this.currentTheme() === 'light' ? 'lucideSun' : 'lucideMoon'));
 	private _themeService = inject(ThemeService);
 	private _navigation = inject(NavigationService);
+	private _darkMode = toSignal(this._themeService.darkMode$);
+	protected themeIcon = computed(() => (this._darkMode() === 'light' ? 'lucideSun' : 'lucideMoon'));
 
 	onChangeTheme() {
-		const newTheme = this.currentTheme() === 'light' ? 'dark' : 'light';
-		this.currentTheme.set(newTheme);
+		const newTheme = this._darkMode() === 'light' ? 'dark' : 'light';
 		this._themeService.setDarkMode(newTheme);
 	}
 

@@ -6,6 +6,18 @@
 		<base href="/" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<script>
+			if (localStorage.darkMode === 'dark') {
+				if (document && document.documentElement) {
+					document.documentElement.classList.add('dark');
+				}
+			} else {
+				if (document && document.documentElement) {
+					document.documentElement.classList.remove('dark');
+					localStorage.setItem('darkMode', 'light');
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<app-root></app-root>

@@ -19,3 +19,4 @@ export * from './accordion-18.component';
 export * from './accordion-19.component';
 export * from './accordion-20.component';
 export * from './accordion-21.component';
+export * from './accordion-22.component';
