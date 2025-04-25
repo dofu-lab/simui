@@ -1,8 +1,10 @@
 import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
+import { HlmMenuComponent, HlmMenuItemDirective } from '@/libs/ui/ui-menu-helm/src';
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideGithub, lucideMoon, lucideSun } from '@ng-icons/lucide';
+import { lucideGithub, lucideMoon, lucideSquareMenu, lucideSun } from '@ng-icons/lucide';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { REPO_LINK, X_LINK } from './constants';
 import { NavigationService } from './navigation.service';
@@ -11,12 +13,19 @@ import { ThemeService } from './theme.service';
 @Component({
 	selector: 'app-header',
 	standalone: true,
-	providers: [provideIcons({ lucideSun, lucideMoon, lucideGithub })],
-	imports: [HlmButtonDirective, NgIcon, HlmIconDirective],
+	providers: [provideIcons({ lucideSun, lucideMoon, lucideGithub, lucideSquareMenu })],
+	imports: [
+		HlmButtonDirective,
+		NgIcon,
+		HlmIconDirective,
+		HlmMenuComponent,
+		HlmMenuItemDirective,
+		BrnMenuTriggerDirective,
+	],
 	template: `
 		<header class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 w-full backdrop-blur-lg">
-			<div class="container flex h-16 items-center">
-				<div class="mr-4 hidden md:flex">
+			<div class="flex h-16 items-center justify-between">
+				<div class="mr-4 flex">
 					<a class="relative mr-6 flex items-center space-x-2" href="/">
 						<img src="/assets/logos/logo-base.svg" alt="Magic UI" class="h-10 w-10" />
 						<span class="hidden font-bold md:inline-block">Sim UI</span>
@@ -26,12 +35,12 @@ import { ThemeService } from './theme.service';
 						</div>
 					</a>
 					<a
-						class="relative mr-6 inline-flex cursor-pointer items-center gap-0.5 space-x-2 text-sm hover:underline"
+						class="relative mr-6 hidden cursor-pointer items-center gap-0.5 space-x-2 text-sm hover:underline sm:inline-flex"
 						(click)="goToIntroduction()">
 						Introduction
 					</a>
 				</div>
-				<div class="flex flex-1 items-center justify-between gap-2 md:justify-end">
+				<div class="flex items-center justify-between gap-2 md:justify-end">
 					<nav class="flex items-center gap-1">
 						<button hlmBtn size="icon" variant="ghost" type="button" (click)="openX()">
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,6 +68,22 @@ import { ThemeService } from './theme.service';
 							(click)="onChangeTheme()">
 							<ng-icon hlm [name]="themeIcon()" class="text-primary" size="sm" />
 						</button>
+					</nav>
+					<nav class="flex items-center gap-1 sm:hidden">
+						<button
+							hlmBtn
+							size="icon"
+							variant="ghost"
+							type="button"
+							aria-label="Header menu"
+							[brnMenuTriggerFor]="menu">
+							<ng-icon hlm name="lucideSquareMenu" class="text-primary" size="sm" />
+						</button>
+						<ng-template #menu>
+							<hlm-menu>
+								<button hlmMenuItem (click)="goToIntroduction()">Introduction</button>
+							</hlm-menu>
+						</ng-template>
 					</nav>
 				</div>
 			</div>

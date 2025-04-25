@@ -36,7 +36,7 @@ import { CodePreviewComponent } from './code-preview.component';
 	template: `
 		<ng-container *ngComponentOutlet="component()"></ng-container>
 		<hlm-dialog>
-			<div class="absolute -top-2 -right-2 hidden items-center gap-2 p-4 group-hover:flex">
+			<div class="absolute -top-2 -right-2 items-center gap-2 p-4 group-hover:flex lg:hidden">
 				<button
 					hlmBtn
 					size="icon"

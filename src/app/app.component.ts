@@ -8,12 +8,14 @@ import { FooterComponent, HeaderComponent } from './core';
 	standalone: true,
 	imports: [RouterOutlet, NgxSonnerToaster, FooterComponent, HeaderComponent],
 	template: `
-		<ngx-sonner-toaster />
-		<app-header class="sticky top-0 z-50" />
-		<div class="bg-background relative flex min-h-screen w-full flex-col scroll-smooth font-sans antialiased">
-			<router-outlet />
+		<div class="overflow-hidden px-4 supports-[overflow:clip]:overflow-clip sm:px-6">
+			<ngx-sonner-toaster />
+			<div class="relative mx-auto w-full max-w-6xl">
+				<app-header class="sticky top-0 z-50" />
+				<router-outlet />
+			</div>
+			<app-footer />
 		</div>
-		<app-footer />
 	`,
 })
 export class AppComponent {
