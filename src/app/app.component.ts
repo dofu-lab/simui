@@ -10,8 +10,8 @@ import { FooterComponent, HeaderComponent } from './core';
 	template: `
 		<div class="overflow-hidden px-4 supports-[overflow:clip]:overflow-clip sm:px-6">
 			<ngx-sonner-toaster />
+			<app-header class="sticky top-0 z-50" />
 			<div class="relative mx-auto w-full max-w-6xl">
-				<app-header class="sticky top-0 z-50" />
 				<router-outlet />
 			</div>
 			<app-footer />

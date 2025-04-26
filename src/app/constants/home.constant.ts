@@ -7,9 +7,17 @@ import { bannerComponents } from './banner.constant';
 import { breadcrumbComponents } from './breadcrumb.constant';
 import { buttonComponents } from './button.constant';
 import { checkBoxComponents } from './checkbox.constant';
+import { dialogComponents } from './dialog.constant';
 import { notificationComponents } from './notification.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Dialog',
+		compNumber: dialogComponents.length,
+		image: 'assets/thumbnails/dialog.png',
+		path: 'components/dialog',
+		isNew: true,
+	},
 	{
 		name: 'Accordion',
 		compNumber: accordionComponents.length,
@@ -50,21 +58,18 @@ export const previewComponents: ComponentInfo[] = [
 	{
 		name: 'Button',
 		compNumber: buttonComponents.length,
-		description: 'Basic badge component',
 		image: 'assets/thumbnails/button.png',
 		path: 'components/button',
 	},
 	{
 		name: 'Checkbox',
 		compNumber: checkBoxComponents.length,
-		description: 'Basic badge component',
 		image: 'assets/thumbnails/checkbox-group.png',
 		path: 'components/checkbox',
 	},
 	{
 		name: 'Notification',
 		compNumber: notificationComponents.length,
-		description: 'Basic badge component',
 		image: 'assets/thumbnails/notification.png',
 		path: 'components/notification',
 	},

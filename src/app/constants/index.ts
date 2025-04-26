@@ -6,4 +6,5 @@ export * from './banner.constant';
 export * from './breadcrumb.constant';
 export * from './button.constant';
 export * from './checkbox.constant';
+export * from './dialog.constant';
 export * from './notification.constant';

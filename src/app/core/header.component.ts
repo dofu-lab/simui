@@ -23,8 +23,9 @@ import { ThemeService } from './theme.service';
 		BrnMenuTriggerDirective,
 	],
 	template: `
-		<header class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 w-full backdrop-blur-lg">
-			<div class="flex h-16 items-center justify-between">
+		<header
+			class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 flex w-full items-center justify-center backdrop-blur-lg">
+			<div class="flex h-16 w-full max-w-6xl items-center justify-between">
 				<div class="mr-4 flex">
 					<a class="relative mr-6 flex items-center space-x-2" href="/">
 						<img src="/assets/logos/logo-base.svg" alt="Magic UI" class="h-10 w-10" />

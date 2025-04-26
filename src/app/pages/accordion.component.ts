@@ -7,7 +7,9 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	standalone: true,
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header name="Accordion" description="" />
+		<component-header
+			name="Accordion"
+			description="A collapsible content panel that allows users to toggle between showing and hiding sections of related content, helping to organize information in a compact, expandable interface." />
 		<page-grid [components]="components" />
 	`,
 })
