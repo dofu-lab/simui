@@ -1,5 +1,8 @@
 import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
-import { Component, viewChild } from '@angular/core';
+import { HlmInputDirective } from '@/libs/ui/ui-input-helm/src';
+import { HlmLabelDirective } from '@/libs/ui/ui-label-helm/src';
+import { Component, computed, model, signal, viewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
@@ -13,7 +16,7 @@ import {
 } from '@spartan-ng/ui-dialog-helm';
 
 @Component({
-	selector: 'sim-dialog-02',
+	selector: 'sim-dialog-08',
 	providers: [provideIcons({ lucideCircleAlert })],
 	imports: [
 		HlmDialogComponent,
@@ -26,33 +29,52 @@ import {
 		HlmDialogDescriptionDirective,
 		NgIcon,
 		HlmIconDirective,
+		HlmInputDirective,
+		FormsModule,
+		HlmLabelDirective,
 	],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Confirm dialog with icon</button>
+			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Delete project</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
-				<div class="flex flex-col gap-2 max-sm:items-center sm:flex-row sm:gap-4">
+				<div class="flex flex-col items-center gap-2">
 					<div class="flex size-9 shrink-0 items-center justify-center rounded-full border">
 						<ng-icon hlm name="lucideCircleAlert" size="sm"></ng-icon>
 					</div>
 					<hlm-dialog-header>
-						<h2 class="text-lg font-semibold">Are you sure?</h2>
-						<p hlmDialogDescription>
-							Take a moment to review the details provided to ensure you understand the implications.
+						<h2 class="text-center text-lg font-semibold">Final confirmation</h2>
+						<p hlmDialogDescription class="text-center">
+							This action cannot be undone. To confirm, please enter the project name
+							<span class="text-primary font-semibold">{{ projectName() }}.</span>
 						</p>
 					</hlm-dialog-header>
+
+					<label hlmLabel class="mt-2 w-full">Project name</label>
+					<input
+						hlmInput
+						class="h-9 w-full"
+						type="text"
+						placeholder="Type Sim UI to confirm"
+						[ngModel]="inputValue()"
+						(ngModelChange)="inputValue.set($event)" />
 				</div>
-				<hlm-dialog-footer class="gap-3 sm:space-x-0">
-					<button hlmBtn variant="outline" (click)="closeDialog()">Cancel</button>
-					<button hlmBtn type="submit" (click)="closeDialog()">Okay</button>
+				<hlm-dialog-footer class="flex-row gap-3 sm:space-x-0">
+					<button hlmBtn variant="outline" class="h-9 flex-1" (click)="closeDialog()">Cancel</button>
+					<button hlmBtn type="submit" class="h-9 flex-1" [disabled]="isDisabled()" (click)="closeDialog()">
+						Delete
+					</button>
 				</hlm-dialog-footer>
 			</hlm-dialog-content>
 		</hlm-dialog>
 	`,
 })
-export class Dialog02Component {
+export class Dialog08Component {
+	projectName = signal<string>('Sim UI');
+	inputValue = model<string>('');
+	isDisabled = computed(() => this.inputValue() !== this.projectName());
+
 	public dialogRef = viewChild(BrnDialogComponent);
 
 	closeDialog() {
@@ -60,9 +82,12 @@ export class Dialog02Component {
 	}
 }
 
-export const dialog02Code = `
+export const dialog08Code = `
 import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
-import { Component, viewChild } from '@angular/core';
+import { HlmInputDirective } from '@/libs/ui/ui-input-helm/src';
+import { HlmLabelDirective } from '@/libs/ui/ui-label-helm/src';
+import { Component, computed, model, signal, viewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
@@ -76,7 +101,7 @@ import {
 } from '@spartan-ng/ui-dialog-helm';
 
 @Component({
-	selector: 'sim-dialog-02',
+	selector: 'sim-dialog-08',
 	providers: [provideIcons({ lucideCircleAlert })],
 	imports: [
 		HlmDialogComponent,
@@ -89,33 +114,52 @@ import {
 		HlmDialogDescriptionDirective,
 		NgIcon,
 		HlmIconDirective,
+		HlmInputDirective,
+		FormsModule,
+		HlmLabelDirective,
 	],
 	template: \`
 		<hlm-dialog>
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Confirm dialog with icon</button>
+			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Delete project</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
-				<div class="flex flex-col gap-2 max-sm:items-center sm:flex-row sm:gap-4">
+				<div class="flex flex-col items-center gap-2">
 					<div class="flex size-9 shrink-0 items-center justify-center rounded-full border">
 						<ng-icon hlm name="lucideCircleAlert" size="sm"></ng-icon>
 					</div>
 					<hlm-dialog-header>
-						<h2 class="text-lg font-semibold">Are you sure?</h2>
-						<p hlmDialogDescription>
-							Take a moment to review the details provided to ensure you understand the implications.
+						<h2 class="text-center text-lg font-semibold">Final confirmation</h2>
+						<p hlmDialogDescription class="text-center">
+							This action cannot be undone. To confirm, please enter the project name
+							<span class="text-primary font-semibold">{{ projectName() }}.</span>
 						</p>
 					</hlm-dialog-header>
+
+					<label hlmLabel class="mt-2 w-full">Project name</label>
+					<input
+						hlmInput
+						class="h-9 w-full"
+						type="text"
+						placeholder="Type Sim UI to confirm"
+						[ngModel]="inputValue()"
+						(ngModelChange)="inputValue.set($event)" />
 				</div>
-				<hlm-dialog-footer class="gap-3 sm:space-x-0">
-					<button hlmBtn variant="outline" (click)="closeDialog()">Cancel</button>
-					<button hlmBtn type="submit" (click)="closeDialog()">Okay</button>
+				<hlm-dialog-footer class="flex-row gap-3 sm:space-x-0">
+					<button hlmBtn variant="outline" class="h-9 flex-1" (click)="closeDialog()">Cancel</button>
+					<button hlmBtn type="submit" class="h-9 flex-1" [disabled]="isDisabled()" (click)="closeDialog()">
+						Delete
+					</button>
 				</hlm-dialog-footer>
 			</hlm-dialog-content>
 		</hlm-dialog>
 	\`,
 })
-export class Dialog02Component {
+export class Dialog08Component {
+	projectName = signal<string>('Sim UI');
+	inputValue = model<string>('');
+	isDisabled = computed(() => this.inputValue() !== this.projectName());
+
 	public dialogRef = viewChild(BrnDialogComponent);
 
 	closeDialog() {

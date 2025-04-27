@@ -78,6 +78,9 @@
       ],
       "@spartan-ng/ui-accordion-helm": [
         "./src/libs/ui/ui-accordion-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-scrollarea-helm": [
+        "./src/libs/ui/ui-scrollarea-helm/src/index.ts"
       ]
     }
   },

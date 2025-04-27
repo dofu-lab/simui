@@ -8006,6 +8006,13 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ngx-scrollbar@>=16.0.0:
+  version "18.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-scrollbar/-/ngx-scrollbar-18.0.0.tgz#dbf9c300b9e33ee55d631e474d436afe2db8cf46"
+  integrity sha512-+ykmY491x+nzXvnecJvZHvDz0YWuX1r7SYMxNG4RVHXm5Z68P/8kd/3ryLD6DXdNWmJawd4NGvqq2ZkUKb/g3A==
+  dependencies:
+    tslib "^2.3.0"
+
 ngx-sonner@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ngx-sonner/-/ngx-sonner-3.1.0.tgz#2fc5de2113d00e13d2b4c762688b313e67675fbd"

@@ -8,9 +8,11 @@ import {
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
 } from '@spartan-ng/ui-dialog-helm';
+import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
-	selector: 'sim-dialog-03',
+	selector: 'sim-dialog-04',
 	imports: [
 		HlmDialogComponent,
 		HlmDialogContentComponent,
@@ -20,14 +22,16 @@ import {
 		BrnDialogContentDirective,
 		HlmButtonDirective,
 		HlmDialogDescriptionDirective,
+		HlmScrollAreaDirective,
+		NgScrollbarModule,
 	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Scrollable (native scrollbar)</button>
+			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Scrollable (scroll area)</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-lg"
 				*brnDialogContent="let ctx">
-				<div class="flex-1 overflow-y-auto">
+				<ng-scrollbar hlm>
 					<hlm-dialog-header>
 						<h2 class="mb-0 px-6 pt-6 text-lg font-semibold">Frequently Asked Questions (FAQ)</h2>
 						<div hlmDialogDescription>
@@ -139,12 +143,12 @@ import {
 						<button hlmBtn variant="outline" (click)="closeDialog()">Cancel</button>
 						<button hlmBtn (click)="closeDialog()">Okay</button>
 					</hlm-dialog-footer>
-				</div>
+				</ng-scrollbar>
 			</hlm-dialog-content>
 		</hlm-dialog>
 	`,
 })
-export class Dialog03Component {
+export class Dialog04Component {
 	public dialogRef = viewChild(BrnDialogComponent);
 
 	closeDialog() {
@@ -152,7 +156,7 @@ export class Dialog03Component {
 	}
 }
 
-export const dialog03Code = `
+export const dialog04Code = `
 import { Component, viewChild } from '@angular/core';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -163,9 +167,11 @@ import {
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
 } from '@spartan-ng/ui-dialog-helm';
+import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
-	selector: 'sim-dialog-03',
+	selector: 'sim-dialog-04',
 	imports: [
 		HlmDialogComponent,
 		HlmDialogContentComponent,
@@ -175,14 +181,16 @@ import {
 		BrnDialogContentDirective,
 		HlmButtonDirective,
 		HlmDialogDescriptionDirective,
+		HlmScrollAreaDirective,
+		NgScrollbarModule,
 	],
 	template: \`
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Scrollable (native scrollbar)</button>
+			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Scrollable (scroll area)</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-lg"
 				*brnDialogContent="let ctx">
-				<div class="flex-1 overflow-y-auto">
+				<ng-scrollbar hlm>
 					<hlm-dialog-header>
 						<h2 class="mb-0 px-6 pt-6 text-lg font-semibold">Frequently Asked Questions (FAQ)</h2>
 						<div hlmDialogDescription>
@@ -294,12 +302,12 @@ import {
 						<button hlmBtn variant="outline" (click)="closeDialog()">Cancel</button>
 						<button hlmBtn (click)="closeDialog()">Okay</button>
 					</hlm-dialog-footer>
-				</div>
+				</ng-scrollbar>
 			</hlm-dialog-content>
 		</hlm-dialog>
 	\`,
 })
-export class Dialog03Component {
+export class Dialog04Component {
 	public dialogRef = viewChild(BrnDialogComponent);
 
 	closeDialog() {

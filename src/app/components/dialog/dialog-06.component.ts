@@ -10,7 +10,7 @@ import {
 } from '@spartan-ng/ui-dialog-helm';
 
 @Component({
-	selector: 'sim-dialog-03',
+	selector: 'sim-dialog-06',
 	imports: [
 		HlmDialogComponent,
 		HlmDialogContentComponent,
@@ -23,7 +23,7 @@ import {
 	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Scrollable (native scrollbar)</button>
+			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Scrollable (sticky footer)</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-lg"
 				*brnDialogContent="let ctx">
@@ -134,17 +134,16 @@ import {
 							</div>
 						</div>
 					</hlm-dialog-header>
-
-					<hlm-dialog-footer class="gap-3 px-6 pb-6 sm:space-x-0">
-						<button hlmBtn variant="outline" (click)="closeDialog()">Cancel</button>
-						<button hlmBtn (click)="closeDialog()">Okay</button>
-					</hlm-dialog-footer>
 				</div>
+				<hlm-dialog-footer class="gap-3 border-t px-6 py-4 sm:space-x-0">
+					<button hlmBtn variant="outline" (click)="closeDialog()">Cancel</button>
+					<button hlmBtn (click)="closeDialog()">Okay</button>
+				</hlm-dialog-footer>
 			</hlm-dialog-content>
 		</hlm-dialog>
 	`,
 })
-export class Dialog03Component {
+export class Dialog06Component {
 	public dialogRef = viewChild(BrnDialogComponent);
 
 	closeDialog() {
@@ -152,7 +151,7 @@ export class Dialog03Component {
 	}
 }
 
-export const dialog03Code = `
+export const dialog06Code = `
 import { Component, viewChild } from '@angular/core';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -165,7 +164,7 @@ import {
 } from '@spartan-ng/ui-dialog-helm';
 
 @Component({
-	selector: 'sim-dialog-03',
+	selector: 'sim-dialog-06',
 	imports: [
 		HlmDialogComponent,
 		HlmDialogContentComponent,
@@ -178,7 +177,7 @@ import {
 	],
 	template: \`
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Scrollable (native scrollbar)</button>
+			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Scrollable (sticky footer)</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-lg"
 				*brnDialogContent="let ctx">
@@ -289,17 +288,16 @@ import {
 							</div>
 						</div>
 					</hlm-dialog-header>
-
-					<hlm-dialog-footer class="gap-3 px-6 pb-6 sm:space-x-0">
-						<button hlmBtn variant="outline" (click)="closeDialog()">Cancel</button>
-						<button hlmBtn (click)="closeDialog()">Okay</button>
-					</hlm-dialog-footer>
 				</div>
+				<hlm-dialog-footer class="gap-3 border-t px-6 py-4 sm:space-x-0">
+					<button hlmBtn variant="outline" (click)="closeDialog()">Cancel</button>
+					<button hlmBtn (click)="closeDialog()">Okay</button>
+				</hlm-dialog-footer>
 			</hlm-dialog-content>
 		</hlm-dialog>
 	\`,
 })
-export class Dialog03Component {
+export class Dialog06Component {
 	public dialogRef = viewChild(BrnDialogComponent);
 
 	closeDialog() {
