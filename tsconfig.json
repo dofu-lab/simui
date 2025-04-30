@@ -81,6 +81,12 @@
       ],
       "@spartan-ng/ui-scrollarea-helm": [
         "./src/libs/ui/ui-scrollarea-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-radiogroup-helm": [
+        "./src/libs/ui/ui-radiogroup-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-inputotp-helm": [
+        "./src/libs/ui/ui-inputotp-helm/src/index.ts"
       ]
     }
   },

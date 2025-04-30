@@ -1,6 +1,3 @@
-import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
-import { HlmInputDirective } from '@/libs/ui/ui-input-helm/src';
-import { HlmLabelDirective } from '@/libs/ui/ui-label-helm/src';
 import { Component, computed, model, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -14,6 +11,9 @@ import {
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
 } from '@spartan-ng/ui-dialog-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 
 @Component({
 	selector: 'sim-dialog-08',
@@ -83,9 +83,6 @@ export class Dialog08Component {
 }
 
 export const dialog08Code = `
-import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
-import { HlmInputDirective } from '@/libs/ui/ui-input-helm/src';
-import { HlmLabelDirective } from '@/libs/ui/ui-label-helm/src';
 import { Component, computed, model, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -99,6 +96,9 @@ import {
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
 } from '@spartan-ng/ui-dialog-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 
 @Component({
 	selector: 'sim-dialog-08',

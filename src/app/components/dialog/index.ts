@@ -7,3 +7,7 @@ export * from './dialog-06.component';
 export * from './dialog-07.component';
 export * from './dialog-08.component';
 export * from './dialog-09.component';
+export * from './dialog-10.component';
+export * from './dialog-11.component';
+export * from './dialog-12.component';
+export * from './dialog-13.component';
