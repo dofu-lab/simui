@@ -48,28 +48,26 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 						</p>
 					</div>
 				</div>
-				<form [formGroup]="form" (submit)="closeDialog()">
-					<form [formGroup]="form" (ngSubmit)="onSubmit()">
-						<div formArrayName="members" class="flex flex-col gap-3">
-							<span class="text-foreground text-sm">Invite via email</span>
-							@for (memberControl of members.controls; track memberControl) {
-								<div class="flex gap-2">
-									<input hlmInput class="flex-1 text-sm" size="sm" placeholder="Email" [formControlName]="$index" />
-									@if (members.length > 1) {
-										<button hlmBtn variant="ghost" size="icon" class="size-9 shrink-0" (click)="removeMember($index)">
-											<ng-icon hlm name="lucideTrash2" size="sm" />
-										</button>
-									}
-								</div>
-							}
-							<span
-								class="text-muted-foreground hover:text-primary w-fit cursor-pointer text-sm underline hover:no-underline"
-								(click)="addMember()">
-								+ Add another
-							</span>
-							<button hlmBtn type="submit" size="sm">Send invites</button>
-						</div>
-					</form>
+				<form [formGroup]="form">
+					<div formArrayName="members" class="flex flex-col gap-3">
+						<span class="text-foreground text-sm">Invite via email</span>
+						@for (memberControl of members.controls; track memberControl) {
+							<div class="flex gap-2">
+								<input hlmInput class="flex-1 text-sm" size="sm" placeholder="Email" [formControlName]="$index" />
+								@if (members.length > 1) {
+									<button hlmBtn variant="ghost" size="icon" class="size-9 shrink-0" (click)="removeMember($index)">
+										<ng-icon hlm name="lucideTrash2" size="sm" />
+									</button>
+								}
+							</div>
+						}
+						<span
+							class="text-muted-foreground hover:text-primary w-fit cursor-pointer text-sm underline hover:no-underline"
+							(click)="addMember()">
+							+ Add another
+						</span>
+						<button hlmBtn type="submit" size="sm">Send invites</button>
+					</div>
 				</form>
 				<hr className="my-1 border-t" />
 				<div class="w-full">
@@ -151,10 +149,6 @@ export class Dialog17Component {
 		this.members.removeAt(index, { emitEvent: true });
 	}
 
-	onSubmit(): void {
-		this.dialogRef()?.close({});
-	}
-
 	closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
@@ -221,28 +215,26 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 						</p>
 					</div>
 				</div>
-				<form [formGroup]="form" (submit)="closeDialog()">
-					<form [formGroup]="form" (ngSubmit)="onSubmit()">
-						<div formArrayName="members" class="flex flex-col gap-3">
-							<span class="text-foreground text-sm">Invite via email</span>
-							@for (memberControl of members.controls; track memberControl) {
-								<div class="flex gap-2">
-									<input hlmInput class="flex-1 text-sm" size="sm" placeholder="Email" [formControlName]="$index" />
-									@if (members.length > 1) {
-										<button hlmBtn variant="ghost" size="icon" class="size-9 shrink-0" (click)="removeMember($index)">
-											<ng-icon hlm name="lucideTrash2" size="sm" />
-										</button>
-									}
-								</div>
-							}
-							<span
-								class="text-muted-foreground hover:text-primary w-fit cursor-pointer text-sm underline hover:no-underline"
-								(click)="addMember()">
-								+ Add another
-							</span>
-							<button hlmBtn type="submit" size="sm">Send invites</button>
-						</div>
-					</form>
+				<form [formGroup]="form">
+					<div formArrayName="members" class="flex flex-col gap-3">
+						<span class="text-foreground text-sm">Invite via email</span>
+						@for (memberControl of members.controls; track memberControl) {
+							<div class="flex gap-2">
+								<input hlmInput class="flex-1 text-sm" size="sm" placeholder="Email" [formControlName]="$index" />
+								@if (members.length > 1) {
+									<button hlmBtn variant="ghost" size="icon" class="size-9 shrink-0" (click)="removeMember($index)">
+										<ng-icon hlm name="lucideTrash2" size="sm" />
+									</button>
+								}
+							</div>
+						}
+						<span
+							class="text-muted-foreground hover:text-primary w-fit cursor-pointer text-sm underline hover:no-underline"
+							(click)="addMember()">
+							+ Add another
+						</span>
+						<button hlmBtn type="submit" size="sm">Send invites</button>
+					</div>
 				</form>
 				<hr className="my-1 border-t" />
 				<div class="w-full">
@@ -322,10 +314,6 @@ export class Dialog17Component {
 	removeMember(index: number): void {
 		console.log('removeMember', index);
 		this.members.removeAt(index, { emitEvent: true });
-	}
-
-	onSubmit(): void {
-		this.dialogRef()?.close({});
 	}
 
 	closeDialog(): void {
