@@ -11,3 +11,7 @@ export * from './dialog-10.component';
 export * from './dialog-11.component';
 export * from './dialog-12.component';
 export * from './dialog-13.component';
+export * from './dialog-14.component';
+export * from './dialog-15.component';
+export * from './dialog-16.component';
+export * from './dialog-17.component';

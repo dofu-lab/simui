@@ -1,6 +1,5 @@
-import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
 import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChild } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
@@ -13,6 +12,7 @@ import {
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
 } from '@spartan-ng/ui-dialog-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import {
 	HlmInputOtpDirective,
 	HlmInputOtpGroupDirective,
@@ -24,7 +24,6 @@ import {
 	providers: [provideIcons({ lucideMail })],
 	imports: [
 		FormsModule,
-		ReactiveFormsModule,
 		NgIcon,
 		HlmIconDirective,
 		HlmDialogComponent,
@@ -35,7 +34,6 @@ import {
 		BrnDialogContentDirective,
 		HlmButtonDirective,
 		HlmDialogDescriptionDirective,
-
 		HlmInputOtpDirective,
 		HlmInputOtpGroupDirective,
 		HlmInputOtpSlotComponent,
@@ -90,7 +88,7 @@ import {
 						}
 					}
 				</div>
-				<hlm-dialog-footer class="flex-row gap-3 sm:items-center sm:justify-center sm:space-x-0">
+				<hlm-dialog-footer class="gap-3 sm:items-center sm:justify-center sm:space-x-0">
 					@if (isVerified()) {
 						<button hlmBtn class="h-9" (click)="closeDialog()">Close</button>
 					} @else {
@@ -182,9 +180,8 @@ export class Dialog13Component implements OnDestroy {
 }
 
 export const dialog13Code = `
-import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
 import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChild } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
@@ -197,6 +194,7 @@ import {
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
 } from '@spartan-ng/ui-dialog-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import {
 	HlmInputOtpDirective,
 	HlmInputOtpGroupDirective,
@@ -208,7 +206,6 @@ import {
 	providers: [provideIcons({ lucideMail })],
 	imports: [
 		FormsModule,
-		ReactiveFormsModule,
 		NgIcon,
 		HlmIconDirective,
 		HlmDialogComponent,
@@ -219,7 +216,6 @@ import {
 		BrnDialogContentDirective,
 		HlmButtonDirective,
 		HlmDialogDescriptionDirective,
-
 		HlmInputOtpDirective,
 		HlmInputOtpGroupDirective,
 		HlmInputOtpSlotComponent,
@@ -274,7 +270,7 @@ import {
 						}
 					}
 				</div>
-				<hlm-dialog-footer class="flex-row gap-3 sm:items-center sm:justify-center sm:space-x-0">
+				<hlm-dialog-footer class="gap-3 sm:items-center sm:justify-center sm:space-x-0">
 					@if (isVerified()) {
 						<button hlmBtn class="h-9" (click)="closeDialog()">Close</button>
 					} @else {

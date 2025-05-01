@@ -1,5 +1,5 @@
 import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChild } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { BrnInputOtpComponent } from '@spartan-ng/brain/input-otp';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -20,7 +20,6 @@ import {
 	selector: 'sim-dialog-12',
 	imports: [
 		FormsModule,
-		ReactiveFormsModule,
 		HlmDialogComponent,
 		HlmDialogContentComponent,
 		HlmDialogHeaderComponent,
@@ -29,7 +28,6 @@ import {
 		BrnDialogContentDirective,
 		HlmButtonDirective,
 		HlmDialogDescriptionDirective,
-
 		HlmInputOtpDirective,
 		HlmInputOtpGroupDirective,
 		HlmInputOtpSlotComponent,
@@ -89,7 +87,7 @@ import {
 						}
 					}
 				</div>
-				<hlm-dialog-footer class="flex-row gap-3 sm:items-center sm:justify-center sm:space-x-0">
+				<hlm-dialog-footer class="gap-3 sm:items-center sm:justify-center sm:space-x-0">
 					@if (isVerified()) {
 						<button hlmBtn class="h-9" (click)="closeDialog()">Close</button>
 					} @else {
@@ -190,7 +188,7 @@ export class Dialog12Component implements OnDestroy {
 
 export const dialog12Code = `
 import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChild } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { BrnInputOtpComponent } from '@spartan-ng/brain/input-otp';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -211,7 +209,6 @@ import {
 	selector: 'sim-dialog-12',
 	imports: [
 		FormsModule,
-		ReactiveFormsModule,
 		HlmDialogComponent,
 		HlmDialogContentComponent,
 		HlmDialogHeaderComponent,
@@ -280,7 +277,7 @@ import {
 						}
 					}
 				</div>
-				<hlm-dialog-footer class="flex-row gap-3 sm:items-center sm:justify-center sm:space-x-0">
+				<hlm-dialog-footer class="gap-3 sm:items-center sm:justify-center sm:space-x-0">
 					@if (isVerified()) {
 						<button hlmBtn class="h-9" (click)="closeDialog()">Close</button>
 					} @else {
