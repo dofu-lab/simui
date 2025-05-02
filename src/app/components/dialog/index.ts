@@ -15,3 +15,5 @@ export * from './dialog-14.component';
 export * from './dialog-15.component';
 export * from './dialog-16.component';
 export * from './dialog-17.component';
+export * from './dialog-18.component';
+export * from './dialog-19.component';

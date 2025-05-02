@@ -2029,6 +2029,18 @@
   resolved "https://registry.yarnpkg.com/@lmdb/lmdb-win32-x64/-/lmdb-win32-x64-3.2.6.tgz#729f2035ddef1975279b3329532f5c1f86c91918"
   integrity sha512-XlqVtILonQnG+9fH2N3Aytria7P/1fwDgDhl29rde96uH2sLB8CHORIf2PfuLVzFQJ7Uqp8py9AYwr3ZUCFfWg==
 
+"@maskito/angular@^3.7.2":
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/@maskito/angular/-/angular-3.7.2.tgz#73451481bcb01db72a04a73896a4ba112eac3429"
+  integrity sha512-0auXz5dsS0pNuSZ3WFsQK3Fd6nucC9Um1WVlxoVbi0VEZZG68WirVQybwo7J5/J5gCDffqJn2bAw0qrbbrt0mQ==
+  dependencies:
+    tslib "2.8.1"
+
+"@maskito/core@^3.7.2":
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/@maskito/core/-/core-3.7.2.tgz#dbc4744ade4efa54aff62c1ddaa4a545dbd7d5da"
+  integrity sha512-jnX1u2HAZFy0K8Ll6AoeMpe502aVzrqgPKG7rk/qtbivW+71U3vutP3kqmjZtgsPoNzQ2wzKVWMgi7JEXDK11g==
+
 "@modern-js/node-bundle-require@2.65.1":
   version "2.65.1"
   resolved "https://registry.yarnpkg.com/@modern-js/node-bundle-require/-/node-bundle-require-2.65.1.tgz#e4c34a6ea87c5082119b2b9fc48ebca82bac1411"

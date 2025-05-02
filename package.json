@@ -22,6 +22,8 @@
     "@angular/platform-server": "^19.2.0",
     "@angular/router": "^19.2.0",
     "@angular/ssr": "^19.2.0",
+    "@maskito/angular": "^3.7.2",
+    "@maskito/core": "^3.7.2",
     "@netlify/angular-runtime": "^2.3.1",
     "@ng-icons/core": "29.10.0",
     "@ng-icons/lucide": "30.3.0",
