@@ -35,86 +35,88 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 		<hlm-dialog autoFocus="dialog">
 			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Invite members</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
+				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
-				<div class="flex flex-col gap-2">
-					<div class="flex size-11 items-center justify-center rounded-full border">
-						<ng-icon hlm name="lucideUserPlus" size="sm" />
+				<div class="flex flex-1 flex-col gap-4 overflow-y-auto p-6">
+					<div class="flex flex-col gap-2">
+						<div class="flex size-11 items-center justify-center rounded-full border">
+							<ng-icon hlm name="lucideUserPlus" size="sm" />
+						</div>
+						<div class="flex flex-col gap-1">
+							<h2 class="text-lg leading-none font-semibold">Invite contributors</h2>
+							<p class="text-muted-foreground text-sm">
+								Your new project has been created. Invite new member to contribute on this project.
+							</p>
+						</div>
 					</div>
-					<div class="flex flex-col gap-1">
-						<h2 class="text-lg leading-none font-semibold">Invite contributors</h2>
-						<p class="text-muted-foreground text-sm">
-							Your new project has been created. Invite new member to contribute on this project.
-						</p>
-					</div>
-				</div>
-				<form [formGroup]="form">
-					<div formArrayName="members" class="flex flex-col gap-3">
-						<span class="text-foreground text-sm">Invite via email</span>
-						@for (memberControl of members.controls; track memberControl) {
-							<div class="flex gap-2">
-								<input hlmInput class="flex-1 text-sm" size="sm" placeholder="Email" [formControlName]="$index" />
-								@if (members.length > 1) {
-									<button hlmBtn variant="ghost" size="icon" class="size-9 shrink-0" (click)="removeMember($index)">
-										<ng-icon hlm name="lucideTrash2" size="sm" />
-									</button>
-								}
-							</div>
-						}
-						<span
-							class="text-muted-foreground hover:text-primary w-fit cursor-pointer text-sm underline hover:no-underline"
-							(click)="addMember()">
-							+ Add another
-						</span>
-						<button hlmBtn type="submit" size="sm">Send invites</button>
-					</div>
-				</form>
-				<hr className="my-1 border-t" />
-				<div class="w-full">
-					<div class="text-foreground mb-2 text-sm">Invite via link</div>
-					<div class="relative">
-						<hlm-tooltip>
-							<input
-								hlmInput
-								class="peer w-full pe-9 text-sm"
-								type="email"
-								size="sm"
-								readonly
-								value="https://simui.dev/reference/12374" />
-							<button
-								hlmBtn
-								variant="link"
-								size="icon"
-								hlmTooltipTrigger
-								hideDelay="200"
-								showDelay="200"
-								exitAnimationDuration="100"
-								class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
-								[disabled]="copied()"
-								(click)="onSelect()">
-								<ng-icon
-									hlm
-									name="lucideCopy"
-									size="sm"
-									class="transition-all"
-									[ngClass]="{
-										'scale-0 opacity-0': copied(),
-										'scale-100 opacity-100': !copied(),
-									}" />
-								<ng-icon
-									hlm
-									name="lucideCheck"
-									size="sm"
-									class="absolute text-emerald-500 transition-all"
-									[ngClass]="{
-										'scale-0 opacity-0': !copied(),
-										'scale-100 opacity-100': copied(),
-									}" />
-							</button>
-							<span *brnTooltipContent class="flex items-center text-xs">
-								{{ tooltipLabel() }}
+					<form [formGroup]="form">
+						<div formArrayName="members" class="flex flex-col gap-3">
+							<span class="text-foreground text-sm">Invite via email</span>
+							@for (memberControl of members.controls; track memberControl) {
+								<div class="flex gap-2">
+									<input hlmInput class="flex-1 text-sm" size="sm" placeholder="Email" [formControlName]="$index" />
+									@if (members.length > 1) {
+										<button hlmBtn variant="ghost" size="icon" class="size-9 shrink-0" (click)="removeMember($index)">
+											<ng-icon hlm name="lucideTrash2" size="sm" />
+										</button>
+									}
+								</div>
+							}
+							<span
+								class="text-muted-foreground hover:text-primary w-fit cursor-pointer text-sm underline hover:no-underline"
+								(click)="addMember()">
+								+ Add another
 							</span>
-						</hlm-tooltip>
+							<button hlmBtn type="submit" size="sm">Send invites</button>
+						</div>
+					</form>
+					<hr className="my-1 border-t" />
+					<div class="w-full">
+						<div class="text-foreground mb-2 text-sm">Invite via link</div>
+						<div class="relative">
+							<hlm-tooltip>
+								<input
+									hlmInput
+									class="peer w-full pe-9 text-sm"
+									type="email"
+									size="sm"
+									readonly
+									value="https://simui.dev/reference/12374" />
+								<button
+									hlmBtn
+									variant="link"
+									size="icon"
+									hlmTooltipTrigger
+									hideDelay="200"
+									showDelay="200"
+									exitAnimationDuration="100"
+									class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
+									[disabled]="copied()"
+									(click)="onSelect()">
+									<ng-icon
+										hlm
+										name="lucideCopy"
+										size="sm"
+										class="transition-all"
+										[ngClass]="{
+											'scale-0 opacity-0': copied(),
+											'scale-100 opacity-100': !copied(),
+										}" />
+									<ng-icon
+										hlm
+										name="lucideCheck"
+										size="sm"
+										class="absolute text-emerald-500 transition-all"
+										[ngClass]="{
+											'scale-0 opacity-0': !copied(),
+											'scale-100 opacity-100': copied(),
+										}" />
+								</button>
+								<span *brnTooltipContent class="flex items-center text-xs">
+									{{ tooltipLabel() }}
+								</span>
+							</hlm-tooltip>
+						</div>
 					</div>
 				</div>
 			</hlm-dialog-content>
@@ -202,86 +204,88 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 		<hlm-dialog autoFocus="dialog">
 			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Invite members</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
+				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
-				<div class="flex flex-col gap-2">
-					<div class="flex size-11 items-center justify-center rounded-full border">
-						<ng-icon hlm name="lucideUserPlus" size="sm" />
+				<div class="flex flex-1 flex-col gap-4 overflow-y-auto p-6">
+					<div class="flex flex-col gap-2">
+						<div class="flex size-11 items-center justify-center rounded-full border">
+							<ng-icon hlm name="lucideUserPlus" size="sm" />
+						</div>
+						<div class="flex flex-col gap-1">
+							<h2 class="text-lg leading-none font-semibold">Invite contributors</h2>
+							<p class="text-muted-foreground text-sm">
+								Your new project has been created. Invite new member to contribute on this project.
+							</p>
+						</div>
 					</div>
-					<div class="flex flex-col gap-1">
-						<h2 class="text-lg leading-none font-semibold">Invite contributors</h2>
-						<p class="text-muted-foreground text-sm">
-							Your new project has been created. Invite new member to contribute on this project.
-						</p>
-					</div>
-				</div>
-				<form [formGroup]="form">
-					<div formArrayName="members" class="flex flex-col gap-3">
-						<span class="text-foreground text-sm">Invite via email</span>
-						@for (memberControl of members.controls; track memberControl) {
-							<div class="flex gap-2">
-								<input hlmInput class="flex-1 text-sm" size="sm" placeholder="Email" [formControlName]="$index" />
-								@if (members.length > 1) {
-									<button hlmBtn variant="ghost" size="icon" class="size-9 shrink-0" (click)="removeMember($index)">
-										<ng-icon hlm name="lucideTrash2" size="sm" />
-									</button>
-								}
-							</div>
-						}
-						<span
-							class="text-muted-foreground hover:text-primary w-fit cursor-pointer text-sm underline hover:no-underline"
-							(click)="addMember()">
-							+ Add another
-						</span>
-						<button hlmBtn type="submit" size="sm">Send invites</button>
-					</div>
-				</form>
-				<hr className="my-1 border-t" />
-				<div class="w-full">
-					<div class="text-foreground mb-2 text-sm">Invite via link</div>
-					<div class="relative">
-						<hlm-tooltip>
-							<input
-								hlmInput
-								class="peer w-full pe-9 text-sm"
-								type="email"
-								size="sm"
-								readonly
-								value="https://simui.dev/reference/12374" />
-							<button
-								hlmBtn
-								variant="link"
-								size="icon"
-								hlmTooltipTrigger
-								hideDelay="200"
-								showDelay="200"
-								exitAnimationDuration="100"
-								class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
-								[disabled]="copied()"
-								(click)="onSelect()">
-								<ng-icon
-									hlm
-									name="lucideCopy"
-									size="sm"
-									class="transition-all"
-									[ngClass]="{
-										'scale-0 opacity-0': copied(),
-										'scale-100 opacity-100': !copied(),
-									}" />
-								<ng-icon
-									hlm
-									name="lucideCheck"
-									size="sm"
-									class="absolute text-emerald-500 transition-all"
-									[ngClass]="{
-										'scale-0 opacity-0': !copied(),
-										'scale-100 opacity-100': copied(),
-									}" />
-							</button>
-							<span *brnTooltipContent class="flex items-center text-xs">
-								{{ tooltipLabel() }}
+					<form [formGroup]="form">
+						<div formArrayName="members" class="flex flex-col gap-3">
+							<span class="text-foreground text-sm">Invite via email</span>
+							@for (memberControl of members.controls; track memberControl) {
+								<div class="flex gap-2">
+									<input hlmInput class="flex-1 text-sm" size="sm" placeholder="Email" [formControlName]="$index" />
+									@if (members.length > 1) {
+										<button hlmBtn variant="ghost" size="icon" class="size-9 shrink-0" (click)="removeMember($index)">
+											<ng-icon hlm name="lucideTrash2" size="sm" />
+										</button>
+									}
+								</div>
+							}
+							<span
+								class="text-muted-foreground hover:text-primary w-fit cursor-pointer text-sm underline hover:no-underline"
+								(click)="addMember()">
+								+ Add another
 							</span>
-						</hlm-tooltip>
+							<button hlmBtn type="submit" size="sm">Send invites</button>
+						</div>
+					</form>
+					<hr className="my-1 border-t" />
+					<div class="w-full">
+						<div class="text-foreground mb-2 text-sm">Invite via link</div>
+						<div class="relative">
+							<hlm-tooltip>
+								<input
+									hlmInput
+									class="peer w-full pe-9 text-sm"
+									type="email"
+									size="sm"
+									readonly
+									value="https://simui.dev/reference/12374" />
+								<button
+									hlmBtn
+									variant="link"
+									size="icon"
+									hlmTooltipTrigger
+									hideDelay="200"
+									showDelay="200"
+									exitAnimationDuration="100"
+									class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
+									[disabled]="copied()"
+									(click)="onSelect()">
+									<ng-icon
+										hlm
+										name="lucideCopy"
+										size="sm"
+										class="transition-all"
+										[ngClass]="{
+											'scale-0 opacity-0': copied(),
+											'scale-100 opacity-100': !copied(),
+										}" />
+									<ng-icon
+										hlm
+										name="lucideCheck"
+										size="sm"
+										class="absolute text-emerald-500 transition-all"
+										[ngClass]="{
+											'scale-0 opacity-0': !copied(),
+											'scale-100 opacity-100': copied(),
+										}" />
+								</button>
+								<span *brnTooltipContent class="flex items-center text-xs">
+									{{ tooltipLabel() }}
+								</span>
+							</hlm-tooltip>
+						</div>
 					</div>
 				</div>
 			</hlm-dialog-content>
