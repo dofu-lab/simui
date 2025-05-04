@@ -20,3 +20,4 @@ export * from './dialog-19.component';
 export * from './dialog-20.component';
 export * from './dialog-21.component';
 export * from './dialog-22.component';
+export * from './dialog-23.component';

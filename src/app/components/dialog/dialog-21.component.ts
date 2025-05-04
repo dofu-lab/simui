@@ -142,7 +142,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 	`,
 })
 export class Dialog21Component {
-	private _formBuilder = inject(FormBuilder);
+	private readonly _formBuilder = inject(FormBuilder);
 	public dialogRef = viewChild(BrnDialogComponent);
 	public form: FormGroup = this._formBuilder.group({
 		plan: ['basic'],
