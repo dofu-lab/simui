@@ -130,7 +130,7 @@ export class ProfileAvatarComponent {
 		<hlm-dialog autoFocus="dialog">
 			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Edit profile</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-y-auto rounded-lg p-0 sm:max-h-[min(800px,80vh)]"
+				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-y-auto rounded-lg p-0 sm:max-h-[min(1000px,90vh)]"
 				*brnDialogContent="let ctx">
 				<hlm-dialog-header class="contents space-y-0 text-left">
 					<h2 class="mb-0 px-6 py-4 text-lg font-semibold">Edit profile</h2>
