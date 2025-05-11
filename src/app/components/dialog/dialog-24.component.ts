@@ -20,7 +20,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 	providers: [provideIcons({ lucideArrowRight })],
 	template: `
 		<hlm-dialog>
-			<button brnDialogTrigger hlmBtn variant="outline">Confirm dialog</button>
+			<button brnDialogTrigger hlmBtn variant="outline">Onboarding</button>
 			<hlm-dialog-content
 				class="[&>button>ng-icon]:text-primary-foreground top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">

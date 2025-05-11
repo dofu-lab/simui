@@ -148,7 +148,7 @@ export const avatarComponents: ComponentCardItem[] = [
 	{
 		component: Avatar22Component,
 		code: avatar22Code,
-		id: 'avatar-21',
+		id: 'avatar-22',
 		colNumber: 4,
 		itemStyle: 1,
 	},
