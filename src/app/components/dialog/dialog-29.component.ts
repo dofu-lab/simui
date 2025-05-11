@@ -4,6 +4,7 @@ import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy } from '@ng-icons/lucide';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
+import { HlmAspectRatioDirective } from '@spartan-ng/ui-aspectratio-helm';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
@@ -19,6 +20,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		BrnDialogTriggerDirective,
 		BrnDialogContentDirective,
 		HlmButtonDirective,
+		HlmAspectRatioDirective,
 	],
 	providers: [provideIcons({ lucideCopy, lucideCheck })],
 	template: `
@@ -28,7 +30,9 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-6 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
 				<div class="flex flex-col gap-6">
-					<img src="assets/backgrounds/bg-01.jpg" alt="Logo" class="w-full rounded-md" height="264" width="352" />
+					<div [hlmAspectRatio]="4 / 3">
+						<img src="assets/backgrounds/bg-01.jpg" alt="Logo" class="w-full rounded-md" />
+					</div>
 					<div class="flex flex-col gap-1 text-center">
 						<span class="text-lg font-semibold">Blog post published</span>
 						<span class="text-muted-foreground text-sm">
@@ -87,6 +91,7 @@ import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy } from '@ng-icons/lucide';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
+import { HlmAspectRatioDirective } from '@spartan-ng/ui-aspectratio-helm';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
@@ -102,6 +107,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		BrnDialogTriggerDirective,
 		BrnDialogContentDirective,
 		HlmButtonDirective,
+		HlmAspectRatioDirective,
 	],
 	providers: [provideIcons({ lucideCopy, lucideCheck })],
 	template: \`
@@ -111,7 +117,9 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-6 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
 				<div class="flex flex-col gap-6">
-					<img src="assets/backgrounds/bg-01.jpg" alt="Logo" class="w-full rounded-md" height="264" width="352" />
+					<div [hlmAspectRatio]="4 / 3">
+						<img src="assets/backgrounds/bg-01.jpg" alt="Logo" class="w-full rounded-md" />
+					</div>
 					<div class="flex flex-col gap-1 text-center">
 						<span class="text-lg font-semibold">Blog post published</span>
 						<span class="text-muted-foreground text-sm">
