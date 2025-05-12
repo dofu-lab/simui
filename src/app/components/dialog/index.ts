@@ -27,3 +27,5 @@ export * from './dialog-26.component';
 export * from './dialog-27.component';
 export * from './dialog-28.component';
 export * from './dialog-29.component';
+export * from './dialog-30.component';
+export * from './dialog-31.component';
