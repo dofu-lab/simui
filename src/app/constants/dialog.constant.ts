@@ -61,6 +61,10 @@ import {
 	Dialog30Component,
 	dialog31Code,
 	Dialog31Component,
+	dialog32Code,
+	Dialog32Component,
+	dialog33Code,
+	Dialog33Component,
 } from '../components/dialog';
 import { ComponentCardItem } from '../core';
 
@@ -279,6 +283,20 @@ export const dialogComponents: ComponentCardItem[] = [
 		id: 'dialog-31',
 		component: Dialog31Component,
 		code: dialog31Code,
+		colNumber: 4,
+		itemStyle: 1,
+	},
+	{
+		id: 'dialog-32',
+		component: Dialog32Component,
+		code: dialog32Code,
+		colNumber: 4,
+		itemStyle: 1,
+	},
+	{
+		id: 'dialog-33',
+		component: Dialog33Component,
+		code: dialog33Code,
 		colNumber: 4,
 		itemStyle: 1,
 	},
