@@ -6,6 +6,7 @@ import { badgeComponents } from './badge.constant';
 import { bannerComponents } from './banner.constant';
 import { breadcrumbComponents } from './breadcrumb.constant';
 import { buttonComponents } from './button.constant';
+import { cardComponents } from './card.constant';
 import { checkBoxComponents } from './checkbox.constant';
 import { dialogComponents } from './dialog.constant';
 import { notificationComponents } from './notification.constant';
@@ -61,6 +62,13 @@ export const previewComponents: ComponentInfo[] = [
 		image: 'assets/thumbnails/button.png',
 		path: 'components/button',
 	},
+  {
+    name: 'Card',
+    compNumber: cardComponents.length,
+    image: 'assets/thumbnails/card.png',
+    path: 'components/card',
+    isNew: true,
+  },
 	{
 		name: 'Checkbox',
 		compNumber: checkBoxComponents.length,
