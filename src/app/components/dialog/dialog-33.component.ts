@@ -123,7 +123,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 									<span>Apple Pay ending in 2299</span>
 									<span class="text-muted-foreground truncate text-xs">Expiry 11/2026</span>
 								</div>
-								<hlm-checkbox id="checkbox-apple" formControlName="paymentMethod" />
+								<hlm-checkbox id="checkbox-apple" formControlName="applepay" />
 							</div>
 						</label>
 					</div>
@@ -270,7 +270,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 									<span>Apple Pay ending in 2299</span>
 									<span class="text-muted-foreground truncate text-xs">Expiry 11/2026</span>
 								</div>
-								<hlm-checkbox id="checkbox-apple" formControlName="paymentMethod" />
+								<hlm-checkbox id="checkbox-apple" formControlName="applepay" />
 							</div>
 						</label>
 					</div>
