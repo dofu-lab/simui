@@ -39,7 +39,7 @@ import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 		<hlm-dialog autoFocus="dialog">
 			<button brnDialogTrigger hlmBtn variant="outline">Edit profile</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(1000px,90vh)] sm:max-w-150"
+				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(1000px,85vh)] sm:max-w-150"
 				*brnDialogContent="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<div class="relative p-2">
@@ -137,7 +137,7 @@ import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 											<ng-icon hlm name="lucideMail" size="sm" />
 										</div>
 									</div>
-									<span class="flex items-start justify-start gap-2 text-xs font-semibold text-[#2E90FA]">
+									<span class="flex items-start justify-start gap-1 text-xs font-semibold text-[#2E90FA]">
 										<svg
 											width="16"
 											height="16"
@@ -188,7 +188,7 @@ import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 								</label>
 							</div>
 
-							<div class="flex flex-col gap-2 border-y-[2px] border-dotted py-4 sm:flex-row sm:justify-between">
+							<div class="flex flex-col gap-2 border-t-[2px] border-dotted py-4 sm:flex-row sm:justify-between">
 								<label hlmLabel class="text-secondary-foreground text-sm font-semibold">Country</label>
 								<div class="flex flex-1 flex-col items-start gap-1 sm:max-w-90">
 									<brn-select class="inline-block w-full" placeholder="Select your country" formControlName="country">
@@ -226,6 +226,7 @@ import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 						</div>
 					</form>
 				</div>
+				<div class="mx-6 border-t-[2px] border-dotted"></div>
 				<div class="flex gap-4 p-6">
 					<button hlmBtn variant="outline" class="flex-1" size="sm" (click)="ctx.close()">
 						<ng-icon hlm name="lucideSave" class="text-muted-foreground mr-2" size="sm" />
@@ -335,7 +336,7 @@ import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 		<hlm-dialog autoFocus="dialog">
 			<button brnDialogTrigger hlmBtn variant="outline">Edit profile</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(1000px,90vh)] sm:max-w-150"
+				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(1000px,85vh)] sm:max-w-150"
 				*brnDialogContent="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<div class="relative p-2">
@@ -433,7 +434,7 @@ import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 											<ng-icon hlm name="lucideMail" size="sm" />
 										</div>
 									</div>
-									<span class="flex items-start justify-start gap-2 text-xs font-semibold text-[#2E90FA]">
+									<span class="flex items-start justify-start gap-1 text-xs font-semibold text-[#2E90FA]">
 										<svg
 											width="16"
 											height="16"
@@ -484,7 +485,7 @@ import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 								</label>
 							</div>
 
-							<div class="flex flex-col gap-2 border-y-[2px] border-dotted py-4 sm:flex-row sm:justify-between">
+							<div class="flex flex-col gap-2 border-t-[2px] border-dotted py-4 sm:flex-row sm:justify-between">
 								<label hlmLabel class="text-secondary-foreground text-sm font-semibold">Country</label>
 								<div class="flex flex-1 flex-col items-start gap-1 sm:max-w-90">
 									<brn-select class="inline-block w-full" placeholder="Select your country" formControlName="country">
@@ -522,6 +523,7 @@ import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 						</div>
 					</form>
 				</div>
+				<div class="mx-6 border-t-[2px] border-dotted"></div>
 				<div class="flex gap-4 p-6">
 					<button hlmBtn variant="outline" class="flex-1" size="sm" (click)="ctx.close()">
 						<ng-icon hlm name="lucideSave" class="text-muted-foreground mr-2" size="sm" />

@@ -32,3 +32,4 @@ export * from './dialog-31.component';
 export * from './dialog-32.component';
 export * from './dialog-33.component';
 export * from './dialog-34.component';
+export * from './dialog-35.component';
