@@ -5,6 +5,7 @@ export * from './badge.component';
 export * from './banner.component';
 export * from './breadcrumb.component';
 export * from './button.component';
+export * from './card.component';
 export * from './checkbox.component';
 export * from './comp-layout.component';
 export * from './dialog.component';
