@@ -9,8 +9,8 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	template: `
 		<component-header
 			name="Checkbox"
-			description="Cards are a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options." />
-		<page-grid [components]="components" />
+      description="Checkboxes allow users to select one or more options from a set. They are commonly used in forms and settings to toggle values on or off." />
+    <page-grid [components]="components" />
 	`,
 })
 export class CheckboxComponent {

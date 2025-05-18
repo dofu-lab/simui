@@ -21,8 +21,13 @@ import { NavigationService } from '../core/navigation.service';
 			</div>
 			<div class="grid items-center justify-center gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 				@for (component of components; track component.path) {
-					<div dfCard class="h-[256px] max-w-[300px] cursor-pointer" (click)="onNavigate(component.path)">
-						<img [src]="component.image" class="h-[170px] w-full object-cover" />
+					<div
+						dfCard
+						class="border-input h-[256px] max-w-[300px] cursor-pointer rounded-2xl border px-1 pt-1"
+						(click)="onNavigate(component.path)">
+						<div class="relative h-[170px] overflow-hidden rounded-xl border">
+							<img [src]="component.image" class="absolute size-full object-cover" />
+						</div>
 						<div dfCardBody>
 							<div class="text-text-md flex items-center gap-2 font-semibold">
 								{{ component.name }}
