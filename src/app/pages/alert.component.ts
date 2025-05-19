@@ -4,7 +4,6 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 
 @Component({
 	selector: 'app-alert',
-	standalone: true,
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
 		<component-header name="Alert" description="A component to display alert messages" />

@@ -6,7 +6,6 @@ import { NavigationService } from '../core/navigation.service';
 
 @Component({
 	selector: 'app-home',
-	standalone: true,
 	providers: [NavigationService],
 	imports: [CardDirective, CardBodyDirective, HlmBadgeDirective],
 	template: `

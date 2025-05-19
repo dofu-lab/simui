@@ -4,7 +4,6 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 
 @Component({
 	selector: 'app-accordion',
-	standalone: true,
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
 		<component-header

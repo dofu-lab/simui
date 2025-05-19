@@ -4,7 +4,6 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 
 @Component({
 	selector: 'app-button',
-	standalone: true,
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
 		<component-header name="Button" description="A button is a graphic element that triggers an action when clicked" />

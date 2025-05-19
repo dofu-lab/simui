@@ -40,7 +40,8 @@
 			"@spartan-ng/ui-scrollarea-helm": ["./src/libs/ui/ui-scrollarea-helm/src/index.ts"],
 			"@spartan-ng/ui-radiogroup-helm": ["./src/libs/ui/ui-radiogroup-helm/src/index.ts"],
 			"@spartan-ng/ui-inputotp-helm": ["./src/libs/ui/ui-inputotp-helm/src/index.ts"],
-			"@spartan-ng/ui-switch-helm": ["./src/libs/ui/ui-switch-helm/src/index.ts"]
+			"@spartan-ng/ui-switch-helm": ["./src/libs/ui/ui-switch-helm/src/index.ts"],
+			"@sim/ui-file-helm": ["./src/libs/sim/ui-file-helm/index.ts"]
 		}
 	},
 	"angularCompilerOptions": {

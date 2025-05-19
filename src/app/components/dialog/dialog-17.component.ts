@@ -147,7 +147,6 @@ export class Dialog17Component {
 	}
 
 	removeMember(index: number): void {
-		console.log('removeMember', index);
 		this.members.removeAt(index, { emitEvent: true });
 	}
 
@@ -316,7 +315,6 @@ export class Dialog17Component {
 	}
 
 	removeMember(index: number): void {
-		console.log('removeMember', index);
 		this.members.removeAt(index, { emitEvent: true });
 	}
 

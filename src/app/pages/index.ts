@@ -8,6 +8,7 @@ export * from './button.component';
 export * from './checkbox.component';
 export * from './comp-layout.component';
 export * from './dialog.component';
+export * from './file-upload.component';
 export * from './home.component';
 export * from './intro.component';
 export * from './notification.component';
