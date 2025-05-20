@@ -7,3 +7,5 @@ export * from './file-upload-06.component';
 export * from './file-upload-07.component';
 export * from './file-upload-08.component';
 export * from './file-upload-09.component';
+export * from './file-upload-10.component';
+export * from './file-upload-11.component';

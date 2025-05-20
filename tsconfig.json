@@ -17,6 +17,7 @@
 		"module": "ES2022",
 		"paths": {
 			"@/*": ["./src/*"],
+			"@sim/ui-file-helm": ["./src/libs/sim/ui-file-helm/index.ts"],
 			"@spartan-ng/ui-alert-helm": ["./src/libs/ui/ui-alert-helm/src/index.ts"],
 			"@spartan-ng/ui-aspectratio-helm": ["./src/libs/ui/ui-aspectratio-helm/src/index.ts"],
 			"@spartan-ng/ui-avatar-helm": ["./src/libs/ui/ui-avatar-helm/src/index.ts"],
@@ -41,7 +42,7 @@
 			"@spartan-ng/ui-radiogroup-helm": ["./src/libs/ui/ui-radiogroup-helm/src/index.ts"],
 			"@spartan-ng/ui-inputotp-helm": ["./src/libs/ui/ui-inputotp-helm/src/index.ts"],
 			"@spartan-ng/ui-switch-helm": ["./src/libs/ui/ui-switch-helm/src/index.ts"],
-			"@sim/ui-file-helm": ["./src/libs/sim/ui-file-helm/index.ts"]
+			"@spartan-ng/ui-table-helm": ["./src/libs/ui/ui-table-helm/src/index.ts"]
 		}
 	},
 	"angularCompilerOptions": {

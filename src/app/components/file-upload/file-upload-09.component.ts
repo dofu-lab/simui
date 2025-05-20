@@ -90,23 +90,16 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 							</div>
 						}
 					</div>
-					@if (this.files().length > 0) {
-						<div class="flex justify-between">
-							<button
-								hlmBtn
-								size="sm"
-								variant="outline"
-								class="flex h-8 w-fit gap-2 text-xs"
-								(click)="removeAllFiles()">
-								Remove all files
-							</button>
-							<div class="flex items-center gap-2">
-								<span class="text-muted-foreground text-xs">Total files: {{ files().length }}</span>
-								<div class="bg-border h-6 w-[1px]"></div>
-								<span class="text-muted-foreground text-xs">Total size: {{ totalSize() }}</span>
-							</div>
+					<div class="flex justify-between">
+						<button hlmBtn size="sm" variant="outline" class="flex h-8 w-fit gap-2 text-xs" (click)="removeAllFiles()">
+							Remove all files
+						</button>
+						<div class="flex items-center gap-2">
+							<span class="text-muted-foreground text-xs">Total files: {{ files().length }}</span>
+							<div class="bg-border h-6 w-[1px]"></div>
+							<span class="text-muted-foreground text-xs">Total size: {{ totalSize() }}</span>
 						</div>
-					}
+					</div>
 				}
 				<input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
 			</div>
@@ -289,23 +282,16 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 							</div>
 						}
 					</div>
-					@if (this.files().length > 0) {
-						<div class="flex justify-between">
-							<button
-								hlmBtn
-								size="sm"
-								variant="outline"
-								class="flex h-8 w-fit gap-2 text-xs"
-								(click)="removeAllFiles()">
-								Remove all files
-							</button>
-							<div class="flex items-center gap-2">
-								<span class="text-muted-foreground text-xs">Total files: {{ files().length }}</span>
-								<div class="bg-border h-6 w-[1px]"></div>
-								<span class="text-muted-foreground text-xs">Total size: {{ totalSize() }}</span>
-							</div>
+					<div class="flex justify-between">
+						<button hlmBtn size="sm" variant="outline" class="flex h-8 w-fit gap-2 text-xs" (click)="removeAllFiles()">
+							Remove all files
+						</button>
+						<div class="flex items-center gap-2">
+							<span class="text-muted-foreground text-xs">Total files: {{ files().length }}</span>
+							<div class="bg-border h-6 w-[1px]"></div>
+							<span class="text-muted-foreground text-xs">Total size: {{ totalSize() }}</span>
 						</div>
-					}
+					</div>
 				}
 				<input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
 			</div>
