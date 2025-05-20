@@ -9,9 +9,17 @@ import { buttonComponents } from './button.constant';
 import { cardComponents } from './card.constant';
 import { checkBoxComponents } from './checkbox.constant';
 import { dialogComponents } from './dialog.constant';
+import { fileUploadComponents } from './file-upload.constant';
 import { notificationComponents } from './notification.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'File Upload',
+		compNumber: fileUploadComponents.length,
+		image: 'assets/thumbnails/file-upload.png',
+		path: 'components/file-upload',
+		isNew: true,
+	},
 	{
 		name: 'Dialog',
 		compNumber: dialogComponents.length,
@@ -24,7 +32,6 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: accordionComponents.length,
 		image: 'assets/thumbnails/accordion.png',
 		path: 'components/accordion',
-		isNew: true,
 	},
 	{
 		name: 'Alert',

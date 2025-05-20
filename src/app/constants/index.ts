@@ -8,4 +8,5 @@ export * from './button.constant';
 export * from './card.constant';
 export * from './checkbox.constant';
 export * from './dialog.constant';
+export * from './file-upload.constant';
 export * from './notification.constant';

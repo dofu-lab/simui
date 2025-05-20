@@ -1,5 +1,5 @@
 # Ignore artifacts:
 build
 coverage
-src/libs
+src/libs/ui
 .vscode
