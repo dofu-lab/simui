@@ -5,7 +5,6 @@ import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
 
 @Component({
 	selector: 'sim-card-05',
-	standalone: true,
 	imports: [HlmAspectRatioDirective, HlmCardDirective, HlmButtonDirective],
 	template: `
 		<section hlmCard class="relative w-72 overflow-hidden rounded-2xl p-0 shadow-lg">
@@ -33,7 +32,6 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'sim-card-05',
-  standalone: true,
   imports: [
     HlmAspectRatioDirective,
     HlmCardDirective,

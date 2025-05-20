@@ -11,7 +11,6 @@ import {
 
 @Component({
 	selector: 'sim-card-01',
-	standalone: true,
 	imports: [
 		HlmAspectRatioDirective,
 		HlmCardContentDirective,
@@ -30,9 +29,9 @@ import {
 					class="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
 			</div>
 
-			<div hlmCardContent class="pt-4">
+			<div hlmCardContent class="py-4">
 				<h3 hlmCardTitle>Sample Product</h3>
-				<p hlmCardDescription class="mb-2">Short description of the product goes here.</p>
+				<p hlmCardDescription class="mt-1 mb-2">Short description of the product goes here.</p>
 				<p class="text-foreground text-base font-medium">$99.99</p>
 			</div>
 
@@ -59,7 +58,6 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'sim-card-01',
-  standalone: true,
   imports: [
     HlmAspectRatioDirective,
     HlmCardContentDirective,
@@ -78,13 +76,11 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
         />
       </div>
 
-      <div hlmCardContent class="pt-4">
-        <h3 hlmCardTitle>Sample Product</h3>
-        <p hlmCardDescription class="mb-2">
-          Short description of the product goes here.
-        </p>
-        <p class="text-base font-medium text-foreground">$99.99</p>
-      </div>
+			<div hlmCardContent class="py-4">
+				<h3 hlmCardTitle>Sample Product</h3>
+				<p hlmCardDescription class="mb-2 mt-1">Short description of the product goes here.</p>
+				<p class="text-foreground text-base font-medium">$99.99</p>
+			</div>
 
       <div hlmCardFooter class="flex gap-1 pt-2">
         <button hlmBtn variant="secondary" class="w-full">View more</button>

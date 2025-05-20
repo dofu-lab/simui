@@ -4,10 +4,9 @@ import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
 
 @Component({
 	selector: 'sim-card-02',
-	standalone: true,
 	imports: [HlmCardDirective, HlmButtonDirective],
 	template: `
-		<section hlmCard class="w-100">
+		<section hlmCard>
 			<div class="p-6 pb-0">
 				<h3 class="text-xl leading-none font-semibold tracking-tight">Recent Activity</h3>
 				<p class="text-muted-foreground pt-1 text-sm">Last 24 hours</p>
@@ -27,7 +26,7 @@ import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
 
 					@for (item of activity; track $index) {
 						<li class="relative pl-7">
-							<span class="absolute top-1.5 left-0 flex h-[18px] w-[18px] items-center justify-center">
+							<span class="absolute top-1.5 left-[0.5px] flex h-[18px] w-[18px] items-center justify-center">
 								<span
 									class="block h-[9px] w-[9px] rounded-full"
 									[class.bg-primary]="item.isNew"
@@ -76,13 +75,12 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'sim-card-02',
-  standalone: true,
   imports: [
     HlmCardDirective,
     HlmButtonDirective
   ],
 	template: \`
-		<section hlmCard class="w-100">
+		<section hlmCard>
       <div class="p-6 pb-0">
         <h3 class="text-xl font-semibold leading-none tracking-tight">Recent Activity</h3>
         <p class="text-sm text-muted-foreground pt-1">Last 24 hours</p>

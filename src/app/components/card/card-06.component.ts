@@ -5,7 +5,6 @@ import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/ui-card-h
 
 @Component({
 	selector: 'sim-card-06',
-	standalone: true,
 	imports: [
 		HlmCardContentDirective,
 		HlmCardDirective,
@@ -39,12 +38,12 @@ import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/ui-card-h
 				<p class="mt-3 text-base font-medium">#SimUI 💻</p>
 
 				<div class="mt-6 flex gap-6 text-lg">
-					<span>
+					<span class="flex gap-1">
 						<span class="font-semibold">4</span>
 						<span class="text-muted-foreground">Following</span>
 					</span>
 
-					<span>
+					<span class="flex gap-1">
 						<span class="font-semibold">97.1K</span>
 						<span class="text-muted-foreground">Followers</span>
 					</span>
@@ -63,7 +62,6 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
 
 @Component({
   selector: 'sim-card-06',
-  standalone: true,
   imports: [
     HlmCardContentDirective,
     HlmCardDirective,
@@ -98,12 +96,12 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
         <p class="mt-3 text-base font-medium">#SimUI 💻</p>
 
         <div class="mt-6 flex gap-6 text-lg">
-          <span>
-            <span class="font-semibold">4</span>
+          <span class="flex gap-1">
+            <span class="font-semibold gap-1">4</span>
             <span class="text-muted-foreground">Following</span>
           </span>
 
-          <span>
+          <span class="flex gap-1">
             <span class="font-semibold">97.1K</span>
             <span class="text-muted-foreground">Followers</span>
           </span>

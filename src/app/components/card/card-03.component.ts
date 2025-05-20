@@ -11,7 +11,6 @@ import {
 
 @Component({
 	selector: 'sim-card-03',
-	standalone: true,
 	imports: [
 		HlmCardContentDirective,
 		HlmCardDirective,
@@ -70,7 +69,6 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
 
 @Component({
   selector: 'sim-card-03',
-  standalone: true,
   imports: [
     HlmCardContentDirective,
     HlmCardDirective,
