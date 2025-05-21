@@ -82,33 +82,33 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
   ],
 	template: \`
     <section hlmCard class="w-60">
-      <div hlmCardContent class="flex flex-col items-center text-center">
-        <hlm-avatar variant="large" class="border-border/50 rounded-lg border mt-3 mb-3">
-          <img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis"/>
-          <span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
-        </hlm-avatar>
+			<div hlmCardContent class="flex flex-col items-center text-center">
+				<hlm-avatar variant="large" class="border-border/50 mt-3 mb-3 rounded-lg border">
+					<img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
+					<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
+				</hlm-avatar>
 
-        <h4 hlmCardTitle>Mathilde Lewis</h4>
-        <p hlmCardDescription>Product Manager</p>
-        <div class="flex w-full items-center justify-around mt-4">
-          <div>
-            <p class="text-xl font-semibold">24</p>
-            <p class="text-xs text-muted-foreground">Projects</p>
-          </div>
-          <div>
-            <p class="text-xl font-semibold">87</p>
-            <p class="text-xs text-muted-foreground">Tasks</p>
-          </div>
-          <div>
-            <p class="text-xl font-semibold">15</p>
-            <p class="text-xs text-muted-foreground">Teams</p>
-          </div>
-        </div>
-      </div>
-      <div hlmCardFooter class="pt-3">
-        <button hlmBtn variant="outline" class="w-full">View Profile</button>
-      </div>
-    </section>
+				<h4 hlmCardTitle>Mathilde Lewis</h4>
+				<p hlmCardDescription>Product Manager</p>
+				<div class="mt-4 flex w-full items-center justify-around">
+					<div>
+						<p class="text-xl font-semibold">24</p>
+						<p class="text-muted-foreground text-xs">Projects</p>
+					</div>
+					<div>
+						<p class="text-xl font-semibold">87</p>
+						<p class="text-muted-foreground text-xs">Tasks</p>
+					</div>
+					<div>
+						<p class="text-xl font-semibold">15</p>
+						<p class="text-muted-foreground text-xs">Teams</p>
+					</div>
+				</div>
+			</div>
+			<div hlmCardFooter class="pt-3">
+				<button hlmBtn variant="outline" class="w-full">View Profile</button>
+			</div>
+		</section>
 	\`,
 })
 export class Card03Component {}

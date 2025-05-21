@@ -1,52 +1,22 @@
 import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
+import { HlmAspectRatioDirective } from '@spartan-ng/ui-aspectratio-helm';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/ui-card-helm';
+import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
 
 @Component({
 	selector: 'sim-card-06',
-	imports: [
-		HlmCardContentDirective,
-		HlmCardDirective,
-		HlmButtonDirective,
-		HlmAvatarComponent,
-		HlmAvatarFallbackDirective,
-		HlmAvatarImageDirective,
-	],
+	imports: [HlmCardDirective, HlmButtonDirective, HlmAspectRatioDirective],
 	template: `
-		<section hlmCard class="bg-background/70 max-w-lg overflow-hidden rounded-2xl shadow-sm backdrop-blur-sm">
-			<div hlmCardContent class="p-5">
-				<div class="flex items-start justify-between">
-					<div class="flex items-center gap-4">
-						<hlm-avatar variant="large">
-							<img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
-							<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
-						</hlm-avatar>
+		<section hlmCard class="relative w-72 overflow-hidden rounded-2xl p-0 shadow-lg">
+			<div [hlmAspectRatio]="1">
+				<img src="/assets/products/concert.webp" alt="Artist concert" class="h-full w-full object-cover" />
+			</div>
 
-						<div>
-							<h3 class="text-lg leading-snug font-semibold">Zoey Lang</h3>
-							<p class="text-muted-foreground text-sm">&#64;zoeylang</p>
-						</div>
-					</div>
-					<button hlmBtn size="sm">Follow</button>
-				</div>
-
-				<p class="mt-5 text-base leading-relaxed">
-					Frontend developer and UI/UX enthusiast. Join me on this coding adventure!
-				</p>
-
-				<p class="mt-3 text-base font-medium">#SimUI 💻</p>
-
-				<div class="mt-6 flex gap-6 text-lg">
-					<span class="flex gap-1">
-						<span class="font-semibold">4</span>
-						<span class="text-muted-foreground">Following</span>
-					</span>
-
-					<span class="flex gap-1">
-						<span class="font-semibold">97.1K</span>
-						<span class="text-muted-foreground">Followers</span>
-					</span>
+			<div class="absolute right-0 bottom-0 left-0 p-[2px]">
+				<div
+					class="rounded-4 via-yellow-600/40to-black/50 flex items-center justify-between gap-4 bg-gradient-to-r from-black/50 px-5 py-3 backdrop-blur-md">
+					<span class="text-sm text-white/90">Coming soon.</span>
+					<button hlmBtn size="sm" variant="secondary">Notify me</button>
 				</div>
 			</div>
 		</section>
@@ -62,52 +32,21 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
 
 @Component({
   selector: 'sim-card-06',
-  imports: [
-    HlmCardContentDirective,
-    HlmCardDirective,
-    HlmButtonDirective,
-    HlmAvatarComponent,
-    HlmAvatarFallbackDirective,
-    HlmAvatarImageDirective
-  ],
+  imports: [HlmCardDirective, HlmButtonDirective, HlmAspectRatioDirective],
   template: \`
-    <section hlmCard class="max-w-lg overflow-hidden rounded-2xl shadow-sm bg-background/70 backdrop-blur-sm">
-      <div hlmCardContent class="p-5">
-        <div class="flex items-start justify-between">
-          <div class="flex items-center gap-4">
-            <hlm-avatar variant="large">
-              <img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis"/>
-              <span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
-            </hlm-avatar>
+		<section hlmCard class="relative w-72 overflow-hidden rounded-2xl p-0 shadow-lg">
+			<div [hlmAspectRatio]="1">
+				<img src="/assets/products/concert.webp" alt="Artist concert" class="h-full w-full object-cover" />
+			</div>
 
-            <div>
-              <h3 class="text-lg font-semibold leading-snug">Zoey Lang</h3>
-              <p class="text-sm text-muted-foreground">&#64;zoeylang</p>
-            </div>
-          </div>
-          <button hlmBtn size="sm">Follow</button>
-        </div>
-
-        <p class="mt-5 text-base leading-relaxed">
-          Frontend developer and UI/UX enthusiast. Join me on this coding
-          adventure!
-        </p>
-
-        <p class="mt-3 text-base font-medium">#SimUI 💻</p>
-
-        <div class="mt-6 flex gap-6 text-lg">
-          <span class="flex gap-1">
-            <span class="font-semibold gap-1">4</span>
-            <span class="text-muted-foreground">Following</span>
-          </span>
-
-          <span class="flex gap-1">
-            <span class="font-semibold">97.1K</span>
-            <span class="text-muted-foreground">Followers</span>
-          </span>
-        </div>
-      </div>
-    </section>
+			<div class="absolute right-0 bottom-0 left-0 p-[2px]">
+				<div
+					class="rounded-4 via-yellow-600/40to-black/50 flex items-center justify-between gap-4 bg-gradient-to-r from-black/50 px-5 py-3 backdrop-blur-md">
+					<span class="text-sm text-white/90">Coming soon.</span>
+					<button hlmBtn size="sm" variant="secondary">Notify me</button>
+				</div>
+			</div>
+		</section>
 	\`,
 })
 export class Card06Component {}

@@ -156,11 +156,11 @@ import {
 				<ng-icon hlm name="lucideHeartOff" class="h-5 w-5" />
 			</button>
 
-			<div hlmCardContent class="grid sm:grid-cols-[1fr_auto] gap-6 p-4">
-        <img
-          src="/assets/products/disc.webp"
-          alt="Daily Mix cover"
-          class="aspect-square w-full rounded-xl object-cover sm:w-36" />
+			<div hlmCardContent class="grid gap-6 p-4 sm:grid-cols-[1fr_auto]">
+				<img
+					src="/assets/products/disc.webp"
+					alt="Daily Mix cover"
+					class="aspect-square w-full rounded-xl object-cover sm:w-36" />
 				<div class="flex min-w-0 flex-col">
 					<div>
 						<h2 class="text-xl leading-tight font-semibold">Daily Mix</h2>
