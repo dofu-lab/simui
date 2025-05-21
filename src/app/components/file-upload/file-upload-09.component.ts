@@ -18,7 +18,6 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 
 @Component({
 	selector: 'sim-file-upload-09',
-	standalone: true,
 	providers: [
 		provideIcons({
 			lucideX,
@@ -210,7 +209,6 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 
 @Component({
 	selector: 'sim-file-upload-09',
-	standalone: true,
 	providers: [
 		provideIcons({
 			lucideX,

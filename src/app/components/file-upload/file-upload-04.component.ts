@@ -7,7 +7,6 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 
 @Component({
 	selector: 'sim-file-upload-04',
-	standalone: true,
 	providers: [provideIcons({ lucideX, lucideImageUp, lucideCircleAlert })],
 	imports: [HlmButtonDirective, HlmIconDirective, NgIcon, FileDragDropDirective],
 	host: {
@@ -99,7 +98,6 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 
 @Component({
 	selector: 'sim-file-upload-04',
-	standalone: true,
 	providers: [provideIcons({ lucideX, lucideImageUp, lucideCircleAlert })],
 	imports: [HlmButtonDirective, HlmIconDirective, NgIcon, FileDragDropDirective],
 	host: {

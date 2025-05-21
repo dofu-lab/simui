@@ -22,7 +22,6 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 
 @Component({
 	selector: 'sim-file-upload-11',
-	standalone: true,
 	providers: [
 		provideIcons({
 			lucideX,
@@ -284,7 +283,6 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 
 @Component({
 	selector: 'sim-file-upload-11',
-	standalone: true,
 	providers: [
 		provideIcons({
 			lucideX,

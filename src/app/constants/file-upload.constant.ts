@@ -21,6 +21,10 @@ import {
 	FileUpload10Component,
 	fileUpload11Code,
 	FileUpload11Component,
+	fileUpload12Code,
+	FileUpload12Component,
+	fileUpload13Code,
+	FileUpload13Component,
 } from '../components/file-upload';
 import { ComponentCardItem } from '../core';
 
@@ -99,6 +103,20 @@ export const fileUploadComponents: ComponentCardItem[] = [
 		id: 'file-upload-11',
 		component: FileUpload11Component,
 		code: fileUpload11Code,
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		id: 'file-upload-12',
+		component: FileUpload12Component,
+		code: fileUpload12Code,
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		id: 'file-upload-13',
+		component: FileUpload13Component,
+		code: fileUpload13Code,
 		colNumber: 2,
 		itemStyle: 1,
 	},

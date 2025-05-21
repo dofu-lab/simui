@@ -9,3 +9,5 @@ export * from './file-upload-08.component';
 export * from './file-upload-09.component';
 export * from './file-upload-10.component';
 export * from './file-upload-11.component';
+export * from './file-upload-12.component';
+export * from './file-upload-13.component';
