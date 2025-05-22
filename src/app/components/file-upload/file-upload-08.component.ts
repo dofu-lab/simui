@@ -52,13 +52,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 						}
 					</div>
 				}
-				<input
-					#fileInput
-					type="file"
-					accept="image/*"
-					class="hidden"
-					[disabled]="disabled()"
-					(change)="onFileSelected($event)" />
+				<input #fileInput type="file" class="hidden" [disabled]="disabled()" (change)="onFileSelected($event)" />
 			</div>
 		</div>
 		@if (this.errors().length > 0) {
@@ -120,7 +114,6 @@ import { lucideCircleAlert, lucidePaperclip, lucideUpload, lucideX } from '@ng-i
 import { FileDragDropDirective, FileMetadata, FileUploadState } from '@sim/ui-file-helm';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-
 @Component({
 	selector: 'sim-file-upload-08',
 	providers: [provideIcons({ lucideX, lucideCircleAlert, lucideUpload, lucidePaperclip })],
@@ -169,13 +162,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 						}
 					</div>
 				}
-				<input
-					#fileInput
-					type="file"
-					accept="image/*"
-					class="hidden"
-					[disabled]="disabled()"
-					(change)="onFileSelected($event)" />
+				<input #fileInput type="file" class="hidden" [disabled]="disabled()" (change)="onFileSelected($event)" />
 			</div>
 		</div>
 		@if (this.errors().length > 0) {

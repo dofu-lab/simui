@@ -156,7 +156,7 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 						</button>
 					</div>
 				</div>
-				<input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
+				<input #fileInput type="file" class="hidden" [multiple]="true" (change)="onFileSelected($event)" />
 			</div>
 		</div>
 		@if (this.errors().length > 0) {
@@ -417,7 +417,7 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 						</button>
 					</div>
 				</div>
-				<input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
+				<input #fileInput type="file" class="hidden" [multiple]="true" (change)="onFileSelected($event)" />
 			</div>
 		</div>
 		@if (this.errors().length > 0) {

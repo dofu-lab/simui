@@ -43,9 +43,9 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 						<button
 							hlmBtn
 							size="icon"
-							class="border-background size-6 rounded-full bg-black/60"
+							class="border-background size-8 cursor-pointer rounded-full bg-black/60 hover:bg-black/80"
 							(click)="onRemoveImage(this.files()[0].id)">
-							<ng-icon hlm name="lucideX" size="xs" class="text-primary" />
+							<ng-icon hlm name="lucideX" size="sm" class="text-white" />
 						</button>
 					</div>
 				}
@@ -134,9 +134,9 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 						<button
 							hlmBtn
 							size="icon"
-							class="border-background size-6 rounded-full bg-black/60"
+							class="border-background size-8 cursor-pointer rounded-full bg-black/60 hover:bg-black/80"
 							(click)="onRemoveImage(this.files()[0].id)">
-							<ng-icon hlm name="lucideX" size="xs" class="text-primary" />
+							<ng-icon hlm name="lucideX" size="sm" class="text-white" />
 						</button>
 					</div>
 				}
@@ -174,5 +174,4 @@ export class FileUpload04Component {
 		this.fileUploadDirective()?.removeFile(id);
 	}
 }
-
 `;

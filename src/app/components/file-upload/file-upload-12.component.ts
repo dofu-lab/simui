@@ -97,7 +97,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 										<button
 											hlmBtn
 											size="icon"
-											class="border-background focus-visible:border-background absolute -top-2 -right-2 size-6 rounded-full border-2 shadow-none"
+											class="border-background focus-visible:border-background absolute -top-2 -right-2 size-6 cursor-pointer rounded-full border-2 shadow-none"
 											aria-label="Remove image"
 											(click)="onRemoveImage(file.id)">
 											<ng-icon hlm name="lucideX" class="text-background" size="xs" />
@@ -128,7 +128,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 						</div>
 					}
 				</div>
-				<input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
+				<input #fileInput type="file" class="hidden" [multiple]="true" (change)="onFileSelected($event)" />
 			</div>
 		</div>
 		@if (this.errors().length > 0) {
@@ -336,7 +336,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 										<button
 											hlmBtn
 											size="icon"
-											class="border-background focus-visible:border-background absolute -top-2 -right-2 size-6 rounded-full border-2 shadow-none"
+											class="border-background focus-visible:border-background absolute -top-2 -right-2 size-6 cursor-pointer rounded-full border-2 shadow-none"
 											aria-label="Remove image"
 											(click)="onRemoveImage(file.id)">
 											<ng-icon hlm name="lucideX" class="text-background" size="xs" />
@@ -367,7 +367,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 						</div>
 					}
 				</div>
-				<input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
+				<input #fileInput type="file" class="hidden" [multiple]="true" (change)="onFileSelected($event)" />
 			</div>
 		</div>
 		@if (this.errors().length > 0) {

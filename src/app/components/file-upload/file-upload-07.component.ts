@@ -20,6 +20,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 					role="button"
 					class="border-input has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:items-start! has-[input:focus]:ring-[3px]"
 					dragClass="bg-accent/50"
+					[accept]="accept"
 					[multiple]="true"
 					[maxSize]="maxSize"
 					[initialFiles]="initialFiles"
@@ -66,7 +67,13 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 						</button>
 					}
 				}
-				<input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
+				<input
+					#fileInput
+					type="file"
+					class="hidden"
+					[accept]="accept"
+					[multiple]="true"
+					(change)="onFileSelected($event)" />
 			</div>
 		</div>
 		@if (this.errors().length > 0) {
@@ -83,6 +90,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 export class FileUpload07Component {
 	fileUploadDirective = viewChild(FileDragDropDirective);
 	maxSize = 5 * 1024 * 1024; // 5MB
+	accept = 'image/svg+xml,image/png,image/jpeg,image/jpg,image/gif';
 	filesState = signal<FileUploadState | null>(null);
 	files = computed(() => this.filesState()?.files ?? []);
 	errors = computed(() => this.filesState()?.errors ?? []);
@@ -165,6 +173,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 					role="button"
 					class="border-input has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:items-start! has-[input:focus]:ring-[3px]"
 					dragClass="bg-accent/50"
+					[accept]="accept"
 					[multiple]="true"
 					[maxSize]="maxSize"
 					[initialFiles]="initialFiles"
@@ -211,7 +220,13 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 						</button>
 					}
 				}
-				<input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />
+				<input
+					#fileInput
+					type="file"
+					class="hidden"
+					[accept]="accept"
+					[multiple]="true"
+					(change)="onFileSelected($event)" />
 			</div>
 		</div>
 		@if (this.errors().length > 0) {
@@ -228,6 +243,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 export class FileUpload07Component {
 	fileUploadDirective = viewChild(FileDragDropDirective);
 	maxSize = 5 * 1024 * 1024; // 5MB
+	accept = 'image/svg+xml,image/png,image/jpeg,image/jpg,image/gif';
 	filesState = signal<FileUploadState | null>(null);
 	files = computed(() => this.filesState()?.files ?? []);
 	errors = computed(() => this.filesState()?.errors ?? []);
