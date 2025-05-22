@@ -46,14 +46,14 @@ import {
 				size="icon"
 				variant="ghost"
 				class="text-muted-foreground hover:text-foreground absolute top-4 right-4">
-				<ng-icon hlm name="lucideHeartOff" class="h-5 w-5" />
+				<ng-icon hlm name="lucideHeartOff" />
 			</button>
 
-			<div hlmCardContent class="grid gap-6 p-4 sm:grid-cols-[1fr_auto]">
+			<div hlmCardContent class="grid gap-6 p-4 md:grid-cols-[1fr_auto]">
 				<img
 					src="/assets/products/disc.webp"
 					alt="Daily Mix cover"
-					class="aspect-square w-full rounded-xl object-cover sm:w-36" />
+					class="aspect-square w-full max-w-70 rounded-xl object-cover md:w-36" />
 				<div class="flex min-w-0 flex-col">
 					<div>
 						<h2 class="text-xl leading-tight font-semibold">Daily Mix</h2>
@@ -70,29 +70,29 @@ import {
 						</div>
 					</div>
 
-					<div class="mt-6 flex items-center justify-center gap-4">
+					<div class="mt-6 flex items-center justify-center gap-3">
 						<button hlmBtn size="icon" variant="ghost" aria-label="Repeat">
-							<ng-icon hlm name="lucideRepeat" class="h-4 w-4" />
+							<ng-icon hlm name="lucideRepeat" size="sm" />
 						</button>
 
 						<button hlmBtn size="icon" variant="ghost" aria-label="Prev">
-							<ng-icon hlm name="lucideSkipBack" class="h-4 w-4" />
+							<ng-icon hlm name="lucideSkipBack" size="sm" />
 						</button>
 
 						<button
 							hlmBtn
 							size="icon"
-							class="bg-foreground text-background hover:bg-foreground/90 size-12 rounded-full"
+							class="bg-foreground text-background hover:bg-foreground/90 size-10 shrink-0 rounded-full"
 							aria-label="Play">
-							<ng-icon hlm name="lucidePlay" class="h-5 w-5" />
+							<ng-icon hlm name="lucidePlay" size="sm" />
 						</button>
 
 						<button hlmBtn size="icon" variant="ghost" aria-label="Next">
-							<ng-icon hlm name="lucideSkipForward" class="h-4 w-4" />
+							<ng-icon hlm name="lucideSkipForward" size="sm" />
 						</button>
 
 						<button hlmBtn size="icon" variant="ghost" aria-label="Shuffle">
-							<ng-icon hlm name="lucideShuffle" class="h-4 w-4" />
+							<ng-icon hlm name="lucideShuffle" size="sm" />
 						</button>
 					</div>
 				</div>
@@ -108,11 +108,11 @@ export const card04Code = `
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/ui-card-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmSliderComponent } from '@spartan-ng/ui-slider-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { NgIcon, provideIcons } from '@ng-icons/core';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/ui-card-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmSliderComponent } from '@spartan-ng/ui-slider-helm';
 
 import {
 	lucideHeartOff,
@@ -121,7 +121,7 @@ import {
 	lucideRepeat,
 	lucideShuffle,
 	lucideSkipBack,
-	lucideSkipForward
+	lucideSkipForward,
 } from '@ng-icons/lucide';
 
 @Component({
@@ -133,7 +133,7 @@ import {
 		HlmButtonDirective,
 		HlmSliderComponent,
 		HlmIconDirective,
-		NgIcon
+		NgIcon,
 	],
 	providers: [
 		provideIcons({
@@ -143,8 +143,8 @@ import {
 			lucideSkipForward,
 			lucideSkipBack,
 			lucideShuffle,
-			lucideRepeat
-		})
+			lucideRepeat,
+		}),
 	],
 	template: \`
 		<section hlmCard class="relative overflow-hidden rounded-3xl shadow-lg">
@@ -153,14 +153,14 @@ import {
 				size="icon"
 				variant="ghost"
 				class="text-muted-foreground hover:text-foreground absolute top-4 right-4">
-				<ng-icon hlm name="lucideHeartOff" class="h-5 w-5" />
+				<ng-icon hlm name="lucideHeartOff" />
 			</button>
 
-			<div hlmCardContent class="grid gap-6 p-4 sm:grid-cols-[1fr_auto]">
+			<div hlmCardContent class="grid gap-6 p-4 md:grid-cols-[1fr_auto]">
 				<img
 					src="/assets/products/disc.webp"
 					alt="Daily Mix cover"
-					class="aspect-square w-full rounded-xl object-cover sm:w-36" />
+					class="aspect-square w-full max-w-70 rounded-xl object-cover md:w-36" />
 				<div class="flex min-w-0 flex-col">
 					<div>
 						<h2 class="text-xl leading-tight font-semibold">Daily Mix</h2>
@@ -177,29 +177,29 @@ import {
 						</div>
 					</div>
 
-					<div class="mt-6 flex items-center justify-center gap-4">
+					<div class="mt-6 flex items-center justify-center gap-3">
 						<button hlmBtn size="icon" variant="ghost" aria-label="Repeat">
-							<ng-icon hlm name="lucideRepeat" class="h-4 w-4" />
+							<ng-icon hlm name="lucideRepeat" size="sm" />
 						</button>
 
 						<button hlmBtn size="icon" variant="ghost" aria-label="Prev">
-							<ng-icon hlm name="lucideSkipBack" class="h-4 w-4" />
+							<ng-icon hlm name="lucideSkipBack" size="sm" />
 						</button>
 
 						<button
 							hlmBtn
 							size="icon"
-							class="bg-foreground text-background hover:bg-foreground/90 size-12 rounded-full"
+							class="bg-foreground text-background hover:bg-foreground/90 size-10 shrink-0 rounded-full"
 							aria-label="Play">
-							<ng-icon hlm name="lucidePlay" class="h-5 w-5" />
+							<ng-icon hlm name="lucidePlay" size="sm" />
 						</button>
 
 						<button hlmBtn size="icon" variant="ghost" aria-label="Next">
-							<ng-icon hlm name="lucideSkipForward" class="h-4 w-4" />
+							<ng-icon hlm name="lucideSkipForward" size="sm" />
 						</button>
 
 						<button hlmBtn size="icon" variant="ghost" aria-label="Shuffle">
-							<ng-icon hlm name="lucideShuffle" class="h-4 w-4" />
+							<ng-icon hlm name="lucideShuffle" size="sm" />
 						</button>
 					</div>
 				</div>
@@ -207,5 +207,7 @@ import {
 		</section>
 	\`,
 })
-export class Card04Component {}
+export class Card04Component {
+	public readonly value = signal(50);
+}
 `;

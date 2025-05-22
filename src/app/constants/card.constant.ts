@@ -15,10 +15,44 @@ import {
 	Card07Component,
 	card08Code,
 	Card08Component,
+	card09Code,
+	Card09Component,
+	card10Code,
+	Card10Component,
+	card11Code,
+	Card11Component,
 } from '@/app/components/card';
 import { ComponentCardItem } from '../core';
 
 export const cardComponents: ComponentCardItem[] = [
+	{
+		component: Card03Component,
+		code: card03Code,
+		id: 'card-03',
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		component: Card06Component,
+		code: card06Code,
+		id: 'card-06',
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		component: Card10Component,
+		code: card10Code,
+		id: 'card-10',
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		component: Card11Component,
+		code: card11Code,
+		id: 'card-11',
+		colNumber: 2,
+		itemStyle: 1,
+	},
 	{
 		component: Card01Component,
 		code: card01Code,
@@ -27,16 +61,16 @@ export const cardComponents: ComponentCardItem[] = [
 		itemStyle: 1,
 	},
 	{
-		component: Card02Component,
-		code: card02Code,
-		id: 'card-02',
+		component: Card09Component,
+		code: card09Code,
+		id: 'card-09',
 		colNumber: 2,
 		itemStyle: 1,
 	},
 	{
-		component: Card03Component,
-		code: card03Code,
-		id: 'card-03',
+		component: Card02Component,
+		code: card02Code,
+		id: 'card-02',
 		colNumber: 2,
 		itemStyle: 1,
 	},
@@ -55,13 +89,6 @@ export const cardComponents: ComponentCardItem[] = [
 		itemStyle: 1,
 	},
 
-	{
-		component: Card06Component,
-		code: card06Code,
-		id: 'card-06',
-		colNumber: 2,
-		itemStyle: 1,
-	},
 	{
 		component: Card07Component,
 		code: card07Code,
