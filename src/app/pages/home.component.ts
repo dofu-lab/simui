@@ -18,11 +18,12 @@ import { NavigationService } from '../core/navigation.service';
 					A curated collection of ready-to-use components to quickly build modern application UIs.
 				</p>
 			</div>
-			<div class="grid items-center justify-center gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+			<div
+				class="grid grid-cols-1 items-center justify-center gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 				@for (component of components; track component.path) {
 					<div
 						dfCard
-						class="border-input h-[256px] max-w-[300px] cursor-pointer rounded-2xl border px-1 pt-1"
+						class="border-input mx-auto h-[256px] w-full max-w-[300px] cursor-pointer rounded-2xl border px-1 pt-1"
 						(click)="onNavigate(component.path)">
 						<div class="relative h-[170px] overflow-hidden rounded-xl border">
 							<img [src]="component.image" class="absolute size-full object-cover" />
