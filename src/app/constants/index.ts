@@ -10,3 +10,4 @@ export * from './checkbox.constant';
 export * from './dialog.constant';
 export * from './file-upload.constant';
 export * from './notification.constant';
+export * from './tabs.constant';

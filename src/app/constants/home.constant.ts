@@ -11,20 +11,21 @@ import { checkBoxComponents } from './checkbox.constant';
 import { dialogComponents } from './dialog.constant';
 import { fileUploadComponents } from './file-upload.constant';
 import { notificationComponents } from './notification.constant';
+import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Tabs',
+		compNumber: tabsComponents.length,
+		image: 'assets/thumbnails/tabs.png',
+		path: 'components/tabs',
+		isNew: true,
+	},
 	{
 		name: 'File Upload',
 		compNumber: fileUploadComponents.length,
 		image: 'assets/thumbnails/file-upload.png',
 		path: 'components/file-upload',
-		isNew: true,
-	},
-	{
-		name: 'Dialog',
-		compNumber: dialogComponents.length,
-		image: 'assets/thumbnails/dialog.png',
-		path: 'components/dialog',
 		isNew: true,
 	},
 	{
@@ -81,6 +82,12 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: checkBoxComponents.length,
 		image: 'assets/thumbnails/checkbox-group.png',
 		path: 'components/checkbox',
+	},
+	{
+		name: 'Dialog',
+		compNumber: dialogComponents.length,
+		image: 'assets/thumbnails/dialog.png',
+		path: 'components/dialog',
 	},
 	{
 		name: 'Notification',
