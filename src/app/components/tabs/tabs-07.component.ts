@@ -7,24 +7,29 @@ import {
 } from '@spartan-ng/ui-tabs-helm';
 
 @Component({
-	selector: 'sim-tabs-04',
+	selector: 'sim-tabs-07',
 	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	host: {
+		class: 'w-full',
+	},
 	template: `
-		<hlm-tabs tab="tab01" class="w-full">
-			<hlm-tabs-list class="h-auto w-full rounded-none border-b bg-transparent p-0" aria-label="tabs example">
+		<hlm-tabs tab="tab01" class="">
+			<hlm-tabs-list
+				class="before:bg-border relative h-auto w-full gap-0.5 bg-transparent p-0 before:absolute before:inset-x-0 before:bottom-0 before:h-px [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
+				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="data-[state=active]:after:bg-primary relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="bg-muted overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					Tab 1
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="data-[state=active]:after:bg-primary relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="bg-muted overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					Tab 2
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="data-[state=active]:after:bg-primary relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="bg-muted overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					Tab 3
 				</button>
 			</hlm-tabs-list>
@@ -40,9 +45,9 @@ import {
 		</hlm-tabs>
 	`,
 })
-export class Tabs04Component {}
+export class Tabs07Component {}
 
-export const tabs04Code = `
+export const tabs07Code = `
 import { Component } from '@angular/core';
 import {
 	HlmTabsComponent,
@@ -52,24 +57,29 @@ import {
 } from '@spartan-ng/ui-tabs-helm';
 
 @Component({
-	selector: 'sim-tabs-04',
+	selector: 'sim-tabs-07',
 	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	host: {
+		class: 'w-full',
+	},
 	template: \`
-		<hlm-tabs tab="tab01" class="w-full">
-			<hlm-tabs-list class="h-auto w-full rounded-none border-b bg-transparent p-0" aria-label="tabs example">
+		<hlm-tabs tab="tab01" class="">
+			<hlm-tabs-list
+				class="before:bg-border relative h-auto w-full gap-0.5 bg-transparent p-0 before:absolute before:inset-x-0 before:bottom-0 before:h-px [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
+				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="data-[state=active]:after:bg-primary relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="bg-muted overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					Tab 1
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="data-[state=active]:after:bg-primary relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="bg-muted overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					Tab 2
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="data-[state=active]:after:bg-primary relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="bg-muted overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					Tab 3
 				</button>
 			</hlm-tabs-list>
@@ -85,5 +95,5 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs04Component {}
+export class Tabs07Component {}
 `;
