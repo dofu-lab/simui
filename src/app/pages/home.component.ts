@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
 import { previewComponents } from '../constants/home.constant';
+import { ThemeService } from '../core';
 import { CardBodyDirective, CardDirective } from '../core/card';
 import { NavigationService } from '../core/navigation.service';
 
@@ -25,8 +27,15 @@ import { NavigationService } from '../core/navigation.service';
 						dfCard
 						class="border-input mx-auto h-[256px] w-full max-w-[300px] cursor-pointer rounded-2xl border px-1 pt-1"
 						(click)="onNavigate(component.path)">
-						<div class="relative h-[170px] overflow-hidden rounded-xl border">
-							<img [src]="component.image" class="absolute size-full object-cover" />
+						<div class="bg-muted relative h-[170px] overflow-hidden rounded-xl border">
+							<img
+								[src]="'assets/thumbnails/dark-' + component.image"
+								class="absolute size-full object-cover"
+								[hidden]="this.appearance() !== 'dark'" />
+							<img
+								[src]="'assets/thumbnails/' + component.image"
+								class="absolute size-full object-cover"
+								[hidden]="this.appearance() !== 'light'" />
 						</div>
 						<div dfCardBody>
 							<div class="text-text-md flex items-center gap-2 font-semibold">
@@ -45,6 +54,8 @@ import { NavigationService } from '../core/navigation.service';
 })
 export class HomeComponent {
 	components = previewComponents;
+	_themeService = inject(ThemeService);
+	appearance = toSignal(this._themeService.darkMode$);
 	navigationService = inject(NavigationService);
 
 	onNavigate(path: string) {
