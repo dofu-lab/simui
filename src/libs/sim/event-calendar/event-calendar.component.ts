@@ -1,4 +1,16 @@
+import { HlmButtonDirective } from '@/libs/ui/ui-button-helm/src';
+import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
+import {
+	HlmMenuComponent,
+	HlmMenuGroupComponent,
+	HlmMenuItemDirective,
+	HlmMenuLabelComponent,
+	HlmMenuShortcutComponent,
+} from '@/libs/ui/ui-menu-helm/src';
 import { Component, computed, input, output, signal } from '@angular/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideChevronDown, lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
+import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import {
 	addDays,
 	addMonths,
@@ -20,8 +32,72 @@ import { WeekViewCalendarComponent } from './week-view-calendar.component';
 
 @Component({
 	selector: 'sim-event-calendar',
+	imports: [
+		NgIcon,
+		HlmIconDirective,
+		HlmButtonDirective,
+		MonthViewCalendarComponent,
+		WeekViewCalendarComponent,
+		DayViewCalendarComponent,
+		AgendaViewComponent,
+		BrnMenuTriggerDirective,
+		HlmMenuComponent,
+		HlmMenuLabelComponent,
+		HlmMenuItemDirective,
+		HlmMenuGroupComponent,
+		HlmMenuShortcutComponent,
+	],
+	providers: [provideIcons({ lucideChevronLeft, lucideChevronRight, lucideChevronDown })],
+	host: {
+		class: 'w-full',
+	},
 	template: `
 		<div class="flex flex-col rounded-lg border has-data-[slot=month-view]:flex-1">
+			<div class="flex items-center justify-between p-2 sm:p-4">
+				<div class="flex items-center justify-start gap-1 sm:gap-4">
+					<button hlmBtn variant="outline" (click)="handleToday()">Today</button>
+					<div class="flex items-center sm:gap-2">
+						<button hlmBtn variant="ghost" size="icon">
+							<ng-icon hlm name="lucideChevronLeft" (click)="handlePrevious()" />
+						</button>
+						<button hlmBtn variant="ghost" size="icon">
+							<ng-icon hlm name="lucideChevronRight" (click)="handleNext()" />
+						</button>
+					</div>
+					<h2 class="text-sm font-semibold sm:text-lg md:text-xl">
+						{{ viewTitle() }}
+					</h2>
+				</div>
+				<div class="flex items-center gap-2">
+					<button hlmBtn variant="outline" [brnMenuTriggerFor]="menu">
+						Open
+						<ng-icon name="lucideChevronDown" />
+					</button>
+
+					<ng-template #menu>
+						<hlm-menu class="">
+							<hlm-menu-group>
+								<button hlmMenuItem (click)="view.set('day')">
+									Day
+									<hlm-menu-shortcut>⌘D</hlm-menu-shortcut>
+								</button>
+								<button hlmMenuItem (click)="view.set('week')">
+									Week
+									<hlm-menu-shortcut>⌘W</hlm-menu-shortcut>
+								</button>
+								<button hlmMenuItem (click)="view.set('month')">
+									Month
+									<hlm-menu-shortcut>⌘M</hlm-menu-shortcut>
+								</button>
+								<button hlmMenuItem (click)="view.set('agenda')">
+									Agenda
+									<hlm-menu-shortcut>⌘M</hlm-menu-shortcut>
+								</button>
+							</hlm-menu-group>
+						</hlm-menu>
+					</ng-template>
+				</div>
+			</div>
 			<div class="flex flex-1 flex-col">
 				@if (this.view() === 'month') {
 					<sim-month-view-calendar
@@ -51,7 +127,6 @@ import { WeekViewCalendarComponent } from './week-view-calendar.component';
 			</div>
 		</div>
 	`,
-	imports: [MonthViewCalendarComponent, WeekViewCalendarComponent, DayViewCalendarComponent, AgendaViewComponent],
 })
 export class EventCalendarComponent {
 	initialView = input<CalendarView>('month');

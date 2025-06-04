@@ -16,8 +16,8 @@ export class EventCalendarComponent {
 			id: 'event-calendar-01',
 			component: EventCalendar01Component,
 			code: eventCalendarCode01,
-			colNumber: 4,
-			itemStyle: 4,
+			colNumber: 3,
+			itemStyle: 1,
 		},
 	];
 }
