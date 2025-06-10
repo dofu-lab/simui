@@ -23,20 +23,20 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 	template: `
 		<brn-popover sideOffset="5">
 			<button variant="outline" brnPopoverTrigger hlmBtn>Share</button>
-			<div hlmPopoverContent class="grid gap-2" *brnPopoverContent="let ctx">
-				<div class="text-center text-sm font-semibold">Share code</div>
+			<div hlmPopoverContent class="grid gap-3" *brnPopoverContent="let ctx">
+				<div class="text-center text-sm font-medium">Share code</div>
 
 				<div class="flex items-center justify-center gap-2">
-					<button variant="outline" size="icon" class="relative" hlmBtn>
+					<button variant="outline" size="icon" class="relative size-9" hlmBtn>
 						<ng-icon hlm name="lucideCode" size="sm" />
 					</button>
-					<button variant="outline" size="icon" class="relative" hlmBtn>
+					<button variant="outline" size="icon" class="relative size-9" hlmBtn>
 						<ng-icon hlm name="lucideFacebook" size="sm" />
 					</button>
-					<button variant="outline" size="icon" class="relative" hlmBtn>
+					<button variant="outline" size="icon" class="relative size-9" hlmBtn>
 						<ng-icon hlm name="lucideMail" size="sm" />
 					</button>
-					<button variant="outline" size="icon" class="relative" hlmBtn>
+					<button variant="outline" size="icon" class="relative size-9" hlmBtn>
 						<ng-icon hlm name="lucideLinkedin" size="sm" />
 					</button>
 				</div>
@@ -45,10 +45,10 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 					<input
 						hlmInput
 						type="text"
-						class="w-full rounded-md border px-3 py-2 pr-10 text-center text-sm"
+						class="w-full rounded-md border px-3 py-2 pr-10 text-sm"
 						[value]="shareUrl"
 						readonly />
-					<button class="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 -translate-y-1/2">
+					<button class="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 flex -translate-y-1/2">
 						<ng-icon hlm name="lucideCopy" size="sm" />
 					</button>
 				</div>
@@ -85,41 +85,38 @@ import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
   ],
   template: \`
     <brn-popover sideOffset="5">
-      <button variant="outline" brnPopoverTrigger hlmBtn>
-        Share
-      </button>
-      <div hlmPopoverContent class="grid gap-2" *brnPopoverContent="let ctx">
-        <div class="text-sm font-semibold text-muted-foreground text-center">Share code</div>
+			<button variant="outline" brnPopoverTrigger hlmBtn>Share</button>
+			<div hlmPopoverContent class="grid gap-3" *brnPopoverContent="let ctx">
+				<div class="text-center text-sm font-medium">Share code</div>
 
-        <div class="flex items-center justify-center gap-2">
-          <button variant="outline" size="icon" class="relative" hlmBtn>
-            <ng-icon hlm name="lucideCode" size="sm"/>
-          </button>
-          <button variant="outline" size="icon" class="relative" hlmBtn>
-            <ng-icon hlm name="lucideFacebook" size="sm"/>
-          </button>
-          <button variant="outline" size="icon" class="relative" hlmBtn>
-            <ng-icon hlm name="lucideMail" size="sm"/>
-          </button>
-          <button variant="outline" size="icon" class="relative" hlmBtn>
-            <ng-icon hlm name="lucideLinkedin" size="sm"/>
-          </button>
-        </div>
+				<div class="flex items-center justify-center gap-2">
+					<button variant="outline" size="icon" class="relative size-9" hlmBtn>
+						<ng-icon hlm name="lucideCode" size="sm" />
+					</button>
+					<button variant="outline" size="icon" class="relative size-9" hlmBtn>
+						<ng-icon hlm name="lucideFacebook" size="sm" />
+					</button>
+					<button variant="outline" size="icon" class="relative size-9" hlmBtn>
+						<ng-icon hlm name="lucideMail" size="sm" />
+					</button>
+					<button variant="outline" size="icon" class="relative size-9" hlmBtn>
+						<ng-icon hlm name="lucideLinkedin" size="sm" />
+					</button>
+				</div>
 
-        <div class="relative">
-          <input
-            hlmInput
-            type="text"
-            class="w-full rounded-md border px-3 py-2 text-sm pr-10 text-center"
-            [value]="shareUrl"
-            readonly
-          />
-          <button class="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
-            <ng-icon hlm name="lucideCopy" size="sm"/>
-          </button>
-        </div>
-      </div>
-    </brn-popover>
+				<div class="relative">
+					<input
+						hlmInput
+						type="text"
+						class="w-full rounded-md border px-3 py-2 pr-10 text-sm"
+						[value]="shareUrl"
+						readonly />
+					<button class="text-muted-foreground flex hover:text-foreground absolute top-1/2 right-2 -translate-y-1/2">
+						<ng-icon hlm name="lucideCopy" size="sm" />
+					</button>
+				</div>
+			</div>
+		</brn-popover>
   \`,
 })
 export class Popover04Component {

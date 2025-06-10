@@ -28,10 +28,10 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 				</div>
 			</button>
 
-			<div hlmPopoverContent class="grid w-64 gap-4 p-4" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid w-64 gap-2" *brnPopoverContent="let ctx">
 				<div>
 					<div class="text-sm font-semibold">Switch account</div>
-					<ul class="mt-2 space-y-2">
+					<ul class="mt-2 space-y-1">
 						@for (user of users; track $index) {
 							<li
 								(click)="switchUser(user, ctx)"
@@ -100,45 +100,42 @@ import {
   ],
   template: \`
     <brn-popover sideOffset="5">
-      <button variant="outline" brnPopoverTrigger hlmBtn>
-        <div class="flex items-center gap-2">
-          <hlm-avatar class="h-6 w-6 border">
-            <img hlmAvatarImage  [src]="currentAccount.avatar"  [alt]="currentAccount.name" />
-            <span hlmAvatarFallback>{{ currentAccount.initials }}</span>
-          </hlm-avatar>
-          <span class="text-sm font-medium">{{ currentAccount.name }}</span>
-        </div>
-      </button>
+			<button variant="outline" brnPopoverTrigger hlmBtn>
+				<div class="flex items-center gap-2">
+					<hlm-avatar class="h-6 w-6 border">
+						<img hlmAvatarImage [src]="currentAccount.avatar" [alt]="currentAccount.name" />
+						<span hlmAvatarFallback>{{ currentAccount.initials }}</span>
+					</hlm-avatar>
+					<span class="text-sm font-medium">{{ currentAccount.name }}</span>
+				</div>
+			</button>
 
-      <div hlmPopoverContent class="w-64 p-4 grid gap-4" *brnPopoverContent="let ctx">
-        <div>
-          <div class="text-sm font-semibold">Switch account</div>
-          <ul class="mt-2 space-y-2">
-            @for(user of users; track $index){
-            <li
-              (click)="switchUser(user, ctx)"
-              class="flex items-center gap-2 rounded-md p-2 transition-colors hover:bg-muted cursor-pointer"
-            >
-              <hlm-avatar class="h-6 w-6 border">
-                <img hlmAvatarImage [src]="user.avatar" [alt]="user.name" />
-                <span hlmAvatarFallback>{{ user.initials }}</span>
-              </hlm-avatar>
-              <span class="text-sm">{{ user.name }}</span>
-            </li>
-            }
-          </ul>
-        </div>
+			<div hlmPopoverContent class="grid w-64 gap-2 " *brnPopoverContent="let ctx">
+				<div>
+					<div class="text-sm font-semibold">Switch account</div>
+					<ul class="mt-2 space-y-1">
+						@for (user of users; track $index) {
+							<li
+								(click)="switchUser(user, ctx)"
+								class="hover:bg-muted flex cursor-pointer items-center gap-2 rounded-md p-2 transition-colors">
+								<hlm-avatar class="h-6 w-6 border">
+									<img hlmAvatarImage [src]="user.avatar" [alt]="user.name" />
+									<span hlmAvatarFallback>{{ user.initials }}</span>
+								</hlm-avatar>
+								<span class="text-sm">{{ user.name }}</span>
+							</li>
+						}
+					</ul>
+				</div>
 
-        <hr class="border-muted" />
+				<hr class="border-muted" />
 
-        <div class="grid gap-2">
-          <button hlmBtn variant="outline" size="sm">Manage account</button>
-          <button hlmBtn variant="ghost" size="sm" >
-            Sign out
-          </button>
-        </div>
-      </div>
-    </brn-popover>
+				<div class="grid gap-2">
+					<button hlmBtn variant="outline" size="sm">Manage account</button>
+					<button hlmBtn variant="ghost" size="sm">Sign out</button>
+				</div>
+			</div>
+		</brn-popover>
   \`,
 })
 export class Popover08Component {
