@@ -29,23 +29,23 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 			<button variant="outline" size="icon" class="relative" brnPopoverTrigger hlmBtn>
 				<ng-icon hlm name="lucideListFilter" size="sm" />
 			</button>
-			<div hlmPopoverContent class="grid w-50 gap-2" *brnPopoverContent="let ctx">
-				<div class="text-muted-foreground text-sm font-semibold">Filters</div>
+			<div hlmPopoverContent class="grid w-50 gap-3" *brnPopoverContent="let ctx">
+				<div class="text-muted-foreground text-xs font-semibold">Filters</div>
 
 				<div class="space-y-2">
-					<label class="flex items-center" hlmLabel>
+					<label class="text-foreground flex items-center font-normal" hlmLabel>
 						<hlm-checkbox class="mr-2" [(ngModel)]="filters.realTime" />
 						Real Time
 					</label>
-					<label class="flex items-center" hlmLabel>
+					<label class="text-foreground flex items-center font-normal" hlmLabel>
 						<hlm-checkbox class="mr-2" [(ngModel)]="filters.topChannels" />
 						Top Channels
 					</label>
-					<label class="flex items-center" hlmLabel>
+					<label class="text-foreground flex items-center font-normal" hlmLabel>
 						<hlm-checkbox class="mr-2" [(ngModel)]="filters.lastOrders" />
 						Last Orders
 					</label>
-					<label class="flex items-center" hlmLabel>
+					<label class="text-foreground flex items-center font-normal" hlmLabel>
 						<hlm-checkbox class="mr-2" [(ngModel)]="filters.totalSpent" />
 						Total Spent
 					</label>
@@ -53,9 +53,13 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 
 				<hr class="border-muted" />
 
-				<div class="flex justify-between gap-2">
-					<button hlmBtn variant="outline" size="sm" class="w-full" (click)="clearFilters(ctx)">Clear</button>
-					<button hlmBtn variant="default" size="sm" class="w-full" (click)="applyFilters(ctx)">Apply</button>
+				<div class="flex justify-between gap-3">
+					<button hlmBtn variant="outline" size="sm" class="h-7 w-fit px-2 text-xs" (click)="clearFilters(ctx)">
+						Clear
+					</button>
+					<button hlmBtn variant="default" size="sm" class="h-7 w-fit px-2 text-xs" (click)="applyFilters(ctx)">
+						Apply
+					</button>
 				</div>
 			</div>
 		</brn-popover>
@@ -115,39 +119,39 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
   ],
   template: \`
     <brn-popover sideOffset="5">
-      <button variant="outline" size="icon" class="relative" brnPopoverTrigger hlmBtn>
-        <ng-icon hlm name="lucideListFilter" size="sm"/>
-      </button>
-      <div hlmPopoverContent class="w-50 grid gap-2" *brnPopoverContent="let ctx">
-        <div class="text-sm font-semibold text-muted-foreground">Filters</div>
+			<button variant="outline" size="icon" class="relative" brnPopoverTrigger hlmBtn>
+				<ng-icon hlm name="lucideListFilter" size="sm" />
+			</button>
+			<div hlmPopoverContent class="grid w-50 gap-3" *brnPopoverContent="let ctx">
+				<div class="text-muted-foreground text-xs font-semibold">Filters</div>
 
-        <div class="space-y-2">
-          <label class="flex items-center" hlmLabel>
-            <hlm-checkbox class="mr-2" [(ngModel)]="filters.realTime" />
-            Real Time
-          </label>
-          <label class="flex items-center" hlmLabel>
-            <hlm-checkbox class="mr-2" [(ngModel)]="filters.topChannels" />
-            Top Channels
-          </label>
-          <label class="flex items-center" hlmLabel>
-            <hlm-checkbox class="mr-2" [(ngModel)]="filters.lastOrders" />
-            Last Orders
-          </label>
-          <label class="flex items-center" hlmLabel>
-            <hlm-checkbox class="mr-2" [(ngModel)]="filters.totalSpent" />
-            Total Spent
-          </label>
-        </div>
+				<div class="space-y-2">
+          <label class="text-foreground flex items-center font-normal" hlmLabel>
+						<hlm-checkbox class="mr-2" [(ngModel)]="filters.realTime" />
+						Real Time
+					</label>
+          <label class="text-foreground flex items-center font-normal" hlmLabel>
+						<hlm-checkbox class="mr-2" [(ngModel)]="filters.topChannels" />
+						Top Channels
+					</label>
+          <label class="text-foreground flex items-center font-normal" hlmLabel>
+						<hlm-checkbox class="mr-2" [(ngModel)]="filters.lastOrders" />
+						Last Orders
+					</label>
+          <label class="text-foreground flex items-center font-normal" hlmLabel>
+						<hlm-checkbox class="mr-2" [(ngModel)]="filters.totalSpent" />
+						Total Spent
+					</label>
+				</div>
 
-        <hr class="border-muted" />
+				<hr class="border-muted" />
 
-        <div class="flex justify-between gap-2">
-          <button hlmBtn variant="outline" size="sm" class="w-full" (click)="clearFilters(ctx)">Clear</button>
-          <button hlmBtn variant="default" size="sm" class="w-full" (click)="applyFilters(ctx)">Apply</button>
-        </div>
-      </div>
-    </brn-popover>
+				<div class="flex justify-between gap-3">
+					<button hlmBtn variant="outline" size="sm" class="h-7 w-fit px-2 text-xs" (click)="clearFilters(ctx)">Clear</button>
+					<button hlmBtn variant="default" size="sm" class="h-7 w-fit px-2 text-xs" (click)="applyFilters(ctx)">Apply</button>
+				</div>
+			</div>
+		</brn-popover>
   \`,
 })
 export class Popover01Component {

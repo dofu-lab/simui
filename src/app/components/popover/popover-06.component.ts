@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
@@ -15,19 +15,19 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 	template: `
 		<brn-popover sideOffset="5">
 			<button variant="outline" brnPopoverTrigger hlmBtn>Popover with steps</button>
-			<div hlmPopoverContent class="grid gap-4" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid gap-2" *brnPopoverContent="let ctx">
 				<div class="text-sm font-semibold">
-					{{ steps[currentStep].title }}
+					{{ steps[currentStep()].title }}
 				</div>
 
 				<p class="text-muted-foreground text-sm">
-					{{ steps[currentStep].description }}
+					{{ steps[currentStep()].description }}
 				</p>
 
 				<div class="flex items-center justify-between gap-2">
-					<span class="text-muted-foreground text-xs">{{ currentStep + 1 }}/{{ steps.length }}</span>
-					<button hlmBtn size="sm" variant="link" (click)="nextStep()">
-						@if (currentStep === steps.length - 1) {
+					<span class="text-muted-foreground text-xs">{{ currentStep() + 1 }}/{{ steps.length }}</span>
+					<button hlmBtn size="sm" variant="link" class="text-xs font-semibold" (click)="nextStep()">
+						@if (currentStep() === steps.length - 1) {
 							Start over
 						} @else {
 							Next
@@ -39,7 +39,7 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 	`,
 })
 export class Popover06Component {
-	currentStep = 0;
+	currentStep = signal(0);
 
 	steps = [
 		{
@@ -57,7 +57,7 @@ export class Popover06Component {
 	];
 
 	nextStep() {
-		this.currentStep = (this.currentStep + 1) % this.steps.length;
+		this.currentStep.update((value: number) => (value + 1) % this.steps.length);
 	}
 }
 
@@ -78,22 +78,20 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
   ],
   template: \`
     <brn-popover sideOffset="5">
-      <button variant="outline" brnPopoverTrigger hlmBtn>
-        Popover with steps
-      </button>
-      <div hlmPopoverContent class="grid gap-4" *brnPopoverContent="let ctx">
+      <button variant="outline" brnPopoverTrigger hlmBtn>Popover with steps</button>
+      <div hlmPopoverContent class="grid gap-2" *brnPopoverContent="let ctx">
         <div class="text-sm font-semibold">
-          {{ steps[currentStep].title }}
+          {{ steps[currentStep()].title }}
         </div>
 
-        <p class="text-sm text-muted-foreground">
-          {{ steps[currentStep].description }}
+        <p class="text-muted-foreground text-sm">
+          {{ steps[currentStep()].description }}
         </p>
 
-        <div class="flex items-center justify-between gap-2 ">
-          <span class="text-xs text-muted-foreground">{{ currentStep + 1 }}/{{ steps.length }}</span>
-          <button hlmBtn size="sm" variant="link" (click)="nextStep()">
-            @if (currentStep === steps.length - 1) {
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-muted-foreground text-xs">{{ currentStep() + 1 }}/{{ steps.length }}</span>
+          <button hlmBtn size="sm" variant="link" class="text-xs font-semibold" (click)="nextStep()">
+            @if (currentStep() === steps.length - 1) {
               Start over
             } @else {
               Next
@@ -105,7 +103,7 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
   \`,
 })
 export class Popover06Component {
-  currentStep = 0;
+  currentStep = signal(0);
 
   steps = [
     {
@@ -123,7 +121,7 @@ export class Popover06Component {
   ];
 
   nextStep() {
-    this.currentStep = (this.currentStep + 1) % this.steps.length;
+    this.currentStep.update((value: number) => (value + 1) % this.steps.length);
   }
 }
 `;

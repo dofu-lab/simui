@@ -21,10 +21,10 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 				</div>
 			</button>
 
-			<div hlmPopoverContent class="grid gap-4 p-2" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid w-fit gap-4 p-2" *brnPopoverContent="let ctx">
 				<div class="text-sm font-semibold">Choose a color</div>
 
-				<div class="grid grid-cols-5 gap-2">
+				<div class="grid w-fit grid-cols-5 gap-2">
 					@for (color of colors; track $index) {
 						<button
 							class="border-muted hover:ring-ring h-8 w-8 rounded-full border transition-colors hover:ring-2 focus:outline-none"
@@ -93,7 +93,7 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
       <div hlmPopoverContent class="grid gap-4 p-2" *brnPopoverContent="let ctx">
         <div class="text-sm font-semibold">Choose a color</div>
 
-        <div class="grid grid-cols-5 gap-2">
+        <div class="grid grid-cols-5 gap-2 w-fit">
           @for (color of colors; track $index) {
             <button
               class="h-8 w-8 rounded-full border border-muted transition-colors hover:ring-2 hover:ring-ring focus:outline-none"
