@@ -70,7 +70,7 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 							<button hlmBtn type="submit" size="sm">Send invites</button>
 						</div>
 					</form>
-					<hr className="my-1 border-t" />
+					<hr class="my-1 border-t" />
 					<div class="w-full">
 						<div class="text-foreground mb-2 text-sm">Invite via link</div>
 						<div class="relative">
@@ -238,7 +238,7 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 							<button hlmBtn type="submit" size="sm">Send invites</button>
 						</div>
 					</form>
-					<hr className="my-1 border-t" />
+					<hr class="my-1 border-t" />
 					<div class="w-full">
 						<div class="text-foreground mb-2 text-sm">Invite via link</div>
 						<div class="relative">
