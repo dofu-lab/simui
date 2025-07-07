@@ -3438,10 +3438,10 @@
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.2.tgz#821f8442f4175d8f0467b9daf26e3a18e2d02af2"
   integrity sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==
 
-"@spartan-ng/brain@0.0.1-alpha.457":
-  version "0.0.1-alpha.457"
-  resolved "https://registry.yarnpkg.com/@spartan-ng/brain/-/brain-0.0.1-alpha.457.tgz#c183c9044bbbc6178d391041116cae06b5dc3f7b"
-  integrity sha512-rFtbC426bcQzvLegCwPLEzf9naf6BQCvFkLHcSsAL2VH8xDsKhKakY3HLzpjXobcQEeMbqksB91UoWQ4Pu9E2A==
+"@spartan-ng/brain@0.0.1-alpha.469":
+  version "0.0.1-alpha.469"
+  resolved "https://registry.yarnpkg.com/@spartan-ng/brain/-/brain-0.0.1-alpha.469.tgz#8d8121f8c5ace9e0fde70cbf44b3a12b4285eecf"
+  integrity sha512-1+wFV119cxfFe56WgBHfkeKxtCGdmI1Fo9SQQdpm2i3yOtiZ566qEIGXTZjQeADEGT3xt2uYUkMA7T4BOXrdWw==
   dependencies:
     tslib "^2.3.0"
 

@@ -4,12 +4,21 @@ import {
 	HlmMenuComponent,
 	HlmMenuGroupComponent,
 	HlmMenuItemDirective,
-	HlmMenuLabelComponent,
 	HlmMenuShortcutComponent,
 } from '@/libs/ui/ui-menu-helm/src';
-import { Component, computed, input, output, signal } from '@angular/core';
+import { DatePipe, TitleCasePipe } from '@angular/common';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	computed,
+	HostListener,
+	input,
+	output,
+	signal,
+	viewChild,
+} from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronDown, lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
+import { lucideChevronDown, lucideChevronLeft, lucideChevronRight, lucidePlus } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import {
 	addDays,
@@ -25,15 +34,19 @@ import {
 import { AgendaViewComponent } from './agenda-view.component';
 import { AgendaDaysToShow } from './constants';
 import { DayViewCalendarComponent } from './day-view-calendar.component';
+import { EventDialogComponent } from './event-dialog.component';
 import { MonthViewCalendarComponent } from './month-view-calendar.component';
-import { CalendarEvent, CalendarView } from './type';
+import { CalendarEvent, CalendarView, EventDuration } from './type';
 import { addHoursToDate } from './utils';
 import { WeekViewCalendarComponent } from './week-view-calendar.component';
 
+import { toast } from 'ngx-sonner';
 @Component({
 	selector: 'sim-event-calendar',
 	imports: [
 		NgIcon,
+		DatePipe,
+		TitleCasePipe,
 		HlmIconDirective,
 		HlmButtonDirective,
 		MonthViewCalendarComponent,
@@ -42,12 +55,14 @@ import { WeekViewCalendarComponent } from './week-view-calendar.component';
 		AgendaViewComponent,
 		BrnMenuTriggerDirective,
 		HlmMenuComponent,
-		HlmMenuLabelComponent,
 		HlmMenuItemDirective,
 		HlmMenuGroupComponent,
 		HlmMenuShortcutComponent,
+		EventDialogComponent,
+		EventDialogComponent,
 	],
-	providers: [provideIcons({ lucideChevronLeft, lucideChevronRight, lucideChevronDown })],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers: [provideIcons({ lucideChevronLeft, lucideChevronRight, lucideChevronDown, lucidePlus })],
 	host: {
 		class: 'w-full',
 	},
@@ -55,43 +70,55 @@ import { WeekViewCalendarComponent } from './week-view-calendar.component';
 		<div class="flex flex-col rounded-lg border has-data-[slot=month-view]:flex-1">
 			<div class="flex items-center justify-between p-2 sm:p-4">
 				<div class="flex items-center justify-start gap-1 sm:gap-4">
-					<button hlmBtn variant="outline" (click)="handleToday()">Today</button>
+					<button hlmBtn variant="outline" size="sm" (click)="handleToday()">Today</button>
 					<div class="flex items-center sm:gap-2">
-						<button hlmBtn variant="ghost" size="icon">
+						<button hlmBtn variant="ghost" size="icon" class="size-9">
 							<ng-icon hlm name="lucideChevronLeft" (click)="handlePrevious()" />
 						</button>
-						<button hlmBtn variant="ghost" size="icon">
+						<button hlmBtn variant="ghost" size="icon" class="size-9">
 							<ng-icon hlm name="lucideChevronRight" (click)="handleNext()" />
 						</button>
 					</div>
 					<h2 class="text-sm font-semibold sm:text-lg md:text-xl">
-						{{ viewTitle() }}
+						@if (this.view() === 'day') {
+							<span class="min-[480px]:hidden" aria-hidden="true">
+								{{ currentDate() | date: 'MMM d, yyyy' }}
+							</span>
+							<span class="max-[479px]:hidden min-md:hidden" aria-hidden="true">
+								{{ currentDate() | date: 'MMMM d, yyyy' }}
+							</span>
+							<span class="max-md:hidden">
+								{{ currentDate() | date: 'EEE MMMM d, yyyy' }}
+							</span>
+						} @else {
+							{{ viewTitle() }}
+						}
 					</h2>
 				</div>
 				<div class="flex items-center gap-2">
-					<button hlmBtn variant="outline" [brnMenuTriggerFor]="menu">
-						Open
+					<button hlmBtn class="flex gap-2" variant="outline" size="sm" [brnMenuTriggerFor]="menu">
+						{{ view() | titlecase }}
 						<ng-icon name="lucideChevronDown" />
 					</button>
-
+					<sim-event-dialog #eventDialog [shouldShowButton]="false" (onEventAdded)="handleEventAdded($event)" />
 					<ng-template #menu>
 						<hlm-menu class="">
 							<hlm-menu-group>
-								<button hlmMenuItem (click)="view.set('day')">
-									Day
-									<hlm-menu-shortcut>⌘D</hlm-menu-shortcut>
+								<button hlmMenuItem (click)="view.set('month')">
+									Month
+									<hlm-menu-shortcut>Ctrl+M</hlm-menu-shortcut>
 								</button>
 								<button hlmMenuItem (click)="view.set('week')">
 									Week
-									<hlm-menu-shortcut>⌘W</hlm-menu-shortcut>
+									<hlm-menu-shortcut>Ctrl+W</hlm-menu-shortcut>
 								</button>
-								<button hlmMenuItem (click)="view.set('month')">
-									Month
-									<hlm-menu-shortcut>⌘M</hlm-menu-shortcut>
+								<button hlmMenuItem (click)="view.set('day')">
+									Day
+									<hlm-menu-shortcut>Ctrl+D</hlm-menu-shortcut>
 								</button>
 								<button hlmMenuItem (click)="view.set('agenda')">
 									Agenda
-									<hlm-menu-shortcut>⌘M</hlm-menu-shortcut>
+									<hlm-menu-shortcut>Ctrl+A</hlm-menu-shortcut>
 								</button>
 							</hlm-menu-group>
 						</hlm-menu>
@@ -103,19 +130,22 @@ import { WeekViewCalendarComponent } from './week-view-calendar.component';
 					<sim-month-view-calendar
 						[currentDate]="currentDate()"
 						[events]="events()"
-						(onEventCreate)="handleEventCreate($event)"
+						(onEventUpdated)="handleEventUpdate($event)"
+						(onEventCreate)="handleEventCreateFromCalendar($event)"
 						(onEventSelect)="handleEventSelect($event)" />
 				} @else if (this.view() === 'week') {
 					<sim-week-view-calendar
 						[currentDate]="currentDate()"
 						[events]="events()"
-						(onEventCreate)="handleEventCreate($event)"
+						(onEventUpdated)="handleEventUpdate($event)"
+						(onEventCreate)="handleEventCreateFromCalendar($event)"
 						(onEventSelect)="handleEventSelect($event)" />
 				} @else if (this.view() === 'day') {
 					<sim-day-view-calendar
 						[currentDate]="currentDate()"
 						[events]="events()"
-						(onEventCreate)="handleEventCreate($event)"
+						(onEventUpdated)="handleEventUpdate($event)"
+						(onEventCreate)="handleEventCreateFromCalendar($event)"
 						(onEventSelect)="handleEventSelect($event)" />
 				} @else if (this.view() === 'agenda') {
 					<sim-agenda-view
@@ -141,6 +171,9 @@ export class EventCalendarComponent {
 	isEventDialogOpen = signal(false);
 	selectedEvent = signal<CalendarEvent | null>(null);
 
+	// Get reference to the event dialog
+	eventDialog = viewChild(EventDialogComponent);
+
 	viewTitle = computed(() => {
 		if (this.view() === 'month') {
 			return format(this.currentDate(), 'MMMM yyyy');
@@ -152,21 +185,6 @@ export class EventCalendarComponent {
 			} else {
 				return `${format(start, 'MMM')} - ${format(end, 'MMM yyyy')}`;
 			}
-		} else if (this.view() === 'day') {
-			return;
-			//   (
-			//     <>
-			//       <span className="min-[480px]:hidden" aria-hidden="true">
-			//         {format(currentDate, "MMM d, yyyy")}
-			//       </span>
-			//       <span className="max-[479px]:hidden min-md:hidden" aria-hidden="true">
-			//         {format(currentDate, "MMMM d, yyyy")}
-			//       </span>
-			//       <span className="max-md:hidden">
-			//         {format(currentDate, "EEE MMMM d, yyyy")}
-			//       </span>
-			//     </>
-			//   )
 		} else if (this.view() === 'agenda') {
 			// Show the month range for agenda view
 			const start = this.currentDate();
@@ -181,6 +199,34 @@ export class EventCalendarComponent {
 			return format(this.currentDate(), 'MMMM yyyy');
 		}
 	});
+
+	@HostListener('window:keydown', ['$event'])
+	onKeyDown(event: KeyboardEvent) {
+		if (!event.ctrlKey) return;
+
+		switch (event.key.toLowerCase()) {
+			case 'M':
+			case 'm':
+				this.view.set('month');
+				event.preventDefault();
+				break;
+			case 'W':
+			case 'w':
+				this.view.set('week');
+				event.preventDefault();
+				break;
+			case 'D':
+			case 'd':
+				this.view.set('day');
+				event.preventDefault();
+				break;
+			case 'A':
+			case 'a':
+				this.view.set('agenda');
+				event.preventDefault();
+				break;
+		}
+	}
 
 	handlePrevious() {
 		if (this.view() === 'month') {
@@ -249,21 +295,22 @@ export class EventCalendarComponent {
 
 		// Show toast notification when an event is deleted
 		if (deletedEvent) {
-			// toast(`Event "${deletedEvent.title}" deleted`, {
-			// 	description: format(new Date(deletedEvent.start), 'MMM d, yyyy'),
-			// 	position: 'bottom-left',
-			// });
+			toast(`Event "${deletedEvent.title}" deleted`, {
+				description: format(new Date(deletedEvent.start), 'MMM d, yyyy'),
+				position: 'bottom-left',
+			});
 		}
 	};
 
 	handleEventUpdate = (updatedEvent: CalendarEvent) => {
 		this.onEventUpdate.emit(updatedEvent);
+		console.log('new event', updatedEvent);
 
 		// Show toast notification when an event is updated via drag and drop
-		// toast(`Event "${updatedEvent.title}" moved`, {
-		// 	description: format(new Date(updatedEvent.start), 'MMM d, yyyy'),
-		// 	position: 'bottom-left',
-		// });
+		toast(`Event "${updatedEvent.title}" moved`, {
+			description: format(new Date(updatedEvent.start), 'MMM d, yyyy'),
+			position: 'bottom-left',
+		});
 	};
 
 	handleEventCreate = (startTime: Date) => {
@@ -293,5 +340,24 @@ export class EventCalendarComponent {
 		};
 		this.selectedEvent.set(newEvent);
 		this.isEventDialogOpen.set(true);
+	};
+
+	handleEventAdded = (event: CalendarEvent) => {
+		this.onEventAdded.emit(event);
+	};
+
+	/**
+	 * Handle event creation from calendar views (when clicking on a day/time slot)
+	 * This will trigger the event dialog to open
+	 */
+	handleEventCreateFromCalendar = (duration: EventDuration, shouldSetDefaultTime: boolean = true) => {
+		console.log('Creating new event at:', duration);
+
+		// Open the dialog programmatically with the selected date
+		if (!duration.startDate) {
+			toast.error('Invalid start time for new event');
+			return;
+		}
+		this.eventDialog()?.openDialog(duration, this.view() === 'month');
 	};
 }

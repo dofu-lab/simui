@@ -12,3 +12,28 @@ export interface CalendarEvent {
 }
 
 export type EventColor = 'sky' | 'amber' | 'violet' | 'rose' | 'emerald' | 'orange';
+
+export interface PositionedEvent {
+	event: CalendarEvent;
+	top: number;
+	height: number;
+	left: number;
+	width: number;
+	zIndex: number;
+	startHour: number;
+	startQuarter: number;
+	endHour: number;
+	endQuarter: number;
+}
+
+export interface TimeOption {
+	value: string;
+	label: string;
+}
+
+export interface EventDuration {
+	startDate?: Date;
+	endDate?: Date;
+	startTime?: string;
+	endTime?: string;
+}

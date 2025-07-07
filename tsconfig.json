@@ -105,6 +105,15 @@
       ],
       "@spartan-ng/ui-tabs-helm": [
         "./src/libs/ui/ui-tabs-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/popover": [
+        "./src/libs/ui/ui-popover-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/date-picker": [
+        "./src/libs/ui/ui-date-picker-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/calendar": [
+        "./src/libs/ui/ui-calendar-helm/src/index.ts"
       ]
     }
   },

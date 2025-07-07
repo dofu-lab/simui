@@ -1,5 +1,6 @@
-import { isSameDay } from 'date-fns';
-import { CalendarEvent, EventColor } from './type';
+import { format, getMinutes, isSameDay } from 'date-fns';
+import { EndHour, StartHour } from './constants';
+import { CalendarEvent, EventColor, TimeOption } from './type';
 
 /**
  * Get CSS classes for event colors
@@ -122,4 +123,41 @@ export function addHoursToDate(date: Date, hours: number): Date {
 	const result = new Date(date);
 	result.setHours(result.getHours() + hours);
 	return result;
+}
+
+// Using date-fns format with custom formatting:
+// 'h' - hours (1-12)
+// 'a' - am/pm
+// ':mm' - minutes with leading zero (only if the token 'mm' is present)
+export const formatTimeWithOptionalMinutes = (date: Date) => {
+	return format(date, getMinutes(date) === 0 ? 'ha' : 'h:mma').toLowerCase();
+};
+
+export function getDateFromContainerId(containerId: string): Date | null {
+	// Extract date from container ID if you implement the ID suggestion above
+	const dateStr = containerId.replace('day-', '');
+	return new Date(dateStr);
+}
+
+export function getTimeOptions(): TimeOption[] {
+	const options: TimeOption[] = [];
+	for (let hour = StartHour; hour < EndHour; hour++) {
+		for (let minute = 0; minute < 60; minute += 15) {
+			const value = getFormattedTimeValue(hour, minute);
+			const label = getFormattedTimeLabel(hour, minute);
+			options.push({ value, label });
+		}
+	}
+	return options;
+}
+
+export function getFormattedTimeValue(hour: number, minute: number): string {
+	const formattedHour = hour.toString().padStart(2, '0');
+	const formattedMinute = minute.toString().padStart(2, '0');
+	return `${formattedHour}:${formattedMinute}`;
+}
+
+export function getFormattedTimeLabel(hour: number, minute: number): string {
+	const date = new Date(2000, 0, 1, hour, minute);
+	return format(date, 'h:mm a');
 }
