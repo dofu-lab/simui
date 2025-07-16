@@ -11,9 +11,17 @@ import { checkBoxComponents } from './checkbox.constant';
 import { dialogComponents } from './dialog.constant';
 import { fileUploadComponents } from './file-upload.constant';
 import { notificationComponents } from './notification.constant';
+import { radioComponents } from './radio.constant';
 import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Radio',
+		compNumber: radioComponents.length,
+		image: 'radio.png',
+		path: 'components/radio',
+		isNew: true,
+	},
 	{
 		name: 'Tabs',
 		compNumber: tabsComponents.length,

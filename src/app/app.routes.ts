@@ -15,6 +15,7 @@ import {
 	HomeComponent,
 	IntroductionComponent,
 	NotificationComponent,
+	RadioComponent,
 	TabsComponent,
 } from './pages';
 
@@ -43,6 +44,7 @@ export const routes: Routes = [
 			{ path: 'dialog', component: DialogComponent },
 			{ path: 'file-upload', component: FileUploadComponent },
 			{ path: 'notification', component: NotificationComponent },
+			{ path: 'radio', component: RadioComponent },
 			{ path: 'tabs', component: TabsComponent },
 			{ path: '', pathMatch: 'full', redirectTo: 'alert' },
 		],
