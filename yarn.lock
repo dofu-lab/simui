@@ -2595,6 +2595,13 @@
   dependencies:
     tslib "^2.3.0"
 
+"@ng-icons/remixicon@^32.0.0":
+  version "32.0.0"
+  resolved "https://registry.yarnpkg.com/@ng-icons/remixicon/-/remixicon-32.0.0.tgz#1917b1ba45c6aa308f908d21ef5a7df905021a47"
+  integrity sha512-dkaLQODarFv7S6QKkcicgsdPiZ0nZ/gw3+MYNcROa7uPLptiWsTANL6zLr368nlYvMqrgpK7hXzlgwy9uPh8cg==
+  dependencies:
+    tslib "^2.3.0"
+
 "@ngtools/webpack@19.2.5":
   version "19.2.5"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-19.2.5.tgz#a4cd03de177cde6519135e75659504293520955b"
@@ -3445,10 +3452,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@spartan-ng/cli@^0.0.1-alpha.442":
-  version "0.0.1-alpha.469"
-  resolved "https://registry.yarnpkg.com/@spartan-ng/cli/-/cli-0.0.1-alpha.469.tgz#ed052ab1b5178d1903459274c3aaeaae6b3ada92"
-  integrity sha512-Zz+iB5JsIM38S8vEQgXbXmSs0lVksuWjJOV7btryMoBFcB2Zk5NX2AAE6C3LfUvlpsogzJMyoiQA4S8ZV1jnpQ==
+"@spartan-ng/cli@^0.0.1-alpha.469":
+  version "0.0.1-alpha.487"
+  resolved "https://registry.yarnpkg.com/@spartan-ng/cli/-/cli-0.0.1-alpha.487.tgz#5c52083346a659988ec66597772b0fffb09e4b63"
+  integrity sha512-n/9NsCrIrI7JAA7xdvZTejrReP3AdqA6SCUw1ZRRzozZATScFeeFl6EPq0VfNoNwucIB2Lr7QGdWEFjW0wcbyQ==
   dependencies:
     "@nx/angular" ">=20.0.0"
     "@nx/devkit" ">=20.0.0"

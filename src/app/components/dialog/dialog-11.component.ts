@@ -1,4 +1,3 @@
-import { HlmLabelDirective } from '@/libs/ui/ui-label-helm/src';
 import { Component, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
@@ -10,6 +9,7 @@ import {
 	HlmDialogHeaderComponent,
 } from '@spartan-ng/ui-dialog-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
 
 @Component({
@@ -34,8 +34,8 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-y-auto rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
-				<hlm-dialog-header class="contents space-y-0 text-left border-b">
-					<h2 class="mb-0 px-6 py-4 text-lg font-semibold border-b">Help us improve</h2>
+				<hlm-dialog-header class="contents space-y-0 border-b text-left">
+					<h2 class="mb-0 border-b px-6 py-4 text-lg font-semibold">Help us improve</h2>
 				</hlm-dialog-header>
 				<div class="flex flex-1 flex-col px-6 py-4">
 					<label hlmLabel class="flex-1">How hard was it to set up your account?</label>
@@ -84,7 +84,6 @@ export class Dialog11Component {
 }
 
 export const dialog11Code = `
-import { HlmLabelDirective } from '@/libs/ui/ui-label-helm/src';
 import { Component, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
@@ -96,6 +95,7 @@ import {
 	HlmDialogHeaderComponent,
 } from '@spartan-ng/ui-dialog-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
 
 @Component({
@@ -120,8 +120,8 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-y-auto rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
-				<hlm-dialog-header class="contents space-y-0 text-left border-b">
-					<h2 class="mb-0 px-6 py-4 text-lg font-semibold border-b">Help us improve</h2>
+				<hlm-dialog-header class="contents space-y-0 border-b text-left">
+					<h2 class="mb-0 border-b px-6 py-4 text-lg font-semibold">Help us improve</h2>
 				</hlm-dialog-header>
 				<div class="flex flex-1 flex-col px-6 py-4">
 					<label hlmLabel class="flex-1">How hard was it to set up your account?</label>

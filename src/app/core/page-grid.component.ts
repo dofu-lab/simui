@@ -9,7 +9,7 @@ import { ComponentCardItem } from './types';
 	template: `
 		<div class="flex grow flex-col">
 			<div class="mb-20 flex-1 overflow-hidden">
-				<div class="-m-px grid grid-cols-12 *:px-1 *:py-12 *:not-first:-ms-px *:not-first:-mt-px sm:*:px-8 xl:*:px-12">
+				<div class="-m-px grid grid-cols-12 *:px-1 *:py-12 *:not-first:-ms-px *:not-first:-mt-px xl:*:px-12">
 					@for (component of components(); track component.id) {
 						<component-card
 							[componentName]="component.id"
