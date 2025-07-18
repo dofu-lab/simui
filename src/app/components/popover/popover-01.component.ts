@@ -29,7 +29,7 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 			<button variant="outline" size="icon" class="relative" brnPopoverTrigger hlmBtn>
 				<ng-icon hlm name="lucideListFilter" size="sm" />
 			</button>
-			<div hlmPopoverContent class="grid w-50 gap-3" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid w-42 gap-3" *brnPopoverContent="let ctx">
 				<div class="text-muted-foreground text-xs font-semibold">Filters</div>
 
 				<div class="space-y-2">
@@ -51,7 +51,7 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 					</label>
 				</div>
 
-				<hr class="border-muted" />
+				<hr class="border-muted -mx-4" />
 
 				<div class="flex justify-between gap-3">
 					<button hlmBtn variant="outline" size="sm" class="h-7 w-fit px-2 text-xs" (click)="clearFilters(ctx)">
@@ -122,7 +122,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 			<button variant="outline" size="icon" class="relative" brnPopoverTrigger hlmBtn>
 				<ng-icon hlm name="lucideListFilter" size="sm" />
 			</button>
-			<div hlmPopoverContent class="grid w-50 gap-3" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid w-42 gap-3" *brnPopoverContent="let ctx">
 				<div class="text-muted-foreground text-xs font-semibold">Filters</div>
 
 				<div class="space-y-2">
@@ -144,7 +144,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 					</label>
 				</div>
 
-				<hr class="border-muted" />
+				<hr class="border-muted -mx-4" />
 
 				<div class="flex justify-between gap-3">
 					<button hlmBtn variant="outline" size="sm" class="h-7 w-fit px-2 text-xs" (click)="clearFilters(ctx)">Clear</button>

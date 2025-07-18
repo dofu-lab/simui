@@ -33,7 +33,7 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 				}
 			</button>
 			<div hlmPopoverContent class="grid w-80 gap-2" *brnPopoverContent="let ctx">
-				<div class="mb-2 flex items-center justify-between">
+				<div class="flex items-center justify-between">
 					<span class="text-sm font-semibold">Notifications</span>
 					@if (unreadCount() > 0) {
 						<button (click)="markAllAsRead()" class="text-muted-foreground text-xs hover:underline focus:outline-none">
@@ -41,10 +41,11 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 						</button>
 					}
 				</div>
-				<ul class="max-h-96 space-y-3 overflow-y-auto">
+				<hr class="border-muted -mx-4" />
+				<ul class="-mx-2 max-h-96 space-y-3 overflow-y-auto">
 					@for (notification of notifications; track $index) {
 						<li
-							class="hover:bg-muted flex items-start justify-between gap-2 rounded-md p-2 transition-colors"
+							class="hover:bg-muted flex items-start justify-between gap-2 rounded-md px-4 py-2 transition-colors"
 							(click)="markAsRead($index)">
 							<div class="flex-1">
 								<div class="text-sm">
@@ -148,7 +149,7 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
         }
       </button>
       <div hlmPopoverContent class="w-80 grid gap-2" *brnPopoverContent="let ctx">
-        <div class="flex items-center justify-between mb-2">
+       <div class="flex items-center justify-between">
           <span class="text-sm font-semibold">Notifications</span>
           @if (unreadCount() > 0) {
             <button (click)="markAllAsRead()" class="text-xs text-muted-foreground hover:underline focus:outline-none">
@@ -156,9 +157,10 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
             </button>
           }
         </div>
-        <ul class="space-y-3 max-h-96 overflow-y-auto">
+        <hr class="border-muted -mx-4" />
+        <ul class="max-h-96 space-y-3 overflow-y-auto -mx-2">
           @for (notification of notifications; track $index) {
-            <li class="flex items-start justify-between gap-2 rounded-md p-2 transition-colors hover:bg-muted"
+            <li class="hover:bg-muted flex items-start justify-between gap-2 rounded-md py-2 px-4 transition-colors"
                 (click)="markAsRead($index)"
             >
               <div class="flex-1">
