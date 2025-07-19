@@ -11,58 +11,62 @@ import { formatTimeWithOptionalMinutes } from './utils';
 	selector: 'sim-event-item',
 	imports: [EventItemWrapperComponent],
 	template: `
-		<sim-event-item-wrapper
-			[event]="event()"
-			[isFirstDay]="isFirstDay()"
-			[isLastDay]="isLastDay()"
-			[class]="computedMonthClass()">
-			<ng-content>
-				@if (view() === 'month') {
+		@if (view() === 'month') {
+			<sim-event-item-wrapper
+				[event]="event()"
+				[isFirstDay]="isFirstDay()"
+				[isLastDay]="isLastDay()"
+				[class]="computedMonthClass()">
+				<ng-content>
 					<span class="truncate">
 						@if (!event().allDay) {
 							<span class="truncate font-normal opacity-70 sm:text-[11px]">
-								{{ formatTimeWithOptionalMinutes(displayStart()) }}
+								{{ displayTime() }}
 							</span>
 						}
 						{{ event().title }}
 					</span>
-				} @else if (view() === 'week') {
+				</ng-content>
+			</sim-event-item-wrapper>
+		} @else if (view() === 'week' || view() === 'day') {
+			<sim-event-item-wrapper
+				[event]="event()"
+				[isFirstDay]="isFirstDay()"
+				[isLastDay]="isLastDay()"
+				[class]="computedMonthClass()">
+				<ng-content>
 					<div class="flex h-full flex-col items-start truncate py-1">
-						<span>{{ event().title }}sss</span>
-						<span class="">
-							@if (!event().allDay) {
-								<span class="truncate font-normal opacity-70 sm:text-[11px]">
-									{{ formatTimeWithOptionalMinutes(displayStart()) }} -
-									{{ formatTimeWithOptionalMinutes(displayEnd()) }}
-								</span>
-							}
-						</span>
-					</div>
-				} @else {
-					<div class="py-2">
-						<div class="text-sm font-medium">{{ event().title }}</div>
-						<div class="text-xs opacity-70">
-							@if (event().allDay) {
-								<span>All day</span>
-							} @else {
-								<span class="uppercase">
-									{{ formatTimeWithOptionalMinutes(displayStart()) }} -{{ ' ' }}
-									{{ formatTimeWithOptionalMinutes(displayEnd()) }}
-								</span>
-							}
-
-							@if (event().location) {
-								<span class="px-1 opacity-35">·</span>
-								<span>{{ event().location }}</span>
-							}
-						</div>
-						@if (event().description) {
-							<div class="my-1 text-xs opacity-90">{{ event().description }}</div>
+						<span>{{ event().title }}</span>
+						@if (!event().allDay) {
+							<span class="truncate font-normal opacity-70 sm:text-[11px]">
+								{{ displayTime() }}
+							</span>
 						}
 					</div>
+				</ng-content>
+			</sim-event-item-wrapper>
+		} @else {
+			<div class="py-2">
+				<div class="text-sm font-medium">{{ event().title }}</div>
+				<div class="text-xs opacity-70">
+					@if (event().allDay) {
+						<span>All day</span>
+					} @else {
+						<span class="uppercase">
+							{{ displayTime() }}
+						</span>
+					}
+
+					@if (event().location) {
+						<span class="px-1 opacity-35">·</span>
+						<span>{{ event().location }}</span>
+					}
+				</div>
+				@if (event().description) {
+					<div class="my-1 text-xs opacity-90">{{ event().description }}</div>
 				}
-			</ng-content>
-		</sim-event-item-wrapper>
+			</div>
+		}
 	`,
 })
 export class EventItemComponent {
@@ -83,18 +87,34 @@ export class EventItemComponent {
 	displayStart = computed(() => this.currentTime() || new Date(this.event().start));
 	displayEnd = computed(() => {
 		const currentTime = this.currentTime();
-		return currentTime
-			? new Date(
-					new Date(currentTime).getTime() +
-						(new Date(this.event().end).getTime() - new Date(this.event().start).getTime()),
-				)
-			: new Date(this.event().end);
-	});
-	durationInMinutes = computed(() => differenceInMinutes(this.displayEnd(), this.displayStart()));
-	formatTimeWithOptionalMinutes = formatTimeWithOptionalMinutes;
 
-	getEventTime = () => {
-		if (this.event().allDay) return 'All day';
+		// If no current time is provided, use the original event end time
+		if (!currentTime) {
+			return new Date(this.event().end);
+		}
+
+		// Calculate the event duration in milliseconds
+		const eventStart = new Date(this.event().start).getTime();
+		const eventEnd = new Date(this.event().end).getTime();
+		const eventDuration = eventEnd - eventStart;
+
+		// Add the event duration to the current time to get the adjusted end time
+		return new Date(currentTime.getTime() + eventDuration);
+	});
+	displayTime = computed(() => {
+		if (this.view() === 'month') {
+			return formatTimeWithOptionalMinutes(this.displayStart());
+		}
+
+		return `${formatTimeWithOptionalMinutes(this.displayStart())} - ${formatTimeWithOptionalMinutes(this.displayEnd())}`;
+	});
+
+	durationInMinutes = computed(() => differenceInMinutes(this.displayEnd(), this.displayStart()));
+
+	public getEventTime(): string {
+		if (this.event().allDay) {
+			return 'All day';
+		}
 
 		// For short events (less than 45 minutes), only show start time
 		if (this.durationInMinutes() < 45) {
@@ -103,5 +123,7 @@ export class EventItemComponent {
 
 		// For longer events, show both start and end time
 		return `${formatTimeWithOptionalMinutes(this.displayStart())} - ${formatTimeWithOptionalMinutes(this.displayEnd())}`;
-	};
+	}
+
+	formatTimeWithOptionalMinutes = formatTimeWithOptionalMinutes;
 }

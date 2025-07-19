@@ -19,6 +19,7 @@ import {
 	startOfDay,
 	startOfWeek,
 } from 'date-fns';
+import { CalendarDateService } from './calendar-date.service';
 import { EndHour, StartHour, WeekCellsHeight } from './constants';
 import { CurrentTimeIndicatorService } from './current-time-indicator.service';
 import { EventItemComponent } from './event-item.component';
@@ -28,7 +29,7 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 @Component({
 	selector: 'sim-week-view-calendar',
 	imports: [NgClass, DatePipe, EventItemComponent, CdkDropListGroup, CdkDropList, CdkDrag],
-	providers: [CurrentTimeIndicatorService],
+	providers: [CurrentTimeIndicatorService, CalendarDateService],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div data-slot="week-view" class="flex h-full flex-col">
@@ -46,7 +47,7 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 				}
 			</div>
 
-			@if (showAllDaySection()) {
+			@if (shouldShowAllDaySection()) {
 				<div class="border-border/70 bg-muted/50 border-b">
 					<div class="grid grid-cols-8">
 						<div class="border-border/70 relative border-r">
@@ -156,24 +157,20 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 	`,
 })
 export class WeekViewCalendarComponent {
+	private _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
+	protected _calendarDateService = inject(CalendarDateService);
+
 	currentDate = input.required<Date>();
 	events = input.required<CalendarEvent[]>();
-	today = new Date();
 
 	onEventSelect = output<CalendarEvent>();
 	onEventCreate = output<EventDuration>();
 	onEventUpdated = output<CalendarEvent>();
 
-	private _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
+	shouldShowAllDaySection = computed(() => this.allDayEvents().length > 0);
 
 	currentTimeIndicator = toSignal(this._currentTimeIndicatorService.getCurrentTimeIndicator());
 
-	isToday = isToday;
-
-	getQuarterTime(day: Date, hour: Date, quarter: number): string {
-		// return day.toString();
-		return addMinutes(day, getHours(hour) * 60 + quarter * 15).toString();
-	}
 	weekStart = computed(() => startOfWeek(this.currentDate(), { weekStartsOn: 0 }));
 
 	days = computed(() => {
@@ -181,6 +178,7 @@ export class WeekViewCalendarComponent {
 		const weekEnd = endOfWeek(this.currentDate());
 		return eachDayOfInterval({ start: weekStart, end: weekEnd });
 	});
+
 	hours = computed(() => {
 		const dayStart = startOfDay(this.currentDate());
 		return eachHourOfInterval({
@@ -202,6 +200,13 @@ export class WeekViewCalendarComponent {
 		return result;
 	});
 
+	today = new Date();
+	isToday = isToday;
+
+	getQuarterTime(day: Date, hour: Date, quarter: number): string {
+		return this._calendarDateService.getQuarterTime(day, hour, quarter);
+	}
+
 	getDayAllDayEvents(day: Date): CalendarEvent[] {
 		const result = this.allDayEvents().filter((event) => {
 			const eventStart = new Date(event.start);
@@ -210,15 +215,6 @@ export class WeekViewCalendarComponent {
 		});
 
 		return result;
-	}
-	showAllDaySection = computed(() => this.allDayEvents().length > 0);
-
-	formattedTime(time: number | undefined) {
-		return time !== undefined
-			? `${Math.floor(time)}:${Math.round((time - Math.floor(time)) * 60)
-					.toString()
-					.padStart(2, '0')}`
-			: null;
 	}
 
 	generateCellClass(quarter: number): string {
@@ -428,7 +424,7 @@ export class WeekViewCalendarComponent {
 
 		// Only emit the event creation if we clicked on empty space
 		console.log('Creating new event for day:');
-		const newStartDay = new Date(this.getQuarterTime(day, hour, quarter));
+		const newStartDay = new Date(this._calendarDateService.getQuarterTime(day, hour, quarter));
 		const newEndDay = addMinutes(newStartDay, 15);
 		this.onEventCreate.emit({
 			startDate: newStartDay,
