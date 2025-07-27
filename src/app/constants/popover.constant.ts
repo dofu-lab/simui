@@ -19,6 +19,8 @@ import {
 	Popover09Component,
 	Popover10Code,
 	Popover10Component,
+	Popover11Code,
+	Popover11Component,
 } from '@/app/components/popover';
 import { ComponentCardItem } from '../core';
 
@@ -62,6 +64,13 @@ export const popoverComponents: ComponentCardItem[] = [
 		id: 'popover-06',
 		component: Popover06Component,
 		code: Popover06Code,
+		colNumber: 4,
+		itemStyle: 1,
+	},
+	{
+		id: 'popover-11',
+		component: Popover11Component,
+		code: Popover11Code,
 		colNumber: 4,
 		itemStyle: 1,
 	},

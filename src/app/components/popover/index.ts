@@ -8,3 +8,4 @@ export * from './popover-07.component';
 export * from './popover-08.component';
 export * from './popover-09.component';
 export * from './popover-10.component';
+export * from './popover-11.component';

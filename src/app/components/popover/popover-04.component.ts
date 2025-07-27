@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { NgClass } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail } from '@ng-icons/lucide';
+import { lucideCheck, lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail } from '@ng-icons/lucide';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
@@ -9,20 +11,21 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 
 @Component({
 	selector: 'sim-popover-04',
-	providers: [provideIcons({ lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail })],
+	providers: [provideIcons({ lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail, lucideCheck })],
 	imports: [
+		NgClass,
+		NgIcon,
 		HlmButtonDirective,
 		BrnPopoverComponent,
 		BrnPopoverTriggerDirective,
 		BrnPopoverContentDirective,
 		HlmPopoverContentDirective,
 		HlmIconDirective,
-		NgIcon,
 		HlmInputDirective,
 	],
 	template: `
 		<brn-popover sideOffset="5">
-			<button variant="outline" brnPopoverTrigger hlmBtn>Share</button>
+			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">Share</button>
 			<div hlmPopoverContent class="grid gap-3" *brnPopoverContent="let ctx">
 				<div class="text-center text-sm font-medium">Share code</div>
 
@@ -42,50 +45,86 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 				</div>
 
 				<div class="relative">
-					<input
-						hlmInput
-						type="text"
-						class="w-full rounded-md border px-3 py-2 pr-10 text-sm"
-						[value]="shareUrl"
-						readonly />
-					<button class="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 flex -translate-y-1/2">
-						<ng-icon hlm name="lucideCopy" size="sm" />
-					</button>
+					<div class="w-full">
+						<div class="relative">
+							<input hlmInput class="peer w-full pe-9 text-sm" type="email" size="sm" [value]="shareUrl" />
+							<button
+								hlmBtn
+								variant="link"
+								size="icon"
+								class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
+								[disabled]="copied()"
+								(click)="onCopy()">
+								<ng-icon
+									hlm
+									name="lucideCopy"
+									size="sm"
+									class="transition-all"
+									[ngClass]="{
+										'scale-0 opacity-0': copied(),
+										'scale-100 opacity-100': !copied(),
+									}" />
+								<ng-icon
+									hlm
+									name="lucideCheck"
+									size="sm"
+									class="absolute text-emerald-500 transition-all"
+									[ngClass]="{
+										'scale-0 opacity-0': !copied(),
+										'scale-100 opacity-100': copied(),
+									}" />
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</brn-popover>
 	`,
 })
 export class Popover04Component {
-	shareUrl = 'https://simui.dev/JGGH0N';
+	public readonly shareUrl = 'https://simui.dev/JGGH0N';
+	public copied = signal<boolean>(false);
+	private _clipboard = inject(Clipboard);
+
+	public onCopy(): void {
+		this.copied.set(true);
+		this._clipboard.copy(this.shareUrl);
+
+		setTimeout(() => {
+			this.copied.set(false);
+		}, 1500);
+	}
 }
 
 export const Popover04Code = `
-import { Component } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { NgClass } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail } from '@ng-icons/lucide';
+import { lucideCheck, lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail } from '@ng-icons/lucide';
+import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 
 @Component({
-  selector: 'sim-popover-04',
-  providers: [provideIcons({ lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail })],
-  imports: [
-    HlmButtonDirective,
-    BrnPopoverComponent,
-    BrnPopoverTriggerDirective,
-    BrnPopoverContentDirective,
-    HlmPopoverContentDirective,
-    HlmIconDirective,
-    NgIcon,
-    HlmInputDirective,
-  ],
-  template: \`
-    <brn-popover sideOffset="5">
-			<button variant="outline" brnPopoverTrigger hlmBtn>Share</button>
+	selector: 'sim-popover-04',
+	providers: [provideIcons({ lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail, lucideCheck })],
+	imports: [
+		NgClass,
+		NgIcon,
+		HlmButtonDirective,
+		BrnPopoverComponent,
+		BrnPopoverTriggerDirective,
+		BrnPopoverContentDirective,
+		HlmPopoverContentDirective,
+		HlmIconDirective,
+		HlmInputDirective,
+	],
+	template: \`
+		<brn-popover sideOffset="5">
+			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">Share</button>
 			<div hlmPopoverContent class="grid gap-3" *brnPopoverContent="let ctx">
 				<div class="text-center text-sm font-medium">Share code</div>
 
@@ -105,21 +144,54 @@ import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 				</div>
 
 				<div class="relative">
-					<input
-						hlmInput
-						type="text"
-						class="w-full rounded-md border px-3 py-2 pr-10 text-sm"
-						[value]="shareUrl"
-						readonly />
-					<button class="text-muted-foreground flex hover:text-foreground absolute top-1/2 right-2 -translate-y-1/2">
-						<ng-icon hlm name="lucideCopy" size="sm" />
-					</button>
+					<div class="w-full">
+						<div class="relative">
+							<input hlmInput class="peer w-full pe-9 text-sm" type="email" size="sm" [value]="shareUrl" />
+							<button
+								hlmBtn
+								variant="link"
+								size="icon"
+								class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
+								[disabled]="copied()"
+								(click)="onCopy()">
+								<ng-icon
+									hlm
+									name="lucideCopy"
+									size="sm"
+									class="transition-all"
+									[ngClass]="{
+										'scale-0 opacity-0': copied(),
+										'scale-100 opacity-100': !copied(),
+									}" />
+								<ng-icon
+									hlm
+									name="lucideCheck"
+									size="sm"
+									class="absolute text-emerald-500 transition-all"
+									[ngClass]="{
+										'scale-0 opacity-0': !copied(),
+										'scale-100 opacity-100': copied(),
+									}" />
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</brn-popover>
-  \`,
+	\`,
 })
 export class Popover04Component {
-  shareUrl = 'https://simui.dev/JGGH0N';
+	public readonly shareUrl = 'https://simui.dev/JGGH0N';
+	public copied = signal<boolean>(false);
+	private _clipboard = inject(Clipboard);
+
+	public onCopy(): void {
+		this.copied.set(true);
+		this._clipboard.copy(this.shareUrl);
+
+		setTimeout(() => {
+			this.copied.set(false);
+		}, 1500);
+	}
 }
 `;

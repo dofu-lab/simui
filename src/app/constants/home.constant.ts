@@ -101,7 +101,7 @@ export const previewComponents: ComponentInfo[] = [
 	{
 		name: 'Popover',
 		compNumber: popoverComponents.length,
-		image: 'assets/thumbnails/popover.png',
+		image: 'popover.png',
 		path: 'components/popover',
 	},
 	{
