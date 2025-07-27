@@ -11,7 +11,7 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 	template: `
 		<div class="flex flex-col gap-4">
 			<span class="text-sm">Server location</span>
-			<hlm-radio-group class="grid grid-cols-3 justify-between gap-2 text-sm font-medium" value="usa" disabled>
+			<hlm-radio-group class="grid grid-cols-3 justify-between gap-2 text-sm font-medium" value="usa">
 				@for (item of items; track item.id) {
 					<div
 						class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full rounded-md border shadow-xs outline-none">

@@ -1,3 +1,4 @@
+import { popoverComponents } from '@/app/constants/popover.constant';
 import { ComponentInfo } from '../types';
 import { accordionComponents } from './accordion.constant';
 import { alertComponents } from './alert.constant';
@@ -103,6 +104,12 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: dialogComponents.length,
 		image: 'dialog.png',
 		path: 'components/dialog',
+	},
+	{
+		name: 'Popover',
+		compNumber: popoverComponents.length,
+		image: 'popover.png',
+		path: 'components/popover',
 	},
 	{
 		name: 'Notification',
