@@ -143,7 +143,7 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 													view="week"
 													[height]="positionedEvent.height"
 													[isFirstDay]="true"
-													[isLastDay]="true"></sim-event-item>
+													[isLastDay]="true" />
 											</div>
 										}
 									</div>
@@ -157,7 +157,7 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 	`,
 })
 export class WeekViewCalendarComponent {
-	private _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
+	private readonly _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
 	protected _calendarDateService = inject(CalendarDateService);
 
 	currentDate = input.required<Date>();
@@ -203,11 +203,11 @@ export class WeekViewCalendarComponent {
 	today = new Date();
 	isToday = isToday;
 
-	getQuarterTime(day: Date, hour: Date, quarter: number): string {
+	public getQuarterTime(day: Date, hour: Date, quarter: number): string {
 		return this._calendarDateService.getQuarterTime(day, hour, quarter);
 	}
 
-	getDayAllDayEvents(day: Date): CalendarEvent[] {
+	public getDayAllDayEvents(day: Date): CalendarEvent[] {
 		const result = this.allDayEvents().filter((event) => {
 			const eventStart = new Date(event.start);
 			const eventEnd = new Date(event.end);
@@ -217,7 +217,7 @@ export class WeekViewCalendarComponent {
 		return result;
 	}
 
-	generateCellClass(quarter: number): string {
+	public generateCellClass(quarter: number): string {
 		// 64px
 		// need config
 		return hlm(
@@ -349,14 +349,14 @@ export class WeekViewCalendarComponent {
 		return result;
 	});
 
-	getProcessedEventsForDay(dayIndex: number, hour: Date, quarter: number): PositionedEvent[] {
+	public getProcessedEventsForDay(dayIndex: number, hour: Date, quarter: number): PositionedEvent[] {
 		const dayEvents = this.processedDayEvents()[dayIndex] ?? [];
 
 		// Filter events based on the hour and quarter
 		return dayEvents.filter((event) => event.startHour === hour.getHours() && event.startQuarter === quarter);
 	}
 
-	shouldShowTitle(day: Date, event: CalendarEvent, dayIndex: number): boolean {
+	public shouldShowTitle(day: Date, event: CalendarEvent, dayIndex: number): boolean {
 		const eventStart = new Date(event.start);
 		const isFirstDay = isSameDay(day, eventStart);
 
@@ -366,7 +366,7 @@ export class WeekViewCalendarComponent {
 		return isFirstDay || isFirstVisibleDay;
 	}
 
-	drop(event: CdkDragDrop<any>) {
+	public drop(event: CdkDragDrop<any>): void {
 		if (event.previousContainer === event.container) {
 			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
 		} else {
@@ -386,18 +386,18 @@ export class WeekViewCalendarComponent {
 		}
 	}
 
-	isFirstDay(event: CalendarEvent, day: Date): boolean {
+	public isFirstDay(event: CalendarEvent, day: Date): boolean {
 		return isSameDay(day, new Date(event.start));
 	}
 
-	isLastDay(event: CalendarEvent, day: Date): boolean {
+	public isLastDay(event: CalendarEvent, day: Date): boolean {
 		return isSameDay(day, new Date(event.end));
 	}
 
 	/**
 	 * Handle click on day container, but prevent triggering when clicking on child elements
 	 */
-	handleDayClick(event: MouseEvent, day: Date, hour: Date, quarter: number): void {
+	public handleDayClick(event: MouseEvent, day: Date, hour: Date, quarter: number): void {
 		// Check if the click target is the day container itself or just an empty area
 		const target = event.target as HTMLElement;
 		const currentTarget = event.currentTarget as HTMLElement;
@@ -423,7 +423,6 @@ export class WeekViewCalendarComponent {
 		}
 
 		// Only emit the event creation if we clicked on empty space
-		console.log('Creating new event for day:');
 		const newStartDay = new Date(this._calendarDateService.getQuarterTime(day, hour, quarter));
 		const newEndDay = addMinutes(newStartDay, 15);
 		this.onEventCreate.emit({

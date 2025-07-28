@@ -41,7 +41,7 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 					<div class="grid auto-cols-fr grid-flow-row">
 						@for (event of allDayEvents(); track event.id + '-all-day-event-item'; let dayIndex = $index) {
 							<div class="border-border/70 relative flex flex-col gap-1 border-r py-1 last:border-r-0">
-								<div class="" [ngClass]="{ 'pl-1': isFirstDay(event), 'pr-1': isLastDay(event) }">
+								<div [ngClass]="{ 'pl-1': isFirstDay(event), 'pr-1': isLastDay(event) }">
 									<sim-event-item
 										view="month"
 										[event]="event"
@@ -115,7 +115,7 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 												view="week"
 												[height]="positionedEvent.height"
 												[isFirstDay]="true"
-												[isLastDay]="true"></sim-event-item>
+												[isLastDay]="true" />
 										</div>
 									}
 								</div>
@@ -128,10 +128,10 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 	`,
 })
 export class DayViewCalendarComponent {
-	private _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
+	private readonly _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
 
-	currentDate = input.required<Date>();
-	events = input.required<CalendarEvent[]>();
+	readonly currentDate = input.required<Date>();
+	readonly events = input.required<CalendarEvent[]>();
 
 	onEventSelect = output<CalendarEvent>();
 	onEventCreate = output<EventDuration>();
@@ -288,6 +288,7 @@ export class DayViewCalendarComponent {
 
 		return positionedEvents;
 	});
+
 	getQuarterTime(hour: Date, quarter: number): string {
 		const currentDate = startOfDay(this.currentDate());
 
@@ -333,7 +334,6 @@ export class DayViewCalendarComponent {
 			const durationMinutes = differenceInMinutes(originalEndDate, originalStartDate);
 
 			const newStartDate = getDateFromContainerId(event.container.id);
-			console.log('newStartDate', newStartDate);
 
 			if (newStartDate && movedEvent) {
 				const newEndDate = addMinutes(newStartDate, durationMinutes);
@@ -380,7 +380,6 @@ export class DayViewCalendarComponent {
 		}
 
 		// Only emit the event creation if we clicked on empty space
-		console.log('Creating new event for day:');
 		const newStartDay = new Date(this.getQuarterTime(hour, quarter));
 		const newEndDay = addMinutes(newStartDay, 15);
 		this.onEventCreate.emit({

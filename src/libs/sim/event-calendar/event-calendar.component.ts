@@ -72,11 +72,11 @@ import { toast } from 'ngx-sonner';
 				<div class="flex items-center justify-start gap-1 sm:gap-4">
 					<button hlmBtn variant="outline" size="sm" (click)="handleToday()">Today</button>
 					<div class="flex items-center sm:gap-2">
-						<button hlmBtn variant="ghost" size="icon" class="size-9">
-							<ng-icon hlm name="lucideChevronLeft" (click)="handlePrevious()" />
+						<button hlmBtn variant="ghost" size="icon" class="size-9" (click)="handlePrevious()">
+							<ng-icon hlm name="lucideChevronLeft" />
 						</button>
-						<button hlmBtn variant="ghost" size="icon" class="size-9">
-							<ng-icon hlm name="lucideChevronRight" (click)="handleNext()" />
+						<button hlmBtn variant="ghost" size="icon" class="size-9" (click)="handleNext()">
+							<ng-icon hlm name="lucideChevronRight" />
 						</button>
 					</div>
 					<h2 class="text-sm font-semibold sm:text-lg md:text-xl">
