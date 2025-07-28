@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'sim-avatar-22',
@@ -72,9 +72,8 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
 })
 export class Avatar22Component {}
 
-export const avatar22Code = `
-import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
+export const avatar22Code = `import { Component } from '@angular/core';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'sim-avatar-22',
@@ -145,5 +144,4 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
 		</div>
 	\`,
 })
-export class Avatar22Component {}
-`;
+export class Avatar22Component {}`;

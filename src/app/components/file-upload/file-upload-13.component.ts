@@ -15,8 +15,8 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState, FileWithPreview, formatBytes } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 type UploadProgress = {
 	fileId: string;
@@ -370,8 +370,8 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState, FileWithPreview, formatBytes } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 type UploadProgress = {
 	fileId: string;

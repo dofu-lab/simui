@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCardDirective } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-card-02',
@@ -68,17 +68,13 @@ export class Card02Component {
 	}
 }
 
-export const card02Code = `
-import { Component } from '@angular/core';
-import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+export const card02Code = `import { Component } from '@angular/core';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCardDirective } from '@spartan-ng/helm/card';
 
 @Component({
-  selector: 'sim-card-02',
-  imports: [
-    HlmCardDirective,
-    HlmButtonDirective
-  ],
+	selector: 'sim-card-02',
+	imports: [HlmCardDirective, HlmButtonDirective],
 	template: \`
 		<section hlmCard>
 			<div class="p-6 pb-0">
@@ -130,15 +126,14 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 	\`,
 })
 export class Card02Component {
-  activity = [
-    { text: 'Signed in from new device', time: '2h ago', isNew: true, type: 'login' },
-    { text: 'Uploaded "report.pdf"', time: '5h ago', isNew: true, type: 'upload' },
-    { text: 'Changed password', isNew:true,  time: '1d ago', type: 'security' },
-    { text: 'Update components', time: '1d ago',  type: 'component' }
-  ];
+	activity = [
+		{ text: 'Signed in from new device', time: '2h ago', isNew: true, type: 'login' },
+		{ text: 'Uploaded "report.pdf"', time: '5h ago', isNew: true, type: 'upload' },
+		{ text: 'Changed password', isNew: true, time: '1d ago', type: 'security' },
+		{ text: 'Update components', time: '1d ago', type: 'component' },
+	];
 
-  getNewActivityCount(): number {
-    return this.activity.filter(item => item.isNew).length;
-  }
-}
-`;
+	getNewActivityCount(): number {
+		return this.activity.filter((item) => item.isNew).length;
+	}
+}`;

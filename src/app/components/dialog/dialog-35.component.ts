@@ -2,9 +2,9 @@ import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus, lucidePlus, lucideUserRoundCheck } from '@ng-icons/lucide';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-35',
@@ -84,14 +84,13 @@ export class Dialog35Component {
 	}
 }
 
-export const dialog35Code = `
-import { Component, computed, signal } from '@angular/core';
+export const dialog35Code = `import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus, lucidePlus, lucideUserRoundCheck } from '@ng-icons/lucide';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-35',
@@ -169,5 +168,4 @@ export class Dialog35Component {
 			this.purchaseSeats.set(this.purchaseSeats() - 1);
 		}
 	}
-}
-`;
+}`;

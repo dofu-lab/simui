@@ -4,14 +4,14 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail, lucideSave } from '@ng-icons/lucide';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
-import { HlmAspectRatioDirective } from '@spartan-ng/ui-aspectratio-helm';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
+import { HlmAspectRatioDirective } from '@spartan-ng/helm/aspect-ratio';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'sim-dialog-34',
@@ -294,21 +294,20 @@ export class Dialog34Component {
 	});
 }
 
-export const dialog34Code = `
-import { Component, signal } from '@angular/core';
+export const dialog34Code = `import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail, lucideSave } from '@ng-icons/lucide';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
-import { HlmAspectRatioDirective } from '@spartan-ng/ui-aspectratio-helm';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
+import { HlmAspectRatioDirective } from '@spartan-ng/helm/aspect-ratio';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'sim-dialog-34',
@@ -589,5 +588,4 @@ export class Dialog34Component {
 		userName: new FormControl('mathilde.lewis842'),
 		country: new FormControl(this.countries[0]),
 	});
-}
-`;
+}`;

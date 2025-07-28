@@ -1,14 +1,14 @@
 import { Component, viewChild } from '@angular/core';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
+} from '@spartan-ng/helm/dialog';
+import { HlmScrollAreaDirective } from '@spartan-ng/helm/scroll-area';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
@@ -156,18 +156,17 @@ export class Dialog04Component {
 	}
 }
 
-export const dialog04Code = `
-import { Component, viewChild } from '@angular/core';
+export const dialog04Code = `import { Component, viewChild } from '@angular/core';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
+} from '@spartan-ng/helm/dialog';
+import { HlmScrollAreaDirective } from '@spartan-ng/helm/scroll-area';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
@@ -313,5 +312,4 @@ export class Dialog04Component {
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

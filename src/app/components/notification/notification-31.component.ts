@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import { toast } from 'ngx-sonner';
 
 @Component({
@@ -16,30 +16,20 @@ export class Notification31Component {
 	}
 }
 
-export const notification31Code = `
-import { Component } from '@angular/core';
+export const notification31Code = `import { Component } from '@angular/core';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import { toast } from 'ngx-sonner';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
-  selector: 'sim-notification-31',
-  standalone: true,
-  imports: [HlmButtonDirective],
-  template: \`
-    <button
-      hlmBtn
-      variant="outline"
-      size="sm"
-      class="h-8"
-      (click)="showNotification()"
-    >
-      Bottom center
-    </button>
-  \`,
+	selector: 'sim-notification-31',
+	standalone: true,
+	imports: [HlmButtonDirective],
+	template: \`
+		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">Bottom center</button>
+	\`,
 })
 export class Notification31Component {
-  showNotification() {
-    toast.success('Saved your changes', { position: 'bottom-center' });
-  }
-}
-`;
+	showNotification() {
+		toast.success('Saved your changes', { position: 'bottom-center' });
+	}
+}`;

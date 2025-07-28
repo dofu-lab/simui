@@ -8,15 +8,15 @@ import {
 	lucideSettings,
 	lucideUsers,
 } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmScrollAreaDirective } from '@spartan-ng/helm/scroll-area';
 import {
 	HlmTabsComponent,
 	HlmTabsContentDirective,
 	HlmTabsListComponent,
 	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+} from '@spartan-ng/helm/tabs';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
@@ -107,8 +107,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 })
 export class Tabs12Component {}
 
-export const tabs12Code = `
-import { Component } from '@angular/core';
+export const tabs12Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideChartLine,
@@ -118,15 +117,15 @@ import {
 	lucideSettings,
 	lucideUsers,
 } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmScrollAreaDirective } from '@spartan-ng/helm/scroll-area';
 import {
 	HlmTabsComponent,
 	HlmTabsContentDirective,
 	HlmTabsListComponent,
 	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+} from '@spartan-ng/helm/tabs';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
@@ -215,5 +214,4 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 		</hlm-tabs>
 	\`,
 })
-export class Tabs12Component {}
-`;
+export class Tabs12Component {}`;

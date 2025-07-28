@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
+import { HlmCardDirective } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-card-08',
@@ -30,15 +30,12 @@ import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
 })
 export class Card08Component {}
 
-export const card08Code = `
-import { Component } from '@angular/core';
-import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
+export const card08Code = `import { Component } from '@angular/core';
+import { HlmCardDirective } from '@spartan-ng/helm/card';
 
 @Component({
-  selector: 'sim-card-08',
-  imports: [
-    HlmCardDirective,
-  ],
+	selector: 'sim-card-08',
+	imports: [HlmCardDirective],
 	template: \`
 		<section hlmCard class="relative mx-auto aspect-[3/2] overflow-hidden rounded-xl shadow-lg ring-1 ring-gray-200">
 			<div class="flex items-center justify-between px-5 pt-4">
@@ -63,5 +60,4 @@ import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
 		</section>
 	\`,
 })
-export class Card08Component {}
-`;
+export class Card08Component {}`;

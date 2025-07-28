@@ -6,7 +6,7 @@ import {
 	HlmTabsContentDirective,
 	HlmTabsListComponent,
 	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+} from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-17',
@@ -38,8 +38,7 @@ import {
 })
 export class Tabs17Component {}
 
-export const tabs17Code = `
-import { Component } from '@angular/core';
+export const tabs17Code = `import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
 import {
@@ -47,7 +46,7 @@ import {
 	HlmTabsContentDirective,
 	HlmTabsListComponent,
 	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+} from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-17',
@@ -77,5 +76,4 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs17Component {}
-`;
+export class Tabs17Component {}`;

@@ -8,7 +8,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { NgIf } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideClipboard } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import 'prismjs';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-css';

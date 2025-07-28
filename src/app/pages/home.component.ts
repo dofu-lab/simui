@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
 import { previewComponents } from '../constants/home.constant';
 import { ThemeService } from '../core';
 import { CardBodyDirective, CardDirective } from '../core/card';

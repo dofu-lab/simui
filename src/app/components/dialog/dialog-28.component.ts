@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-28',
@@ -55,12 +55,11 @@ import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-di
 })
 export class Dialog28Component {}
 
-export const dialog28Code = `
-import { Component } from '@angular/core';
+export const dialog28Code = `import { Component } from '@angular/core';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-28',
@@ -111,5 +110,4 @@ import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-di
 		</hlm-dialog>
 	\`,
 })
-export class Dialog28Component {}
-`;
+export class Dialog28Component {}`;

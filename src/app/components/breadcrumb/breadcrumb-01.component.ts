@@ -8,8 +8,8 @@ import {
 	HlmBreadcrumbListDirective,
 	HlmBreadcrumbPageDirective,
 	HlmBreadcrumbSeparatorComponent,
-} from '@spartan-ng/ui-breadcrumb-helm';
-import { HlmMenuComponent, HlmMenuItemDirective } from '@spartan-ng/ui-menu-helm';
+} from '@spartan-ng/helm/breadcrumb';
+import { HlmMenuComponent, HlmMenuItemDirective } from '@spartan-ng/helm/menu';
 
 @Component({
 	selector: 'sim-breadcrumb-01',
@@ -62,8 +62,7 @@ import { HlmMenuComponent, HlmMenuItemDirective } from '@spartan-ng/ui-menu-helm
 })
 export class Breadcrumb01Component {}
 
-export const breadcrumb01Code = `
-import { Component } from '@angular/core';
+export const breadcrumb01Code = `import { Component } from '@angular/core';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import {
 	HlmBreadcrumbDirective,
@@ -73,8 +72,8 @@ import {
 	HlmBreadcrumbListDirective,
 	HlmBreadcrumbPageDirective,
 	HlmBreadcrumbSeparatorComponent,
-} from '@spartan-ng/ui-breadcrumb-helm';
-import { HlmMenuComponent, HlmMenuItemDirective } from '@spartan-ng/ui-menu-helm';
+} from '@spartan-ng/helm/breadcrumb';
+import { HlmMenuComponent, HlmMenuItemDirective } from '@spartan-ng/helm/menu';
 
 @Component({
 	selector: 'sim-breadcrumb-01',
@@ -125,5 +124,4 @@ import { HlmMenuComponent, HlmMenuItemDirective } from '@spartan-ng/ui-menu-helm
 		</nav>
 	\`,
 })
-export class Breadcrumb01Component {}
-`;
+export class Breadcrumb01Component {}`;

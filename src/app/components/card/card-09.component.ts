@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideShoppingBag } from '@ng-icons/lucide';
-import { HlmAspectRatioDirective } from '@spartan-ng/ui-aspectratio-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmAspectRatioDirective } from '@spartan-ng/helm/aspect-ratio';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmCardContentDirective,
 	HlmCardDescriptionDirective,
 	HlmCardDirective,
 	HlmCardFooterDirective,
 	HlmCardTitleDirective,
-} from '@spartan-ng/ui-card-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+} from '@spartan-ng/helm/card';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-card-09',
@@ -55,20 +55,19 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 })
 export class Card09Component {}
 
-export const card09Code = `
-import { Component } from '@angular/core';
+export const card09Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideShoppingBag } from '@ng-icons/lucide';
-import { HlmAspectRatioDirective } from '@spartan-ng/ui-aspectratio-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmAspectRatioDirective } from '@spartan-ng/helm/aspect-ratio';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmCardContentDirective,
 	HlmCardDescriptionDirective,
 	HlmCardDirective,
 	HlmCardFooterDirective,
 	HlmCardTitleDirective,
-} from '@spartan-ng/ui-card-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+} from '@spartan-ng/helm/card';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-card-09',
@@ -111,5 +110,4 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		</section>
 	\`,
 })
-export class Card09Component {}
-`;
+export class Card09Component {}`;

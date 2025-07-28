@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-08',
@@ -71,12 +71,11 @@ export class Popover08Component {
 	}
 }
 
-export const Popover08Code = `
-import { Component, signal } from '@angular/core';
+export const popover08Code = `import { Component, signal } from '@angular/core';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-08',
@@ -143,5 +142,4 @@ export class Popover08Component {
 		this.currentAccount.set(user);
 		ctx.close();
 	}
-}
-`;
+}`;

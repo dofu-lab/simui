@@ -1,16 +1,16 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCheckboxComponent } from '@spartan-ng/helm/checkbox';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+} from '@spartan-ng/helm/dialog';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-15',
@@ -143,20 +143,19 @@ export class Dialog15Component {
 	}
 }
 
-export const dialog15Code = `
-import { Component, inject, viewChild } from '@angular/core';
+export const dialog15Code = `import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCheckboxComponent } from '@spartan-ng/helm/checkbox';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+} from '@spartan-ng/helm/dialog';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-15',
@@ -287,5 +286,4 @@ export class Dialog15Component {
 			this.dialogRef()?.close({});
 		}
 	}
-}
-`;
+}`;

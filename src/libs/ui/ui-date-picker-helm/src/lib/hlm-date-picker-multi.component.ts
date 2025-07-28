@@ -11,7 +11,7 @@ import {
 	output,
 	signal,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/brain/core';
@@ -19,7 +19,7 @@ import { BrnDialogState } from '@spartan-ng/brain/dialog';
 import { type ChangeFn, type TouchFn } from '@spartan-ng/brain/forms';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
 import { HlmCalendarMultiComponent } from '@spartan-ng/helm/calendar';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 import type { ClassValue } from 'clsx';
 import { injectHlmDatePickerMultiConfig } from './hlm-date-picker-multi.token';
@@ -75,7 +75,7 @@ export const HLM_DATE_PICKER_MUTLI_VALUE_ACCESSOR = {
 	},
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HlmDatePickerMultiComponent<T> {
+export class HlmDatePickerMultiComponent<T> implements ControlValueAccessor {
 	private readonly _config = injectHlmDatePickerMultiConfig<T>();
 
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });

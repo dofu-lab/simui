@@ -4,10 +4,10 @@ import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail } from '@ng-icons/lucide';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-04',
@@ -96,17 +96,16 @@ export class Popover04Component {
 	}
 }
 
-export const Popover04Code = `
-import { Clipboard } from '@angular/cdk/clipboard';
+export const popover04Code = `import { Clipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail } from '@ng-icons/lucide';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-04',
@@ -193,5 +192,4 @@ export class Popover04Component {
 			this.copied.set(false);
 		}, 1500);
 	}
-}
-`;
+}`;

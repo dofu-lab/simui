@@ -4,14 +4,10 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLockKeyhole } from '@ng-icons/lucide';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { BrnInputOtpComponent } from '@spartan-ng/brain/input-otp';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmInputOtpDirective,
-	HlmInputOtpGroupDirective,
-	HlmInputOtpSlotComponent,
-} from '@spartan-ng/ui-inputotp-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmInputOtpDirective, HlmInputOtpGroupDirective, HlmInputOtpSlotComponent } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-32',
@@ -176,14 +172,10 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLockKeyhole } from '@ng-icons/lucide';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { BrnInputOtpComponent } from '@spartan-ng/brain/input-otp';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmInputOtpDirective,
-	HlmInputOtpGroupDirective,
-	HlmInputOtpSlotComponent,
-} from '@spartan-ng/ui-inputotp-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmInputOtpDirective, HlmInputOtpGroupDirective, HlmInputOtpSlotComponent } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-32',
@@ -317,5 +309,4 @@ export class Dialog32Component {
 			this._intervalId = undefined;
 		}
 	}
-}
-`;
+}`;

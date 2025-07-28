@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-18',
@@ -46,11 +46,10 @@ export class Radio18Component {
 	];
 }
 
-export const radio18Code = `
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
-import { Component, signal } from '@angular/core';
+export const radio18Code = `import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-18',
@@ -93,5 +92,4 @@ export class Radio18Component {
 		{ id: 4, value: 4, label: '4' },
 		{ id: 5, value: 5, label: '5' },
 	];
-}
-`;
+}`;

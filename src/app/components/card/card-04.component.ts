@@ -2,10 +2,10 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/ui-card-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmSliderComponent } from '@spartan-ng/ui-slider-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/helm/card';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmSliderComponent } from '@spartan-ng/helm/slider';
 
 import {
 	lucideHeartOff,
@@ -104,15 +104,14 @@ export class Card04Component {
 	public readonly value = signal(50);
 }
 
-export const card04Code = `
-import { Component, signal } from '@angular/core';
+export const card04Code = `import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/ui-card-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmSliderComponent } from '@spartan-ng/ui-slider-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/helm/card';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmSliderComponent } from '@spartan-ng/helm/slider';
 
 import {
 	lucideHeartOff,
@@ -209,5 +208,4 @@ import {
 })
 export class Card04Component {
 	public readonly value = signal(50);
-}
-`;
+}`;

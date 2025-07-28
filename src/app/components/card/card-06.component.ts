@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/ui-card-helm';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-card-06',
@@ -48,11 +48,10 @@ import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/ui-card-h
 })
 export class Card06Component {}
 
-export const card06Code = `
-import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/ui-card-helm';
+export const card06Code = `import { Component } from '@angular/core';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-card-06',
@@ -97,5 +96,4 @@ import { HlmCardContentDirective, HlmCardDirective } from '@spartan-ng/ui-card-h
 		</section>
 	\`,
 })
-export class Card06Component {}
-`;
+export class Card06Component {}`;

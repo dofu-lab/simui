@@ -2,19 +2,15 @@ import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChi
 import { FormsModule } from '@angular/forms';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { BrnInputOtpComponent } from '@spartan-ng/brain/input-otp';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import {
-	HlmInputOtpDirective,
-	HlmInputOtpGroupDirective,
-	HlmInputOtpSlotComponent,
-} from '@spartan-ng/ui-inputotp-helm';
+} from '@spartan-ng/helm/dialog';
+import { HlmInputOtpDirective, HlmInputOtpGroupDirective, HlmInputOtpSlotComponent } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-12',
@@ -186,24 +182,19 @@ export class Dialog12Component implements OnDestroy {
 	}
 }
 
-export const dialog12Code = `
-import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChild } from '@angular/core';
+export const dialog12Code = `import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { BrnInputOtpComponent } from '@spartan-ng/brain/input-otp';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import {
-	HlmInputOtpDirective,
-	HlmInputOtpGroupDirective,
-	HlmInputOtpSlotComponent,
-} from '@spartan-ng/ui-inputotp-helm';
+} from '@spartan-ng/helm/dialog';
+import { HlmInputOtpDirective, HlmInputOtpGroupDirective, HlmInputOtpSlotComponent } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-12',
@@ -217,7 +208,6 @@ import {
 		BrnDialogContentDirective,
 		HlmButtonDirective,
 		HlmDialogDescriptionDirective,
-
 		HlmInputOtpDirective,
 		HlmInputOtpGroupDirective,
 		HlmInputOtpSlotComponent,
@@ -374,5 +364,4 @@ export class Dialog12Component implements OnDestroy {
 			this._intervalId = undefined;
 		}
 	}
-}
-`;
+}`;

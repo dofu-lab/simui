@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-15',
@@ -56,11 +56,10 @@ export class Radio15Component {
 	];
 }
 
-export const radio15Code = `
-import { Component } from '@angular/core';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+export const radio15Code = `import { Component } from '@angular/core';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-15',
@@ -113,5 +112,4 @@ export class Radio15Component {
 		{ id: 3, value: 'team', label: 'Team', isPopular: false, price: '$49/month' },
 		{ id: 4, value: 'enterprise', label: 'Enterprise', isPopular: false, price: 'Custom' },
 	];
-}
-`;
+}`;

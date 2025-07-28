@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-03',
@@ -11,15 +11,15 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 })
 export class Button03Component {}
 
-export const button03Code = `
-import { Component } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+export const button03Code = `import { Component } from '@angular/core';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 
 @Component({
-  selector: 'sim-button-03',
-  standalone: true,
-  imports: [HlmButtonDirective],
-  template: \` <button hlmBtn size="sm" class="rounded-full">Rounded</button> \`,
+	selector: 'sim-button-03',
+	standalone: true,
+	imports: [HlmButtonDirective],
+	template: \`
+		<button hlmBtn size="sm" class="rounded-full">Rounded</button>
+	\`,
 })
-export class Button03Component {}
-`;
+export class Button03Component {}`;

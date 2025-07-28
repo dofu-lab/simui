@@ -2,8 +2,8 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideImageUp, lucideTrash2, lucideUpload, lucideX } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-06',
@@ -169,8 +169,8 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideImageUp, lucideTrash2, lucideUpload, lucideX } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-06',

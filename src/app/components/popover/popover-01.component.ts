@@ -3,11 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideListFilter } from '@ng-icons/lucide';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCheckboxComponent } from '@spartan-ng/helm/checkbox';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-01',
@@ -89,17 +89,16 @@ export class Popover01Component {
 	}
 }
 
-export const Popover01Code = `
-import { Component } from '@angular/core';
+export const popover01Code = `import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideListFilter } from '@ng-icons/lucide';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCheckboxComponent } from '@spartan-ng/helm/checkbox';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-01',
@@ -179,5 +178,4 @@ export class Popover01Component {
 		console.log('Applied filters:', this.filters);
 		ctx.close();
 	}
-}
-`;
+}`;

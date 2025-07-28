@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-10',
@@ -75,11 +75,10 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 })
 export class Radio10Component {}
 
-export const radio10Code = `
-import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+export const radio10Code = `import { Component } from '@angular/core';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-10',
@@ -151,5 +150,4 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 		</hlm-radio-group>
 	\`,
 })
-export class Radio10Component {}
-`;
+export class Radio10Component {}`;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-badge-02',
@@ -11,15 +11,15 @@ import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
 })
 export class Badge02Component {}
 
-export const badge02Code = `
-import { Component } from '@angular/core';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
+export const badge02Code = `import { Component } from '@angular/core';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
 
 @Component({
-  selector: 'sim-badge-02',
-  standalone: true,
-  imports: [HlmBadgeDirective],
-  template: \` <span hlmBadge variant="secondary"> Badge </span> \`,
+	selector: 'sim-badge-02',
+	standalone: true,
+	imports: [HlmBadgeDirective],
+	template: \`
+		<span hlmBadge variant="secondary">Badge</span>
+	\`,
 })
-export class Badge02Component {}
-`;
+export class Badge02Component {}`;

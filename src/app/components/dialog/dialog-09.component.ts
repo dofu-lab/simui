@@ -3,16 +3,16 @@ import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideMail } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+} from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-dialog-09',
@@ -88,22 +88,21 @@ export class Dialog09Component {
 	}
 }
 
-export const dialog09Code = `
-import { Component, viewChild } from '@angular/core';
+export const dialog09Code = `import { Component, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideMail } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+} from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-dialog-09',
@@ -177,5 +176,4 @@ export class Dialog09Component {
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

@@ -2,9 +2,9 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-24',
@@ -103,14 +103,13 @@ export class Dialog24Component {
 	}
 }
 
-export const dialog24Code = `
-import { Component, computed, signal, viewChild } from '@angular/core';
+export const dialog24Code = `import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-24',
@@ -126,7 +125,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 	providers: [provideIcons({ lucideArrowRight })],
 	template: \`
 		<hlm-dialog>
-			<button brnDialogTrigger hlmBtn variant="outline">Confirm dialog</button>
+			<button brnDialogTrigger hlmBtn variant="outline">Onboarding</button>
 			<hlm-dialog-content
 				class="[&>button>ng-icon]:text-primary-foreground top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
@@ -207,5 +206,4 @@ export class Dialog24Component {
 	closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

@@ -5,7 +5,7 @@ import { lucideCheck } from '@ng-icons/lucide';
 import { BrnCheckboxComponent } from '@spartan-ng/brain/checkbox';
 import { hlm } from '@spartan-ng/brain/core';
 import type { ChangeFn, TouchFn } from '@spartan-ng/brain/forms';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 import type { ClassValue } from 'clsx';
 
 export const HLM_CHECKBOX_VALUE_ACCESSOR = {
@@ -29,9 +29,8 @@ export const HLM_CHECKBOX_VALUE_ACCESSOR = {
 			[aria-labelledby]="ariaLabelledby()"
 			[aria-describedby]="ariaDescribedby()"
 			(changed)="_handleChange()"
-			(touched)="_onTouched?.()"
-		>
-			<ng-icon hlm size="sm" [class]="_computedIconClass()"[name]="checkIconName()" />
+			(touched)="_onTouched?.()">
+			<ng-icon hlm size="sm" [class]="_computedIconClass()" [name]="checkIconName()" />
 		</brn-checkbox>
 	`,
 	host: {

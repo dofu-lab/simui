@@ -3,14 +3,14 @@ import { Component, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
+} from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-02',
@@ -60,20 +60,19 @@ export class Dialog02Component {
 	}
 }
 
-export const dialog02Code = `
-import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
+export const dialog02Code = `import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
 import { Component, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
+} from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-02',
@@ -121,5 +120,4 @@ export class Dialog02Component {
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

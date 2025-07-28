@@ -1,9 +1,10 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { hlm } from '@spartan-ng/brain/core';
 import { BrnTabsDirective } from '@spartan-ng/brain/tabs';
+import { ClassValue } from 'clsx';
 
 @Component({
 	selector: 'hlm-tabs',
-	standalone: true,
 	hostDirectives: [
 		{
 			directive: BrnTabsDirective,
@@ -12,7 +13,14 @@ import { BrnTabsDirective } from '@spartan-ng/brain/tabs';
 		},
 	],
 	template: '<ng-content/>',
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	host: {
+		'[class]': '_computedClass()',
+	},
 })
 export class HlmTabsComponent {
 	public readonly tab = input.required<string>();
+
+	public readonly userClass = input<ClassValue>('', { alias: 'class' });
+	protected readonly _computedClass = computed(() => hlm('flex flex-col gap-2', this.userClass()));
 }

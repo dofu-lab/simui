@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { BrnToggleDirective } from '@spartan-ng/brain/toggle';
 import { BrnToggleGroupComponent } from '@spartan-ng/brain/toggle-group';
-import { HlmToggleDirective } from '@spartan-ng/ui-toggle-helm';
+import { HlmToggleDirective } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-34',
@@ -45,11 +45,10 @@ export class Button34Component {
 	}
 }
 
-export const button34Code = `
-import { Component, signal } from '@angular/core';
+export const button34Code = `import { Component, signal } from '@angular/core';
 import { BrnToggleDirective } from '@spartan-ng/brain/toggle';
 import { BrnToggleGroupComponent } from '@spartan-ng/brain/toggle-group';
-import { HlmToggleDirective } from '@spartan-ng/ui-toggle-helm';
+import { HlmToggleDirective } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-34',
@@ -91,6 +90,4 @@ export class Button34Component {
 	changeTheme() {
 		this.theme.set(this.theme() === 'light' ? 'dark' : 'light');
 	}
-}
-
-`;
+}`;

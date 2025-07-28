@@ -1,14 +1,14 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+} from '@spartan-ng/helm/dialog';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-dialog-16',
@@ -150,18 +150,17 @@ export class Dialog16Component {
 	}
 }
 
-export const dialog16Code = `
-import { Component, inject, viewChild } from '@angular/core';
+export const dialog16Code = `import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+} from '@spartan-ng/helm/dialog';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-dialog-16',
@@ -301,5 +300,4 @@ export class Dialog16Component {
 			this.dialogRef()?.close({});
 		}
 	}
-}
-`;
+}`;

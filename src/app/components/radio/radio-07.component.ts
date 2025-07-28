@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { hlm } from '@spartan-ng/brain/core';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 type OptionColor = 'sky' | 'amber' | 'violet' | 'rose' | 'emerald' | 'orange';
 
@@ -81,12 +81,11 @@ export class Radio07Component {
 	}
 }
 
-export const radio07Code = `
-import { Component, signal } from '@angular/core';
+export const radio07Code = `import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { hlm } from '@spartan-ng/brain/core';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 type OptionColor = 'sky' | 'amber' | 'violet' | 'rose' | 'emerald' | 'orange';
 
@@ -163,5 +162,4 @@ export class Radio07Component {
 			color,
 		);
 	}
-}
-`;
+}`;

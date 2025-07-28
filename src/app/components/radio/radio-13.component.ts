@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-13',
@@ -40,10 +40,9 @@ export class Radio13Component {
 	];
 }
 
-export const radio13Code = `
-import { Component } from '@angular/core';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+export const radio13Code = `import { Component } from '@angular/core';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-13',
@@ -54,7 +53,7 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 	template: \`
 		<div class="flex flex-col gap-4">
 			<span class="text-sm">CPU Cores Option:</span>
-			<hlm-radio-group class="grid grid-cols-3 justify-between gap-2 text-sm font-medium" value="2cpu" disabled>
+			<hlm-radio-group class="grid grid-cols-3 justify-between gap-2 text-sm font-medium" value="2cpu">
 				@for (item of items; track item.id) {
 					<div
 						class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full rounded-md border shadow-xs outline-none">
@@ -81,5 +80,4 @@ export class Radio13Component {
 		{ id: 5, value: '10cpu', label: '10 CPU' },
 		{ id: 6, value: '12cpu', label: '12 CPU' },
 	];
-}
-`;
+}`;

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmCheckboxComponent } from '@spartan-ng/helm/checkbox';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-06',
@@ -15,10 +15,9 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 })
 export class Checkbox06Component {}
 
-export const checkbox06Code = `
-import { Component } from '@angular/core';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+export const checkbox06Code = `import { Component } from '@angular/core';
+import { HlmCheckboxComponent } from '@spartan-ng/helm/checkbox';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-06',
@@ -31,5 +30,4 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 		</label>
 	\`,
 })
-export class Checkbox06Component {}
-`;
+export class Checkbox06Component {}`;

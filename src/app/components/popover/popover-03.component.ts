@@ -2,11 +2,11 @@ import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell } from '@ng-icons/lucide';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-03',
@@ -140,16 +140,15 @@ export class Popover03Component {
 	}
 }
 
-export const Popover03Code = `
-import { Component, computed, signal } from '@angular/core';
+export const popover03Code = `import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell } from '@ng-icons/lucide';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-03',
@@ -281,5 +280,4 @@ export class Popover03Component {
 			})),
 		);
 	}
-}
-`;
+}`;

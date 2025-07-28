@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleCheck } from '@ng-icons/lucide';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmSwitchComponent } from '@spartan-ng/ui-switch-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmSwitchComponent } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-dialog-30',
@@ -72,16 +72,15 @@ import { HlmSwitchComponent } from '@spartan-ng/ui-switch-helm';
 })
 export class Dialog30Component {}
 
-export const dialog30Code = `
-import { Component } from '@angular/core';
+export const dialog30Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleCheck } from '@ng-icons/lucide';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmSwitchComponent } from '@spartan-ng/ui-switch-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmSwitchComponent } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-dialog-30',
@@ -145,5 +144,4 @@ import { HlmSwitchComponent } from '@spartan-ng/ui-switch-helm';
 		</hlm-dialog>
 	\`,
 })
-export class Dialog30Component {}
-`;
+export class Dialog30Component {}`;

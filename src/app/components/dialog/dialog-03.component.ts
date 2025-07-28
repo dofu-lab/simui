@@ -1,13 +1,13 @@
 import { Component, viewChild } from '@angular/core';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
+} from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-03',
@@ -152,17 +152,16 @@ export class Dialog03Component {
 	}
 }
 
-export const dialog03Code = `
-import { Component, viewChild } from '@angular/core';
+export const dialog03Code = `import { Component, viewChild } from '@angular/core';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmDialogComponent,
 	HlmDialogContentComponent,
 	HlmDialogDescriptionDirective,
 	HlmDialogFooterComponent,
 	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
+} from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-03',
@@ -305,5 +304,4 @@ export class Dialog03Component {
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

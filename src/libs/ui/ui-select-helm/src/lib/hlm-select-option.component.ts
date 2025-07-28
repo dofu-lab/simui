@@ -3,7 +3,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/brain/core';
 import { BrnSelectOptionDirective } from '@spartan-ng/brain/select';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 import type { ClassValue } from 'clsx';
 
 @Component({
@@ -18,9 +18,8 @@ import type { ClassValue } from 'clsx';
 		<ng-content />
 		<span
 			[attr.dir]="_brnSelectOption.dir()"
-			class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center rtl:left-auto rtl:right-2"
-			[attr.data-state]="this._brnSelectOption.checkedState()"
-		>
+			class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center rtl:right-2 rtl:left-auto"
+			[attr.data-state]="this._brnSelectOption.checkedState()">
 			@if (this._brnSelectOption.selected()) {
 				<ng-icon hlm size="sm" aria-hidden="true" name="lucideCheck" />
 			}

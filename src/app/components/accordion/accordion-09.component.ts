@@ -7,8 +7,8 @@ import {
 	HlmAccordionIconDirective,
 	HlmAccordionItemDirective,
 	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+} from '@spartan-ng/helm/accordion';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-09',
@@ -90,8 +90,7 @@ export class Accordion09Component {
 	];
 }
 
-export const accordion09Code = `
-import { Component } from '@angular/core';
+export const accordion09Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell, lucideChevronDown, lucideLifeBuoy, lucideLink, lucideShieldCheck } from '@ng-icons/lucide';
 import {
@@ -100,8 +99,8 @@ import {
 	HlmAccordionIconDirective,
 	HlmAccordionItemDirective,
 	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+} from '@spartan-ng/helm/accordion';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-09',
@@ -181,5 +180,4 @@ export class Accordion09Component {
 				'Our support team is available around the ClockIcon to assist you. For billing inquiries, technical issues, or general questions, you can reach us through live chat, email at support@example.com, or schedule a call with our technical team. Premium support is available for enterprise customers.',
 		},
 	];
-}
-`;
+}`;

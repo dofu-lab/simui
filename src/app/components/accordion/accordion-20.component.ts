@@ -21,8 +21,8 @@ import {
 	HlmAccordionIconDirective,
 	HlmAccordionItemDirective,
 	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+} from '@spartan-ng/helm/accordion';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-20',
@@ -183,8 +183,7 @@ export class Accordion20Component {
 	];
 }
 
-export const accordion20Code = `
-import { Component } from '@angular/core';
+export const accordion20Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideChevronDown,
@@ -207,8 +206,8 @@ import {
 	HlmAccordionIconDirective,
 	HlmAccordionItemDirective,
 	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+} from '@spartan-ng/helm/accordion';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-20',
@@ -238,6 +237,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 			lucidePackageCheck,
 		}),
 	],
+	host: { ngSkipHydration: 'true' },
 	template: \`
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Multi-level W/ icon</h2>
@@ -366,5 +366,4 @@ export class Accordion20Component {
 			],
 		},
 	];
-}
-`;
+}`;

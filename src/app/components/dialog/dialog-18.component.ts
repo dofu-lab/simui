@@ -5,13 +5,13 @@ import { MaskitoOptions } from '@maskito/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard, lucideWallet } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCheckboxComponent } from '@spartan-ng/helm/checkbox';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmSpinnerComponent } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'app-dialog-18',
@@ -213,21 +213,20 @@ export class Dialog18Component {
 	}
 }
 
-export const dialog18Code = `
-import { Component, inject, signal, viewChild } from '@angular/core';
+export const dialog18Code = `import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard, lucideWallet } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmCheckboxComponent } from '@spartan-ng/helm/checkbox';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmSpinnerComponent } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'app-dialog-18',
@@ -372,17 +371,17 @@ export class Dialog18Component {
 		{ updateOn: 'submit' },
 	);
 	public readonly cvcMask: MaskitoOptions = {
-		mask: [/\d/, /\d/, /\d/],
+		mask: [/\\d/, /\\d/, /\\d/],
 		overwriteMode: 'replace',
 		preprocessors: [
 			({ elementState, data }) => ({
 				elementState,
-				data: data.replace(/\D/g, ''),
+				data: data.replace(/\\D/g, ''),
 			}),
 		],
 	};
 	public readonly expiryDateMask: MaskitoOptions = {
-		mask: [/\d/, /[0-9]/, '/', /\d/, /\d/],
+		mask: [/\\d/, /[0-9]/, '/', /\\d/, /\\d/],
 		overwriteMode: 'replace',
 	};
 	public readonly nameMask: MaskitoOptions = {
@@ -413,7 +412,7 @@ export class Dialog18Component {
 			/[0-9]/,
 		],
 		overwriteMode: 'replace',
-		preprocessors: [({ elementState, data }) => ({ elementState, data: data.replace(/\D/g, '') })],
+		preprocessors: [({ elementState, data }) => ({ elementState, data: data.replace(/\\D/g, '') })],
 	};
 
 	public isProcessing = signal(false);
@@ -427,5 +426,4 @@ export class Dialog18Component {
 			}, 2000);
 		}
 	}
-}
-`;
+}`;

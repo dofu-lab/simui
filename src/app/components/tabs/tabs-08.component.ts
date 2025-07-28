@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 import {
 	HlmTabsComponent,
 	HlmTabsContentDirective,
 	HlmTabsListComponent,
 	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+} from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-08',
@@ -54,18 +54,17 @@ import {
 })
 export class Tabs08Component {}
 
-export const tabs08Code = `
-import { Component } from '@angular/core';
+export const tabs08Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 import {
 	HlmTabsComponent,
 	HlmTabsContentDirective,
 	HlmTabsListComponent,
 	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+} from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-08',
@@ -109,5 +108,4 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs08Component {}
-`;
+export class Tabs08Component {}`;

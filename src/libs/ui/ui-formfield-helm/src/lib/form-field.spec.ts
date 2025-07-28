@@ -5,7 +5,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
 
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@spartan-ng/brain/forms';
 import { HlmErrorDirective } from './hlm-error.directive';
@@ -27,8 +27,7 @@ const DIRECTIVES = [HlmFormFieldComponent, HlmErrorDirective, HlmHintDirective, 
 				class="w-80"
 				hlmInput
 				type="text"
-				placeholder="Your Name"
-			/>
+				placeholder="Your Name" />
 			<hlm-error data-testid="hlm-error">Your name is required</hlm-error>
 			<hlm-hint data-testid="hlm-hint">This is your public display name.</hlm-hint>
 		</hlm-form-field>
@@ -51,8 +50,7 @@ class SingleFormFieldMock {
 				class="w-80"
 				hlmInput
 				type="text"
-				placeholder="Your Name"
-			/>
+				placeholder="Your Name" />
 			<hlm-error data-testid="hlm-error">Your name is required</hlm-error>
 			<hlm-hint data-testid="hlm-hint">This is your public display name.</hlm-hint>
 		</hlm-form-field>

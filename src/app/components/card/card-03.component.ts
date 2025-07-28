@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
 	HlmCardContentDirective,
 	HlmCardDescriptionDirective,
 	HlmCardDirective,
 	HlmCardFooterDirective,
 	HlmCardTitleDirective,
-} from '@spartan-ng/ui-card-helm';
+} from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-card-03',
@@ -55,33 +55,32 @@ import {
 })
 export class Card03Component {}
 
-export const card03Code = `
-import { Component } from '@angular/core';
+export const card03Code = `import { Component } from '@angular/core';
+import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/helm/avatar';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import {
-  HlmCardContentDirective,
-  HlmCardDescriptionDirective,
-  HlmCardDirective,
-  HlmCardFooterDirective,
-  HlmCardTitleDirective
-} from '@spartan-ng/ui-card-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
+	HlmCardContentDirective,
+	HlmCardDescriptionDirective,
+	HlmCardDirective,
+	HlmCardFooterDirective,
+	HlmCardTitleDirective,
+} from '@spartan-ng/helm/card';
 
 @Component({
-  selector: 'sim-card-03',
-  imports: [
-    HlmCardContentDirective,
-    HlmCardDirective,
-    HlmCardTitleDirective,
-    HlmCardDescriptionDirective,
-    HlmCardFooterDirective,
-    HlmButtonDirective,
-    HlmAvatarComponent,
-    HlmAvatarImageDirective,
-    HlmAvatarFallbackDirective,
-  ],
+	selector: 'sim-card-03',
+	imports: [
+		HlmCardContentDirective,
+		HlmCardDirective,
+		HlmCardTitleDirective,
+		HlmCardDescriptionDirective,
+		HlmCardFooterDirective,
+		HlmButtonDirective,
+		HlmAvatarComponent,
+		HlmAvatarImageDirective,
+		HlmAvatarFallbackDirective,
+	],
 	template: \`
-    <section hlmCard class="w-60">
+		<section hlmCard class="w-60">
 			<div hlmCardContent class="flex flex-col items-center text-center">
 				<hlm-avatar variant="large" class="border-border/50 mt-3 mb-3 rounded-lg border">
 					<img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
@@ -111,5 +110,4 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
 		</section>
 	\`,
 })
-export class Card03Component {}
-`;
+export class Card03Component {}`;

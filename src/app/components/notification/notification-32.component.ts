@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import { toast } from 'ngx-sonner';
 
 @Component({
@@ -18,32 +18,22 @@ export class Notification32Component {
 	}
 }
 
-export const notification32Code = `
-import { Component } from '@angular/core';
+export const notification32Code = `import { Component } from '@angular/core';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import { toast } from 'ngx-sonner';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
-  selector: 'sim-notification-32',
-  standalone: true,
-  imports: [HlmButtonDirective],
-  template: \`
-    <button
-      hlmBtn
-      variant="outline"
-      size="sm"
-      class="h-8"
-      (click)="showNotification()"
-    >
-      With close button
-    </button>
-  \`,
+	selector: 'sim-notification-32',
+	standalone: true,
+	imports: [HlmButtonDirective],
+	template: \`
+		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">With close button</button>
+	\`,
 })
 export class Notification32Component {
-  showNotification() {
-    toast.success('Saved your changes', {
-      closeButton: true,
-    });
-  }
-}
-`;
+	showNotification() {
+		toast.success('Saved your changes', {
+			closeButton: true,
+		});
+	}
+}`;

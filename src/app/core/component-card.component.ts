@@ -13,7 +13,7 @@ import {
 import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
 import { hlm } from '@spartan-ng/brain/core';
 import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
 import { CodePreviewComponent } from './code-preview.component';
 
 @Component({

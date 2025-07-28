@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-09',
@@ -54,11 +54,10 @@ export class Popover09Component {
 	}
 }
 
-export const Popover09Code = `
-import { Component, signal } from '@angular/core';
+export const popover09Code = `import { Component, signal } from '@angular/core';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-09',
@@ -109,5 +108,4 @@ export class Popover09Component {
 		this.currentEmoji.set(emoji);
 		ctx.close();
 	}
-}
-`;
+}`;

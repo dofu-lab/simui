@@ -7,8 +7,8 @@ import {
 	HlmAccordionIconDirective,
 	HlmAccordionItemDirective,
 	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+} from '@spartan-ng/helm/accordion';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-19',
@@ -149,8 +149,7 @@ export class Accordion19Component {
 	];
 }
 
-export const accordion19Code = `
-import { Component } from '@angular/core';
+export const accordion19Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import {
@@ -159,8 +158,8 @@ import {
 	HlmAccordionIconDirective,
 	HlmAccordionItemDirective,
 	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+} from '@spartan-ng/helm/accordion';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-19',
@@ -174,6 +173,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		NgIcon,
 	],
 	viewProviders: [provideIcons({ lucideChevronDown })],
+	host: { ngSkipHydration: 'true' },
 	template: \`
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Multi-level</h2>
@@ -298,5 +298,4 @@ export class Accordion19Component {
 				"SimUI is built with performance in mind. Components are lightweight, tree-shakable, and optimized for modern browsers. They're designed to maintain responsiveness even in complex applications.",
 		},
 	];
-}
-`;
+}`;

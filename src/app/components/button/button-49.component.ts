@@ -1,8 +1,8 @@
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideChevronUp } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-49',
@@ -26,34 +26,30 @@ export class Button49Component {
 	}
 }
 
-export const button49Code = `
-import { Component, computed, signal } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+export const button49Code = `import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideChevronUp } from '@ng-icons/lucide';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
-  selector: 'sim-button-49',
-  standalone: true,
-  providers: [provideIcons({ lucideChevronDown, lucideChevronUp })],
-  imports: [HlmButtonDirective, HlmIconDirective, NgIcon],
-  template: \`
-    <button hlmBtn variant="ghost" (click)="toggle()">
-      {{ buttonLabel() }}
-      <ng-icon hlm [name]="buttonIcon()" class="ml-2" />
-    </button>
-  \`,
+	selector: 'sim-button-49',
+	standalone: true,
+	providers: [provideIcons({ lucideChevronDown, lucideChevronUp })],
+	imports: [HlmButtonDirective, HlmIconDirective, NgIcon],
+	template: \`
+		<button hlmBtn variant="ghost" (click)="toggle()">
+			{{ buttonLabel() }}
+			<ng-icon hlm [name]="buttonIcon()" class="ml-2" />
+		</button>
+	\`,
 })
 export class Button49Component {
-  isShow = signal<boolean>(false);
-  buttonLabel = computed(() => (this.isShow() ? 'Show less' : 'Show more'));
-  buttonIcon = computed(() =>
-    this.isShow() ? 'lucideChevronUp' : 'lucideChevronDown'
-  );
+	isShow = signal<boolean>(false);
+	buttonLabel = computed(() => (this.isShow() ? 'Show less' : 'Show more'));
+	buttonIcon = computed(() => (this.isShow() ? 'lucideChevronUp' : 'lucideChevronDown'));
 
-  toggle() {
-    this.isShow.set(!this.isShow());
-  }
-}
-`;
+	toggle() {
+		this.isShow.set(!this.isShow());
+	}
+}`;

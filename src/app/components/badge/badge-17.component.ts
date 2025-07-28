@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-badge-17',
@@ -26,39 +26,30 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 })
 export class Badge17Component {}
 
-export const badge17Code = `
-import { Component } from '@angular/core';
+export const badge17Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
-  selector: 'sim-badge-17',
-  standalone: true,
-  providers: [provideIcons({ lucideArrowRight })],
-  imports: [HlmBadgeDirective, HlmIconDirective, NgIcon],
-  template: \`
-    <span
-      hlmBadge
-      size="lg"
-      variant="outline"
-      class="w-full rounded-md py-[3px] pl-[3px]"
-    >
-      <div class="flex items-center gap-2">
-        <span hlmBadge variant="outline" class="rounded-sm">
-          <div class="flex items-center justify-center gap-1.5">
-            <div
-              class="h-3 w-3 rounded-full border-[3px] border-amber-100 bg-amber-500"
-            ></div>
-            <span class="truncate"> Warning </span>
-          </div>
-        </span>
-        <span class="truncate">Might be a problem</span>
-        <ng-icon hlm name="lucideArrowRight" size="xs"></ng-icon>
-      </div>
-    </span>
-  \`,
+	selector: 'sim-badge-17',
+	standalone: true,
+	providers: [provideIcons({ lucideArrowRight })],
+	imports: [HlmBadgeDirective, HlmIconDirective, NgIcon],
+	template: \`
+		<span hlmBadge size="lg" variant="outline" class="w-full rounded-md py-[3px] pl-[3px]">
+			<div class="flex items-center gap-2">
+				<span hlmBadge variant="outline" class="rounded-sm">
+					<div class="flex items-center justify-center gap-1.5">
+						<div class="h-3 w-3 rounded-full border-[3px] border-amber-100 bg-amber-500"></div>
+						<span class="truncate">Warning</span>
+					</div>
+				</span>
+				<span class="truncate">Might be a problem</span>
+				<ng-icon hlm name="lucideArrowRight" size="xs"></ng-icon>
+			</div>
+		</span>
+	\`,
 })
-export class Badge17Component {}
-`;
+export class Badge17Component {}`;

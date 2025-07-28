@@ -10,8 +10,8 @@ import {
 	HlmAccordionIconDirective,
 	HlmAccordionItemDirective,
 	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+} from '@spartan-ng/helm/accordion';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-21',
@@ -173,8 +173,7 @@ export class Accordion22Component {
 	];
 }
 
-export const accordion22Code = `
-import { HlmCheckboxComponent } from '@/libs/ui/ui-checkbox-helm/src';
+export const accordion22Code = `import { HlmCheckboxComponent } from '@/libs/ui/ui-checkbox-helm/src';
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -186,8 +185,8 @@ import {
 	HlmAccordionIconDirective,
 	HlmAccordionItemDirective,
 	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+} from '@spartan-ng/helm/accordion';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-21',
@@ -347,5 +346,4 @@ export class Accordion22Component {
 			],
 		},
 	];
-}
-`;
+}`;

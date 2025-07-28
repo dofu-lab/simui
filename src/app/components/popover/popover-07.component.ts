@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-07',
@@ -62,11 +62,10 @@ export class Popover07Component {
 	}
 }
 
-export const Popover07Code = `
-import { Component } from '@angular/core';
+export const popover07Code = `import { Component } from '@angular/core';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-07',
@@ -125,5 +124,4 @@ export class Popover07Component {
 		this.selectedColor = color;
 		ctx.close();
 	}
-}
-`;
+}`;

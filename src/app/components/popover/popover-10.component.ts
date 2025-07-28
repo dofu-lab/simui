@@ -1,9 +1,9 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-10',
@@ -64,13 +64,12 @@ export class Popover10Component {
 	}
 }
 
-export const Popover10Code = `
-import { Component, computed, signal } from '@angular/core';
+export const popover10Code = `import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
+import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-10',
@@ -129,5 +128,4 @@ export class Popover10Component {
 	public execute(action: { label: string }, ctx: { close: () => void }): void {
 		ctx.close();
 	}
-}
-`;
+}`;

@@ -3445,17 +3445,17 @@
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.2.tgz#821f8442f4175d8f0467b9daf26e3a18e2d02af2"
   integrity sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==
 
-"@spartan-ng/brain@0.0.1-alpha.469":
-  version "0.0.1-alpha.469"
-  resolved "https://registry.yarnpkg.com/@spartan-ng/brain/-/brain-0.0.1-alpha.469.tgz#8d8121f8c5ace9e0fde70cbf44b3a12b4285eecf"
-  integrity sha512-1+wFV119cxfFe56WgBHfkeKxtCGdmI1Fo9SQQdpm2i3yOtiZ566qEIGXTZjQeADEGT3xt2uYUkMA7T4BOXrdWw==
+"@spartan-ng/brain@^0.0.1-alpha.491":
+  version "0.0.1-alpha.491"
+  resolved "https://registry.yarnpkg.com/@spartan-ng/brain/-/brain-0.0.1-alpha.491.tgz#460bc8e5541e02c7e88ea484ef1261f8d97cd223"
+  integrity sha512-0r+NOsU8f5t/yobD85X4j86xK3QeT9pzbj1kQ2fHpy3hzITGGyNUdosoqaOK+TTD37use+aeTwKZDlCNZT370Q==
   dependencies:
     tslib "^2.3.0"
 
-"@spartan-ng/cli@^0.0.1-alpha.469":
-  version "0.0.1-alpha.487"
-  resolved "https://registry.yarnpkg.com/@spartan-ng/cli/-/cli-0.0.1-alpha.487.tgz#5c52083346a659988ec66597772b0fffb09e4b63"
-  integrity sha512-n/9NsCrIrI7JAA7xdvZTejrReP3AdqA6SCUw1ZRRzozZATScFeeFl6EPq0VfNoNwucIB2Lr7QGdWEFjW0wcbyQ==
+"@spartan-ng/cli@^0.0.1-alpha.491":
+  version "0.0.1-alpha.491"
+  resolved "https://registry.yarnpkg.com/@spartan-ng/cli/-/cli-0.0.1-alpha.491.tgz#e788e863903ed942c6b3fa62f014566ac3bec441"
+  integrity sha512-LaWIMLiW/15jgmExSf95xR3Aocnt/jtptVvsWIyHMT5pC691CrznuUy5PssGHa2L18hdc2F8xDDlQ9oU+BQ3Tw==
   dependencies:
     "@nx/angular" ">=20.0.0"
     "@nx/devkit" ">=20.0.0"

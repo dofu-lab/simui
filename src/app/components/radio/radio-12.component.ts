@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideWalletCards } from '@ng-icons/lucide';
 import { remixAppleFill, remixPaypalFill } from '@ng-icons/remixicon';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-12',
@@ -48,14 +48,13 @@ export class Radio12Component {
 	];
 }
 
-export const radio12Code = `
-import { Component } from '@angular/core';
+export const radio12Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideWalletCards } from '@ng-icons/lucide';
 import { remixAppleFill, remixPaypalFill } from '@ng-icons/remixicon';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-12',
@@ -97,5 +96,4 @@ export class Radio12Component {
 		{ id: 2, value: 'paypal', label: 'PayPal', icon: 'remixPaypalFill' },
 		{ id: 3, value: 'applePay', label: 'Apple Pay', icon: 'remixAppleFill' },
 	];
-}
-`;
+}`;

@@ -3,12 +3,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBadgeCheck, lucideCreditCard, lucideMessagesSquare, lucideWalletCards } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent, HlmRadioIndicatorComponent } from '@spartan-ng/ui-radiogroup-helm';
-import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent, HlmRadioIndicatorComponent } from '@spartan-ng/helm/radio-group';
+import { HlmSpinnerComponent } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'app-dialog-21',
@@ -160,18 +160,17 @@ export class Dialog21Component {
 	}
 }
 
-export const dialog21Code = `
-import { Component, inject, signal, viewChild } from '@angular/core';
+export const dialog21Code = `import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBadgeCheck, lucideCreditCard, lucideMessagesSquare, lucideWalletCards } from '@ng-icons/lucide';
 import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent, HlmRadioIndicatorComponent } from '@spartan-ng/ui-radiogroup-helm';
-import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import { HlmButtonDirective } from '@spartan-ng/helm/button';
+import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/helm/dialog';
+import { HlmIconDirective } from '@spartan-ng/helm/icon';
+import { HlmLabelDirective } from '@spartan-ng/helm/label';
+import { HlmRadioComponent, HlmRadioGroupComponent, HlmRadioIndicatorComponent } from '@spartan-ng/helm/radio-group';
+import { HlmSpinnerComponent } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'app-dialog-21',
@@ -305,7 +304,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 	\`,
 })
 export class Dialog21Component {
-	private _formBuilder = inject(FormBuilder);
+	private readonly _formBuilder = inject(FormBuilder);
 	public dialogRef = viewChild(BrnDialogComponent);
 	public form: FormGroup = this._formBuilder.group({
 		plan: ['basic'],
@@ -321,5 +320,4 @@ export class Dialog21Component {
 			}, 1000);
 		}
 	}
-}
-`;
+}`;

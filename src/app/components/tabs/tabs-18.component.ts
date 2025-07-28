@@ -4,7 +4,7 @@ import {
 	HlmTabsContentDirective,
 	HlmTabsListComponent,
 	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+} from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-18',
@@ -50,14 +50,13 @@ import {
 })
 export class Tabs18Component {}
 
-export const tabs18Code = `
-import { Component } from '@angular/core';
+export const tabs18Code = `import { Component } from '@angular/core';
 import {
 	HlmTabsComponent,
 	HlmTabsContentDirective,
 	HlmTabsListComponent,
 	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+} from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-18',
@@ -101,5 +100,4 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs18Component {}
-`;
+export class Tabs18Component {}`;
