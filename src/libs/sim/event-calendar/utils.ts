@@ -134,9 +134,22 @@ export const formatTimeWithOptionalMinutes = (date: Date) => {
 };
 
 export function getDateFromContainerId(containerId: string): Date | null {
-	// Extract date from container ID if you implement the ID suggestion above
-	const dateStr = containerId.replace('day-', '');
-	return new Date(dateStr);
+	try {
+		// Extract date from container ID (format: 'day-YYYY-MM-DD')
+		const dateStr = containerId.replace('day-', '');
+		const date = new Date(dateStr);
+		
+		// Validate the date
+		if (isNaN(date.getTime())) {
+			console.warn(`Invalid date parsed from container ID: ${containerId}`);
+			return null;
+		}
+		
+		return date;
+	} catch (error) {
+		console.error(`Error parsing date from container ID: ${containerId}`, error);
+		return null;
+	}
 }
 
 export function getTimeOptions(): TimeOption[] {

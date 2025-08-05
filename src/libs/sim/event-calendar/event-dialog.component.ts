@@ -275,7 +275,6 @@ export class EventDialogComponent implements OnInit {
 		const startTime = control.get('startTime')?.value;
 		const endTime = control.get('endTime')?.value;
 		const isAllDay = control.get('isAllDay')?.value;
-		console.log('Validating date range:', startTime, endTime);
 
 		if (!startDate || !endDate) {
 			return null; // Don't validate if either date is missing
