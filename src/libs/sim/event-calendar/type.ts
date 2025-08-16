@@ -37,3 +37,9 @@ export interface EventDuration {
 	startTime?: string;
 	endTime?: string;
 }
+
+export type EventStyle = {
+	value: EventColor;
+	label: string;
+	bgClass: string;
+};

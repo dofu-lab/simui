@@ -1,6 +1,6 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DatePipe, NgClass } from '@angular/common';
-import { Component, computed, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { hlm } from '@spartan-ng/brain/core';
 import {
@@ -28,6 +28,7 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 	selector: 'sim-day-view-calendar',
 	imports: [NgClass, DatePipe, EventItemComponent, CdkDropListGroup, CdkDropList, CdkDrag],
 	providers: [CurrentTimeIndicatorService],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div data-slot="day-view" class="border-border/70 flex h-full flex-col border-t">
 			@if (showAllDaySection()) {

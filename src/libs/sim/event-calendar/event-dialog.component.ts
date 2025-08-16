@@ -24,11 +24,10 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
 import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
-import { getHours, getMinutes } from 'date-fns';
 import { NgScrollbar } from 'ngx-scrollbar';
-import { EndHour, StartHour } from './constants';
-import { CalendarEvent, EventColor, EventDuration } from './type';
-import { getFormattedTimeValue, getTimeOptions } from './utils';
+import { DefaultEventStyle, DefaultTimeOptions, EndHour, StartHour } from './constants';
+import { CalendarEvent, EventColor, EventDuration, TimeOption } from './type';
+import { getFormattedTimeValue, getTimeFromList } from './utils';
 
 @Component({
 	selector: 'sim-event-dialog',
@@ -74,7 +73,7 @@ import { getFormattedTimeValue, getTimeOptions } from './utils';
 								<h2 class="text-lg leading-none font-semibold">Create new event</h2>
 							</div>
 						</div>
-						<form [formGroup]="form" (submit)="onSubmit()">
+						<form [formGroup]="form">
 							<div class="flex flex-col gap-4">
 								<div class="flex flex-col gap-2">
 									<label hlmLabel for="title" class="text-sm">Title</label>
@@ -125,7 +124,7 @@ import { getFormattedTimeValue, getTimeOptions } from './utils';
 
 													<hlm-select-content class="max-h-60 overflow-auto">
 														<hlm-select-scroll-up />
-														@for (timeOption of timeOptions; track timeOption.label + 'start-time') {
+														@for (timeOption of this.timeOptions(); track timeOption.label + 'start-time') {
 															<hlm-option [value]="timeOption" class="gap-2">
 																<span class="text-foreground text-sm">
 																	{{ timeOption.label }}
@@ -151,7 +150,7 @@ import { getFormattedTimeValue, getTimeOptions } from './utils';
 
 													<hlm-select-content class="max-h-60 overflow-auto">
 														<hlm-select-scroll-up />
-														@for (timeOption of timeOptions; track timeOption.label + 'end-time') {
+														@for (timeOption of this.timeOptions(); track timeOption.label + 'end-time') {
 															<hlm-option [value]="timeOption" class="gap-2">
 																<span class="text-foreground text-sm">
 																	{{ timeOption.label }}
@@ -208,7 +207,9 @@ import { getFormattedTimeValue, getTimeOptions } from './utils';
 
 								<div class="flex justify-end gap-2">
 									<button hlmBtn (click)="ctx.close()" variant="outline" size="sm">Cancel</button>
-									<button hlmBtn type="submit" size="sm">Create</button>
+									<button hlmBtn size="sm" (click)="onSubmit()">
+										{{ formMode() === 'create' ? 'Create' : 'Save' }}
+									</button>
 								</div>
 							</div>
 						</form>
@@ -222,51 +223,16 @@ export class EventDialogComponent implements OnInit {
 	private _formBuilder = inject(FormBuilder);
 	public dialogRef = viewChild(BrnDialogComponent);
 
+	formMode = signal<'create' | 'edit'>('create');
+
 	shouldShowButton = input(true);
 	initialStartDate = input<Date>();
 	initialEndDate = input<Date>();
+	timeOptions = input<TimeOption[]>(DefaultTimeOptions);
 
 	error = signal<string | null>(null);
 	color = signal<EventColor | null>(null);
-	colorOptions: Array<{
-		value: EventColor;
-		label: string;
-		bgClass: string;
-	}> = [
-		{
-			value: 'sky',
-			label: 'Sky',
-			bgClass: 'bg-sky-400 data-[state=checked]:bg-sky-400 border-sky-400 data-[state=checked]:border-sky-400',
-		},
-		{
-			value: 'amber',
-			label: 'Amber',
-			bgClass: 'bg-amber-400 data-[state=checked]:bg-amber-400 border-amber-400 data-[state=checked]:border-amber-400',
-		},
-		{
-			value: 'violet',
-			label: 'Violet',
-			bgClass:
-				'bg-violet-400 data-[state=checked]:bg-violet-400 border-violet-400 data-[state=checked]:border-violet-400',
-		},
-		{
-			value: 'rose',
-			label: 'Rose',
-			bgClass: 'bg-rose-400 data-[state=checked]:bg-rose-400 border-rose-400 data-[state=checked]:border-rose-400',
-		},
-		{
-			value: 'emerald',
-			label: 'Emerald',
-			bgClass:
-				'bg-emerald-400 data-[state=checked]:bg-emerald-400 border-emerald-400 data-[state=checked]:border-emerald-400',
-		},
-		{
-			value: 'orange',
-			label: 'Orange',
-			bgClass:
-				'bg-orange-400 data-[state=checked]:bg-orange-400 border-orange-400 data-[state=checked]:border-orange-400',
-		},
-	];
+	colorOptions = DefaultEventStyle;
 
 	// Custom validator to check if start date is before end date
 	private dateRangeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -282,7 +248,6 @@ export class EventDialogComponent implements OnInit {
 
 		const start = new Date(startDate);
 		const end = new Date(endDate);
-
 		// If not all day, include time in the comparison
 		if (!isAllDay && startTime && endTime) {
 			const startHours = parseInt(startTime.value.split(':')[0], 10);
@@ -306,6 +271,7 @@ export class EventDialogComponent implements OnInit {
 
 	public form: FormGroup = this._formBuilder.group(
 		{
+			id: [null],
 			title: [
 				null,
 				{
@@ -325,12 +291,10 @@ export class EventDialogComponent implements OnInit {
 	);
 	isAllDay = signal(false);
 
-	timeOptions = getTimeOptions();
-
 	onEventAdded = output<CalendarEvent>();
+	onEventUpdated = output<CalendarEvent>();
 
 	ngOnInit(): void {
-		console.log('Initializing event dialog component');
 		// Set initial dates if provided
 		if (this.initialStartDate()) {
 			this.form.get('startDate')?.setValue(this.initialStartDate());
@@ -343,7 +307,6 @@ export class EventDialogComponent implements OnInit {
 		this.setDefaultTimes();
 
 		this.form.get('isAllDay')?.valueChanges.subscribe((isAllDay) => {
-			console.log('isAllDay changed:', isAllDay);
 			this.isAllDay.set(isAllDay);
 			// Re-validate when all day status changes
 			this.form.updateValueAndValidity();
@@ -368,7 +331,6 @@ export class EventDialogComponent implements OnInit {
 	}
 
 	private setDefaultTimes(): void {
-		console.log('Setting default times for event dialog');
 		const startTimeControl = this.form.get('startTime');
 		const endTimeControl = this.form.get('endTime');
 
@@ -387,8 +349,8 @@ export class EventDialogComponent implements OnInit {
 			const endTimeString = `${endTime.getHours().toString().padStart(2, '0')}:${endTime.getMinutes().toString().padStart(2, '0')}`;
 
 			// Find matching time options
-			const startTimeOption = this.timeOptions.find((option) => option.value === startTimeString);
-			const endTimeOption = this.timeOptions.find((option) => option.value === endTimeString);
+			const startTimeOption = this.timeOptions().find((option) => option.value === startTimeString);
+			const endTimeOption = this.timeOptions().find((option) => option.value === endTimeString);
 
 			if (startTimeOption && startTimeControl && !startTimeControl.value) {
 				startTimeControl.setValue(startTimeOption);
@@ -404,7 +366,7 @@ export class EventDialogComponent implements OnInit {
 		if (this.form.valid) {
 			const formValue = this.form.value;
 			const event: CalendarEvent = {
-				id: crypto.randomUUID(),
+				id: formValue.id ?? crypto.randomUUID(),
 				title: formValue.title,
 				description: formValue.description,
 				start: new Date(formValue.startDate),
@@ -414,8 +376,6 @@ export class EventDialogComponent implements OnInit {
 				color: formValue.color?.value ?? 'sky',
 			};
 
-			console.log('Event created:', event);
-
 			if (!formValue.isAllDay) {
 				event.start.setHours(parseInt(formValue.startTime.value.split(':')[0], 10));
 				event.start.setMinutes(parseInt(formValue.startTime.value.split(':')[1], 10));
@@ -423,7 +383,11 @@ export class EventDialogComponent implements OnInit {
 				event.end.setMinutes(parseInt(formValue.endTime.value.split(':')[1], 10));
 			}
 
-			this.onEventAdded.emit(event);
+			if (this.formMode() === 'edit') {
+				this.onEventUpdated.emit(event);
+			} else {
+				this.onEventAdded.emit(event);
+			}
 			this.dialogRef()?.close();
 		} else {
 			// Mark all fields as touched to show validation errors
@@ -442,6 +406,8 @@ export class EventDialogComponent implements OnInit {
 	 * Opens the dialog programmatically. Can be called from parent component.
 	 */
 	public openDialog(duration: EventDuration, shouldSetDefaultTime: boolean = true): void {
+		this.form.reset();
+		this.formMode.set('create');
 		// Pre-fill dates if provided
 		const startDate = duration?.startDate ? new Date(duration.startDate) : new Date();
 		const endDate = duration?.endDate ? new Date(duration.endDate) : new Date();
@@ -460,15 +426,30 @@ export class EventDialogComponent implements OnInit {
 			this.setDefaultTimes();
 		} else {
 			// Find matching time options
-			const startTime = this.timeOptions.find(
-				(option) => option.value === getFormattedTimeValue(getHours(startDate), getMinutes(startDate)),
-			);
-			const endTime = this.timeOptions.find(
-				(option) => option.value === getFormattedTimeValue(getHours(endDate), getMinutes(endDate)),
-			);
+			const startTime = this.timeOptions().find((option) => option.value === getFormattedTimeValue(startDate));
+			const endTime = this.timeOptions().find((option) => option.value === getFormattedTimeValue(endDate));
 			this.form.get('startTime')?.setValue(startTime);
 			this.form.get('endTime')?.setValue(endTime);
 		}
+
+		this.dialogRef()?.open();
+	}
+
+	public editEvent(event: CalendarEvent): void {
+		this.form.reset();
+		this.formMode.set('edit');
+		this.form.setValue({
+			id: event.id,
+			title: event.title,
+			description: event.description,
+			startDate: event.start,
+			endDate: event.end,
+			isAllDay: event.allDay ?? false,
+			location: event.location,
+			startTime: getTimeFromList(this.timeOptions(), getFormattedTimeValue(event.start)),
+			endTime: getTimeFromList(this.timeOptions(), getFormattedTimeValue(event.end)),
+			color: this.colorOptions.find((c) => c.value === event.color) || null,
+		});
 
 		this.dialogRef()?.open();
 	}

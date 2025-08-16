@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
 import { ClassValue } from 'clsx';
 import { differenceInMinutes } from 'date-fns';
@@ -10,6 +10,7 @@ import { formatTimeWithOptionalMinutes } from './utils';
 @Component({
 	selector: 'sim-event-item',
 	imports: [EventItemWrapperComponent],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<sim-event-item-wrapper
 			[event]="event()"

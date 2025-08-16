@@ -59,7 +59,6 @@ import { toast } from 'ngx-sonner';
 		HlmMenuGroupComponent,
 		HlmMenuShortcutComponent,
 		EventDialogComponent,
-		EventDialogComponent,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [provideIcons({ lucideChevronLeft, lucideChevronRight, lucideChevronDown, lucidePlus })],
@@ -100,7 +99,11 @@ import { toast } from 'ngx-sonner';
 						{{ view() | titlecase }}
 						<ng-icon name="lucideChevronDown" />
 					</button>
-					<sim-event-dialog #eventDialog [shouldShowButton]="false" (onEventAdded)="handleEventAdded($event)" />
+					<sim-event-dialog
+						#eventDialog
+						[shouldShowButton]="false"
+						(onEventAdded)="handleEventAdded($event)"
+						(onEventUpdated)="handleEventUpdate($event)" />
 					<ng-template #menu>
 						<hlm-menu class="">
 							<hlm-menu-group>
@@ -259,9 +262,8 @@ export class EventCalendarComponent {
 	};
 
 	handleEventSelect = (event: CalendarEvent) => {
-		console.log('Event selected:', event); // Debug log
 		this.selectedEvent.set(event);
-		this.isEventDialogOpen.set(true);
+		this.eventDialog()?.editEvent(event);
 	};
 
 	handleEventSave = (event: CalendarEvent) => {
@@ -304,7 +306,6 @@ export class EventCalendarComponent {
 
 	handleEventUpdate = (updatedEvent: CalendarEvent) => {
 		this.onEventUpdate.emit(updatedEvent);
-		console.log('new event', updatedEvent);
 
 		// Show toast notification when an event is updated via drag and drop
 		toast(`Event "${updatedEvent.title}" moved`, {
@@ -314,8 +315,6 @@ export class EventCalendarComponent {
 	};
 
 	handleEventCreate = (startTime: Date) => {
-		console.log('Creating new event at:', startTime); // Debug log
-
 		// Snap to 15-minute intervals
 		const minutes = startTime.getMinutes();
 		const remainder = minutes % 15;
@@ -351,8 +350,6 @@ export class EventCalendarComponent {
 	 * This will trigger the event dialog to open
 	 */
 	handleEventCreateFromCalendar = (duration: EventDuration, shouldSetDefaultTime: boolean = true) => {
-		console.log('Creating new event at:', duration);
-
 		// Open the dialog programmatically with the selected date
 		if (!duration.startDate) {
 			toast.error('Invalid start time for new event');

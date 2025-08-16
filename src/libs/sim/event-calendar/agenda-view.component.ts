@@ -1,6 +1,6 @@
 import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
 import { DatePipe } from '@angular/common';
-import { Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendarMinus2 } from '@ng-icons/lucide';
 import { addDays, isToday } from 'date-fns';
@@ -13,6 +13,7 @@ import { getAgendaEventsForDay } from './utils';
 	selector: 'sim-agenda-view',
 	imports: [NgIcon, HlmIconDirective, DatePipe, EventItemComponent],
 	providers: [provideIcons({ lucideCalendarMinus2 })],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="border-border/70 border-t px-4">
 			@if (!hasEvents()) {

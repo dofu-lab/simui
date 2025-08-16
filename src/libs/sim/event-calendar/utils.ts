@@ -1,4 +1,4 @@
-import { format, getMinutes, isSameDay } from 'date-fns';
+import { format, getHours, getMinutes, isSameDay } from 'date-fns';
 import { EndHour, StartHour } from './constants';
 import { CalendarEvent, EventColor, TimeOption } from './type';
 
@@ -138,13 +138,13 @@ export function getDateFromContainerId(containerId: string): Date | null {
 		// Extract date from container ID (format: 'day-YYYY-MM-DD')
 		const dateStr = containerId.replace('day-', '');
 		const date = new Date(dateStr);
-		
+
 		// Validate the date
 		if (isNaN(date.getTime())) {
 			console.warn(`Invalid date parsed from container ID: ${containerId}`);
 			return null;
 		}
-		
+
 		return date;
 	} catch (error) {
 		console.error(`Error parsing date from container ID: ${containerId}`, error);
@@ -156,21 +156,25 @@ export function getTimeOptions(): TimeOption[] {
 	const options: TimeOption[] = [];
 	for (let hour = StartHour; hour < EndHour; hour++) {
 		for (let minute = 0; minute < 60; minute += 15) {
-			const value = getFormattedTimeValue(hour, minute);
-			const label = getFormattedTimeLabel(hour, minute);
+			const dateOption = new Date(2000, 0, 1, hour, minute);
+			const value = getFormattedTimeValue(dateOption);
+			const label = getFormattedTimeLabel(dateOption);
 			options.push({ value, label });
 		}
 	}
 	return options;
 }
 
-export function getFormattedTimeValue(hour: number, minute: number): string {
-	const formattedHour = hour.toString().padStart(2, '0');
-	const formattedMinute = minute.toString().padStart(2, '0');
+export function getFormattedTimeValue(date: Date): string {
+	const formattedHour = getHours(date).toString().padStart(2, '0');
+	const formattedMinute = getMinutes(date).toString().padStart(2, '0');
 	return `${formattedHour}:${formattedMinute}`;
 }
 
-export function getFormattedTimeLabel(hour: number, minute: number): string {
-	const date = new Date(2000, 0, 1, hour, minute);
+export function getFormattedTimeLabel(date: Date): string {
 	return format(date, 'h:mm a');
+}
+
+export function getTimeFromList(timeList: TimeOption[], value: string): TimeOption | undefined {
+	return timeList.find((time) => time.value === value);
 }

@@ -24,7 +24,13 @@ export class EventCalendar01Component {
 	};
 
 	handleEventUpdate = (updatedEvent: CalendarEvent) => {
-		this.events.set(this.events().map((event) => (event.id === updatedEvent.id ? updatedEvent : event)));
+		const updatedEvents = this.events().map((event) => {
+			if (event.id === updatedEvent.id) {
+				return updatedEvent;
+			}
+			return event;
+		});
+		this.events.set(updatedEvents);
 	};
 
 	handleEventDelete = (eventId: string) => {
