@@ -93,7 +93,7 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 														view="month"
 														[isFirstDay]="isFirstDay(event, day)"
 														[isLastDay]="isLastDay(event, day)"
-														(click)="onEventSelect.emit(event)">
+														(click)="editEvent(event)">
 														<div class="invisible" aria-hidden="true">
 															@if (!event.allDay) {
 																<span>{{ event.start | date: 'h:mm' }}</span>
@@ -107,7 +107,7 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 														view="month"
 														[isFirstDay]="isFirstDay(event, day)"
 														[isLastDay]="isLastDay(event, day)"
-														(click)="onEventSelect.emit(event)"></sim-event-item>
+														(click)="editEvent(event)"></sim-event-item>
 												}
 											</div>
 										}
@@ -240,39 +240,39 @@ export class MonthViewCalendarComponent {
 	}
 
 	isToday = isToday;
-	isSameMonth(day: Date) {
+	public isSameMonth(day: Date): boolean {
 		return isSameMonth(day, this.currentDate());
 	}
 
-	getDayEvents(day: Date): CalendarEvent[] {
+	public getDayEvents(day: Date): CalendarEvent[] {
 		const dayKey = format(day, 'yyyy-MM-dd');
 		return this.eventsByDay().get(dayKey) || [];
 	}
 
-	getAllDropListIds(): string[] {
+	public getAllDropListIds(): string[] {
 		return this.days().map((day) => 'day-' + format(day, 'yyyy-MM-dd'));
 	}
 
-	isFirstDay(event: CalendarEvent, day: Date): boolean {
+	public isFirstDay(event: CalendarEvent, day: Date): boolean {
 		return isSameDay(day, new Date(event.start));
 	}
 
-	isLastDay(event: CalendarEvent, day: Date): boolean {
+	public isLastDay(event: CalendarEvent, day: Date): boolean {
 		return isSameDay(day, new Date(event.end));
 	}
 
-	hasMoreEvents(day: Date): boolean {
+	public hasMoreEvents(day: Date): boolean {
 		const allEvents = this.getDayEvents(day);
 		//TODO: Make this configurable
 		return allEvents.length > this.visibleCount;
 	}
 
-	remainingCount(day: Date): number {
+	public remainingCount(day: Date): number {
 		const allEvents = this.getDayEvents(day);
 		return Math.max(0, allEvents.length - this.visibleCount);
 	}
 
-	drop(event: CdkDragDrop<CalendarEvent[]>) {
+	public drop(event: CdkDragDrop<CalendarEvent[]>) {
 		if (event.previousContainer === event.container) {
 			// Reordering within the same day - this should be rare for calendar events
 			// but we'll handle it for completeness
@@ -330,5 +330,9 @@ export class MonthViewCalendarComponent {
 				// Optionally revert the UI changes here if needed
 			}
 		}
+	}
+
+	public editEvent(event: CalendarEvent): void {
+		this.onEventSelect.emit(event);
 	}
 }

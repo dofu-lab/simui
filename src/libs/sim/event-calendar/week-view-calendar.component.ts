@@ -143,7 +143,8 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 													view="week"
 													[height]="positionedEvent.height"
 													[isFirstDay]="true"
-													[isLastDay]="true" />
+													[isLastDay]="true"
+													(click)="editEvent(positionedEvent.event)" />
 											</div>
 										}
 									</div>
@@ -203,32 +204,22 @@ export class WeekViewCalendarComponent {
 	today = new Date();
 	isToday = isToday;
 
-	public getQuarterTime(day: Date, hour: Date, quarter: number): string {
-		return this._calendarDateService.getQuarterTime(day, hour, quarter);
-	}
+	// Add after processedDayEvents computed signal
+	eventsByDayHourQuarter = computed(() => {
+		const eventMap = new Map<string, PositionedEvent[]>();
 
-	public getDayAllDayEvents(day: Date): CalendarEvent[] {
-		const result = this.allDayEvents().filter((event) => {
-			const eventStart = new Date(event.start);
-			const eventEnd = new Date(event.end);
-			return isSameDay(day, eventStart) || (day > eventStart && day < eventEnd) || isSameDay(day, eventEnd);
+		this.processedDayEvents().forEach((dayEvents, dayIndex) => {
+			dayEvents.forEach((event) => {
+				const key = `${dayIndex}-${event.startHour}-${event.startQuarter}`;
+				if (!eventMap.has(key)) {
+					eventMap.set(key, []);
+				}
+				eventMap.get(key)!.push(event);
+			});
 		});
 
-		return result;
-	}
-
-	public generateCellClass(quarter: number): string {
-		// 64px
-		// need config
-		return hlm(
-			'data-dragging:bg-accent flex h-full flex-col overflow-hidden hover:bg-muted/60',
-			'"absolute h-[calc(64px/4)] w-full',
-			quarter === 0 && 'top-0',
-			quarter === 1 && 'top-[calc(64px/4)]',
-			quarter === 2 && 'top-[calc(64px/4*2)]',
-			quarter === 3 && 'top-[calc(64px/4*3)]',
-		);
-	}
+		return eventMap;
+	});
 
 	processedDayEvents = computed(() => {
 		const result = this.days().map((day) => {
@@ -349,11 +340,37 @@ export class WeekViewCalendarComponent {
 		return result;
 	});
 
+	// Replace the existing getProcessedEventsForDay method
 	public getProcessedEventsForDay(dayIndex: number, hour: Date, quarter: number): PositionedEvent[] {
-		const dayEvents = this.processedDayEvents()[dayIndex] ?? [];
+		const key = `${dayIndex}-${hour.getHours()}-${quarter}`;
+		return this.eventsByDayHourQuarter().get(key) || [];
+	}
 
-		// Filter events based on the hour and quarter
-		return dayEvents.filter((event) => event.startHour === hour.getHours() && event.startQuarter === quarter);
+	public getQuarterTime(day: Date, hour: Date, quarter: number): string {
+		return this._calendarDateService.getQuarterTime(day, hour, quarter);
+	}
+
+	public getDayAllDayEvents(day: Date): CalendarEvent[] {
+		const result = this.allDayEvents().filter((event) => {
+			const eventStart = new Date(event.start);
+			const eventEnd = new Date(event.end);
+			return isSameDay(day, eventStart) || (day > eventStart && day < eventEnd) || isSameDay(day, eventEnd);
+		});
+
+		return result;
+	}
+
+	public generateCellClass(quarter: number): string {
+		// 64px
+		// need config
+		return hlm(
+			'data-dragging:bg-accent flex h-full flex-col overflow-hidden hover:bg-muted/60',
+			'"absolute h-[calc(64px/4)] w-full',
+			quarter === 0 && 'top-0',
+			quarter === 1 && 'top-[calc(64px/4)]',
+			quarter === 2 && 'top-[calc(64px/4*2)]',
+			quarter === 3 && 'top-[calc(64px/4*3)]',
+		);
 	}
 
 	public shouldShowTitle(day: Date, event: CalendarEvent, dayIndex: number): boolean {
@@ -429,5 +446,9 @@ export class WeekViewCalendarComponent {
 			startDate: newStartDay,
 			endDate: newEndDay,
 		});
+	}
+
+	public editEvent(event: CalendarEvent): void {
+		this.onEventSelect.emit(event);
 	}
 }

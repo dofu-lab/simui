@@ -162,6 +162,8 @@ import { toast } from 'ngx-sonner';
 	`,
 })
 export class EventCalendarComponent {
+	eventDialog = viewChild(EventDialogComponent);
+
 	initialView = input<CalendarView>('month');
 	events = input<CalendarEvent[]>([]);
 
@@ -173,9 +175,6 @@ export class EventCalendarComponent {
 	view = signal<CalendarView>(this.initialView());
 	isEventDialogOpen = signal(false);
 	selectedEvent = signal<CalendarEvent | null>(null);
-
-	// Get reference to the event dialog
-	eventDialog = viewChild(EventDialogComponent);
 
 	viewTitle = computed(() => {
 		if (this.view() === 'month') {
@@ -204,7 +203,7 @@ export class EventCalendarComponent {
 	});
 
 	@HostListener('window:keydown', ['$event'])
-	onKeyDown(event: KeyboardEvent) {
+	public onKeyDown(event: KeyboardEvent): void {
 		if (!event.ctrlKey) return;
 
 		switch (event.key.toLowerCase()) {
@@ -231,7 +230,7 @@ export class EventCalendarComponent {
 		}
 	}
 
-	handlePrevious() {
+	public handlePrevious(): void {
 		if (this.view() === 'month') {
 			this.currentDate.set(subMonths(this.currentDate(), 1));
 		} else if (this.view() === 'week') {
@@ -244,7 +243,7 @@ export class EventCalendarComponent {
 		}
 	}
 
-	handleNext = () => {
+	public handleNext(): void {
 		if (this.view() === 'month') {
 			this.currentDate.set(addMonths(this.currentDate(), 1));
 		} else if (this.view() === 'week') {
@@ -255,41 +254,18 @@ export class EventCalendarComponent {
 			// For agenda view, go forward 30 days (a full month)
 			this.currentDate.set(addDays(this.currentDate(), AgendaDaysToShow));
 		}
-	};
+	}
 
-	handleToday = () => {
+	public handleToday(): void {
 		this.currentDate.set(new Date());
-	};
+	}
 
-	handleEventSelect = (event: CalendarEvent) => {
+	public handleEventSelect(event: CalendarEvent): void {
 		this.selectedEvent.set(event);
 		this.eventDialog()?.editEvent(event);
-	};
+	}
 
-	handleEventSave = (event: CalendarEvent) => {
-		if (event.id) {
-			this.onEventUpdate.emit(event);
-			// Show toast notification when an event is updated
-			// toast(`Event "${event.title}" updated`, {
-			// 	description: format(new Date(event.start), 'MMM d, yyyy'),
-			// 	position: 'bottom-left',
-			// });
-		} else {
-			this.onEventAdded.emit({
-				...event,
-				id: Math.random().toString(36).substring(2, 11),
-			});
-			// Show toast notification when an event is added
-			// toast(`Event "${event.title}" added`, {
-			// 	description: format(new Date(event.start), 'MMM d, yyyy'),
-			// 	position: 'bottom-left',
-			// });
-		}
-		this.isEventDialogOpen.set(false);
-		this.selectedEvent.set(null);
-	};
-
-	handleEventDelete = (eventId: string) => {
+	public handleEventDelete(eventId: string): void {
 		const deletedEvent = this.events().find((e) => e.id === eventId);
 		this.onEventDelete.emit(eventId);
 		this.isEventDialogOpen.set(false);
@@ -302,9 +278,9 @@ export class EventCalendarComponent {
 				position: 'bottom-left',
 			});
 		}
-	};
+	}
 
-	handleEventUpdate = (updatedEvent: CalendarEvent) => {
+	public handleEventUpdate(updatedEvent: CalendarEvent): void {
 		this.onEventUpdate.emit(updatedEvent);
 
 		// Show toast notification when an event is updated via drag and drop
@@ -312,9 +288,9 @@ export class EventCalendarComponent {
 			description: format(new Date(updatedEvent.start), 'MMM d, yyyy'),
 			position: 'bottom-left',
 		});
-	};
+	}
 
-	handleEventCreate = (startTime: Date) => {
+	public handleEventCreate(startTime: Date): void {
 		// Snap to 15-minute intervals
 		const minutes = startTime.getMinutes();
 		const remainder = minutes % 15;
@@ -339,17 +315,17 @@ export class EventCalendarComponent {
 		};
 		this.selectedEvent.set(newEvent);
 		this.isEventDialogOpen.set(true);
-	};
+	}
 
-	handleEventAdded = (event: CalendarEvent) => {
+	public handleEventAdded(event: CalendarEvent): void {
 		this.onEventAdded.emit(event);
-	};
+	}
 
 	/**
 	 * Handle event creation from calendar views (when clicking on a day/time slot)
 	 * This will trigger the event dialog to open
 	 */
-	handleEventCreateFromCalendar = (duration: EventDuration, shouldSetDefaultTime: boolean = true) => {
+	handleEventCreateFromCalendar = (duration: EventDuration) => {
 		// Open the dialog programmatically with the selected date
 		if (!duration.startDate) {
 			toast.error('Invalid start time for new event');

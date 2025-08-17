@@ -26,7 +26,7 @@ import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { DefaultEventStyle, DefaultTimeOptions, EndHour, StartHour } from './constants';
-import { CalendarEvent, EventColor, EventDuration, TimeOption } from './type';
+import { CalendarEvent, EventDuration, TimeOption } from './type';
 import { getFormattedTimeValue, getTimeFromList } from './utils';
 
 @Component({
@@ -185,11 +185,7 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 								<div class="flex flex-1 flex-col">
 									<label hlmLabel class="flex-1">Tags</label>
 									<div class="flex-1">
-										<hlm-radio-group
-											formControlName="color"
-											class="mt-2 flex gap-0 rounded-md"
-											[ngModel]="color()"
-											(ngModelChange)="color.set($event)">
+										<hlm-radio-group formControlName="color" class="mt-2 flex gap-0 rounded-md">
 											@for (item of colorOptions; track item) {
 												<label hlmLabel class="">
 													<hlm-radio [value]="item">
@@ -223,15 +219,18 @@ export class EventDialogComponent implements OnInit {
 	private _formBuilder = inject(FormBuilder);
 	public dialogRef = viewChild(BrnDialogComponent);
 
-	formMode = signal<'create' | 'edit'>('create');
-
 	shouldShowButton = input(true);
 	initialStartDate = input<Date>();
 	initialEndDate = input<Date>();
 	timeOptions = input<TimeOption[]>(DefaultTimeOptions);
 
+	onEventAdded = output<CalendarEvent>();
+	onEventUpdated = output<CalendarEvent>();
+
+	isAllDay = signal(false);
 	error = signal<string | null>(null);
-	color = signal<EventColor | null>(null);
+	formMode = signal<'create' | 'edit'>('create');
+
 	colorOptions = DefaultEventStyle;
 
 	// Custom validator to check if start date is before end date
@@ -285,14 +284,10 @@ export class EventDialogComponent implements OnInit {
 			endTime: [null],
 			isAllDay: [false],
 			location: [null],
-			color: [null],
+			color: [this.colorOptions[0]],
 		},
 		{ validators: this.dateRangeValidator },
 	);
-	isAllDay = signal(false);
-
-	onEventAdded = output<CalendarEvent>();
-	onEventUpdated = output<CalendarEvent>();
 
 	ngOnInit(): void {
 		// Set initial dates if provided
@@ -362,7 +357,7 @@ export class EventDialogComponent implements OnInit {
 		}
 	}
 
-	public onSubmit() {
+	public onSubmit(): void {
 		if (this.form.valid) {
 			const formValue = this.form.value;
 			const event: CalendarEvent = {
@@ -395,7 +390,7 @@ export class EventDialogComponent implements OnInit {
 		}
 	}
 
-	tagColor(color: string) {
+	public tagColor(color: string): string {
 		return hlm(
 			'ring-offset-background group-[.cdk-keyboard-focused]:ring-ring aspect-square rounded-full border group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50 group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2',
 			color,
@@ -441,13 +436,13 @@ export class EventDialogComponent implements OnInit {
 		this.form.setValue({
 			id: event.id,
 			title: event.title,
-			description: event.description,
+			description: event?.description,
 			startDate: event.start,
 			endDate: event.end,
-			isAllDay: event.allDay ?? false,
-			location: event.location,
-			startTime: getTimeFromList(this.timeOptions(), getFormattedTimeValue(event.start)),
-			endTime: getTimeFromList(this.timeOptions(), getFormattedTimeValue(event.end)),
+			isAllDay: event?.allDay ?? false,
+			location: event?.location ?? null,
+			startTime: event?.allDay ? null : getTimeFromList(this.timeOptions(), getFormattedTimeValue(event.start)),
+			endTime: event?.allDay ? null : getTimeFromList(this.timeOptions(), getFormattedTimeValue(event.end)),
 			color: this.colorOptions.find((c) => c.value === event.color) || null,
 		});
 
