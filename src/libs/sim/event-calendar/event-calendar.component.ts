@@ -1,5 +1,3 @@
-import { HlmButtonDirective } from '@/libs/ui/ui-button-helm/src';
-import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
 import {
 	HlmMenuComponent,
 	HlmMenuGroupComponent,
@@ -20,6 +18,8 @@ import {
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideChevronLeft, lucideChevronRight, lucidePlus } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import {
 	addDays,
 	addMonths,

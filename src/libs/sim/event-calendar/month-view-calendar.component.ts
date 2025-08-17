@@ -1,8 +1,8 @@
-import { HlmPopoverContentDirective } from '@/libs/ui/ui-popover-helm/src';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DatePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
+import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 import {
 	addDays,
 	addMinutes,

@@ -19,7 +19,7 @@ export const previewComponents: ComponentInfo[] = [
 	{
 		name: 'Event Calendar',
 		compNumber: 1,
-		image: 'tabs.png',
+		image: 'event-calendar.png',
 		path: 'components/event-calendar',
 		isNew: true,
 	},

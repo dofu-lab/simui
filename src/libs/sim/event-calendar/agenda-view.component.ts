@@ -1,8 +1,8 @@
-import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
 import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendarMinus2 } from '@ng-icons/lucide';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import { addDays, isToday } from 'date-fns';
 import { AgendaDaysToShow } from './constants';
 import { EventItemComponent } from './event-item.component';
