@@ -54,7 +54,7 @@ export class AgendaViewComponent {
 	hasEvents = computed(() => this.days().some((day) => getAgendaEventsForDay(this.events(), day).length > 0));
 	isToday = isToday;
 
-	getAgendaEventsForDay(day: Date): CalendarEvent[] {
+	public getAgendaEventsForDay(day: Date): CalendarEvent[] {
 		return getAgendaEventsForDay(this.events(), day);
 	}
 }

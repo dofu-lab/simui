@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { endOfWeek, isSameDay, isWithinInterval, startOfWeek } from 'date-fns';
 import { BehaviorSubject, Observable, combineLatest, interval } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { EndHour, StartHour } from './constants';
+import { EndHour, StartHour } from '../constants';
 
 export interface CurrentTimeIndicatorState {
 	currentTimePosition: number;
@@ -15,20 +15,6 @@ export class CurrentTimeIndicatorService {
 	private viewSubject = new BehaviorSubject<'day' | 'week'>('week');
 
 	constructor() {}
-
-	/**
-	 * Set the current date for the calendar view
-	 */
-	setCurrentDate(date: Date): void {
-		this.currentDateSubject.next(date);
-	}
-
-	/**
-	 * Set the current view type
-	 */
-	setView(view: 'day' | 'week'): void {
-		this.viewSubject.next(view);
-	}
 
 	/**
 	 * Get the current time indicator state as an observable
@@ -75,19 +61,5 @@ export class CurrentTimeIndicatorService {
 			currentTimePosition,
 			currentTimeVisible,
 		};
-	}
-
-	/**
-	 * Get current date observable
-	 */
-	getCurrentDate(): Observable<Date> {
-		return this.currentDateSubject.asObservable();
-	}
-
-	/**
-	 * Get current view observable
-	 */
-	getCurrentView(): Observable<'day' | 'week'> {
-		return this.viewSubject.asObservable();
 	}
 }

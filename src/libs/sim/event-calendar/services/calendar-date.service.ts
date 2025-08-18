@@ -3,7 +3,7 @@ import { addMinutes, getHours } from 'date-fns';
 
 @Injectable()
 export class CalendarDateService {
-	getQuarterTime(day: Date, hour: Date, quarter: number): string {
+	public getQuarterTime(day: Date, hour: Date, quarter: number): string {
 		return addMinutes(day, getHours(hour) * 60 + quarter * 15).toString();
 	}
 }

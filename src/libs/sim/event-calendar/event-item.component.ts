@@ -78,7 +78,6 @@ export class EventItemComponent {
 	computedMonthClass = computed(() => {
 		return hlm('items-center text-[10px] sm:text-xs', `h-[${this.height()}px]`, this.userClass());
 	});
-
 	displayStart = computed(() => this.currentTime() || new Date(this.event().start));
 	displayEnd = computed(() => {
 		const currentTime = this.currentTime();
@@ -97,6 +96,7 @@ export class EventItemComponent {
 		return `${formatTimeWithOptionalMinutes(this.displayStart())} - ${formatTimeWithOptionalMinutes(this.displayEnd())}`;
 	});
 	durationInMinutes = computed(() => differenceInMinutes(this.displayEnd(), this.displayStart()));
+
 	formatTimeWithOptionalMinutes = formatTimeWithOptionalMinutes;
 
 	public getEventTime(): string {

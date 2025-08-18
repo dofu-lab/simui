@@ -6,28 +6,25 @@ import { hlm } from '@spartan-ng/brain/core';
 import {
 	addHours,
 	addMinutes,
-	areIntervalsOverlapping,
 	differenceInMinutes,
 	eachDayOfInterval,
 	eachHourOfInterval,
 	endOfWeek,
-	getHours,
-	getMinutes,
 	isSameDay,
 	isToday,
 	startOfDay,
 	startOfWeek,
 } from 'date-fns';
-import { EndHour, StartHour, WeekCellsHeight } from './constants';
-import { CurrentTimeIndicatorService } from './current-time-indicator.service';
+import { EndHour, StartHour } from './constants';
 import { EventItemComponent } from './event-item.component';
+import { CalendarDateService, CurrentTimeIndicatorService, EventPositioningService } from './services';
 import { CalendarEvent, EventDuration, PositionedEvent } from './type';
 import { getDateFromContainerId, isMultiDayEvent } from './utils';
 
 @Component({
 	selector: 'sim-day-view-calendar',
 	imports: [NgClass, DatePipe, EventItemComponent, CdkDropListGroup, CdkDropList, CdkDrag],
-	providers: [CurrentTimeIndicatorService],
+	providers: [CurrentTimeIndicatorService, EventPositioningService, CalendarDateService],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div data-slot="day-view" class="border-border/70 flex h-full flex-col border-t">
@@ -130,7 +127,9 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 	`,
 })
 export class DayViewCalendarComponent {
-	private readonly _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
+	private _calendarDateService = inject(CalendarDateService);
+	private _eventPositioningService = inject(EventPositioningService);
+	private _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
 
 	readonly currentDate = input.required<Date>();
 	readonly events = input.required<CalendarEvent[]>();
@@ -187,128 +186,11 @@ export class DayViewCalendarComponent {
 		return eventMap;
 	});
 	processedDayEvents = computed(() => {
-		// Get events for this day that are not all-day events or multi-day events
-		const dayEvents = this.events().filter((event) => {
-			// Skip all-day events and multi-day events
-			if (event.allDay || isMultiDayEvent(event)) return false;
-
-			const eventStart = new Date(event.start);
-			const eventEnd = new Date(event.end);
-
-			// Check if event is on this day
-			return (
-				isSameDay(this.currentDate(), eventStart) ||
-				isSameDay(this.currentDate(), eventEnd) ||
-				(eventStart < this.currentDate() && eventEnd > this.currentDate())
-			);
-		});
-
-		// Sort events by start time and duration
-		const sortedEvents = [...dayEvents].sort((a, b) => {
-			const aStart = new Date(a.start);
-			const bStart = new Date(b.start);
-			const aEnd = new Date(a.end);
-			const bEnd = new Date(b.end);
-
-			// First sort by start time
-			if (aStart < bStart) return -1;
-			if (aStart > bStart) return 1;
-
-			// If start times are equal, sort by duration (longer events first)
-			const aDuration = differenceInMinutes(aEnd, aStart);
-			const bDuration = differenceInMinutes(bEnd, bStart);
-			return bDuration - aDuration;
-		});
-
-		// Calculate positions for each event
-		const positionedEvents: PositionedEvent[] = [];
-		const dayStart = startOfDay(this.currentDate());
-
-		// Track columns for overlapping events
-		const columns: { event: CalendarEvent; end: Date }[][] = [];
-
-		sortedEvents.forEach((event) => {
-			const eventStart = new Date(event.start);
-			const eventEnd = new Date(event.end);
-
-			// Adjust start and end times if they're outside this day
-			const adjustedStart = isSameDay(this.currentDate(), eventStart) ? eventStart : dayStart;
-			const adjustedEnd = isSameDay(this.currentDate(), eventEnd) ? eventEnd : addHours(dayStart, 24);
-
-			// Calculate top position and height
-			const startHour = getHours(adjustedStart) + getMinutes(adjustedStart) / 60;
-			const endHour = getHours(adjustedEnd) + getMinutes(adjustedEnd) / 60;
-
-			// Adjust the top calculation to account for the new start time
-			const top = (startHour - StartHour) * WeekCellsHeight;
-			const height = (endHour - startHour) * WeekCellsHeight;
-
-			// Find a column for this event
-			let columnIndex = 0;
-			let placed = false;
-
-			while (!placed) {
-				const col = columns[columnIndex] || [];
-				if (col.length === 0) {
-					columns[columnIndex] = col;
-					placed = true;
-				} else {
-					const overlaps = col.some((c) =>
-						areIntervalsOverlapping(
-							{ start: adjustedStart, end: adjustedEnd },
-							{
-								start: new Date(c.event.start),
-								end: new Date(c.event.end),
-							},
-						),
-					);
-					if (!overlaps) {
-						placed = true;
-					} else {
-						columnIndex++;
-					}
-				}
-			}
-
-			// Ensure column is initialized before pushing
-			const currentColumn = columns[columnIndex] || [];
-			columns[columnIndex] = currentColumn;
-			currentColumn.push({ event, end: adjustedEnd });
-
-			// Calculate width and left position based on number of columns
-			const width = columnIndex === 0 ? 1 : 0.9;
-			const left = columnIndex === 0 ? 0 : columnIndex * 0.1;
-
-			// Calculate hour and quarter for positioning
-			const startHourFloor = Math.floor(startHour);
-			const startMinutes = getMinutes(adjustedStart);
-			const startQuarter = Math.floor(startMinutes / 15); // 0, 1, 2, or 3
-
-			const endHourFloor = Math.floor(endHour);
-			const endMinutes = getMinutes(adjustedEnd);
-			const endQuarter = Math.floor(endMinutes / 15); // 0, 1, 2, or 3
-
-			positionedEvents.push({
-				event,
-				top,
-				height,
-				left,
-				width,
-				zIndex: 10 + columnIndex, // Higher columns get higher z-index
-				startHour: startHourFloor,
-				startQuarter,
-				endHour: endHourFloor,
-				endQuarter,
-			});
-		});
-
-		return positionedEvents;
+		return this._eventPositioningService.processEventsForDay(this.dayEvents(), this.currentDate());
 	});
 
 	public getQuarterTime(hour: Date, quarter: number): string {
-		const currentDate = startOfDay(this.currentDate());
-
-		return addMinutes(currentDate, getHours(hour) * 60 + quarter * 15).toString();
+		return this._calendarDateService.getQuarterTime(startOfDay(this.currentDate()), hour, quarter);
 	}
 
 	public formattedTime(time: number | undefined): string | null {
