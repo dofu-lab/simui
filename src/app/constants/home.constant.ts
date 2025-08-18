@@ -17,6 +17,13 @@ import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
 	{
+		name: 'Event Calendar',
+		compNumber: 1,
+		image: 'event-calendar.png',
+		path: 'components/event-calendar',
+		isNew: true,
+	},
+	{
 		name: 'Radio',
 		compNumber: radioComponents.length,
 		image: 'radio.png',

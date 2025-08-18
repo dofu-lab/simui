@@ -3452,10 +3452,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@spartan-ng/cli@^0.0.1-alpha.469":
-  version "0.0.1-alpha.487"
-  resolved "https://registry.yarnpkg.com/@spartan-ng/cli/-/cli-0.0.1-alpha.487.tgz#5c52083346a659988ec66597772b0fffb09e4b63"
-  integrity sha512-n/9NsCrIrI7JAA7xdvZTejrReP3AdqA6SCUw1ZRRzozZATScFeeFl6EPq0VfNoNwucIB2Lr7QGdWEFjW0wcbyQ==
+"@spartan-ng/cli@0.0.1-alpha.469":
+  version "0.0.1-alpha.469"
+  resolved "https://registry.yarnpkg.com/@spartan-ng/cli/-/cli-0.0.1-alpha.469.tgz#ed052ab1b5178d1903459274c3aaeaae6b3ada92"
+  integrity sha512-Zz+iB5JsIM38S8vEQgXbXmSs0lVksuWjJOV7btryMoBFcB2Zk5NX2AAE6C3LfUvlpsogzJMyoiQA4S8ZV1jnpQ==
   dependencies:
     "@nx/angular" ">=20.0.0"
     "@nx/devkit" ">=20.0.0"
@@ -5247,6 +5247,11 @@ custom-event@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/custom-event/-/custom-event-1.0.1.tgz#5d02a46850adf1b4a317946a3928fccb5bfd0425"
   integrity sha512-GAj5FOq0Hd+RsCGVJxZuKaIDXDf3h6GQoNEjFgbLLI/trgtavwUbSnZ5pVfg27DVCaWjIohryS0JFwIJyT2cMg==
+
+date-fns@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-4.1.0.tgz#64b3d83fff5aa80438f5b1a633c2e83b8a1c2d14"
+  integrity sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==
 
 date-format@^4.0.14:
   version "4.0.14"

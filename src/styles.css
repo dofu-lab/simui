@@ -4,6 +4,8 @@
 @import '@spartan-ng/brain/hlm-tailwind-preset.css';
 @import '@angular/cdk/overlay-prebuilt.css';
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
 	--background: 0 0% 100%;
 	--foreground: 240 10% 3.9%;
