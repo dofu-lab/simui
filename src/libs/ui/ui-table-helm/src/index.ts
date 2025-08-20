@@ -1,19 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { HlmCaption } from './lib/hlm-caption.component';
-import { HlmTable } from './lib/hlm-table.component';
-import { HlmTd } from './lib/hlm-td.component';
-import { HlmTh } from './lib/hlm-th.component';
-import { HlmTrow } from './lib/hlm-trow.component';
+import { HlmCaption, HlmTable, HlmTBody, HlmTd, HlmTFoot, HlmTh, HlmTHead, HlmTr } from './lib/hlm-table';
 
-export { HlmCaption } from './lib/hlm-caption.component';
-export { HlmTable } from './lib/hlm-table.component';
-export { HlmTable } from './lib/hlm-table.directive';
-export { HlmTd } from './lib/hlm-td.component';
-export { HlmTh } from './lib/hlm-th.component';
-export { HlmTrow } from './lib/hlm-trow.component';
+export * from './lib/hlm-table';
 
-export const HlmTableImports = [HlmTable, HlmTable, HlmCaption, HlmTh, HlmTd, HlmTrow] as const;
+export const HlmTableImports = [HlmCaption, HlmTable, HlmTBody, HlmTd, HlmTFoot, HlmTh, HlmTHead, HlmTr] as const;
 
 @NgModule({
 	imports: [...HlmTableImports],
