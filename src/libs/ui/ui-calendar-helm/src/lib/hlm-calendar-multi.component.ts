@@ -12,38 +12,38 @@ import {
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import {
-	BrnCalendarCellButtonDirective,
-	BrnCalendarCellDirective,
-	BrnCalendarGridDirective,
-	BrnCalendarHeaderDirective,
-	BrnCalendarMultiDirective,
-	BrnCalendarNextButtonDirective,
-	BrnCalendarPreviousButtonDirective,
-	BrnCalendarWeekDirective,
-	BrnCalendarWeekdayDirective,
+	BrnCalendarCell,
+	BrnCalendarCellButton,
+	BrnCalendarGrid,
+	BrnCalendarHeader,
+	BrnCalendarMulti,
+	BrnCalendarNextButton,
+	BrnCalendarPreviousButton,
+	BrnCalendarWeek,
+	BrnCalendarWeekday,
 	Weekday,
 	injectBrnCalendarI18n,
 } from '@spartan-ng/brain/calendar';
 import { hlm } from '@spartan-ng/brain/core';
 import { injectDateAdapter } from '@spartan-ng/brain/date-time';
-import { buttonVariants } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { buttonVariants } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import type { ClassValue } from 'clsx';
 
 @Component({
 	selector: 'hlm-calendar-multi',
 	imports: [
-		BrnCalendarMultiDirective,
-		BrnCalendarHeaderDirective,
-		BrnCalendarNextButtonDirective,
-		BrnCalendarPreviousButtonDirective,
-		BrnCalendarWeekdayDirective,
-		BrnCalendarWeekDirective,
-		BrnCalendarCellButtonDirective,
-		BrnCalendarCellDirective,
-		BrnCalendarGridDirective,
+		BrnCalendarMulti,
+		BrnCalendarHeader,
+		BrnCalendarNextButton,
+		BrnCalendarPreviousButton,
+		BrnCalendarWeekday,
+		BrnCalendarWeek,
+		BrnCalendarCellButton,
+		BrnCalendarCell,
+		BrnCalendarGrid,
 		NgIcon,
-		HlmIconDirective,
+		HlmIcon,
 	],
 	viewProviders: [provideIcons({ lucideChevronLeft, lucideChevronRight })],
 	template: `
@@ -58,8 +58,7 @@ import type { ClassValue } from 'clsx';
 			[dateDisabled]="dateDisabled()"
 			[weekStartsOn]="weekStartsOn()"
 			[defaultFocusedDate]="defaultFocusedDate()"
-			[class]="_computedCalenderClass()"
-		>
+			[class]="_computedCalenderClass()">
 			<div class="inline-flex flex-col space-y-4">
 				<!-- Header -->
 				<div class="space-y-4">
@@ -71,15 +70,13 @@ import type { ClassValue } from 'clsx';
 						<div class="flex items-center space-x-1">
 							<button
 								brnCalendarPreviousButton
-								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute left-1 inline-flex h-7 w-7 items-center justify-center whitespace-nowrap rounded-md border bg-transparent p-0 text-sm font-medium opacity-50 transition-colors hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-							>
+								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute left-1 inline-flex h-7 w-7 items-center justify-center rounded-md border bg-transparent p-0 text-sm font-medium whitespace-nowrap opacity-50 transition-colors hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
 								<ng-icon hlm name="lucideChevronLeft" size="sm" />
 							</button>
 
 							<button
 								brnCalendarNextButton
-								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute right-1 inline-flex h-7 w-7 items-center justify-center whitespace-nowrap rounded-md border bg-transparent p-0 text-sm font-medium opacity-50 transition-colors hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-							>
+								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute right-1 inline-flex h-7 w-7 items-center justify-center rounded-md border bg-transparent p-0 text-sm font-medium whitespace-nowrap opacity-50 transition-colors hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
 								<ng-icon hlm name="lucideChevronRight" size="sm" />
 							</button>
 						</div>
@@ -93,8 +90,7 @@ import type { ClassValue } from 'clsx';
 								*brnCalendarWeekday="let weekday"
 								scope="col"
 								class="text-muted-foreground w-9 rounded-md text-[0.8rem] font-normal"
-								[attr.aria-label]="i18n.labelWeekday(weekday)"
-							>
+								[attr.aria-label]="i18n.labelWeekday(weekday)">
 								{{ i18n.formatWeekdayName(weekday) }}
 							</th>
 						</tr>
@@ -105,8 +101,7 @@ import type { ClassValue } from 'clsx';
 							@for (date of week; track dateAdapter.getTime(date)) {
 								<td
 									brnCalendarCell
-									class="data-[selected]:data-[outside]:bg-accent/50 data-[selected]:bg-accent relative h-9 w-9 p-0 text-center text-sm focus-within:relative focus-within:z-20 first:data-[selected]:rounded-l-md last:data-[selected]:rounded-r-md [&:has([aria-selected].day-range-end)]:rounded-r-md"
-								>
+									class="data-[selected]:data-[outside]:bg-accent/50 data-[selected]:bg-accent relative h-9 w-9 p-0 text-center text-sm focus-within:relative focus-within:z-20 first:data-[selected]:rounded-l-md last:data-[selected]:rounded-r-md [&:has([aria-selected].day-range-end)]:rounded-r-md">
 									<button brnCalendarCellButton [date]="date" [class]="btnClass">
 										{{ dateAdapter.getDate(date) }}
 									</button>
@@ -120,7 +115,7 @@ import type { ClassValue } from 'clsx';
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HlmCalendarMultiComponent<T> {
+export class HlmCalendarMulti<T> {
 	public readonly calendarClass = input<ClassValue>('');
 
 	protected readonly _computedCalenderClass = computed(() => hlm('rounded-md border p-3', this.calendarClass()));
@@ -167,7 +162,7 @@ export class HlmCalendarMultiComponent<T> {
 	public readonly defaultFocusedDate = input<T>();
 
 	/** Access the calendar directive */
-	private readonly _calendar = viewChild.required(BrnCalendarMultiDirective);
+	private readonly _calendar = viewChild.required(BrnCalendarMulti);
 
 	/** Get the heading for the current month and year */
 	protected heading = computed(() =>

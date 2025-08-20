@@ -3,12 +3,12 @@ import { marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { markedHighlight } from 'marked-highlight';
 
-import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
+import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { NgIf } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideClipboard } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
 import 'prismjs';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-css';
@@ -22,7 +22,7 @@ declare const Prism: typeof import('prismjs');
 @Component({
 	selector: 'code-preview',
 	standalone: true,
-	imports: [HlmButtonDirective, NgIcon, HlmIconDirective, NgIf],
+	imports: [HlmButton, NgIcon, HlmIcon, NgIf],
 	providers: [provideIcons({ lucideClipboard, lucideCheck })],
 	host: {
 		class: 'spartan-scroll relative block font-mono rounded-md text-sm text-white bg-zinc-950 dark:bg-zinc-900',

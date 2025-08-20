@@ -1,15 +1,15 @@
-import { HlmBadgeDirective } from '@/libs/ui/ui-badge-helm/src';
+import { HlmBadge } from '@/libs/ui/ui-badge-helm/src';
 import { Component, model } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideZap } from '@ng-icons/lucide';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-20',
 	standalone: true,
-	imports: [HlmCheckboxComponent, HlmLabelDirective, HlmIconDirective, NgIcon, HlmBadgeDirective],
+	imports: [HlmCheckbox, HlmLabel, HlmIcon, NgIcon, HlmBadge],
 	providers: [provideIcons({ lucideZap })],
 	host: {
 		class: 'w-full',
@@ -48,19 +48,18 @@ export class Checkbox20Component {
 	public readonly checked = model<boolean>(false);
 }
 
-export const checkbox20Code = `
-import { HlmBadgeDirective } from '@/libs/ui/ui-badge-helm/src';
+export const checkbox20Code = `import { HlmBadge } from '@/libs/ui/ui-badge-helm/src';
 import { Component, model } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideZap } from '@ng-icons/lucide';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-20',
 	standalone: true,
-	imports: [HlmCheckboxComponent, HlmLabelDirective, HlmIconDirective, NgIcon, HlmBadgeDirective],
+	imports: [HlmCheckbox, HlmLabel, HlmIcon, NgIcon, HlmBadge],
 	providers: [provideIcons({ lucideZap })],
 	host: {
 		class: 'w-full',
@@ -97,5 +96,4 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 })
 export class Checkbox20Component {
 	public readonly checked = model<boolean>(false);
-}
-`;
+}`;

@@ -2,21 +2,21 @@ import { Component, booleanAttribute, computed, forwardRef, input, model, output
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
-import { BrnCheckboxComponent } from '@spartan-ng/brain/checkbox';
+import { BrnCheckbox } from '@spartan-ng/brain/checkbox';
 import { hlm } from '@spartan-ng/brain/core';
 import type { ChangeFn, TouchFn } from '@spartan-ng/brain/forms';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import type { ClassValue } from 'clsx';
 
 export const HLM_CHECKBOX_VALUE_ACCESSOR = {
 	provide: NG_VALUE_ACCESSOR,
-	useExisting: forwardRef(() => HlmCheckboxComponent),
+	useExisting: forwardRef(() => HlmCheckbox),
 	multi: true,
 };
 
 @Component({
 	selector: 'hlm-checkbox',
-	imports: [BrnCheckboxComponent, NgIcon, HlmIconDirective],
+	imports: [BrnCheckbox, NgIcon, HlmIcon],
 	template: `
 		<brn-checkbox
 			[id]="id()"
@@ -29,9 +29,8 @@ export const HLM_CHECKBOX_VALUE_ACCESSOR = {
 			[aria-labelledby]="ariaLabelledby()"
 			[aria-describedby]="ariaDescribedby()"
 			(changed)="_handleChange()"
-			(touched)="_onTouched?.()"
-		>
-			<ng-icon hlm size="sm" [class]="_computedIconClass()"[name]="checkIconName()" />
+			(touched)="_onTouched?.()">
+			<ng-icon hlm size="sm" [class]="_computedIconClass()" [name]="checkIconName()" />
 		</brn-checkbox>
 	`,
 	host: {
@@ -44,7 +43,7 @@ export const HLM_CHECKBOX_VALUE_ACCESSOR = {
 	providers: [HLM_CHECKBOX_VALUE_ACCESSOR],
 	viewProviders: [provideIcons({ lucideCheck })],
 })
-export class HlmCheckboxComponent {
+export class HlmCheckbox {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
 	protected readonly _computedClass = computed(() =>

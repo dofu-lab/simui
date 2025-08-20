@@ -1,11 +1,11 @@
-import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
-import { HlmMenuComponent, HlmMenuItemDirective } from '@/libs/ui/ui-menu-helm/src';
+import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
+import { HlmMenu, HlmMenuItem } from '@/libs/ui/ui-menu-helm/src';
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub, lucideMoon, lucideSquareMenu, lucideSun } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { REPO_LINK, X_LINK } from './constants';
 import { NavigationService } from './navigation.service';
 import { ThemeService } from './theme.service';
@@ -14,14 +14,7 @@ import { ThemeService } from './theme.service';
 	selector: 'app-header',
 	standalone: true,
 	providers: [provideIcons({ lucideSun, lucideMoon, lucideGithub, lucideSquareMenu })],
-	imports: [
-		HlmButtonDirective,
-		NgIcon,
-		HlmIconDirective,
-		HlmMenuComponent,
-		HlmMenuItemDirective,
-		BrnMenuTriggerDirective,
-	],
+	imports: [HlmButton, NgIcon, HlmIcon, HlmMenu, HlmMenuItem, BrnMenuTrigger],
 	template: `
 		<header
 			class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 flex w-full items-center justify-center backdrop-blur-lg">

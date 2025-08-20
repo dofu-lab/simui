@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmCard } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-card-07',
-	imports: [HlmCardDirective, HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective],
+	imports: [HlmCard, HlmAvatar, HlmAvatarFallback, HlmAvatarImage],
 	template: `
 		<section class="relative mx-auto w-full max-w-md">
 			<div
@@ -34,21 +34,15 @@ import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
 })
 export class Card07Component {}
 
-export const card07Code = `
-import { Component } from '@angular/core';
-import { HlmCardDirective } from '@spartan-ng/ui-card-helm';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
+export const card07Code = `import { Component } from '@angular/core';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmCard } from '@spartan-ng/helm/card';
 
 @Component({
-  selector: 'sim-card-07',
-  imports: [
-    HlmCardDirective,
-    HlmAvatarComponent,
-    HlmAvatarFallbackDirective,
-    HlmAvatarImageDirective
-  ],
+	selector: 'sim-card-07',
+	imports: [HlmCard, HlmAvatar, HlmAvatarFallback, HlmAvatarImage],
 	template: \`
-    <section class="relative mx-auto w-full max-w-md">
+		<section class="relative mx-auto w-full max-w-md">
 			<div
 				hlmCard
 				class="border-primary bg-primary text-primary-foreground relative z-0 rounded-t-2xl px-6 py-3 shadow-md">
@@ -74,5 +68,4 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
 		</section>
 	\`,
 })
-export class Card07Component {}
-`;
+export class Card07Component {}`;

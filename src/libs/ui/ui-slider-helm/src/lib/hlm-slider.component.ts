@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
 import {
-	BrnSliderDirective,
-	BrnSliderRangeDirective,
-	BrnSliderThumbDirective,
-	BrnSliderTickDirective,
-	BrnSliderTrackDirective,
+	BrnSlider,
+	BrnSliderRange,
+	BrnSliderThumb,
+	BrnSliderTick,
+	BrnSliderTrack,
 	injectBrnSlider,
 } from '@spartan-ng/brain/slider';
 import type { ClassValue } from 'clsx';
@@ -15,7 +15,7 @@ import type { ClassValue } from 'clsx';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	hostDirectives: [
 		{
-			directive: BrnSliderDirective,
+			directive: BrnSlider,
 			inputs: ['value', 'disabled', 'min', 'max', 'step', 'showTicks'],
 			outputs: ['valueChange'],
 		},
@@ -32,22 +32,20 @@ import type { ClassValue } from 'clsx';
 					class="absolute size-1 rounded-full"
 					[class.bg-secondary]="tick"
 					[class.bg-primary]="!tick"
-					[style.inset-inline-start.%]="position"
-				></div>
+					[style.inset-inline-start.%]="position"></div>
 			</div>
 		}
 
 		<span
-			class="border-primary bg-background ring-offset-background focus-visible:ring-ring absolute block h-5 w-5 -translate-x-1/2 rounded-full border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-			brnSliderThumb
-		></span>
+			class="border-primary bg-background ring-offset-background focus-visible:ring-ring absolute block h-5 w-5 -translate-x-1/2 rounded-full border-2 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+			brnSliderThumb></span>
 	`,
 	host: {
 		'[class]': '_computedClass()',
 	},
-	imports: [BrnSliderThumbDirective, BrnSliderTrackDirective, BrnSliderRangeDirective, BrnSliderTickDirective],
+	imports: [BrnSliderThumb, BrnSliderTrack, BrnSliderRange, BrnSliderTick],
 })
-export class HlmSliderComponent {
+export class HlmSlider {
 	protected readonly slider = injectBrnSlider();
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() =>

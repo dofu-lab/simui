@@ -32,7 +32,7 @@ type ToggleVariants = VariantProps<typeof toggleVariants>;
 		'[class]': '_computedClass()',
 	},
 })
-export class HlmToggleDirective {
+export class HlmToggle {
 	public readonly variant = input<ToggleVariants['variant']>('default');
 	public readonly size = input<ToggleVariants['size']>('default');
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });

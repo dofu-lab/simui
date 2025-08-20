@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus } from '@ng-icons/lucide';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'sim-avatar-07',
 	standalone: true,
 	providers: [provideIcons({ lucideMinus })],
-	imports: [HlmAvatarComponent, HlmAvatarImageDirective, HlmAvatarFallbackDirective, NgIcon],
+	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback, NgIcon],
 	template: `
 		<div class="relative">
 			<hlm-avatar variant="medium" class="border-border/50 border">
@@ -23,17 +23,16 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
 })
 export class Avatar07Component {}
 
-export const avatar07Code = `
-import { Component } from '@angular/core';
+export const avatar07Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus } from '@ng-icons/lucide';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'sim-avatar-07',
 	standalone: true,
 	providers: [provideIcons({ lucideMinus })],
-	imports: [HlmAvatarComponent, HlmAvatarImageDirective, HlmAvatarFallbackDirective, NgIcon],
+	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback, NgIcon],
 	template: \`
 		<div class="relative">
 			<hlm-avatar variant="medium" class="border-border/50 border">
@@ -47,5 +46,4 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
 		</div>
 	\`,
 })
-export class Avatar07Component {}
-`;
+export class Avatar07Component {}`;

@@ -1,17 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-06',
-	imports: [
-		HlmButtonDirective,
-		BrnPopoverComponent,
-		BrnPopoverTriggerDirective,
-		BrnPopoverContentDirective,
-		HlmPopoverContentDirective,
-	],
+	imports: [HlmButton, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent],
 	template: `
 		<brn-popover sideOffset="5">
 			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">Tooltip-like with steps</button>
@@ -60,21 +54,14 @@ export class Popover06Component {
 	}
 }
 
-export const Popover06Code = `
-import { Component, signal } from '@angular/core';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+export const popover06Code = `import { Component, signal } from '@angular/core';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-06',
-	imports: [
-		HlmButtonDirective,
-		BrnPopoverComponent,
-		BrnPopoverTriggerDirective,
-		BrnPopoverContentDirective,
-		HlmPopoverContentDirective,
-	],
+	imports: [HlmButton, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent],
 	template: \`
 		<brn-popover sideOffset="5">
 			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">Tooltip-like with steps</button>
@@ -121,5 +108,4 @@ export class Popover06Component {
 	nextStep() {
 		this.currentStep.update((value: number) => (value + 1) % this.steps.length);
 	}
-}
-`;
+}`;

@@ -8,28 +8,23 @@ import {
 	lucideSettings,
 	lucideUsers,
 } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'sim-tabs-12',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmTabsComponent,
-		HlmTabsListComponent,
-		HlmTabsTriggerDirective,
-		HlmTabsContentDirective,
-		HlmScrollAreaDirective,
-		HlmBadgeDirective,
+		HlmIcon,
+		HlmTabs,
+		HlmTabsList,
+		HlmTabsTrigger,
+		HlmTabsContent,
+		HlmScrollArea,
+		HlmBadge,
 		NgScrollbarModule,
 	],
 	providers: [
@@ -107,8 +102,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 })
 export class Tabs12Component {}
 
-export const tabs12Code = `
-import { Component } from '@angular/core';
+export const tabs12Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideChartLine,
@@ -118,28 +112,23 @@ import {
 	lucideSettings,
 	lucideUsers,
 } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'sim-tabs-12',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmTabsComponent,
-		HlmTabsListComponent,
-		HlmTabsTriggerDirective,
-		HlmTabsContentDirective,
-		HlmScrollAreaDirective,
-		HlmBadgeDirective,
+		HlmIcon,
+		HlmTabs,
+		HlmTabsList,
+		HlmTabsTrigger,
+		HlmTabsContent,
+		HlmScrollArea,
+		HlmBadge,
 		NgScrollbarModule,
 	],
 	providers: [
@@ -215,5 +204,4 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 		</hlm-tabs>
 	\`,
 })
-export class Tabs12Component {}
-`;
+export class Tabs12Component {}`;

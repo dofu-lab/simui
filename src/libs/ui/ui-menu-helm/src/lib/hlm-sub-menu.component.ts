@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
-import { BrnMenuDirective } from '@spartan-ng/brain/menu';
+import { BrnMenu } from '@spartan-ng/brain/menu';
 import type { ClassValue } from 'clsx';
 
 @Component({
@@ -9,12 +9,12 @@ import type { ClassValue } from 'clsx';
 	host: {
 		'[class]': '_computedClass()',
 	},
-	hostDirectives: [BrnMenuDirective],
+	hostDirectives: [BrnMenu],
 	template: `
 		<ng-content />
 	`,
 })
-export class HlmSubMenuComponent {
+export class HlmSubMenu {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected _computedClass = computed(() =>
 		hlm(

@@ -25,7 +25,7 @@ import type { ClassValue } from 'clsx';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
 })
-export class HlmTableComponent {
+export class HlmTable {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() =>
 		hlm('flex flex-col text-sm [&_hlm-trow:last-child]:border-0', this.userClass()),

@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-28',
 	imports: [
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmButtonDirective,
-		HlmAvatarComponent,
-		HlmAvatarFallbackDirective,
-		HlmAvatarImageDirective,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
+		HlmDialog,
+		HlmDialogContent,
+		HlmButton,
+		HlmAvatar,
+		HlmAvatarFallback,
+		HlmAvatarImage,
+		BrnDialogTrigger,
+		BrnDialogContent,
 	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
@@ -55,24 +55,23 @@ import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-di
 })
 export class Dialog28Component {}
 
-export const dialog28Code = `
-import { Component } from '@angular/core';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
+export const dialog28Code = `import { Component } from '@angular/core';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-28',
 	imports: [
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmButtonDirective,
-		HlmAvatarComponent,
-		HlmAvatarFallbackDirective,
-		HlmAvatarImageDirective,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
+		HlmDialog,
+		HlmDialogContent,
+		HlmButton,
+		HlmAvatar,
+		HlmAvatarFallback,
+		HlmAvatarImage,
+		BrnDialogTrigger,
+		BrnDialogContent,
 	],
 	template: \`
 		<hlm-dialog autoFocus="dialog">
@@ -111,5 +110,4 @@ import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-di
 		</hlm-dialog>
 	\`,
 })
-export class Dialog28Component {}
-`;
+export class Dialog28Component {}`;

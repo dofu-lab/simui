@@ -9,7 +9,7 @@ export const hlmDialogOverlayClass =
 	selector: '[hlmDialogOverlay],brn-dialog-overlay[hlm]',
 	standalone: true,
 })
-export class HlmDialogOverlayDirective {
+export class HlmDialogOverlay {
 	private readonly _classSettable = injectCustomClassSettable({ optional: true, host: true });
 
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'sim-avatar-22',
 	standalone: true,
-	imports: [HlmAvatarComponent, HlmAvatarImageDirective, HlmAvatarFallbackDirective],
+	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
 	template: `
 		<div class="flex -space-x-4.5">
 			<div class="group/avatar relative transition-transform duration-200 hover:-translate-y-5">
@@ -72,14 +72,13 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
 })
 export class Avatar22Component {}
 
-export const avatar22Code = `
-import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
+export const avatar22Code = `import { Component } from '@angular/core';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'sim-avatar-22',
 	standalone: true,
-	imports: [HlmAvatarComponent, HlmAvatarImageDirective, HlmAvatarFallbackDirective],
+	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
 	template: \`
 		<div class="flex -space-x-4.5">
 			<div class="group/avatar relative transition-transform duration-200 hover:-translate-y-5">
@@ -145,5 +144,4 @@ import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective
 		</div>
 	\`,
 })
-export class Avatar22Component {}
-`;
+export class Avatar22Component {}`;

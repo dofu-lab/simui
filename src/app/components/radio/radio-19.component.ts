@@ -2,13 +2,13 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideMinus } from '@ng-icons/lucide';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-19',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, FormsModule, NgIcon, HlmIconDirective],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, FormsModule, NgIcon, HlmIcon],
 	providers: [provideIcons({ lucideCheck, lucideMinus })],
 	host: {
 		class: 'w-full',
@@ -68,18 +68,17 @@ export class Radio19Component {
 	];
 }
 
-export const radio19Code = `
-import { Component, signal } from '@angular/core';
+export const radio19Code = `import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideMinus } from '@ng-icons/lucide';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-19',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, FormsModule, NgIcon, HlmIconDirective],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, FormsModule, NgIcon, HlmIcon],
 	providers: [provideIcons({ lucideCheck, lucideMinus })],
 	host: {
 		class: 'w-full',
@@ -137,5 +136,4 @@ export class Radio19Component {
 		{ id: 2, value: 'dark', label: 'Dark', thumbnailPath: '/assets/thumbnails/dark-theme.png' },
 		{ id: 3, value: 'system', label: 'System', thumbnailPath: '/assets/thumbnails/system-theme.png' },
 	];
-}
-`;
+}`;

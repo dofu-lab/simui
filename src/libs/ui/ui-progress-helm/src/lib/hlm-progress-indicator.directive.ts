@@ -12,7 +12,7 @@ import type { ClassValue } from 'clsx';
 		'[style.transform]': 'transform()',
 	},
 })
-export class HlmProgressIndicatorDirective {
+export class HlmProgressIndicator {
 	private readonly _progress = injectBrnProgress();
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 

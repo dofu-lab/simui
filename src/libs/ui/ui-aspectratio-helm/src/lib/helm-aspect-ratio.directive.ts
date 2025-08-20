@@ -19,7 +19,7 @@ const parseDividedString = (value: NumberInput): NumberInput => {
 		'[style.padding-bottom]': '_computedPaddingBottom()',
 	},
 })
-export class HlmAspectRatioDirective implements AfterViewInit {
+export class HlmAspectRatio implements AfterViewInit {
 	private readonly _el = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
 
 	public readonly ratio = input(1, {

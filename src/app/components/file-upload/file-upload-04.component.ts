@@ -2,13 +2,13 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideImageUp, lucideX } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileUploadState } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-04',
 	providers: [provideIcons({ lucideX, lucideImageUp, lucideCircleAlert })],
-	imports: [HlmButtonDirective, HlmIconDirective, NgIcon, FileDragDropDirective],
+	imports: [HlmButton, HlmIcon, NgIcon, FileDragDropDirective],
 	host: {
 		class: 'w-full',
 	},
@@ -93,13 +93,13 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideImageUp, lucideX } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileUploadState } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-04',
 	providers: [provideIcons({ lucideX, lucideImageUp, lucideCircleAlert })],
-	imports: [HlmButtonDirective, HlmIconDirective, NgIcon, FileDragDropDirective],
+	imports: [HlmButton, HlmIcon, NgIcon, FileDragDropDirective],
 	host: {
 		class: 'w-full',
 	},

@@ -2,22 +2,18 @@ import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChi
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { BrnInputOtpComponent } from '@spartan-ng/brain/input-otp';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
+import { HlmButton } from '@spartan-ng/helm/button';
 import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmInputOtpDirective,
-	HlmInputOtpGroupDirective,
-	HlmInputOtpSlotComponent,
-} from '@spartan-ng/ui-inputotp-helm';
+	HlmDialog,
+	HlmDialogContent,
+	HlmDialogDescription,
+	HlmDialogFooter,
+	HlmDialogHeader,
+} from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-13',
@@ -25,19 +21,19 @@ import {
 	imports: [
 		FormsModule,
 		NgIcon,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
-		HlmInputOtpDirective,
-		HlmInputOtpGroupDirective,
-		HlmInputOtpSlotComponent,
-		BrnInputOtpComponent,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
+		HlmInputOtp,
+		HlmInputOtpGroup,
+		HlmInputOtpSlot,
+		BrnInputOtp,
 	],
 	template: `
 		<hlm-dialog>
@@ -101,7 +97,7 @@ import {
 	`,
 })
 export class Dialog13Component implements OnDestroy {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public defaultOtpValue = '1234';
 	public otpValue = model<string>('');
 	public countdown = signal(60);
@@ -179,27 +175,22 @@ export class Dialog13Component implements OnDestroy {
 	}
 }
 
-export const dialog13Code = `
-import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChild } from '@angular/core';
+export const dialog13Code = `import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { BrnInputOtpComponent } from '@spartan-ng/brain/input-otp';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
+import { HlmButton } from '@spartan-ng/helm/button';
 import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmInputOtpDirective,
-	HlmInputOtpGroupDirective,
-	HlmInputOtpSlotComponent,
-} from '@spartan-ng/ui-inputotp-helm';
+	HlmDialog,
+	HlmDialogContent,
+	HlmDialogDescription,
+	HlmDialogFooter,
+	HlmDialogHeader,
+} from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-13',
@@ -207,19 +198,19 @@ import {
 	imports: [
 		FormsModule,
 		NgIcon,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
-		HlmInputOtpDirective,
-		HlmInputOtpGroupDirective,
-		HlmInputOtpSlotComponent,
-		BrnInputOtpComponent,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
+		HlmInputOtp,
+		HlmInputOtpGroup,
+		HlmInputOtpSlot,
+		BrnInputOtp,
 	],
 	template: \`
 		<hlm-dialog>
@@ -283,7 +274,7 @@ import {
 	\`,
 })
 export class Dialog13Component implements OnDestroy {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public defaultOtpValue = '1234';
 	public otpValue = model<string>('');
 	public countdown = signal(60);
@@ -359,5 +350,4 @@ export class Dialog13Component implements OnDestroy {
 			this._intervalId = undefined;
 		}
 	}
-}
-`;
+}`;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BrnMenuGroupDirective } from '@spartan-ng/brain/menu';
+import { BrnMenuGroup } from '@spartan-ng/brain/menu';
 
 @Component({
 	selector: 'hlm-menu-group',
@@ -7,9 +7,9 @@ import { BrnMenuGroupDirective } from '@spartan-ng/brain/menu';
 	host: {
 		class: 'block',
 	},
-	hostDirectives: [BrnMenuGroupDirective],
+	hostDirectives: [BrnMenuGroup],
 	template: `
 		<ng-content />
 	`,
 })
-export class HlmMenuGroupComponent {}
+export class HlmMenuGroup {}

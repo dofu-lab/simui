@@ -15,7 +15,7 @@ import type { ClassValue } from 'clsx';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
 })
-export class HlmTrowComponent {
+export class HlmTrow {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected _computedClass = computed(() =>
 		hlm(

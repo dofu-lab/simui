@@ -9,7 +9,7 @@ import type { ClassValue } from 'clsx';
 		'[class]': '_computedClass()',
 	},
 })
-export class HlmPopoverContentDirective {
+export class HlmPopoverContent {
 	private readonly _stateProvider = injectExposesStateProvider({ host: true });
 	public state = this._stateProvider.state ?? signal('closed');
 	private readonly _renderer = inject(Renderer2);

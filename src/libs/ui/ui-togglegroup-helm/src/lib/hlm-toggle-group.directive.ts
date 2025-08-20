@@ -12,9 +12,9 @@ type ToggleGroupItemVariants = VariantProps<typeof toggleGroupItemVariants>;
 	host: {
 		'[class]': '_computedClass()',
 	},
-	providers: [provideHlmToggleGroup(HlmToggleGroupDirective)],
+	providers: [provideHlmToggleGroup(HlmToggleGroup)],
 })
-export class HlmToggleGroupDirective {
+export class HlmToggleGroup {
 	public readonly variant = input<ToggleGroupItemVariants['variant']>('default');
 	public readonly size = input<ToggleGroupItemVariants['size']>('default');
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });

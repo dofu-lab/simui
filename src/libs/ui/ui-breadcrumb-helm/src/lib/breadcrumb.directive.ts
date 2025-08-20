@@ -11,7 +11,7 @@ import type { ClassValue } from 'clsx';
 		'[attr.aria-label]': 'ariaLabel()',
 	},
 })
-export class HlmBreadcrumbDirective {
+export class HlmBreadcrumb {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	public readonly ariaLabel = input<string>('breadcrumb', { alias: 'aria-label' });
 

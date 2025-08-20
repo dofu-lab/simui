@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-04',
-	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
 			<hlm-tabs-list class="h-auto w-full rounded-none border-b bg-transparent p-0" aria-label="tabs example">
@@ -42,18 +37,12 @@ import {
 })
 export class Tabs04Component {}
 
-export const tabs04Code = `
-import { Component } from '@angular/core';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+export const tabs04Code = `import { Component } from '@angular/core';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-04',
-	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	template: \`
 		<hlm-tabs tab="tab01" class="w-full">
 			<hlm-tabs-list class="h-auto w-full rounded-none border-b bg-transparent p-0" aria-label="tabs example">
@@ -85,5 +74,4 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs04Component {}
-`;
+export class Tabs04Component {}`;

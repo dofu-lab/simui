@@ -3,18 +3,18 @@ import { Component, booleanAttribute, computed, forwardRef, input, model, output
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { hlm } from '@spartan-ng/brain/core';
 import { ChangeFn, TouchFn } from '@spartan-ng/brain/forms';
-import { BrnSwitchComponent, BrnSwitchThumbComponent } from '@spartan-ng/brain/switch';
+import { BrnSwitch, BrnSwitchThumb } from '@spartan-ng/brain/switch';
 import type { ClassValue } from 'clsx';
-import { HlmSwitchThumbDirective } from './hlm-switch-thumb.directive';
+import { HlmSwitchThumb } from './hlm-switch-thumb.directive';
 export const HLM_SWITCH_VALUE_ACCESSOR = {
 	provide: NG_VALUE_ACCESSOR,
-	useExisting: forwardRef(() => HlmSwitchComponent),
+	useExisting: forwardRef(() => HlmSwitch),
 	multi: true,
 };
 
 @Component({
 	selector: 'hlm-switch',
-	imports: [BrnSwitchThumbComponent, BrnSwitchComponent, HlmSwitchThumbDirective],
+	imports: [BrnSwitchThumb, BrnSwitch, HlmSwitchThumb],
 	host: {
 		class: 'contents',
 		'[attr.id]': 'null',
@@ -32,14 +32,13 @@ export const HLM_SWITCH_VALUE_ACCESSOR = {
 			[id]="id()"
 			[aria-label]="ariaLabel()"
 			[aria-labelledby]="ariaLabelledby()"
-			[aria-describedby]="ariaDescribedby()"
-		>
+			[aria-describedby]="ariaDescribedby()">
 			<brn-switch-thumb hlm />
 		</brn-switch>
 	`,
 	providers: [HLM_SWITCH_VALUE_ACCESSOR],
 })
-export class HlmSwitchComponent implements ControlValueAccessor {
+export class HlmSwitch implements ControlValueAccessor {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() =>
 		hlm(

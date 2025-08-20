@@ -1,24 +1,12 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-10',
-	imports: [
-		NgIcon,
-		HlmIconDirective,
-		HlmTabsComponent,
-		HlmTabsListComponent,
-		HlmTabsTriggerDirective,
-		HlmTabsContentDirective,
-	],
+	imports: [NgIcon, HlmIcon, HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
@@ -58,28 +46,15 @@ import {
 })
 export class Tabs10Component {}
 
-export const tabs10Code = `
-import { Component } from '@angular/core';
+export const tabs10Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-10',
-	imports: [
-		NgIcon,
-		HlmIconDirective,
-		HlmTabsComponent,
-		HlmTabsListComponent,
-		HlmTabsTriggerDirective,
-		HlmTabsContentDirective,
-	],
+	imports: [NgIcon, HlmIcon, HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
 	template: \`
 		<hlm-tabs tab="tab01" class="w-full">
@@ -117,5 +92,4 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs10Component {}
-`;
+export class Tabs10Component {}`;

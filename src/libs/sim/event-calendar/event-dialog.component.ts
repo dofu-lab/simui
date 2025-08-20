@@ -12,18 +12,18 @@ import {
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendarPlus, lucidePlus } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/brain/core';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
-import { HlmDatePickerComponent } from '@spartan-ng/helm/date-picker';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
-import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
-import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmDatePicker } from '@spartan-ng/helm/date-picker';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { DefaultEventStyle, DefaultTimeOptions, EndHour, StartHour } from './constants';
 import { CalendarEvent, EventDuration, TimeOption } from './type';
@@ -36,23 +36,23 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 		NgIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmIconDirective,
-		HlmButtonDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmButtonDirective,
-		HlmInputDirective,
-		HlmLabelDirective,
-		HlmCheckboxComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmDatePickerComponent,
+		HlmIcon,
+		HlmButton,
+		HlmDialog,
+		HlmDialogContent,
+		HlmButton,
+		HlmInput,
+		HlmLabel,
+		HlmCheckbox,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmDatePicker,
 		NgScrollbar,
-		HlmScrollAreaDirective,
+		HlmScrollArea,
 		BrnSelectImports,
 		HlmSelectImports,
-		HlmRadioGroupComponent,
-		HlmRadioComponent,
+		HlmRadioGroup,
+		HlmRadio,
 	],
 	template: `
 		<hlm-dialog autoFocus="first-tabbable">
@@ -217,7 +217,7 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 })
 export class EventDialogComponent implements OnInit {
 	private _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 
 	shouldShowButton = input(true);
 	initialStartDate = input<Date>();

@@ -28,7 +28,7 @@ import type { ClassValue } from 'clsx';
 		'[class]': '_computedClass()',
 	},
 })
-export class HlmBreadcrumbLinkDirective {
+export class HlmBreadcrumbLink {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	public readonly link = input<RouterLink['routerLink']>();
 

@@ -4,15 +4,15 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/brain/core';
-import { BrnTabsPaginatedListDirective, BrnTabsTriggerDirective } from '@spartan-ng/brain/tabs';
-import { buttonVariants } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnTabsPaginatedList, BrnTabsTrigger } from '@spartan-ng/brain/tabs';
+import { buttonVariants } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import type { ClassValue } from 'clsx';
 import { listVariants } from './hlm-tabs-list.component';
 
 @Component({
 	selector: 'hlm-paginated-tabs-list',
-	imports: [CdkObserveContent, NgIcon, HlmIconDirective],
+	imports: [CdkObserveContent, NgIcon, HlmIcon],
 	providers: [provideIcons({ lucideChevronRight, lucideChevronLeft })],
 	template: `
 		<button
@@ -27,8 +27,7 @@ import { listVariants } from './hlm-tabs-list.component';
 			[disabled]="_disableScrollBefore || null"
 			(click)="_handlePaginatorClick('before')"
 			(mousedown)="_handlePaginatorPress('before', $event)"
-			(touchend)="_stopInterval()"
-		>
+			(touchend)="_stopInterval()">
 			<ng-icon hlm size="base" name="lucideChevronLeft" />
 		</button>
 
@@ -52,8 +51,7 @@ import { listVariants } from './hlm-tabs-list.component';
 			[disabled]="_disableScrollAfter || null"
 			(click)="_handlePaginatorClick('after')"
 			(mousedown)="_handlePaginatorPress('after', $event)"
-			(touchend)="_stopInterval()"
-		>
+			(touchend)="_stopInterval()">
 			<ng-icon hlm size="base" name="lucideChevronRight" />
 		</button>
 	`,
@@ -61,8 +59,8 @@ import { listVariants } from './hlm-tabs-list.component';
 		'[class]': '_computedClass()',
 	},
 })
-export class HlmTabsPaginatedListComponent extends BrnTabsPaginatedListDirective {
-	public readonly _items = contentChildren(BrnTabsTriggerDirective, { descendants: false });
+export class HlmTabsPaginatedList extends BrnTabsPaginatedList {
+	public readonly _items = contentChildren(BrnTabsTrigger, { descendants: false });
 	public readonly _itemsChanges = toObservable(this._items);
 
 	public readonly _tabListContainer = viewChild.required<ElementRef<HTMLElement>>('tabListContainer');

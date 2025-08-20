@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { BrnToggleDirective } from '@spartan-ng/brain/toggle';
-import { BrnToggleGroupComponent } from '@spartan-ng/brain/toggle-group';
-import { HlmToggleDirective } from '@spartan-ng/ui-toggle-helm';
+import { BrnToggle } from '@spartan-ng/brain/toggle';
+import { BrnToggleGroup } from '@spartan-ng/brain/toggle-group';
+import { HlmToggle } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-34',
 	standalone: true,
-	imports: [HlmToggleDirective, BrnToggleDirective, BrnToggleGroupComponent],
+	imports: [HlmToggle, BrnToggle, BrnToggleGroup],
 	template: `
 		<brn-toggle-group multiple="false">
 			<button
@@ -45,16 +45,15 @@ export class Button34Component {
 	}
 }
 
-export const button34Code = `
-import { Component, signal } from '@angular/core';
-import { BrnToggleDirective } from '@spartan-ng/brain/toggle';
-import { BrnToggleGroupComponent } from '@spartan-ng/brain/toggle-group';
-import { HlmToggleDirective } from '@spartan-ng/ui-toggle-helm';
+export const button34Code = `import { Component, signal } from '@angular/core';
+import { BrnToggle } from '@spartan-ng/brain/toggle';
+import { BrnToggleGroup } from '@spartan-ng/brain/toggle-group';
+import { HlmToggle } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-34',
 	standalone: true,
-	imports: [HlmToggleDirective, BrnToggleDirective, BrnToggleGroupComponent],
+	imports: [HlmToggle, BrnToggle, BrnToggleGroup],
 	template: \`
 		<brn-toggle-group multiple="false">
 			<button
@@ -91,6 +90,4 @@ export class Button34Component {
 	changeTheme() {
 		this.theme.set(this.theme() === 'light' ? 'dark' : 'light');
 	}
-}
-
-`;
+}`;

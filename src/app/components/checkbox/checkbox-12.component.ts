@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-12',
 	standalone: true,
-	imports: [HlmCheckboxComponent, HlmLabelDirective],
+	imports: [HlmCheckbox, HlmLabel],
 	template: `
 		<label hlmLabel class="flex items-start gap-2" for="checkbox-12">
 			<div class="grid grow gap-2 pt-0.5">
@@ -21,15 +21,14 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 })
 export class Checkbox12Component {}
 
-export const checkbox12Code = `
-import { Component } from '@angular/core';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+export const checkbox12Code = `import { Component } from '@angular/core';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-12',
 	standalone: true,
-	imports: [HlmCheckboxComponent, HlmLabelDirective],
+	imports: [HlmCheckbox, HlmLabel],
 	template: \`
 		<label hlmLabel class="flex items-start gap-2" for="checkbox-12">
 			<div class="grid grow gap-2 pt-0.5">
@@ -43,5 +42,4 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 		</label>
 	\`,
 })
-export class Checkbox12Component {}
-`;
+export class Checkbox12Component {}`;

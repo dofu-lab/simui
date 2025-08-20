@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
-import { BrnRadioGroupDirective } from '@spartan-ng/brain/radio-group';
+import { BrnRadioGroup } from '@spartan-ng/brain/radio-group';
 import type { ClassValue } from 'clsx';
 
 @Component({
@@ -8,7 +8,7 @@ import type { ClassValue } from 'clsx';
 	standalone: true,
 	hostDirectives: [
 		{
-			directive: BrnRadioGroupDirective,
+			directive: BrnRadioGroup,
 			inputs: ['name', 'value', 'disabled', 'required', 'direction'],
 		},
 	],
@@ -17,7 +17,7 @@ import type { ClassValue } from 'clsx';
 	},
 	template: '<ng-content />',
 })
-export class HlmRadioGroupComponent {
+export class HlmRadioGroup {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected _computedClass = computed(() => hlm('grid gap-2', this.userClass()));
 }

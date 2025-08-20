@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { BrnTooltipDirective } from '@spartan-ng/brain/tooltip';
+import { BrnTooltip } from '@spartan-ng/brain/tooltip';
 
 @Component({
 	selector: 'hlm-tooltip',
@@ -10,9 +10,9 @@ import { BrnTooltipDirective } from '@spartan-ng/brain/tooltip';
 	host: {
 		'[style]': '{display: "contents"}',
 	},
-	hostDirectives: [BrnTooltipDirective],
+	hostDirectives: [BrnTooltip],
 	template: `
 		<ng-content />
 	`,
 })
-export class HlmTooltipComponent {}
+export class HlmTooltip {}

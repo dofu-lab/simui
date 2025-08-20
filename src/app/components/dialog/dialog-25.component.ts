@@ -1,26 +1,26 @@
 import { Component, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBellRing, lucideCalendar, lucideClock, lucidePlus } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import { toast } from 'ngx-sonner';
 
 @Component({
 	selector: 'sim-dialog-25',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmAvatarComponent,
-		HlmAvatarImageDirective,
-		HlmAvatarFallbackDirective,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmAvatar,
+		HlmAvatarImage,
+		HlmAvatarFallback,
 	],
 	providers: [provideIcons({ lucideCalendar, lucideClock, lucideBellRing, lucidePlus })],
 	template: `
@@ -122,7 +122,7 @@ import { toast } from 'ngx-sonner';
 	`,
 })
 export class Dialog25Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 
 	public acceptInvitation(): void {
 		toast.success('Accepted!', {
@@ -132,30 +132,29 @@ export class Dialog25Component {
 	}
 }
 
-export const dialog25Code = `
-import { Component, viewChild } from '@angular/core';
+export const dialog25Code = `import { Component, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBellRing, lucideCalendar, lucideClock, lucidePlus } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import { toast } from 'ngx-sonner';
 
 @Component({
 	selector: 'sim-dialog-25',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmAvatarComponent,
-		HlmAvatarImageDirective,
-		HlmAvatarFallbackDirective,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmAvatar,
+		HlmAvatarImage,
+		HlmAvatarFallback,
 	],
 	providers: [provideIcons({ lucideCalendar, lucideClock, lucideBellRing, lucidePlus })],
 	template: \`
@@ -257,7 +256,7 @@ import { toast } from 'ngx-sonner';
 	\`,
 })
 export class Dialog25Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 
 	public acceptInvitation(): void {
 		toast.success('Accepted!', {
@@ -265,5 +264,4 @@ export class Dialog25Component {
 		});
 		this.dialogRef()?.close();
 	}
-}
-`;
+}`;

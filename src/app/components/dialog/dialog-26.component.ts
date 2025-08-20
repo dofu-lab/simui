@@ -12,30 +12,30 @@ import {
 	lucideSquareSlash,
 	lucideZap,
 } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmDialogComponent, HlmDialogContentComponent, HlmDialogHeaderComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmDialog, HlmDialogContent, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInput } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-dialog-26',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmAvatarComponent,
-		HlmAvatarFallbackDirective,
-		HlmAvatarImageDirective,
-		HlmCheckboxComponent,
-		HlmInputDirective,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmAvatar,
+		HlmAvatarFallback,
+		HlmAvatarImage,
+		HlmCheckbox,
+		HlmInput,
 	],
 	providers: [
 		provideIcons({
@@ -132,7 +132,7 @@ import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 	`,
 })
 export class Dialog26Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 
 	reasons = [
 		{
@@ -172,8 +172,7 @@ export class Dialog26Component {
 	}
 }
 
-export const dialog26Code = `
-import { Component, viewChild } from '@angular/core';
+export const dialog26Code = `import { Component, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideChartColumnStacked,
@@ -187,30 +186,30 @@ import {
 	lucideSquareSlash,
 	lucideZap,
 } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmDialogComponent, HlmDialogContentComponent, HlmDialogHeaderComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmDialog, HlmDialogContent, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInput } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-dialog-26',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmAvatarComponent,
-		HlmAvatarFallbackDirective,
-		HlmAvatarImageDirective,
-		HlmCheckboxComponent,
-		HlmInputDirective,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmAvatar,
+		HlmAvatarFallback,
+		HlmAvatarImage,
+		HlmCheckbox,
+		HlmInput,
 	],
 	providers: [
 		provideIcons({
@@ -307,7 +306,7 @@ import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 	\`,
 })
 export class Dialog26Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 
 	reasons = [
 		{
@@ -345,5 +344,4 @@ export class Dialog26Component {
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

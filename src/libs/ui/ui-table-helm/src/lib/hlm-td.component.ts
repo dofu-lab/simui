@@ -9,7 +9,7 @@ import {
 	input,
 } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
-import { BrnColumnDefComponent } from '@spartan-ng/brain/table';
+import { BrnColumnDef } from '@spartan-ng/brain/table';
 import type { ClassValue } from 'clsx';
 
 @Component({
@@ -33,8 +33,8 @@ import type { ClassValue } from 'clsx';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
 })
-export class HlmTdComponent {
-	private readonly _columnDef? = inject(BrnColumnDefComponent, { optional: true });
+export class HlmTd {
+	private readonly _columnDef? = inject(BrnColumnDef, { optional: true });
 	public readonly truncate = input(false, { transform: booleanAttribute });
 
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });

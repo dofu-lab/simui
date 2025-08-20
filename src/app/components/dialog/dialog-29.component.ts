@@ -3,24 +3,24 @@ import { NgClass } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy } from '@ng-icons/lucide';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAspectRatioDirective } from '@spartan-ng/ui-aspectratio-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-29',
 	imports: [
 		NgIcon,
 		NgClass,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmAspectRatioDirective,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmAspectRatio,
 	],
 	providers: [provideIcons({ lucideCopy, lucideCheck })],
 	template: `
@@ -84,30 +84,29 @@ export class Dialog29Component {
 	}
 }
 
-export const dialog29Code = `
-import { Clipboard } from '@angular/cdk/clipboard';
+export const dialog29Code = `import { Clipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy } from '@ng-icons/lucide';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAspectRatioDirective } from '@spartan-ng/ui-aspectratio-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-29',
 	imports: [
 		NgIcon,
 		NgClass,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmAspectRatioDirective,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmAspectRatio,
 	],
 	providers: [provideIcons({ lucideCopy, lucideCheck })],
 	template: \`
@@ -169,5 +168,4 @@ export class Dialog29Component {
 			this.copied.set(false);
 		}, 1500);
 	}
-}
-`;
+}`;

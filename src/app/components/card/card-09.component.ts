@@ -1,29 +1,23 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideShoppingBag } from '@ng-icons/lucide';
-import { HlmAspectRatioDirective } from '@spartan-ng/ui-aspectratio-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import {
-	HlmCardContentDirective,
-	HlmCardDescriptionDirective,
-	HlmCardDirective,
-	HlmCardFooterDirective,
-	HlmCardTitleDirective,
-} from '@spartan-ng/ui-card-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCard, HlmCardContent, HlmCardDescription, HlmCardFooter, HlmCardTitle } from '@spartan-ng/helm/card';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-card-09',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmAspectRatioDirective,
-		HlmCardContentDirective,
-		HlmCardDirective,
-		HlmCardTitleDirective,
-		HlmCardDescriptionDirective,
-		HlmCardFooterDirective,
-		HlmButtonDirective,
+		HlmIcon,
+		HlmAspectRatio,
+		HlmCardContent,
+		HlmCard,
+		HlmCardTitle,
+		HlmCardDescription,
+		HlmCardFooter,
+		HlmButton,
 	],
 	providers: [provideIcons({ lucideShoppingBag })],
 	host: {
@@ -55,33 +49,26 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 })
 export class Card09Component {}
 
-export const card09Code = `
-import { Component } from '@angular/core';
+export const card09Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideShoppingBag } from '@ng-icons/lucide';
-import { HlmAspectRatioDirective } from '@spartan-ng/ui-aspectratio-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import {
-	HlmCardContentDirective,
-	HlmCardDescriptionDirective,
-	HlmCardDirective,
-	HlmCardFooterDirective,
-	HlmCardTitleDirective,
-} from '@spartan-ng/ui-card-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCard, HlmCardContent, HlmCardDescription, HlmCardFooter, HlmCardTitle } from '@spartan-ng/helm/card';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-card-09',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmAspectRatioDirective,
-		HlmCardContentDirective,
-		HlmCardDirective,
-		HlmCardTitleDirective,
-		HlmCardDescriptionDirective,
-		HlmCardFooterDirective,
-		HlmButtonDirective,
+		HlmIcon,
+		HlmAspectRatio,
+		HlmCardContent,
+		HlmCard,
+		HlmCardTitle,
+		HlmCardDescription,
+		HlmCardFooter,
+		HlmButton,
 	],
 	providers: [provideIcons({ lucideShoppingBag })],
 	host: {
@@ -111,5 +98,4 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		</section>
 	\`,
 })
-export class Card09Component {}
-`;
+export class Card09Component {}`;

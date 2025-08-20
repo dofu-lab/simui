@@ -2,13 +2,13 @@ import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideRefreshCw } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent, HlmRadioIndicatorComponent } from '@spartan-ng/ui-radiogroup-helm';
-import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup, HlmRadioIndicator } from '@spartan-ng/helm/radio-group';
+import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'app-dialog-22',
@@ -17,18 +17,18 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 		NgIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmIconDirective,
-		HlmButtonDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmButtonDirective,
-		HlmLabelDirective,
-		HlmSpinnerComponent,
-		HlmRadioComponent,
-		HlmRadioGroupComponent,
-		HlmRadioIndicatorComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
+		HlmIcon,
+		HlmButton,
+		HlmDialog,
+		HlmDialogContent,
+		HlmButton,
+		HlmLabel,
+		HlmSpinner,
+		HlmRadio,
+		HlmRadioGroup,
+		HlmRadioIndicator,
+		BrnDialogTrigger,
+		BrnDialogContent,
 	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
@@ -114,7 +114,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 })
 export class Dialog22Component {
 	private _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public form: FormGroup = this._formBuilder.group({
 		plan: ['standard'],
 	});
@@ -149,18 +149,17 @@ export class Dialog22Component {
 	}
 }
 
-export const dialog22Code = `
-import { Component, inject, signal, viewChild } from '@angular/core';
+export const dialog22Code = `import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideRefreshCw } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent, HlmRadioIndicatorComponent } from '@spartan-ng/ui-radiogroup-helm';
-import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup, HlmRadioIndicator } from '@spartan-ng/helm/radio-group';
+import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'app-dialog-22',
@@ -169,18 +168,18 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 		NgIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmIconDirective,
-		HlmButtonDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmButtonDirective,
-		HlmLabelDirective,
-		HlmSpinnerComponent,
-		HlmRadioComponent,
-		HlmRadioGroupComponent,
-		HlmRadioIndicatorComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
+		HlmIcon,
+		HlmButton,
+		HlmDialog,
+		HlmDialogContent,
+		HlmButton,
+		HlmLabel,
+		HlmSpinner,
+		HlmRadio,
+		HlmRadioGroup,
+		HlmRadioIndicator,
+		BrnDialogTrigger,
+		BrnDialogContent,
 	],
 	template: \`
 		<hlm-dialog autoFocus="dialog">
@@ -191,7 +190,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 				<div class="flex-1 overflow-y-auto p-6">
 					<div class="flex flex-col gap-2">
 						<div class="flex size-11 items-center justify-center rounded-full border">
-							<ng-icon hlm name="lucideRefreshCw" size="sm"/>
+							<ng-icon hlm name="lucideRefreshCw" size="sm" />
 						</div>
 						<div class="flex flex-col gap-1">
 							<h2 class="text-lg leading-none font-semibold">Change your plan</h2>
@@ -266,7 +265,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 })
 export class Dialog22Component {
 	private _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public form: FormGroup = this._formBuilder.group({
 		plan: ['standard'],
 	});
@@ -299,5 +298,4 @@ export class Dialog22Component {
 			}, 2000);
 		}
 	}
-}
-`;
+}`;

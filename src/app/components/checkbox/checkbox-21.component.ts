@@ -2,13 +2,13 @@ import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideZap } from '@ng-icons/lucide';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-21',
 	standalone: true,
-	imports: [HlmCheckboxComponent, HlmLabelDirective, NgClass],
+	imports: [HlmCheckbox, HlmLabel, NgClass],
 	providers: [provideIcons({ lucideZap })],
 	host: {
 		class: 'w-full',
@@ -54,18 +54,17 @@ export class Checkbox21Component {
 	];
 }
 
-export const checkbox21Code = `
-import { NgClass } from '@angular/common';
+export const checkbox21Code = `import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideZap } from '@ng-icons/lucide';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-21',
 	standalone: true,
-	imports: [HlmCheckboxComponent, HlmLabelDirective, NgClass],
+	imports: [HlmCheckbox, HlmLabel, NgClass],
 	providers: [provideIcons({ lucideZap })],
 	host: {
 		class: 'w-full',
@@ -109,5 +108,4 @@ export class Checkbox21Component {
 		{ value: '5', label: 'Friday', defaultChecked: false, disabled: false },
 		{ value: '6', label: 'Saturday', defaultChecked: true, disabled: false },
 	];
-}
-`;
+}`;

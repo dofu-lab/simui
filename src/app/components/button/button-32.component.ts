@@ -1,20 +1,14 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlignCenter, lucideAlignJustify, lucideAlignLeft, lucideAlignRight } from '@ng-icons/lucide';
-import { BrnToggleGroupComponent, BrnToggleGroupItemDirective } from '@spartan-ng/brain/toggle-group';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmToggleGroupItemDirective } from '@spartan-ng/ui-togglegroup-helm';
+import { BrnToggleGroup, BrnToggleGroupItem } from '@spartan-ng/brain/toggle-group';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmToggleGroupItem } from '@spartan-ng/helm/toggle-group';
 
 @Component({
 	selector: 'spartan-toggle-group-preview',
 	standalone: true,
-	imports: [
-		BrnToggleGroupItemDirective,
-		BrnToggleGroupComponent,
-		HlmIconDirective,
-		HlmToggleGroupItemDirective,
-		NgIcon,
-	],
+	imports: [BrnToggleGroupItem, BrnToggleGroup, HlmIcon, HlmToggleGroupItem, NgIcon],
 	providers: [provideIcons({ lucideAlignLeft, lucideAlignRight, lucideAlignCenter, lucideAlignJustify })],
 	template: `
 		<brn-toggle-group multiple="false" nullable="true" class="divide-background inline-flex divide-x">
@@ -51,24 +45,17 @@ import { HlmToggleGroupItemDirective } from '@spartan-ng/ui-togglegroup-helm';
 })
 export class Button32Component {}
 
-export const button32Code = `
-import { Component } from '@angular/core';
+export const button32Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlignCenter, lucideAlignJustify, lucideAlignLeft, lucideAlignRight } from '@ng-icons/lucide';
-import { BrnToggleGroupComponent, BrnToggleGroupItemDirective } from '@spartan-ng/brain/toggle-group';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmToggleGroupItemDirective } from '@spartan-ng/ui-togglegroup-helm';
+import { BrnToggleGroup, BrnToggleGroupItem } from '@spartan-ng/brain/toggle-group';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmToggleGroupItem } from '@spartan-ng/helm/toggle-group';
 
 @Component({
 	selector: 'spartan-toggle-group-preview',
 	standalone: true,
-	imports: [
-		BrnToggleGroupItemDirective,
-		BrnToggleGroupComponent,
-		HlmIconDirective,
-		HlmToggleGroupItemDirective,
-		NgIcon,
-	],
+	imports: [BrnToggleGroupItem, BrnToggleGroup, HlmIcon, HlmToggleGroupItem, NgIcon],
 	providers: [provideIcons({ lucideAlignLeft, lucideAlignRight, lucideAlignCenter, lucideAlignJustify })],
 	template: \`
 		<brn-toggle-group multiple="false" nullable="true" class="divide-background inline-flex divide-x">
@@ -103,5 +90,4 @@ import { HlmToggleGroupItemDirective } from '@spartan-ng/ui-togglegroup-helm';
 		</brn-toggle-group>
 	\`,
 })
-export class Button32Component {}
-`;
+export class Button32Component {}`;

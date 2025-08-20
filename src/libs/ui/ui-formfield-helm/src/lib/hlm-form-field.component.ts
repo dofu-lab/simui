@@ -1,6 +1,6 @@
 import { Component, computed, contentChild, contentChildren, effect } from '@angular/core';
 import { BrnFormFieldControl } from '@spartan-ng/brain/form-field';
-import { HlmErrorDirective } from './hlm-error.directive';
+import { HlmError } from './hlm-error.directive';
 
 @Component({
 	selector: 'hlm-form-field',
@@ -21,10 +21,10 @@ import { HlmErrorDirective } from './hlm-error.directive';
 		class: 'space-y-2 block',
 	},
 })
-export class HlmFormFieldComponent {
+export class HlmFormField {
 	public readonly control = contentChild(BrnFormFieldControl);
 
-	public readonly errorChildren = contentChildren(HlmErrorDirective);
+	public readonly errorChildren = contentChildren(HlmError);
 
 	protected readonly hasDisplayedMessage = computed<'error' | 'hint'>(() =>
 		this.errorChildren() && this.errorChildren().length > 0 && this.control()?.errorState() ? 'error' : 'hint',

@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { type ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrnAvatarFallbackDirective, BrnAvatarImageDirective } from '@spartan-ng/brain/avatar';
-import { HlmAvatarComponent } from './hlm-avatar.component';
+import { BrnAvatarFallback, BrnAvatarImage } from '@spartan-ng/brain/avatar';
+import { HlmAvatar } from './hlm-avatar.component';
 
 @Component({
 	selector: 'hlm-mock',
-	imports: [BrnAvatarImageDirective, BrnAvatarFallbackDirective, HlmAvatarComponent],
+	imports: [BrnAvatarImage, BrnAvatarFallback, HlmAvatar],
 	template: `
 		<hlm-avatar [class]="class" id="fallbackOnly">
 			<span brnAvatarFallback>fallback</span>
@@ -17,12 +17,12 @@ class MockComponent {
 	@Input() public class = '';
 }
 
-describe('HlmAvatarComponent', () => {
-	let component: HlmAvatarComponent;
-	let fixture: ComponentFixture<HlmAvatarComponent>;
+describe('HlmAvatar', () => {
+	let component: HlmAvatar;
+	let fixture: ComponentFixture<HlmAvatar>;
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(HlmAvatarComponent);
+		fixture = TestBed.createComponent(HlmAvatar);
 		component = fixture.componentInstance;
 	});
 

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { HlmCalendarMultiComponent } from './lib/hlm-calendar-multi.component';
-import { HlmCalendarComponent } from './lib/hlm-calendar.component';
+import { HlmCalendarMulti } from './lib/hlm-calendar-multi.component';
+import { HlmCalendar } from './lib/hlm-calendar.component';
 
 export * from './lib/hlm-calendar-multi.component';
 export * from './lib/hlm-calendar.component';
 
-export const HlmCalendarImports = [HlmCalendarComponent, HlmCalendarMultiComponent] as const;
+export const HlmCalendarImports = [HlmCalendar, HlmCalendarMulti] as const;
 
 @NgModule({
 	imports: [...HlmCalendarImports],

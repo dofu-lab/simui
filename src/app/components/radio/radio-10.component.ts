@@ -1,19 +1,11 @@
 import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-10',
-	imports: [
-		HlmRadioGroupComponent,
-		HlmRadioComponent,
-		HlmLabelDirective,
-		HlmAvatarComponent,
-		HlmAvatarComponent,
-		HlmAvatarImageDirective,
-		HlmAvatarFallbackDirective,
-	],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, HlmAvatar, HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
 	template: `
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="1">
 			<div
@@ -75,23 +67,14 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 })
 export class Radio10Component {}
 
-export const radio10Code = `
-import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+export const radio10Code = `import { Component } from '@angular/core';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-10',
-	imports: [
-		HlmRadioGroupComponent,
-		HlmRadioComponent,
-		HlmLabelDirective,
-		HlmAvatarComponent,
-		HlmAvatarComponent,
-		HlmAvatarImageDirective,
-		HlmAvatarFallbackDirective,
-	],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, HlmAvatar, HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
 	template: \`
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="1">
 			<div
@@ -151,5 +134,4 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 		</hlm-radio-group>
 	\`,
 })
-export class Radio10Component {}
-`;
+export class Radio10Component {}`;

@@ -16,30 +16,22 @@ import { lucideCalendar } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/brain/core';
 import { BrnDialogState } from '@spartan-ng/brain/dialog';
 import { type ChangeFn, type TouchFn } from '@spartan-ng/brain/forms';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmCalendarComponent } from '@spartan-ng/helm/calendar';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/helm/popover';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmCalendar } from '@spartan-ng/helm/calendar';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 import type { ClassValue } from 'clsx';
 import { injectHlmDatePickerConfig } from './hlm-date-picker.token';
 
 export const HLM_DATE_PICKER_VALUE_ACCESSOR = {
 	provide: NG_VALUE_ACCESSOR,
-	useExisting: forwardRef(() => HlmDatePickerComponent),
+	useExisting: forwardRef(() => HlmDatePicker),
 	multi: true,
 };
 
 @Component({
 	selector: 'hlm-date-picker',
-	imports: [
-		NgIcon,
-		HlmIconDirective,
-		BrnPopoverComponent,
-		BrnPopoverTriggerDirective,
-		BrnPopoverContentDirective,
-		HlmPopoverContentDirective,
-		HlmCalendarComponent,
-	],
+	imports: [NgIcon, HlmIcon, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent, HlmCalendar],
 	providers: [HLM_DATE_PICKER_VALUE_ACCESSOR, provideIcons({ lucideCalendar })],
 	template: `
 		<brn-popover sideOffset="5" [state]="popoverState()" (stateChanged)="popoverState.set($event)">
@@ -62,8 +54,7 @@ export const HLM_DATE_PICKER_VALUE_ACCESSOR = {
 					[min]="min()"
 					[max]="max()"
 					[disabled]="state().disabled()"
-					(dateChange)="_handleChange($event)"
-				/>
+					(dateChange)="_handleChange($event)" />
 			</div>
 		</brn-popover>
 	`,
@@ -72,7 +63,7 @@ export const HLM_DATE_PICKER_VALUE_ACCESSOR = {
 	},
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HlmDatePickerComponent<T> {
+export class HlmDatePicker<T> {
 	private readonly _config = injectHlmDatePickerConfig<T>();
 
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });

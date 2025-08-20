@@ -4,16 +4,11 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCode } from '@ng-icons/lucide';
 import type { ClassValue } from 'clsx';
 
-import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogHeaderComponent,
-	HlmDialogTitleDirective,
-} from '@/libs/ui/ui-dialog-helm/src';
-import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
+import { HlmDialog, HlmDialogContent, HlmDialogHeader, HlmDialogTitle } from '@/libs/ui/ui-dialog-helm/src';
+import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
 import { hlm } from '@spartan-ng/brain/core';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { CodePreviewComponent } from './code-preview.component';
 
 @Component({
@@ -22,15 +17,15 @@ import { CodePreviewComponent } from './code-preview.component';
 	providers: [provideIcons({ lucideCode })],
 	imports: [
 		NgComponentOutlet,
-		HlmButtonDirective,
+		HlmButton,
 		NgIcon,
-		HlmIconDirective,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogTitleDirective,
+		HlmIcon,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogTitle,
 		CodePreviewComponent,
 	],
 	template: `

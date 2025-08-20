@@ -8,4 +8,4 @@ import { Directive } from '@angular/core';
 		class: 'block text-destructive text-sm font-medium',
 	},
 })
-export class HlmErrorDirective {}
+export class HlmError {}

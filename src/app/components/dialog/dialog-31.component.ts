@@ -1,23 +1,15 @@
 import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideCircleCheck } from '@ng-icons/lucide';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-31',
-	imports: [
-		HlmInputDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmLabelDirective,
-	],
+	imports: [HlmInput, HlmDialog, HlmDialogContent, BrnDialogTrigger, BrnDialogContent, HlmButton, HlmLabel],
 	providers: [provideIcons({ lucideCircleCheck })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
@@ -114,27 +106,18 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 })
 export class Dialog31Component {}
 
-export const dialog31Code = `
-import { Component } from '@angular/core';
+export const dialog31Code = `import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideCircleCheck } from '@ng-icons/lucide';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-31',
-	imports: [
-		HlmInputDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmLabelDirective,
-	],
+	imports: [HlmInput, HlmDialog, HlmDialogContent, BrnDialogTrigger, BrnDialogContent, HlmButton, HlmLabel],
 	providers: [provideIcons({ lucideCircleCheck })],
 	template: \`
 		<hlm-dialog autoFocus="dialog">
@@ -229,5 +212,4 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 		</hlm-dialog>
 	\`,
 })
-export class Dialog31Component {}
-`;
+export class Dialog31Component {}`;

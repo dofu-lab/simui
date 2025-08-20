@@ -16,9 +16,9 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState, formatBytes } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } from '@spartan-ng/ui-table-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTable, HlmTd, HlmTh, HlmTrow } from '@spartan-ng/helm/table';
 
 @Component({
 	selector: 'sim-file-upload-11',
@@ -39,16 +39,7 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 			lucideDownload,
 		}),
 	],
-	imports: [
-		HlmButtonDirective,
-		HlmIconDirective,
-		NgIcon,
-		FileDragDropDirective,
-		HlmTableComponent,
-		HlmTrowComponent,
-		HlmThComponent,
-		HlmTdComponent,
-	],
+	imports: [HlmButton, HlmIcon, NgIcon, FileDragDropDirective, HlmTable, HlmTrow, HlmTh, HlmTd],
 	host: {
 		class: 'w-full',
 	},
@@ -277,9 +268,9 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState, formatBytes } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } from '@spartan-ng/ui-table-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTable, HlmTd, HlmTh, HlmTrow } from '@spartan-ng/helm/table';
 
 @Component({
 	selector: 'sim-file-upload-11',
@@ -301,14 +292,14 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 		}),
 	],
 	imports: [
-		HlmButtonDirective,
-		HlmIconDirective,
+		HlmButton,
+		HlmIcon,
 		NgIcon,
 		FileDragDropDirective,
-		HlmTableComponent,
-		HlmTrowComponent,
-		HlmThComponent,
-		HlmTdComponent,
+		HlmTable,
+		HlmTrow,
+		HlmTh,
+		HlmTd,
 	],
 	host: {
 		class: 'w-full',

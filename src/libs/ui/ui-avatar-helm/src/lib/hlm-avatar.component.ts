@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation, computed, input } from '@angular/core';
-import { BrnAvatarComponent } from '@spartan-ng/brain/avatar';
+import { BrnAvatar } from '@spartan-ng/brain/avatar';
 import { hlm } from '@spartan-ng/brain/core';
 import { type VariantProps, cva } from 'class-variance-authority';
 import type { ClassValue } from 'clsx';
@@ -35,7 +35,7 @@ export type AvatarVariants = VariantProps<typeof avatarVariants>;
 		}
 	`,
 })
-export class HlmAvatarComponent extends BrnAvatarComponent {
+export class HlmAvatar extends BrnAvatar {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	public readonly variant = input<AvatarVariants['variant']>('medium');
 

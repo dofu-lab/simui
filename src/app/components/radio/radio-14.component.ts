@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-14',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel],
 	host: {
 		class: 'w-full',
 	},
@@ -44,21 +44,20 @@ export class Radio14Component {
 	];
 }
 
-export const radio14Code = `
-import { Component } from '@angular/core';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+export const radio14Code = `import { Component } from '@angular/core';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-14',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel],
 	host: {
 		class: 'w-full',
 	},
 	template: \`
 		<div class="flex flex-col gap-4">
 			<span class="text-sm">Server location</span>
-			<hlm-radio-group class="grid grid-cols-3 justify-between gap-2 text-sm font-medium" value="usa" disabled>
+			<hlm-radio-group class="grid grid-cols-3 justify-between gap-2 text-sm font-medium" value="usa">
 				@for (item of items; track item.id) {
 					<div
 						class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full rounded-md border shadow-xs outline-none">
@@ -89,5 +88,4 @@ export class Radio14Component {
 		{ id: 2, value: 'uk', label: 'UK' },
 		{ id: 3, value: 'sea', label: 'SEA' },
 	];
-}
-`;
+}`;

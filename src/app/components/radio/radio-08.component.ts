@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-08',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel],
 	template: `
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="1">
 			<div
@@ -56,14 +56,13 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 })
 export class Radio08Component {}
 
-export const radio08Code = `
-import { Component } from '@angular/core';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+export const radio08Code = `import { Component } from '@angular/core';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-08',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel],
 	template: \`
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="1">
 			<div
@@ -113,5 +112,4 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 		</hlm-radio-group>
 	\`,
 })
-export class Radio08Component {}
-`;
+export class Radio08Component {}`;

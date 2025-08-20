@@ -1,11 +1,11 @@
 import { booleanAttribute, Component, computed, input, output } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
-import { BrnRadioChange, BrnRadioComponent } from '@spartan-ng/brain/radio-group';
+import { BrnRadio, BrnRadioChange } from '@spartan-ng/brain/radio-group';
 import { ClassValue } from 'clsx';
 
 @Component({
 	selector: 'hlm-radio',
-	imports: [BrnRadioComponent],
+	imports: [BrnRadio],
 	template: `
 		<brn-radio
 			[id]="id()"
@@ -16,14 +16,13 @@ import { ClassValue } from 'clsx';
 			[aria-label]="ariaLabel()"
 			[aria-labelledby]="ariaLabelledby()"
 			[aria-describedby]="ariaDescribedby()"
-			(change)="change.emit($event)"
-		>
+			(change)="change.emit($event)">
 			<ng-content select="[target],[indicator]" indicator />
 			<ng-content />
 		</brn-radio>
 	`,
 })
-export class HlmRadioComponent<T = unknown> {
+export class HlmRadio<T = unknown> {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected _computedClass = computed(() =>
 		hlm(

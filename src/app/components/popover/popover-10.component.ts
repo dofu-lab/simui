@@ -1,22 +1,14 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-10',
 	standalone: true,
-	imports: [
-		HlmButtonDirective,
-		BrnPopoverComponent,
-		BrnPopoverTriggerDirective,
-		BrnPopoverContentDirective,
-		HlmPopoverContentDirective,
-		HlmInputDirective,
-		FormsModule,
-	],
+	imports: [HlmButton, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent, HlmInput, FormsModule],
 	template: `
 		<brn-popover sideOffset="5" autoFocus="dialog">
 			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">Command Palette</button>
@@ -64,26 +56,17 @@ export class Popover10Component {
 	}
 }
 
-export const Popover10Code = `
-import { Component, computed, signal } from '@angular/core';
+export const popover10Code = `import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-10',
 	standalone: true,
-	imports: [
-		HlmButtonDirective,
-		BrnPopoverComponent,
-		BrnPopoverTriggerDirective,
-		BrnPopoverContentDirective,
-		HlmPopoverContentDirective,
-		HlmInputDirective,
-		FormsModule,
-	],
+	imports: [HlmButton, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent, HlmInput, FormsModule],
 	template: \`
 		<brn-popover sideOffset="5" autoFocus="dialog">
 			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">Command Palette</button>
@@ -129,5 +112,4 @@ export class Popover10Component {
 	public execute(action: { label: string }, ctx: { close: () => void }): void {
 		ctx.close();
 	}
-}
-`;
+}`;

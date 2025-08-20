@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
+import { HlmBadge } from '@spartan-ng/helm/badge';
 import { previewComponents } from '../constants/home.constant';
 import { ThemeService } from '../core';
 import { CardBodyDirective, CardDirective } from '../core/card';
@@ -9,7 +9,7 @@ import { NavigationService } from '../core/navigation.service';
 @Component({
 	selector: 'app-home',
 	providers: [NavigationService],
-	imports: [CardDirective, CardBodyDirective, HlmBadgeDirective],
+	imports: [CardDirective, CardBodyDirective, HlmBadge],
 	template: `
 		<div class="flex-1 items-start">
 			<div class="max-w-3xl pt-15 max-sm:text-center">

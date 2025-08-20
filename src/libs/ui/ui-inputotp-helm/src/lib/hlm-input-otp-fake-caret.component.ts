@@ -9,4 +9,4 @@ import { Component } from '@angular/core';
 		</div>
 	`,
 })
-export class HlmInputOtpFakeCaretComponent {}
+export class HlmInputOtpFakeCaret {}

@@ -1,28 +1,23 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
-import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-tooltip-helm';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-tabs-16',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmTabsComponent,
-		HlmTabsListComponent,
-		HlmTabsTriggerDirective,
-		HlmTabsContentDirective,
-		HlmTooltipComponent,
-		HlmTooltipTriggerDirective,
-		BrnTooltipContentDirective,
+		HlmIcon,
+		HlmTabs,
+		HlmTabsList,
+		HlmTabsTrigger,
+		HlmTabsContent,
+		HlmTooltip,
+		HlmTooltipTrigger,
+		BrnTooltipContentTemplate,
 	],
 	host: {
 		class: 'w-full',
@@ -78,32 +73,26 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 })
 export class Tabs16Component {}
 
-export const tabs16Code = `
-import { Component } from '@angular/core';
+export const tabs16Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
-import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-tooltip-helm';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-tabs-16',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmTabsComponent,
-		HlmTabsListComponent,
-		HlmTabsTriggerDirective,
-		HlmTabsContentDirective,
-		HlmTooltipComponent,
-		HlmTooltipTriggerDirective,
-		BrnTooltipContentDirective,
+		HlmIcon,
+		HlmTabs,
+		HlmTabsList,
+		HlmTabsTrigger,
+		HlmTabsContent,
+		HlmTooltip,
+		HlmTooltipTrigger,
+		BrnTooltipContentTemplate,
 	],
 	host: {
 		class: 'w-full',
@@ -157,5 +146,4 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 		</hlm-tabs>
 	\`,
 })
-export class Tabs16Component {}
-`;
+export class Tabs16Component {}`;

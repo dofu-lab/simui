@@ -1,13 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { toast } from 'ngx-sonner';
 
 @Component({
 	selector: 'sim-notification-28',
 	standalone: true,
 	providers: [DatePipe],
-	imports: [HlmButtonDirective],
+	imports: [HlmButton],
 	template: `
 		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">Success</button>
 	`,
@@ -22,36 +22,26 @@ export class Notification28Component {
 	}
 }
 
-export const notification28Code = `
+export const notification28Code = `import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { toast } from 'ngx-sonner';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
-  selector: 'sim-notification-28',
-  standalone: true,
-  providers: [DatePipe],
-  imports: [HlmButtonDirective],
-  template: \`
-    <button
-      hlmBtn
-      variant="outline"
-      size="sm"
-      class="h-8"
-      (click)="showNotification()"
-    >
-      Success
-    </button>
-  \`,
+	selector: 'sim-notification-28',
+	standalone: true,
+	providers: [DatePipe],
+	imports: [HlmButton],
+	template: \`
+		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">Success</button>
+	\`,
 })
 export class Notification28Component {
-  datePipe = inject(DatePipe);
+	datePipe = inject(DatePipe);
 
-  showNotification() {
-    toast.success('Request is approved', {
-      description: 'Your manager has approved your request.',
-    });
-  }
-}
-`;
+	showNotification() {
+		toast.success('Request is approved', {
+			description: 'Your manager has approved your request.',
+		});
+	}
+}`;

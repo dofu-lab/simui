@@ -1,14 +1,14 @@
 import { Component, model } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRocket } from '@ng-icons/lucide';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-14',
 	standalone: true,
-	imports: [HlmCheckboxComponent, HlmLabelDirective, HlmIconDirective, NgIcon],
+	imports: [HlmCheckbox, HlmLabel, HlmIcon, NgIcon],
 	providers: [provideIcons({ lucideRocket })],
 	host: {
 		class: 'w-full',
@@ -35,18 +35,17 @@ export class Checkbox14Component {
 	public readonly checked = model<boolean>(false);
 }
 
-export const checkbox14Code = `
-import { Component, model } from '@angular/core';
+export const checkbox14Code = `import { Component, model } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRocket } from '@ng-icons/lucide';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-14',
 	standalone: true,
-	imports: [HlmCheckboxComponent, HlmLabelDirective, HlmIconDirective, NgIcon],
+	imports: [HlmCheckbox, HlmLabel, HlmIcon, NgIcon],
 	providers: [provideIcons({ lucideRocket })],
 	host: {
 		class: 'w-full',
@@ -71,5 +70,4 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 })
 export class Checkbox14Component {
 	public readonly checked = model<boolean>(false);
-}
-`;
+}`;

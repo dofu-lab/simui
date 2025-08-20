@@ -1,23 +1,16 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-tooltip-helm';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-button-22',
 	standalone: true,
 	providers: [provideIcons({ lucidePlus })],
-	imports: [
-		HlmButtonDirective,
-		HlmIconDirective,
-		HlmTooltipComponent,
-		HlmTooltipTriggerDirective,
-		BrnTooltipContentDirective,
-		NgIcon,
-	],
+	imports: [HlmButton, HlmIcon, HlmTooltip, HlmTooltipTrigger, BrnTooltipContentTemplate, NgIcon],
 	template: `
 		<hlm-tooltip>
 			<button hlmBtn hlmTooltipTrigger variant="outline" size="icon" showDelay="10" hideDelay="10">
@@ -29,45 +22,26 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 })
 export class Button22Component {}
 
-export const button22Code = `
-import { Component } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+export const button22Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import {
-  HlmTooltipComponent,
-  HlmTooltipTriggerDirective,
-} from '@spartan-ng/ui-tooltip-helm';
-import { BrnTooltipContentDirective } from '@spartan-ng/brain/tooltip';
+import { BrnTooltipContentTemplate } from '@spartan-ng/brain/tooltip';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 
 @Component({
-  selector: 'sim-button-22',
-  standalone: true,
-  providers: [provideIcons({ lucidePlus })],
-  imports: [
-    HlmButtonDirective,
-    HlmIconDirective,
-    HlmTooltipComponent,
-    HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
-    NgIcon,
-  ],
-  template: \`
-    <hlm-tooltip>
-      <button
-        hlmBtn
-        hlmTooltipTrigger
-        variant="outline"
-        size="icon"
-        showDelay="10"
-        hideDelay="10"
-      >
-        <ng-icon hlm name="lucidePlus" size="sm" />
-      </button>
-      <span *brnTooltipContent class="flex items-center"> Tooltip </span>
-    </hlm-tooltip>
-  \`,
+	selector: 'sim-button-22',
+	standalone: true,
+	providers: [provideIcons({ lucidePlus })],
+	imports: [HlmButton, HlmIcon, HlmTooltip, HlmTooltipTrigger, BrnTooltipContentTemplate, NgIcon],
+	template: \`
+		<hlm-tooltip>
+			<button hlmBtn hlmTooltipTrigger variant="outline" size="icon" showDelay="10" hideDelay="10">
+				<ng-icon hlm name="lucidePlus" size="sm" />
+			</button>
+			<span *brnTooltipContent class="flex items-center">Tooltip</span>
+		</hlm-tooltip>
+	\`,
 })
-export class Button22Component {}
-`;
+export class Button22Component {}`;

@@ -1,28 +1,28 @@
 import { Component, viewChild } from '@angular/core';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
 import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
+	HlmDialog,
+	HlmDialogContent,
+	HlmDialogDescription,
+	HlmDialogFooter,
+	HlmDialogHeader,
+} from '@spartan-ng/helm/dialog';
+import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'sim-dialog-04',
 	imports: [
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
-		HlmScrollAreaDirective,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
+		HlmScrollArea,
 		NgScrollbarModule,
 	],
 	template: `
@@ -149,39 +149,38 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 	`,
 })
 export class Dialog04Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
 }
 
-export const dialog04Code = `
-import { Component, viewChild } from '@angular/core';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+export const dialog04Code = `import { Component, viewChild } from '@angular/core';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
 import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmScrollAreaDirective } from '@spartan-ng/ui-scrollarea-helm';
+	HlmDialog,
+	HlmDialogContent,
+	HlmDialogDescription,
+	HlmDialogFooter,
+	HlmDialogHeader,
+} from '@spartan-ng/helm/dialog';
+import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'sim-dialog-04',
 	imports: [
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
-		HlmScrollAreaDirective,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
+		HlmScrollArea,
 		NgScrollbarModule,
 	],
 	template: \`
@@ -308,10 +307,9 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 	\`,
 })
 export class Dialog04Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

@@ -38,11 +38,11 @@ type InputVariants = VariantProps<typeof inputVariants>;
 	providers: [
 		{
 			provide: BrnFormFieldControl,
-			useExisting: HlmInputDirective,
+			useExisting: HlmInput,
 		},
 	],
 })
-export class HlmInputDirective implements BrnFormFieldControl, DoCheck {
+export class HlmInput implements BrnFormFieldControl, DoCheck {
 	public readonly size = input<InputVariants['size']>('default');
 
 	public readonly error = input<InputVariants['error']>('auto');

@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
 import { type ComponentFixture, TestBed } from '@angular/core/testing';
-import { HlmAvatarImageDirective } from './hlm-avatar-image.directive';
+import { HlmAvatarImage } from './hlm-avatar-image.directive';
 
 @Component({
 	selector: 'hlm-mock',
 	standalone: true,
-	imports: [HlmAvatarImageDirective],
+	imports: [HlmAvatarImage],
 	template: `
 		<img hlmAvatarImage alt="Avatar image" [class]="userCls" />
 	`,
 })
-class HlmMockComponent {
+class HlmMock {
 	public userCls = '';
 }
 
-describe('HlmAvatarImageDirective', () => {
-	let component: HlmMockComponent;
-	let fixture: ComponentFixture<HlmMockComponent>;
+describe('HlmAvatarImage', () => {
+	let component: HlmMock;
+	let fixture: ComponentFixture<HlmMock>;
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(HlmMockComponent);
+		fixture = TestBed.createComponent(HlmMock);
 		component = fixture.componentInstance;
 	});
 

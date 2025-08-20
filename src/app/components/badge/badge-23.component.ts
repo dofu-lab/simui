@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-badge-23',
 	standalone: true,
 	providers: [provideIcons({ lucideArrowRight })],
-	imports: [HlmBadgeDirective, HlmIconDirective, NgIcon],
+	imports: [HlmBadge, HlmIcon, NgIcon],
 	template: `
 		<span
 			hlmBadge
@@ -27,18 +27,17 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 })
 export class Badge23Component {}
 
-export const badge23Code = `
-import { Component } from '@angular/core';
+export const badge23Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-badge-23',
 	standalone: true,
 	providers: [provideIcons({ lucideArrowRight })],
-	imports: [HlmBadgeDirective, HlmIconDirective, NgIcon],
+	imports: [HlmBadge, HlmIcon, NgIcon],
 	template: \`
 		<span
 			hlmBadge
@@ -55,5 +54,4 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		</span>
 	\`,
 })
-export class Badge23Component {}
-`;
+export class Badge23Component {}`;

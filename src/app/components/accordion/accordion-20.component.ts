@@ -16,23 +16,23 @@ import {
 	lucideZap,
 } from '@ng-icons/lucide';
 import {
-	HlmAccordionContentComponent,
-	HlmAccordionDirective,
-	HlmAccordionIconDirective,
-	HlmAccordionItemDirective,
-	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+	HlmAccordion,
+	HlmAccordionContent,
+	HlmAccordionIcon,
+	HlmAccordionItem,
+	HlmAccordionTrigger,
+} from '@spartan-ng/helm/accordion';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-20',
 	imports: [
-		HlmAccordionDirective,
-		HlmAccordionItemDirective,
-		HlmAccordionTriggerDirective,
-		HlmAccordionContentComponent,
-		HlmAccordionIconDirective,
-		HlmIconDirective,
+		HlmAccordion,
+		HlmAccordionItem,
+		HlmAccordionTrigger,
+		HlmAccordionContent,
+		HlmAccordionIcon,
+		HlmIcon,
 		NgIcon,
 	],
 	providers: [
@@ -183,8 +183,7 @@ export class Accordion20Component {
 	];
 }
 
-export const accordion20Code = `
-import { Component } from '@angular/core';
+export const accordion20Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideChevronDown,
@@ -202,23 +201,23 @@ import {
 	lucideZap,
 } from '@ng-icons/lucide';
 import {
-	HlmAccordionContentComponent,
-	HlmAccordionDirective,
-	HlmAccordionIconDirective,
-	HlmAccordionItemDirective,
-	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+	HlmAccordion,
+	HlmAccordionContent,
+	HlmAccordionIcon,
+	HlmAccordionItem,
+	HlmAccordionTrigger,
+} from '@spartan-ng/helm/accordion';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-20',
 	imports: [
-		HlmAccordionDirective,
-		HlmAccordionItemDirective,
-		HlmAccordionTriggerDirective,
-		HlmAccordionContentComponent,
-		HlmAccordionIconDirective,
-		HlmIconDirective,
+		HlmAccordion,
+		HlmAccordionItem,
+		HlmAccordionTrigger,
+		HlmAccordionContent,
+		HlmAccordionIcon,
+		HlmIcon,
 		NgIcon,
 	],
 	providers: [
@@ -366,5 +365,4 @@ export class Accordion20Component {
 			],
 		},
 	];
-}
-`;
+}`;

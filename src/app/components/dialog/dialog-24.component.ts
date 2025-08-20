@@ -1,22 +1,14 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-24',
-	imports: [
-		NgIcon,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-	],
+	imports: [NgIcon, HlmIcon, HlmDialog, HlmDialogContent, BrnDialogTrigger, BrnDialogContent, HlmButton],
 	providers: [provideIcons({ lucideArrowRight })],
 	template: `
 		<hlm-dialog>
@@ -63,7 +55,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 	`,
 })
 export class Dialog24Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public currentStepIndex = signal(1);
 	public currentStep = computed(() => this.steps.find((step) => step.id === this.currentStepIndex()));
 
@@ -103,30 +95,21 @@ export class Dialog24Component {
 	}
 }
 
-export const dialog24Code = `
-import { Component, computed, signal, viewChild } from '@angular/core';
+export const dialog24Code = `import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-24',
-	imports: [
-		NgIcon,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-	],
+	imports: [NgIcon, HlmIcon, HlmDialog, HlmDialogContent, BrnDialogTrigger, BrnDialogContent, HlmButton],
 	providers: [provideIcons({ lucideArrowRight })],
 	template: \`
 		<hlm-dialog>
-			<button brnDialogTrigger hlmBtn variant="outline">Confirm dialog</button>
+			<button brnDialogTrigger hlmBtn variant="outline">Onboarding</button>
 			<hlm-dialog-content
 				class="[&>button>ng-icon]:text-primary-foreground top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
@@ -169,7 +152,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 	\`,
 })
 export class Dialog24Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public currentStepIndex = signal(1);
 	public currentStep = computed(() => this.steps.find((step) => step.id === this.currentStepIndex()));
 
@@ -207,5 +190,4 @@ export class Dialog24Component {
 	closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

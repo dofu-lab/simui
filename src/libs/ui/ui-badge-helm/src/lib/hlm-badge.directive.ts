@@ -53,7 +53,7 @@ export type BadgeVariants = VariantProps<typeof badgeVariants>;
 		'[class]': '_computedClass()',
 	},
 })
-export class HlmBadgeDirective {
+export class HlmBadge {
 	protected readonly _computedClass = computed(() =>
 		hlm(badgeVariants({ variant: this.variant(), size: this.size(), static: this.static() }), this.userClass()),
 	);

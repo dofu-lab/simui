@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { HlmScrollAreaDirective } from './lib/hlm-scroll-area.directive';
+import { HlmScrollArea } from './lib/hlm-scroll-area.directive';
 
 export * from './lib/hlm-scroll-area.directive';
 
 @NgModule({
-	imports: [HlmScrollAreaDirective],
-	exports: [HlmScrollAreaDirective],
+	imports: [HlmScrollArea],
+	exports: [HlmScrollArea],
 })
 export class HlmScrollAreaModule {}

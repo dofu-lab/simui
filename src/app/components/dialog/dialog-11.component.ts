@@ -1,31 +1,26 @@
 import { Component, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent, HlmDialogFooter, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-dialog-11',
 	imports: [
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmInputDirective,
-		HlmLabelDirective,
-		HlmRadioGroupComponent,
-		HlmRadioComponent,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmInput,
+		HlmLabel,
+		HlmRadioGroup,
+		HlmRadio,
 		FormsModule,
 	],
 	template: `
@@ -75,7 +70,7 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 	`,
 })
 export class Dialog11Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public ratingNumber = model<number>();
 
 	closeDialog() {
@@ -83,35 +78,29 @@ export class Dialog11Component {
 	}
 }
 
-export const dialog11Code = `
-import { Component, model, viewChild } from '@angular/core';
+export const dialog11Code = `import { Component, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent, HlmDialogFooter, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-dialog-11',
 	imports: [
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmInputDirective,
-		HlmLabelDirective,
-		HlmRadioGroupComponent,
-		HlmRadioComponent,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmInput,
+		HlmLabel,
+		HlmRadioGroup,
+		HlmRadio,
 		FormsModule,
 	],
 	template: \`
@@ -161,11 +150,10 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 	\`,
 })
 export class Dialog11Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public ratingNumber = model<number>();
 
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

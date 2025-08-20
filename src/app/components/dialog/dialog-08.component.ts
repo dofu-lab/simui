@@ -2,36 +2,36 @@ import { Component, computed, model, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
 import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+	HlmDialog,
+	HlmDialogContent,
+	HlmDialogDescription,
+	HlmDialogFooter,
+	HlmDialogHeader,
+} from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-08',
 	providers: [provideIcons({ lucideCircleAlert })],
 	imports: [
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
 		NgIcon,
-		HlmIconDirective,
-		HlmInputDirective,
+		HlmIcon,
+		HlmInput,
 		FormsModule,
-		HlmLabelDirective,
+		HlmLabel,
 	],
 	template: `
 		<hlm-dialog>
@@ -75,48 +75,47 @@ export class Dialog08Component {
 	inputValue = model<string>('');
 	isDisabled = computed(() => this.inputValue() !== this.projectName());
 
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
 }
 
-export const dialog08Code = `
-import { Component, computed, model, signal, viewChild } from '@angular/core';
+export const dialog08Code = `import { Component, computed, model, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
 import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+	HlmDialog,
+	HlmDialogContent,
+	HlmDialogDescription,
+	HlmDialogFooter,
+	HlmDialogHeader,
+} from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-08',
 	providers: [provideIcons({ lucideCircleAlert })],
 	imports: [
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
 		NgIcon,
-		HlmIconDirective,
-		HlmInputDirective,
+		HlmIcon,
+		HlmInput,
 		FormsModule,
-		HlmLabelDirective,
+		HlmLabel,
 	],
 	template: \`
 		<hlm-dialog>
@@ -160,10 +159,9 @@ export class Dialog08Component {
 	inputValue = model<string>('');
 	isDisabled = computed(() => this.inputValue() !== this.projectName());
 
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

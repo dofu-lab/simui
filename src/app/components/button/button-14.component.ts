@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-button-14',
 	standalone: true,
-	imports: [HlmButtonDirective, HlmSpinnerComponent],
+	imports: [HlmButton, HlmSpinner],
 	template: `
 		<button hlmBtn size="sm" class="group" [disabled]="isLoading()" (click)="submit()">
 			@if (isLoading()) {
@@ -26,35 +26,30 @@ export class Button14Component {
 	}
 }
 
-export const button14Code = `
-import { Component, signal } from '@angular/core';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+export const button14Code = `import { Component, signal } from '@angular/core';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
-  selector: 'sim-button-14',
-  standalone: true,
-  imports: [HlmButtonDirective, HlmSpinnerComponent],
-  template: \`
-    <button
-      hlmBtn
-      size="sm"
-      class="group"
-      [disabled]="isLoading()"
-      (click)="submit()"
-    >
-      @if (isLoading()) {
-      <hlm-spinner size="xs" class="mr-2" />
-      Submitting... } @else { Submit }
-    </button>
-  \`,
+	selector: 'sim-button-14',
+	standalone: true,
+	imports: [HlmButton, HlmSpinner],
+	template: \`
+		<button hlmBtn size="sm" class="group" [disabled]="isLoading()" (click)="submit()">
+			@if (isLoading()) {
+				<hlm-spinner size="xs" class="mr-2" />
+				Submitting...
+			} @else {
+				Submit
+			}
+		</button>
+	\`,
 })
 export class Button14Component {
-  isLoading = signal<boolean>(false);
+	isLoading = signal<boolean>(false);
 
-  submit() {
-    this.isLoading.set(true);
-    setTimeout(() => this.isLoading.set(false), 1500);
-  }
-}
-`;
+	submit() {
+		this.isLoading.set(true);
+		setTimeout(() => this.isLoading.set(false), 1500);
+	}
+}`;

@@ -2,23 +2,23 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
 import {
-	HlmAccordionContentComponent,
-	HlmAccordionDirective,
-	HlmAccordionIconDirective,
-	HlmAccordionItemDirective,
-	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+	HlmAccordion,
+	HlmAccordionContent,
+	HlmAccordionIcon,
+	HlmAccordionItem,
+	HlmAccordionTrigger,
+} from '@spartan-ng/helm/accordion';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-18',
 	imports: [
-		HlmAccordionDirective,
-		HlmAccordionItemDirective,
-		HlmAccordionTriggerDirective,
-		HlmAccordionContentComponent,
-		HlmAccordionIconDirective,
-		HlmIconDirective,
+		HlmAccordion,
+		HlmAccordionItem,
+		HlmAccordionTrigger,
+		HlmAccordionContent,
+		HlmAccordionIcon,
+		HlmIcon,
 		NgIcon,
 	],
 	viewProviders: [provideIcons({ lucidePlus })],
@@ -76,28 +76,27 @@ export class Accordion18Component {
 	];
 }
 
-export const accordion18Code = `
-import { Component } from '@angular/core';
+export const accordion18Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
 import {
-	HlmAccordionContentComponent,
-	HlmAccordionDirective,
-	HlmAccordionIconDirective,
-	HlmAccordionItemDirective,
-	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+	HlmAccordion,
+	HlmAccordionContent,
+	HlmAccordionIcon,
+	HlmAccordionItem,
+	HlmAccordionTrigger,
+} from '@spartan-ng/helm/accordion';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-18',
 	imports: [
-		HlmAccordionDirective,
-		HlmAccordionItemDirective,
-		HlmAccordionTriggerDirective,
-		HlmAccordionContentComponent,
-		HlmAccordionIconDirective,
-		HlmIconDirective,
+		HlmAccordion,
+		HlmAccordionItem,
+		HlmAccordionTrigger,
+		HlmAccordionContent,
+		HlmAccordionIcon,
+		HlmIcon,
 		NgIcon,
 	],
 	viewProviders: [provideIcons({ lucidePlus })],
@@ -153,6 +152,4 @@ export class Accordion18Component {
 				"SimUI is built with performance in mind. Components are lightweight, tree-shakable, and optimized  for modern browsers. They're designed to maintain responsiveness even in complex applications.",
 		},
 	];
-}
-
-`;
+}`;

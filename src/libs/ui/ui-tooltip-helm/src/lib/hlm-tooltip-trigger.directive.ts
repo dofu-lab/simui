@@ -1,5 +1,5 @@
 import { Directive } from '@angular/core';
-import { BrnTooltipTriggerDirective, provideBrnTooltipDefaultOptions } from '@spartan-ng/brain/tooltip';
+import { BrnTooltipTrigger, provideBrnTooltipDefaultOptions } from '@spartan-ng/brain/tooltip';
 
 const DEFAULT_TOOLTIP_CONTENT_CLASSES =
 	'overflow-hidden rounded-md border border-border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md fade-in-0 zoom-in-95 ' +
@@ -21,7 +21,7 @@ const DEFAULT_TOOLTIP_CONTENT_CLASSES =
 	],
 	hostDirectives: [
 		{
-			directive: BrnTooltipTriggerDirective,
+			directive: BrnTooltipTrigger,
 			inputs: [
 				'brnTooltipDisabled: hlmTooltipDisabled',
 				'brnTooltipTrigger: hlmTooltipTrigger',
@@ -36,4 +36,4 @@ const DEFAULT_TOOLTIP_CONTENT_CLASSES =
 		},
 	],
 })
-export class HlmTooltipTriggerDirective {}
+export class HlmTooltipTrigger {}

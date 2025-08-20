@@ -9,7 +9,7 @@ import { type ClassValue } from 'clsx';
 		'[class]': '_computedClass()',
 	},
 })
-export class HlmInputOtpGroupDirective {
+export class HlmInputOtpGroup {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
 	protected readonly _computedClass = computed(() => hlm('flex items-center', this.userClass()));

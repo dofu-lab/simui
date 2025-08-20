@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { remixStarFill } from '@ng-icons/remixicon';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-06',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, HlmIconDirective, NgIcon],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, HlmIcon, NgIcon],
 	providers: [provideIcons({ remixStarFill })],
 	template: `
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="6">
@@ -136,17 +136,16 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 })
 export class Radio06Component {}
 
-export const radio06Code = `
-import { Component } from '@angular/core';
+export const radio06Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { remixStarFill } from '@ng-icons/remixicon';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-06',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, HlmIconDirective, NgIcon],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, HlmIcon, NgIcon],
 	providers: [provideIcons({ remixStarFill })],
 	template: \`
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="6">
@@ -273,5 +272,4 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 		</hlm-radio-group>
 	\`,
 })
-export class Radio06Component {}
-`;
+export class Radio06Component {}`;

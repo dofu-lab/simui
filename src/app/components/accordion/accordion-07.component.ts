@@ -2,23 +2,23 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import {
-	HlmAccordionContentComponent,
-	HlmAccordionDirective,
-	HlmAccordionIconDirective,
-	HlmAccordionItemDirective,
-	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+	HlmAccordion,
+	HlmAccordionContent,
+	HlmAccordionIcon,
+	HlmAccordionItem,
+	HlmAccordionTrigger,
+} from '@spartan-ng/helm/accordion';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-07',
 	imports: [
-		HlmAccordionDirective,
-		HlmAccordionItemDirective,
-		HlmAccordionTriggerDirective,
-		HlmAccordionContentComponent,
-		HlmAccordionIconDirective,
-		HlmIconDirective,
+		HlmAccordion,
+		HlmAccordionItem,
+		HlmAccordionTrigger,
+		HlmAccordionContent,
+		HlmAccordionIcon,
+		HlmIcon,
 		NgIcon,
 	],
 	viewProviders: [provideIcons({ lucideChevronDown })],
@@ -81,28 +81,27 @@ export class Accordion07Component {
 	];
 }
 
-export const accordion07Code = `
-import { Component } from '@angular/core';
+export const accordion07Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import {
-	HlmAccordionContentComponent,
-	HlmAccordionDirective,
-	HlmAccordionIconDirective,
-	HlmAccordionItemDirective,
-	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+	HlmAccordion,
+	HlmAccordionContent,
+	HlmAccordionIcon,
+	HlmAccordionItem,
+	HlmAccordionTrigger,
+} from '@spartan-ng/helm/accordion';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-07',
 	imports: [
-		HlmAccordionDirective,
-		HlmAccordionItemDirective,
-		HlmAccordionTriggerDirective,
-		HlmAccordionContentComponent,
-		HlmAccordionIconDirective,
-		HlmIconDirective,
+		HlmAccordion,
+		HlmAccordionItem,
+		HlmAccordionTrigger,
+		HlmAccordionContent,
+		HlmAccordionIcon,
+		HlmIcon,
 		NgIcon,
 	],
 	viewProviders: [provideIcons({ lucideChevronDown })],
@@ -163,5 +162,4 @@ export class Accordion07Component {
 				'Our support team is available around the ClockIcon to assist you. For billing inquiries, technical issues, or general questions, you can reach us through live chat, email at support@example.com, or schedule a call with our technical team. Premium support is available for enterprise customers.',
 		},
 	];
-}
-`;
+}`;

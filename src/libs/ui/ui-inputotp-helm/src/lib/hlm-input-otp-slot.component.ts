@@ -1,14 +1,14 @@
 import { NumberInput } from '@angular/cdk/coercion';
 import { Component, computed, input, numberAttribute } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
-import { BrnInputOtpSlotComponent } from '@spartan-ng/brain/input-otp';
+import { BrnInputOtpSlot } from '@spartan-ng/brain/input-otp';
 import { type ClassValue } from 'clsx';
-import { HlmInputOtpFakeCaretComponent } from './hlm-input-otp-fake-caret.component';
+import { HlmInputOtpFakeCaret } from './hlm-input-otp-fake-caret.component';
 
 @Component({
 	selector: 'hlm-input-otp-slot',
 	standalone: true,
-	imports: [BrnInputOtpSlotComponent, HlmInputOtpFakeCaretComponent],
+	imports: [BrnInputOtpSlot, HlmInputOtpFakeCaret],
 	template: `
 		<brn-input-otp-slot [index]="index()">
 			<hlm-input-otp-fake-caret />
@@ -18,7 +18,7 @@ import { HlmInputOtpFakeCaretComponent } from './hlm-input-otp-fake-caret.compon
 		'[class]': '_computedClass()',
 	},
 })
-export class HlmInputOtpSlotComponent {
+export class HlmInputOtpSlot {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
 	public readonly index = input.required<number, NumberInput>({ transform: numberAttribute });

@@ -9,7 +9,7 @@ import type { ClassValue } from 'clsx';
 		'[class]': '_computedClass()',
 	},
 })
-export class HlmBreadcrumbItemDirective {
+export class HlmBreadcrumbItem {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
 	protected readonly _computedClass = computed(() => hlm('inline-flex items-center gap-1.5', this.userClass()));

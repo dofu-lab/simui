@@ -1,1 +1,1 @@
-export * from './lib/file-drag-drop.directive'; 
+export * from './lib/file-drag-drop.directive';

@@ -1,25 +1,25 @@
 import { Component, viewChild } from '@angular/core';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
 import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
+	HlmDialog,
+	HlmDialogContent,
+	HlmDialogDescription,
+	HlmDialogFooter,
+	HlmDialogHeader,
+} from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-07',
 	imports: [
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
 	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
@@ -128,36 +128,35 @@ import {
 	`,
 })
 export class Dialog07Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
 }
 
-export const dialog07Code = `
-import { Component, viewChild } from '@angular/core';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+export const dialog07Code = `import { Component, viewChild } from '@angular/core';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
 import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
+	HlmDialog,
+	HlmDialogContent,
+	HlmDialogDescription,
+	HlmDialogFooter,
+	HlmDialogHeader,
+} from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-07',
 	imports: [
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
 	],
 	template: \`
 		<hlm-dialog autoFocus="dialog">
@@ -266,10 +265,9 @@ import {
 	\`,
 })
 export class Dialog07Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 
 	closeDialog() {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

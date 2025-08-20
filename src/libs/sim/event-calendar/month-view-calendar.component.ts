@@ -1,8 +1,8 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DatePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 import {
 	addDays,
 	addMinutes,
@@ -27,10 +27,10 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 		DatePipe,
 		NgClass,
 		EventItemComponent,
-		BrnPopoverComponent,
-		BrnPopoverContentDirective,
-		BrnPopoverTriggerDirective,
-		HlmPopoverContentDirective,
+		BrnPopover,
+		BrnPopoverContent,
+		BrnPopoverTrigger,
+		HlmPopoverContent,
 		CdkDrag,
 		CdkDropList,
 		CdkDropListGroup,

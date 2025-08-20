@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmSwitchComponent } from './hlm-switch.component';
+import { HlmSwitch } from './hlm-switch.component';
 @Component({
 	selector: 'hlm-switch-ng-model',
 	standalone: true,
@@ -11,14 +11,13 @@ import { HlmSwitchComponent } from './hlm-switch.component';
 				[(ngModel)]="switchValue"
 				id="testSwitchForm"
 				aria-label="test switch"
-				(changed)="handleChange($event)"
-			/>
+				(changed)="handleChange($event)" />
 		</label>
 
 		<p data-testid="switchValue">{{ switchValue }}</p>
 		<p data-testid="changedValue">{{ changedValueTo }}</p>
 	`,
-	imports: [HlmSwitchComponent, FormsModule],
+	imports: [HlmSwitch, FormsModule],
 })
 export class SwitchFormComponent {
 	@Input()

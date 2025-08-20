@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideUserPlus } from '@ng-icons/lucide';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-27',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmButtonDirective,
-		HlmAvatarComponent,
-		HlmAvatarFallbackDirective,
-		HlmAvatarImageDirective,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		HlmButton,
+		HlmAvatar,
+		HlmAvatarFallback,
+		HlmAvatarImage,
+		BrnDialogTrigger,
+		BrnDialogContent,
 	],
 	providers: [provideIcons({ lucideUserPlus })],
 	template: `
@@ -63,29 +63,28 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 })
 export class Dialog27Component {}
 
-export const dialog27Code = `
-import { Component } from '@angular/core';
+export const dialog27Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideUserPlus } from '@ng-icons/lucide';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-27',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmButtonDirective,
-		HlmAvatarComponent,
-		HlmAvatarFallbackDirective,
-		HlmAvatarImageDirective,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		HlmButton,
+		HlmAvatar,
+		HlmAvatarFallback,
+		HlmAvatarImage,
+		BrnDialogTrigger,
+		BrnDialogContent,
 	],
 	providers: [provideIcons({ lucideUserPlus })],
 	template: \`
@@ -127,5 +126,4 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		</hlm-dialog>
 	\`,
 })
-export class Dialog27Component {}
-`;
+export class Dialog27Component {}`;

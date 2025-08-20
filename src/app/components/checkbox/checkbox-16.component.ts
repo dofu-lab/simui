@@ -1,18 +1,12 @@
 import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-16',
 	standalone: true,
-	imports: [
-		HlmCheckboxComponent,
-		HlmLabelDirective,
-		HlmAvatarComponent,
-		HlmAvatarImageDirective,
-		HlmAvatarFallbackDirective,
-	],
+	imports: [HlmCheckbox, HlmLabel, HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
 	host: {
 		class: 'w-full',
 	},
@@ -40,22 +34,15 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 })
 export class Checkbox16Component {}
 
-export const checkbox16Code = `
-import { Component } from '@angular/core';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+export const checkbox16Code = `import { Component } from '@angular/core';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-16',
 	standalone: true,
-	imports: [
-		HlmCheckboxComponent,
-		HlmLabelDirective,
-		HlmAvatarComponent,
-		HlmAvatarImageDirective,
-		HlmAvatarFallbackDirective,
-	],
+	imports: [HlmCheckbox, HlmLabel, HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
 	host: {
 		class: 'w-full',
 	},
@@ -81,5 +68,4 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 		</label>
 	\`,
 })
-export class Checkbox16Component {}
-`;
+export class Checkbox16Component {}`;

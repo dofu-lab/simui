@@ -1,22 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowLeft, lucideArrowRight } from '@ng-icons/lucide';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-11',
-	imports: [
-		NgIcon,
-		HlmIconDirective,
-		HlmButtonDirective,
-		BrnPopoverComponent,
-		BrnPopoverTriggerDirective,
-		BrnPopoverContentDirective,
-		HlmPopoverContentDirective,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent],
 	providers: [provideIcons({ lucideArrowLeft, lucideArrowRight })],
 	template: `
 		<brn-popover sideOffset="5">
@@ -100,26 +92,17 @@ export class Popover11Component {
 	}
 }
 
-export const Popover11Code = `
-import { Component, signal } from '@angular/core';
+export const popover11Code = `import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowLeft, lucideArrowRight } from '@ng-icons/lucide';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-11',
-	imports: [
-		NgIcon,
-		HlmIconDirective,
-		HlmButtonDirective,
-		BrnPopoverComponent,
-		BrnPopoverTriggerDirective,
-		BrnPopoverContentDirective,
-		HlmPopoverContentDirective,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent],
 	providers: [provideIcons({ lucideArrowLeft, lucideArrowRight })],
 	template: \`
 		<brn-popover sideOffset="5">
@@ -201,5 +184,4 @@ export class Popover11Component {
 			this.currentStep.update((value: number) => value - 1);
 		}
 	}
-}
-`;
+}`;

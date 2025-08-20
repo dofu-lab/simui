@@ -1,31 +1,26 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent, HlmDialogDescription, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-14',
 	imports: [
 		FormsModule,
 		ReactiveFormsModule,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
-		HlmLabelDirective,
-		HlmInputDirective,
-		HlmButtonDirective,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
+		HlmLabel,
+		HlmInput,
+		HlmButton,
 	],
 	template: `
 		<hlm-dialog>
@@ -128,7 +123,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 	`,
 })
 export class Dialog14Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	private _formBuilder = inject(FormBuilder);
 
 	public form = this._formBuilder.group({
@@ -145,35 +140,29 @@ export class Dialog14Component {
 	}
 }
 
-export const dialog14Code = `
-import { Component, inject, viewChild } from '@angular/core';
+export const dialog14Code = `import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent, HlmDialogDescription, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-14',
 	imports: [
 		FormsModule,
 		ReactiveFormsModule,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
-		HlmLabelDirective,
-		HlmInputDirective,
-		HlmButtonDirective,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
+		HlmLabel,
+		HlmInput,
+		HlmButton,
 	],
 	template: \`
 		<hlm-dialog>
@@ -276,7 +265,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 	\`,
 })
 export class Dialog14Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	private _formBuilder = inject(FormBuilder);
 
 	public form = this._formBuilder.group({
@@ -291,5 +280,4 @@ export class Dialog14Component {
 			this.dialogRef()?.close({});
 		}
 	}
-}
-`;
+}`;

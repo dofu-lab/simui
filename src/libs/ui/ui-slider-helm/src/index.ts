@@ -1,4 +1,4 @@
 export * from './lib/hlm-slider.component';
-import { HlmSliderComponent } from './lib/hlm-slider.component';
+import { HlmSlider } from './lib/hlm-slider.component';
 
-export const HlmSliderImports = [HlmSliderComponent] as const;
+export const HlmSliderImports = [HlmSlider] as const;

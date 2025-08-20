@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation, computed, input } from '@angular/core';
-import { BrnAccordionContentComponent } from '@spartan-ng/brain/accordion';
+import { BrnAccordionContent } from '@spartan-ng/brain/accordion';
 import { hlm } from '@spartan-ng/brain/core';
 import type { ClassValue } from 'clsx';
 
@@ -19,7 +19,7 @@ import type { ClassValue } from 'clsx';
 		'[class]': '_computedClass()',
 	},
 })
-export class HlmAccordionContentComponent extends BrnAccordionContentComponent {
+export class HlmAccordionContent extends BrnAccordionContent {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() => {
 		const gridRows = this.state() === 'open' ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]';

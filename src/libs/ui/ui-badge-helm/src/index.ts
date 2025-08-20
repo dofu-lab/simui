@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { HlmBadgeDirective } from './lib/hlm-badge.directive';
+import { HlmBadge } from './lib/hlm-badge.directive';
 
 export * from './lib/hlm-badge.directive';
 
 @NgModule({
-	imports: [HlmBadgeDirective],
-	exports: [HlmBadgeDirective],
+	imports: [HlmBadge],
+	exports: [HlmBadge],
 })
 export class HlmBadgeModule {}

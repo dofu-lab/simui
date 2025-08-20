@@ -3,13 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { remixStarFill } from '@ng-icons/remixicon';
 import { hlm } from '@spartan-ng/brain/core';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-16',
-	imports: [NgIcon, HlmIconDirective, HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, FormsModule],
+	imports: [NgIcon, HlmIcon, HlmRadioGroup, HlmRadio, HlmLabel, FormsModule],
 	providers: [provideIcons({ remixStarFill })],
 	template: `
 		<div class="flex flex-1 flex-col gap-2">
@@ -53,19 +53,18 @@ export class Radio16Component {
 	}
 }
 
-export const radio16Code = `
-import { Component, signal } from '@angular/core';
+export const radio16Code = `import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { remixStarFill } from '@ng-icons/remixicon';
 import { hlm } from '@spartan-ng/brain/core';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-16',
-	imports: [NgIcon, HlmIconDirective, HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, FormsModule],
+	imports: [NgIcon, HlmIcon, HlmRadioGroup, HlmRadio, HlmLabel, FormsModule],
 	providers: [provideIcons({ remixStarFill })],
 	template: \`
 		<div class="flex flex-1 flex-col gap-2">
@@ -107,5 +106,4 @@ export class Radio16Component {
 		const colorStyle = (this.hoverRating() || this.rating()) >= value ? 'text-amber-500' : 'text-input';
 		return hlm(colorStyle);
 	}
-}
-`;
+}`;

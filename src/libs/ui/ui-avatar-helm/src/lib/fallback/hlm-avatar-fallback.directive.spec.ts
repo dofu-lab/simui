@@ -1,27 +1,27 @@
 import { Component, PLATFORM_ID } from '@angular/core';
 import { type ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { hexColorFor, isBright } from '@spartan-ng/brain/avatar';
-import { HlmAvatarFallbackDirective } from './hlm-avatar-fallback.directive';
+import { HlmAvatarFallback } from './hlm-avatar-fallback.directive';
 
 @Component({
 	selector: 'hlm-mock',
 	standalone: true,
-	imports: [HlmAvatarFallbackDirective],
+	imports: [HlmAvatarFallback],
 	template: `
 		<span hlmAvatarFallback [class]="userCls" [autoColor]="autoColor">fallback2</span>
 	`,
 })
-class HlmMockComponent {
+class HlmMock {
 	public userCls = '';
 	public autoColor = false;
 }
 
-describe('HlmAvatarFallbackDirective', () => {
-	let component: HlmMockComponent;
-	let fixture: ComponentFixture<HlmMockComponent>;
+describe('HlmAvatarFallback', () => {
+	let component: HlmMock;
+	let fixture: ComponentFixture<HlmMock>;
 
 	beforeEach(() => {
-		fixture = TestBed.overrideProvider(PLATFORM_ID, { useValue: 'browser' }).createComponent(HlmMockComponent);
+		fixture = TestBed.overrideProvider(PLATFORM_ID, { useValue: 'browser' }).createComponent(HlmMock);
 		component = fixture.componentInstance;
 	});
 

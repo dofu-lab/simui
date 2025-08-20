@@ -1,5 +1,5 @@
 import { Directive, computed, inject, input } from '@angular/core';
-import { BrnAvatarImageDirective } from '@spartan-ng/brain/avatar';
+import { BrnAvatarImage } from '@spartan-ng/brain/avatar';
 import { hlm } from '@spartan-ng/brain/core';
 import type { ClassValue } from 'clsx';
 
@@ -7,13 +7,13 @@ import type { ClassValue } from 'clsx';
 	selector: 'img[hlmAvatarImage]',
 	standalone: true,
 	exportAs: 'avatarImage',
-	hostDirectives: [BrnAvatarImageDirective],
+	hostDirectives: [BrnAvatarImage],
 	host: {
 		'[class]': '_computedClass()',
 	},
 })
-export class HlmAvatarImageDirective {
-	public canShow = inject(BrnAvatarImageDirective).canShow;
+export class HlmAvatarImage {
+	public canShow = inject(BrnAvatarImage).canShow;
 
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected _computedClass = computed(() => hlm('aspect-square object-cover h-full w-full', this.userClass()));

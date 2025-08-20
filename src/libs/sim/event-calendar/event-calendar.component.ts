@@ -1,9 +1,4 @@
-import {
-	HlmMenuComponent,
-	HlmMenuGroupComponent,
-	HlmMenuItemDirective,
-	HlmMenuShortcutComponent,
-} from '@/libs/ui/ui-menu-helm/src';
+import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuShortcut } from '@/libs/ui/ui-menu-helm/src';
 import { DatePipe, TitleCasePipe } from '@angular/common';
 import {
 	ChangeDetectionStrategy,
@@ -17,9 +12,9 @@ import {
 } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideChevronLeft, lucideChevronRight, lucidePlus } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import {
 	addDays,
 	addMonths,
@@ -47,17 +42,17 @@ import { toast } from 'ngx-sonner';
 		NgIcon,
 		DatePipe,
 		TitleCasePipe,
-		HlmIconDirective,
-		HlmButtonDirective,
+		HlmIcon,
+		HlmButton,
 		MonthViewCalendarComponent,
 		WeekViewCalendarComponent,
 		DayViewCalendarComponent,
 		AgendaViewComponent,
-		BrnMenuTriggerDirective,
-		HlmMenuComponent,
-		HlmMenuItemDirective,
-		HlmMenuGroupComponent,
-		HlmMenuShortcutComponent,
+		BrnMenuTrigger,
+		HlmMenu,
+		HlmMenuItem,
+		HlmMenuGroup,
+		HlmMenuShortcut,
 		EventDialogComponent,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
