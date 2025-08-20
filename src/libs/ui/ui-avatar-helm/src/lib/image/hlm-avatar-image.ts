@@ -5,7 +5,6 @@ import type { ClassValue } from 'clsx';
 
 @Directive({
 	selector: 'img[hlmAvatarImage]',
-	standalone: true,
 	exportAs: 'avatarImage',
 	hostDirectives: [BrnAvatarImage],
 	host: {
@@ -16,5 +15,5 @@ export class HlmAvatarImage {
 	public canShow = inject(BrnAvatarImage).canShow;
 
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
-	protected _computedClass = computed(() => hlm('aspect-square object-cover h-full w-full', this.userClass()));
+	protected _computedClass = computed(() => hlm('aspect-square size-full', this.userClass()));
 }
