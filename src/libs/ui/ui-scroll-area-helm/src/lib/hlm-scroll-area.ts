@@ -4,13 +4,12 @@ import type { ClassValue } from 'clsx';
 
 @Directive({
 	selector: 'ng-scrollbar[hlm]',
-	standalone: true,
 	host: {
 		'[class]': '_computedClass()',
 		'[style.--scrollbar-border-radius.px]': '100',
 		'[style.--scrollbar-offset]': '3',
-		'[style.--scrollbar-thumb-color]': '"hsl(var(--border))"',
-		'[style.--scrollbar-thumb-hover-color]': '"hsl(var(--border))"',
+		'[style.--scrollbar-thumb-color]': '"var(--border)"',
+		'[style.--scrollbar-thumb-hover-color]': '"var(--border)"',
 		'[style.--scrollbar-thickness]': '7',
 	},
 })

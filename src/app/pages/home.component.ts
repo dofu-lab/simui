@@ -38,13 +38,13 @@ import { NavigationService } from '../core/navigation.service';
 								[hidden]="this.appearance() !== 'light'" />
 						</div>
 						<div dfCardBody>
-							<div class="text-text-md flex items-center gap-2 font-semibold">
+							<div class="text-text-md text-foreground flex items-center gap-2 font-semibold">
 								{{ component.name }}
 								@if (component.isNew) {
 									<span hlmBadge variant="outline">New</span>
 								}
 							</div>
-							<div class="text-text-sm">{{ component.compNumber }} components</div>
+							<div class="text-text-sm text-foreground text-foreground">{{ component.compNumber }} components</div>
 						</div>
 					</div>
 				}
