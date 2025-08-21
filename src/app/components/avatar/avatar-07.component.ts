@@ -10,7 +10,7 @@ import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/a
 	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback, NgIcon],
 	template: `
 		<div class="relative">
-			<hlm-avatar variant="medium" class="border-border/50 border">
+			<hlm-avatar class="border-border/50 size-10 border">
 				<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 				<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 			</hlm-avatar>
@@ -35,7 +35,7 @@ import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/a
 	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback, NgIcon],
 	template: \`
 		<div class="relative">
-			<hlm-avatar variant="medium" class="border-border/50 border">
+			<hlm-avatar class="border-border/50 size-10 border">
 				<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 				<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 			</hlm-avatar>

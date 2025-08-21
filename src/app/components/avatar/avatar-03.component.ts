@@ -10,7 +10,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	providers: [provideIcons({ lucideUser })],
 	imports: [HlmAvatar, HlmAvatarFallback, HlmIcon, NgIcon],
 	template: `
-		<hlm-avatar variant="medium" class="border-border/50 border">
+		<hlm-avatar class="border-border/50 size-10 border">
 			<span hlmAvatarFallback class="bg-muted text-muted-foreground">
 				<ng-icon hlm name="lucideUser" />
 			</span>
@@ -31,7 +31,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	providers: [provideIcons({ lucideUser })],
 	imports: [HlmAvatar, HlmAvatarFallback, HlmIcon, NgIcon],
 	template: \`
-		<hlm-avatar variant="medium" class="border-border/50 border">
+		<hlm-avatar class="border-border/50 size-10 border">
 			<span hlmAvatarFallback class="bg-muted text-muted-foreground">
 				<ng-icon hlm name="lucideUser" />
 			</span>

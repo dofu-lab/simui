@@ -6,7 +6,7 @@ import { HlmAvatar, HlmAvatarFallback } from '@spartan-ng/helm/avatar';
 	standalone: true,
 	imports: [HlmAvatar, HlmAvatarFallback],
 	template: `
-		<hlm-avatar variant="medium" class="border-border/50 border">
+		<hlm-avatar class="border-border/50 size-10 border">
 			<span hlmAvatarFallback class="bg-muted">ML</span>
 		</hlm-avatar>
 	`,
@@ -21,7 +21,7 @@ import { HlmAvatar, HlmAvatarFallback } from '@spartan-ng/helm/avatar';
 	standalone: true,
 	imports: [HlmAvatar, HlmAvatarFallback],
 	template: \`
-		<hlm-avatar variant="medium" class="border-border/50 border">
+		<hlm-avatar class="border-border/50 size-10 border">
 			<span hlmAvatarFallback class="bg-muted">ML</span>
 		</hlm-avatar>
 	\`,
