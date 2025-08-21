@@ -18,19 +18,19 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="bg-muted flex gap-2 overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
+					class="border-border dark:data-[state=active]:bg-background bg-muted flex flex-none gap-2 overflow-hidden rounded-b-none border-x border-t border-b-0 py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucideHouse" size="sm" />
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="bg-muted flex gap-2 overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
+					class="border-border dark:data-[state=active]:bg-background bg-muted flex flex-none gap-2 overflow-hidden rounded-b-none border-x border-t border-b-0 py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePanelsTopLeft" size="sm" />
 					Projects
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="bg-muted flex gap-2 overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
+					class="border-border dark:data-[state=active]:bg-background bg-muted flex flex-none gap-2 overflow-hidden rounded-b-none border-x border-t border-b-0 py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePackage" size="sm" />
 					Packages
 				</button>
@@ -69,19 +69,19 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="bg-muted flex gap-2 overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
+					class="border-border dark:data-[state=active]:bg-background bg-muted flex flex-none gap-2 overflow-hidden rounded-b-none border-x border-t border-b-0 py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucideHouse" size="sm" />
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="bg-muted flex gap-2 overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
+					class="border-border dark:data-[state=active]:bg-background bg-muted flex flex-none gap-2 overflow-hidden rounded-b-none border-x border-t border-b-0 py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePanelsTopLeft" size="sm" />
 					Projects
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="bg-muted flex gap-2 overflow-hidden rounded-b-none border-x border-t py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
+					class="border-border dark:data-[state=active]:bg-background bg-muted flex flex-none gap-2 overflow-hidden rounded-b-none border-x border-t border-b-0 py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePackage" size="sm" />
 					Packages
 				</button>

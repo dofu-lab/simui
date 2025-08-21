@@ -15,17 +15,17 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Project
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Packages
 				</button>
 			</hlm-tabs-list>
@@ -62,17 +62,17 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Project
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Packages
 				</button>
 			</hlm-tabs-list>

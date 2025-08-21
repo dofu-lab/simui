@@ -6,8 +6,8 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
-			<hlm-tabs-list class="grid w-full grid-cols-3" aria-label="tabs example">
-				<button hlmTabsTrigger="tab01">Tab 1</button>
+			<hlm-tabs-list class="grid w-full grid-cols-3 p-0.5" aria-label="tabs example">
+				<button hlmTabsTrigger="tab01" class="">Tab 1</button>
 				<button hlmTabsTrigger="tab02">Tab 2</button>
 				<button hlmTabsTrigger="tab03">Tab 3</button>
 			</hlm-tabs-list>
@@ -33,8 +33,8 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	template: \`
 		<hlm-tabs tab="tab01" class="w-full">
-			<hlm-tabs-list class="grid w-full grid-cols-3" aria-label="tabs example">
-				<button hlmTabsTrigger="tab01">Tab 1</button>
+			<hlm-tabs-list class="grid w-full grid-cols-3 p-0.5" aria-label="tabs example">
+				<button hlmTabsTrigger="tab01" class="">Tab 1</button>
 				<button hlmTabsTrigger="tab02">Tab 2</button>
 				<button hlmTabsTrigger="tab03">Tab 3</button>
 			</hlm-tabs-list>

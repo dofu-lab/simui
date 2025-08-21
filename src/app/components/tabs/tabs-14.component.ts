@@ -10,7 +10,7 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
 			<hlm-tabs-list
-				class="[&>button]:data-[state=active]:bg-muted text-muted-foreground/70 mx-auto flex w-full max-w-xs items-center justify-center rounded-md bg-transparent p-0.5 [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
+				class="[&>button]:data-[state=active]:bg-muted text-muted-foreground/70 mx-auto flex h-fit w-full max-w-xs items-center justify-center rounded-md bg-transparent p-0.5 [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
 				aria-label="tabs example">
 				<button hlmTabsTrigger="tab01" class="flex-1 flex-col gap-1.5 p-3">
 					<span
@@ -60,7 +60,7 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 	template: \`
 		<hlm-tabs tab="tab01" class="w-full">
 			<hlm-tabs-list
-				class="[&>button]:data-[state=active]:bg-muted text-muted-foreground/70 mx-auto flex w-full max-w-xs items-center justify-center rounded-md bg-transparent p-0.5 [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
+				class="[&>button]:data-[state=active]:bg-muted text-muted-foreground/70 mx-auto flex h-fit w-full max-w-xs items-center justify-center rounded-md bg-transparent p-0.5 [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
 				aria-label="tabs example">
 				<button hlmTabsTrigger="tab01" class="flex-1 flex-col gap-1.5 p-3">
 					<span

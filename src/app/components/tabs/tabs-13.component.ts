@@ -15,19 +15,19 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucideHouse" size="sm" />
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePanelsTopLeft" size="sm" />
 					Projects
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePackage" size="sm" />
 					Packages
 				</button>
@@ -63,19 +63,19 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucideHouse" size="sm" />
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePanelsTopLeft" size="sm" />
 					Projects
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePackage" size="sm" />
 					Packages
 				</button>
