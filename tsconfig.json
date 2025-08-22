@@ -22,17 +22,11 @@
       "@sim/ui-file-helm": [
         "./src/libs/sim/ui-file-helm/index.ts"
       ],
-      "@spartan-ng/helm/alert": [
-        "./src/libs/ui/ui-alert-helm/src/index.ts"
-      ],
       "@spartan-ng/helm/aspect-ratio": [
         "./src/libs/ui/ui-aspectratio-helm/src/index.ts"
       ],
       "@spartan-ng/helm/calendar": [
         "./src/libs/ui/ui-calendar-helm/src/index.ts"
-      ],
-      "@spartan-ng/helm/card": [
-        "./src/libs/ui/ui-card-helm/src/index.ts"
       ],
       "@spartan-ng/helm/checkbox": [
         "./src/libs/ui/ui-checkbox-helm/src/index.ts"
@@ -114,6 +108,12 @@
       ],
       "@spartan-ng/helm/accordion": [
         "./src/libs/ui/ui-accordion-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/alert": [
+        "./src/libs/ui/ui-alert-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/card": [
+        "./src/libs/ui/ui-card-helm/src/index.ts"
       ]
     }
   },
