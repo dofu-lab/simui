@@ -8,7 +8,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 	imports: [HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
 	template: `
 		<button hlmBtn size="sm" class="rounded-full pl-1.5">
-			<hlm-avatar variant="small" class="mr-2">
+			<hlm-avatar class="mr-2 size-6">
 				<img src="assets/avatars/alan-cooper.png" alt="Alan Cooper" hlmAvatarImage />
 				<span class="bg-primary text-primary-foreground" hlmAvatarFallback>AC</span>
 			</hlm-avatar>
@@ -28,7 +28,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 	imports: [HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
 	template: \`
 		<button hlmBtn size="sm" class="rounded-full pl-1.5">
-			<hlm-avatar variant="small" class="mr-2">
+			<hlm-avatar class="mr-2 size-6">
 				<img src="assets/avatars/alan-cooper.png" alt="Alan Cooper" hlmAvatarImage />
 				<span class="bg-primary text-primary-foreground" hlmAvatarFallback>AC</span>
 			</hlm-avatar>

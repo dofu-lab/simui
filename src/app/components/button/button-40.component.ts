@@ -16,25 +16,27 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			class="relative pe-12"
 			size="sm"
 			variant="outline"
-			[ngClass]="{ 'border-sky-600': liked() }"
+			[ngClass]="{ 'border-sky-600! dark:border-sky-400': liked() }"
 			(click)="onPressLike()">
-			<ng-icon
-				hlm
-				name="lucideThumbsUp"
-				size="sm"
-				class="mr-2 transition-transform duration-150"
-				[ngClass]="{
-					'text-sky-800': liked(),
-					'scale-115': animate(),
-				}" />
-			<span class="mr-1" [ngClass]="{ 'text-sky-800': liked() }">
-				{{ likeLabel() }}
-			</span>
-			<span
-				class="text-muted-foreground pointer-events-none absolute inset-y-0 end-0 flex w-9 items-center justify-center border-l text-xs"
-				[ngClass]="{ 'border-sky-600 text-sky-800': liked() }">
-				{{ likeCount() }}
-			</span>
+			<div class="flex items-center">
+				<ng-icon
+					hlm
+					name="lucideThumbsUp"
+					size="sm"
+					class="mr-2 transition-transform duration-150"
+					[ngClass]="{
+						'text-sky-800 dark:text-sky-600': liked(),
+						'scale-115': animate(),
+					}" />
+				<span class="mr-1" [ngClass]="{ 'text-sky-800 dark:text-sky-600': liked() }">
+					{{ likeLabel() }}
+				</span>
+				<span
+					class="text-muted-foreground pointer-events-none absolute inset-y-0 end-0 flex w-9 items-center justify-center border-l text-xs"
+					[ngClass]="{ 'border-sky-600 text-sky-800 dark:text-sky-600': liked() }">
+					{{ likeCount() }}
+				</span>
+			</div>
 		</button>
 	`,
 })
@@ -73,25 +75,27 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			class="relative pe-12"
 			size="sm"
 			variant="outline"
-			[ngClass]="{ 'border-sky-600': liked() }"
+			[ngClass]="{ 'border-sky-600! dark:border-sky-400': liked() }"
 			(click)="onPressLike()">
-			<ng-icon
-				hlm
-				name="lucideThumbsUp"
-				size="sm"
-				class="mr-2 transition-transform duration-150"
-				[ngClass]="{
-					'text-sky-800': liked(),
-					'scale-115': animate(),
-				}" />
-			<span class="mr-1" [ngClass]="{ 'text-sky-800': liked() }">
-				{{ likeLabel() }}
-			</span>
-			<span
-				class="text-muted-foreground pointer-events-none absolute inset-y-0 end-0 flex w-9 items-center justify-center border-l text-xs"
-				[ngClass]="{ 'border-sky-600 text-sky-800': liked() }">
-				{{ likeCount() }}
-			</span>
+			<div class="flex items-center">
+				<ng-icon
+					hlm
+					name="lucideThumbsUp"
+					size="sm"
+					class="mr-2 transition-transform duration-150"
+					[ngClass]="{
+						'text-sky-800 dark:text-sky-600': liked(),
+						'scale-115': animate(),
+					}" />
+				<span class="mr-1" [ngClass]="{ 'text-sky-800 dark:text-sky-600': liked() }">
+					{{ likeLabel() }}
+				</span>
+				<span
+					class="text-muted-foreground pointer-events-none absolute inset-y-0 end-0 flex w-9 items-center justify-center border-l text-xs"
+					[ngClass]="{ 'border-sky-600 text-sky-800 dark:text-sky-600': liked() }">
+					{{ likeCount() }}
+				</span>
+			</div>
 		</button>
 	\`,
 })
