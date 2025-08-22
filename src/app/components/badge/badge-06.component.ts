@@ -10,7 +10,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	providers: [provideIcons({ lucideX })],
 	imports: [HlmBadge, HlmIcon, NgIcon],
 	template: `
-		<span hlmBadge>
+		<span hlmBadge class="rounded-full">
 			<div class="flex items-center justify-center gap-1">
 				<ng-icon hlm name="lucideX" size="xs" class="text-primary-foreground" />
 				<span>Icon badge</span>
@@ -32,7 +32,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	providers: [provideIcons({ lucideX })],
 	imports: [HlmBadge, HlmIcon, NgIcon],
 	template: \`
-		<span hlmBadge>
+		<span hlmBadge class="rounded-full">
 			<div class="flex items-center justify-center gap-1">
 				<ng-icon hlm name="lucideX" size="xs" class="text-primary-foreground" />
 				<span>Icon badge</span>

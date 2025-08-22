@@ -6,7 +6,7 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 	standalone: true,
 	imports: [HlmBadge],
 	template: `
-		<span hlmBadge variant="secondary">Badge</span>
+		<span hlmBadge variant="secondary" class="rounded-full">Badge</span>
 	`,
 })
 export class Badge02Component {}
@@ -19,7 +19,7 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 	standalone: true,
 	imports: [HlmBadge],
 	template: \`
-		<span hlmBadge variant="secondary">Badge</span>
+		<span hlmBadge variant="secondary" class="rounded-full">Badge</span>
 	\`,
 })
 export class Badge02Component {}`;

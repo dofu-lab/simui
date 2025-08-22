@@ -14,7 +14,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div class="flex items-center gap-2">
 				<span hlmBadge variant="outline" class="rounded-sm">
 					<div class="flex items-center justify-center gap-1.5">
-						<div class="h-3 w-3 rounded-full border-[3px] border-amber-100 bg-amber-500"></div>
+						<div class="h-3 w-3 rounded-full border-[3px] border-amber-100 bg-amber-500 dark:border-amber-900"></div>
 						<span class="truncate">Warning</span>
 					</div>
 				</span>
@@ -42,7 +42,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div class="flex items-center gap-2">
 				<span hlmBadge variant="outline" class="rounded-sm">
 					<div class="flex items-center justify-center gap-1.5">
-						<div class="h-3 w-3 rounded-full border-[3px] border-amber-100 bg-amber-500"></div>
+						<div class="h-3 w-3 rounded-full border-[3px] border-amber-100 bg-amber-500 dark:border-amber-900"></div>
 						<span class="truncate">Warning</span>
 					</div>
 				</span>

@@ -14,11 +14,14 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			hlmBadge
 			size="lg"
 			variant="outline"
-			class="w-full rounded-full border-emerald-200 bg-emerald-50 py-[3px] pr-[3px] hover:bg-emerald-100">
+			class="w-full rounded-full border-emerald-200 bg-emerald-50 py-[3px] pr-[3px] hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:bg-emerald-900">
 			<div class="flex items-center gap-2">
-				<span class="truncate text-emerald-700">Profile is updated</span>
-				<span hlmBadge variant="outline" class="bg-background flex gap-2 rounded-full border-emerald-200">
-					<span class="truncate text-emerald-700">Success</span>
+				<span class="truncate text-emerald-600">Profile is updated</span>
+				<span
+					hlmBadge
+					variant="outline"
+					class="bg-background flex gap-2 rounded-full border-emerald-200 dark:border-emerald-800">
+					<span class="truncate text-emerald-600">Success</span>
 					<ng-icon hlm name="lucideArrowRight" size="xs" class="text-emerald-600" />
 				</span>
 			</div>
@@ -43,11 +46,14 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			hlmBadge
 			size="lg"
 			variant="outline"
-			class="w-full rounded-full border-emerald-200 bg-emerald-50 py-[3px] pr-[3px] hover:bg-emerald-100">
+			class="w-full rounded-full border-emerald-200 bg-emerald-50 py-[3px] pr-[3px] hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:bg-emerald-900">
 			<div class="flex items-center gap-2">
-				<span class="truncate text-emerald-700">Profile is updated</span>
-				<span hlmBadge variant="outline" class="bg-background flex gap-2 rounded-full border-emerald-200">
-					<span class="truncate text-emerald-700">Success</span>
+				<span class="truncate text-emerald-600">Profile is updated</span>
+				<span
+					hlmBadge
+					variant="outline"
+					class="bg-background flex gap-2 rounded-full border-emerald-200 dark:border-emerald-800">
+					<span class="truncate text-emerald-600">Success</span>
 					<ng-icon hlm name="lucideArrowRight" size="xs" class="text-emerald-600" />
 				</span>
 			</div>

@@ -14,12 +14,12 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			hlmBadge
 			size="lg"
 			variant="outline"
-			class="w-full rounded-full border-amber-200 bg-amber-50 py-[3px] pl-[3px] hover:bg-amber-100">
+			class="w-full rounded-full border-amber-200 bg-amber-50 py-[3px] pl-[3px] hover:bg-amber-100 dark:border-amber-800 dark:bg-amber-950 dark:hover:bg-amber-900">
 			<div class="flex items-center gap-2">
-				<span hlmBadge variant="outline" class="bg-background rounded-full border-amber-200">
-					<span class="truncate text-amber-700">Warning</span>
+				<span hlmBadge variant="outline" class="bg-background rounded-full border-amber-200 dark:border-amber-800">
+					<span class="truncate text-amber-600">Warning</span>
 				</span>
-				<span class="truncate text-amber-700">Password expired in 3 days</span>
+				<span class="truncate text-amber-600">Password expired in 3 days</span>
 				<ng-icon hlm name="lucideArrowRight" size="xs" class="text-amber-600" />
 			</div>
 		</span>
@@ -43,12 +43,12 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			hlmBadge
 			size="lg"
 			variant="outline"
-			class="w-full rounded-full border-amber-200 bg-amber-50 py-[3px] pl-[3px] hover:bg-amber-100">
+			class="w-full rounded-full border-amber-200 bg-amber-50 py-[3px] pl-[3px] hover:bg-amber-100 dark:border-amber-800 dark:bg-amber-950 dark:hover:bg-amber-900">
 			<div class="flex items-center gap-2">
-				<span hlmBadge variant="outline" class="bg-background rounded-full border-amber-200">
-					<span class="truncate text-amber-700">Warning</span>
+				<span hlmBadge variant="outline" class="bg-background rounded-full border-amber-200 dark:border-amber-800">
+					<span class="truncate text-amber-600">Warning</span>
 				</span>
-				<span class="truncate text-amber-700">Password expired in 3 days</span>
+				<span class="truncate text-amber-600">Password expired in 3 days</span>
 				<ng-icon hlm name="lucideArrowRight" size="xs" class="text-amber-600" />
 			</div>
 		</span>

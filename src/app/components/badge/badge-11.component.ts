@@ -6,7 +6,7 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 	standalone: true,
 	imports: [HlmBadge],
 	template: `
-		<span hlmBadge variant="outline" class="pl-0.5">
+		<span hlmBadge variant="outline" class="rounded-full pl-0.5">
 			<div class="flex items-center justify-center gap-1.5">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g clip-path="url(#clip0_73_124)">
@@ -59,7 +59,7 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 	standalone: true,
 	imports: [HlmBadge],
 	template: \`
-		<span hlmBadge variant="outline" class="pl-0.5">
+		<span hlmBadge variant="outline" class="rounded-full pl-0.5">
 			<div class="flex items-center justify-center gap-1.5">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g clip-path="url(#clip0_73_124)">

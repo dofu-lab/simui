@@ -12,7 +12,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	template: `
 		<span hlmBadge size="lg" variant="outline" class="w-full rounded-md py-[3px] pr-[3px]">
 			<div class="flex items-center gap-2">
-				<div class="h-3 w-3 rounded-full border-[3px] border-emerald-100 bg-emerald-500"></div>
+				<div class="h-3 w-3 rounded-full border-[3px] border-emerald-100 bg-emerald-500 dark:border-emerald-900"></div>
 				<span class="truncate">New release, try it?</span>
 				<span hlmBadge variant="outline" class="rounded-sm">
 					<div class="flex items-center justify-center gap-1.5">
@@ -40,7 +40,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	template: \`
 		<span hlmBadge size="lg" variant="outline" class="w-full rounded-md py-[3px] pr-[3px]">
 			<div class="flex items-center gap-2">
-				<div class="h-3 w-3 rounded-full border-[3px] border-emerald-100 bg-emerald-500"></div>
+				<div class="h-3 w-3 rounded-full border-[3px] border-emerald-100 bg-emerald-500 dark:border-emerald-900"></div>
 				<span class="truncate">New release, try it?</span>
 				<span hlmBadge variant="outline" class="rounded-sm">
 					<div class="flex items-center justify-center gap-1.5">

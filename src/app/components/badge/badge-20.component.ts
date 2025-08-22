@@ -14,12 +14,12 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			hlmBadge
 			size="lg"
 			variant="outline"
-			class="w-full rounded-full border-emerald-200 bg-emerald-50 py-[3px] pl-[3px] hover:bg-emerald-100">
+			class="w-full rounded-full border-emerald-200 bg-emerald-50 py-[3px] pl-[3px] hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:bg-emerald-900">
 			<div class="flex items-center gap-2">
-				<span hlmBadge variant="outline" class="bg-background rounded-full border-emerald-200">
-					<span class="truncate text-emerald-700">Success</span>
+				<span hlmBadge variant="outline" class="bg-background rounded-full border-emerald-200 dark:border-emerald-800">
+					<span class="truncate text-emerald-600 select-none">Success</span>
 				</span>
-				<span class="truncate text-emerald-700">Profile is updated</span>
+				<span class="truncate text-emerald-600 select-none">Profile is updated</span>
 				<ng-icon hlm name="lucideArrowRight" size="xs" class="text-emerald-600" />
 			</div>
 		</span>
@@ -43,12 +43,12 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			hlmBadge
 			size="lg"
 			variant="outline"
-			class="w-full rounded-full border-emerald-200 bg-emerald-50 py-[3px] pl-[3px] hover:bg-emerald-100">
+			class="w-full rounded-full border-emerald-200 bg-emerald-50 py-[3px] pl-[3px] hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950 dark:hover:bg-emerald-900">
 			<div class="flex items-center gap-2">
-				<span hlmBadge variant="outline" class="bg-background rounded-full border-emerald-200">
-					<span class="truncate text-emerald-700">Success</span>
+				<span hlmBadge variant="outline" class="bg-background rounded-full border-emerald-200 dark:border-emerald-800">
+					<span class="truncate text-emerald-600 select-none">Success</span>
 				</span>
-				<span class="truncate text-emerald-700">Profile is updated</span>
+				<span class="truncate text-emerald-600 select-none">Profile is updated</span>
 				<ng-icon hlm name="lucideArrowRight" size="xs" class="text-emerald-600" />
 			</div>
 		</span>
