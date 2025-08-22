@@ -33,7 +33,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 							class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-0 hover:no-underline">
 							<span class="flex items-center gap-3">
 								<span class="flex size-10 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
-									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
+									<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
 								</span>
 								<span class="text-[15px] leading-6 font-semibold">
 									{{ item.title }}
@@ -123,7 +123,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 							class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-0 hover:no-underline">
 							<span class="flex items-center gap-3">
 								<span class="flex size-10 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
-									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
+									<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
 								</span>
 								<span class="text-[15px] leading-6 font-semibold">
 									{{ item.title }}

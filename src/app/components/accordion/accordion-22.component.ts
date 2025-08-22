@@ -49,7 +49,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 									}">
 									<ng-icon
 										hlm
-										hlmAccIcon
+										size="sm"
 										name="lucideCheck"
 										class="transition-all duration-200"
 										[ngClass]="{
@@ -58,7 +58,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 										}" />
 									<ng-icon
 										hlm
-										hlmAccIcon
+										size="sm"
 										name="lucideMinus"
 										class="absolute transition-all duration-200"
 										[ngClass]="{
@@ -224,7 +224,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 									}">
 									<ng-icon
 										hlm
-										hlmAccIcon
+										size="sm"
 										name="lucideCheck"
 										class="transition-all duration-200"
 										[ngClass]="{
@@ -233,7 +233,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 										}" />
 									<ng-icon
 										hlm
-										hlmAccIcon
+										size="sm"
 										name="lucideMinus"
 										class="absolute transition-all duration-200"
 										[ngClass]="{

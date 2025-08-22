@@ -33,7 +33,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 							class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
 							<span class="flex items-center gap-3">
 								<span class="flex size-10 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
-									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
+									<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
 								</span>
 								<span class="flex flex-col items-start gap-1 text-[15px] leading-6 font-semibold">
 									<span>
@@ -125,7 +125,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 							class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
 							<span class="flex items-center gap-3">
 								<span class="flex size-10 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
-									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
+									<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
 								</span>
 								<span class="flex flex-col items-start gap-1 text-[15px] leading-6 font-semibold">
 									<span>

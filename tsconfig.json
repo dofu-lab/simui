@@ -22,9 +22,6 @@
       "@sim/ui-file-helm": [
         "./src/libs/sim/ui-file-helm/index.ts"
       ],
-      "@spartan-ng/helm/accordion": [
-        "./src/libs/ui/ui-accordion-helm/src/index.ts"
-      ],
       "@spartan-ng/helm/alert": [
         "./src/libs/ui/ui-alert-helm/src/index.ts"
       ],
@@ -114,6 +111,9 @@
       ],
       "@spartan-ng/helm/breadcrumb": [
         "./src/libs/ui/ui-breadcrumb-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/accordion": [
+        "./src/libs/ui/ui-accordion-helm/src/index.ts"
       ]
     }
   },

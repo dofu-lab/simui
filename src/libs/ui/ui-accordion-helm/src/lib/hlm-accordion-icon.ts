@@ -7,7 +7,6 @@ import type { ClassValue } from 'clsx';
 
 @Directive({
 	selector: 'ng-icon[hlmAccordionIcon], ng-icon[hlmAccIcon]',
-	standalone: true,
 	providers: [provideIcons({ lucideChevronDown }), provideHlmIconConfig({ size: 'sm' })],
 	host: {
 		'[class]': '_computedClass()',
@@ -16,6 +15,9 @@ import type { ClassValue } from 'clsx';
 export class HlmAccordionIcon {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() =>
-		hlm('inline-block h-4 w-4 transition-transform [animation-duration:200]', this.userClass()),
+		hlm(
+			'text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200',
+			this.userClass(),
+		),
 	);
 }

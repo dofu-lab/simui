@@ -237,6 +237,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			lucidePackageCheck,
 		}),
 	],
+	host: { ngSkipHydration: 'true' },
 	template: \`
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Multi-level W/ icon</h2>
