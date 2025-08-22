@@ -14,7 +14,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	},
 	template: `
 		<div hlmAlert class="flex gap-3">
-			<span>
+			<span class="pt-0.5">
 				<ng-icon hlm hlmAlertIcon variant="destructive" name="lucideCircleAlert" class="text-red-500" />
 			</span>
 			<div>
@@ -45,7 +45,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	},
 	template: \`
 		<div hlmAlert class="flex gap-3">
-			<span>
+			<span class="pt-0.5">
 				<ng-icon hlm hlmAlertIcon variant="destructive" name="lucideCircleAlert" class="text-red-500" />
 			</span>
 			<div>

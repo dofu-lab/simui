@@ -13,7 +13,9 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 		class: 'w-full',
 	},
 	template: `
-		<div hlmAlert class="flex gap-3 border-[#9BF4D0] bg-[#9BF4D0] py-3 text-[#002116]">
+		<div
+			hlmAlert
+			class="flex gap-3 border-[#9BF4D0] bg-[#9BF4D0] py-3 text-[#002116] dark:border-[#166534] dark:bg-[#14532d] dark:text-[#86efac]">
 			<span class="flex items-center">
 				<ng-icon hlm hlmAlertIcon name="lucideCircleCheck" />
 			</span>
@@ -38,7 +40,9 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 		class: 'w-full',
 	},
 	template: \`
-		<div hlmAlert class="flex gap-3 border-[#9BF4D0] bg-[#9BF4D0] py-3 text-[#002116]">
+		<div
+			hlmAlert
+			class="flex gap-3 border-[#9BF4D0] bg-[#9BF4D0] py-3 text-[#002116] dark:border-[#166534] dark:bg-[#14532d] dark:text-[#86efac]">
 			<span class="flex items-center">
 				<ng-icon hlm hlmAlertIcon name="lucideCircleCheck" />
 			</span>

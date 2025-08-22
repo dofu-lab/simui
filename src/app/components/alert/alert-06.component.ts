@@ -14,7 +14,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	},
 	template: `
 		<div hlmAlert class="flex gap-3 border-emerald-500/50 py-3 text-emerald-600">
-			<span class="flex items-center">
+			<span class="flex h-5 items-center">
 				<ng-icon hlm hlmAlertIcon name="lucideCircleCheck" />
 			</span>
 			<p hlmAlertDesc>Completed successfully!</p>
@@ -39,7 +39,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	},
 	template: \`
 		<div hlmAlert class="flex gap-3 border-emerald-500/50 py-3 text-emerald-600">
-			<span class="flex items-center">
+			<span class="flex h-5 items-center">
 				<ng-icon hlm hlmAlertIcon name="lucideCircleCheck" />
 			</span>
 			<p hlmAlertDesc>Completed successfully!</p>
