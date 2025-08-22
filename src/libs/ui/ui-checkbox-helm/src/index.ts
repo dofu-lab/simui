@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 
-import { HlmCheckbox } from './lib/hlm-checkbox.component';
+import { HlmCheckbox } from './lib/hlm-checkbox';
 
-export * from './lib/hlm-checkbox.component';
+export * from './lib/hlm-checkbox';
 
 export const HlmCheckboxImports = [HlmCheckbox] as const;
 @NgModule({

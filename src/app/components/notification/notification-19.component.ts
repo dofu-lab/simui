@@ -19,7 +19,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div class="flex gap-3">
 				<div class="flex grow flex-col gap-3">
 					<div class="relative w-fit items-start">
-						<hlm-avatar variant="medium" class="border-border/50 border">
+						<hlm-avatar class="border-border/50 size-10 border">
 							<img hlmAvatarImage src="assets/avatars/alan-cooper.png" alt="Alan Cooper" />
 							<span hlmAvatarFallback class="bg-primary text-primary-foreground">AC</span>
 						</hlm-avatar>
@@ -74,7 +74,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div class="flex gap-3">
 				<div class="flex grow flex-col gap-3">
 					<div class="relative w-fit items-start">
-						<hlm-avatar variant="medium" class="border-border/50 border">
+						<hlm-avatar class="border-border/50 size-10 border">
 							<img hlmAvatarImage src="assets/avatars/alan-cooper.png" alt="Alan Cooper" />
 							<span hlmAvatarFallback class="bg-primary text-primary-foreground">AC</span>
 						</hlm-avatar>

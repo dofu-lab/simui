@@ -24,15 +24,15 @@ import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
 				*brnDialogContent="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<div class="flex items-end justify-center -space-x-3.5 px-6 pt-6">
-						<hlm-avatar variant="medium" class="border-background size-[50px] border">
+						<hlm-avatar class="border-background size-[50px] border">
 							<img hlmAvatarImage src="assets/avatars/alan-cooper.png" alt="Mathilde Lewis" />
 							<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 						</hlm-avatar>
-						<hlm-avatar variant="large" class="border-background z-10 size-[58px] border">
+						<hlm-avatar class="border-background z-10 size-[58px] border">
 							<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 							<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 						</hlm-avatar>
-						<hlm-avatar variant="medium" class="border-background size-[50px] border">
+						<hlm-avatar class="border-background size-[50px] border">
 							<img hlmAvatarImage src="assets/avatars/jessica-lambert.png" alt="Mathilde Lewis" />
 							<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 						</hlm-avatar>
@@ -81,15 +81,15 @@ import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
 				*brnDialogContent="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<div class="flex items-end justify-center -space-x-3.5 px-6 pt-6">
-						<hlm-avatar variant="medium" class="border-background size-[50px] border">
+						<hlm-avatar class="border-background size-[50px] border">
 							<img hlmAvatarImage src="assets/avatars/alan-cooper.png" alt="Mathilde Lewis" />
 							<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 						</hlm-avatar>
-						<hlm-avatar variant="large" class="border-background z-10 size-[58px] border">
+						<hlm-avatar class="border-background z-10 size-[58px] border">
 							<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 							<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 						</hlm-avatar>
-						<hlm-avatar variant="medium" class="border-background size-[50px] border">
+						<hlm-avatar class="border-background size-[50px] border">
 							<img hlmAvatarImage src="assets/avatars/jessica-lambert.png" alt="Mathilde Lewis" />
 							<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 						</hlm-avatar>

@@ -14,7 +14,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 		<div class="flex">
 			<div [hlmAspectRatio]="16 / 3">
 				<img
-					src="assets/thumbnails/modal.png"
+					src="assets/backgrounds/bg-01.jpg"
 					class="rounded-r-0 h-[134px] w-50 overflow-hidden rounded-l-md border border-r-0" />
 			</div>
 			<div class="bg-background rounded-l-0 z-50 flex max-w-[400px] flex-col gap-4 rounded-r-md border p-4">
@@ -57,7 +57,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 		<div class="flex">
 			<div [hlmAspectRatio]="16 / 3">
 				<img
-					src="assets/thumbnails/modal.png"
+					src="assets/backgrounds/bg-01.jpg"
 					class="rounded-r-0 h-[134px] w-50 overflow-hidden rounded-l-md border border-r-0" />
 			</div>
 			<div class="bg-background rounded-l-0 z-50 flex max-w-[400px] flex-col gap-4 rounded-r-md border p-4">

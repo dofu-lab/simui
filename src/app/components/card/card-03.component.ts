@@ -19,7 +19,7 @@ import { HlmCard, HlmCardContent, HlmCardDescription, HlmCardFooter, HlmCardTitl
 	template: `
 		<section hlmCard class="w-60">
 			<div hlmCardContent class="flex flex-col items-center text-center">
-				<hlm-avatar variant="large" class="border-border/50 mt-3 mb-3 rounded-lg border">
+				<hlm-avatar class="border-border/50 mt-3 mb-3 size-14 rounded-lg border">
 					<img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 					<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 				</hlm-avatar>
@@ -70,7 +70,7 @@ import { HlmCard, HlmCardContent, HlmCardDescription, HlmCardFooter, HlmCardTitl
 	template: \`
 		<section hlmCard class="w-60">
 			<div hlmCardContent class="flex flex-col items-center text-center">
-				<hlm-avatar variant="large" class="border-border/50 mt-3 mb-3 rounded-lg border">
+				<hlm-avatar class="border-border/50 mt-3 mb-3 size-14 rounded-lg border">
 					<img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 					<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 				</hlm-avatar>

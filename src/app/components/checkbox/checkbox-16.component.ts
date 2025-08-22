@@ -16,7 +16,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 			hlmLabel
 			for="checkbox-16">
 			<div class="peer flex flex-1 items-start gap-2">
-				<hlm-avatar variant="medium">
+				<hlm-avatar class="size-10">
 					<img src="assets/avatars/alan-cooper.png" alt="Alan Cooper" hlmAvatarImage />
 					<span class="bg-primary text-primary-foreground" hlmAvatarFallback>AC</span>
 				</hlm-avatar>
@@ -52,7 +52,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 			hlmLabel
 			for="checkbox-16">
 			<div class="peer flex flex-1 items-start gap-2">
-				<hlm-avatar variant="medium">
+				<hlm-avatar class="size-10">
 					<img src="assets/avatars/alan-cooper.png" alt="Alan Cooper" hlmAvatarImage />
 					<span class="bg-primary text-primary-foreground" hlmAvatarFallback>AC</span>
 				</hlm-avatar>

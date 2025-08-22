@@ -42,7 +42,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 							</p>
 						</div>
 						<div class="flex gap-2">
-							<hlm-avatar variant="medium" class="border-border/50 size-[42px] border">
+							<hlm-avatar class="border-border/50 size-[42px] border">
 								<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 								<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 							</hlm-avatar>
@@ -107,7 +107,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 							</p>
 						</div>
 						<div class="flex gap-2">
-							<hlm-avatar variant="medium" class="border-border/50 size-[42px] border">
+							<hlm-avatar class="border-border/50 size-[42px] border">
 								<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 								<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 							</hlm-avatar>

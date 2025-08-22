@@ -13,7 +13,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 				<label
 					class="flex items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
-					<hlm-avatar variant="medium">
+					<hlm-avatar class="size-10">
 						<img src="assets/avatars/alan-cooper.png" alt="Alan Cooper" hlmAvatarImage />
 						<span class="bg-primary text-primary-foreground" hlmAvatarFallback>AC</span>
 					</hlm-avatar>
@@ -40,7 +40,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 				<label
 					class="flex items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
-					<hlm-avatar variant="medium">
+					<hlm-avatar class="size-10">
 						<img src="assets/avatars/jessica-lambert.png" alt="Jessica Lambert" hlmAvatarImage />
 						<span class="bg-primary text-primary-foreground" hlmAvatarFallback>JL</span>
 					</hlm-avatar>
@@ -82,7 +82,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 				<label
 					class="flex items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
-					<hlm-avatar variant="medium">
+					<hlm-avatar class="size-10">
 						<img src="assets/avatars/alan-cooper.png" alt="Alan Cooper" hlmAvatarImage />
 						<span class="bg-primary text-primary-foreground" hlmAvatarFallback>AC</span>
 					</hlm-avatar>
@@ -109,7 +109,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 				<label
 					class="flex items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
-					<hlm-avatar variant="medium">
+					<hlm-avatar class="size-10">
 						<img src="assets/avatars/jessica-lambert.png" alt="Jessica Lambert" hlmAvatarImage />
 						<span class="bg-primary text-primary-foreground" hlmAvatarFallback>JL</span>
 					</hlm-avatar>

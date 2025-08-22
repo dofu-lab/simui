@@ -61,7 +61,7 @@ import { toast } from 'ngx-sonner';
 					<div class="flex flex-col gap-3">
 						<span class="text-sm font-semibold">Organizer</span>
 						<div class="flex gap-2">
-							<hlm-avatar variant="medium" class="border-border/50 border">
+							<hlm-avatar class="border-border/50 size-10 border">
 								<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 								<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 							</hlm-avatar>
@@ -76,23 +76,23 @@ import { toast } from 'ngx-sonner';
 						<span class="text-sm font-semibold">Attendees</span>
 						<div class="flex gap-2">
 							<div class="flex -space-x-3.5">
-								<hlm-avatar variant="medium" class="border-background border-[2px]">
+								<hlm-avatar class="border-background size-10 border-[2px]">
 									<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar variant="medium" class="border-background border-[2px]">
+								<hlm-avatar class="border-background size-10 border-[2px]">
 									<img hlmAvatarImage src="assets/avatars/alan-cooper.png" alt="Alan Cooper" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar variant="medium" class="border-background border-[2px]">
+								<hlm-avatar class="border-background size-10 border-[2px]">
 									<img hlmAvatarImage src="assets/avatars/skylar-dias.png" alt="Skylar Dias" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar variant="medium" class="border-background border-[2px]">
+								<hlm-avatar class="border-background size-10 border-[2px]">
 									<img hlmAvatarImage src="assets/avatars/alexis-sears.png" alt="Alexis Sears" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar variant="medium" class="border-background border-[2px]">
+								<hlm-avatar class="border-background size-10 border-[2px]">
 									<span hlmAvatarFallback class="bg-muted text-muted-foreground text-sm">+3</span>
 								</hlm-avatar>
 							</div>
@@ -195,7 +195,7 @@ import { toast } from 'ngx-sonner';
 					<div class="flex flex-col gap-3">
 						<span class="text-sm font-semibold">Organizer</span>
 						<div class="flex gap-2">
-							<hlm-avatar variant="medium" class="border-border/50 border">
+							<hlm-avatar class="border-border/50 size-10 border">
 								<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 								<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 							</hlm-avatar>
@@ -210,23 +210,23 @@ import { toast } from 'ngx-sonner';
 						<span class="text-sm font-semibold">Attendees</span>
 						<div class="flex gap-2">
 							<div class="flex -space-x-3.5">
-								<hlm-avatar variant="medium" class="border-background border-[2px]">
+								<hlm-avatar class="border-background size-10 border-[2px]">
 									<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar variant="medium" class="border-background border-[2px]">
+								<hlm-avatar class="border-background size-10 border-[2px]">
 									<img hlmAvatarImage src="assets/avatars/alan-cooper.png" alt="Alan Cooper" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar variant="medium" class="border-background border-[2px]">
+								<hlm-avatar class="border-background size-10 border-[2px]">
 									<img hlmAvatarImage src="assets/avatars/skylar-dias.png" alt="Skylar Dias" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar variant="medium" class="border-background border-[2px]">
+								<hlm-avatar class="border-background size-10 border-[2px]">
 									<img hlmAvatarImage src="assets/avatars/alexis-sears.png" alt="Alexis Sears" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar variant="medium" class="border-background border-[2px]">
+								<hlm-avatar class="border-background size-10 border-[2px]">
 									<span hlmAvatarFallback class="bg-muted text-muted-foreground text-sm">+3</span>
 								</hlm-avatar>
 							</div>

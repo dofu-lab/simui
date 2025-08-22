@@ -51,7 +51,7 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 						<li
 							class="hover:bg-muted flex items-start justify-between gap-2 rounded-md px-3 py-2 transition-colors select-none"
 							(click)="markAsRead($index)">
-							<hlm-avatar variant="medium" class="border-border/50 border">
+							<hlm-avatar class="border-border/50 size-10 border">
 								<img hlmAvatarImage [src]="notification.avatar" [alt]="notification.user" />
 								<span hlmAvatarFallback>
 									{{ notification.initials }}
@@ -193,7 +193,7 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 						<li
 							class="hover:bg-muted flex items-start justify-between gap-2 rounded-md px-3 py-2 transition-colors select-none"
 							(click)="markAsRead($index)">
-							<hlm-avatar variant="medium" class="border-border/50 border">
+							<hlm-avatar class="border-border/50 size-10 border">
 								<img hlmAvatarImage [src]="notification.avatar" [alt]="notification.user" />
 								<span hlmAvatarFallback>
 									{{ notification.initials }}

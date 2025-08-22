@@ -12,7 +12,7 @@ import { HlmCard, HlmCardContent } from '@spartan-ng/helm/card';
 			<div hlmCardContent class="p-5">
 				<div class="flex items-start justify-between">
 					<div class="flex items-center gap-3">
-						<hlm-avatar variant="medium">
+						<hlm-avatar class="size-10">
 							<img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 							<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 						</hlm-avatar>
@@ -55,7 +55,7 @@ import { HlmCard, HlmCardContent } from '@spartan-ng/helm/card';
 			<div hlmCardContent class="p-5">
 				<div class="flex items-start justify-between">
 					<div class="flex items-center gap-3">
-						<hlm-avatar variant="medium">
+						<hlm-avatar class="size-10">
 							<img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 							<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 						</hlm-avatar>

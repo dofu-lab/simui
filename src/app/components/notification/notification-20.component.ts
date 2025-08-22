@@ -26,7 +26,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 				</button>
 			</div>
 			<div class="shadow-xs" [hlmAspectRatio]="16 / 9">
-				<img alt="Mountain views" src="assets/thumbnails/modal.png" class="rounded-md" />
+				<img alt="Mountain views" src="assets/backgrounds/bg-01.jpg" class="rounded-md" />
 			</div>
 			<div class="flex gap-3">
 				<button class="text-secondary-foreground h-5 text-xs hover:underline">Dismiss</button>
@@ -65,7 +65,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 				</button>
 			</div>
 			<div class="shadow-xs" [hlmAspectRatio]="16 / 9">
-				<img alt="Mountain views" src="assets/thumbnails/modal.png" class="rounded-md" />
+				<img alt="Mountain views" src="assets/backgrounds/bg-01.jpg" class="rounded-md" />
 			</div>
 			<div class="flex gap-3">
 				<button class="text-secondary-foreground h-5 text-xs hover:underline">Dismiss</button>
