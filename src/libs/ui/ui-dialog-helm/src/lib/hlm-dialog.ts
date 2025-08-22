@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, forwardRef, ViewEncapsulation } from '@angular/core';
 import { BrnDialog, BrnDialogOverlay, provideBrnDialogDefaultOptions } from '@spartan-ng/brain/dialog';
-import { HlmDialogOverlay } from './hlm-dialog-overlay.directive';
+import { HlmDialogOverlay } from './hlm-dialog-overlay';
 
 @Component({
 	selector: 'hlm-dialog',

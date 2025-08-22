@@ -5,7 +5,6 @@ import type { ClassValue } from 'clsx';
 
 @Directive({
 	selector: '[hlmDialogDescription]',
-	standalone: true,
 	host: {
 		'[class]': '_computedClass()',
 	},
@@ -13,5 +12,5 @@ import type { ClassValue } from 'clsx';
 })
 export class HlmDialogDescription {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
-	protected _computedClass = computed(() => hlm('text-sm text-muted-foreground', this.userClass()));
+	protected readonly _computedClass = computed(() => hlm('text-sm text-muted-foreground', this.userClass()));
 }

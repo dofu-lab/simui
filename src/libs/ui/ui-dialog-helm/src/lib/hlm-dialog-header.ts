@@ -1,16 +1,16 @@
-import { Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
 import type { ClassValue } from 'clsx';
 
 @Component({
 	selector: 'hlm-dialog-header',
-	standalone: true,
 	template: `
 		<ng-content />
 	`,
 	host: {
 		'[class]': '_computedClass()',
 	},
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HlmDialogHeader {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });

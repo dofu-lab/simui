@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { HlmDatePickerMulti } from './lib/hlm-date-picker-multi.component';
-import { HlmDatePicker } from './lib/hlm-date-picker.component';
+import { HlmDatePicker } from './lib/hlm-date-picker';
+import { HlmDatePickerMulti } from './lib/hlm-date-picker-multi';
 
 export * from './lib/hlm-date-picker.token';
 
-export * from './lib/hlm-date-picker-multi.component';
-export * from './lib/hlm-date-picker.component';
+export * from './lib/hlm-date-picker';
+export * from './lib/hlm-date-picker-multi';
 
 export const HlmDatePickerImports = [HlmDatePicker, HlmDatePickerMulti] as const;
 

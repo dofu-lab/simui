@@ -10,9 +10,9 @@ import {
 	output,
 	signal,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideCalendar } from '@ng-icons/lucide';
+import { lucideChevronDown } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/brain/core';
 import { BrnDialogState } from '@spartan-ng/brain/dialog';
 import { type ChangeFn, type TouchFn } from '@spartan-ng/brain/forms';
@@ -32,19 +32,19 @@ export const HLM_DATE_PICKER_VALUE_ACCESSOR = {
 @Component({
 	selector: 'hlm-date-picker',
 	imports: [NgIcon, HlmIcon, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent, HlmCalendar],
-	providers: [HLM_DATE_PICKER_VALUE_ACCESSOR, provideIcons({ lucideCalendar })],
+	providers: [HLM_DATE_PICKER_VALUE_ACCESSOR, provideIcons({ lucideChevronDown })],
 	template: `
-		<brn-popover sideOffset="5" [state]="popoverState()" (stateChanged)="popoverState.set($event)">
-			<button type="button" [class]="_computedClass()" [disabled]="state().disabled()" brnPopoverTrigger>
-				<ng-icon hlm size="sm" name="lucideCalendar" />
-
+		<brn-popover sideOffset="5" [state]="_popoverState()" (stateChanged)="_popoverState.set($event)">
+			<button type="button" [class]="_computedClass()" [disabled]="_state().disabled()" brnPopoverTrigger>
 				<span class="truncate">
-					@if (formattedDate(); as formattedDate) {
+					@if (_formattedDate(); as formattedDate) {
 						{{ formattedDate }}
 					} @else {
 						<ng-content />
 					}
 				</span>
+
+				<ng-icon hlm size="sm" name="lucideChevronDown" />
 			</button>
 
 			<div hlmPopoverContent class="w-auto p-0" *brnPopoverContent="let ctx">
@@ -53,8 +53,9 @@ export const HLM_DATE_PICKER_VALUE_ACCESSOR = {
 					[date]="date()"
 					[min]="min()"
 					[max]="max()"
-					[disabled]="state().disabled()"
-					(dateChange)="_handleChange($event)" />
+					[disabled]="_state().disabled()"
+					(dateChange)="_handleChange($event)"
+				/>
 			</div>
 		</brn-popover>
 	`,
@@ -63,13 +64,13 @@ export const HLM_DATE_PICKER_VALUE_ACCESSOR = {
 	},
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HlmDatePicker<T> {
+export class HlmDatePicker<T> implements ControlValueAccessor {
 	private readonly _config = injectHlmDatePickerConfig<T>();
 
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() =>
 		hlm(
-			'inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-[280px] justify-start text-left font-normal',
+			'inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm transition-all disabled:pointer-events-none disabled:opacity-50 ring-offset-background transition-colors border border-input bg-background hover:bg-accent dark:bg-input/30 dark:hover:bg-input/50 hover:text-accent-foreground h-9 px-3 py-2 w-[280px] justify-start text-left font-normal cursor-default justify-between',
 			'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
 			'disabled:pointer-events-none disabled:opacity-50',
 			'[&_ng-icon]:pointer-events-none [&_ng-icon]:shrink-0',
@@ -103,13 +104,13 @@ export class HlmDatePicker<T> {
 	/** Defines how the date should be transformed before saving to model/form. */
 	public readonly transformDate = input<(date: T) => T>(this._config.transformDate);
 
-	protected readonly popoverState = signal<BrnDialogState | null>(null);
+	protected readonly _popoverState = signal<BrnDialogState | null>(null);
 
-	protected readonly state = computed(() => ({
+	protected readonly _state = computed(() => ({
 		disabled: signal(this.disabled()),
 	}));
 
-	protected readonly formattedDate = computed(() => {
+	protected readonly _formattedDate = computed(() => {
 		const date = this.date();
 		return date ? this.formatDate()(date) : undefined;
 	});
@@ -120,7 +121,7 @@ export class HlmDatePicker<T> {
 	protected _onTouched?: TouchFn;
 
 	protected _handleChange(value: T) {
-		if (this.state().disabled()) return;
+		if (this._state().disabled()) return;
 		const transformedDate = this.transformDate()(value);
 
 		this.date.set(transformedDate);
@@ -128,7 +129,7 @@ export class HlmDatePicker<T> {
 		this.changed.emit(transformedDate);
 
 		if (this.autoCloseOnSelect()) {
-			this.popoverState.set('closed');
+			this._popoverState.set('closed');
 		}
 	}
 
@@ -149,14 +150,14 @@ export class HlmDatePicker<T> {
 	}
 
 	setDisabledState(isDisabled: boolean): void {
-		this.state().disabled.set(isDisabled);
+		this._state().disabled.set(isDisabled);
 	}
 
 	open() {
-		this.popoverState.set('open');
+		this._popoverState.set('open');
 	}
 
 	close() {
-		this.popoverState.set('closed');
+		this._popoverState.set('closed');
 	}
 }
