@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
-import { HlmBreadcrumbEllipsis } from './lib/breadcrumb-ellipsis.component';
-import { HlmBreadcrumbItem } from './lib/breadcrumb-item.directive';
-import { HlmBreadcrumbLink } from './lib/breadcrumb-link.directive';
-import { HlmBreadcrumbList } from './lib/breadcrumb-list.directive';
-import { HlmBreadcrumbPage } from './lib/breadcrumb-page.directive';
-import { HlmBreadcrumbSeparator } from './lib/breadcrumb-separator.component';
-import { HlmBreadcrumb } from './lib/breadcrumb.directive';
+import { HlmBreadcrumb } from './lib/hlm-breadcrumb';
+import { HlmBreadcrumbEllipsis } from './lib/hlm-breadcrumb-ellipsis';
+import { HlmBreadcrumbItem } from './lib/hlm-breadcrumb-item';
+import { HlmBreadcrumbLink } from './lib/hlm-breadcrumb-link';
+import { HlmBreadcrumbList } from './lib/hlm-breadcrumb-list';
+import { HlmBreadcrumbPage } from './lib/hlm-breadcrumb-page';
+import { HlmBreadcrumbSeparator } from './lib/hlm-breadcrumb-separator';
 
-export * from './lib/breadcrumb-ellipsis.component';
-export * from './lib/breadcrumb-item.directive';
-export * from './lib/breadcrumb-link.directive';
-export * from './lib/breadcrumb-list.directive';
-export * from './lib/breadcrumb-page.directive';
-export * from './lib/breadcrumb-separator.component';
-export * from './lib/breadcrumb.directive';
+export * from './lib/hlm-breadcrumb';
+export * from './lib/hlm-breadcrumb-ellipsis';
+export * from './lib/hlm-breadcrumb-item';
+export * from './lib/hlm-breadcrumb-link';
+export * from './lib/hlm-breadcrumb-list';
+export * from './lib/hlm-breadcrumb-page';
+export * from './lib/hlm-breadcrumb-separator';
 
 export const HlmBreadCrumbImports = [
 	HlmBreadcrumb,

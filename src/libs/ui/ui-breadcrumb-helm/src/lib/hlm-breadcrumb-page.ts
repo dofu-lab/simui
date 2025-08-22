@@ -4,12 +4,11 @@ import type { ClassValue } from 'clsx';
 
 @Directive({
 	selector: '[hlmBreadcrumbPage]',
-	standalone: true,
 	host: {
 		role: 'link',
+		'aria-disabled': 'true',
+		'aria-current': 'page',
 		'[class]': '_computedClass()',
-		'[attr.aria-disabled]': 'disabled',
-		'[attr.aria-current]': 'page',
 	},
 })
 export class HlmBreadcrumbPage {

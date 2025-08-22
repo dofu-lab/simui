@@ -34,7 +34,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 						<span>Home</span>
 					</a>
 				</li>
-				<li hlmBreadcrumbSeparator></li>
+				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 
 				<li hlmBreadcrumbItem>
 					<a hlmBreadcrumbLink link="/components" class="flex items-center gap-1">
@@ -42,7 +42,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 						<span>Components</span>
 					</a>
 				</li>
-				<li hlmBreadcrumbSeparator></li>
+				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
 					<ng-icon hlm name="lucideCompass" size="sm" class="text-foreground" />
 					<span hlmBreadcrumbPage>Breadcrumb</span>
@@ -89,7 +89,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 						<span>Home</span>
 					</a>
 				</li>
-				<li hlmBreadcrumbSeparator></li>
+				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 
 				<li hlmBreadcrumbItem>
 					<a hlmBreadcrumbLink link="/components" class="flex items-center gap-1">
@@ -97,7 +97,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 						<span>Components</span>
 					</a>
 				</li>
-				<li hlmBreadcrumbSeparator></li>
+				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
 					<ng-icon hlm name="lucideCompass" size="sm" class="text-foreground" />
 					<span hlmBreadcrumbPage>Breadcrumb</span>

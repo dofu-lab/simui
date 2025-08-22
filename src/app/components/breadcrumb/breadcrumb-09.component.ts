@@ -35,7 +35,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				<li hlmBreadcrumbItem>
 					<a hlmBreadcrumbLink link="/databases" class="flex items-center">Databases</a>
 				</li>
-				<li hlmBreadcrumbSeparator></li>
+				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
 					<brn-select class="inline-block shadow-xs" placeholder="Select a database" [ngModel]="1">
 						<hlm-select-trigger class="flex w-[150px] justify-start gap-2">
@@ -94,7 +94,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				<li hlmBreadcrumbItem>
 					<a hlmBreadcrumbLink link="/databases" class="flex items-center">Databases</a>
 				</li>
-				<li hlmBreadcrumbSeparator></li>
+				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
 					<brn-select class="inline-block shadow-xs" placeholder="Select a database" [ngModel]="1">
 						<hlm-select-trigger class="flex w-[150px] justify-start gap-2">

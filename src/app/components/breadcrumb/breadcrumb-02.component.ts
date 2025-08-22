@@ -36,7 +36,7 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 				<li hlmBreadcrumbItem>
 					<a hlmBreadcrumbLink link="/home">Home</a>
 				</li>
-				<li hlmBreadcrumbSeparator></li>
+				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
 					<ng-icon hlm name="lucideAlignJustify" size="sm" [brnMenuTriggerFor]="breadcrumbDropdown" />
 					<ng-template #breadcrumbDropdown>
@@ -53,7 +53,7 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 						</hlm-menu>
 					</ng-template>
 				</li>
-				<li hlmBreadcrumbSeparator></li>
+				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
 					<span hlmBreadcrumbPage>Breadcrumb</span>
 				</li>
@@ -101,7 +101,7 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 				<li hlmBreadcrumbItem>
 					<a hlmBreadcrumbLink link="/home">Home</a>
 				</li>
-				<li hlmBreadcrumbSeparator></li>
+				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
 					<ng-icon hlm name="lucideAlignJustify" size="sm" [brnMenuTriggerFor]="breadcrumbDropdown" />
 					<ng-template #breadcrumbDropdown>
@@ -118,7 +118,7 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 						</hlm-menu>
 					</ng-template>
 				</li>
-				<li hlmBreadcrumbSeparator></li>
+				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
 					<span hlmBreadcrumbPage>Breadcrumb</span>
 				</li>

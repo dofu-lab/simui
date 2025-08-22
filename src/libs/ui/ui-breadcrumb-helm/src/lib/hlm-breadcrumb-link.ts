@@ -5,7 +5,6 @@ import type { ClassValue } from 'clsx';
 
 @Directive({
 	selector: '[hlmBreadcrumbLink]',
-	standalone: true,
 	hostDirectives: [
 		{
 			directive: RouterLink,
@@ -30,7 +29,8 @@ import type { ClassValue } from 'clsx';
 })
 export class HlmBreadcrumbLink {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
+	/** The link to navigate to the page. */
 	public readonly link = input<RouterLink['routerLink']>();
 
-	protected readonly _computedClass = computed(() => hlm('transition-colors hover:text-foreground', this.userClass()));
+	protected readonly _computedClass = computed(() => hlm('hover:text-foreground transition-colors', this.userClass()));
 }

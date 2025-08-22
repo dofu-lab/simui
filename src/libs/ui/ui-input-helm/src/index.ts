@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-import { HlmInputError } from './lib/hlm-input-error.directive';
-import { HlmInput } from './lib/hlm-input.directive';
+import { HlmInput } from './lib/hlm-input';
 
-export * from './lib/hlm-input-error.directive';
-export * from './lib/hlm-input.directive';
+export * from './lib/hlm-input';
 
 @NgModule({
-	imports: [HlmInput, HlmInputError],
-	exports: [HlmInput, HlmInputError],
+	imports: [HlmInput],
+	exports: [HlmInput],
 })
 export class HlmInputModule {}
