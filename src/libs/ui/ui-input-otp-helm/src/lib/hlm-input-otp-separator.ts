@@ -1,25 +1,25 @@
-import { Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideDot } from '@ng-icons/lucide';
+import { lucideMinus } from '@ng-icons/lucide';
 import { hlm } from '@spartan-ng/brain/core';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { type ClassValue } from 'clsx';
 
 @Component({
 	selector: 'hlm-input-otp-separator',
-	standalone: true,
 	imports: [HlmIcon, NgIcon],
-	providers: [provideIcons({ lucideDot })],
+	providers: [provideIcons({ lucideMinus })],
 	template: `
-		<ng-icon hlm name="lucideDot" />
+		<ng-icon hlm name="lucideMinus" />
 	`,
 	host: {
 		role: 'separator',
 		'[class]': '_computedClass()',
 	},
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HlmInputOtpSeparator {
-	public readonly userClass = input<ClassValue>('', { alias: 'class' });
+	public readonly userClass = input<ClassValue>('inline-flex', { alias: 'class' });
 
 	protected readonly _computedClass = computed(() => hlm(this.userClass()));
 }

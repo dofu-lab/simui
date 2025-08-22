@@ -28,20 +28,8 @@
       "@spartan-ng/helm/calendar": [
         "./src/libs/ui/ui-calendar-helm/src/index.ts"
       ],
-      "@spartan-ng/helm/date-picker": [
-        "./src/libs/ui/ui-date-picker-helm/src/index.ts"
-      ],
-      "@spartan-ng/helm/dialog": [
-        "./src/libs/ui/ui-dialog-helm/src/index.ts"
-      ],
-      "@spartan-ng/helm/form-field": [
-        "./src/libs/ui/ui-formfield-helm/src/index.ts"
-      ],
       "@spartan-ng/helm/icon": [
         "./src/libs/ui/ui-icon-helm/src/index.ts"
-      ],
-      "@spartan-ng/helm/input-otp": [
-        "./src/libs/ui/ui-inputotp-helm/src/index.ts"
       ],
       "@spartan-ng/helm/label": [
         "./src/libs/ui/ui-label-helm/src/index.ts"
@@ -114,6 +102,15 @@
       ],
       "@spartan-ng/helm/checkbox": [
         "./src/libs/ui/ui-checkbox-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/date-picker": [
+        "./src/libs/ui/ui-date-picker-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/dialog": [
+        "./src/libs/ui/ui-dialog-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/input-otp": [
+        "./src/libs/ui/ui-input-otp-helm/src/index.ts"
       ]
     }
   },
