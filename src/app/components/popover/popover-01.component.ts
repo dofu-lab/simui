@@ -34,19 +34,19 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 				<div class="space-y-2">
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.realTime" />
+						<hlm-checkbox [(ngModel)]="filters.realTime" />
 						Real Time
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.topChannels" />
+						<hlm-checkbox [(ngModel)]="filters.topChannels" />
 						Top Channels
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.lastOrders" />
+						<hlm-checkbox [(ngModel)]="filters.lastOrders" />
 						Last Orders
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.totalSpent" />
+						<hlm-checkbox [(ngModel)]="filters.totalSpent" />
 						Total Spent
 					</label>
 				</div>
@@ -125,19 +125,19 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 				<div class="space-y-2">
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.realTime" />
+						<hlm-checkbox [(ngModel)]="filters.realTime" />
 						Real Time
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.topChannels" />
+						<hlm-checkbox [(ngModel)]="filters.topChannels" />
 						Top Channels
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.lastOrders" />
+						<hlm-checkbox [(ngModel)]="filters.lastOrders" />
 						Last Orders
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.totalSpent" />
+						<hlm-checkbox [(ngModel)]="filters.totalSpent" />
 						Total Spent
 					</label>
 				</div>
