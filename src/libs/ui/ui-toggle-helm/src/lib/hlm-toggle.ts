@@ -1,6 +1,6 @@
 import { Directive, computed, input } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
-import { type VariantProps, cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import type { ClassValue } from 'clsx';
 
 export const toggleVariants = cva(
@@ -23,11 +23,10 @@ export const toggleVariants = cva(
 		},
 	},
 );
-type ToggleVariants = VariantProps<typeof toggleVariants>;
+export type ToggleVariants = VariantProps<typeof toggleVariants>;
 
 @Directive({
 	selector: '[hlmToggle],[brnToggle][hlm]',
-	standalone: true,
 	host: {
 		'[class]': '_computedClass()',
 	},
@@ -36,7 +35,18 @@ export class HlmToggle {
 	public readonly variant = input<ToggleVariants['variant']>('default');
 	public readonly size = input<ToggleVariants['size']>('default');
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
-	protected readonly _computedClass = computed(() =>
-		hlm(toggleVariants({ variant: this.variant(), size: this.size() }), this.userClass()),
-	);
+
+	protected readonly _computedClass = computed(() => {
+		const variantToUse = this.variant();
+		const sizeToUse = this.size();
+		const userClass = this.userClass();
+
+		return hlm(
+			toggleVariants({
+				variant: variantToUse,
+				size: sizeToUse,
+			}),
+			userClass,
+		);
+	});
 }

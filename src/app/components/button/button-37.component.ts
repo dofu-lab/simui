@@ -10,7 +10,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	providers: [provideIcons({ lucideSquareArrowOutUpRight })],
 	imports: [HlmIcon, HlmButton, NgIcon],
 	template: `
-		<div class="divide-primary-foreground/30 inline-flex divide-x rounded-md shadow-xs rtl:space-x-reverse">
+		<div class="inline-flex divide-x rounded-md shadow-xs rtl:space-x-reverse">
 			<button hlmBtn size="sm" variant="outline" class="rounded-none rounded-s-md shadow-none focus-visible:z-10">
 				Preview
 			</button>
@@ -38,7 +38,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	providers: [provideIcons({ lucideSquareArrowOutUpRight })],
 	imports: [HlmIcon, HlmButton, NgIcon],
 	template: \`
-		<div class="divide-primary-foreground/30 inline-flex divide-x rounded-md shadow-xs rtl:space-x-reverse">
+		<div class="inline-flex divide-x rounded-md shadow-xs rtl:space-x-reverse">
 			<button hlmBtn size="sm" variant="outline" class="rounded-none rounded-s-md shadow-none focus-visible:z-10">
 				Preview
 			</button>
