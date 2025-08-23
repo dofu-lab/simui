@@ -21,7 +21,6 @@
 			"@spartan-ng/helm/aspect-ratio": ["./src/libs/ui/ui-aspectratio-helm/src/index.ts"],
 			"@spartan-ng/helm/calendar": ["./src/libs/ui/ui-calendar-helm/src/index.ts"],
 			"@spartan-ng/helm/icon": ["./src/libs/ui/ui-icon-helm/src/index.ts"],
-			"@spartan-ng/helm/tooltip": ["./src/libs/ui/ui-tooltip-helm/src/index.ts"],
 			"@spartan-ng/helm/avatar": ["./src/libs/ui/ui-avatar-helm/src/index.ts"],
 			"@spartan-ng/helm/table": ["./src/libs/ui/ui-table-helm/src/index.ts"],
 			"@spartan-ng/helm/button": ["./src/libs/ui/ui-button-helm/src/index.ts"],
@@ -47,7 +46,8 @@
 			"@spartan-ng/helm/spinner": ["./src/libs/ui/ui-spinner-helm/src/index.ts"],
 			"@spartan-ng/helm/switch": ["./src/libs/ui/ui-switch-helm/src/index.ts"],
 			"@spartan-ng/helm/toggle": ["./src/libs/ui/ui-toggle-helm/src/index.ts"],
-			"@spartan-ng/helm/toggle-group": ["./src/libs/ui/ui-toggle-group-helm/src/index.ts"]
+			"@spartan-ng/helm/toggle-group": ["./src/libs/ui/ui-toggle-group-helm/src/index.ts"],
+			"@spartan-ng/helm/tooltip": ["./src/libs/ui/ui-tooltip-helm/src/index.ts"]
 		}
 	},
 	"angularCompilerOptions": {

@@ -1,6 +1,6 @@
 import { Clipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
-import { Component, computed, inject, signal, viewChild } from '@angular/core';
+import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy, lucidePlus, lucideTrash2, lucideUserPlus } from '@ng-icons/lucide';
@@ -112,9 +112,7 @@ import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 											'scale-100 opacity-100': copied(),
 										}" />
 								</button>
-								<span *brnTooltipContent class="flex items-center text-xs">
-									{{ tooltipLabel() }}
-								</span>
+								<span *brnTooltipContent class="flex items-center text-xs">Copy to clipboard</span>
 							</hlm-tooltip>
 						</div>
 					</div>
@@ -129,7 +127,6 @@ export class Dialog17Component {
 	public copied = signal<boolean>(false);
 	public clipboard = inject(Clipboard);
 	public form: FormGroup;
-	public tooltipLabel = computed(() => (this.copied() ? '' : 'Copy to clipboard'));
 	private _formBuilder = inject(FormBuilder);
 
 	constructor() {
@@ -167,7 +164,7 @@ export class Dialog17Component {
 
 export const dialog17Code = `import { Clipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
-import { Component, computed, inject, signal, viewChild } from '@angular/core';
+import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy, lucidePlus, lucideTrash2, lucideUserPlus } from '@ng-icons/lucide';
@@ -279,9 +276,7 @@ import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 											'scale-100 opacity-100': copied(),
 										}" />
 								</button>
-								<span *brnTooltipContent class="flex items-center text-xs">
-									{{ tooltipLabel() }}
-								</span>
+								<span *brnTooltipContent class="flex items-center text-xs">Copy to clipboard</span>
 							</hlm-tooltip>
 						</div>
 					</div>
@@ -296,7 +291,6 @@ export class Dialog17Component {
 	public copied = signal<boolean>(false);
 	public clipboard = inject(Clipboard);
 	public form: FormGroup;
-	public tooltipLabel = computed(() => (this.copied() ? '' : 'Copy to clipboard'));
 	private _formBuilder = inject(FormBuilder);
 
 	constructor() {

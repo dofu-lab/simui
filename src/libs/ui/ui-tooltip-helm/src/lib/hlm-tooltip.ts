@@ -5,8 +5,6 @@ import { BrnTooltip } from '@spartan-ng/brain/tooltip';
 	selector: 'hlm-tooltip',
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [],
-	providers: [],
 	host: {
 		'[style]': '{display: "contents"}',
 	},
