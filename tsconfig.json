@@ -21,7 +21,6 @@
 			"@spartan-ng/helm/aspect-ratio": ["./src/libs/ui/ui-aspectratio-helm/src/index.ts"],
 			"@spartan-ng/helm/calendar": ["./src/libs/ui/ui-calendar-helm/src/index.ts"],
 			"@spartan-ng/helm/icon": ["./src/libs/ui/ui-icon-helm/src/index.ts"],
-			"@spartan-ng/helm/select": ["./src/libs/ui/ui-select-helm/src/index.ts"],
 			"@spartan-ng/helm/slider": ["./src/libs/ui/ui-slider-helm/src/index.ts"],
 			"@spartan-ng/helm/spinner": ["./src/libs/ui/ui-spinner-helm/src/index.ts"],
 			"@spartan-ng/helm/switch": ["./src/libs/ui/ui-switch-helm/src/index.ts"],
@@ -47,7 +46,8 @@
 			"@spartan-ng/helm/menu": ["./src/libs/ui/ui-menu-helm/src/index.ts"],
 			"@spartan-ng/helm/popover": ["./src/libs/ui/ui-popover-helm/src/index.ts"],
 			"@spartan-ng/helm/progress": ["./src/libs/ui/ui-progress-helm/src/index.ts"],
-			"@spartan-ng/helm/radio-group": ["./src/libs/ui/ui-radio-group-helm/src/index.ts"]
+			"@spartan-ng/helm/radio-group": ["./src/libs/ui/ui-radio-group-helm/src/index.ts"],
+			"@spartan-ng/helm/select": ["./src/libs/ui/ui-select-helm/src/index.ts"]
 		}
 	},
 	"angularCompilerOptions": {
