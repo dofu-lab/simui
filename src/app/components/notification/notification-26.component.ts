@@ -28,9 +28,9 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 						<p class="text-muted-foreground text-sm">Please wait while we upload your file.</p>
 					</div>
 					<div class="flex-1">
-						<brn-progress hlm class="h-3 w-full">
-							<brn-progress-indicator hlm />
-						</brn-progress>
+						<hlm-progress class="w-full" aria-labelledby="loading">
+							<hlm-progress-indicator />
+						</hlm-progress>
 					</div>
 					<div class="flex gap-3">
 						<button class="text-secondary-foreground h-5 text-xs hover:underline">Cancel</button>
@@ -76,9 +76,9 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 						<p class="text-muted-foreground text-sm">Please wait while we upload your file.</p>
 					</div>
 					<div class="flex-1">
-						<brn-progress hlm class="h-3 w-full">
-							<brn-progress-indicator hlm />
-						</brn-progress>
+						<hlm-progress class="w-full" aria-labelledby="loading">
+							<hlm-progress-indicator />
+						</hlm-progress>
 					</div>
 					<div class="flex gap-3">
 						<button class="text-secondary-foreground h-5 text-xs hover:underline">Cancel</button>

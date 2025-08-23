@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCloudUpload, lucideX } from '@ng-icons/lucide';
-import { BrnProgress, BrnProgressIndicator } from '@spartan-ng/brain/progress';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
@@ -15,7 +14,7 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 			lucideCloudUpload,
 		}),
 	],
-	imports: [NgIcon, HlmIcon, HlmButton, BrnProgress, BrnProgressIndicator, HlmProgressIndicator, HlmProgress],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmProgressIndicator, HlmProgress],
 	template: `
 		<div class="bg-background z-50 max-w-[400px] rounded-md border p-4 shadow-lg">
 			<div class="flex gap-3">
@@ -28,9 +27,9 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 						<p class="text-muted-foreground text-sm">Please wait while we upload your file.</p>
 					</div>
 					<div class="flex-1">
-						<brn-progress hlm class="h-3 w-full" [value]="65">
-							<brn-progress-indicator hlm />
-						</brn-progress>
+						<hlm-progress class="w-full" aria-labelledby="loading" [value]="65">
+							<hlm-progress-indicator />
+						</hlm-progress>
 					</div>
 					<div class="flex gap-3">
 						<button class="text-secondary-foreground h-5 text-xs hover:underline">Cancel</button>
@@ -49,7 +48,6 @@ export class Notification25Component {}
 export const notification25Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCloudUpload, lucideX } from '@ng-icons/lucide';
-import { BrnProgress, BrnProgressIndicator } from '@spartan-ng/brain/progress';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
@@ -63,7 +61,7 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 			lucideCloudUpload,
 		}),
 	],
-	imports: [NgIcon, HlmIcon, HlmButton, BrnProgress, BrnProgressIndicator, HlmProgressIndicator, HlmProgress],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmProgressIndicator, HlmProgress],
 	template: \`
 		<div class="bg-background z-50 max-w-[400px] rounded-md border p-4 shadow-lg">
 			<div class="flex gap-3">
@@ -76,9 +74,9 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 						<p class="text-muted-foreground text-sm">Please wait while we upload your file.</p>
 					</div>
 					<div class="flex-1">
-						<brn-progress hlm class="h-3 w-full" [value]="65">
-							<brn-progress-indicator hlm />
-						</brn-progress>
+						<hlm-progress class="w-full" aria-labelledby="loading" [value]="65">
+							<hlm-progress-indicator />
+						</hlm-progress>
 					</div>
 					<div class="flex gap-3">
 						<button class="text-secondary-foreground h-5 text-xs hover:underline">Cancel</button>
