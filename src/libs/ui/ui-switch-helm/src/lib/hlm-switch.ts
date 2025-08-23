@@ -1,11 +1,21 @@
 import { BooleanInput } from '@angular/cdk/coercion';
-import { Component, booleanAttribute, computed, forwardRef, input, model, output, signal } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	booleanAttribute,
+	computed,
+	forwardRef,
+	input,
+	model,
+	output,
+	signal,
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { hlm } from '@spartan-ng/brain/core';
 import { ChangeFn, TouchFn } from '@spartan-ng/brain/forms';
 import { BrnSwitch, BrnSwitchThumb } from '@spartan-ng/brain/switch';
 import type { ClassValue } from 'clsx';
-import { HlmSwitchThumb } from './hlm-switch-thumb.directive';
+import { HlmSwitchThumb } from './hlm-switch-thumb';
 export const HLM_SWITCH_VALUE_ACCESSOR = {
 	provide: NG_VALUE_ACCESSOR,
 	useExisting: forwardRef(() => HlmSwitch),
@@ -32,18 +42,19 @@ export const HLM_SWITCH_VALUE_ACCESSOR = {
 			[id]="id()"
 			[aria-label]="ariaLabel()"
 			[aria-labelledby]="ariaLabelledby()"
-			[aria-describedby]="ariaDescribedby()">
+			[aria-describedby]="ariaDescribedby()"
+		>
 			<brn-switch-thumb hlm />
 		</brn-switch>
 	`,
 	providers: [HLM_SWITCH_VALUE_ACCESSOR],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HlmSwitch implements ControlValueAccessor {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() =>
 		hlm(
-			'group inline-flex h-[24px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input',
-			this.disabled() ? 'cursor-not-allowed opacity-50' : '',
+			'group data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
 			this.userClass(),
 		),
 	);
