@@ -10,7 +10,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 		<label hlmLabel class="flex items-center" for="checkbox-18">
 			<hlm-checkbox
 				id="checkbox-18"
-				class="peer border-input mr-2 rounded-full focus-visible:ring-sky-600 data-[state=checked]:border-sky-600 data-[state=checked]:bg-sky-600"
+				class="peer border-input rounded-full focus-visible:ring-sky-600 data-[state=checked]:border-sky-600 data-[state=checked]:bg-sky-600"
 				[checked]="true" />
 			<span
 				class="after:bg-muted-foreground peer-has-checked:text-muted-foreground relative peer-has-checked:line-through after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:origin-left after:-translate-y-1/2 after:scale-x-0 after:transition-transform after:ease-in-out peer-has-checked:after:scale-x-100">
@@ -33,7 +33,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 		<label hlmLabel class="flex items-center" for="checkbox-18">
 			<hlm-checkbox
 				id="checkbox-18"
-				class="peer border-input mr-2 rounded-full focus-visible:ring-sky-600 data-[state=checked]:border-sky-600 data-[state=checked]:bg-sky-600"
+				class="peer border-input rounded-full focus-visible:ring-sky-600 data-[state=checked]:border-sky-600 data-[state=checked]:bg-sky-600"
 				[checked]="true" />
 			<span
 				class="after:bg-muted-foreground peer-has-checked:text-muted-foreground relative peer-has-checked:line-through after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:origin-left after:-translate-y-1/2 after:scale-x-0 after:transition-transform after:ease-in-out peer-has-checked:after:scale-x-100">

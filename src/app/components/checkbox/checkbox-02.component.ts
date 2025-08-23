@@ -10,7 +10,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 		<label class="flex items-center" hlmLabel for="checkbox-02">
 			<hlm-checkbox
 				id="checkbox-02"
-				class="data-[state=checked]:text-background data-[state=unchecked]:bg-background border-border mr-2 focus-visible:ring-[#7F56D9] data-[state=checked]:border-[#7F56D9] data-[state=checked]:bg-[#7F56D9]" />
+				class="data-[state=checked]:text-background data-[state=unchecked]:bg-background border-border focus-visible:ring-[#7F56D9] data-[state=checked]:border-[#7F56D9] data-[state=checked]:bg-[#7F56D9]" />
 			Custom color checkbox
 		</label>
 	`,
@@ -29,7 +29,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 		<label class="flex items-center" hlmLabel for="checkbox-02">
 			<hlm-checkbox
 				id="checkbox-02"
-				class="data-[state=checked]:text-background data-[state=unchecked]:bg-background border-border mr-2 focus-visible:ring-[#7F56D9] data-[state=checked]:border-[#7F56D9] data-[state=checked]:bg-[#7F56D9]" />
+				class="data-[state=checked]:text-background data-[state=unchecked]:bg-background border-border focus-visible:ring-[#7F56D9] data-[state=checked]:border-[#7F56D9] data-[state=checked]:bg-[#7F56D9]" />
 			Custom color checkbox
 		</label>
 	\`,

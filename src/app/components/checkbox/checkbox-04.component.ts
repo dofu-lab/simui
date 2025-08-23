@@ -8,7 +8,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
 		<label hlmLabel class="flex items-center" for="indeterminate-checkbox">
-			<hlm-checkbox id="indeterminate-checkbox" class="mr-2" [(checked)]="checked" />
+			<hlm-checkbox id="indeterminate-checkbox" [(checked)]="checked" />
 			Indeterminate checkbox
 		</label>
 	`,
@@ -27,7 +27,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCheckbox, HlmLabel],
 	template: \`
 		<label hlmLabel class="flex items-center" for="indeterminate-checkbox">
-			<hlm-checkbox id="indeterminate-checkbox" class="mr-2" [(checked)]="checked" />
+			<hlm-checkbox id="indeterminate-checkbox" [(checked)]="checked" />
 			Indeterminate checkbox
 		</label>
 	\`,

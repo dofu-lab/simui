@@ -50,7 +50,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 				<form [formGroup]="form" (submit)="onSubmit()">
 					<div class="flex flex-col gap-4 sm:flex-row">
 						<div class="flex flex-1 flex-col gap-4">
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								Name on card
 								<input
 									hlmInput
@@ -63,19 +63,19 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 							</label>
 							<div class="w-full text-sm">
 								<div class="relative">
-									<label hlmLabel class="flex flex-col gap-2 text-sm">
+									<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 										Card number
 										<input
 											id="card-number-input"
 											hlmInput
 											formControlName="cardNumber"
-											class="peer mt-2 w-full ps-12 text-sm"
+											class="peer w-full ps-12 text-sm"
 											type="text"
 											placeholder="Your card number"
 											size="sm"
 											[maskito]="creditCardMask" />
 										<div
-											class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-end justify-center ps-3 pb-3 peer-disabled:opacity-50">
+											class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-end justify-center ps-3 pb-2.5 peer-disabled:opacity-50">
 											<div class="border-input flex h-4.5 w-6.5 items-center justify-center rounded-[3px] border">
 												<svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path
@@ -95,7 +95,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 							</div>
 						</div>
 						<div class="flex flex-row gap-4 sm:flex-col">
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								Expiry date
 								<input
 									hlmInput
@@ -106,7 +106,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 									size="sm"
 									[maskito]="expiryDateMask" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								CVC
 								<input
 									hlmInput
@@ -262,7 +262,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 				<form [formGroup]="form" (submit)="onSubmit()">
 					<div class="flex flex-col gap-4 sm:flex-row">
 						<div class="flex flex-1 flex-col gap-4">
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								Name on card
 								<input
 									hlmInput
@@ -275,19 +275,19 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 							</label>
 							<div class="w-full text-sm">
 								<div class="relative">
-									<label hlmLabel class="flex flex-col gap-2 text-sm">
+									<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 										Card number
 										<input
 											id="card-number-input"
 											hlmInput
 											formControlName="cardNumber"
-											class="peer mt-2 w-full ps-12 text-sm"
+											class="peer w-full ps-12 text-sm"
 											type="text"
 											placeholder="Your card number"
 											size="sm"
 											[maskito]="creditCardMask" />
 										<div
-											class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-end justify-center ps-3 pb-3 peer-disabled:opacity-50">
+											class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-end justify-center ps-3 pb-2.5 peer-disabled:opacity-50">
 											<div class="border-input flex h-4.5 w-6.5 items-center justify-center rounded-[3px] border">
 												<svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path
@@ -307,7 +307,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 							</div>
 						</div>
 						<div class="flex flex-row gap-4 sm:flex-col">
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								Expiry date
 								<input
 									hlmInput
@@ -318,7 +318,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 									size="sm"
 									[maskito]="expiryDateMask" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								CVC
 								<input
 									hlmInput

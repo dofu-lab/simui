@@ -77,7 +77,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 									<hlm-radio value="yearly"></hlm-radio>
 								</label>
 							</hlm-radio-group>
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								Name on card
 								<input
 									hlmInput
@@ -91,7 +91,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 							<div class="flex flex-col -space-y-px">
 								<div class="w-full text-sm">
 									<div class="relative">
-										<label hlmLabel class="flex flex-col gap-2 text-sm [&>[hlmInput]]:my-0">
+										<label hlmLabel class="flex flex-col items-start gap-2 text-sm [&>[hlmInput]]:my-0">
 											Card detail
 											<input
 												id="card-number-input"
@@ -310,7 +310,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 									<hlm-radio value="yearly"></hlm-radio>
 								</label>
 							</hlm-radio-group>
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								Name on card
 								<input
 									hlmInput
@@ -324,7 +324,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 							<div class="flex flex-col -space-y-px">
 								<div class="w-full text-sm">
 									<div class="relative">
-										<label hlmLabel class="flex flex-col gap-2 text-sm [&>[hlmInput]]:my-0">
+										<label hlmLabel class="flex flex-col items-start gap-2 text-sm [&>[hlmInput]]:my-0">
 											Card detail
 											<input
 												id="card-number-input"

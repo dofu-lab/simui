@@ -31,9 +31,6 @@
       "@spartan-ng/helm/icon": [
         "./src/libs/ui/ui-icon-helm/src/index.ts"
       ],
-      "@spartan-ng/helm/label": [
-        "./src/libs/ui/ui-label-helm/src/index.ts"
-      ],
       "@spartan-ng/helm/menu": [
         "./src/libs/ui/ui-menu-helm/src/index.ts"
       ],
@@ -111,6 +108,9 @@
       ],
       "@spartan-ng/helm/input-otp": [
         "./src/libs/ui/ui-input-otp-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/label": [
+        "./src/libs/ui/ui-label-helm/src/index.ts"
       ]
     }
   },

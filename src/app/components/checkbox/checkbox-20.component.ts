@@ -19,21 +19,21 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 			hlmLabel
 			class="border-input has-data-[state=checked]:border-ring relative flex w-full flex-col rounded-md border shadow-xs"
 			for="checkbox-20">
-			<div class="peer flex flex-1 items-start gap-2 p-3">
+			<div class="peer flex w-full flex-1 items-start gap-2 p-3">
 				<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border">
 					<ng-icon hlm name="lucideZap" class="text-primary" size="sm" />
 				</div>
 				<span class="grid h-8 grow items-center gap-2 select-none">Enterprise plan</span>
 				<hlm-checkbox id="checkbox-20" [(checked)]="checked" />
 			</div>
-			<div class="peer-has-checked:border-ring text-primary flex flex-col gap-2 border-t p-3 text-sm">
+			<div class="peer-has-checked:border-ring text-primary flex w-full flex-col gap-2 border-t p-3 text-sm">
 				<span hlmBadge variant="outline" class="h-5.5 w-fit rounded-sm">
 					<div class="flex items-center justify-center gap-1.5">
 						<div class="h-3 w-3 rounded-full border-[3px] border-emerald-100 bg-emerald-500"></div>
 						<span>Limited</span>
 					</div>
 				</span>
-				<div>
+				<div class="space-x-1">
 					<span class="text-lg">$40</span>
 					<span>per month</span>
 				</div>
@@ -69,21 +69,21 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 			hlmLabel
 			class="border-input has-data-[state=checked]:border-ring relative flex w-full flex-col rounded-md border shadow-xs"
 			for="checkbox-20">
-			<div class="peer flex flex-1 items-start gap-2 p-3">
+			<div class="peer flex w-full flex-1 items-start gap-2 p-3">
 				<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border">
 					<ng-icon hlm name="lucideZap" class="text-primary" size="sm" />
 				</div>
 				<span class="grid h-8 grow items-center gap-2 select-none">Enterprise plan</span>
 				<hlm-checkbox id="checkbox-20" [(checked)]="checked" />
 			</div>
-			<div class="peer-has-checked:border-ring text-primary flex flex-col gap-2 border-t p-3 text-sm">
+			<div class="peer-has-checked:border-ring text-primary flex w-full flex-col gap-2 border-t p-3 text-sm">
 				<span hlmBadge variant="outline" class="h-5.5 w-fit rounded-sm">
 					<div class="flex items-center justify-center gap-1.5">
 						<div class="h-3 w-3 rounded-full border-[3px] border-emerald-100 bg-emerald-500"></div>
 						<span>Limited</span>
 					</div>
 				</span>
-				<div>
+				<div class="space-x-1">
 					<span class="text-lg">$40</span>
 					<span>per month</span>
 				</div>

@@ -8,7 +8,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
 		<label hlmLabel class="flex items-center" for="cb-05">
-			<hlm-checkbox disabled class="mr-2" id="cb-05" />
+			<hlm-checkbox disabled id="cb-05" />
 			Disabled checkbox
 		</label>
 	`,
@@ -25,7 +25,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCheckbox, HlmLabel],
 	template: \`
 		<label hlmLabel class="flex items-center" for="cb-05">
-			<hlm-checkbox disabled class="mr-2" id="cb-05" />
+			<hlm-checkbox disabled id="cb-05" />
 			Disabled checkbox
 		</label>
 	\`,

@@ -11,7 +11,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	providers: [provideIcons({ lucideMoon })],
 	template: `
 		<label hlmLabel class="flex items-center" for="checkbox-03">
-			<hlm-checkbox id="checkbox-03" class="mr-2" checkIconName="lucideMoon" />
+			<hlm-checkbox id="checkbox-03" checkIconName="lucideMoon" />
 			Custom icon
 		</label>
 	`,
@@ -31,7 +31,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	providers: [provideIcons({ lucideMoon })],
 	template: \`
 		<label hlmLabel class="flex items-center" for="checkbox-03">
-			<hlm-checkbox id="checkbox-03" class="mr-2" checkIconName="lucideMoon" />
+			<hlm-checkbox id="checkbox-03" checkIconName="lucideMoon" />
 			Custom icon
 		</label>
 	\`,

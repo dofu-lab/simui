@@ -54,7 +54,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 							<p hlmDialogDescription>Welcome back! Please enter your details.</p>
 						</hlm-dialog-header>
 						<div class="mt-4 flex w-full flex-col gap-4">
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Email
 								<input
 									hlmInput
@@ -64,7 +64,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 									placeholder="phuongtran@simui.com"
 									autocomplete="email" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Password
 								<input
 									hlmInput
@@ -76,7 +76,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 							</label>
 							<div class="flex items-center justify-between">
 								<label hlmLabel for="remember-me" class="flex items-center">
-									<hlm-checkbox class="mr-2" id="remember-me" formControlName="rememberMe" />
+									<hlm-checkbox id="remember-me" formControlName="rememberMe" />
 									Remember me
 								</label>
 								<span
@@ -194,7 +194,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 							<p hlmDialogDescription>Welcome back! Please enter your details.</p>
 						</hlm-dialog-header>
 						<div class="mt-4 flex w-full flex-col gap-4">
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Email
 								<input
 									hlmInput
@@ -204,7 +204,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 									placeholder="phuongtran@simui.com"
 									autocomplete="email" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Password
 								<input
 									hlmInput
@@ -216,7 +216,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 							</label>
 							<div class="flex items-center justify-between">
 								<label hlmLabel for="remember-me" class="flex items-center">
-									<hlm-checkbox class="mr-2" id="remember-me" formControlName="rememberMe" />
+									<hlm-checkbox id="remember-me" formControlName="rememberMe" />
 									Remember me
 								</label>
 								<span

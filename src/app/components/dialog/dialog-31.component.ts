@@ -84,7 +84,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 						<span class="text-muted-foreground text-sm">Please enter a name for this project.</span>
 					</div>
 					<div class="flex flex-col gap-3">
-						<label hlmLabel class="flex flex-col gap-2">
+						<label hlmLabel class="flex flex-col items-start gap-2">
 							Project name
 							<input
 								hlmInput
@@ -192,7 +192,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 						<span class="text-muted-foreground text-sm">Please enter a name for this project.</span>
 					</div>
 					<div class="flex flex-col gap-3">
-						<label hlmLabel class="flex flex-col gap-2">
+						<label hlmLabel class="flex flex-col items-start gap-2">
 							Project name
 							<input
 								hlmInput

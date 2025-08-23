@@ -135,7 +135,7 @@ export class ProfileAvatarComponent {
 						<profile-avatar />
 						<div class="flex flex-col gap-4 px-6 pt-4 pb-6" [formGroup]="form">
 							<div class="flex flex-row gap-4">
-								<label hlmLabel for="firstName" class="flex-1">
+								<label hlmLabel for="firstName" class="flex flex-col items-start gap-1">
 									First name
 									<input
 										hlmInput
@@ -146,7 +146,7 @@ export class ProfileAvatarComponent {
 										formControlName="firstName"
 										placeholder="First name" />
 								</label>
-								<label hlmLabel for="lastName" class="flex-1">
+								<label hlmLabel for="lastName" class="flex flex-col items-start gap-1">
 									Last name
 									<input
 										hlmInput
@@ -160,13 +160,13 @@ export class ProfileAvatarComponent {
 							</div>
 							<div class="w-full text-sm">
 								<div class="relative">
-									<label hlmLabel for="userName">
+									<label hlmLabel for="userName" class="flex flex-col items-start gap-1">
 										Username
 										<input
 											id="userName"
 											hlmInput
 											formControlName="userName"
-											class="peer mt-2 h-9 w-full pe-9 text-sm"
+											class="peer h-9 w-full pe-9 text-sm"
 											type="text"
 											placeholder="Your user name" />
 										<div
@@ -181,9 +181,9 @@ export class ProfileAvatarComponent {
 								</div>
 							</div>
 
-							<label hlmLabel for="website">
+							<label hlmLabel for="website" class="flex flex-col items-start gap-1">
 								Website
-								<div class="mt-1 flex flex-row -space-x-px">
+								<div class="flex flex-row -space-x-px">
 									<span
 										class="text-muted-foreground border-input bg-background -z-10 inline-flex w-fit items-center rounded-s-md border px-3 text-sm font-normal">
 										https://
@@ -198,7 +198,7 @@ export class ProfileAvatarComponent {
 										placeholder="Website" />
 								</div>
 							</label>
-							<label hlmLabel for="biography">
+							<label hlmLabel for="biography" class="flex flex-col items-start gap-1">
 								Biography
 								<textarea
 									hlmInput
@@ -207,9 +207,11 @@ export class ProfileAvatarComponent {
 									formControlName="biography"
 									placeholder="Tell us about yourself"
 									[maxlength]="maxLength"></textarea>
-								<p class="text-muted-foreground mt-1 text-right text-xs font-normal">
-									{{ leftCharacters() }} characters left.
-								</p>
+								<div class="flex w-full flex-col items-end">
+									<p class="text-muted-foreground mt-1 text-right text-xs font-normal">
+										{{ leftCharacters() }} characters left.
+									</p>
+								</div>
 							</label>
 						</div>
 					</div>
@@ -393,7 +395,7 @@ export class ProfileAvatarComponent {
 						<profile-avatar />
 						<div class="flex flex-col gap-4 px-6 pt-4 pb-6" [formGroup]="form">
 							<div class="flex flex-row gap-4">
-								<label hlmLabel for="firstName" class="flex-1">
+								<label hlmLabel for="firstName" class="flex flex-col items-start gap-1">
 									First name
 									<input
 										hlmInput
@@ -404,7 +406,7 @@ export class ProfileAvatarComponent {
 										formControlName="firstName"
 										placeholder="First name" />
 								</label>
-								<label hlmLabel for="lastName" class="flex-1">
+								<label hlmLabel for="lastName" class="flex flex-col items-start gap-1">
 									Last name
 									<input
 										hlmInput
@@ -418,13 +420,13 @@ export class ProfileAvatarComponent {
 							</div>
 							<div class="w-full text-sm">
 								<div class="relative">
-									<label hlmLabel for="userName">
+									<label hlmLabel for="userName" class="flex flex-col items-start gap-1">
 										Username
 										<input
 											id="userName"
 											hlmInput
 											formControlName="userName"
-											class="peer mt-2 h-9 w-full pe-9 text-sm"
+											class="peer h-9 w-full pe-9 text-sm"
 											type="text"
 											placeholder="Your user name" />
 										<div
@@ -439,9 +441,9 @@ export class ProfileAvatarComponent {
 								</div>
 							</div>
 
-							<label hlmLabel for="website">
+							<label hlmLabel for="website" class="flex flex-col items-start gap-1">
 								Website
-								<div class="mt-1 flex flex-row -space-x-px">
+								<div class="flex flex-row -space-x-px">
 									<span
 										class="text-muted-foreground border-input bg-background -z-10 inline-flex w-fit items-center rounded-s-md border px-3 text-sm font-normal">
 										https://
@@ -456,7 +458,7 @@ export class ProfileAvatarComponent {
 										placeholder="Website" />
 								</div>
 							</label>
-							<label hlmLabel for="biography">
+							<label hlmLabel for="biography" class="flex flex-col items-start gap-1">
 								Biography
 								<textarea
 									hlmInput
@@ -465,9 +467,11 @@ export class ProfileAvatarComponent {
 									formControlName="biography"
 									placeholder="Tell us about yourself"
 									[maxlength]="maxLength"></textarea>
-								<p class="text-muted-foreground mt-1 text-right text-xs font-normal">
-									{{ leftCharacters() }} characters left.
-								</p>
+								<div class="flex w-full flex-col items-end">
+									<p class="text-muted-foreground mt-1 text-right text-xs font-normal">
+										{{ leftCharacters() }} characters left.
+									</p>
+								</div>
 							</label>
 						</div>
 					</div>

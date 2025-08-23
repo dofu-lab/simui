@@ -52,7 +52,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 							<p hlmDialogDescription>We just need a few details to get you started.</p>
 						</hlm-dialog-header>
 						<div class="mt-4 flex w-full flex-col gap-4">
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Full Name
 								<input
 									hlmInput
@@ -62,7 +62,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 									placeholder="Phuong Tran"
 									autocomplete="username" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Email
 								<input
 									hlmInput
@@ -72,7 +72,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 									placeholder="phuongtran@simui.com"
 									autocomplete="email" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Password
 								<input
 									hlmInput
@@ -194,7 +194,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 							<p hlmDialogDescription>We just need a few details to get you started.</p>
 						</hlm-dialog-header>
 						<div class="mt-4 flex w-full flex-col gap-4">
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Full Name
 								<input
 									hlmInput
@@ -204,7 +204,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 									placeholder="Phuong Tran"
 									autocomplete="username" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Email
 								<input
 									hlmInput
@@ -214,7 +214,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 									placeholder="phuongtran@simui.com"
 									autocomplete="email" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Password
 								<input
 									hlmInput

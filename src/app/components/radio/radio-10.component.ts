@@ -11,13 +11,13 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 			<div
 				class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs outline-none">
 				<label
-					class="flex items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
+					class="flex flex-1 items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
 					<hlm-avatar class="size-10">
 						<img src="assets/avatars/alan-cooper.png" alt="Alan Cooper" hlmAvatarImage />
 						<span class="bg-primary text-primary-foreground" hlmAvatarFallback>AC</span>
 					</hlm-avatar>
-					<div class="flex flex-col gap-2">
+					<div class="flex flex-1 flex-col gap-2">
 						<span class="flex items-center gap-1">
 							<span class="text-sm leading-4">Alan Cooper</span>
 							<span class="text-muted-foreground text-xs leading-[inherit] font-normal">(FE Dev)</span>
@@ -38,13 +38,13 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 			<div
 				class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs outline-none">
 				<label
-					class="flex items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
+					class="flex flex-1 items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
 					<hlm-avatar class="size-10">
 						<img src="assets/avatars/jessica-lambert.png" alt="Jessica Lambert" hlmAvatarImage />
 						<span class="bg-primary text-primary-foreground" hlmAvatarFallback>JL</span>
 					</hlm-avatar>
-					<div class="flex flex-col gap-2">
+					<div class="flex flex-1 flex-col gap-2">
 						<span class="flex items-center gap-1">
 							<span class="text-sm leading-4">Jessica</span>
 							<span class="text-muted-foreground text-xs leading-[inherit] font-normal">(Designer)</span>
@@ -80,13 +80,13 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 			<div
 				class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs outline-none">
 				<label
-					class="flex items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
+					class="flex flex-1 items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
 					<hlm-avatar class="size-10">
 						<img src="assets/avatars/alan-cooper.png" alt="Alan Cooper" hlmAvatarImage />
 						<span class="bg-primary text-primary-foreground" hlmAvatarFallback>AC</span>
 					</hlm-avatar>
-					<div class="flex flex-col gap-2">
+					<div class="flex flex-1 flex-col gap-2">
 						<span class="flex items-center gap-1">
 							<span class="text-sm leading-4">Alan Cooper</span>
 							<span class="text-muted-foreground text-xs leading-[inherit] font-normal">(FE Dev)</span>
@@ -107,13 +107,13 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 			<div
 				class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs outline-none">
 				<label
-					class="flex items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
+					class="flex flex-1 items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
 					<hlm-avatar class="size-10">
 						<img src="assets/avatars/jessica-lambert.png" alt="Jessica Lambert" hlmAvatarImage />
 						<span class="bg-primary text-primary-foreground" hlmAvatarFallback>JL</span>
 					</hlm-avatar>
-					<div class="flex flex-col gap-2">
+					<div class="flex flex-1 flex-col gap-2">
 						<span class="flex items-center gap-1">
 							<span class="text-sm leading-4">Jessica</span>
 							<span class="text-muted-foreground text-xs leading-[inherit] font-normal">(Designer)</span>

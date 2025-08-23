@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { HlmLabel } from './lib/hlm-label.directive';
+import { HlmLabel } from './lib/hlm-label';
 
-export * from './lib/hlm-label.directive';
+export * from './lib/hlm-label';
 
 @NgModule({
 	imports: [HlmLabel],
