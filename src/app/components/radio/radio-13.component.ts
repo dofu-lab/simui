@@ -18,10 +18,12 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 						<label
 							class="flex w-full flex-col items-center justify-between px-2 py-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 							hlmLabel>
-							<p class="text-foreground text-sm leading-none font-medium select-none">
-								{{ item.label }}
-							</p>
-							<hlm-radio [value]="item.value" />
+							<div>
+								<p class="text-foreground text-sm leading-none font-medium select-none">
+									{{ item.label }}
+								</p>
+								<hlm-radio [value]="item.value" />
+							</div>
 						</label>
 					</div>
 				}
@@ -60,10 +62,12 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 						<label
 							class="flex w-full flex-col items-center justify-between px-2 py-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 							hlmLabel>
-							<p class="text-foreground text-sm leading-none font-medium select-none">
-								{{ item.label }}
-							</p>
-							<hlm-radio [value]="item.value" />
+							<div>
+								<p class="text-foreground text-sm leading-none font-medium select-none">
+									{{ item.label }}
+								</p>
+								<hlm-radio [value]="item.value" />
+							</div>
 						</label>
 					</div>
 				}

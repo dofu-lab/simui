@@ -26,7 +26,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 						class="group flex w-full flex-col items-start justify-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 						hlmLabel>
 						<img
-							class="border-input focus-visible:ring-ring/50 relative cursor-pointer overflow-hidden rounded-md border shadow-xs transition-[color,box-shadow] outline-none group-data-disabled:cursor-not-allowed group-data-disabled:opacity-50 focus-visible:ring-[3px]"
+							class="border-input focus-visible:ring-ring/50 relative cursor-pointer overflow-hidden rounded-md border shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px]"
 							[class]="{ 'border-ring': theme() === item.value }"
 							width="88"
 							height="70"
@@ -96,7 +96,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 						class="group flex w-full flex-col items-start justify-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 						hlmLabel>
 						<img
-							class="border-input focus-visible:ring-ring/50 relative cursor-pointer overflow-hidden rounded-md border shadow-xs transition-[color,box-shadow] outline-none group-data-disabled:cursor-not-allowed group-data-disabled:opacity-50 focus-visible:ring-[3px]"
+							class="border-input focus-visible:ring-ring/50 relative cursor-pointer overflow-hidden rounded-md border shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px]"
 							[class]="{ 'border-ring': theme() === item.value }"
 							width="88"
 							height="70"
