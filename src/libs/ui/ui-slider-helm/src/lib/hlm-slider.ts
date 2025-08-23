@@ -21,24 +21,26 @@ import type { ClassValue } from 'clsx';
 		},
 	],
 	template: `
-		<div brnSliderTrack class="bg-secondary relative h-2 w-full grow overflow-hidden rounded-full">
+		<div brnSliderTrack class="bg-muted relative h-1.5 w-full grow overflow-hidden rounded-full">
 			<div class="bg-primary absolute h-full" brnSliderRange></div>
 		</div>
 
-		@if (slider.showTicks()) {
+		@if (_slider.showTicks()) {
 			<div class="pointer-events-none absolute -inset-x-px top-2 h-1 w-full cursor-pointer transition-all">
 				<div
 					*brnSliderTick="let tick; let position = position"
 					class="absolute size-1 rounded-full"
 					[class.bg-secondary]="tick"
 					[class.bg-primary]="!tick"
-					[style.inset-inline-start.%]="position"></div>
+					[style.inset-inline-start.%]="position"
+				></div>
 			</div>
 		}
 
 		<span
-			class="border-primary bg-background ring-offset-background focus-visible:ring-ring absolute block h-5 w-5 -translate-x-1/2 rounded-full border-2 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
-			brnSliderThumb></span>
+			class="border-primary bg-background ring-ring/50 focus-visible:outline-hidden absolute block size-4 shrink-0 -translate-x-1/2 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50"
+			brnSliderThumb
+		></span>
 	`,
 	host: {
 		'[class]': '_computedClass()',
@@ -46,12 +48,12 @@ import type { ClassValue } from 'clsx';
 	imports: [BrnSliderThumb, BrnSliderTrack, BrnSliderRange, BrnSliderTick],
 })
 export class HlmSlider {
-	protected readonly slider = injectBrnSlider();
+	protected readonly _slider = injectBrnSlider();
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() =>
 		hlm(
-			'w-full h-5 flex relative select-none items-center touch-none',
-			this.slider.disabled() ? 'opacity-40' : '',
+			'relative flex w-full touch-none select-none items-center',
+			this._slider.mutableDisabled() ? 'opacity-40' : '',
 			this.userClass(),
 		),
 	);
