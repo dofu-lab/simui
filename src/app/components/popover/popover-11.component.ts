@@ -12,7 +12,7 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 	providers: [provideIcons({ lucideArrowLeft, lucideArrowRight })],
 	template: `
 		<brn-popover sideOffset="5">
-			<button variant="outline" brnPopoverTrigger hlmBtn>Tooltip-like with steps</button>
+			<button variant="outline" brnPopoverTrigger hlmBtn>Tooltip-like with nav</button>
 			<div hlmPopoverContent class="grid gap-1" *brnPopoverContent="let ctx">
 				<div class="text-sm font-medium">
 					{{ steps[currentStep()].title }}
@@ -106,7 +106,7 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 	providers: [provideIcons({ lucideArrowLeft, lucideArrowRight })],
 	template: \`
 		<brn-popover sideOffset="5">
-			<button variant="outline" brnPopoverTrigger hlmBtn>Tooltip-like with steps</button>
+			<button variant="outline" brnPopoverTrigger hlmBtn>Tooltip-like with nav</button>
 			<div hlmPopoverContent class="grid gap-1" *brnPopoverContent="let ctx">
 				<div class="text-sm font-medium">
 					{{ steps[currentStep()].title }}

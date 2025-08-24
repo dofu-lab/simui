@@ -44,7 +44,7 @@ import { NavigationService } from '../core/navigation.service';
 									<span hlmBadge variant="outline">New</span>
 								}
 							</div>
-							<div class="text-text-sm text-foreground text-foreground">{{ component.compNumber }} components</div>
+							<div class="text-text-sm text-foreground">{{ component.compNumber }} components</div>
 						</div>
 					</div>
 				}

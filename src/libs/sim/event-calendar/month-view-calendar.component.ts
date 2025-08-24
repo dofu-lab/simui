@@ -94,10 +94,7 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 														[isFirstDay]="isFirstDay(event, day)"
 														[isLastDay]="isLastDay(event, day)"
 														(click)="editEvent(event)">
-														<div class="invisible" aria-hidden="true">
-															@if (!event.allDay) {
-																<span>{{ event.start | date: 'h:mm' }}</span>
-															}
+														<div class="invisible truncate" aria-hidden="true">
 															{{ event.title }}
 														</div>
 													</sim-event-item>

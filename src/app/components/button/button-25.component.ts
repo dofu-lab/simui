@@ -17,7 +17,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 				<span
 					hlmBadge
 					variant="destructive"
-					class="absolute -top-2 left-full flex min-w-5 -translate-x-1/2 items-center justify-center px-1 py-[1px]">
+					class="absolute -top-2 left-full flex min-w-5 -translate-x-1/2 items-center justify-center rounded-full px-1 py-[1px]">
 					{{ unreadMessageCount() }}
 				</span>
 			}
@@ -51,7 +51,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 				<span
 					hlmBadge
 					variant="destructive"
-					class="absolute -top-2 left-full flex min-w-5 -translate-x-1/2 items-center justify-center px-1 py-[1px]">
+					class="absolute -top-2 left-full flex min-w-5 -translate-x-1/2 items-center justify-center rounded-full px-1 py-[1px]">
 					{{ unreadMessageCount() }}
 				</span>
 			}

@@ -8,13 +8,13 @@ import { getBorderRadiusClasses, getEventColorClasses } from './utils';
 @Component({
 	selector: 'sim-event-item-wrapper',
 	template: `
-		<button
+		<div
 			[class]="computedClass()"
 			(click)="onClick.emit()"
 			(mousedown)="onMouseDown.emit()"
 			(touchstart)="onTouchStart.emit()">
 			<ng-content />
-		</button>
+		</div>
 	`,
 })
 export class EventItemWrapperComponent {

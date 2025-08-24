@@ -27,19 +27,21 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 		<hlm-dialog>
 			<button brnDialogTrigger hlmBtn variant="outline">Publish post</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-6 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
+				class="[&>button>ng-icon]:text-primary-foreground top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
 				<div class="flex flex-col gap-6">
-					<div [hlmAspectRatio]="4 / 3">
-						<img src="assets/backgrounds/bg-01.jpg" alt="Logo" class="w-full rounded-md" />
+					<div class="px-2 pt-2">
+						<div [hlmAspectRatio]="4 / 3">
+							<img src="assets/backgrounds/bg-01.jpg" alt="Logo" class="w-full rounded-md" />
+						</div>
 					</div>
-					<div class="flex flex-col gap-1 text-center">
+					<div class="flex flex-col gap-1 px-6 text-center">
 						<span class="text-lg font-semibold">Blog post published</span>
 						<span class="text-muted-foreground text-sm">
 							This blog post has been published. Team members will be able to edit this post and republish changes.
 						</span>
 					</div>
-					<div class="flex gap-2">
+					<div class="flex gap-2 px-6 pb-6">
 						<button hlmBtn variant="outline" size="sm" class="flex-1" [disabled]="copied()" (click)="onSelect()">
 							<div class="relative flex items-center justify-center">
 								<ng-icon
@@ -61,7 +63,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 										'scale-100 opacity-100': copied(),
 									}" />
 							</div>
-							<span class="ml-2">Copy link</span>
+							<span>Copy link</span>
 						</button>
 						<button hlmBtn class="flex-1" size="sm" (click)="ctx.close()">Finished</button>
 					</div>
@@ -113,19 +115,21 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 		<hlm-dialog>
 			<button brnDialogTrigger hlmBtn variant="outline">Publish post</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-6 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
+				class="[&>button>ng-icon]:text-primary-foreground top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*brnDialogContent="let ctx">
 				<div class="flex flex-col gap-6">
-					<div [hlmAspectRatio]="4 / 3">
-						<img src="assets/backgrounds/bg-01.jpg" alt="Logo" class="w-full rounded-md" />
+					<div class="px-2 pt-2">
+						<div [hlmAspectRatio]="4 / 3">
+							<img src="assets/backgrounds/bg-01.jpg" alt="Logo" class="w-full rounded-md" />
+						</div>
 					</div>
-					<div class="flex flex-col gap-1 text-center">
+					<div class="flex flex-col gap-1 px-6 text-center">
 						<span class="text-lg font-semibold">Blog post published</span>
 						<span class="text-muted-foreground text-sm">
 							This blog post has been published. Team members will be able to edit this post and republish changes.
 						</span>
 					</div>
-					<div class="flex gap-2">
+					<div class="flex gap-2 px-6 pb-6">
 						<button hlmBtn variant="outline" size="sm" class="flex-1" [disabled]="copied()" (click)="onSelect()">
 							<div class="relative flex items-center justify-center">
 								<ng-icon
@@ -147,7 +151,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 										'scale-100 opacity-100': copied(),
 									}" />
 							</div>
-							<span class="ml-2">Copy link</span>
+							<span>Copy link</span>
 						</button>
 						<button hlmBtn class="flex-1" size="sm" (click)="ctx.close()">Finished</button>
 					</div>

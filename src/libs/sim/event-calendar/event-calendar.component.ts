@@ -100,7 +100,7 @@ import { toast } from 'ngx-sonner';
 						(onEventAdded)="handleEventAdded($event)"
 						(onEventUpdated)="handleEventUpdate($event)" />
 					<ng-template #menu>
-						<hlm-menu class="">
+						<hlm-menu>
 							<hlm-menu-group>
 								<button hlmMenuItem (click)="view.set('month')">
 									Month

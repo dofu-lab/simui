@@ -7,7 +7,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup, HlmRadioIndicator } from '@spartan-ng/helm/radio-group';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
@@ -26,7 +26,6 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 		HlmSpinner,
 		HlmRadio,
 		HlmRadioGroup,
-		HlmRadioIndicator,
 		BrnDialogTrigger,
 		BrnDialogContent,
 	],
@@ -55,7 +54,15 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 									<div class="flex w-full flex-col text-left font-normal select-none">
 										<div class="mb-1 flex flex-row justify-between">
 											<span class="text-lg font-semibold">10$ per month</span>
-											<hlm-radio value="basic"><hlm-radio-indicator /></hlm-radio>
+											<hlm-radio value="basic">
+												<div
+													class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
+													<div
+														class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+													<div
+														class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+												</div>
+											</hlm-radio>
 										</div>
 										<span class="text-base">Basic plan</span>
 										<span class="text-muted-foreground">Billed annually</span>
@@ -85,7 +92,15 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 									<div class="flex w-full flex-col text-left font-normal select-none">
 										<div class="mb-1 flex flex-row justify-between">
 											<span class="text-lg font-semibold">25$ per month</span>
-											<hlm-radio value="business"><hlm-radio-indicator /></hlm-radio>
+											<hlm-radio value="business">
+												<div
+													class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
+													<div
+														class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+													<div
+														class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+												</div>
+											</hlm-radio>
 										</div>
 										<span class="text-base">Business plan</span>
 										<span class="text-muted-foreground">Billed annually</span>
@@ -169,7 +184,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup, HlmRadioIndicator } from '@spartan-ng/helm/radio-group';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
@@ -188,7 +203,6 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 		HlmSpinner,
 		HlmRadio,
 		HlmRadioGroup,
-		HlmRadioIndicator,
 		BrnDialogTrigger,
 		BrnDialogContent,
 	],
@@ -217,7 +231,15 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 									<div class="flex w-full flex-col text-left font-normal select-none">
 										<div class="mb-1 flex flex-row justify-between">
 											<span class="text-lg font-semibold">10$ per month</span>
-											<hlm-radio value="basic"><hlm-radio-indicator /></hlm-radio>
+											<hlm-radio value="basic">
+												<div
+													class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
+													<div
+														class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+													<div
+														class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+												</div>
+											</hlm-radio>
 										</div>
 										<span class="text-base">Basic plan</span>
 										<span class="text-muted-foreground">Billed annually</span>
@@ -247,7 +269,15 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 									<div class="flex w-full flex-col text-left font-normal select-none">
 										<div class="mb-1 flex flex-row justify-between">
 											<span class="text-lg font-semibold">25$ per month</span>
-											<hlm-radio value="business"><hlm-radio-indicator /></hlm-radio>
+											<hlm-radio value="business">
+												<div
+													class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
+													<div
+														class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+													<div
+														class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+												</div>
+											</hlm-radio>
 										</div>
 										<span class="text-base">Business plan</span>
 										<span class="text-muted-foreground">Billed annually</span>

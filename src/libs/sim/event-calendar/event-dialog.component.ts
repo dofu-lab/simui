@@ -185,9 +185,9 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 								<div class="flex flex-1 flex-col">
 									<label hlmLabel class="flex-1">Tags</label>
 									<div class="flex-1">
-										<hlm-radio-group formControlName="color" class="mt-2 flex gap-0 rounded-md">
+										<hlm-radio-group formControlName="color" class="mt-2 flex gap-1 rounded-md">
 											@for (item of colorOptions; track item) {
-												<label hlmLabel class="">
+												<label hlmLabel>
 													<hlm-radio [value]="item">
 														<div class="relative inline-flex size-6">
 															<div
