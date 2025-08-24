@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleDollarSign } from '@ng-icons/lucide';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-33',
@@ -15,14 +15,14 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 		NgIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmCheckboxComponent,
-		HlmLabelDirective,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmCheckbox,
+		HlmLabel,
 	],
 	providers: [provideIcons({ lucideCircleDollarSign })],
 	template: `
@@ -144,17 +144,16 @@ export class Dialog33Component {
 	});
 }
 
-export const dialog33Code = `
-import { Component } from '@angular/core';
+export const dialog33Code = `import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleDollarSign } from '@ng-icons/lucide';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-33',
@@ -162,14 +161,14 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 		NgIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmCheckboxComponent,
-		HlmLabelDirective,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmCheckbox,
+		HlmLabel,
 	],
 	providers: [provideIcons({ lucideCircleDollarSign })],
 	template: \`
@@ -289,5 +288,4 @@ export class Dialog33Component {
 		mastercard: new FormControl(false),
 		applepay: new FormControl(false),
 	});
-}
-`;
+}`;

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
+import { HlmBadge } from '@spartan-ng/helm/badge';
 import { previewComponents } from '../constants/home.constant';
 import { ThemeService } from '../core';
 import { CardBodyDirective, CardDirective } from '../core/card';
@@ -9,7 +9,7 @@ import { NavigationService } from '../core/navigation.service';
 @Component({
 	selector: 'app-home',
 	providers: [NavigationService],
-	imports: [CardDirective, CardBodyDirective, HlmBadgeDirective],
+	imports: [CardDirective, CardBodyDirective, HlmBadge],
 	template: `
 		<div class="flex-1 items-start">
 			<div class="max-w-3xl pt-15 max-sm:text-center">
@@ -38,13 +38,13 @@ import { NavigationService } from '../core/navigation.service';
 								[hidden]="this.appearance() !== 'light'" />
 						</div>
 						<div dfCardBody>
-							<div class="text-text-md flex items-center gap-2 font-semibold">
+							<div class="text-text-md text-foreground flex items-center gap-2 font-semibold">
 								{{ component.name }}
 								@if (component.isNew) {
 									<span hlmBadge variant="outline">New</span>
 								}
 							</div>
-							<div class="text-text-sm">{{ component.compNumber }} components</div>
+							<div class="text-text-sm text-foreground">{{ component.compNumber }} components</div>
 						</div>
 					</div>
 				}

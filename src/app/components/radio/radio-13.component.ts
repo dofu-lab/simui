@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-13',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel],
 	host: {
 		class: 'w-full',
 	},
@@ -18,10 +18,12 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 						<label
 							class="flex w-full flex-col items-center justify-between px-2 py-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 							hlmLabel>
-							<p class="text-foreground text-sm leading-none font-medium select-none">
-								{{ item.label }}
-							</p>
-							<hlm-radio [value]="item.value" />
+							<div>
+								<p class="text-foreground text-sm leading-none font-medium select-none">
+									{{ item.label }}
+								</p>
+								<hlm-radio [value]="item.value" />
+							</div>
 						</label>
 					</div>
 				}
@@ -40,31 +42,32 @@ export class Radio13Component {
 	];
 }
 
-export const radio13Code = `
-import { Component } from '@angular/core';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+export const radio13Code = `import { Component } from '@angular/core';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-13',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel],
 	host: {
 		class: 'w-full',
 	},
 	template: \`
 		<div class="flex flex-col gap-4">
 			<span class="text-sm">CPU Cores Option:</span>
-			<hlm-radio-group class="grid grid-cols-3 justify-between gap-2 text-sm font-medium" value="2cpu" disabled>
+			<hlm-radio-group class="grid grid-cols-3 justify-between gap-2 text-sm font-medium" value="2cpu">
 				@for (item of items; track item.id) {
 					<div
 						class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full rounded-md border shadow-xs outline-none">
 						<label
 							class="flex w-full flex-col items-center justify-between px-2 py-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 							hlmLabel>
-							<p class="text-foreground text-sm leading-none font-medium select-none">
-								{{ item.label }}
-							</p>
-							<hlm-radio [value]="item.value" />
+							<div>
+								<p class="text-foreground text-sm leading-none font-medium select-none">
+									{{ item.label }}
+								</p>
+								<hlm-radio [value]="item.value" />
+							</div>
 						</label>
 					</div>
 				}
@@ -81,5 +84,4 @@ export class Radio13Component {
 		{ id: 5, value: '10cpu', label: '10 CPU' },
 		{ id: 6, value: '12cpu', label: '12 CPU' },
 	];
-}
-`;
+}`;

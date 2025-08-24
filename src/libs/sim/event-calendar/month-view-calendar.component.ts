@@ -1,8 +1,8 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DatePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 import {
 	addDays,
 	addMinutes,
@@ -27,10 +27,10 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 		DatePipe,
 		NgClass,
 		EventItemComponent,
-		BrnPopoverComponent,
-		BrnPopoverContentDirective,
-		BrnPopoverTriggerDirective,
-		HlmPopoverContentDirective,
+		BrnPopover,
+		BrnPopoverContent,
+		BrnPopoverTrigger,
+		HlmPopoverContent,
 		CdkDrag,
 		CdkDropList,
 		CdkDropListGroup,
@@ -94,10 +94,7 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 														[isFirstDay]="isFirstDay(event, day)"
 														[isLastDay]="isLastDay(event, day)"
 														(click)="editEvent(event)">
-														<div class="invisible" aria-hidden="true">
-															@if (!event.allDay) {
-																<span>{{ event.start | date: 'h:mm' }}</span>
-															}
+														<div class="invisible truncate" aria-hidden="true">
 															{{ event.title }}
 														</div>
 													</sim-event-item>

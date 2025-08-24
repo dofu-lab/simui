@@ -1,29 +1,17 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-09',
-	imports: [
-		NgIcon,
-		HlmIconDirective,
-		HlmTabsComponent,
-		HlmTabsListComponent,
-		HlmTabsTriggerDirective,
-		HlmTabsContentDirective,
-	],
+	imports: [NgIcon, HlmIcon, HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
 			<hlm-tabs-list
-				class="[&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-primary-foreground grid w-full grid-cols-3 bg-transparent [&>button]:data-[state=active]:rounded-full [&>button]:data-[state=active]:shadow-none"
+				class="[&>button]:data-[state=active]:bg-primary [&>button]:dark:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-primary-foreground [&>button]:dark:data-[state=active]:text-primary-foreground grid w-full grid-cols-3 bg-transparent [&>button]:data-[state=active]:rounded-full [&>button]:data-[state=active]:shadow-none"
 				aria-label="tabs example">
 				<button hlmTabsTrigger="tab01" class="flex gap-2 font-normal">
 					<ng-icon hlm name="lucideHouse" size="sm" />
@@ -52,33 +40,20 @@ import {
 })
 export class Tabs09Component {}
 
-export const tabs09Code = `
-import { Component } from '@angular/core';
+export const tabs09Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-09',
-	imports: [
-		NgIcon,
-		HlmIconDirective,
-		HlmTabsComponent,
-		HlmTabsListComponent,
-		HlmTabsTriggerDirective,
-		HlmTabsContentDirective,
-	],
+	imports: [NgIcon, HlmIcon, HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
 	template: \`
 		<hlm-tabs tab="tab01" class="w-full">
 			<hlm-tabs-list
-				class="[&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-primary-foreground grid w-full grid-cols-3 bg-transparent [&>button]:data-[state=active]:rounded-full [&>button]:data-[state=active]:shadow-none"
+				class="[&>button]:data-[state=active]:bg-primary [&>button]:dark:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-primary-foreground [&>button]:dark:data-[state=active]:text-primary-foreground grid w-full grid-cols-3 bg-transparent [&>button]:data-[state=active]:rounded-full [&>button]:data-[state=active]:shadow-none"
 				aria-label="tabs example">
 				<button hlmTabsTrigger="tab01" class="flex gap-2 font-normal">
 					<ng-icon hlm name="lucideHouse" size="sm" />
@@ -105,5 +80,4 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs09Component {}
-`;
+export class Tabs09Component {}`;

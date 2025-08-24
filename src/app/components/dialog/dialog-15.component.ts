@@ -1,33 +1,28 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmDialog, HlmDialogContent, HlmDialogDescription, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-15',
 	imports: [
 		FormsModule,
 		ReactiveFormsModule,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
-		HlmLabelDirective,
-		HlmInputDirective,
-		HlmButtonDirective,
-		HlmCheckboxComponent,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
+		HlmLabel,
+		HlmInput,
+		HlmButton,
+		HlmCheckbox,
 	],
 	template: `
 		<hlm-dialog>
@@ -59,7 +54,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 							<p hlmDialogDescription>Welcome back! Please enter your details.</p>
 						</hlm-dialog-header>
 						<div class="mt-4 flex w-full flex-col gap-4">
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Email
 								<input
 									hlmInput
@@ -69,7 +64,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 									placeholder="phuongtran@simui.com"
 									autocomplete="email" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Password
 								<input
 									hlmInput
@@ -81,7 +76,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 							</label>
 							<div class="flex items-center justify-between">
 								<label hlmLabel for="remember-me" class="flex items-center">
-									<hlm-checkbox class="mr-2" id="remember-me" formControlName="rememberMe" />
+									<hlm-checkbox id="remember-me" formControlName="rememberMe" />
 									Remember me
 								</label>
 								<span
@@ -126,7 +121,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 	`,
 })
 export class Dialog15Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	private _formBuilder = inject(FormBuilder);
 
 	public form = this._formBuilder.group({
@@ -143,37 +138,31 @@ export class Dialog15Component {
 	}
 }
 
-export const dialog15Code = `
-import { Component, inject, viewChild } from '@angular/core';
+export const dialog15Code = `import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmDialog, HlmDialogContent, HlmDialogDescription, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-15',
 	imports: [
 		FormsModule,
 		ReactiveFormsModule,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
-		HlmLabelDirective,
-		HlmInputDirective,
-		HlmButtonDirective,
-		HlmCheckboxComponent,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
+		HlmLabel,
+		HlmInput,
+		HlmButton,
+		HlmCheckbox,
 	],
 	template: \`
 		<hlm-dialog>
@@ -205,7 +194,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 							<p hlmDialogDescription>Welcome back! Please enter your details.</p>
 						</hlm-dialog-header>
 						<div class="mt-4 flex w-full flex-col gap-4">
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Email
 								<input
 									hlmInput
@@ -215,7 +204,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 									placeholder="phuongtran@simui.com"
 									autocomplete="email" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2">
+							<label hlmLabel class="flex flex-col items-start gap-2">
 								Password
 								<input
 									hlmInput
@@ -227,7 +216,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 							</label>
 							<div class="flex items-center justify-between">
 								<label hlmLabel for="remember-me" class="flex items-center">
-									<hlm-checkbox class="mr-2" id="remember-me" formControlName="rememberMe" />
+									<hlm-checkbox id="remember-me" formControlName="rememberMe" />
 									Remember me
 								</label>
 								<span
@@ -272,7 +261,7 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 	\`,
 })
 export class Dialog15Component {
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	private _formBuilder = inject(FormBuilder);
 
 	public form = this._formBuilder.group({
@@ -287,5 +276,4 @@ export class Dialog15Component {
 			this.dialogRef()?.close({});
 		}
 	}
-}
-`;
+}`;

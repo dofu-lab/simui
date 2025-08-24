@@ -2,23 +2,23 @@ import { Component, computed, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideImagePlus, lucideX } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmButton } from '@spartan-ng/helm/button';
 import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+	HlmDialog,
+	HlmDialogContent,
+	HlmDialogDescription,
+	HlmDialogFooter,
+	HlmDialogHeader,
+} from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'profile-background',
-	imports: [NgIcon, HlmButtonDirective, HlmIconDirective],
+	imports: [NgIcon, HlmButton, HlmIcon],
 	providers: [provideIcons({ lucideImagePlus, lucideX })],
 	template: `
 		<div class="h-32">
@@ -66,14 +66,7 @@ export class ProfileBackgroundComponent {
 
 @Component({
 	selector: 'profile-avatar',
-	imports: [
-		NgIcon,
-		HlmAvatarComponent,
-		HlmAvatarImageDirective,
-		HlmAvatarFallbackDirective,
-		HlmButtonDirective,
-		HlmIconDirective,
-	],
+	imports: [NgIcon, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmButton, HlmIcon],
 	providers: [provideIcons({ lucideImagePlus })],
 	template: `
 		<div class="relative -mt-10 ml-6 w-fit">
@@ -109,19 +102,19 @@ export class ProfileAvatarComponent {
 	selector: 'sim-dialog-23',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
+		HlmIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmInputDirective,
-		HlmLabelDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
+		HlmInput,
+		HlmLabel,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
 		ProfileBackgroundComponent,
 		ProfileAvatarComponent,
 	],
@@ -142,7 +135,7 @@ export class ProfileAvatarComponent {
 						<profile-avatar />
 						<div class="flex flex-col gap-4 px-6 pt-4 pb-6" [formGroup]="form">
 							<div class="flex flex-row gap-4">
-								<label hlmLabel for="firstName" class="flex-1">
+								<label hlmLabel for="firstName" class="flex flex-col items-start gap-1">
 									First name
 									<input
 										hlmInput
@@ -153,7 +146,7 @@ export class ProfileAvatarComponent {
 										formControlName="firstName"
 										placeholder="First name" />
 								</label>
-								<label hlmLabel for="lastName" class="flex-1">
+								<label hlmLabel for="lastName" class="flex flex-col items-start gap-1">
 									Last name
 									<input
 										hlmInput
@@ -167,13 +160,13 @@ export class ProfileAvatarComponent {
 							</div>
 							<div class="w-full text-sm">
 								<div class="relative">
-									<label hlmLabel for="userName">
+									<label hlmLabel for="userName" class="flex flex-col items-start gap-1">
 										Username
 										<input
 											id="userName"
 											hlmInput
 											formControlName="userName"
-											class="peer mt-2 h-9 w-full pe-9 text-sm"
+											class="peer h-9 w-full pe-9 text-sm"
 											type="text"
 											placeholder="Your user name" />
 										<div
@@ -188,9 +181,9 @@ export class ProfileAvatarComponent {
 								</div>
 							</div>
 
-							<label hlmLabel for="website">
+							<label hlmLabel for="website" class="flex flex-col items-start gap-1">
 								Website
-								<div class="mt-1 flex flex-row -space-x-px">
+								<div class="flex flex-row -space-x-px">
 									<span
 										class="text-muted-foreground border-input bg-background -z-10 inline-flex w-fit items-center rounded-s-md border px-3 text-sm font-normal">
 										https://
@@ -205,7 +198,7 @@ export class ProfileAvatarComponent {
 										placeholder="Website" />
 								</div>
 							</label>
-							<label hlmLabel for="biography">
+							<label hlmLabel for="biography" class="flex flex-col items-start gap-1">
 								Biography
 								<textarea
 									hlmInput
@@ -214,9 +207,11 @@ export class ProfileAvatarComponent {
 									formControlName="biography"
 									placeholder="Tell us about yourself"
 									[maxlength]="maxLength"></textarea>
-								<p class="text-muted-foreground mt-1 text-right text-xs font-normal">
-									{{ leftCharacters() }} characters left.
-								</p>
+								<div class="flex w-full flex-col items-end">
+									<p class="text-muted-foreground mt-1 text-right text-xs font-normal">
+										{{ leftCharacters() }} characters left.
+									</p>
+								</div>
 							</label>
 						</div>
 					</div>
@@ -231,7 +226,7 @@ export class ProfileAvatarComponent {
 })
 export class Dialog23Component {
 	private readonly _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public maxLength = 180;
 	public lengthCount = signal<number>(0);
 	public isValidUserName = signal<boolean>(true);
@@ -263,28 +258,27 @@ export class Dialog23Component {
 	}
 }
 
-export const dialog23Code = `
-import { Component, computed, inject, signal, viewChild } from '@angular/core';
+export const dialog23Code = `import { Component, computed, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideImagePlus, lucideX } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmButton } from '@spartan-ng/helm/button';
 import {
-	HlmDialogComponent,
-	HlmDialogContentComponent,
-	HlmDialogDescriptionDirective,
-	HlmDialogFooterComponent,
-	HlmDialogHeaderComponent,
-} from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+	HlmDialog,
+	HlmDialogContent,
+	HlmDialogDescription,
+	HlmDialogFooter,
+	HlmDialogHeader,
+} from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'profile-background',
-	imports: [NgIcon, HlmButtonDirective, HlmIconDirective],
+	imports: [NgIcon, HlmButton, HlmIcon],
 	providers: [provideIcons({ lucideImagePlus, lucideX })],
 	template: \`
 		<div class="h-32">
@@ -332,14 +326,7 @@ export class ProfileBackgroundComponent {
 
 @Component({
 	selector: 'profile-avatar',
-	imports: [
-		NgIcon,
-		HlmAvatarComponent,
-		HlmAvatarImageDirective,
-		HlmAvatarFallbackDirective,
-		HlmButtonDirective,
-		HlmIconDirective,
-	],
+	imports: [NgIcon, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmButton, HlmIcon],
 	providers: [provideIcons({ lucideImagePlus })],
 	template: \`
 		<div class="relative -mt-10 ml-6 w-fit">
@@ -375,31 +362,31 @@ export class ProfileAvatarComponent {
 	selector: 'sim-dialog-23',
 	imports: [
 		NgIcon,
-		HlmIconDirective,
+		HlmIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmInputDirective,
-		HlmLabelDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmDialogHeaderComponent,
-		HlmDialogFooterComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmDialogDescriptionDirective,
+		HlmInput,
+		HlmLabel,
+		HlmDialog,
+		HlmDialogContent,
+		HlmDialogHeader,
+		HlmDialogFooter,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmDialogDescription,
 		ProfileBackgroundComponent,
 		ProfileAvatarComponent,
 	],
 	providers: [provideIcons({ lucideCheck })],
 	template: \`
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Edit profile</button>
+			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Edit profile (2)</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-y-auto rounded-lg p-0 sm:max-h-[min(800px,80vh)]"
+				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-y-auto rounded-lg p-0 sm:max-h-[min(1000px,90vh)]"
 				*brnDialogContent="let ctx">
 				<hlm-dialog-header class="contents space-y-0 text-left">
-					<h2 class="mb-0 px-6 py-4 text-lg font-semibold">Terms & Conditions</h2>
+					<h2 class="mb-0 px-6 py-4 text-lg font-semibold">Edit profile</h2>
 					<div class="overflow-y-auto border-t">
 						<div hlmDialogDescription class="sr-only">
 							Make changes to your profile here. You can change your photo and set a username.
@@ -408,7 +395,7 @@ export class ProfileAvatarComponent {
 						<profile-avatar />
 						<div class="flex flex-col gap-4 px-6 pt-4 pb-6" [formGroup]="form">
 							<div class="flex flex-row gap-4">
-								<label hlmLabel for="firstName" class="flex-1">
+								<label hlmLabel for="firstName" class="flex flex-col items-start gap-1">
 									First name
 									<input
 										hlmInput
@@ -419,7 +406,7 @@ export class ProfileAvatarComponent {
 										formControlName="firstName"
 										placeholder="First name" />
 								</label>
-								<label hlmLabel for="lastName" class="flex-1">
+								<label hlmLabel for="lastName" class="flex flex-col items-start gap-1">
 									Last name
 									<input
 										hlmInput
@@ -433,13 +420,13 @@ export class ProfileAvatarComponent {
 							</div>
 							<div class="w-full text-sm">
 								<div class="relative">
-									<label hlmLabel for="userName">
+									<label hlmLabel for="userName" class="flex flex-col items-start gap-1">
 										Username
 										<input
 											id="userName"
 											hlmInput
 											formControlName="userName"
-											class="peer mt-2 h-9 w-full pe-9 text-sm"
+											class="peer h-9 w-full pe-9 text-sm"
 											type="text"
 											placeholder="Your user name" />
 										<div
@@ -454,9 +441,9 @@ export class ProfileAvatarComponent {
 								</div>
 							</div>
 
-							<label hlmLabel for="website">
+							<label hlmLabel for="website" class="flex flex-col items-start gap-1">
 								Website
-								<div class="mt-1 flex flex-row -space-x-px">
+								<div class="flex flex-row -space-x-px">
 									<span
 										class="text-muted-foreground border-input bg-background -z-10 inline-flex w-fit items-center rounded-s-md border px-3 text-sm font-normal">
 										https://
@@ -471,7 +458,7 @@ export class ProfileAvatarComponent {
 										placeholder="Website" />
 								</div>
 							</label>
-							<label hlmLabel for="biography">
+							<label hlmLabel for="biography" class="flex flex-col items-start gap-1">
 								Biography
 								<textarea
 									hlmInput
@@ -480,9 +467,11 @@ export class ProfileAvatarComponent {
 									formControlName="biography"
 									placeholder="Tell us about yourself"
 									[maxlength]="maxLength"></textarea>
-								<p class="text-muted-foreground mt-1 text-right text-xs font-normal">
-									{{ leftCharacters() }} characters left.
-								</p>
+								<div class="flex w-full flex-col items-end">
+									<p class="text-muted-foreground mt-1 text-right text-xs font-normal">
+										{{ leftCharacters() }} characters left.
+									</p>
+								</div>
 							</label>
 						</div>
 					</div>
@@ -497,7 +486,7 @@ export class ProfileAvatarComponent {
 })
 export class Dialog23Component {
 	private readonly _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public maxLength = 180;
 	public lengthCount = signal<number>(0);
 	public isValidUserName = signal<boolean>(true);
@@ -527,5 +516,4 @@ export class Dialog23Component {
 	public closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
-}
-`;
+}`;

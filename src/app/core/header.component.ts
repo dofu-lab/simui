@@ -1,11 +1,12 @@
-import { HlmIconDirective } from '@/libs/ui/ui-icon-helm/src';
-import { HlmMenuComponent, HlmMenuItemDirective } from '@/libs/ui/ui-menu-helm/src';
+import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
+import { HlmMenu, HlmMenuItem } from '@/libs/ui/ui-menu-helm/src';
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub, lucideMoon, lucideSquareMenu, lucideSun } from '@ng-icons/lucide';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { remixTwitterXFill } from '@ng-icons/remixicon';
+import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { REPO_LINK, X_LINK } from './constants';
 import { NavigationService } from './navigation.service';
 import { ThemeService } from './theme.service';
@@ -13,15 +14,8 @@ import { ThemeService } from './theme.service';
 @Component({
 	selector: 'app-header',
 	standalone: true,
-	providers: [provideIcons({ lucideSun, lucideMoon, lucideGithub, lucideSquareMenu })],
-	imports: [
-		HlmButtonDirective,
-		NgIcon,
-		HlmIconDirective,
-		HlmMenuComponent,
-		HlmMenuItemDirective,
-		BrnMenuTriggerDirective,
-	],
+	providers: [provideIcons({ lucideSun, lucideMoon, lucideGithub, lucideSquareMenu, remixTwitterXFill })],
+	imports: [HlmButton, NgIcon, HlmIcon, HlmMenu, HlmMenuItem, BrnMenuTrigger],
 	template: `
 		<header
 			class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 flex w-full items-center justify-center backdrop-blur-lg">
@@ -29,14 +23,14 @@ import { ThemeService } from './theme.service';
 				<div class="mr-4 flex">
 					<a class="relative mr-6 flex items-center space-x-2" href="/">
 						<img src="/assets/logos/logo-base.svg" alt="Magic UI" class="h-10 w-10" />
-						<span class="hidden font-bold md:inline-block">Sim UI</span>
+						<span class="text-foreground hidden font-bold md:inline-block">Sim UI</span>
 						<div
 							class="bg-secondary text-secondary-foreground hover:bg-secondary/80 focus:ring-ring inline-flex items-center rounded-md border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none">
 							Beta
 						</div>
 					</a>
 					<a
-						class="relative mr-6 hidden cursor-pointer items-center gap-0.5 space-x-2 text-sm hover:underline sm:inline-flex"
+						class="text-foreground relative mr-6 hidden cursor-pointer items-center gap-0.5 space-x-2 text-sm hover:underline sm:inline-flex"
 						(click)="goToIntroduction()">
 						Introduction
 					</a>
@@ -44,13 +38,7 @@ import { ThemeService } from './theme.service';
 				<div class="flex items-center justify-between gap-2 md:justify-end">
 					<nav class="flex items-center gap-1">
 						<button hlmBtn size="icon" variant="ghost" type="button" (click)="openX()">
-							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M10.5112 15L6.97974 9.96643L2.55881 15H0.688477L6.14995 8.78342L0.688477 1H5.49044L8.8188 5.7441L12.9891 1H14.8594L9.65137 6.92867L15.3132 15H10.5112ZM12.594 13.5809H11.3348L3.36652 2.41909H4.62587L7.81725 6.88837L8.36912 7.66391L12.594 13.5809Z"
-									fill="currentColor" />
-							</svg>
+							<ng-icon hlm name="remixTwitterXFill" class="text-primary" size="sm" />
 						</button>
 					</nav>
 					<nav class="flex items-center gap-1">

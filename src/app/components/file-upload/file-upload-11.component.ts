@@ -16,9 +16,9 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState, formatBytes } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } from '@spartan-ng/ui-table-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTable, HlmTd, HlmTh, HlmTr } from '@spartan-ng/helm/table';
 
 @Component({
 	selector: 'sim-file-upload-11',
@@ -39,16 +39,7 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 			lucideDownload,
 		}),
 	],
-	imports: [
-		HlmButtonDirective,
-		HlmIconDirective,
-		NgIcon,
-		FileDragDropDirective,
-		HlmTableComponent,
-		HlmTrowComponent,
-		HlmThComponent,
-		HlmTdComponent,
-	],
+	imports: [HlmButton, HlmIcon, NgIcon, FileDragDropDirective, HlmTable, HlmTr, HlmTh, HlmTd],
 	host: {
 		class: 'w-full',
 	},
@@ -82,28 +73,28 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 						</div>
 						<div class="w-full overflow-hidden rounded-lg border">
 							<div class="overflow-x-auto">
-								<hlm-table class="w-full min-w-[400px]">
-									<hlm-trow class="bg-muted/50 text-muted-foreground font-regular">
-										<hlm-th class="h-9 w-[40%] px-3 py-2 text-xs">Name</hlm-th>
-										<hlm-th class="h-9 w-[15%] px-3 py-2 text-xs">Type</hlm-th>
-										<hlm-th class="h-9 w-[25%] px-3 py-2 text-xs">Size</hlm-th>
-										<hlm-th class="h-9 w-[20%] justify-end px-3 py-2 text-xs">Action</hlm-th>
-									</hlm-trow>
+								<table hlmTable="" class="w-full min-w-[400px]">
+									<tr hlmTr class="bg-muted/50 text-muted-foreground font-regular">
+										<th hlmTh class="h-9 w-[40%] px-3 py-2 text-xs">Name</th>
+										<th hlmTh class="h-9 w-[15%] px-3 py-2 text-xs">Type</th>
+										<th hlmTh class="h-9 w-[25%] px-3 py-2 text-xs">Size</th>
+										<th hlmTh class="h-9 w-[20%] justify-end px-3 py-2 text-xs">Action</th>
+									</tr>
 									@for (file of files(); track file.id) {
-										<hlm-trow>
-											<hlm-td class="h-12.5 w-[40%] px-3 py-2">
+										<tr hlmTr>
+											<td hlmTd class="h-12.5 w-[40%] px-3 py-2">
 												<div class="flex items-center gap-2 truncate">
 													<ng-icon hlm size="sm" [name]="getFileIcon(file)" class="shrink-0 opacity-60" />
 													<span class="truncate text-[13px] font-medium">{{ file.file.name }}</span>
 												</div>
-											</hlm-td>
-											<hlm-td class="text-muted-foreground h-12.5 w-[15%] px-3 py-2 text-[13px]">
+											</td>
+											<td hlmTd class="text-muted-foreground h-12.5 w-[15%] px-3 py-2 text-[13px]">
 												{{ file.file.type.split('/')[1].toUpperCase() || 'UNKNOWN' }}
-											</hlm-td>
-											<hlm-td class="text-muted-foreground h-12.5 w-[25%] px-3 py-2 text-[13px]">
+											</td>
+											<td hlmTd class="text-muted-foreground h-12.5 w-[25%] px-3 py-2 text-[13px]">
 												{{ formatBytes(file.file.size) }}
-											</hlm-td>
-											<hlm-td class="text-muted-foreground h-12.5 w-[20%] justify-end px-3 py-2 text-[13px]">
+											</td>
+											<td hlmTd class="text-muted-foreground h-12.5 w-[20%] justify-end px-3 py-2 text-[13px]">
 												<button
 													hlmBtn
 													size="icon"
@@ -119,10 +110,10 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 													(click)="onRemoveImage(file.id)">
 													<ng-icon hlm size="sm" name="lucideTrash2" class="shrink-0 opacity-60" />
 												</button>
-											</hlm-td>
-										</hlm-trow>
+											</td>
+										</tr>
 									}
-								</hlm-table>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -277,9 +268,9 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState, formatBytes } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } from '@spartan-ng/ui-table-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTable, HlmTd, HlmTh, HlmTr } from '@spartan-ng/helm/table';
 
 @Component({
 	selector: 'sim-file-upload-11',
@@ -300,16 +291,7 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 			lucideDownload,
 		}),
 	],
-	imports: [
-		HlmButtonDirective,
-		HlmIconDirective,
-		NgIcon,
-		FileDragDropDirective,
-		HlmTableComponent,
-		HlmTrowComponent,
-		HlmThComponent,
-		HlmTdComponent,
-	],
+	imports: [HlmButton, HlmIcon, NgIcon, FileDragDropDirective, HlmTable, HlmTr, HlmTh, HlmTd],
 	host: {
 		class: 'w-full',
 	},
@@ -343,28 +325,28 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 						</div>
 						<div class="w-full overflow-hidden rounded-lg border">
 							<div class="overflow-x-auto">
-								<hlm-table class="w-full min-w-[400px]">
-									<hlm-trow class="bg-muted/50 text-muted-foreground font-regular">
-										<hlm-th class="h-9 w-[40%] px-3 py-2 text-xs">Name</hlm-th>
-										<hlm-th class="h-9 w-[15%] px-3 py-2 text-xs">Type</hlm-th>
-										<hlm-th class="h-9 w-[25%] px-3 py-2 text-xs">Size</hlm-th>
-										<hlm-th class="h-9 w-[20%] justify-end px-3 py-2 text-xs">Action</hlm-th>
-									</hlm-trow>
+								<table hlmTable="" class="w-full min-w-[400px]">
+									<tr hlmTr class="bg-muted/50 text-muted-foreground font-regular">
+										<th hlmTh class="h-9 w-[40%] px-3 py-2 text-xs">Name</th>
+										<th hlmTh class="h-9 w-[15%] px-3 py-2 text-xs">Type</th>
+										<th hlmTh class="h-9 w-[25%] px-3 py-2 text-xs">Size</th>
+										<th hlmTh class="h-9 w-[20%] justify-end px-3 py-2 text-xs">Action</th>
+									</tr>
 									@for (file of files(); track file.id) {
-										<hlm-trow>
-											<hlm-td class="h-12.5 w-[40%] px-3 py-2">
+										<tr hlmTr>
+											<td hlmTd class="h-12.5 w-[40%] px-3 py-2">
 												<div class="flex items-center gap-2 truncate">
 													<ng-icon hlm size="sm" [name]="getFileIcon(file)" class="shrink-0 opacity-60" />
 													<span class="truncate text-[13px] font-medium">{{ file.file.name }}</span>
 												</div>
-											</hlm-td>
-											<hlm-td class="text-muted-foreground h-12.5 w-[15%] px-3 py-2 text-[13px]">
+											</td>
+											<td hlmTd class="text-muted-foreground h-12.5 w-[15%] px-3 py-2 text-[13px]">
 												{{ file.file.type.split('/')[1].toUpperCase() || 'UNKNOWN' }}
-											</hlm-td>
-											<hlm-td class="text-muted-foreground h-12.5 w-[25%] px-3 py-2 text-[13px]">
+											</td>
+											<td hlmTd class="text-muted-foreground h-12.5 w-[25%] px-3 py-2 text-[13px]">
 												{{ formatBytes(file.file.size) }}
-											</hlm-td>
-											<hlm-td class="text-muted-foreground h-12.5 w-[20%] justify-end px-3 py-2 text-[13px]">
+											</td>
+											<td hlmTd class="text-muted-foreground h-12.5 w-[20%] justify-end px-3 py-2 text-[13px]">
 												<button
 													hlmBtn
 													size="icon"
@@ -380,10 +362,10 @@ import { HlmTableComponent, HlmTdComponent, HlmThComponent, HlmTrowComponent } f
 													(click)="onRemoveImage(file.id)">
 													<ng-icon hlm size="sm" name="lucideTrash2" class="shrink-0 opacity-60" />
 												</button>
-											</hlm-td>
-										</hlm-trow>
+											</td>
+										</tr>
 									}
-								</hlm-table>
+								</table>
 							</div>
 						</div>
 					</div>

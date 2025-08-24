@@ -1,25 +1,16 @@
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell } from '@ng-icons/lucide';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-02',
 	providers: [provideIcons({ lucideBell })],
-	imports: [
-		BrnPopoverComponent,
-		BrnPopoverContentDirective,
-		BrnPopoverTriggerDirective,
-		HlmBadgeDirective,
-		HlmButtonDirective,
-		HlmIconDirective,
-		HlmPopoverContentDirective,
-		NgIcon,
-	],
+	imports: [BrnPopover, BrnPopoverContent, BrnPopoverTrigger, HlmBadge, HlmButton, HlmIcon, HlmPopoverContent, NgIcon],
 	template: `
 		<brn-popover sideOffset="5">
 			<button variant="outline" size="icon" class="relative size-9" brnPopoverTrigger hlmBtn>
@@ -114,29 +105,19 @@ export class Popover02Component {
 	}
 }
 
-export const Popover02Code = `
-import { Component, computed, signal } from '@angular/core';
+export const popover02Code = `import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell } from '@ng-icons/lucide';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-02',
 	providers: [provideIcons({ lucideBell })],
-	imports: [
-		BrnPopoverComponent,
-		BrnPopoverContentDirective,
-		BrnPopoverTriggerDirective,
-		HlmBadgeDirective,
-		HlmButtonDirective,
-		HlmIconDirective,
-		HlmPopoverContentDirective,
-		NgIcon,
-	],
+	imports: [BrnPopover, BrnPopoverContent, BrnPopoverTrigger, HlmBadge, HlmButton, HlmIcon, HlmPopoverContent, NgIcon],
 	template: \`
 		<brn-popover sideOffset="5">
 			<button variant="outline" size="icon" class="relative size-9" brnPopoverTrigger hlmBtn>
@@ -229,5 +210,4 @@ export class Popover02Component {
 			})),
 		);
 	}
-}
-`;
+}`;

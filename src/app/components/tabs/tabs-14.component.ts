@@ -1,21 +1,16 @@
 import { Component } from '@angular/core';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-14',
-	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	host: {
 		class: 'w-full',
 	},
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
 			<hlm-tabs-list
-				class="[&>button]:data-[state=active]:bg-muted text-muted-foreground/70 mx-auto flex w-full max-w-xs items-center justify-center rounded-md bg-transparent p-0.5 [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
+				class="[&>button]:data-[state=active]:bg-muted text-muted-foreground/70 mx-auto flex h-fit w-full max-w-xs items-center justify-center rounded-md bg-transparent p-0.5 [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
 				aria-label="tabs example">
 				<button hlmTabsTrigger="tab01" class="flex-1 flex-col gap-1.5 p-3">
 					<span
@@ -53,25 +48,19 @@ import {
 })
 export class Tabs14Component {}
 
-export const tabs14Code = `
-import { Component } from '@angular/core';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+export const tabs14Code = `import { Component } from '@angular/core';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-14',
-	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	host: {
 		class: 'w-full',
 	},
 	template: \`
 		<hlm-tabs tab="tab01" class="w-full">
 			<hlm-tabs-list
-				class="[&>button]:data-[state=active]:bg-muted text-muted-foreground/70 mx-auto flex w-full max-w-xs items-center justify-center rounded-md bg-transparent p-0.5 [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
+				class="[&>button]:data-[state=active]:bg-muted text-muted-foreground/70 mx-auto flex h-fit w-full max-w-xs items-center justify-center rounded-md bg-transparent p-0.5 [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
 				aria-label="tabs example">
 				<button hlmTabsTrigger="tab01" class="flex-1 flex-col gap-1.5 p-3">
 					<span
@@ -107,5 +96,4 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs14Component {}
-`;
+export class Tabs14Component {}`;

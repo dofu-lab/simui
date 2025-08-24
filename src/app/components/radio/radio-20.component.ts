@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-20',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, FormsModule],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, FormsModule],
 	host: {
 		class: 'w-full',
 	},
@@ -39,15 +39,14 @@ export class Radio20Component {
 	value = signal<'month' | 'year'>('month');
 }
 
-export const radio20Code = `
-import { Component, signal } from '@angular/core';
+export const radio20Code = `import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-20',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, FormsModule],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, FormsModule],
 	host: {
 		class: 'w-full',
 	},
@@ -79,5 +78,4 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 })
 export class Radio20Component {
 	value = signal<'month' | 'year'>('month');
-}
-`;
+}`;

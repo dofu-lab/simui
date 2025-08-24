@@ -30,13 +30,11 @@ import { formatTimeWithOptionalMinutes } from './utils';
 				} @else if (view() === 'week' || view() === 'day') {
 					<div class="flex h-full flex-col items-start truncate py-1">
 						<span>{{ event().title }}sss</span>
-						<span class="">
-							@if (!event().allDay) {
-								<span class="truncate font-normal opacity-70 sm:text-[11px]">
-									{{ displayTime() }}
-								</span>
-							}
-						</span>
+						@if (!event().allDay) {
+							<span class="truncate font-normal opacity-70 sm:text-[11px]">
+								{{ displayTime() }}
+							</span>
+						}
 					</div>
 				} @else {
 					<div class="py-2">
@@ -76,7 +74,7 @@ export class EventItemComponent {
 	public readonly height = input<number>(EventHeight);
 
 	computedMonthClass = computed(() => {
-		return hlm('items-center text-[10px] sm:text-xs', `h-[${this.height()}px]`, this.userClass());
+		return hlm('items-center text-[10px] sm:text-xs', `h-${this.height() / 4}`, this.userClass());
 	});
 	displayStart = computed(() => this.currentTime() || new Date(this.event().start));
 	displayEnd = computed(() => {

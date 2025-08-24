@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-15',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, HlmBadgeDirective],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, HlmBadge],
 	host: {
 		class: 'w-full',
 	},
@@ -20,11 +20,12 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 							class="flex w-full items-center justify-start gap-2 p-4 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 							hlmLabel>
 							<hlm-radio [value]="item.value" class="space-x-0">
-								<div class="relative inline-flex size-4">
+								<div
+									class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 									<div
-										class="bg-background absolute inset-0 scale-0 scale-[100%] rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[37.5%]"></div>
+										class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
 									<div
-										class="ring-offset-background group-[.cdk-keyboard-focused]:ring-ring border-input bg-primary group-[.brn-radio-checked]:border-primary! aspect-square rounded-full border group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+										class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
 								</div>
 							</hlm-radio>
 							<div class="flex w-full flex-row items-center justify-between">
@@ -56,15 +57,14 @@ export class Radio15Component {
 	];
 }
 
-export const radio15Code = `
-import { Component } from '@angular/core';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+export const radio15Code = `import { Component } from '@angular/core';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-15',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, HlmBadgeDirective],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, HlmBadge],
 	host: {
 		class: 'w-full',
 	},
@@ -79,11 +79,12 @@ import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiog
 							class="flex w-full items-center justify-start gap-2 p-4 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 							hlmLabel>
 							<hlm-radio [value]="item.value" class="space-x-0">
-								<div class="relative inline-flex size-4">
+								<div
+									class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 									<div
-										class="bg-background absolute inset-0 scale-0 scale-[100%] rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[37.5%]"></div>
+										class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
 									<div
-										class="ring-offset-background group-[.cdk-keyboard-focused]:ring-ring border-input bg-primary group-[.brn-radio-checked]:border-primary! aspect-square rounded-full border group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+										class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
 								</div>
 							</hlm-radio>
 							<div class="flex w-full flex-row items-center justify-between">
@@ -113,5 +114,4 @@ export class Radio15Component {
 		{ id: 3, value: 'team', label: 'Team', isPopular: false, price: '$49/month' },
 		{ id: 4, value: 'enterprise', label: 'Enterprise', isPopular: false, price: 'Custom' },
 	];
-}
-`;
+}`;

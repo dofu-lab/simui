@@ -4,14 +4,14 @@ import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard, lucideWalletCards } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'app-dialog-19',
@@ -19,17 +19,17 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 	imports: [
 		NgIcon,
 		ReactiveFormsModule,
-		HlmIconDirective,
-		HlmButtonDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmButtonDirective,
-		HlmInputDirective,
-		HlmLabelDirective,
-		HlmSpinnerComponent,
-		HlmCheckboxComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
+		HlmIcon,
+		HlmButton,
+		HlmDialog,
+		HlmDialogContent,
+		HlmButton,
+		HlmInput,
+		HlmLabel,
+		HlmSpinner,
+		HlmCheckbox,
+		BrnDialogTrigger,
+		BrnDialogContent,
 		MaskitoDirective,
 	],
 	template: `
@@ -50,7 +50,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 				<form [formGroup]="form" (submit)="onSubmit()">
 					<div class="flex flex-col gap-4 sm:flex-row">
 						<div class="flex flex-1 flex-col gap-4">
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								Name on card
 								<input
 									hlmInput
@@ -63,19 +63,19 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 							</label>
 							<div class="w-full text-sm">
 								<div class="relative">
-									<label hlmLabel class="flex flex-col gap-2 text-sm">
+									<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 										Card number
 										<input
 											id="card-number-input"
 											hlmInput
 											formControlName="cardNumber"
-											class="peer mt-2 w-full ps-12 text-sm"
+											class="peer w-full ps-12 text-sm"
 											type="text"
 											placeholder="Your card number"
 											size="sm"
 											[maskito]="creditCardMask" />
 										<div
-											class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-end justify-center ps-3 pb-3 peer-disabled:opacity-50">
+											class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-end justify-center ps-3 pb-2.5 peer-disabled:opacity-50">
 											<div class="border-input flex h-4.5 w-6.5 items-center justify-center rounded-[3px] border">
 												<svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path
@@ -95,7 +95,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 							</div>
 						</div>
 						<div class="flex flex-row gap-4 sm:flex-col">
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								Expiry date
 								<input
 									hlmInput
@@ -106,7 +106,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 									size="sm"
 									[maskito]="expiryDateMask" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								CVC
 								<input
 									hlmInput
@@ -141,7 +141,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 })
 export class Dialog19Component {
 	private _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public form: FormGroup = this._formBuilder.group(
 		{
 			fullName: ['', Validators.required],
@@ -210,21 +210,20 @@ export class Dialog19Component {
 	}
 }
 
-export const dialog19Code = `
-import { Component, inject, signal, viewChild } from '@angular/core';
+export const dialog19Code = `import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard, lucideWalletCards } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'app-dialog-19',
@@ -232,17 +231,17 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 	imports: [
 		NgIcon,
 		ReactiveFormsModule,
-		HlmIconDirective,
-		HlmButtonDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		HlmButtonDirective,
-		HlmInputDirective,
-		HlmLabelDirective,
-		HlmSpinnerComponent,
-		HlmCheckboxComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
+		HlmIcon,
+		HlmButton,
+		HlmDialog,
+		HlmDialogContent,
+		HlmButton,
+		HlmInput,
+		HlmLabel,
+		HlmSpinner,
+		HlmCheckbox,
+		BrnDialogTrigger,
+		BrnDialogContent,
 		MaskitoDirective,
 	],
 	template: \`
@@ -263,7 +262,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 				<form [formGroup]="form" (submit)="onSubmit()">
 					<div class="flex flex-col gap-4 sm:flex-row">
 						<div class="flex flex-1 flex-col gap-4">
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								Name on card
 								<input
 									hlmInput
@@ -276,19 +275,19 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 							</label>
 							<div class="w-full text-sm">
 								<div class="relative">
-									<label hlmLabel class="flex flex-col gap-2 text-sm">
+									<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 										Card number
 										<input
 											id="card-number-input"
 											hlmInput
 											formControlName="cardNumber"
-											class="peer mt-2 w-full ps-12 text-sm"
+											class="peer w-full ps-12 text-sm"
 											type="text"
 											placeholder="Your card number"
 											size="sm"
 											[maskito]="creditCardMask" />
 										<div
-											class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-end justify-center ps-3 pb-3 peer-disabled:opacity-50">
+											class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-end justify-center ps-3 pb-2.5 peer-disabled:opacity-50">
 											<div class="border-input flex h-4.5 w-6.5 items-center justify-center rounded-[3px] border">
 												<svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path
@@ -308,7 +307,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 							</div>
 						</div>
 						<div class="flex flex-row gap-4 sm:flex-col">
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								Expiry date
 								<input
 									hlmInput
@@ -319,7 +318,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 									size="sm"
 									[maskito]="expiryDateMask" />
 							</label>
-							<label hlmLabel class="flex flex-col gap-2 text-sm">
+							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								CVC
 								<input
 									hlmInput
@@ -354,7 +353,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
 })
 export class Dialog19Component {
 	private _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(BrnDialogComponent);
+	public dialogRef = viewChild(BrnDialog);
 	public form: FormGroup = this._formBuilder.group(
 		{
 			fullName: ['', Validators.required],
@@ -366,17 +365,17 @@ export class Dialog19Component {
 		{ updateOn: 'submit' },
 	);
 	public readonly cvcMask: MaskitoOptions = {
-		mask: [/\d/, /\d/, /\d/],
+		mask: [/\\d/, /\\d/, /\\d/],
 		overwriteMode: 'replace',
 		preprocessors: [
 			({ elementState, data }) => ({
 				elementState,
-				data: data.replace(/\D/g, ''),
+				data: data.replace(/\\D/g, ''),
 			}),
 		],
 	};
 	public readonly expiryDateMask: MaskitoOptions = {
-		mask: [/\d/, /[0-9]/, '/', /\d/, /\d/],
+		mask: [/\\d/, /[0-9]/, '/', /\\d/, /\\d/],
 		overwriteMode: 'replace',
 	};
 	public readonly nameMask: MaskitoOptions = {
@@ -407,7 +406,7 @@ export class Dialog19Component {
 			/[0-9]/,
 		],
 		overwriteMode: 'replace',
-		preprocessors: [({ elementState, data }) => ({ elementState, data: data.replace(/\D/g, '') })],
+		preprocessors: [({ elementState, data }) => ({ elementState, data: data.replace(/\\D/g, '') })],
 	};
 
 	public isProcessing = signal(false);
@@ -421,5 +420,4 @@ export class Dialog19Component {
 			}, 2000);
 		}
 	}
-}
-`;
+}`;

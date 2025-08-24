@@ -1,5 +1,4 @@
 export * from './agenda-view.component';
-export * from './services/current-time-indicator.service';
 export * from './day-view-calendar.component';
 export * from './event-calendar.component';
 export * from './event-dialog.component';

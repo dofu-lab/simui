@@ -2,19 +2,19 @@ import { Component, computed, input, output } from '@angular/core';
 import { hlm } from '@spartan-ng/brain/core';
 import { ClassValue } from 'clsx';
 import { isPast } from 'date-fns';
-import { CalendarEvent, CalendarView } from './type';
+import { CalendarEvent } from './type';
 import { getBorderRadiusClasses, getEventColorClasses } from './utils';
 
 @Component({
 	selector: 'sim-event-item-wrapper',
 	template: `
-		<button
+		<div
 			[class]="computedClass()"
 			(click)="onClick.emit()"
 			(mousedown)="onMouseDown.emit()"
 			(touchstart)="onTouchStart.emit()">
 			<ng-content />
-		</button>
+		</div>
 	`,
 })
 export class EventItemWrapperComponent {

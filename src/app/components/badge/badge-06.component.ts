@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideX } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-badge-06',
 	standalone: true,
 	providers: [provideIcons({ lucideX })],
-	imports: [HlmBadgeDirective, HlmIconDirective, NgIcon],
+	imports: [HlmBadge, HlmIcon, NgIcon],
 	template: `
-		<span hlmBadge>
+		<span hlmBadge class="rounded-full">
 			<div class="flex items-center justify-center gap-1">
 				<ng-icon hlm name="lucideX" size="xs" class="text-primary-foreground" />
 				<span>Icon badge</span>
@@ -20,26 +20,24 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 })
 export class Badge06Component {}
 
-export const badge06Code = `
-import { Component } from '@angular/core';
+export const badge06Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideX } from '@ng-icons/lucide';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
-  selector: 'sim-badge-06',
-  standalone: true,
-  providers: [provideIcons({ lucideX })],
-  imports: [HlmBadgeDirective, HlmIconDirective, NgIcon],
-  template: \`
-    <span hlmBadge>
-      <div class="flex items-center justify-center gap-1">
-        <ng-icon hlm name="lucideX" size="xs" class="text-primary-foreground" />
-        <span> Icon badge </span>
-      </div>
-    </span>
-  \`,
+	selector: 'sim-badge-06',
+	standalone: true,
+	providers: [provideIcons({ lucideX })],
+	imports: [HlmBadge, HlmIcon, NgIcon],
+	template: \`
+		<span hlmBadge class="rounded-full">
+			<div class="flex items-center justify-center gap-1">
+				<ng-icon hlm name="lucideX" size="xs" class="text-primary-foreground" />
+				<span>Icon badge</span>
+			</div>
+		</span>
+	\`,
 })
-export class Badge06Component {}
-`;
+export class Badge06Component {}`;

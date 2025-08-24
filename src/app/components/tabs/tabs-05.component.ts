@@ -1,30 +1,27 @@
 import { Component } from '@angular/core';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-05',
-	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
-			<hlm-tabs-list class="relative grid w-full grid-cols-3 border-b bg-transparent" aria-label="tabs example">
+			<hlm-tabs-list
+				class="relative grid w-full grid-cols-3 rounded-none border-b bg-transparent px-0 py-1"
+				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative border-none px-3 py-1.5 after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					Tab 1
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative border-none px-3 py-1.5 after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					Tab 2
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative border-none px-3 py-1.5 after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					Tab 3
 				</button>
 			</hlm-tabs-list>
@@ -42,34 +39,30 @@ import {
 })
 export class Tabs05Component {}
 
-export const tabs05Code = `
-import { Component } from '@angular/core';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+export const tabs05Code = `import { Component } from '@angular/core';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-05',
-	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	template: \`
 		<hlm-tabs tab="tab01" class="w-full">
-			<hlm-tabs-list class="relative grid w-full grid-cols-3 border-b bg-transparent" aria-label="tabs example">
+			<hlm-tabs-list
+				class="relative grid w-full grid-cols-3 rounded-none border-b bg-transparent px-0 py-1"
+				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative border-none px-3 py-1.5 after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					Tab 1
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative border-none px-3 py-1.5 after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					Tab 2
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative border-none px-3 py-1.5 after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					Tab 3
 				</button>
 			</hlm-tabs-list>
@@ -85,5 +78,4 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs05Component {}
-`;
+export class Tabs05Component {}`;

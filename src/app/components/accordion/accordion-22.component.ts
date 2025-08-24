@@ -1,17 +1,17 @@
-import { HlmCheckboxComponent } from '@/libs/ui/ui-checkbox-helm/src';
+import { HlmCheckbox } from '@/libs/ui/ui-checkbox-helm/src';
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideChevronDown, lucideMinus } from '@ng-icons/lucide';
 import {
-	HlmAccordionContentComponent,
-	HlmAccordionDirective,
-	HlmAccordionIconDirective,
-	HlmAccordionItemDirective,
-	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+	HlmAccordion,
+	HlmAccordionContent,
+	HlmAccordionIcon,
+	HlmAccordionItem,
+	HlmAccordionTrigger,
+} from '@spartan-ng/helm/accordion';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-21',
@@ -20,13 +20,13 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		NgClass,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmCheckboxComponent,
-		HlmAccordionDirective,
-		HlmAccordionItemDirective,
-		HlmAccordionTriggerDirective,
-		HlmAccordionContentComponent,
-		HlmAccordionIconDirective,
-		HlmIconDirective,
+		HlmCheckbox,
+		HlmAccordion,
+		HlmAccordionItem,
+		HlmAccordionTrigger,
+		HlmAccordionContent,
+		HlmAccordionIcon,
+		HlmIcon,
 	],
 	host: { ngSkipHydration: 'true' },
 	viewProviders: [provideIcons({ lucideChevronDown, lucideCheck, lucideMinus })],
@@ -49,7 +49,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 									}">
 									<ng-icon
 										hlm
-										hlmAccIcon
+										size="sm"
 										name="lucideCheck"
 										class="transition-all duration-200"
 										[ngClass]="{
@@ -58,7 +58,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 										}" />
 									<ng-icon
 										hlm
-										hlmAccIcon
+										size="sm"
 										name="lucideMinus"
 										class="absolute transition-all duration-200"
 										[ngClass]="{
@@ -173,21 +173,20 @@ export class Accordion22Component {
 	];
 }
 
-export const accordion22Code = `
-import { HlmCheckboxComponent } from '@/libs/ui/ui-checkbox-helm/src';
+export const accordion22Code = `import { HlmCheckbox } from '@/libs/ui/ui-checkbox-helm/src';
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideChevronDown, lucideMinus } from '@ng-icons/lucide';
 import {
-	HlmAccordionContentComponent,
-	HlmAccordionDirective,
-	HlmAccordionIconDirective,
-	HlmAccordionItemDirective,
-	HlmAccordionTriggerDirective,
-} from '@spartan-ng/ui-accordion-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+	HlmAccordion,
+	HlmAccordionContent,
+	HlmAccordionIcon,
+	HlmAccordionItem,
+	HlmAccordionTrigger,
+} from '@spartan-ng/helm/accordion';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-21',
@@ -196,13 +195,13 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 		NgClass,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmCheckboxComponent,
-		HlmAccordionDirective,
-		HlmAccordionItemDirective,
-		HlmAccordionTriggerDirective,
-		HlmAccordionContentComponent,
-		HlmAccordionIconDirective,
-		HlmIconDirective,
+		HlmCheckbox,
+		HlmAccordion,
+		HlmAccordionItem,
+		HlmAccordionTrigger,
+		HlmAccordionContent,
+		HlmAccordionIcon,
+		HlmIcon,
 	],
 	host: { ngSkipHydration: 'true' },
 	viewProviders: [provideIcons({ lucideChevronDown, lucideCheck, lucideMinus })],
@@ -225,7 +224,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 									}">
 									<ng-icon
 										hlm
-										hlmAccIcon
+										size="sm"
 										name="lucideCheck"
 										class="transition-all duration-200"
 										[ngClass]="{
@@ -234,7 +233,7 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 										}" />
 									<ng-icon
 										hlm
-										hlmAccIcon
+										size="sm"
 										name="lucideMinus"
 										class="absolute transition-all duration-200"
 										[ngClass]="{
@@ -347,5 +346,4 @@ export class Accordion22Component {
 			],
 		},
 	];
-}
-`;
+}`;

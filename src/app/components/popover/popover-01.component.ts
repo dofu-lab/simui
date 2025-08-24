@@ -2,26 +2,26 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideListFilter } from '@ng-icons/lucide';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-01',
 	providers: [provideIcons({ lucideListFilter })],
 	imports: [
-		BrnPopoverComponent,
-		BrnPopoverContentDirective,
-		BrnPopoverTriggerDirective,
+		BrnPopover,
+		BrnPopoverContent,
+		BrnPopoverTrigger,
 		FormsModule,
-		HlmButtonDirective,
-		HlmCheckboxComponent,
-		HlmIconDirective,
-		HlmLabelDirective,
-		HlmPopoverContentDirective,
+		HlmButton,
+		HlmCheckbox,
+		HlmIcon,
+		HlmLabel,
+		HlmPopoverContent,
 		NgIcon,
 	],
 	template: `
@@ -34,19 +34,19 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 
 				<div class="space-y-2">
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.realTime" />
+						<hlm-checkbox [(ngModel)]="filters.realTime" />
 						Real Time
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.topChannels" />
+						<hlm-checkbox [(ngModel)]="filters.topChannels" />
 						Top Channels
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.lastOrders" />
+						<hlm-checkbox [(ngModel)]="filters.lastOrders" />
 						Last Orders
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.totalSpent" />
+						<hlm-checkbox [(ngModel)]="filters.totalSpent" />
 						Total Spent
 					</label>
 				</div>
@@ -89,31 +89,30 @@ export class Popover01Component {
 	}
 }
 
-export const Popover01Code = `
-import { Component } from '@angular/core';
+export const popover01Code = `import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideListFilter } from '@ng-icons/lucide';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmCheckboxComponent } from '@spartan-ng/ui-checkbox-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-01',
 	providers: [provideIcons({ lucideListFilter })],
 	imports: [
-		BrnPopoverComponent,
-		BrnPopoverContentDirective,
-		BrnPopoverTriggerDirective,
+		BrnPopover,
+		BrnPopoverContent,
+		BrnPopoverTrigger,
 		FormsModule,
-		HlmButtonDirective,
-		HlmCheckboxComponent,
-		HlmIconDirective,
-		HlmLabelDirective,
-		HlmPopoverContentDirective,
+		HlmButton,
+		HlmCheckbox,
+		HlmIcon,
+		HlmLabel,
+		HlmPopoverContent,
 		NgIcon,
 	],
 	template: \`
@@ -126,19 +125,19 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 
 				<div class="space-y-2">
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.realTime" />
+						<hlm-checkbox [(ngModel)]="filters.realTime" />
 						Real Time
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.topChannels" />
+						<hlm-checkbox [(ngModel)]="filters.topChannels" />
 						Top Channels
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.lastOrders" />
+						<hlm-checkbox [(ngModel)]="filters.lastOrders" />
 						Last Orders
 					</label>
 					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox class="mr-2" [(ngModel)]="filters.totalSpent" />
+						<hlm-checkbox [(ngModel)]="filters.totalSpent" />
 						Total Spent
 					</label>
 				</div>
@@ -179,5 +178,4 @@ export class Popover01Component {
 		console.log('Applied filters:', this.filters);
 		ctx.close();
 	}
-}
-`;
+}`;

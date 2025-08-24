@@ -1,38 +1,21 @@
 import { Clipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
-import { Component, computed, inject, signal, viewChild } from '@angular/core';
+import { Component, inject, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy } from '@ng-icons/lucide';
-import { BrnTooltipContentDirective, BrnTooltipTriggerDirective } from '@spartan-ng/brain/tooltip';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-tooltip-helm';
+import { BrnTooltipContentTemplate, BrnTooltipTrigger } from '@spartan-ng/brain/tooltip';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-button-30',
 	standalone: true,
 	providers: [provideIcons({ lucideCheck, lucideCopy })],
-	imports: [
-		NgClass,
-		HlmButtonDirective,
-		HlmIconDirective,
-		HlmTooltipComponent,
-		HlmTooltipTriggerDirective,
-		BrnTooltipContentDirective,
-		NgIcon,
-	],
+	imports: [NgClass, HlmButton, HlmIcon, HlmTooltip, HlmTooltipTrigger, BrnTooltipContentTemplate, NgIcon],
 	template: `
 		<hlm-tooltip>
-			<button
-				hlmBtn
-				hlmTooltipTrigger
-				hideDelay="1"
-				showDelay="1"
-				exitAnimationDuration="0"
-				variant="outline"
-				size="icon"
-				[disabled]="copied()"
-				(click)="onSelect()">
+			<button hlmBtn hlmTooltipTrigger variant="outline" size="icon" [disabled]="copied()" (click)="onSelect()">
 				<ng-icon
 					hlm
 					name="lucideCopy"
@@ -52,21 +35,16 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 						'scale-100 opacity-100': copied(),
 					}" />
 			</button>
-			<span *brnTooltipContent class="flex items-center">
-				{{ tooltipLabel() }}
-			</span>
+			<span *brnTooltipContent class="flex items-center">Copy to clipboard</span>
 		</hlm-tooltip>
 	`,
 })
 export class Button30Component {
-	tooltip = viewChild<BrnTooltipTriggerDirective>(BrnTooltipTriggerDirective);
+	tooltip = viewChild<BrnTooltipTrigger>(BrnTooltipTrigger);
 	clipboard = inject(Clipboard);
 	copied = signal<boolean>(false);
 
-	tooltipLabel = computed(() => (this.copied() ? '' : 'Copy to clipboard'));
-
 	public onSelect(): void {
-		this.tooltip()?.hide();
 		this.copied.set(true);
 		this.clipboard.copy('I love Angular!');
 
@@ -76,91 +54,58 @@ export class Button30Component {
 	}
 }
 
-export const button30Code = `
-import { Component, computed, inject, signal, viewChild } from '@angular/core';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+export const button30Code = `import { Clipboard } from '@angular/cdk/clipboard';
+import { NgClass } from '@angular/common';
+import { Component, inject, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy } from '@ng-icons/lucide';
-import {
-  HlmTooltipComponent,
-  HlmTooltipTriggerDirective,
-} from '@spartan-ng/ui-tooltip-helm';
-import {
-  BrnTooltipContentDirective,
-  BrnTooltipTriggerDirective,
-} from '@spartan-ng/brain/tooltip';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { NgClass } from '@angular/common';
-import { Clipboard } from '@angular/cdk/clipboard';
+import { BrnTooltipContentTemplate, BrnTooltipTrigger } from '@spartan-ng/brain/tooltip';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 
 @Component({
-  selector: 'sim-button-30',
-  standalone: true,
-  providers: [provideIcons({ lucideCheck, lucideCopy })],
-  imports: [
-    NgClass,
-    HlmButtonDirective,
-    HlmIconDirective,
-    HlmTooltipComponent,
-    HlmTooltipTriggerDirective,
-    BrnTooltipContentDirective,
-    NgIcon,
-  ],
-  template: \`
-    <hlm-tooltip>
-      <button
-        hlmBtn
-        hlmTooltipTrigger
-        hideDelay="1"
-        showDelay="1"
-        exitAnimationDuration="0"
-        variant="outline"
-        size="icon"
-        [disabled]="copied()"
-        (click)="onSelect()"
-      >
-        <ng-icon
-          hlm
-          name="lucideCopy"
-          size="sm"
-          class="transition-all"
-          [ngClass]="{
-            'scale-0 opacity-0': copied(),
-            'scale-100 opacity-100': !copied(),
-          }"
-        />
-        <ng-icon
-          hlm
-          name="lucideCheck"
-          size="sm"
-          class="absolute text-emerald-500 transition-all"
-          [ngClass]="{
-            'scale-0 opacity-0': !copied(),
-            'scale-100 opacity-100': copied(),
-          }"
-        />
-      </button>
-      <span *brnTooltipContent class="flex items-center">
-        {{ tooltipLabel() }}
-      </span>
-    </hlm-tooltip>
-  \`,
+	selector: 'sim-button-30',
+	standalone: true,
+	providers: [provideIcons({ lucideCheck, lucideCopy })],
+	imports: [NgClass, HlmButton, HlmIcon, HlmTooltip, HlmTooltipTrigger, BrnTooltipContentTemplate, NgIcon],
+	template: \`
+		<hlm-tooltip>
+			<button hlmBtn hlmTooltipTrigger variant="outline" size="icon" [disabled]="copied()" (click)="onSelect()">
+				<ng-icon
+					hlm
+					name="lucideCopy"
+					size="sm"
+					class="transition-all"
+					[ngClass]="{
+						'scale-0 opacity-0': copied(),
+						'scale-100 opacity-100': !copied(),
+					}" />
+				<ng-icon
+					hlm
+					name="lucideCheck"
+					size="sm"
+					class="absolute text-emerald-500 transition-all"
+					[ngClass]="{
+						'scale-0 opacity-0': !copied(),
+						'scale-100 opacity-100': copied(),
+					}" />
+			</button>
+			<span *brnTooltipContent class="flex items-center">Copy to clipboard</span>
+		</hlm-tooltip>
+	\`,
 })
 export class Button30Component {
-  tooltip = viewChild<BrnTooltipTriggerDirective>(BrnTooltipTriggerDirective);
-  clipboard = inject(Clipboard);
-  copied = signal<boolean>(false);
+	tooltip = viewChild<BrnTooltipTrigger>(BrnTooltipTrigger);
+	clipboard = inject(Clipboard);
+	copied = signal<boolean>(false);
 
-  tooltipLabel = computed(() => (this.copied() ? '' : 'Copy to clipboard'));
+	public onSelect(): void {
+		this.copied.set(true);
+		this.clipboard.copy('I love Angular!');
 
-  public onSelect(): void {
-    this.tooltip()?.hide();
-    this.copied.set(true);
-    this.clipboard.copy('I love Angular!');
-
-    setTimeout(() => {
-      this.copied.set(false);
-    }, 1500);
-  }
-}
-`;
+		setTimeout(() => {
+			this.copied.set(false);
+		}, 1500);
+	}
+}`;

@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-20',
-	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	host: {
 		class: 'w-full',
 	},
@@ -38,18 +33,12 @@ import {
 })
 export class Tabs20Component {}
 
-export const tabs20Code = `
-import { Component } from '@angular/core';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+export const tabs20Code = `import { Component } from '@angular/core';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-20',
-	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	host: {
 		class: 'w-full',
 	},
@@ -77,5 +66,4 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs20Component {}
-`;
+export class Tabs20Component {}`;

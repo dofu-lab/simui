@@ -2,32 +2,28 @@ import { afterNextRender, Component, computed, model, signal } from '@angular/co
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLockKeyhole } from '@ng-icons/lucide';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { BrnInputOtpComponent } from '@spartan-ng/brain/input-otp';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmInputOtpDirective,
-	HlmInputOtpGroupDirective,
-	HlmInputOtpSlotComponent,
-} from '@spartan-ng/ui-inputotp-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-32',
 	imports: [
 		NgIcon,
 		FormsModule,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmInputOtpDirective,
-		HlmInputOtpGroupDirective,
-		HlmInputOtpSlotComponent,
-		BrnInputOtpComponent,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmInputOtp,
+		HlmInputOtpGroup,
+		HlmInputOtpSlot,
+		BrnInputOtp,
 	],
 	providers: [provideIcons({ lucideLockKeyhole })],
 	template: `
@@ -147,59 +143,32 @@ export class Dialog32Component {
 	}
 }
 
-export const dialog32Code = `
-At styles.css:
-
-@theme {
-...
-	--animate-scan-line: scanning 1.5s linear infinite;
-...
-}
-
-@keyframes scanning {
-	0% {
-		top: 0%;
-	}
-	50% {
-		top: 100%;
-	}
-	100% {
-		top: 0%;
-	}
-}
-
-================================================================
-
-import { afterNextRender, Component, computed, model, signal } from '@angular/core';
+export const dialog32Code = `import { afterNextRender, Component, computed, model, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLockKeyhole } from '@ng-icons/lucide';
-import { BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { BrnInputOtpComponent } from '@spartan-ng/brain/input-otp';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmInputOtpDirective,
-	HlmInputOtpGroupDirective,
-	HlmInputOtpSlotComponent,
-} from '@spartan-ng/ui-inputotp-helm';
+import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-32',
 	imports: [
 		NgIcon,
 		FormsModule,
-		HlmIconDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmInputOtpDirective,
-		HlmInputOtpGroupDirective,
-		HlmInputOtpSlotComponent,
-		BrnInputOtpComponent,
+		HlmIcon,
+		HlmDialog,
+		HlmDialogContent,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmInputOtp,
+		HlmInputOtpGroup,
+		HlmInputOtpSlot,
+		BrnInputOtp,
 	],
 	providers: [provideIcons({ lucideLockKeyhole })],
 	template: \`
@@ -317,5 +286,4 @@ export class Dialog32Component {
 			this._intervalId = undefined;
 		}
 	}
-}
-`;
+}`;

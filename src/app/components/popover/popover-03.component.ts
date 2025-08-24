@@ -1,27 +1,27 @@
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell } from '@ng-icons/lucide';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-03',
 	providers: [provideIcons({ lucideBell })],
 	imports: [
-		BrnPopoverComponent,
-		BrnPopoverContentDirective,
-		BrnPopoverTriggerDirective,
-		HlmAvatarComponent,
-		HlmAvatarFallbackDirective,
-		HlmAvatarImageDirective,
-		HlmBadgeDirective,
-		HlmButtonDirective,
-		HlmIconDirective,
-		HlmPopoverContentDirective,
+		BrnPopover,
+		BrnPopoverContent,
+		BrnPopoverTrigger,
+		HlmAvatar,
+		HlmAvatarFallback,
+		HlmAvatarImage,
+		HlmBadge,
+		HlmButton,
+		HlmIcon,
+		HlmPopoverContent,
 		NgIcon,
 	],
 	template: `
@@ -51,7 +51,7 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 						<li
 							class="hover:bg-muted flex items-start justify-between gap-2 rounded-md px-3 py-2 transition-colors select-none"
 							(click)="markAsRead($index)">
-							<hlm-avatar variant="medium" class="border-border/50 border">
+							<hlm-avatar class="border-border/50 size-10 border">
 								<img hlmAvatarImage [src]="notification.avatar" [alt]="notification.user" />
 								<span hlmAvatarFallback>
 									{{ notification.initials }}
@@ -140,31 +140,30 @@ export class Popover03Component {
 	}
 }
 
-export const Popover03Code = `
-import { Component, computed, signal } from '@angular/core';
+export const popover03Code = `import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell } from '@ng-icons/lucide';
-import { BrnPopoverComponent, BrnPopoverContentDirective, BrnPopoverTriggerDirective } from '@spartan-ng/brain/popover';
-import { HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective } from '@spartan-ng/ui-avatar-helm';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
+import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-03',
 	providers: [provideIcons({ lucideBell })],
 	imports: [
-		BrnPopoverComponent,
-		BrnPopoverContentDirective,
-		BrnPopoverTriggerDirective,
-		HlmAvatarComponent,
-		HlmAvatarFallbackDirective,
-		HlmAvatarImageDirective,
-		HlmBadgeDirective,
-		HlmButtonDirective,
-		HlmIconDirective,
-		HlmPopoverContentDirective,
+		BrnPopover,
+		BrnPopoverContent,
+		BrnPopoverTrigger,
+		HlmAvatar,
+		HlmAvatarFallback,
+		HlmAvatarImage,
+		HlmBadge,
+		HlmButton,
+		HlmIcon,
+		HlmPopoverContent,
 		NgIcon,
 	],
 	template: \`
@@ -194,7 +193,7 @@ import { HlmPopoverContentDirective } from '@spartan-ng/ui-popover-helm';
 						<li
 							class="hover:bg-muted flex items-start justify-between gap-2 rounded-md px-3 py-2 transition-colors select-none"
 							(click)="markAsRead($index)">
-							<hlm-avatar variant="medium" class="border-border/50 border">
+							<hlm-avatar class="border-border/50 size-10 border">
 								<img hlmAvatarImage [src]="notification.avatar" [alt]="notification.user" />
 								<span hlmAvatarFallback>
 									{{ notification.initials }}
@@ -281,5 +280,4 @@ export class Popover03Component {
 			})),
 		);
 	}
-}
-`;
+}`;

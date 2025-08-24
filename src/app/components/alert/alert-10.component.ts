@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight, lucideTriangleAlert } from '@ng-icons/lucide';
-import { HlmAlertDescriptionDirective, HlmAlertDirective, HlmAlertIconDirective } from '@spartan-ng/ui-alert-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmAlert, HlmAlertDescription, HlmAlertIcon } from '@spartan-ng/helm/alert';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-alert-10',
 	standalone: true,
 	providers: [provideIcons({ lucideTriangleAlert, lucideArrowRight })],
-	imports: [NgIcon, HlmIconDirective, HlmAlertDirective, HlmAlertDescriptionDirective, HlmAlertIconDirective],
+	imports: [NgIcon, HlmIcon, HlmAlert, HlmAlertDescription, HlmAlertIcon],
 	host: {
 		class: 'w-full',
 	},
@@ -33,50 +33,37 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 })
 export class Alert10Component {}
 
-export const alert10Code = `
-import { Component } from '@angular/core';
+export const alert10Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight, lucideTriangleAlert } from '@ng-icons/lucide';
-import {
-  HlmAlertDescriptionDirective,
-  HlmAlertDirective,
-  HlmAlertIconDirective,
-} from '@spartan-ng/ui-alert-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmAlert, HlmAlertDescription, HlmAlertIcon } from '@spartan-ng/helm/alert';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
-  selector: 'sim-alert-10',
-  standalone: true,
-  providers: [provideIcons({ lucideTriangleAlert, lucideArrowRight })],
-  imports: [
-    NgIcon,
-    HlmIconDirective,
-    HlmAlertDirective,
-    HlmAlertDescriptionDirective,
-    HlmAlertIconDirective,
-  ],
-  host: {
-    class: 'w-full',
-  },
-  template: \`
-    <div hlmAlert class="flex gap-3 border-amber-500/50 py-3 text-amber-600">
-      <span class="flex items-center">
-        <ng-icon hlm hlmAlertIcon name="lucideTriangleAlert" />
-      </span>
-      <div class="flex flex-1 justify-between">
-        <p hlmAlertDesc>Some information is missing</p>
-        <div class="group flex cursor-pointer items-center gap-1">
-          <span class="text-sm font-medium">Check now</span>
-          <ng-icon
-            hlm
-            name="lucideArrowRight"
-            size="sm"
-            class="ms-1 transition-transform group-hover:translate-x-0.5"
-          />
-        </div>
-      </div>
-    </div>
-  \`,
+	selector: 'sim-alert-10',
+	standalone: true,
+	providers: [provideIcons({ lucideTriangleAlert, lucideArrowRight })],
+	imports: [NgIcon, HlmIcon, HlmAlert, HlmAlertDescription, HlmAlertIcon],
+	host: {
+		class: 'w-full',
+	},
+	template: \`
+		<div hlmAlert class="flex gap-3 border-amber-500/50 py-3 text-amber-600">
+			<span class="flex items-center">
+				<ng-icon hlm hlmAlertIcon name="lucideTriangleAlert" />
+			</span>
+			<div class="flex flex-1 justify-between">
+				<p hlmAlertDesc>Some information is missing</p>
+				<div class="group flex cursor-pointer items-center gap-1">
+					<span class="text-sm font-medium">Check now</span>
+					<ng-icon
+						hlm
+						name="lucideArrowRight"
+						size="sm"
+						class="ms-1 transition-transform group-hover:translate-x-0.5" />
+				</div>
+			</div>
+		</div>
+	\`,
 })
-export class Alert10Component {}
-`;
+export class Alert10Component {}`;

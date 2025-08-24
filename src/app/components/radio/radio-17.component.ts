@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-17',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, FormsModule],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, FormsModule],
 	template: `
 		<div class="flex flex-1 flex-col gap-2">
 			<label hlmLabel class="flex-1">How do you feel?</label>
@@ -38,15 +38,14 @@ export class Radio17Component {
 	];
 }
 
-export const radio17Code = `
-import { Component, signal } from '@angular/core';
+export const radio17Code = `import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmRadioComponent, HlmRadioGroupComponent } from '@spartan-ng/ui-radiogroup-helm';
+import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-17',
-	imports: [HlmRadioGroupComponent, HlmRadioComponent, HlmLabelDirective, FormsModule],
+	imports: [HlmRadioGroup, HlmRadio, HlmLabel, FormsModule],
 	template: \`
 		<div class="flex flex-1 flex-col gap-2">
 			<label hlmLabel class="flex-1">How do you feel?</label>
@@ -77,5 +76,4 @@ export class Radio17Component {
 		{ id: 4, value: 4, label: '😍' },
 		{ id: 5, value: 5, label: '🤩' },
 	];
-}
-`;
+}`;

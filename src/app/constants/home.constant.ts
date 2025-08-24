@@ -86,13 +86,13 @@ export const previewComponents: ComponentInfo[] = [
 		image: 'button.png',
 		path: 'components/button',
 	},
-	{
-		name: 'Card',
-		compNumber: cardComponents.length,
-		image: 'card.png',
-		path: 'components/card',
-		isNew: true,
-	},
+	// {
+	// 	name: 'Card',
+	// 	compNumber: cardComponents.length,
+	// 	image: 'card.png',
+	// 	path: 'components/card',
+	// 	isNew: true,
+	// },
 	{
 		name: 'Checkbox',
 		compNumber: checkBoxComponents.length,

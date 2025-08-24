@@ -1,13 +1,13 @@
 import { Component, computed, ElementRef, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleUserRound, lucideX } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-02',
 	providers: [provideIcons({ lucideCircleUserRound, lucideX })],
-	imports: [HlmButtonDirective, HlmIconDirective, NgIcon],
+	imports: [HlmButton, HlmIcon, NgIcon],
 	template: `
 		<div class="flex flex-col items-center justify-center gap-2">
 			<div class="relative inline-flex">
@@ -73,13 +73,13 @@ export const fileUpload02Code = `
 import { Component, computed, ElementRef, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleUserRound, lucideX } from '@ng-icons/lucide';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-02',
 	providers: [provideIcons({ lucideCircleUserRound, lucideX })],
-	imports: [HlmButtonDirective, HlmIconDirective, NgIcon],
+	imports: [HlmButton, HlmIcon, NgIcon],
 	template: \`
 		<div class="flex flex-col items-center justify-center gap-2">
 			<div class="relative inline-flex">

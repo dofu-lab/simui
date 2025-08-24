@@ -15,8 +15,8 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState, FileWithPreview, formatBytes } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 type UploadProgress = {
 	fileId: string;
@@ -70,7 +70,7 @@ export class ProgressBarComponent {
 			lucideFile,
 		}),
 	],
-	imports: [HlmButtonDirective, HlmIconDirective, NgIcon, FileDragDropDirective, ProgressBarComponent],
+	imports: [HlmButton, HlmIcon, NgIcon, FileDragDropDirective, ProgressBarComponent],
 	host: {
 		class: 'w-full',
 	},
@@ -370,8 +370,8 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState, FileWithPreview, formatBytes } from '@sim/ui-file-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 type UploadProgress = {
 	fileId: string;
@@ -425,7 +425,7 @@ export class ProgressBarComponent {
 			lucideFile,
 		}),
 	],
-	imports: [HlmButtonDirective, HlmIconDirective, NgIcon, FileDragDropDirective, ProgressBarComponent],
+	imports: [HlmButton, HlmIcon, NgIcon, FileDragDropDirective, ProgressBarComponent],
 	host: {
 		class: 'w-full',
 	},

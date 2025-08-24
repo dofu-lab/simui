@@ -3445,17 +3445,17 @@
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.2.tgz#821f8442f4175d8f0467b9daf26e3a18e2d02af2"
   integrity sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==
 
-"@spartan-ng/brain@0.0.1-alpha.469":
-  version "0.0.1-alpha.469"
-  resolved "https://registry.yarnpkg.com/@spartan-ng/brain/-/brain-0.0.1-alpha.469.tgz#8d8121f8c5ace9e0fde70cbf44b3a12b4285eecf"
-  integrity sha512-1+wFV119cxfFe56WgBHfkeKxtCGdmI1Fo9SQQdpm2i3yOtiZ566qEIGXTZjQeADEGT3xt2uYUkMA7T4BOXrdWw==
+"@spartan-ng/brain@0.0.1-alpha.501":
+  version "0.0.1-alpha.501"
+  resolved "https://registry.yarnpkg.com/@spartan-ng/brain/-/brain-0.0.1-alpha.501.tgz#3f4ae0fb07b29146aa7be58e0956b1fc4ff2a5c5"
+  integrity sha512-iAOE6KOowvFwIVQA+kAHdXFjRzMhxJlZi3pjVxhg01ClhSy5vuCDJ/0hzWjPtUaM21KZDfwQ8SYPllifM6akag==
   dependencies:
     tslib "^2.3.0"
 
-"@spartan-ng/cli@0.0.1-alpha.469":
-  version "0.0.1-alpha.469"
-  resolved "https://registry.yarnpkg.com/@spartan-ng/cli/-/cli-0.0.1-alpha.469.tgz#ed052ab1b5178d1903459274c3aaeaae6b3ada92"
-  integrity sha512-Zz+iB5JsIM38S8vEQgXbXmSs0lVksuWjJOV7btryMoBFcB2Zk5NX2AAE6C3LfUvlpsogzJMyoiQA4S8ZV1jnpQ==
+"@spartan-ng/cli@0.0.1-alpha.501":
+  version "0.0.1-alpha.501"
+  resolved "https://registry.yarnpkg.com/@spartan-ng/cli/-/cli-0.0.1-alpha.501.tgz#ffb4cc2aa7d00c8fb438eff31b26915ffd4bed06"
+  integrity sha512-uS4HBIrf49UxAXLLtkT0GEgdjkIDGte2gTTlIjSWFCgyO0kRgzV0gnbBjlPM25peCqib2bSoOAlZuKTgruEBOw==
   dependencies:
     "@nx/angular" ">=20.0.0"
     "@nx/devkit" ">=20.0.0"
@@ -3468,6 +3468,7 @@
     nx ">=20.0.0"
     picocolors "^1.1.1"
     semver "7.5.4"
+    ts-morph "25.0.1"
     typescript ">=5.0.0"
 
 "@swc/helpers@0.5.13":
@@ -3574,6 +3575,15 @@
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
   integrity sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==
+
+"@ts-morph/common@~0.26.0":
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/@ts-morph/common/-/common-0.26.1.tgz#a346188e59d2befe4c71f66a7d626d81b1abe2a8"
+  integrity sha512-Sn28TGl/4cFpcM+jwsH1wLncYq3FtN/BIpem+HOygfBWPT5pAeS5dB4VFVzV8FbnOKHpDLZmvAl4AjPEev5idA==
+  dependencies:
+    fast-glob "^3.3.2"
+    minimatch "^9.0.4"
+    path-browserify "^1.0.1"
 
 "@tufjs/canonical-json@2.0.0":
   version "2.0.0"
@@ -4864,6 +4874,11 @@ co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
   integrity sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==
+
+code-block-writer@^13.0.3:
+  version "13.0.3"
+  resolved "https://registry.yarnpkg.com/code-block-writer/-/code-block-writer-13.0.3.tgz#90f8a84763a5012da7af61319dd638655ae90b5b"
+  integrity sha512-Oofo0pq3IKnsFtuHqSF7TqBfr71aeyZDVJ0HpmqB7FBM2qEigL0iPONSCZSO9pE9dZTAxANe5XHG9Uy0YMv8cg==
 
 color-convert@^2.0.1:
   version "2.0.1"
@@ -8531,6 +8546,11 @@ parseurl@^1.3.2, parseurl@~1.3.2, parseurl@~1.3.3:
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
   integrity sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==
 
+path-browserify@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/path-browserify/-/path-browserify-1.0.1.tgz#d98454a9c3753d5790860f16f68867b9e46be1fd"
+  integrity sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==
+
 path-exists@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-exists/-/path-exists-4.0.0.tgz#513bdbe2d3b95d7762e8c1137efa195c6c61b5b3"
@@ -10345,6 +10365,14 @@ ts-loader@^9.3.1:
     micromatch "^4.0.0"
     semver "^7.3.4"
     source-map "^0.7.4"
+
+ts-morph@25.0.1:
+  version "25.0.1"
+  resolved "https://registry.yarnpkg.com/ts-morph/-/ts-morph-25.0.1.tgz#7de0b60fcc6e86955c8766831bcd2c5d87ffbd4f"
+  integrity sha512-QJEiTdnz1YjrB3JFhd626gX4rKHDLSjSVMvGGG4v7ONc3RBwa0Eei98G9AT9uNFDMtV54JyuXsFeC+OH0n6bXQ==
+  dependencies:
+    "@ts-morph/common" "~0.26.0"
+    code-block-writer "^13.0.3"
 
 tsconfig-paths-webpack-plugin@4.0.0:
   version "4.0.0"

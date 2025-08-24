@@ -10,7 +10,7 @@ export type IconSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | 'none' | (Record<nev
 		'[style.--ng-icon__size]': '_computedSize()',
 	},
 })
-export class HlmIconDirective {
+export class HlmIcon {
 	private readonly _config = injectHlmIconConfig();
 	public readonly size = input<IconSize>(this._config.size);
 

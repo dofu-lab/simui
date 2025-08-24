@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-18',
-	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	host: {
 		class: 'w-full',
 	},
@@ -20,17 +15,17 @@ import {
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Project
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Packages
 				</button>
 			</hlm-tabs-list>
@@ -50,18 +45,12 @@ import {
 })
 export class Tabs18Component {}
 
-export const tabs18Code = `
-import { Component } from '@angular/core';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+export const tabs18Code = `import { Component } from '@angular/core';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-18',
-	imports: [HlmTabsComponent, HlmTabsListComponent, HlmTabsTriggerDirective, HlmTabsContentDirective],
+	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	host: {
 		class: 'w-full',
 	},
@@ -73,17 +62,17 @@ import {
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Project
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
 					Packages
 				</button>
 			</hlm-tabs-list>
@@ -101,5 +90,4 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs18Component {}
-`;
+export class Tabs18Component {}`;

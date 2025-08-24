@@ -1,10 +1,10 @@
-import { HlmButtonDirective } from '@/libs/ui/ui-button-helm/src';
+import { HlmButton } from '@/libs/ui/ui-button-helm/src';
 import { Component } from '@angular/core';
 import { DISCUSSION_LINK } from './constants';
 
 @Component({
 	selector: 'app-suggestion',
-	imports: [HlmButtonDirective],
+	imports: [HlmButton],
 	template: `
 		<div class="flex flex-col items-center justify-center gap-4">
 			<span class="text-center text-2xl font-bold">Didn't find what you were looking for?</span>

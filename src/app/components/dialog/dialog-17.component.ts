@@ -1,16 +1,16 @@
 import { Clipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
-import { Component, computed, inject, signal, viewChild } from '@angular/core';
+import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy, lucidePlus, lucideTrash2, lucideUserPlus } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { BrnTooltipContentDirective, BrnTooltipTriggerDirective } from '@spartan-ng/brain/tooltip';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-tooltip-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { BrnTooltipContentTemplate, BrnTooltipTrigger } from '@spartan-ng/brain/tooltip';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'app-dialog-17',
@@ -19,17 +19,17 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 		NgIcon,
 		NgClass,
 		ReactiveFormsModule,
-		HlmIconDirective,
-		HlmInputDirective,
-		HlmButtonDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmTooltipTriggerDirective,
-		HlmTooltipComponent,
-		BrnTooltipContentDirective,
+		HlmIcon,
+		HlmInput,
+		HlmButton,
+		HlmDialog,
+		HlmDialogContent,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmTooltipTrigger,
+		HlmTooltip,
+		BrnTooltipContentTemplate,
 	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
@@ -112,9 +112,7 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 											'scale-100 opacity-100': copied(),
 										}" />
 								</button>
-								<span *brnTooltipContent class="flex items-center text-xs">
-									{{ tooltipLabel() }}
-								</span>
+								<span *brnTooltipContent class="flex items-center text-xs">Copy to clipboard</span>
 							</hlm-tooltip>
 						</div>
 					</div>
@@ -124,12 +122,11 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 	`,
 })
 export class Dialog17Component {
-	public dialogRef = viewChild(BrnDialogComponent);
-	public tooltip = viewChild<BrnTooltipTriggerDirective>(BrnTooltipTriggerDirective);
+	public dialogRef = viewChild(BrnDialog);
+	public tooltip = viewChild<BrnTooltipTrigger>(BrnTooltipTrigger);
 	public copied = signal<boolean>(false);
 	public clipboard = inject(Clipboard);
 	public form: FormGroup;
-	public tooltipLabel = computed(() => (this.copied() ? '' : 'Copy to clipboard'));
 	private _formBuilder = inject(FormBuilder);
 
 	constructor() {
@@ -165,20 +162,19 @@ export class Dialog17Component {
 	}
 }
 
-export const dialog17Code = `
-import { Clipboard } from '@angular/cdk/clipboard';
+export const dialog17Code = `import { Clipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
-import { Component, computed, inject, signal, viewChild } from '@angular/core';
+import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy, lucidePlus, lucideTrash2, lucideUserPlus } from '@ng-icons/lucide';
-import { BrnDialogComponent, BrnDialogContentDirective, BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
-import { BrnTooltipContentDirective, BrnTooltipTriggerDirective } from '@spartan-ng/brain/tooltip';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { HlmDialogComponent, HlmDialogContentComponent } from '@spartan-ng/ui-dialog-helm';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-tooltip-helm';
+import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { BrnTooltipContentTemplate, BrnTooltipTrigger } from '@spartan-ng/brain/tooltip';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'app-dialog-17',
@@ -187,17 +183,17 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 		NgIcon,
 		NgClass,
 		ReactiveFormsModule,
-		HlmIconDirective,
-		HlmInputDirective,
-		HlmButtonDirective,
-		HlmDialogComponent,
-		HlmDialogContentComponent,
-		BrnDialogTriggerDirective,
-		BrnDialogContentDirective,
-		HlmButtonDirective,
-		HlmTooltipTriggerDirective,
-		HlmTooltipComponent,
-		BrnTooltipContentDirective,
+		HlmIcon,
+		HlmInput,
+		HlmButton,
+		HlmDialog,
+		HlmDialogContent,
+		BrnDialogTrigger,
+		BrnDialogContent,
+		HlmButton,
+		HlmTooltipTrigger,
+		HlmTooltip,
+		BrnTooltipContentTemplate,
 	],
 	template: \`
 		<hlm-dialog autoFocus="dialog">
@@ -280,9 +276,7 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 											'scale-100 opacity-100': copied(),
 										}" />
 								</button>
-								<span *brnTooltipContent class="flex items-center text-xs">
-									{{ tooltipLabel() }}
-								</span>
+								<span *brnTooltipContent class="flex items-center text-xs">Copy to clipboard</span>
 							</hlm-tooltip>
 						</div>
 					</div>
@@ -292,12 +286,11 @@ import { HlmTooltipComponent, HlmTooltipTriggerDirective } from '@spartan-ng/ui-
 	\`,
 })
 export class Dialog17Component {
-	public dialogRef = viewChild(BrnDialogComponent);
-	public tooltip = viewChild<BrnTooltipTriggerDirective>(BrnTooltipTriggerDirective);
+	public dialogRef = viewChild(BrnDialog);
+	public tooltip = viewChild<BrnTooltipTrigger>(BrnTooltipTrigger);
 	public copied = signal<boolean>(false);
 	public clipboard = inject(Clipboard);
 	public form: FormGroup;
-	public tooltipLabel = computed(() => (this.copied() ? '' : 'Copy to clipboard'));
 	private _formBuilder = inject(FormBuilder);
 
 	constructor() {
@@ -331,5 +324,4 @@ export class Dialog17Component {
 			this.copied.set(false);
 		}, 1500);
 	}
-}
-`;
+}`;

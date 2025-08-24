@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
+import { HlmBadge } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-badge-05',
 	standalone: true,
-	imports: [HlmBadgeDirective],
+	imports: [HlmBadge],
 	template: `
-		<span hlmBadge class="rounded-sm">Badge</span>
+		<span hlmBadge>Badge</span>
 	`,
 })
 export class Badge05Component {}
 
-export const badge05Code = `
-import { Component } from '@angular/core';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
+export const badge05Code = `import { Component } from '@angular/core';
+import { HlmBadge } from '@spartan-ng/helm/badge';
 
 @Component({
-  selector: 'sim-badge-05',
-  standalone: true,
-  imports: [HlmBadgeDirective],
-  template: \` <span hlmBadge class="rounded-sm"> Badge </span> \`,
+	selector: 'sim-badge-05',
+	standalone: true,
+	imports: [HlmBadge],
+	template: \`
+		<span hlmBadge>Badge</span>
+	\`,
 })
-export class Badge05Component {}
-`;
+export class Badge05Component {}`;

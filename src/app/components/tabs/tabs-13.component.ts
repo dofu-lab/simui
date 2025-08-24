@@ -1,24 +1,12 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-13',
-	imports: [
-		NgIcon,
-		HlmIconDirective,
-		HlmTabsComponent,
-		HlmTabsListComponent,
-		HlmTabsTriggerDirective,
-		HlmTabsContentDirective,
-	],
+	imports: [NgIcon, HlmIcon, HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
@@ -27,19 +15,19 @@ import {
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucideHouse" size="sm" />
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePanelsTopLeft" size="sm" />
 					Projects
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePackage" size="sm" />
 					Packages
 				</button>
@@ -58,28 +46,15 @@ import {
 })
 export class Tabs13Component {}
 
-export const tabs13Code = `
-import { Component } from '@angular/core';
+export const tabs13Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
-import {
-	HlmTabsComponent,
-	HlmTabsContentDirective,
-	HlmTabsListComponent,
-	HlmTabsTriggerDirective,
-} from '@spartan-ng/ui-tabs-helm';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-13',
-	imports: [
-		NgIcon,
-		HlmIconDirective,
-		HlmTabsComponent,
-		HlmTabsListComponent,
-		HlmTabsTriggerDirective,
-		HlmTabsContentDirective,
-	],
+	imports: [NgIcon, HlmIcon, HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
 	template: \`
 		<hlm-tabs tab="tab01" class="w-full">
@@ -88,19 +63,19 @@ import {
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucideHouse" size="sm" />
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePanelsTopLeft" size="sm" />
 					Projects
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+					class="hover:text-muted-foreground data-[state=active]:after:bg-primary relative flex-col gap-2 rounded-none border-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
 					<ng-icon hlm name="lucidePackage" size="sm" />
 					Packages
 				</button>
@@ -117,5 +92,4 @@ import {
 		</hlm-tabs>
 	\`,
 })
-export class Tabs13Component {}
-`;
+export class Tabs13Component {}`;
