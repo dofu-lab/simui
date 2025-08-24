@@ -5,5 +5,4 @@ export * from './event-dialog.component';
 export * from './event-item-wrapper.component';
 export * from './event-item.component';
 export * from './month-view-calendar.component';
-export * from './services/current-time-indicator.service';
 export * from './week-view-calendar.component';
