@@ -1,5 +1,3 @@
-import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
-import { HlmMenu, HlmMenuItem } from '@/libs/ui/ui-menu-helm/src';
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -7,6 +5,8 @@ import { lucideGithub, lucideMoon, lucideSquareMenu, lucideSun } from '@ng-icons
 import { remixTwitterXFill } from '@ng-icons/remixicon';
 import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 import { REPO_LINK, X_LINK } from './constants';
 import { NavigationService } from './navigation.service';
 import { ThemeService } from './theme.service';

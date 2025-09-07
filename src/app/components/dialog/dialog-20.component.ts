@@ -1,4 +1,3 @@
-import { HlmBadge } from '@/libs/ui/ui-badge-helm/src';
 import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MaskitoDirective } from '@maskito/angular';
@@ -6,6 +5,7 @@ import { MaskitoOptions } from '@maskito/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard, lucideWalletCards } from '@ng-icons/lucide';
 import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
@@ -231,14 +231,14 @@ export class Dialog20Component {
 	}
 }
 
-export const dialog20Code = `import { HlmBadge } from '@/libs/ui/ui-badge-helm/src';
-import { Component, inject, signal, viewChild } from '@angular/core';
+export const dialog20Code = `import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard, lucideWalletCards } from '@ng-icons/lucide';
 import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';

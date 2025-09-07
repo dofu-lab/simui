@@ -1,10 +1,10 @@
-import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideShoppingCart } from '@ng-icons/lucide';
 import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCard, HlmCardContent, HlmCardDescription, HlmCardFooter, HlmCardTitle } from '@spartan-ng/helm/card';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-card-01',
@@ -47,13 +47,13 @@ import { HlmCard, HlmCardContent, HlmCardDescription, HlmCardFooter, HlmCardTitl
 })
 export class Card01Component {}
 
-export const card01Code = `import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
-import { Component } from '@angular/core';
+export const card01Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideShoppingCart } from '@ng-icons/lucide';
 import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCard, HlmCardContent, HlmCardDescription, HlmCardFooter, HlmCardTitle } from '@spartan-ng/helm/card';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-card-01',

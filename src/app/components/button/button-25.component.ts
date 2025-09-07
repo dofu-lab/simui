@@ -1,7 +1,7 @@
-import { HlmBadge } from '@/libs/ui/ui-badge-helm/src';
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell } from '@ng-icons/lucide';
+import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
@@ -32,10 +32,10 @@ export class Button25Component {
 	}
 }
 
-export const button25Code = `import { HlmBadge } from '@/libs/ui/ui-badge-helm/src';
-import { Component, signal } from '@angular/core';
+export const button25Code = `import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell } from '@ng-icons/lucide';
+import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 

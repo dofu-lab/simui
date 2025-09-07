@@ -1,4 +1,3 @@
-import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuShortcut } from '@/libs/ui/ui-menu-helm/src';
 import { DatePipe, TitleCasePipe } from '@angular/common';
 import {
 	ChangeDetectionStrategy,
@@ -15,6 +14,7 @@ import { lucideChevronDown, lucideChevronLeft, lucideChevronRight, lucidePlus } 
 import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuShortcut } from '@spartan-ng/helm/menu';
 import {
 	addDays,
 	addMonths,

@@ -3,7 +3,7 @@ import { marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { markedHighlight } from 'marked-highlight';
 
-import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { NgIf } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';

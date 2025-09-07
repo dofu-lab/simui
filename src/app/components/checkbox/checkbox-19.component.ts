@@ -1,7 +1,7 @@
-import { HlmBadge } from '@/libs/ui/ui-badge-helm/src';
 import { Component, model } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRocket } from '@ng-icons/lucide';
+import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
@@ -51,10 +51,10 @@ export class Checkbox19Component {
 	public readonly checked = model<boolean>(false);
 }
 
-export const checkbox19Code = `import { HlmBadge } from '@/libs/ui/ui-badge-helm/src';
-import { Component, model } from '@angular/core';
+export const checkbox19Code = `import { Component, model } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRocket } from '@ng-icons/lucide';
+import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';

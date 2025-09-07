@@ -1,4 +1,3 @@
-import { HlmCheckbox } from '@/libs/ui/ui-checkbox-helm/src';
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,6 +10,7 @@ import {
 	HlmAccordionItem,
 	HlmAccordionTrigger,
 } from '@spartan-ng/helm/accordion';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
@@ -173,8 +173,7 @@ export class Accordion22Component {
 	];
 }
 
-export const accordion22Code = `import { HlmCheckbox } from '@/libs/ui/ui-checkbox-helm/src';
-import { NgClass } from '@angular/common';
+export const accordion22Code = `import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -186,6 +185,7 @@ import {
 	HlmAccordionItem,
 	HlmAccordionTrigger,
 } from '@spartan-ng/helm/accordion';
+import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({

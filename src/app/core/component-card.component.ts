@@ -4,11 +4,11 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCode } from '@ng-icons/lucide';
 import type { ClassValue } from 'clsx';
 
-import { HlmDialog, HlmDialogContent, HlmDialogHeader, HlmDialogTitle } from '@/libs/ui/ui-dialog-helm/src';
-import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
 import { hlm } from '@spartan-ng/brain/core';
 import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogContent, HlmDialogHeader, HlmDialogTitle } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import { CodePreviewComponent } from './code-preview.component';
 
 @Component({

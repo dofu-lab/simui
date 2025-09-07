@@ -18,6 +18,7 @@ import {
 	NotificationComponent,
 	PopoverComponent,
 	RadioComponent,
+	SliderComponent,
 	TabsComponent,
 } from './pages';
 
@@ -49,6 +50,7 @@ export const routes: Routes = [
 			{ path: 'notification', component: NotificationComponent },
 			{ path: 'popover', component: PopoverComponent },
 			{ path: 'radio', component: RadioComponent },
+			{ path: 'slider', component: SliderComponent },
 			{ path: 'tabs', component: TabsComponent },
 			{ path: '', pathMatch: 'full', redirectTo: 'alert' },
 		],
