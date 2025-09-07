@@ -16,4 +16,5 @@ export * from './intro.component';
 export * from './notification.component';
 export * from './popover.component';
 export * from './radio.component';
+export * from './slider.component';
 export * from './tabs.component';

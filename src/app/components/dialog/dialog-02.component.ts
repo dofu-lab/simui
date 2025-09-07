@@ -1,4 +1,3 @@
-import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
 import { Component, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
@@ -11,6 +10,7 @@ import {
 	HlmDialogFooter,
 	HlmDialogHeader,
 } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-02',
@@ -60,8 +60,7 @@ export class Dialog02Component {
 	}
 }
 
-export const dialog02Code = `import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
-import { Component, viewChild } from '@angular/core';
+export const dialog02Code = `import { Component, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
 import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
@@ -73,6 +72,7 @@ import {
 	HlmDialogFooter,
 	HlmDialogHeader,
 } from '@spartan-ng/helm/dialog';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-02',

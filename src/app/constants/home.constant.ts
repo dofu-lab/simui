@@ -7,15 +7,22 @@ import { badgeComponents } from './badge.constant';
 import { bannerComponents } from './banner.constant';
 import { breadcrumbComponents } from './breadcrumb.constant';
 import { buttonComponents } from './button.constant';
-import { cardComponents } from './card.constant';
 import { checkBoxComponents } from './checkbox.constant';
 import { dialogComponents } from './dialog.constant';
 import { fileUploadComponents } from './file-upload.constant';
 import { notificationComponents } from './notification.constant';
 import { radioComponents } from './radio.constant';
+import { sliderComponents } from './slider.constant';
 import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Slider',
+		compNumber: sliderComponents.length,
+		image: 'slider.png',
+		path: 'components/slider',
+		isNew: true,
+	},
 	{
 		name: 'Event Calendar',
 		compNumber: 1,
@@ -28,20 +35,6 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: radioComponents.length,
 		image: 'radio.png',
 		path: 'components/radio',
-		isNew: true,
-	},
-	{
-		name: 'Tabs',
-		compNumber: tabsComponents.length,
-		image: 'tabs.png',
-		path: 'components/tabs',
-		isNew: true,
-	},
-	{
-		name: 'File Upload',
-		compNumber: fileUploadComponents.length,
-		image: 'file-upload.png',
-		path: 'components/file-upload',
 		isNew: true,
 	},
 	{
@@ -106,15 +99,27 @@ export const previewComponents: ComponentInfo[] = [
 		path: 'components/dialog',
 	},
 	{
-		name: 'Popover',
-		compNumber: popoverComponents.length,
-		image: 'popover.png',
-		path: 'components/popover',
+		name: 'File Upload',
+		compNumber: fileUploadComponents.length,
+		image: 'file-upload.png',
+		path: 'components/file-upload',
 	},
 	{
 		name: 'Notification',
 		compNumber: notificationComponents.length,
 		image: 'notification.png',
 		path: 'components/notification',
+	},
+	{
+		name: 'Popover',
+		compNumber: popoverComponents.length,
+		image: 'popover.png',
+		path: 'components/popover',
+	},
+	{
+		name: 'Tabs',
+		compNumber: tabsComponents.length,
+		image: 'tabs.png',
+		path: 'components/tabs',
 	},
 ];

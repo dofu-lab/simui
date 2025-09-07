@@ -1,5 +1,5 @@
-import { HlmButton } from '@/libs/ui/ui-button-helm/src';
 import { Component } from '@angular/core';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { DISCUSSION_LINK } from './constants';
 
 @Component({
