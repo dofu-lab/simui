@@ -18,11 +18,23 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 			<span hlmLabel>{{ value() }} credits/month</span>
 		</div>
 		<div class="flex items-center gap-2">
-			<button hlmBtn size="icon" variant="outline" class="size-8" (click)="onDecreaseCredits()">
+			<button
+				hlmBtn
+				size="icon"
+				variant="outline"
+				class="size-8"
+				[disabled]="value() === 0"
+				(click)="onDecreaseCredits()">
 				<ng-icon hlm name="lucideMinus" size="sm" />
 			</button>
 			<hlm-slider [min]="0" [max]="200" [step]="5" [(value)]="value" />
-			<button hlmBtn size="icon" variant="outline" class="size-8" (click)="onIncreaseCredits()">
+			<button
+				hlmBtn
+				size="icon"
+				variant="outline"
+				class="size-8"
+				[disabled]="value() === 200"
+				(click)="onIncreaseCredits()">
 				<ng-icon hlm name="lucidePlus" size="sm" />
 			</button>
 		</div>
@@ -32,10 +44,18 @@ export class Slider15Component {
 	public readonly value = signal(50);
 
 	public onDecreaseCredits(): void {
+		if (this.value() === 0) {
+			return;
+		}
+
 		this.value.update((value) => value - 5);
 	}
 
 	public onIncreaseCredits(): void {
+		if (this.value() === 200) {
+			return;
+		}
+
 		this.value.update((value) => value + 5);
 	}
 }
@@ -60,11 +80,23 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 			<span hlmLabel>{{ value() }} credits/month</span>
 		</div>
 		<div class="flex items-center gap-2">
-			<button hlmBtn size="icon" variant="outline" class="size-8" (click)="onDecreaseCredits()">
+			<button
+				hlmBtn
+				size="icon"
+				variant="outline"
+				class="size-8"
+				[disabled]="value() === 0"
+				(click)="onDecreaseCredits()">
 				<ng-icon hlm name="lucideMinus" size="sm" />
 			</button>
 			<hlm-slider [min]="0" [max]="200" [step]="5" [(value)]="value" />
-			<button hlmBtn size="icon" variant="outline" class="size-8" (click)="onIncreaseCredits()">
+			<button
+				hlmBtn
+				size="icon"
+				variant="outline"
+				class="size-8"
+				[disabled]="value() === 200"
+				(click)="onIncreaseCredits()">
 				<ng-icon hlm name="lucidePlus" size="sm" />
 			</button>
 		</div>
@@ -74,10 +106,18 @@ export class Slider15Component {
 	public readonly value = signal(50);
 
 	public onDecreaseCredits(): void {
+		if (this.value() === 0) {
+			return;
+		}
+
 		this.value.update((value) => value - 5);
 	}
 
 	public onIncreaseCredits(): void {
+		if (this.value() === 200) {
+			return;
+		}
+
 		this.value.update((value) => value + 5);
 	}
 }`;
