@@ -2041,6 +2041,11 @@
   resolved "https://registry.yarnpkg.com/@maskito/core/-/core-3.7.2.tgz#dbc4744ade4efa54aff62c1ddaa4a545dbd7d5da"
   integrity sha512-jnX1u2HAZFy0K8Ll6AoeMpe502aVzrqgPKG7rk/qtbivW+71U3vutP3kqmjZtgsPoNzQ2wzKVWMgi7JEXDK11g==
 
+"@maskito/kit@^3.10.3":
+  version "3.10.3"
+  resolved "https://registry.yarnpkg.com/@maskito/kit/-/kit-3.10.3.tgz#df55b63bbb450b0935382cd3ea327b0f6c98d1c4"
+  integrity sha512-4IAL5WPlz4zi6vCMp8KbSAVh67WT+o0PzQ56dU4E7crN1jzBm1cN7MIbGawefOIXwAiqCb8zOSyTv/qqSL0xGQ==
+
 "@modern-js/node-bundle-require@2.65.1":
   version "2.65.1"
   resolved "https://registry.yarnpkg.com/@modern-js/node-bundle-require/-/node-bundle-require-2.65.1.tgz#e4c34a6ea87c5082119b2b9fc48ebca82bac1411"
@@ -3445,17 +3450,17 @@
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.2.tgz#821f8442f4175d8f0467b9daf26e3a18e2d02af2"
   integrity sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==
 
-"@spartan-ng/brain@0.0.1-alpha.501":
-  version "0.0.1-alpha.501"
-  resolved "https://registry.yarnpkg.com/@spartan-ng/brain/-/brain-0.0.1-alpha.501.tgz#3f4ae0fb07b29146aa7be58e0956b1fc4ff2a5c5"
-  integrity sha512-iAOE6KOowvFwIVQA+kAHdXFjRzMhxJlZi3pjVxhg01ClhSy5vuCDJ/0hzWjPtUaM21KZDfwQ8SYPllifM6akag==
+"@spartan-ng/brain@0.0.1-alpha.511":
+  version "0.0.1-alpha.511"
+  resolved "https://registry.yarnpkg.com/@spartan-ng/brain/-/brain-0.0.1-alpha.511.tgz#f9fe71d3fbeb71a773a1d8e18d4e500fba6d8b68"
+  integrity sha512-4qYe9dt5msNrnqp2NXdLH2d5mmMnUw3xOlK7SiucW6N3gbbSdt1Od+XtIGN2T9btlaSmSC9Smh8TGpiaLfl8Xw==
   dependencies:
     tslib "^2.3.0"
 
-"@spartan-ng/cli@0.0.1-alpha.501":
-  version "0.0.1-alpha.501"
-  resolved "https://registry.yarnpkg.com/@spartan-ng/cli/-/cli-0.0.1-alpha.501.tgz#ffb4cc2aa7d00c8fb438eff31b26915ffd4bed06"
-  integrity sha512-uS4HBIrf49UxAXLLtkT0GEgdjkIDGte2gTTlIjSWFCgyO0kRgzV0gnbBjlPM25peCqib2bSoOAlZuKTgruEBOw==
+"@spartan-ng/cli@0.0.1-alpha.511":
+  version "0.0.1-alpha.511"
+  resolved "https://registry.yarnpkg.com/@spartan-ng/cli/-/cli-0.0.1-alpha.511.tgz#db469416d70d2ba02b3f9718c0ee458e4ddd26d7"
+  integrity sha512-2YCmLhg3+dMxKkScWQppnLuBpgUclFQX+F40t6rr1x+Tt7JLsoNzxXLbeHhliZ581GZGqxBUg7QbwYV8X5Od3w==
   dependencies:
     "@nx/angular" ">=20.0.0"
     "@nx/devkit" ">=20.0.0"
@@ -3470,6 +3475,7 @@
     semver "7.5.4"
     ts-morph "25.0.1"
     typescript ">=5.0.0"
+    zod "3.23.8"
 
 "@swc/helpers@0.5.13":
   version "0.5.13"
@@ -11008,6 +11014,11 @@ yoctocolors-cjs@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/yoctocolors-cjs/-/yoctocolors-cjs-2.1.2.tgz#f4b905a840a37506813a7acaa28febe97767a242"
   integrity sha512-cYVsTjKl8b+FrnidjibDWskAv7UKOfcwaVZdp/it9n1s9fU3IkgDbhdIRKCW4JDsAlECJY0ytoVPT3sK6kideA==
+
+zod@3.23.8:
+  version "3.23.8"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.8.tgz#e37b957b5d52079769fb8097099b592f0ef4067d"
+  integrity sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==
 
 zone.js@~0.15.0:
   version "0.15.0"
