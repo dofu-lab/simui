@@ -63,5 +63,5 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 export class Input31Component {
 	readonly maxLength = 50;
 	readonly value = model('');
-	readonly computedCharacterCount = computed(() => \`${this.value().length}/${this.maxLength}\`);
+	readonly computedCharacterCount = computed(() => \`\${this.value().length}/\${this.maxLength}\`);
 }`;

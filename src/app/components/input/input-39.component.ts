@@ -231,9 +231,9 @@ export class Input39Component {
 		const end = endDate && isValid(endDate) ? format(endDate, 'MM/dd/yyyy') : '';
 
 		if (start && end) {
-			return \`${start} - ${end}\`;
+			return \`\${start} - \${end}\`;
 		} else if (start) {
-			return \`${start} - \`;
+			return \`\${start} - \`;
 		}
 		return '';
 	}
