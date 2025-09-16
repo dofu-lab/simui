@@ -143,7 +143,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 								[disabled]="isProcessing()"
 								(click)="onSubmit()">
 								@if (isProcessing()) {
-									<hlm-spinner size="xs" class="mr-2" />
+									<hlm-spinner class="mr-2 size-4" />
 									Processing...
 								} @else {
 									Select plan
@@ -320,7 +320,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 								[disabled]="isProcessing()"
 								(click)="onSubmit()">
 								@if (isProcessing()) {
-									<hlm-spinner size="xs" class="mr-2" />
+									<hlm-spinner class="mr-2 size-4" />
 									Processing...
 								} @else {
 									Select plan

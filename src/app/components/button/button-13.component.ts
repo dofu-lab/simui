@@ -8,7 +8,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	imports: [HlmButton, HlmSpinner],
 	template: `
 		<button hlmBtn disabled size="sm" class="group">
-			<hlm-spinner size="xs" class="mr-2" />
+			<hlm-spinner class="mr-2 size-4" />
 			Saving...
 		</button>
 	`,
@@ -25,7 +25,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	imports: [HlmButton, HlmSpinner],
 	template: \`
 		<button hlmBtn disabled size="sm" class="group">
-			<hlm-spinner size="xs" class="mr-2" />
+			<hlm-spinner class="mr-2 size-4" />
 			Saving...
 		</button>
 	\`,

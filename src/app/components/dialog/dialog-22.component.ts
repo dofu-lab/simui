@@ -102,7 +102,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 						</div>
 						<button hlmBtn type="submit" class="mt-4 w-full" size="sm" [disabled]="isProcessing()">
 							@if (isProcessing()) {
-								<hlm-spinner size="xs" class="mr-2" />
+								<hlm-spinner class="mr-2 size-4" />
 								Processing...
 							} @else {
 								Change plan
@@ -258,7 +258,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 						</div>
 						<button hlmBtn type="submit" class="mt-4 w-full" size="sm" [disabled]="isProcessing()">
 							@if (isProcessing()) {
-								<hlm-spinner size="xs" class="mr-2" />
+								<hlm-spinner class="mr-2 size-4" />
 								Processing...
 							} @else {
 								Change plan

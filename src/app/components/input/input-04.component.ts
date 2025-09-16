@@ -3,7 +3,7 @@ import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
-	selector: 'app-input-04',
+	selector: 'sim-input-04',
 	imports: [HlmLabel, HlmInput],
 	host: { class: 'w-full' },
 	template: `
@@ -16,4 +16,20 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 })
 export class Input04Component {}
 
-export const input04Code = ``;
+export const input04Code = `import { Component } from '@angular/core';
+import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmLabel } from '@spartan-ng/helm/label';
+
+@Component({
+	selector: 'sim-input-04',
+	imports: [HlmLabel, HlmInput],
+	host: { class: 'w-full' },
+	template: \`
+		<div class="mb-2 flex items-center justify-between text-sm">
+			<label hlmLabel for="input-04">Input with hint</label>
+			<span class="text-muted-foreground">Optional</span>
+		</div>
+		<input hlmInput id="input-04" type="text" placeholder="Email" />
+	\`,
+})
+export class Input04Component {}`;
