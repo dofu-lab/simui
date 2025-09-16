@@ -1,8 +1,8 @@
 import { BooleanInput, NumberInput } from '@angular/cdk/coercion';
 import {
+	booleanAttribute,
 	ChangeDetectionStrategy,
 	Component,
-	booleanAttribute,
 	computed,
 	input,
 	model,
@@ -12,28 +12,27 @@ import {
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import {
-	BrnCalendar,
 	BrnCalendarCell,
 	BrnCalendarCellButton,
 	BrnCalendarGrid,
 	BrnCalendarHeader,
 	BrnCalendarNextButton,
 	BrnCalendarPreviousButton,
+	BrnCalendarRange,
 	BrnCalendarWeek,
 	BrnCalendarWeekday,
-	Weekday,
 	injectBrnCalendarI18n,
+	Weekday,
 } from '@spartan-ng/brain/calendar';
-import { hlm } from '@spartan-ng/brain/core';
 import { injectDateAdapter } from '@spartan-ng/brain/date-time';
 import { buttonVariants } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
+import { hlm } from '@spartan-ng/brain/core';
 import type { ClassValue } from 'clsx';
 
 @Component({
-	selector: 'hlm-calendar',
+	selector: 'hlm-calendar-range',
 	imports: [
-		BrnCalendar,
 		BrnCalendarHeader,
 		BrnCalendarNextButton,
 		BrnCalendarPreviousButton,
@@ -44,37 +43,42 @@ import type { ClassValue } from 'clsx';
 		BrnCalendarGrid,
 		NgIcon,
 		HlmIcon,
+		BrnCalendarRange,
 	],
 	viewProviders: [provideIcons({ lucideChevronLeft, lucideChevronRight })],
 	template: `
 		<div
-			brnCalendar
+			brnCalendarRange
 			[min]="min()"
 			[max]="max()"
 			[disabled]="disabled()"
-			[(date)]="date"
+			[(startDate)]="startDate"
+			[(endDate)]="endDate"
 			[dateDisabled]="dateDisabled()"
 			[weekStartsOn]="weekStartsOn()"
 			[defaultFocusedDate]="defaultFocusedDate()"
-			[class]="_computedCalenderClass()">
+			[class]="_computedCalenderClass()"
+		>
 			<div class="inline-flex flex-col space-y-4">
 				<!-- Header -->
 				<div class="space-y-4">
 					<div class="relative flex items-center justify-center pt-1">
 						<div brnCalendarHeader class="text-sm font-medium">
-							{{ heading() }}
+							{{ _heading() }}
 						</div>
 
 						<div class="flex items-center space-x-1">
 							<button
 								brnCalendarPreviousButton
-								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute left-1 inline-flex h-7 w-7 items-center justify-center rounded-md border bg-transparent p-0 text-sm font-medium whitespace-nowrap opacity-50 transition-colors hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
+								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute left-1 inline-flex h-7 w-7 items-center justify-center whitespace-nowrap rounded-md border bg-transparent p-0 text-sm font-medium opacity-50 transition-colors hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+							>
 								<ng-icon hlm name="lucideChevronLeft" size="sm" />
 							</button>
 
 							<button
 								brnCalendarNextButton
-								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute right-1 inline-flex h-7 w-7 items-center justify-center rounded-md border bg-transparent p-0 text-sm font-medium whitespace-nowrap opacity-50 transition-colors hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
+								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute right-1 inline-flex h-7 w-7 items-center justify-center whitespace-nowrap rounded-md border bg-transparent p-0 text-sm font-medium opacity-50 transition-colors hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+							>
 								<ng-icon hlm name="lucideChevronRight" size="sm" />
 							</button>
 						</div>
@@ -87,21 +91,23 @@ import type { ClassValue } from 'clsx';
 							<th
 								*brnCalendarWeekday="let weekday"
 								scope="col"
-								class="text-muted-foreground w-9 rounded-md text-[0.8rem] font-normal"
-								[attr.aria-label]="i18n.labelWeekday(weekday)">
-								{{ i18n.formatWeekdayName(weekday) }}
+								class="text-muted-foreground w-8 rounded-md text-[0.8rem] font-normal"
+								[attr.aria-label]="_i18n.config().labelWeekday(weekday)"
+							>
+								{{ _i18n.config().formatWeekdayName(weekday) }}
 							</th>
 						</tr>
 					</thead>
 
 					<tbody role="rowgroup">
 						<tr *brnCalendarWeek="let week" class="mt-2 flex w-full">
-							@for (date of week; track dateAdapter.getTime(date)) {
+							@for (date of week; track _dateAdapter.getTime(date)) {
 								<td
 									brnCalendarCell
-									class="data-[selected]:data-[outside]:bg-accent/50 data-[selected]:bg-accent relative h-9 w-9 p-0 text-center text-sm focus-within:relative focus-within:z-20 first:data-[selected]:rounded-l-md last:data-[selected]:rounded-r-md [&:has([aria-selected].day-range-end)]:rounded-r-md">
-									<button brnCalendarCellButton [date]="date" [class]="btnClass">
-										{{ dateAdapter.getDate(date) }}
+									class="data-[selected]:data-[outside]:bg-accent/50 data-[selected]:bg-accent relative h-8 w-8 p-0 text-center text-sm focus-within:relative focus-within:z-20 first:data-[selected]:rounded-l-md last:data-[selected]:rounded-r-md [&:has([aria-selected].day-range-end)]:rounded-r-md"
+								>
+									<button brnCalendarCellButton [date]="date" [class]="_btnClass">
+										{{ _dateAdapter.getDate(date) }}
 									</button>
 								</td>
 							}
@@ -113,16 +119,16 @@ import type { ClassValue } from 'clsx';
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HlmCalendar<T> {
+export class HlmCalendarRange<T> {
 	public readonly calendarClass = input<ClassValue>('');
 
 	protected readonly _computedCalenderClass = computed(() => hlm('rounded-md border p-3', this.calendarClass()));
 
 	/** Access the calendar i18n */
-	protected readonly i18n = injectBrnCalendarI18n();
+	protected readonly _i18n = injectBrnCalendarI18n();
 
 	/** Access the date time adapter */
-	protected readonly dateAdapter = injectDateAdapter<T>();
+	protected readonly _dateAdapter = injectDateAdapter<T>();
 
 	/** The minimum date that can be selected.*/
 	public readonly min = input<T>();
@@ -135,14 +141,17 @@ export class HlmCalendar<T> {
 		transform: booleanAttribute,
 	});
 
-	/** The selected value. */
-	public readonly date = model<T>();
+	/** The start date of the range. */
+	public readonly startDate = model<T>();
+
+	/** The end date of the range. */
+	public readonly endDate = model<T>();
 
 	/** Whether a specific date is disabled. */
 	public readonly dateDisabled = input<(date: T) => boolean>(() => false);
 
 	/** The day the week starts on */
-	public readonly weekStartsOn = input<Weekday, NumberInput>(0, {
+	public readonly weekStartsOn = input<Weekday, NumberInput>(undefined, {
 		transform: (v: unknown) => numberAttribute(v) as Weekday,
 	});
 
@@ -150,22 +159,27 @@ export class HlmCalendar<T> {
 	public readonly defaultFocusedDate = input<T>();
 
 	/** Access the calendar directive */
-	private readonly _calendar = viewChild.required(BrnCalendar);
+	private readonly _calendar = viewChild.required(BrnCalendarRange);
 
 	/** Get the heading for the current month and year */
-	protected heading = computed(() =>
-		this.i18n.formatHeader(
-			this.dateAdapter.getMonth(this._calendar().focusedDate()),
-			this.dateAdapter.getYear(this._calendar().focusedDate()),
-		),
+	protected readonly _heading = computed(() =>
+		this._i18n
+			.config()
+			.formatHeader(
+				this._dateAdapter.getMonth(this._calendar().focusedDate()),
+				this._dateAdapter.getYear(this._calendar().focusedDate()),
+			),
 	);
 
-	protected readonly btnClass = hlm(
+	protected readonly _btnClass = hlm(
 		buttonVariants({ variant: 'ghost' }),
-		'h-9 w-9 p-0 font-normal aria-selected:opacity-100',
-		'data-[outside]:text-muted-foreground data-[outside]:opacity-50 data-[outside]:aria-selected:bg-accent/50 data-[outside]:aria-selected:text-muted-foreground data-[outside]:aria-selected:opacity-30',
+		'size-8 p-0 font-normal aria-selected:opacity-100',
+		'data-[outside]:text-muted-foreground data-[outside]:aria-selected:text-muted-foreground',
 		'data-[today]:bg-accent data-[today]:text-accent-foreground',
-		'data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:hover:bg-primary data-[selected]:hover:text-primary-foreground data-[selected]:focus:bg-primary data-[selected]:focus:text-primary-foreground',
+		'data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:focus:bg-primary data-[selected]:focus:text-primary-foreground',
 		'data-[disabled]:text-muted-foreground data-[disabled]:opacity-50',
+		'data-[range-start]:rounded-l-md',
+		'data-[range-end]:rounded-r-md',
+		'data-[range-between]:bg-accent data-[range-between]:text-accent-foreground data-[range-between]:rounded-none',
 	);
 }

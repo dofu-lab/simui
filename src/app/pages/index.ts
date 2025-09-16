@@ -18,3 +18,4 @@ export * from './popover.component';
 export * from './radio.component';
 export * from './slider.component';
 export * from './tabs.component';
+export * from './input.component';

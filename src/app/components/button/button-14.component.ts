@@ -9,7 +9,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	template: `
 		<button hlmBtn size="sm" class="group" [disabled]="isLoading()" (click)="submit()">
 			@if (isLoading()) {
-				<hlm-spinner size="xs" class="mr-2" />
+				<hlm-spinner class="mr-2 size-4" />
 				Submitting...
 			} @else {
 				Submit
@@ -37,7 +37,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	template: \`
 		<button hlmBtn size="sm" class="group" [disabled]="isLoading()" (click)="submit()">
 			@if (isLoading()) {
-				<hlm-spinner size="xs" class="mr-2" />
+				<hlm-spinner class="mr-2 size-4" />
 				Submitting...
 			} @else {
 				Submit

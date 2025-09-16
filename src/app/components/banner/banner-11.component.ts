@@ -30,7 +30,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 					[disabled]="isUpdating()"
 					(click)="update()">
 					@if (isUpdating()) {
-						<hlm-spinner size="xs" class="mr-2" />
+						<hlm-spinner class="mr-2 size-4" />
 						Updating ...
 					} @else {
 						<ng-icon hlm name="lucideDownload" size="sm" class="mr-2" />
@@ -84,7 +84,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 					[disabled]="isUpdating()"
 					(click)="update()">
 					@if (isUpdating()) {
-						<hlm-spinner size="xs" class="mr-2" />
+						<hlm-spinner class="mr-2 size-4" />
 						Updating ...
 					} @else {
 						<ng-icon hlm name="lucideDownload" size="sm" class="mr-2" />

@@ -10,12 +10,19 @@ import { buttonComponents } from './button.constant';
 import { checkBoxComponents } from './checkbox.constant';
 import { dialogComponents } from './dialog.constant';
 import { fileUploadComponents } from './file-upload.constant';
+import { inputComponents } from './input.constant';
 import { notificationComponents } from './notification.constant';
 import { radioComponents } from './radio.constant';
 import { sliderComponents } from './slider.constant';
 import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Input',
+		compNumber: inputComponents.length,
+		image: 'input.png',
+		path: 'components/input',
+	},
 	{
 		name: 'Slider',
 		compNumber: sliderComponents.length,

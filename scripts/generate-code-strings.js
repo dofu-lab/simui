@@ -31,6 +31,8 @@ const COMPONENT_FOLDERS = [
 	'popover',
 	'radio',
 	'tabs',
+	'file-upload',
+	'input',
 ];
 
 /**
