@@ -14,9 +14,16 @@ import { inputComponents } from './input.constant';
 import { notificationComponents } from './notification.constant';
 import { radioComponents } from './radio.constant';
 import { sliderComponents } from './slider.constant';
+import { switchComponents } from './switch.constant';
 import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Switch',
+		compNumber: switchComponents.length,
+		image: 'switch.png',
+		path: 'components/switch',
+	},
 	{
 		name: 'Input',
 		compNumber: inputComponents.length,
