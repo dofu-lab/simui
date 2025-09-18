@@ -33,6 +33,7 @@ const COMPONENT_FOLDERS = [
 	'tabs',
 	'file-upload',
 	'input',
+	'switch'
 ];
 
 /**

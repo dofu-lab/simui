@@ -20,6 +20,7 @@ import {
 	PopoverComponent,
 	RadioComponent,
 	SliderComponent,
+	SwitchComponent,
 	TabsComponent,
 } from './pages';
 
@@ -53,6 +54,7 @@ export const routes: Routes = [
 			{ path: 'popover', component: PopoverComponent },
 			{ path: 'radio', component: RadioComponent },
 			{ path: 'slider', component: SliderComponent },
+			{ path: 'switch', component: SwitchComponent },
 			{ path: 'tabs', component: TabsComponent },
 			{ path: '', pathMatch: 'full', redirectTo: 'alert' },
 		],
