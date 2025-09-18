@@ -5,7 +5,7 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 	selector: 'sim-switch-02',
 	imports: [HlmSwitch],
 	template: `
-		<hlm-switch class="mr-2" />
+		<hlm-switch />
 	`,
 })
 export class Switch02Component {}
@@ -17,7 +17,7 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 	selector: 'sim-switch-02',
 	imports: [HlmSwitch],
 	template: \`
-		<hlm-switch class="mr-2" />
+		<hlm-switch />
 	\`,
 })
 export class Switch02Component {}`;
