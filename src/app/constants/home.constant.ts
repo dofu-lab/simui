@@ -23,12 +23,14 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: switchComponents.length,
 		image: 'switch.png',
 		path: 'components/switch',
+		isNew: true,
 	},
 	{
 		name: 'Input',
 		compNumber: inputComponents.length,
 		image: 'input.png',
 		path: 'components/input',
+		isNew: true,
 	},
 	{
 		name: 'Slider',
@@ -42,13 +44,6 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: 1,
 		image: 'event-calendar.png',
 		path: 'components/event-calendar',
-		isNew: true,
-	},
-	{
-		name: 'Radio',
-		compNumber: radioComponents.length,
-		image: 'radio.png',
-		path: 'components/radio',
 		isNew: true,
 	},
 	{
@@ -129,6 +124,12 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: popoverComponents.length,
 		image: 'popover.png',
 		path: 'components/popover',
+	},
+	{
+		name: 'Radio',
+		compNumber: radioComponents.length,
+		image: 'radio.png',
+		path: 'components/radio',
 	},
 	{
 		name: 'Tabs',
