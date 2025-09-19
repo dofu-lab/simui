@@ -15,3 +15,4 @@ export * from './switch-14.component';
 export * from './switch-15.component';
 export * from './switch-16.component';
 export * from './switch-17.component';
+export * from './switch-18.component';

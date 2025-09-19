@@ -33,6 +33,8 @@ import {
 	Switch16Component,
 	switch17Code,
 	Switch17Component,
+	switch18Code,
+	Switch18Component,
 } from '../components/switch';
 import { ComponentCardItem } from '../core';
 
@@ -125,6 +127,13 @@ export const switchComponents: ComponentCardItem[] = [
 		component: Switch13Component,
 		code: switch13Code,
 		id: 'switch-13',
+		colNumber: 4,
+		itemStyle: 1,
+	},
+	{
+		component: Switch18Component,
+		code: switch18Code,
+		id: 'switch-18',
 		colNumber: 4,
 		itemStyle: 1,
 	},
