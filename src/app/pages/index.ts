@@ -9,6 +9,7 @@ export * from './card.component';
 export * from './checkbox.component';
 export * from './comp-layout.component';
 export * from './dialog.component';
+export * from './dropdown.component';
 export * from './event-calendar.component';
 export * from './file-upload.component';
 export * from './home.component';

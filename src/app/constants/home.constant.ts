@@ -9,6 +9,7 @@ import { breadcrumbComponents } from './breadcrumb.constant';
 import { buttonComponents } from './button.constant';
 import { checkBoxComponents } from './checkbox.constant';
 import { dialogComponents } from './dialog.constant';
+import { dropdownComponents } from './dropdown.constant';
 import { fileUploadComponents } from './file-upload.constant';
 import { inputComponents } from './input.constant';
 import { notificationComponents } from './notification.constant';
@@ -18,6 +19,12 @@ import { switchComponents } from './switch.constant';
 import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Dropdown',
+		compNumber: dropdownComponents.length,
+		image: 'dropdown.png',
+		path: 'components/dropdown',
+	},
 	{
 		name: 'Switch',
 		compNumber: switchComponents.length,
