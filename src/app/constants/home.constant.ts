@@ -24,6 +24,7 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: dropdownComponents.length,
 		image: 'dropdown.png',
 		path: 'components/dropdown',
+		isNew: true,
 	},
 	{
 		name: 'Switch',
@@ -44,13 +45,6 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: sliderComponents.length,
 		image: 'slider.png',
 		path: 'components/slider',
-		isNew: true,
-	},
-	{
-		name: 'Event Calendar',
-		compNumber: 1,
-		image: 'event-calendar.png',
-		path: 'components/event-calendar',
 		isNew: true,
 	},
 	{
@@ -113,6 +107,12 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: dialogComponents.length,
 		image: 'dialog.png',
 		path: 'components/dialog',
+	},
+	{
+		name: 'Event Calendar',
+		compNumber: 1,
+		image: 'event-calendar.png',
+		path: 'components/event-calendar',
 	},
 	{
 		name: 'File Upload',
