@@ -9,6 +9,7 @@ import { breadcrumbComponents } from './breadcrumb.constant';
 import { buttonComponents } from './button.constant';
 import { checkBoxComponents } from './checkbox.constant';
 import { dialogComponents } from './dialog.constant';
+import { dropdownComponents } from './dropdown.constant';
 import { fileUploadComponents } from './file-upload.constant';
 import { inputComponents } from './input.constant';
 import { notificationComponents } from './notification.constant';
@@ -18,6 +19,13 @@ import { switchComponents } from './switch.constant';
 import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Dropdown',
+		compNumber: dropdownComponents.length,
+		image: 'dropdown.png',
+		path: 'components/dropdown',
+		isNew: true,
+	},
 	{
 		name: 'Switch',
 		compNumber: switchComponents.length,
@@ -37,13 +45,6 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: sliderComponents.length,
 		image: 'slider.png',
 		path: 'components/slider',
-		isNew: true,
-	},
-	{
-		name: 'Event Calendar',
-		compNumber: 1,
-		image: 'event-calendar.png',
-		path: 'components/event-calendar',
 		isNew: true,
 	},
 	{
@@ -106,6 +107,12 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: dialogComponents.length,
 		image: 'dialog.png',
 		path: 'components/dialog',
+	},
+	{
+		name: 'Event Calendar',
+		compNumber: 1,
+		image: 'event-calendar.png',
+		path: 'components/event-calendar',
 	},
 	{
 		name: 'File Upload',
