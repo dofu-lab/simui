@@ -111,6 +111,9 @@
       ],
       "@spartan-ng/helm/switch": [
         "./src/libs/ui/ui-switch-helm/src/index.ts"
+      ],
+      "@spartan-ng/helm/separator": [
+        "./src/libs/ui/ui-separator-helm/src/index.ts"
       ]
     }
   },

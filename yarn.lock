@@ -7977,27 +7977,27 @@ make-fetch-happen@^14.0.0, make-fetch-happen@^14.0.2, make-fetch-happen@^14.0.3:
     promise-retry "^2.0.1"
     ssri "^12.0.0"
 
-marked-gfm-heading-id@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/marked-gfm-heading-id/-/marked-gfm-heading-id-3.2.0.tgz#d0344f786b4ab55415048260aad147f4e8e904b6"
-  integrity sha512-Xfxpr5lXLDLY10XqzSCA9l2dDaiabQUgtYM9hw8yunyVsB/xYBRpiic6BOiY/EAJw1ik1eWr1ET1HKOAPZBhXg==
+marked-gfm-heading-id@4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/marked-gfm-heading-id/-/marked-gfm-heading-id-4.1.2.tgz#65c5e28bce7581206a2073e4d2df8e02daceb2fb"
+  integrity sha512-EQ1WiEGHJh0C8viU+hbXbhHyWTDgEia2i96fiSemm2wdYER6YBw/9QI5TB6YFTqFfmMOxBFXPcPJtlgD0fVV2w==
   dependencies:
     github-slugger "^2.0.0"
 
-marked-highlight@2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/marked-highlight/-/marked-highlight-2.1.4.tgz#33d4d74b55e5acc76ee95fa5117e847795392a42"
-  integrity sha512-D1GOkcdzP+1dzjoColL7umojefFrASDuLeyaHS0Zr/Uo9jkr1V6vpLRCzfi1djmEaWyK0SYMFtHnpkZ+cwFT1w==
+marked-highlight@2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/marked-highlight/-/marked-highlight-2.2.2.tgz#2ed092581225a16b16ef9bee7099e66612b6d8b3"
+  integrity sha512-KlHOP31DatbtPPXPaI8nx1KTrG3EW0Z5zewCwpUj65swbtKOTStteK3sNAjBqV75Pgo3fNEVNHeptg18mDuWgw==
 
-marked-mangle@1.1.9:
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/marked-mangle/-/marked-mangle-1.1.9.tgz#ee7a4a1e318a47c722c905e6472f346c6f7a08a6"
-  integrity sha512-eLTXr1xQzba/WZp/trPS0HkR9W02ifasH6IWPrBv++eO2m8POiwV4muQ6Tof2C5Fhdo3z8ggXs6VGw1f931Vsg==
+marked-mangle@1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/marked-mangle/-/marked-mangle-1.1.11.tgz#d743093b5f48ce964e5594764915abdf05c364f6"
+  integrity sha512-BUZiRqPooKZZhC7e8aDlzqkZt4MKkbJ/VY22b8iqrI3fJdnWmSyc7/uujDkrMszZrKURrXsYVUfgdWG6gEspcA==
 
-marked@5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-5.1.2.tgz#62b5ccfc75adf72ca3b64b2879b551d89e77677f"
-  integrity sha512-ahRPGXJpjMjwSOlBoTMZAK7ATXkli5qCPxZ21TG44rx1KEo44bii4ekgTDQPNRQ4Kh7JMb9Ub1PVk1NxRSsorg==
+marked@15.0.9:
+  version "15.0.9"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-15.0.9.tgz#0ac0b42834a04f8c971a2fee36106694b29c0aad"
+  integrity sha512-9AW/bn9DxQeZVjR52l5jsc0W2pwuhP04QaQewPvylil12Cfr2GBfWmgp6mu8i9Jy8UlBjqDZ9uMTDuJ8QOGZJA==
 
 math-intrinsics@^1.1.0:
   version "1.1.0"
