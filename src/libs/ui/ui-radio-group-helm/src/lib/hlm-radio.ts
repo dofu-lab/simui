@@ -13,9 +13,9 @@ import {
 	Renderer2,
 	signal,
 } from '@angular/core';
-import { hlm } from '@spartan-ng/brain/core';
-import { BrnRadio, BrnRadioChange } from '@spartan-ng/brain/radio-group';
-import { ClassValue } from 'clsx';
+import { BrnRadio, type BrnRadioChange } from '@spartan-ng/brain/radio-group';
+import { hlm } from '@spartan-ng/helm/utils';
+import type { ClassValue } from 'clsx';
 
 @Component({
 	selector: 'hlm-radio',

@@ -2,10 +2,10 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { remixStarFill } from '@ng-icons/remixicon';
-import { hlm } from '@spartan-ng/brain/core';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { hlm } from '@spartan-ng/helm/utils';
 
 @Component({
 	selector: 'sim-radio-16',
@@ -57,10 +57,10 @@ export const radio16Code = `import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { remixStarFill } from '@ng-icons/remixicon';
-import { hlm } from '@spartan-ng/brain/core';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { hlm } from '@spartan-ng/helm/utils';
 
 @Component({
 	selector: 'sim-radio-16',

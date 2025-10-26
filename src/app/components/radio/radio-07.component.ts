@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { hlm } from '@spartan-ng/brain/core';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { hlm } from '@spartan-ng/helm/utils';
 
 type OptionColor = 'sky' | 'amber' | 'violet' | 'rose' | 'emerald' | 'orange';
 
@@ -83,9 +83,9 @@ export class Radio07Component {
 
 export const radio07Code = `import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { hlm } from '@spartan-ng/brain/core';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { hlm } from '@spartan-ng/helm/utils';
 
 type OptionColor = 'sky' | 'amber' | 'violet' | 'rose' | 'emerald' | 'orange';
 

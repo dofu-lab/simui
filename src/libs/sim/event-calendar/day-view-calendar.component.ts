@@ -2,7 +2,7 @@ import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } 
 import { DatePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { hlm } from '@spartan-ng/brain/core';
+import { hlm } from '@spartan-ng/helm/utils';
 import {
 	addHours,
 	addMinutes,

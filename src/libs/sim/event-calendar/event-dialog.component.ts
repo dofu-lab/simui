@@ -11,7 +11,6 @@ import {
 } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendarPlus, lucidePlus } from '@ng-icons/lucide';
-import { hlm } from '@spartan-ng/brain/core';
 import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButton } from '@spartan-ng/helm/button';
@@ -24,6 +23,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
+import { hlm } from '@spartan-ng/helm/utils';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { DefaultEventStyle, DefaultTimeOptions, EndHour, StartHour } from './constants';
 import { CalendarEvent, EventDuration, TimeOption } from './type';

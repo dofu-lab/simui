@@ -36,42 +36,45 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion [formGroup]="form">
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="border-b-0">
-						<button
-							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-0 hover:no-underline">
-							<span class="flex items-center gap-3">
-								<span
-									class="relative flex size-10 shrink-0 items-center justify-center rounded-full"
-									aria-hidden="true"
-									[ngClass]="{
-										'bg-sky-500/5 text-sky-600': isGroupFullyChecked(item.id),
-										'bg-red-500/5 text-red-600': !isGroupFullyChecked(item.id),
-									}">
-									<ng-icon
-										hlm
-										size="sm"
-										name="lucideCheck"
-										class="transition-all duration-200"
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-0 hover:no-underline">
+								<span class="flex items-center gap-3">
+									<span
+										class="relative flex size-10 shrink-0 items-center justify-center rounded-full"
+										aria-hidden="true"
 										[ngClass]="{
-											'scale-100 opacity-60': isGroupFullyChecked(item.id),
-											'scale-0 opacity-0': !isGroupFullyChecked(item.id),
-										}" />
-									<ng-icon
-										hlm
-										size="sm"
-										name="lucideMinus"
-										class="absolute transition-all duration-200"
-										[ngClass]="{
-											'scale-0 opacity-0': isGroupFullyChecked(item.id),
-											'scale-100 opacity-60': !isGroupFullyChecked(item.id),
-										}" />
+											'bg-sky-500/5 text-sky-600': isGroupFullyChecked(item.id),
+											'bg-red-500/5 text-red-600': !isGroupFullyChecked(item.id),
+										}">
+										<ng-icon
+											hlm
+											size="sm"
+											name="lucideCheck"
+											class="transition-all duration-200"
+											[ngClass]="{
+												'scale-100 opacity-60': isGroupFullyChecked(item.id),
+												'scale-0 opacity-0': !isGroupFullyChecked(item.id),
+											}" />
+										<ng-icon
+											hlm
+											size="sm"
+											name="lucideMinus"
+											class="absolute transition-all duration-200"
+											[ngClass]="{
+												'scale-0 opacity-0': isGroupFullyChecked(item.id),
+												'scale-100 opacity-60': !isGroupFullyChecked(item.id),
+											}" />
+									</span>
+									<span class="text-[15px] leading-6 font-semibold">
+										{{ item.title }}
+									</span>
 								</span>
-								<span class="text-[15px] leading-6 font-semibold">
-									{{ item.title }}
-								</span>
-							</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-						</button>
+								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							</button>
+						</h3>
+
 						<hlm-accordion-content
 							class="text-muted-foreground ml-5 border-l ps-8 [&>div>p]:pb-0"
 							[ngClass]="{ 'border-sky-600/20': isGroupFullyChecked(item.id) }">
@@ -211,42 +214,45 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion [formGroup]="form">
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="border-b-0">
-						<button
-							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-0 hover:no-underline">
-							<span class="flex items-center gap-3">
-								<span
-									class="relative flex size-10 shrink-0 items-center justify-center rounded-full"
-									aria-hidden="true"
-									[ngClass]="{
-										'bg-sky-500/5 text-sky-600': isGroupFullyChecked(item.id),
-										'bg-red-500/5 text-red-600': !isGroupFullyChecked(item.id),
-									}">
-									<ng-icon
-										hlm
-										size="sm"
-										name="lucideCheck"
-										class="transition-all duration-200"
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-0 hover:no-underline">
+								<span class="flex items-center gap-3">
+									<span
+										class="relative flex size-10 shrink-0 items-center justify-center rounded-full"
+										aria-hidden="true"
 										[ngClass]="{
-											'scale-100 opacity-60': isGroupFullyChecked(item.id),
-											'scale-0 opacity-0': !isGroupFullyChecked(item.id),
-										}" />
-									<ng-icon
-										hlm
-										size="sm"
-										name="lucideMinus"
-										class="absolute transition-all duration-200"
-										[ngClass]="{
-											'scale-0 opacity-0': isGroupFullyChecked(item.id),
-											'scale-100 opacity-60': !isGroupFullyChecked(item.id),
-										}" />
+											'bg-sky-500/5 text-sky-600': isGroupFullyChecked(item.id),
+											'bg-red-500/5 text-red-600': !isGroupFullyChecked(item.id),
+										}">
+										<ng-icon
+											hlm
+											size="sm"
+											name="lucideCheck"
+											class="transition-all duration-200"
+											[ngClass]="{
+												'scale-100 opacity-60': isGroupFullyChecked(item.id),
+												'scale-0 opacity-0': !isGroupFullyChecked(item.id),
+											}" />
+										<ng-icon
+											hlm
+											size="sm"
+											name="lucideMinus"
+											class="absolute transition-all duration-200"
+											[ngClass]="{
+												'scale-0 opacity-0': isGroupFullyChecked(item.id),
+												'scale-100 opacity-60': !isGroupFullyChecked(item.id),
+											}" />
+									</span>
+									<span class="text-[15px] leading-6 font-semibold">
+										{{ item.title }}
+									</span>
 								</span>
-								<span class="text-[15px] leading-6 font-semibold">
-									{{ item.title }}
-								</span>
-							</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-						</button>
+								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							</button>
+						</h3>
+
 						<hlm-accordion-content
 							class="text-muted-foreground ml-5 border-l ps-8 [&>div>p]:pb-0"
 							[ngClass]="{ 'border-sky-600/20': isGroupFullyChecked(item.id) }">

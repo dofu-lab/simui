@@ -28,14 +28,17 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="py-2">
-						<button
-							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-start gap-3 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
-							<ng-icon hlm hlmAccIcon name="lucidePlus" class="opacity-60" />
-							<span class="text-[15px] leading-6 font-semibold">
-								{{ item.title }}
-							</span>
-						</button>
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-start gap-3 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
+								<ng-icon hlm hlmAccIcon name="lucidePlus" class="opacity-60" />
+								<span class="text-[15px] leading-6 font-semibold">
+									{{ item.title }}
+								</span>
+							</button>
+						</h3>
+
 						<hlm-accordion-content class="text-muted-foreground ps-7">
 							{{ item.content }}
 						</hlm-accordion-content>
@@ -104,14 +107,17 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="py-2">
-						<button
-							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-start gap-3 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
-							<ng-icon hlm hlmAccIcon name="lucidePlus" class="opacity-60" />
-							<span class="text-[15px] leading-6 font-semibold">
-								{{ item.title }}
-							</span>
-						</button>
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-start gap-3 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
+								<ng-icon hlm hlmAccIcon name="lucidePlus" class="opacity-60" />
+								<span class="text-[15px] leading-6 font-semibold">
+									{{ item.title }}
+								</span>
+							</button>
+						</h3>
+
 						<hlm-accordion-content class="text-muted-foreground ps-7">
 							{{ item.content }}
 						</hlm-accordion-content>

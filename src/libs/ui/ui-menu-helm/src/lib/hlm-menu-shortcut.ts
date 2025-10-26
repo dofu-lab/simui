@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { hlm } from '@spartan-ng/brain/core';
+import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
 
 @Component({
@@ -14,7 +14,7 @@ import type { ClassValue } from 'clsx';
 })
 export class HlmMenuShortcut {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
-	protected _computedClass = computed(() =>
+	protected readonly _computedClass = computed(() =>
 		hlm('text-muted-foreground ml-auto text-xs tracking-widest', this.userClass()),
 	);
 }

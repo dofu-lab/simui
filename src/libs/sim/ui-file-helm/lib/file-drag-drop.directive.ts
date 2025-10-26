@@ -1,6 +1,6 @@
 import { computed, Directive, HostListener, inject, input, model, OnInit, output, signal } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { hlm } from '@spartan-ng/brain/core';
+import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
 
 export type FileMetadata = {
