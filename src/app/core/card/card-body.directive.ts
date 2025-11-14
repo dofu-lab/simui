@@ -12,5 +12,5 @@ import type { ClassValue } from 'clsx';
 export class CardBodyDirective {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
-	protected readonly _computedClass = computed(() => hlm('p-5', this.userClass()));
+	protected readonly _computedClass = computed(() => hlm('p-2', this.userClass()));
 }

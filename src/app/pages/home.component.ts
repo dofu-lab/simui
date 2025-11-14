@@ -25,9 +25,9 @@ import { NavigationService } from '../core/navigation.service';
 				@for (component of components; track component.path) {
 					<div
 						dfCard
-						class="border-input mx-auto h-[256px] w-full max-w-[300px] cursor-pointer rounded-2xl border px-1 pt-1"
+						class="border-input hover:bg-input/20 hover:border-muted-foreground/30 group mx-auto h-[240px] w-full max-w-[300px] cursor-pointer rounded-[18px] border px-1 pt-1 transition duration-100 ease-linear"
 						(click)="onNavigate(component.path)">
-						<div class="bg-muted relative h-[170px] overflow-hidden rounded-xl border">
+						<div class="bg-muted relative h-[170px] overflow-hidden rounded-xl border group-hover:shadow-xs">
 							<img
 								[src]="'assets/thumbnails/dark-' + component.image"
 								class="absolute size-full object-cover"
