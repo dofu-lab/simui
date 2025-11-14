@@ -15,7 +15,13 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	template: `
 		<label hlmLabel for="input-44" class="mb-2 text-sm">Card number</label>
 		<div class="relative">
-			<input hlmInput id="input-44" type="text" placeholder="Card number" class="peer ps-9" [maskito]="creditCardMask" />
+			<input
+				hlmInput
+				id="input-44"
+				type="text"
+				placeholder="Card number"
+				class="peer ps-9"
+				[maskito]="creditCardMask" />
 			<div
 				class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
 				<ng-icon hlm name="lucideCreditCard" size="sm" />
@@ -68,7 +74,13 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	template: \`
 		<label hlmLabel for="input-44" class="mb-2 text-sm">Card number</label>
 		<div class="relative">
-			<input hlmInput id="input-44" type="text" placeholder="Card number" class="peer ps-9" [maskito]="creditCardMask" />
+			<input
+				hlmInput
+				id="input-44"
+				type="text"
+				placeholder="Card number"
+				class="peer ps-9"
+				[maskito]="creditCardMask" />			
 			<div
 				class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
 				<ng-icon hlm name="lucideCreditCard" size="sm" />

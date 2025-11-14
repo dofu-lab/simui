@@ -30,14 +30,17 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 					<div
 						hlmAccordionItem
 						class="has-focus-visible:ring-ring/50 rounded-md border px-4 py-1 has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-						<button
-							hlmAccordionTrigger
-							class="justify-start gap-3 px-0 py-2 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-							<span class="text-[15px] leading-6 font-semibold">
-								{{ item.title }}
-							</span>
-						</button>
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="justify-start gap-3 px-0 py-2 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+								<span class="text-[15px] leading-6 font-semibold">
+									{{ item.title }}
+								</span>
+							</button>
+						</h3>
+
 						<hlm-accordion-content class="text-muted-foreground ps-7">
 							{{ item.content }}
 						</hlm-accordion-content>
@@ -108,14 +111,17 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 					<div
 						hlmAccordionItem
 						class="has-focus-visible:ring-ring/50 rounded-md border px-4 py-1 has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-						<button
-							hlmAccordionTrigger
-							class="justify-start gap-3 px-0 py-2 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-							<span class="text-[15px] leading-6 font-semibold">
-								{{ item.title }}
-							</span>
-						</button>
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="justify-start gap-3 px-0 py-2 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+								<span class="text-[15px] leading-6 font-semibold">
+									{{ item.title }}
+								</span>
+							</button>
+						</h3>
+
 						<hlm-accordion-content class="text-muted-foreground ps-7">
 							{{ item.content }}
 						</hlm-accordion-content>

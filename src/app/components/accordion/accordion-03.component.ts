@@ -28,14 +28,17 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="py-2">
-						<button
-							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 justify-start gap-3 rounded-md px-0 py-2 hover:no-underline">
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-							<span class="text-[15px] leading-6 font-semibold">
-								{{ item.title }}
-							</span>
-						</button>
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="focus-visible:border-ring focus-visible:ring-ring/50 justify-start gap-3 rounded-md px-0 py-2 hover:no-underline">
+								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+								<span class="text-[15px] leading-6 font-semibold">
+									{{ item.title }}
+								</span>
+							</button>
+						</h3>
+
 						<hlm-accordion-content class="text-muted-foreground ps-7">
 							{{ item.content }}
 						</hlm-accordion-content>
@@ -104,14 +107,17 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="py-2">
-						<button
-							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 justify-start gap-3 rounded-md px-0 py-2 hover:no-underline">
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-							<span class="text-[15px] leading-6 font-semibold">
-								{{ item.title }}
-							</span>
-						</button>
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="focus-visible:border-ring focus-visible:ring-ring/50 justify-start gap-3 rounded-md px-0 py-2 hover:no-underline">
+								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+								<span class="text-[15px] leading-6 font-semibold">
+									{{ item.title }}
+								</span>
+							</button>
+						</h3>
+
 						<hlm-accordion-content class="text-muted-foreground ps-7">
 							{{ item.content }}
 						</hlm-accordion-content>

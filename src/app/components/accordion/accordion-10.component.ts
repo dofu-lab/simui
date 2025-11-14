@@ -28,22 +28,27 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="py-2">
-						<button
-							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
-							<span class="flex items-center gap-3">
-								<span class="flex size-10 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
-									<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
-								</span>
-								<span class="flex flex-col items-start gap-1 text-[15px] leading-6 font-semibold">
-									<span>
-										{{ item.title }}
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
+								<span class="flex items-center gap-3">
+									<span
+										class="flex size-10 shrink-0 items-center justify-center rounded-full border"
+										aria-hidden="true">
+										<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
 									</span>
-									<span class="text-sm font-normal">{{ item.subTitle }}</span>
+									<span class="flex flex-col items-start gap-1 text-[15px] leading-6 font-semibold">
+										<span>
+											{{ item.title }}
+										</span>
+										<span class="text-sm font-normal">{{ item.subTitle }}</span>
+									</span>
 								</span>
-							</span>
-							<ng-icon hlm hlmAccIcon name="lucidePlus" class="opacity-60" />
-						</button>
+								<ng-icon hlm hlmAccIcon name="lucidePlus" class="opacity-60" />
+							</button>
+						</h3>
+
 						<hlm-accordion-content class="text-muted-foreground">
 							{{ item.content }}
 						</hlm-accordion-content>
@@ -120,22 +125,27 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="py-2">
-						<button
-							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
-							<span class="flex items-center gap-3">
-								<span class="flex size-10 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
-									<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
-								</span>
-								<span class="flex flex-col items-start gap-1 text-[15px] leading-6 font-semibold">
-									<span>
-										{{ item.title }}
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
+								<span class="flex items-center gap-3">
+									<span
+										class="flex size-10 shrink-0 items-center justify-center rounded-full border"
+										aria-hidden="true">
+										<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
 									</span>
-									<span class="text-sm font-normal">{{ item.subTitle }}</span>
+									<span class="flex flex-col items-start gap-1 text-[15px] leading-6 font-semibold">
+										<span>
+											{{ item.title }}
+										</span>
+										<span class="text-sm font-normal">{{ item.subTitle }}</span>
+									</span>
 								</span>
-							</span>
-							<ng-icon hlm hlmAccIcon name="lucidePlus" class="opacity-60" />
-						</button>
+								<ng-icon hlm hlmAccIcon name="lucidePlus" class="opacity-60" />
+							</button>
+						</h3>
+
 						<hlm-accordion-content class="text-muted-foreground">
 							{{ item.content }}
 						</hlm-accordion-content>

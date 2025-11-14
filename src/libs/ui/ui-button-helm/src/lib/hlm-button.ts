@@ -1,28 +1,31 @@
 import { Directive, computed, input, signal } from '@angular/core';
-import { hlm } from '@spartan-ng/brain/core';
+import { BrnButton } from '@spartan-ng/brain/button';
+import { hlm } from '@spartan-ng/helm/utils';
 import { type VariantProps, cva } from 'class-variance-authority';
 import type { ClassValue } from 'clsx';
 import { injectBrnButtonConfig } from './hlm-button.token';
 
 export const buttonVariants = cva(
-	'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_ng-icon]:pointer-events-none shrink-0 [&_ng-icon]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-default',
+	"focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hallo inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_ng-icon]:pointer-events-none [&_ng-icon]:shrink-0 [&_ng-icon:not([class*='size-'])]:size-4",
 	{
 		variants: {
 			variant: {
-				default: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
+				default: 'bg-primary text-primary-foreground hover:bg-primary/90',
 				destructive:
-					'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+					'bg-destructive hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white',
 				outline:
-					'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
-				secondary: 'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
+					'bg-background hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border shadow-xs',
+				secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
 				ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
 				link: 'text-primary underline-offset-4 hover:underline',
 			},
 			size: {
 				default: 'h-9 px-4 py-2 has-[>ng-icon]:px-3',
-				sm: 'h-8 rounded-md gap-1.5 px-3 has-[>ng-icon]:px-2.5',
+				sm: 'h-8 gap-1.5 rounded-md px-3 has-[>ng-icon]:px-2.5',
 				lg: 'h-10 rounded-md px-6 has-[>ng-icon]:px-4',
 				icon: 'size-9',
+				'icon-sm': 'size-8',
+				'icon-lg': 'size-10',
 			},
 		},
 		defaultVariants: {
@@ -35,8 +38,9 @@ export const buttonVariants = cva(
 export type ButtonVariants = VariantProps<typeof buttonVariants>;
 
 @Directive({
-	selector: '[hlmBtn]',
+	selector: 'button[hlmBtn], a[hlmBtn]',
 	exportAs: 'hlmBtn',
+	hostDirectives: [{ directive: BrnButton, inputs: ['disabled'] }],
 	host: {
 		'[class]': '_computedClass()',
 	},

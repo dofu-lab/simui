@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideX } from '@ng-icons/lucide';
-import { HlmAlert, HlmAlertDescription, HlmAlertIcon } from '@spartan-ng/helm/alert';
+import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
@@ -9,7 +9,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	selector: 'sim-notification-04',
 	standalone: true,
 	providers: [provideIcons({ lucideCircleAlert, lucideX })],
-	imports: [NgIcon, HlmIcon, HlmAlert, HlmAlertDescription, HlmAlertIcon, HlmButton],
+	imports: [NgIcon, HlmIcon, HlmAlertImports, HlmButton],
 	template: `
 		<div hlmAlert class="bg-background z-50 flex gap-3 py-3 shadow-lg">
 			<span class="flex items-center">
@@ -27,7 +27,7 @@ export class Notification04Component {}
 export const notification04Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideX } from '@ng-icons/lucide';
-import { HlmAlert, HlmAlertDescription, HlmAlertIcon } from '@spartan-ng/helm/alert';
+import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
@@ -35,7 +35,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	selector: 'sim-notification-04',
 	standalone: true,
 	providers: [provideIcons({ lucideCircleAlert, lucideX })],
-	imports: [NgIcon, HlmIcon, HlmAlert, HlmAlertDescription, HlmAlertIcon, HlmButton],
+	imports: [NgIcon, HlmIcon, HlmAlertImports, HlmButton],
 	template: \`
 		<div hlmAlert class="bg-background z-50 flex gap-3 py-3 shadow-lg">
 			<span class="flex items-center">

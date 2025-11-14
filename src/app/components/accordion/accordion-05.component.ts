@@ -28,15 +28,18 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="py-2">
-						<button
-							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-2 hover:no-underline">
-							<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
-								<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
-								{{ item.title }}
-							</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-						</button>
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-2 hover:no-underline">
+								<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
+									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
+									{{ item.title }}
+								</span>
+								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							</button>
+						</h3>
+
 						<hlm-accordion-content class="text-muted-foreground">
 							{{ item.content }}
 						</hlm-accordion-content>
@@ -109,15 +112,18 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem class="py-2">
-						<button
-							hlmAccordionTrigger
-							class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-2 hover:no-underline">
-							<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
-								<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
-								{{ item.title }}
-							</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-						</button>
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-2 hover:no-underline">
+								<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
+									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
+									{{ item.title }}
+								</span>
+								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							</button>
+						</h3>
+
 						<hlm-accordion-content class="text-muted-foreground">
 							{{ item.content }}
 						</hlm-accordion-content>

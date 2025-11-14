@@ -1,5 +1,5 @@
 import { Component, computed, input, output } from '@angular/core';
-import { hlm } from '@spartan-ng/brain/core';
+import { hlm } from '@spartan-ng/helm/utils';
 import { ClassValue } from 'clsx';
 import { isPast } from 'date-fns';
 import { CalendarEvent } from './type';

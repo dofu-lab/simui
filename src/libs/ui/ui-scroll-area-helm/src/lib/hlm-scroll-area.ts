@@ -1,5 +1,5 @@
 import { Directive, computed, input } from '@angular/core';
-import { hlm } from '@spartan-ng/brain/core';
+import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
 
 @Directive({
@@ -8,8 +8,8 @@ import type { ClassValue } from 'clsx';
 		'[class]': '_computedClass()',
 		'[style.--scrollbar-border-radius.px]': '100',
 		'[style.--scrollbar-offset]': '3',
-		'[style.--scrollbar-thumb-color]': '"var(--border)"',
-		'[style.--scrollbar-thumb-hover-color]': '"var(--border)"',
+		'[style.--scrollbar-thumb-color]': '"hsl(var(--border))"',
+		'[style.--scrollbar-thumb-hover-color]': '"hsl(var(--border))"',
 		'[style.--scrollbar-thickness]': '7',
 	},
 })

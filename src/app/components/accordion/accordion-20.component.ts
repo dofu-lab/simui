@@ -59,28 +59,34 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem>
-						<button
-							hlmAccordionTrigger
-							class="justify-start gap-3 py-3 hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0">
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-							<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
-								<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
-								{{ item.title }}
-							</span>
-						</button>
-						<hlm-accordion-content class="[&>div>p]:p-0">
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="justify-start gap-3 py-3 hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0">
+								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+								<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
+									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
+									{{ item.title }}
+								</span>
+							</button>
+						</h3>
+
+						<hlm-accordion-content class="has-data-[state=open]:h-auto! data-[state=closed]:h-0! [&>div]:pb-0!">
 							<div hlmAccordion>
 								@for (subItem of item.subItem; track subItem.id) {
 									<div hlmAccordionItem class="border-t border-b-0 py-3 ps-6 pe-4">
-										<button
-											hlmAccordionTrigger
-											class="justify-start gap-4 px-0 py-0 hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0">
-											<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-											<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
-												<ng-icon hlm hlmAccIcon [name]="subItem.icon" class="opacity-60" />
-												{{ subItem.title }}
-											</span>
-										</button>
+										<h3 class="contents">
+											<button
+												hlmAccordionTrigger
+												class="justify-start gap-4 px-0 py-0 hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0">
+												<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+												<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
+													<ng-icon hlm hlmAccIcon [name]="subItem.icon" class="opacity-60" />
+													{{ subItem.title }}
+												</span>
+											</button>
+										</h3>
+
 										<hlm-accordion-content class="text-muted-foreground ps-8 [&>div>p]:pb-0">
 											{{ subItem.content }}
 										</hlm-accordion-content>
@@ -244,28 +250,34 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div hlmAccordion>
 				@for (item of items; track item.id) {
 					<div hlmAccordionItem>
-						<button
-							hlmAccordionTrigger
-							class="justify-start gap-3 py-3 hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0">
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-							<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
-								<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
-								{{ item.title }}
-							</span>
-						</button>
-						<hlm-accordion-content class="[&>div>p]:p-0">
+						<h3 class="contents">
+							<button
+								hlmAccordionTrigger
+								class="justify-start gap-3 py-3 hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0">
+								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+								<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
+									<ng-icon hlm hlmAccIcon [name]="item.icon" class="opacity-60" />
+									{{ item.title }}
+								</span>
+							</button>
+						</h3>
+
+						<hlm-accordion-content class="has-data-[state=open]:h-auto! data-[state=closed]:h-0! [&>div]:pb-0!">
 							<div hlmAccordion>
 								@for (subItem of item.subItem; track subItem.id) {
 									<div hlmAccordionItem class="border-t border-b-0 py-3 ps-6 pe-4">
-										<button
-											hlmAccordionTrigger
-											class="justify-start gap-4 px-0 py-0 hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0">
-											<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-											<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
-												<ng-icon hlm hlmAccIcon [name]="subItem.icon" class="opacity-60" />
-												{{ subItem.title }}
-											</span>
-										</button>
+										<h3 class="contents">
+											<button
+												hlmAccordionTrigger
+												class="justify-start gap-4 px-0 py-0 hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0">
+												<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+												<span class="flex items-center gap-3 text-[15px] leading-6 font-semibold">
+													<ng-icon hlm hlmAccIcon [name]="subItem.icon" class="opacity-60" />
+													{{ subItem.title }}
+												</span>
+											</button>
+										</h3>
+
 										<hlm-accordion-content class="text-muted-foreground ps-8 [&>div>p]:pb-0">
 											{{ subItem.content }}
 										</hlm-accordion-content>

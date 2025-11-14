@@ -8,13 +8,13 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
 		<label hlmLabel class="flex items-center" for="indeterminate-checkbox">
-			<hlm-checkbox id="indeterminate-checkbox" [(checked)]="checked" />
+			<hlm-checkbox id="indeterminate-checkbox" [(indeterminate)]="checked" />
 			Indeterminate checkbox
 		</label>
 	`,
 })
 export class Checkbox04Component {
-	public readonly checked = model<boolean | 'indeterminate'>('indeterminate');
+	public readonly checked = model<boolean>(true);
 }
 
 export const checkbox04Code = `import { Component, model } from '@angular/core';
@@ -33,5 +33,5 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	\`,
 })
 export class Checkbox04Component {
-	public readonly checked = model<boolean | 'indeterminate'>('indeterminate');
+	public readonly checked = model<boolean>(true);
 }`;
