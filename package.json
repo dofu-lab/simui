@@ -30,7 +30,7 @@
 		"@ng-icons/core": "^32.2.0",
 		"@ng-icons/lucide": "30.3.0",
 		"@ng-icons/remixicon": "^32.0.0",
-		"@spartan-ng/brain": "^0.0.1-alpha.381",
+		"@spartan-ng/brain": "0.0.1-alpha.536",
 		"@tailwindcss/postcss": "^4.0.17",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
