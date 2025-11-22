@@ -5,7 +5,6 @@ import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/a
 
 @Component({
 	selector: 'sim-avatar-07',
-	standalone: true,
 	providers: [provideIcons({ lucideMinus })],
 	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback, NgIcon],
 	template: `
@@ -30,7 +29,6 @@ import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/a
 
 @Component({
 	selector: 'sim-avatar-07',
-	standalone: true,
 	providers: [provideIcons({ lucideMinus })],
 	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback, NgIcon],
 	template: \`

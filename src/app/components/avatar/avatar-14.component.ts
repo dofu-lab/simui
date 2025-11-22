@@ -3,7 +3,6 @@ import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/a
 
 @Component({
 	selector: 'sim-avatar-14',
-	standalone: true,
 	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
 	template: `
 		<div class="flex -space-x-4.5">
@@ -33,7 +32,6 @@ import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/a
 
 @Component({
 	selector: 'sim-avatar-14',
-	standalone: true,
 	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
 	template: \`
 		<div class="flex -space-x-4.5">

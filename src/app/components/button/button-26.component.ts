@@ -7,7 +7,6 @@ import { HlmToggle } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-26',
-	standalone: true,
 	providers: [provideIcons({ lucideSun, lucideMoon })],
 	imports: [HlmIcon, HlmToggle, BrnToggle, NgIcon],
 	template: `
@@ -46,7 +45,6 @@ import { HlmToggle } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-26',
-	standalone: true,
 	providers: [provideIcons({ lucideSun, lucideMoon })],
 	imports: [HlmIcon, HlmToggle, BrnToggle, NgIcon],
 	template: \`

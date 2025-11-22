@@ -6,7 +6,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-29',
-	standalone: true,
 	providers: [
 		provideIcons({
 			lucideMinus,
@@ -80,7 +79,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-29',
-	standalone: true,
 	providers: [
 		provideIcons({
 			lucideMinus,

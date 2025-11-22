@@ -5,7 +5,6 @@ import { ComponentCardItem } from './types';
 
 @Component({
 	selector: 'page-grid',
-	standalone: true,
 	template: `
 		<div class="flex grow flex-col">
 			<div class="mb-20 flex-1 overflow-hidden">

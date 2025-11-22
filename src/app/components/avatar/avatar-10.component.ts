@@ -4,7 +4,6 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-avatar-10',
-	standalone: true,
 	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmBadge],
 	template: `
 		<div class="relative">
@@ -26,7 +25,6 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-avatar-10',
-	standalone: true,
 	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmBadge],
 	template: \`
 		<div class="relative">

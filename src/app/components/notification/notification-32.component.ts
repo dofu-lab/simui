@@ -4,7 +4,6 @@ import { toast } from 'ngx-sonner';
 
 @Component({
 	selector: 'sim-notification-32',
-	standalone: true,
 	imports: [HlmButton],
 	template: `
 		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">With close button</button>
@@ -24,7 +23,6 @@ import { toast } from 'ngx-sonner';
 
 @Component({
 	selector: 'sim-notification-32',
-	standalone: true,
 	imports: [HlmButton],
 	template: \`
 		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">With close button</button>

@@ -6,7 +6,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-51',
-	standalone: true,
 	providers: [provideIcons({ lucideCircleUserRound, lucideX })],
 	imports: [HlmButton, HlmIcon, NgIcon],
 	template: `
@@ -78,7 +77,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-51',
-	standalone: true,
 	providers: [provideIcons({ lucideCircleUserRound, lucideX })],
 	imports: [HlmButton, HlmIcon, NgIcon],
 	template: \`

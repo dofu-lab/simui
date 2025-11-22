@@ -7,7 +7,6 @@ import { HlmToggleGroupItem } from '@spartan-ng/helm/toggle-group';
 
 @Component({
 	selector: 'spartan-toggle-group-preview',
-	standalone: true,
 	imports: [BrnToggleGroupItem, BrnToggleGroup, HlmIcon, HlmToggleGroupItem, NgIcon],
 	providers: [provideIcons({ lucideAlignLeft, lucideAlignRight, lucideAlignCenter, lucideAlignJustify })],
 	template: `
@@ -54,7 +53,6 @@ import { HlmToggleGroupItem } from '@spartan-ng/helm/toggle-group';
 
 @Component({
 	selector: 'spartan-toggle-group-preview',
-	standalone: true,
 	imports: [BrnToggleGroupItem, BrnToggleGroup, HlmIcon, HlmToggleGroupItem, NgIcon],
 	providers: [provideIcons({ lucideAlignLeft, lucideAlignRight, lucideAlignCenter, lucideAlignJustify })],
 	template: \`

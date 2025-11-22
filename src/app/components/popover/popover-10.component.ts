@@ -7,7 +7,6 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-10',
-	standalone: true,
 	imports: [HlmButton, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent, HlmInput, FormsModule],
 	template: `
 		<brn-popover sideOffset="5" autoFocus="dialog">
@@ -65,7 +64,6 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-10',
-	standalone: true,
 	imports: [HlmButton, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent, HlmInput, FormsModule],
 	template: \`
 		<brn-popover sideOffset="5" autoFocus="dialog">

@@ -5,7 +5,6 @@ import { HlmToggle } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-34',
-	standalone: true,
 	imports: [HlmToggle, BrnToggle, BrnToggleGroup],
 	template: `
 		<brn-toggle-group multiple="false">
@@ -52,7 +51,6 @@ import { HlmToggle } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-34',
-	standalone: true,
 	imports: [HlmToggle, BrnToggle, BrnToggleGroup],
 	template: \`
 		<brn-toggle-group multiple="false">

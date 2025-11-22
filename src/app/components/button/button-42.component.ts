@@ -6,7 +6,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-42',
-	standalone: true,
 	providers: [provideIcons({ lucideGitFork, lucideChevronDown })],
 	imports: [HlmIcon, HlmButton, NgIcon],
 	template: `
@@ -35,7 +34,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-42',
-	standalone: true,
 	providers: [provideIcons({ lucideGitFork, lucideChevronDown })],
 	imports: [HlmIcon, HlmButton, NgIcon],
 	template: \`

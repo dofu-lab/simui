@@ -13,7 +13,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-breadcrumb-04',
-	standalone: true,
 	providers: [provideIcons({ lucideHouse, lucideComponent, lucideCompass })],
 	imports: [
 		HlmBreadcrumb,
@@ -68,7 +67,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-breadcrumb-04',
-	standalone: true,
 	providers: [provideIcons({ lucideHouse, lucideComponent, lucideCompass })],
 	imports: [
 		HlmBreadcrumb,

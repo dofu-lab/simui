@@ -5,7 +5,6 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-09',
-	standalone: true,
 	imports: [HlmCheckbox, HlmLabel, HlmInput],
 	host: {
 		class: 'w-full',
@@ -40,7 +39,6 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-09',
-	standalone: true,
 	imports: [HlmCheckbox, HlmLabel, HlmInput],
 	host: {
 		class: 'w-full',

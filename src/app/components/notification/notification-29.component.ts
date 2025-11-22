@@ -5,7 +5,6 @@ import { toast } from 'ngx-sonner';
 
 @Component({
 	selector: 'sim-notification-29',
-	standalone: true,
 	providers: [DatePipe],
 	imports: [HlmButton],
 	template: `
@@ -32,7 +31,6 @@ import { toast } from 'ngx-sonner';
 
 @Component({
 	selector: 'sim-notification-29',
-	standalone: true,
 	providers: [DatePipe],
 	imports: [HlmButton],
 	template: \`

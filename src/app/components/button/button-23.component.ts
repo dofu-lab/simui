@@ -3,7 +3,6 @@ import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-23',
-	standalone: true,
 	imports: [HlmButton],
 	template: `
 		<button hlmBtn variant="outline" size="icon" class="group" (click)="onOpen()" [ariaExpanded]="open()">
@@ -44,7 +43,6 @@ import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-23',
-	standalone: true,
 	imports: [HlmButton],
 	template: \`
 		<button hlmBtn variant="outline" size="icon" class="group" (click)="onOpen()" [ariaExpanded]="open()">

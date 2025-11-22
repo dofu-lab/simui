@@ -5,7 +5,6 @@ import { FooterComponent, HeaderComponent } from './core';
 
 @Component({
 	selector: 'app-root',
-	standalone: true,
 	imports: [RouterOutlet, NgxSonnerToaster, FooterComponent, HeaderComponent],
 	template: `
 		<div class="overflow-hidden px-4 supports-[overflow:clip]:overflow-clip sm:px-6">

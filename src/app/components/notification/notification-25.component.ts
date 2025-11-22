@@ -7,7 +7,6 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 
 @Component({
 	selector: 'sim-notification-25',
-	standalone: true,
 	providers: [
 		provideIcons({
 			lucideX,
@@ -54,7 +53,6 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 
 @Component({
 	selector: 'sim-notification-25',
-	standalone: true,
 	providers: [
 		provideIcons({
 			lucideX,

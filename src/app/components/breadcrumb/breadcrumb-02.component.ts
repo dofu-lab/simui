@@ -15,7 +15,6 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 
 @Component({
 	selector: 'sim-breadcrumb-02',
-	standalone: true,
 	providers: [provideIcons({ lucideAlignJustify })],
 	imports: [
 		HlmBreadcrumb,
@@ -80,7 +79,6 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 
 @Component({
 	selector: 'sim-breadcrumb-02',
-	standalone: true,
 	providers: [provideIcons({ lucideAlignJustify })],
 	imports: [
 		HlmBreadcrumb,

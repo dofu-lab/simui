@@ -8,7 +8,6 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 // Inspired by https://originui.com/banner
 @Component({
 	selector: 'sim-banner-11',
-	standalone: true,
 	imports: [NgIcon, HlmIcon, HlmButton, HlmSpinner],
 	providers: [provideIcons({ lucideMail, lucideDownload })],
 	host: {
@@ -62,7 +61,6 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 // Inspired by https://originui.com/banner
 @Component({
 	selector: 'sim-banner-11',
-	standalone: true,
 	imports: [NgIcon, HlmIcon, HlmButton, HlmSpinner],
 	providers: [provideIcons({ lucideMail, lucideDownload })],
 	host: {

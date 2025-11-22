@@ -4,7 +4,6 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-01',
-	standalone: true,
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
 		<label hlmLabel for="checkbox-01" class="flex items-center">
@@ -21,7 +20,6 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-01',
-	standalone: true,
 	imports: [HlmCheckbox, HlmLabel],
 	template: \`
 		<label hlmLabel for="checkbox-01" class="flex items-center">

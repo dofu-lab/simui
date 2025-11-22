@@ -5,7 +5,6 @@ import { HlmToggle } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-35',
-	standalone: true,
 	imports: [HlmToggle, BrnToggle, BrnToggleGroup],
 	host: {
 		class: 'w-full',
@@ -55,7 +54,6 @@ import { HlmToggle } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-35',
-	standalone: true,
 	imports: [HlmToggle, BrnToggle, BrnToggleGroup],
 	host: {
 		class: 'w-full',

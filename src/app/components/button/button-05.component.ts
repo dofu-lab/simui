@@ -3,7 +3,6 @@ import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-05',
-	standalone: true,
 	imports: [HlmButton],
 	template: `
 		<button hlmBtn disabled size="sm">Disabled</button>
@@ -16,7 +15,6 @@ import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-05',
-	standalone: true,
 	imports: [HlmButton],
 	template: \`
 		<button hlmBtn disabled size="sm">Disabled</button>

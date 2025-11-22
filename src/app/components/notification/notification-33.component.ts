@@ -7,7 +7,6 @@ import { toast } from 'ngx-sonner';
 
 @Component({
 	selector: 'sim-notification-33',
-	standalone: true,
 	imports: [HlmButton],
 	template: `
 		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">macOS notification</button>
@@ -31,7 +30,6 @@ export class Notification33Component {
 	selector: 'sim-macos-notification',
 	providers: [provideIcons({ lucideX })],
 	imports: [NgIcon, HlmIcon],
-	standalone: true,
 	template: `
 		<div
 			class="backdrop-blur-4xl relative flex w-[356px] gap-3 rounded-[16px] border-[1px] border-[#78797A] bg-[#424242]/93 p-3">
@@ -172,7 +170,6 @@ import { toast } from 'ngx-sonner';
 
 @Component({
 	selector: 'sim-notification-33',
-	standalone: true,
 	imports: [HlmButton],
 	template: \`
 		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">macOS notification</button>
@@ -196,7 +193,6 @@ export class Notification33Component {
 	selector: 'sim-macos-notification',
 	providers: [provideIcons({ lucideX })],
 	imports: [NgIcon, HlmIcon],
-	standalone: true,
 	template: \`
 		<div
 			class="backdrop-blur-4xl relative flex w-[356px] gap-3 rounded-[16px] border-[1px] border-[#78797A] bg-[#424242]/93 p-3">

@@ -3,7 +3,6 @@ import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-48',
-	standalone: true,
 	imports: [HlmButton],
 	host: {
 		class: 'w-full',
@@ -78,7 +77,6 @@ import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-48',
-	standalone: true,
 	imports: [HlmButton],
 	host: {
 		class: 'w-full',

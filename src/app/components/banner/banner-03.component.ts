@@ -7,7 +7,6 @@ import { HlmInput } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-banner-03',
-	standalone: true,
 	imports: [NgIcon, HlmIcon, HlmButton, HlmInput],
 	providers: [provideIcons({ lucideMail, lucideX })],
 	host: {
@@ -67,7 +66,6 @@ import { HlmInput } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-banner-03',
-	standalone: true,
 	imports: [NgIcon, HlmIcon, HlmButton, HlmInput],
 	providers: [provideIcons({ lucideMail, lucideX })],
 	host: {

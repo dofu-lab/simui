@@ -4,7 +4,6 @@ import { ClassValue } from 'clsx';
 
 @Directive({
 	selector: '[dfCardBackground]',
-	standalone: true,
 	host: {
 		'[class]': '_computedClass()',
 	},

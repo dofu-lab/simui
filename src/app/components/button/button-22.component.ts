@@ -8,7 +8,6 @@ import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-button-22',
-	standalone: true,
 	providers: [provideIcons({ lucidePlus })],
 	imports: [HlmButton, HlmIcon, HlmTooltip, HlmTooltipTrigger, BrnTooltipContentTemplate, NgIcon],
 	template: `
@@ -32,7 +31,6 @@ import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-button-22',
-	standalone: true,
 	providers: [provideIcons({ lucidePlus })],
 	imports: [HlmButton, HlmIcon, HlmTooltip, HlmTooltipTrigger, BrnTooltipContentTemplate, NgIcon],
 	template: \`

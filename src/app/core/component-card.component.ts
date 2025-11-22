@@ -12,7 +12,6 @@ import { CodePreviewComponent } from './code-preview.component';
 
 @Component({
 	selector: 'component-card',
-	standalone: true,
 	providers: [provideIcons({ lucideCode })],
 	imports: [NgComponentOutlet, HlmButton, NgIcon, HlmIcon, CodePreviewComponent, BrnSheetImports, HlmSheetImports],
 	template: `

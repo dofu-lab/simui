@@ -4,7 +4,6 @@ import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-avatar-16',
-	standalone: true,
 	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmButton],
 	template: `
 		<div class="bg-muted flex items-center rounded-full p-0.5">
@@ -43,7 +42,6 @@ import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-avatar-16',
-	standalone: true,
 	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmButton],
 	template: \`
 		<div class="bg-muted flex items-center rounded-full p-0.5">

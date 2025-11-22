@@ -5,7 +5,6 @@ import { HlmCard, HlmCardContent } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-card-06',
-	standalone: true,
 	imports: [HlmCardContent, HlmCard, HlmButton, HlmAvatar, HlmAvatarFallback, HlmAvatarImage],
 	template: `
 		<section hlmCard class="bg-background/70 max-w-lg overflow-hidden rounded-2xl shadow-sm backdrop-blur-sm">
@@ -48,7 +47,6 @@ import { HlmCard, HlmCardContent } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-card-06',
-	standalone: true,
 	imports: [HlmCardContent, HlmCard, HlmButton, HlmAvatar, HlmAvatarFallback, HlmAvatarImage],
 	template: \`
 		<section hlmCard class="bg-background/70 max-w-lg overflow-hidden rounded-2xl shadow-sm backdrop-blur-sm">

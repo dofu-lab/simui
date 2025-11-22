@@ -3,7 +3,6 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-badge-01',
-	standalone: true,
 	imports: [HlmBadge],
 	template: `
 		<span hlmBadge class="rounded-full">Badge</span>
@@ -16,7 +15,6 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-badge-01',
-	standalone: true,
 	imports: [HlmBadge],
 	template: \`
 		<span hlmBadge class="rounded-full">Badge</span>

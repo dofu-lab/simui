@@ -3,7 +3,6 @@ import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-12',
-	standalone: true,
 	imports: [HlmButton],
 	template: `
 		<div class="flex gap-2">
@@ -19,7 +18,6 @@ import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-12',
-	standalone: true,
 	imports: [HlmButton],
 	template: \`
 		<div class="flex gap-2">

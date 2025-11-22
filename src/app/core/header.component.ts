@@ -13,7 +13,6 @@ import { ThemeService } from './theme.service';
 
 @Component({
 	selector: 'app-header',
-	standalone: true,
 	providers: [provideIcons({ lucideSun, lucideMoon, lucideGithub, lucideSquareMenu, remixTwitterXFill })],
 	imports: [HlmButton, NgIcon, HlmIcon, HlmMenu, HlmMenuItem, BrnMenuTrigger],
 	template: `

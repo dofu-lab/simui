@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'app-footer',
-	standalone: true,
 	template: `
 		<footer
 			class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 mx-auto mt-16 flex w-full max-w-[1200px] items-center justify-between py-8 backdrop-blur-lg">

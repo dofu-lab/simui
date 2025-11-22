@@ -6,7 +6,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-badge-18',
-	standalone: true,
 	providers: [provideIcons({ lucideArrowRight })],
 	imports: [HlmBadge, HlmIcon, NgIcon],
 	template: `
@@ -34,7 +33,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-badge-18',
-	standalone: true,
 	providers: [provideIcons({ lucideArrowRight })],
 	imports: [HlmBadge, HlmIcon, NgIcon],
 	template: \`

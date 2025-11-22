@@ -4,7 +4,6 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 
 @Component({
 	selector: 'app-card',
-	standalone: true,
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
 		<component-header

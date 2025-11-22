@@ -7,7 +7,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-avatar-19',
-	standalone: true,
 	providers: [provideIcons({ lucidePlus })],
 	imports: [NgIcon, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmIcon, HlmButton],
 	template: `
@@ -54,7 +53,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-avatar-19',
-	standalone: true,
 	providers: [provideIcons({ lucidePlus })],
 	imports: [NgIcon, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmIcon, HlmButton],
 	template: \`

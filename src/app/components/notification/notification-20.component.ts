@@ -7,7 +7,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-20',
-	standalone: true,
 	providers: [provideIcons({ lucideX })],
 	imports: [NgIcon, HlmIcon, HlmButton, HlmAspectRatio],
 	template: `
@@ -46,7 +45,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-20',
-	standalone: true,
 	providers: [provideIcons({ lucideX })],
 	imports: [NgIcon, HlmIcon, HlmButton, HlmAspectRatio],
 	template: \`

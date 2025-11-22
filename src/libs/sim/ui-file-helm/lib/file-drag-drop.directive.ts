@@ -25,7 +25,6 @@ export type FileUploadState = {
 
 @Directive({
 	selector: '[fileDragDrop]',
-	standalone: true,
 	host: {
 		'[class]': '_computedClass()',
 	},

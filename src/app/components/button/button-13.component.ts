@@ -4,7 +4,6 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-button-13',
-	standalone: true,
 	imports: [HlmButton, HlmSpinner],
 	template: `
 		<button hlmBtn disabled size="sm" class="group">
@@ -21,7 +20,6 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-button-13',
-	standalone: true,
 	imports: [HlmButton, HlmSpinner],
 	template: \`
 		<button hlmBtn disabled size="sm" class="group">

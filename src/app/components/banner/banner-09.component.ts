@@ -6,7 +6,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-banner-09',
-	standalone: true,
 	imports: [NgIcon, HlmIcon, HlmButton],
 	providers: [provideIcons({ lucideX, lucideArrowRight, lucideSparkles })],
 	host: {
@@ -55,7 +54,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-banner-09',
-	standalone: true,
 	imports: [NgIcon, HlmIcon, HlmButton],
 	providers: [provideIcons({ lucideX, lucideArrowRight, lucideSparkles })],
 	host: {

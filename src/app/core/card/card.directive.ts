@@ -4,7 +4,6 @@ import type { ClassValue } from 'clsx';
 
 @Directive({
 	selector: '[dfCard]',
-	standalone: true,
 	host: {
 		'[class]': '_computedClass()',
 	},

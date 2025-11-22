@@ -3,7 +3,6 @@ import { ComponentBadgesComponent } from './component-badges.component';
 
 @Component({
 	selector: 'component-header',
-	standalone: true,
 	imports: [ComponentBadgesComponent],
 	template: `
 		<div class="mt-[50px] mb-[25px] flex flex-col items-center justify-center">

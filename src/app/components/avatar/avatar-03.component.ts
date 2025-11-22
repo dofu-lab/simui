@@ -6,7 +6,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-avatar-03',
-	standalone: true,
 	providers: [provideIcons({ lucideUser })],
 	imports: [HlmAvatar, HlmAvatarFallback, HlmIcon, NgIcon],
 	template: `
@@ -27,7 +26,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-avatar-03',
-	standalone: true,
 	providers: [provideIcons({ lucideUser })],
 	imports: [HlmAvatar, HlmAvatarFallback, HlmIcon, NgIcon],
 	template: \`

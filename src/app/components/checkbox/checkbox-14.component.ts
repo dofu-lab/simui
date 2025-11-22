@@ -7,7 +7,6 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-14',
-	standalone: true,
 	imports: [HlmCheckbox, HlmLabel, HlmIcon, NgIcon],
 	providers: [provideIcons({ lucideRocket })],
 	host: {
@@ -44,7 +43,6 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-14',
-	standalone: true,
 	imports: [HlmCheckbox, HlmLabel, HlmIcon, NgIcon],
 	providers: [provideIcons({ lucideRocket })],
 	host: {

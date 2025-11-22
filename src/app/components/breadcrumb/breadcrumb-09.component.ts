@@ -15,7 +15,6 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'sim-breadcrumb-09',
-	standalone: true,
 	providers: [provideIcons({ lucideDatabase })],
 	imports: [
 		NgIcon,
@@ -74,7 +73,6 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'sim-breadcrumb-09',
-	standalone: true,
 	providers: [provideIcons({ lucideDatabase })],
 	imports: [
 		NgIcon,
