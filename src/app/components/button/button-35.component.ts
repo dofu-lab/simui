@@ -1,42 +1,19 @@
 import { Component, signal } from '@angular/core';
-import { BrnToggle } from '@spartan-ng/brain/toggle';
-import { BrnToggleGroup } from '@spartan-ng/brain/toggle-group';
-import { HlmToggle } from '@spartan-ng/helm/toggle';
+import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 
 @Component({
 	selector: 'sim-button-35',
-	imports: [HlmToggle, BrnToggle, BrnToggleGroup],
+	imports: [HlmToggleGroupImports],
 	host: {
 		class: 'w-full',
 	},
 	template: `
-		<brn-toggle-group class="flex">
-			<button
-				hlmToggle
-				value="left"
-				variant="outline"
-				data-variant="outline"
-				class="min-w-0 flex-1 shrink-0 rounded-none rounded-l-md border-l shadow-none focus:z-10 focus-visible:z-10">
-				Left
-			</button>
-			<button
-				hlmToggle
-				value="top"
-				variant="outline"
-				data-variant="outline"
-				class="min-w-0 flex-1 shrink-0 rounded-none border-l-0 shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10">
-				Center
-			</button>
+		<hlm-toggle-group variant="outline" class="flex w-full">
+			<button hlmToggleGroupItem value="left" variant="outline" class="flex-1">Left</button>
+			<button hlmToggleGroupItem value="top" variant="outline" data-variant="outline" class="flex-1">Center</button>
 
-			<button
-				hlmToggle
-				value="right"
-				variant="outline"
-				data-variant="outline"
-				class="min-w-0 flex-1 shrink-0 rounded-none rounded-r-md border-l-0 shadow-none focus:z-10 focus-visible:z-10">
-				Right
-			</button>
-		</brn-toggle-group>
+			<button hlmToggleGroupItem value="right" variant="outline" data-variant="outline" class="flex-1">Right</button>
+		</hlm-toggle-group>
 	`,
 })
 export class Button35Component {
@@ -48,44 +25,21 @@ export class Button35Component {
 }
 
 export const button35Code = `import { Component, signal } from '@angular/core';
-import { BrnToggle } from '@spartan-ng/brain/toggle';
-import { BrnToggleGroup } from '@spartan-ng/brain/toggle-group';
-import { HlmToggle } from '@spartan-ng/helm/toggle';
+import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 
 @Component({
 	selector: 'sim-button-35',
-	imports: [HlmToggle, BrnToggle, BrnToggleGroup],
+	imports: [HlmToggleGroupImports],
 	host: {
 		class: 'w-full',
 	},
 	template: \`
-		<brn-toggle-group class="flex">
-			<button
-				hlmToggle
-				value="left"
-				variant="outline"
-				data-variant="outline"
-				class="min-w-0 flex-1 shrink-0 rounded-none rounded-l-md border-l shadow-none focus:z-10 focus-visible:z-10">
-				Left
-			</button>
-			<button
-				hlmToggle
-				value="top"
-				variant="outline"
-				data-variant="outline"
-				class="min-w-0 flex-1 shrink-0 rounded-none border-l-0 shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10">
-				Center
-			</button>
+		<hlm-toggle-group variant="outline" class="flex w-full">
+			<button hlmToggleGroupItem value="left" variant="outline" class="flex-1">Left</button>
+			<button hlmToggleGroupItem value="top" variant="outline" data-variant="outline" class="flex-1">Center</button>
 
-			<button
-				hlmToggle
-				value="right"
-				variant="outline"
-				data-variant="outline"
-				class="min-w-0 flex-1 shrink-0 rounded-none rounded-r-md border-l-0 shadow-none focus:z-10 focus-visible:z-10">
-				Right
-			</button>
-		</brn-toggle-group>
+			<button hlmToggleGroupItem value="right" variant="outline" data-variant="outline" class="flex-1">Right</button>
+		</hlm-toggle-group>
 	\`,
 })
 export class Button35Component {

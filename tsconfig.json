@@ -48,11 +48,12 @@
 			"@spartan-ng/helm/switch": ["./src/libs/ui/ui-switch-helm/src/index.ts"],
 			"@spartan-ng/helm/table": ["./src/libs/ui/ui-table-helm/src/index.ts"],
 			"@spartan-ng/helm/tabs": ["./src/libs/ui/ui-tabs-helm/src/index.ts"],
-			"@spartan-ng/helm/toggle": ["./src/libs/ui/ui-toggle-helm/src/index.ts"],
-			"@spartan-ng/helm/toggle-group": ["./src/libs/ui/ui-toggle-group-helm/src/index.ts"],
 			"@spartan-ng/helm/tooltip": ["./src/libs/ui/ui-tooltip-helm/src/index.ts"],
 			"@spartan-ng/helm/utils": ["./src/libs/ui/ui-utils-helm/src/index.ts"],
 			"@spartan-ng/helm/sheet": ["./src/libs/ui/ui-sheet-helm/src/index.ts"],
+			"@spartan-ng/helm/toggle": ["./src/libs/ui/toggle/src/index.ts"],
+			"@spartan-ng/helm/toggle-group": ["./src/libs/ui/toggle-group/src/index.ts"],
+			"@spartan-ng/helm/pagination": ["./src/libs/ui/pagination/src/index.ts"],
 			"@/*": ["./src/*"]
 		}
 	},
