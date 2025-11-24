@@ -11,6 +11,7 @@ export * from './dialog.constant';
 export * from './dropdown.constant';
 export * from './file-upload.constant';
 export * from './notification.constant';
+export * from './pagination.constant';
 export * from './popover.constant';
 export * from './radio.constant';
 export * from './slider.constant';

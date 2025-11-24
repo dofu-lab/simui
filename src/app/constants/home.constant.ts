@@ -13,6 +13,7 @@ import { dropdownComponents } from './dropdown.constant';
 import { fileUploadComponents } from './file-upload.constant';
 import { inputComponents } from './input.constant';
 import { notificationComponents } from './notification.constant';
+import { paginationComponents } from './pagination.constant';
 import { radioComponents } from './radio.constant';
 import { sliderComponents } from './slider.constant';
 import { switchComponents } from './switch.constant';
@@ -20,31 +21,10 @@ import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
 	{
-		name: 'Dropdown',
-		compNumber: dropdownComponents.length,
-		image: 'dropdown.png',
-		path: 'components/dropdown',
-		isNew: true,
-	},
-	{
-		name: 'Switch',
-		compNumber: switchComponents.length,
-		image: 'switch.png',
-		path: 'components/switch',
-		isNew: true,
-	},
-	{
-		name: 'Input',
-		compNumber: inputComponents.length,
-		image: 'input.png',
-		path: 'components/input',
-		isNew: true,
-	},
-	{
-		name: 'Slider',
-		compNumber: sliderComponents.length,
-		image: 'slider.png',
-		path: 'components/slider',
+		name: 'Pagination',
+		compNumber: paginationComponents.length,
+		image: 'pagination.png',
+		path: 'components/pagination',
 		isNew: true,
 	},
 	{
@@ -109,6 +89,12 @@ export const previewComponents: ComponentInfo[] = [
 		path: 'components/dialog',
 	},
 	{
+		name: 'Dropdown',
+		compNumber: dropdownComponents.length,
+		image: 'dropdown.png',
+		path: 'components/dropdown',
+	},
+	{
 		name: 'Event Calendar',
 		compNumber: 1,
 		image: 'event-calendar.png',
@@ -119,6 +105,12 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: fileUploadComponents.length,
 		image: 'file-upload.png',
 		path: 'components/file-upload',
+	},
+	{
+		name: 'Input',
+		compNumber: inputComponents.length,
+		image: 'input.png',
+		path: 'components/input',
 	},
 	{
 		name: 'Notification',
@@ -137,6 +129,18 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: radioComponents.length,
 		image: 'radio.png',
 		path: 'components/radio',
+	},
+	{
+		name: 'Slider',
+		compNumber: sliderComponents.length,
+		image: 'slider.png',
+		path: 'components/slider',
+	},
+	{
+		name: 'Switch',
+		compNumber: switchComponents.length,
+		image: 'switch.png',
+		path: 'components/switch',
 	},
 	{
 		name: 'Tabs',
