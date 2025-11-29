@@ -1,4 +1,4 @@
-import { Component, computed, inject, numberAttribute } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
@@ -8,7 +8,8 @@ import { map } from 'rxjs';
 @Component({
 	selector: 'app-pagination-01',
 	imports: [HlmPaginationImports],
-	host: { class: 'block w-full' },
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	host: { class: 'w-full' },
 	template: `
 		<nav hlmPagination class="w-full">
 			<ul hlmPaginationContent class="w-full justify-between">
@@ -24,7 +25,6 @@ import { map } from 'rxjs';
 })
 export class Pagination01Component {
 	private readonly _route = inject(ActivatedRoute);
-
 	private readonly _pageQuery = toSignal(
 		this._route.queryParamMap.pipe(
 			map((params) => {
@@ -34,18 +34,18 @@ export class Pagination01Component {
 		),
 	);
 
-	public readonly currentPage = computed(() => this._pageQuery() ?? 1);
-	public readonly computedPreviousClass = computed(() =>
+	protected readonly pages = [1, 2, 3, 4];
+
+	protected readonly currentPage = computed(() => this._pageQuery() ?? 1);
+	protected readonly computedPreviousClass = computed(() =>
 		hlm(this.currentPage() <= 1 ? 'opacity-50 pointer-events-none' : ''),
 	);
-	public readonly computedNextClass = computed(() =>
+	protected readonly computedNextClass = computed(() =>
 		hlm(this.currentPage() >= this.pages.length ? 'opacity-50 pointer-events-none' : ''),
 	);
-
-	public pages = [1, 2, 3, 4];
 }
 
-export const pagination01Code = `import { Component, computed, inject, numberAttribute } from '@angular/core';
+export const pagination01Code = `import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
@@ -55,7 +55,8 @@ import { map } from 'rxjs';
 @Component({
 	selector: 'app-pagination-01',
 	imports: [HlmPaginationImports],
-	host: { class: 'block w-full' },
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	host: { class: 'w-full' },
 	template: \`
 		<nav hlmPagination class="w-full">
 			<ul hlmPaginationContent class="w-full justify-between">
@@ -71,7 +72,6 @@ import { map } from 'rxjs';
 })
 export class Pagination01Component {
 	private readonly _route = inject(ActivatedRoute);
-
 	private readonly _pageQuery = toSignal(
 		this._route.queryParamMap.pipe(
 			map((params) => {
@@ -81,13 +81,13 @@ export class Pagination01Component {
 		),
 	);
 
-	public readonly currentPage = computed(() => this._pageQuery() ?? 1);
-	public readonly computedPreviousClass = computed(() =>
+	protected readonly pages = [1, 2, 3, 4];
+
+	protected readonly currentPage = computed(() => this._pageQuery() ?? 1);
+	protected readonly computedPreviousClass = computed(() =>
 		hlm(this.currentPage() <= 1 ? 'opacity-50 pointer-events-none' : ''),
 	);
-	public readonly computedNextClass = computed(() =>
+	protected readonly computedNextClass = computed(() =>
 		hlm(this.currentPage() >= this.pages.length ? 'opacity-50 pointer-events-none' : ''),
 	);
-
-	public pages = [1, 2, 3, 4];
 }`;

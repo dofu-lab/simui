@@ -1,4 +1,4 @@
-import { Component, computed, inject, numberAttribute } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
@@ -8,9 +8,10 @@ import { map } from 'rxjs';
 @Component({
 	selector: 'app-pagination-03',
 	imports: [HlmPaginationImports],
-	host: { class: 'block w-full' },
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	host: { class: 'w-full' },
 	template: `
-		<nav hlmPagination class="w-full">
+		<nav hlmPagination>
 			<ul hlmPaginationContent class="w-full justify-between">
 				<li hlmPaginationItem [class]="computedPreviousClass()">
 					<hlm-pagination-previous
@@ -40,7 +41,6 @@ import { map } from 'rxjs';
 })
 export class Pagination03Component {
 	private readonly _route = inject(ActivatedRoute);
-
 	private readonly _pageQuery = toSignal(
 		this._route.queryParamMap.pipe(
 			map((params) => {
@@ -49,21 +49,22 @@ export class Pagination03Component {
 			}),
 		),
 	);
-	public pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-	public readonly currentPage = computed(() => this._pageQuery() ?? 1);
-	public readonly totalPages = computed(() => this.pages.length);
-	public readonly computedPreviousClass = computed(() => {
+	protected readonly pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+	protected readonly currentPage = computed(() => this._pageQuery() ?? 1);
+	protected readonly totalPages = computed(() => this.pages.length);
+	protected readonly computedPreviousClass = computed(() => {
 		const isDisabled = this.currentPage() <= 1;
 		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '', 'border rounded-md shadow-xs');
 	});
-	public readonly computedNextClass = computed(() => {
+	protected readonly computedNextClass = computed(() => {
 		const isDisabled = this.currentPage() >= this.pages.length;
 		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '', 'border rounded-md shadow-xs');
 	});
 }
 
-export const pagination03Code = `import { Component, computed, inject, numberAttribute } from '@angular/core';
+export const pagination03Code = `import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
@@ -73,9 +74,10 @@ import { map } from 'rxjs';
 @Component({
 	selector: 'app-pagination-03',
 	imports: [HlmPaginationImports],
-	host: { class: 'block w-full' },
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	host: { class: 'w-full' },
 	template: \`
-		<nav hlmPagination class="w-full">
+		<nav hlmPagination>
 			<ul hlmPaginationContent class="w-full justify-between">
 				<li hlmPaginationItem [class]="computedPreviousClass()">
 					<hlm-pagination-previous
@@ -105,7 +107,6 @@ import { map } from 'rxjs';
 })
 export class Pagination03Component {
 	private readonly _route = inject(ActivatedRoute);
-
 	private readonly _pageQuery = toSignal(
 		this._route.queryParamMap.pipe(
 			map((params) => {
@@ -114,15 +115,16 @@ export class Pagination03Component {
 			}),
 		),
 	);
-	public pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-	public readonly currentPage = computed(() => this._pageQuery() ?? 1);
-	public readonly totalPages = computed(() => this.pages.length);
-	public readonly computedPreviousClass = computed(() => {
+	protected readonly pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+	protected readonly currentPage = computed(() => this._pageQuery() ?? 1);
+	protected readonly totalPages = computed(() => this.pages.length);
+	protected readonly computedPreviousClass = computed(() => {
 		const isDisabled = this.currentPage() <= 1;
 		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '', 'border rounded-md shadow-xs');
 	});
-	public readonly computedNextClass = computed(() => {
+	protected readonly computedNextClass = computed(() => {
 		const isDisabled = this.currentPage() >= this.pages.length;
 		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '', 'border rounded-md shadow-xs');
 	});
