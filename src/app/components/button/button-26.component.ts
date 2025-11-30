@@ -1,14 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMoon, lucideSun } from '@ng-icons/lucide';
-import { BrnToggle } from '@spartan-ng/brain/toggle';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmToggle } from '@spartan-ng/helm/toggle';
+import { HlmToggleImports } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-26',
 	providers: [provideIcons({ lucideSun, lucideMoon })],
-	imports: [HlmIcon, HlmToggle, BrnToggle, NgIcon],
+	imports: [HlmIcon, NgIcon, HlmToggleImports],
 	template: `
 		<button
 			hlmToggle
@@ -39,14 +38,13 @@ export class Button26Component {
 export const button26Code = `import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMoon, lucideSun } from '@ng-icons/lucide';
-import { BrnToggle } from '@spartan-ng/brain/toggle';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmToggle } from '@spartan-ng/helm/toggle';
+import { HlmToggleImports } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'sim-button-26',
 	providers: [provideIcons({ lucideSun, lucideMoon })],
-	imports: [HlmIcon, HlmToggle, BrnToggle, NgIcon],
+	imports: [HlmIcon, NgIcon, HlmToggleImports],
 	template: \`
 		<button
 			hlmToggle

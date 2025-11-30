@@ -16,6 +16,7 @@ export * from './home.component';
 export * from './input.component';
 export * from './intro.component';
 export * from './notification.component';
+export * from './pagination.component';
 export * from './popover.component';
 export * from './radio.component';
 export * from './slider.component';

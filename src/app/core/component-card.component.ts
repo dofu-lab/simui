@@ -31,8 +31,8 @@ import { CodePreviewComponent } from './code-preview.component';
 				<hlm-sheet-header>
 					<h3 hlmSheetTitle>Code</h3>
 				</hlm-sheet-header>
-				<div class="px-4">
-					<code-preview [code]="code()" class="w-full overflow-auto" />
+				<div class="grid flex-1 px-4 pb-4">
+					<code-preview [code]="code()" class="h-full w-full overflow-auto" />
 				</div>
 			</hlm-sheet-content>
 		</hlm-sheet>

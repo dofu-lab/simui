@@ -11,10 +11,9 @@ import {
 } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideChevronLeft, lucideChevronRight, lucidePlus } from '@ng-icons/lucide';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuShortcut } from '@spartan-ng/helm/menu';
 import {
 	addDays,
 	addMonths,
@@ -26,6 +25,7 @@ import {
 	subMonths,
 	subWeeks,
 } from 'date-fns';
+import { toast } from 'ngx-sonner';
 import { AgendaViewComponent } from './agenda-view.component';
 import { AgendaDaysToShow } from './constants';
 import { DayViewCalendarComponent } from './day-view-calendar.component';
@@ -35,7 +35,6 @@ import { CalendarEvent, CalendarView, EventDuration } from './type';
 import { addHoursToDate } from './utils';
 import { WeekViewCalendarComponent } from './week-view-calendar.component';
 
-import { toast } from 'ngx-sonner';
 @Component({
 	selector: 'sim-event-calendar',
 	imports: [
@@ -48,12 +47,8 @@ import { toast } from 'ngx-sonner';
 		WeekViewCalendarComponent,
 		DayViewCalendarComponent,
 		AgendaViewComponent,
-		BrnMenuTrigger,
-		HlmMenu,
-		HlmMenuItem,
-		HlmMenuGroup,
-		HlmMenuShortcut,
 		EventDialogComponent,
+		HlmDropdownMenuImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [provideIcons({ lucideChevronLeft, lucideChevronRight, lucideChevronDown, lucidePlus })],
@@ -90,7 +85,7 @@ import { toast } from 'ngx-sonner';
 					</h2>
 				</div>
 				<div class="flex items-center gap-2">
-					<button hlmBtn class="flex gap-2" variant="outline" size="sm" [brnMenuTriggerFor]="menu">
+					<button hlmBtn class="flex gap-2" variant="outline" size="sm" [hlmDropdownMenuTrigger]="menu">
 						{{ view() | titlecase }}
 						<ng-icon name="lucideChevronDown" />
 					</button>
@@ -100,26 +95,26 @@ import { toast } from 'ngx-sonner';
 						(onEventAdded)="handleEventAdded($event)"
 						(onEventUpdated)="handleEventUpdate($event)" />
 					<ng-template #menu>
-						<hlm-menu>
-							<hlm-menu-group>
-								<button hlmMenuItem (click)="view.set('month')">
+						<hlm-dropdown-menu>
+							<hlm-dropdown-menu-group>
+								<button hlmDropdownMenuItem (click)="view.set('month')">
 									Month
-									<hlm-menu-shortcut>Ctrl+M</hlm-menu-shortcut>
+									<hlm-dropdown-menu-shortcut>Ctrl+M</hlm-dropdown-menu-shortcut>
 								</button>
-								<button hlmMenuItem (click)="view.set('week')">
+								<button hlmDropdownMenuItem (click)="view.set('week')">
 									Week
-									<hlm-menu-shortcut>Ctrl+W</hlm-menu-shortcut>
+									<hlm-dropdown-menu-shortcut>Ctrl+W</hlm-dropdown-menu-shortcut>
 								</button>
-								<button hlmMenuItem (click)="view.set('day')">
+								<button hlmDropdownMenuItem (click)="view.set('day')">
 									Day
-									<hlm-menu-shortcut>Ctrl+D</hlm-menu-shortcut>
+									<hlm-dropdown-menu-shortcut>Ctrl+D</hlm-dropdown-menu-shortcut>
 								</button>
-								<button hlmMenuItem (click)="view.set('agenda')">
+								<button hlmDropdownMenuItem (click)="view.set('agenda')">
 									Agenda
-									<hlm-menu-shortcut>Ctrl+A</hlm-menu-shortcut>
+									<hlm-dropdown-menu-shortcut>Ctrl+A</hlm-dropdown-menu-shortcut>
 								</button>
-							</hlm-menu-group>
-						</hlm-menu>
+							</hlm-dropdown-menu-group>
+						</hlm-dropdown-menu>
 					</ng-template>
 				</div>
 			</div>

@@ -31,7 +31,7 @@ declare const Prism: typeof import('prismjs');
 		@if (fileName()) {
 			<div class="border-border flex flex-row gap-2 border-b px-4 py-2">
 				@if (language === 'ts' || language === 'css') {
-					<div class="size-[20px]">
+					<div class="size-5">
 						@switch (language) {
 							@case ('ts') {
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="fill-foreground">
@@ -56,8 +56,8 @@ declare const Prism: typeof import('prismjs');
 				<ng-icon hlm size="xs" [name]="_copied ? 'lucideCheck' : 'lucideClipboard'" />
 			</button>
 		}
-		<div class="max-h-[650px] w-full overflow-auto p-4 whitespace-nowrap">
-			<div class="max-w-full max-w-screen" [innerHTML]="_content"></div>
+		<div class="max-h-[90vh] w-full overflow-auto p-4 whitespace-nowrap">
+			<div class="h-full max-w-full" [innerHTML]="_content"></div>
 		</div>
 	`,
 	styles: [

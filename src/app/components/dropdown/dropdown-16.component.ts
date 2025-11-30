@@ -14,27 +14,13 @@ import {
 	lucideWarehouse,
 	lucideZap,
 } from '@ng-icons/lucide';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator, HlmMenuShortcut } from '@spartan-ng/helm/menu';
 @Component({
 	selector: 'sim-dropdown-16',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmMenu,
-		HlmMenuItem,
-		HlmButton,
-		HlmMenuGroup,
-		BrnMenuTrigger,
-		HlmMenuSeparator,
-		HlmAvatar,
-		HlmAvatarImage,
-		HlmAvatarFallback,
-		HlmMenuShortcut,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmDropdownMenuImports],
 	providers: [
 		provideIcons({
 			lucideChevronDown,
@@ -53,14 +39,14 @@ import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator, HlmMenuShortcut }
 	],
 	template: `
 		<div class="flex w-full items-center justify-center">
-			<button hlmBtn variant="outline" align="center" [brnMenuTriggerFor]="menu">
+			<button hlmBtn variant="outline" align="center" [hlmDropdownMenuTrigger]="menu">
 				<span>Account</span>
 				<ng-icon hlm name="lucideChevronDown" size="sm" />
 			</button>
 		</div>
 		<ng-template #menu>
-			<hlm-menu class="w-55">
-				<hlm-menu-group class="flex items-center gap-2 px-2 py-1.5">
+			<hlm-dropdown-menu class="w-55">
+				<hlm-dropdown-menu-group class="flex items-center gap-2 px-2 py-1.5">
 					<hlm-avatar class="border-border/50 size-8 border">
 						<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 						<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
@@ -69,92 +55,92 @@ import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator, HlmMenuShortcut }
 						<span class="text-foreground text-sm font-medium">Mathilde Lewis</span>
 						<span class="text-muted-foreground text-xs">m.lewis&#64;simui.dev</span>
 					</div>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideUser" size="sm" />
 						<span>View profile</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘K+P
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideSettings" size="sm" />
 						<span>Settings</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘S
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideZap" size="sm" />
 						<span>Keyboard shortcuts</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							?
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideWarehouse" size="sm" />
 						<span>Company profile</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘K+C
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideUsers" size="sm" />
 						<span>Team</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘K+T
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideUserPlus" size="sm" />
 						<span>Invite colleagues</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘I
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideLayers2" size="sm" />
 						<span>Changelog</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideSlack" size="sm" />
 						<span>Slack Community</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideMessageCircleQuestion" size="sm" />
 						<span>Support</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideBox" size="sm" />
 						<span>API</span>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideLogOut" size="sm" />
 						<span>Logout</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌥⇧Q
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-				</hlm-menu-group>
-			</hlm-menu>
+				</hlm-dropdown-menu-group>
+			</hlm-dropdown-menu>
 		</ng-template>
 	`,
 })
@@ -176,27 +162,13 @@ import {
 	lucideWarehouse,
 	lucideZap,
 } from '@ng-icons/lucide';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator, HlmMenuShortcut } from '@spartan-ng/helm/menu';
 @Component({
 	selector: 'sim-dropdown-16',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmMenu,
-		HlmMenuItem,
-		HlmButton,
-		HlmMenuGroup,
-		BrnMenuTrigger,
-		HlmMenuSeparator,
-		HlmAvatar,
-		HlmAvatarImage,
-		HlmAvatarFallback,
-		HlmMenuShortcut,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmDropdownMenuImports],
 	providers: [
 		provideIcons({
 			lucideChevronDown,
@@ -215,14 +187,14 @@ import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator, HlmMenuShortcut }
 	],
 	template: \`
 		<div class="flex w-full items-center justify-center">
-			<button hlmBtn variant="outline" align="center" [brnMenuTriggerFor]="menu">
+			<button hlmBtn variant="outline" align="center" [hlmDropdownMenuTrigger]="menu">
 				<span>Account</span>
 				<ng-icon hlm name="lucideChevronDown" size="sm" />
 			</button>
 		</div>
 		<ng-template #menu>
-			<hlm-menu class="w-55">
-				<hlm-menu-group class="flex items-center gap-2 px-2 py-1.5">
+			<hlm-dropdown-menu class="w-55">
+				<hlm-dropdown-menu-group class="flex items-center gap-2 px-2 py-1.5">
 					<hlm-avatar class="border-border/50 size-8 border">
 						<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 						<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
@@ -231,92 +203,92 @@ import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator, HlmMenuShortcut }
 						<span class="text-foreground text-sm font-medium">Mathilde Lewis</span>
 						<span class="text-muted-foreground text-xs">m.lewis&#64;simui.dev</span>
 					</div>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideUser" size="sm" />
 						<span>View profile</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘K+P
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideSettings" size="sm" />
 						<span>Settings</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘S
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideZap" size="sm" />
 						<span>Keyboard shortcuts</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							?
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideWarehouse" size="sm" />
 						<span>Company profile</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘K+C
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideUsers" size="sm" />
 						<span>Team</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘K+T
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideUserPlus" size="sm" />
 						<span>Invite colleagues</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘I
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideLayers2" size="sm" />
 						<span>Changelog</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideSlack" size="sm" />
 						<span>Slack Community</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideMessageCircleQuestion" size="sm" />
 						<span>Support</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideBox" size="sm" />
 						<span>API</span>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideLogOut" size="sm" />
 						<span>Logout</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌥⇧Q
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-				</hlm-menu-group>
-			</hlm-menu>
+				</hlm-dropdown-menu-group>
+			</hlm-dropdown-menu>
 		</ng-template>
 	\`,
 })

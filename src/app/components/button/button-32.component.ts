@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlignCenter, lucideAlignJustify, lucideAlignLeft, lucideAlignRight } from '@ng-icons/lucide';
-import { BrnToggleGroup, BrnToggleGroupItem } from '@spartan-ng/brain/toggle-group';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmToggleGroupItem } from '@spartan-ng/helm/toggle-group';
+import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 
 @Component({
-	selector: 'spartan-toggle-group-preview',
-	imports: [BrnToggleGroupItem, BrnToggleGroup, HlmIcon, HlmToggleGroupItem, NgIcon],
+	selector: 'sim-button-32',
+	imports: [HlmToggleGroupImports, HlmIcon, NgIcon],
 	providers: [provideIcons({ lucideAlignLeft, lucideAlignRight, lucideAlignCenter, lucideAlignJustify })],
 	template: `
-		<brn-toggle-group multiple="false" nullable="true" class="divide-background inline-flex divide-x">
+		<hlm-toggle-group multiple="false" nullable="true" class="divide-background inline-flex divide-x">
 			<button
 				hlmToggleGroupItem
 				value="left"
@@ -39,7 +38,7 @@ import { HlmToggleGroupItem } from '@spartan-ng/helm/toggle-group';
 				class="bg-primary/80! text-primary-foreground hover:bg-primary! hover:text-primary-foreground data-[state=on]:bg-primary! data-[state=on]:text-primary-foreground min-w-0 shrink-0 rounded-none rounded-r-md px-3 shadow-none focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l">
 				<ng-icon hlm name="lucideAlignJustify" size="sm" />
 			</button>
-		</brn-toggle-group>
+		</hlm-toggle-group>
 	`,
 })
 export class Button32Component {}
@@ -47,16 +46,15 @@ export class Button32Component {}
 export const button32Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlignCenter, lucideAlignJustify, lucideAlignLeft, lucideAlignRight } from '@ng-icons/lucide';
-import { BrnToggleGroup, BrnToggleGroupItem } from '@spartan-ng/brain/toggle-group';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmToggleGroupItem } from '@spartan-ng/helm/toggle-group';
+import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 
 @Component({
-	selector: 'spartan-toggle-group-preview',
-	imports: [BrnToggleGroupItem, BrnToggleGroup, HlmIcon, HlmToggleGroupItem, NgIcon],
+	selector: 'sim-button-32',
+	imports: [HlmToggleGroupImports, HlmIcon, NgIcon],
 	providers: [provideIcons({ lucideAlignLeft, lucideAlignRight, lucideAlignCenter, lucideAlignJustify })],
 	template: \`
-		<brn-toggle-group multiple="false" nullable="true" class="divide-background inline-flex divide-x">
+		<hlm-toggle-group multiple="false" nullable="true" class="divide-background inline-flex divide-x">
 			<button
 				hlmToggleGroupItem
 				value="left"
@@ -85,7 +83,7 @@ import { HlmToggleGroupItem } from '@spartan-ng/helm/toggle-group';
 				class="bg-primary/80! text-primary-foreground hover:bg-primary! hover:text-primary-foreground data-[state=on]:bg-primary! data-[state=on]:text-primary-foreground min-w-0 shrink-0 rounded-none rounded-r-md px-3 shadow-none focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l">
 				<ng-icon hlm name="lucideAlignJustify" size="sm" />
 			</button>
-		</brn-toggle-group>
+		</hlm-toggle-group>
 	\`,
 })
 export class Button32Component {}`;
