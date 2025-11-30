@@ -10,40 +10,13 @@ import {
 	lucideShare2,
 	lucideTrash,
 } from '@ng-icons/lucide';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import {
-	HlmMenu,
-	HlmMenuGroup,
-	HlmMenuItem,
-	HlmMenuItemCheck,
-	HlmMenuItemCheckbox,
-	HlmMenuItemRadio,
-	HlmMenuItemRadioIndicator,
-	HlmMenuSeparator,
-	HlmMenuShortcut,
-	HlmSubMenu,
-} from '@spartan-ng/helm/menu';
 
 @Component({
 	selector: 'sim-dropdown-09',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmMenu,
-		HlmMenuItem,
-		HlmButton,
-		HlmMenuGroup,
-		BrnMenuTrigger,
-		HlmMenuSeparator,
-		HlmMenuShortcut,
-		HlmSubMenu,
-		HlmMenuItemRadio,
-		HlmMenuItemRadioIndicator,
-		HlmMenuItemCheck,
-		HlmMenuItemCheckbox,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmDropdownMenuImports],
 	providers: [
 		provideIcons({
 			lucideChevronDown,
@@ -58,96 +31,109 @@ import {
 	],
 	template: `
 		<div class="flex w-50 items-center justify-center">
-			<button hlmBtn class="h-9 w-full" variant="outline" size="sm" align="center" [brnMenuTriggerFor]="menu">
+			<button hlmBtn class="h-9 w-full" variant="outline" size="sm" align="center" [hlmDropdownMenuTrigger]="menu">
 				<span>Rich menu with icons</span>
 				<ng-icon hlm name="lucideChevronDown" size="sm" />
 			</button>
 		</div>
 		<ng-template #menu>
-			<hlm-menu class="w-40">
-				<hlm-menu-group>
-					<button hlmMenuItem>
+			<hlm-dropdown-menu class="w-40">
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucidePlus" size="sm" />
 						<span>New</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘N
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem class="flex justify-between" [brnMenuTriggerFor]="framework">
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button
+						hlmDropdownMenuItem
+						class="flex justify-between"
+						side="right"
+						align="start"
+						[hlmDropdownMenuTrigger]="framework">
 						<div class="flex items-center gap-2">
 							<ng-icon hlm name="lucideCpu" size="sm" />
 							<span>Framework</span>
 						</div>
 						<ng-icon hlm name="lucideChevronRight" size="sm" />
 					</button>
-					<button hlmMenuItem class="flex justify-between" [brnMenuTriggerFor]="notification">
+					<button
+						hlmDropdownMenuItem
+						class="flex justify-between"
+						side="right"
+						align="start"
+						[hlmDropdownMenuTrigger]="notification">
 						<div class="flex items-center gap-2">
 							<ng-icon hlm name="lucideBell" size="sm" />
 							<span>Notifications</span>
 						</div>
 						<ng-icon hlm name="lucideChevronRight" size="sm" />
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideShare2" size="sm" />
 						<span>Share</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideArchiveRestore" size="sm" />
 						<span>Archive</span>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem variant="destructive" class="hover:bg-destructive/10 dark:hover:bg-destructive/40">
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button
+						hlmDropdownMenuItem
+						variant="destructive"
+						class="hover:bg-destructive/10 dark:hover:bg-destructive/40">
 						<ng-icon hlm name="lucideTrash" size="sm" />
 						<span>Delete</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-destructive/40 text-destructive ms-auto -me-1 inline-flex h-5 items-center rounded border bg-transparent px-1 text-[10px]">
 							⌘⌫
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-				</hlm-menu-group>
-			</hlm-menu>
+				</hlm-dropdown-menu-group>
+			</hlm-dropdown-menu>
 		</ng-template>
 
 		<ng-template #framework>
-			<hlm-sub-menu class="w-40">
-				<button hlmMenuItemRadio [checked]="value() === 'angular'" (click)="value.set('angular')">
-					<hlm-menu-item-radio />
+			<hlm-dropdown-menu-sub class="w-40">
+				<button hlmDropdownMenuRadio [checked]="value() === 'angular'" (click)="value.set('angular')">
+					<hlm-dropdown-menu-radio-indicator />
 					<span>Angular</span>
 				</button>
-				<button hlmMenuItemRadio [checked]="value() === 'typescript'" (click)="value.set('typescript')">
-					<hlm-menu-item-radio />
+				<button hlmDropdownMenuRadio [checked]="value() === 'typescript'" (click)="value.set('typescript')">
+					<hlm-dropdown-menu-radio-indicator />
 					<span>TypeScript</span>
 				</button>
-				<button hlmMenuItemRadio [checked]="value() === 'rxjs'" (click)="value.set('rxjs')">
-					<hlm-menu-item-radio />
+				<button hlmDropdownMenuRadio [checked]="value() === 'rxjs'" (click)="value.set('rxjs')">
+					<hlm-dropdown-menu-radio-indicator />
 					<span>RxJS</span>
 				</button>
-				<button hlmMenuItemRadio [checked]="value() === 'tailwindcss'" (click)="value.set('tailwindcss')">
-					<hlm-menu-item-radio />
+				<button hlmDropdownMenuRadio [checked]="value() === 'tailwindcss'" (click)="value.set('tailwindcss')">
+					<hlm-dropdown-menu-radio-indicator />
 					<span>TailwindCSS</span>
 				</button>
-			</hlm-sub-menu>
+			</hlm-dropdown-menu-sub>
 		</ng-template>
 		<ng-template #notification>
-			<hlm-sub-menu class="w-40">
-				<button hlmMenuItemCheckbox [checked]="email()" (click)="email.set(!email())">
-					<hlm-menu-item-check />
+			<hlm-dropdown-menu-sub class="w-40">
+				<button hlmDropdownMenuCheckbox [checked]="email()" (click)="email.set(!email())">
+					<hlm-dropdown-menu-checkbox-indicator />
 					<span>Email</span>
 				</button>
-				<button hlmMenuItemCheckbox [checked]="push()" (click)="push.set(!push())">
-					<hlm-menu-item-check />
+				<button hlmDropdownMenuCheckbox [checked]="push()" (click)="push.set(!push())">
+					<hlm-dropdown-menu-checkbox-indicator />
 					<span>Push</span>
 				</button>
-			</hlm-sub-menu>
+			</hlm-dropdown-menu-sub>
 		</ng-template>
 	`,
 })
@@ -169,40 +155,13 @@ import {
 	lucideShare2,
 	lucideTrash,
 } from '@ng-icons/lucide';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import {
-	HlmMenu,
-	HlmMenuGroup,
-	HlmMenuItem,
-	HlmMenuItemCheck,
-	HlmMenuItemCheckbox,
-	HlmMenuItemRadio,
-	HlmMenuItemRadioIndicator,
-	HlmMenuSeparator,
-	HlmMenuShortcut,
-	HlmSubMenu,
-} from '@spartan-ng/helm/menu';
 
 @Component({
 	selector: 'sim-dropdown-09',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmMenu,
-		HlmMenuItem,
-		HlmButton,
-		HlmMenuGroup,
-		BrnMenuTrigger,
-		HlmMenuSeparator,
-		HlmMenuShortcut,
-		HlmSubMenu,
-		HlmMenuItemRadio,
-		HlmMenuItemRadioIndicator,
-		HlmMenuItemCheck,
-		HlmMenuItemCheckbox,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmDropdownMenuImports],
 	providers: [
 		provideIcons({
 			lucideChevronDown,
@@ -217,96 +176,109 @@ import {
 	],
 	template: \`
 		<div class="flex w-50 items-center justify-center">
-			<button hlmBtn class="h-9 w-full" variant="outline" size="sm" align="center" [brnMenuTriggerFor]="menu">
+			<button hlmBtn class="h-9 w-full" variant="outline" size="sm" align="center" [hlmDropdownMenuTrigger]="menu">
 				<span>Rich menu with icons</span>
 				<ng-icon hlm name="lucideChevronDown" size="sm" />
 			</button>
 		</div>
 		<ng-template #menu>
-			<hlm-menu class="w-40">
-				<hlm-menu-group>
-					<button hlmMenuItem>
+			<hlm-dropdown-menu class="w-40">
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucidePlus" size="sm" />
 						<span>New</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-input bg-background text-muted-foreground/70 ms-auto -me-1 inline-flex h-5 items-center rounded border px-1 text-[10px]">
 							⌘N
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem class="flex justify-between" [brnMenuTriggerFor]="framework">
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button
+						hlmDropdownMenuItem
+						class="flex justify-between"
+						side="right"
+						align="start"
+						[hlmDropdownMenuTrigger]="framework">
 						<div class="flex items-center gap-2">
 							<ng-icon hlm name="lucideCpu" size="sm" />
 							<span>Framework</span>
 						</div>
 						<ng-icon hlm name="lucideChevronRight" size="sm" />
 					</button>
-					<button hlmMenuItem class="flex justify-between" [brnMenuTriggerFor]="notification">
+					<button
+						hlmDropdownMenuItem
+						class="flex justify-between"
+						side="right"
+						align="start"
+						[hlmDropdownMenuTrigger]="notification">
 						<div class="flex items-center gap-2">
 							<ng-icon hlm name="lucideBell" size="sm" />
 							<span>Notifications</span>
 						</div>
 						<ng-icon hlm name="lucideChevronRight" size="sm" />
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideShare2" size="sm" />
 						<span>Share</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideArchiveRestore" size="sm" />
 						<span>Archive</span>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem variant="destructive" class="hover:bg-destructive/10 dark:hover:bg-destructive/40">
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button
+						hlmDropdownMenuItem
+						variant="destructive"
+						class="hover:bg-destructive/10 dark:hover:bg-destructive/40">
 						<ng-icon hlm name="lucideTrash" size="sm" />
 						<span>Delete</span>
-						<hlm-menu-shortcut
+						<hlm-dropdown-menu-shortcut
 							class="border-destructive/40 text-destructive ms-auto -me-1 inline-flex h-5 items-center rounded border bg-transparent px-1 text-[10px]">
 							⌘⌫
-						</hlm-menu-shortcut>
+						</hlm-dropdown-menu-shortcut>
 					</button>
-				</hlm-menu-group>
-			</hlm-menu>
+				</hlm-dropdown-menu-group>
+			</hlm-dropdown-menu>
 		</ng-template>
 
 		<ng-template #framework>
-			<hlm-sub-menu class="w-40">
-				<button hlmMenuItemRadio [checked]="value() === 'angular'" (click)="value.set('angular')">
-					<hlm-menu-item-radio />
+			<hlm-dropdown-menu-sub class="w-40">
+				<button hlmDropdownMenuRadio [checked]="value() === 'angular'" (click)="value.set('angular')">
+					<hlm-dropdown-menu-radio-indicator />
 					<span>Angular</span>
 				</button>
-				<button hlmMenuItemRadio [checked]="value() === 'typescript'" (click)="value.set('typescript')">
-					<hlm-menu-item-radio />
+				<button hlmDropdownMenuRadio [checked]="value() === 'typescript'" (click)="value.set('typescript')">
+					<hlm-dropdown-menu-radio-indicator />
 					<span>TypeScript</span>
 				</button>
-				<button hlmMenuItemRadio [checked]="value() === 'rxjs'" (click)="value.set('rxjs')">
-					<hlm-menu-item-radio />
+				<button hlmDropdownMenuRadio [checked]="value() === 'rxjs'" (click)="value.set('rxjs')">
+					<hlm-dropdown-menu-radio-indicator />
 					<span>RxJS</span>
 				</button>
-				<button hlmMenuItemRadio [checked]="value() === 'tailwindcss'" (click)="value.set('tailwindcss')">
-					<hlm-menu-item-radio />
+				<button hlmDropdownMenuRadio [checked]="value() === 'tailwindcss'" (click)="value.set('tailwindcss')">
+					<hlm-dropdown-menu-radio-indicator />
 					<span>TailwindCSS</span>
 				</button>
-			</hlm-sub-menu>
+			</hlm-dropdown-menu-sub>
 		</ng-template>
 		<ng-template #notification>
-			<hlm-sub-menu class="w-40">
-				<button hlmMenuItemCheckbox [checked]="email()" (click)="email.set(!email())">
-					<hlm-menu-item-check />
+			<hlm-dropdown-menu-sub class="w-40">
+				<button hlmDropdownMenuCheckbox [checked]="email()" (click)="email.set(!email())">
+					<hlm-dropdown-menu-checkbox-indicator />
 					<span>Email</span>
 				</button>
-				<button hlmMenuItemCheckbox [checked]="push()" (click)="push.set(!push())">
-					<hlm-menu-item-check />
+				<button hlmDropdownMenuCheckbox [checked]="push()" (click)="push.set(!push())">
+					<hlm-dropdown-menu-checkbox-indicator />
 					<span>Push</span>
 				</button>
-			</hlm-sub-menu>
+			</hlm-dropdown-menu-sub>
 		</ng-template>
 	\`,
 })

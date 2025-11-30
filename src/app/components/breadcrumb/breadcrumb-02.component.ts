@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlignJustify } from '@ng-icons/lucide';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import {
 	HlmBreadcrumb,
 	HlmBreadcrumbItem,
@@ -10,8 +9,8 @@ import {
 	HlmBreadcrumbPage,
 	HlmBreadcrumbSeparator,
 } from '@spartan-ng/helm/breadcrumb';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 
 @Component({
 	selector: 'sim-breadcrumb-02',
@@ -23,11 +22,9 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 		HlmBreadcrumbItem,
 		HlmBreadcrumbPage,
 		HlmBreadcrumbLink,
-		BrnMenuTrigger,
-		HlmMenu,
-		HlmMenuItem,
 		HlmIcon,
 		NgIcon,
+		HlmDropdownMenuImports,
 	],
 	template: `
 		<nav hlmBreadcrumb>
@@ -37,19 +34,19 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
-					<ng-icon hlm name="lucideAlignJustify" size="sm" [brnMenuTriggerFor]="breadcrumbDropdown" />
+					<ng-icon hlm name="lucideAlignJustify" size="sm" [hlmDropdownMenuTrigger]="breadcrumbDropdown" />
 					<ng-template #breadcrumbDropdown>
-						<hlm-menu class="w">
-							<button hlmMenuItem id="document">
+						<hlm-dropdown-menu class="w">
+							<button hlmDropdownMenuItem id="document">
 								<span>Documentation</span>
 							</button>
-							<button hlmMenuItem id="themes">
+							<button hlmDropdownMenuItem id="themes">
 								<span>Themes</span>
 							</button>
-							<button hlmMenuItem id="github">
+							<button hlmDropdownMenuItem id="github">
 								<span>Github</span>
 							</button>
-						</hlm-menu>
+						</hlm-dropdown-menu>
 					</ng-template>
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>
@@ -65,7 +62,6 @@ export class Breadcrumb02Component {}
 export const breadcrumb02Code = `import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlignJustify } from '@ng-icons/lucide';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import {
 	HlmBreadcrumb,
 	HlmBreadcrumbItem,
@@ -74,8 +70,8 @@ import {
 	HlmBreadcrumbPage,
 	HlmBreadcrumbSeparator,
 } from '@spartan-ng/helm/breadcrumb';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 
 @Component({
 	selector: 'sim-breadcrumb-02',
@@ -87,11 +83,9 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 		HlmBreadcrumbItem,
 		HlmBreadcrumbPage,
 		HlmBreadcrumbLink,
-		BrnMenuTrigger,
-		HlmMenu,
-		HlmMenuItem,
 		HlmIcon,
 		NgIcon,
+		HlmDropdownMenuImports,
 	],
 	template: \`
 		<nav hlmBreadcrumb>
@@ -101,19 +95,19 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
-					<ng-icon hlm name="lucideAlignJustify" size="sm" [brnMenuTriggerFor]="breadcrumbDropdown" />
+					<ng-icon hlm name="lucideAlignJustify" size="sm" [hlmDropdownMenuTrigger]="breadcrumbDropdown" />
 					<ng-template #breadcrumbDropdown>
-						<hlm-menu class="w">
-							<button hlmMenuItem id="document">
+						<hlm-dropdown-menu class="w">
+							<button hlmDropdownMenuItem id="document">
 								<span>Documentation</span>
 							</button>
-							<button hlmMenuItem id="themes">
+							<button hlmDropdownMenuItem id="themes">
 								<span>Themes</span>
 							</button>
-							<button hlmMenuItem id="github">
+							<button hlmDropdownMenuItem id="github">
 								<span>Github</span>
 							</button>
-						</hlm-menu>
+						</hlm-dropdown-menu>
 					</ng-template>
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>

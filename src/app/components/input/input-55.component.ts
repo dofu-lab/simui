@@ -1,8 +1,8 @@
-import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
 import { Component, model, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideX } from '@ng-icons/lucide';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
 
 type TagItem = {

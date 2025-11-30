@@ -9,26 +9,13 @@ import {
 	lucideShieldCheck,
 	lucideUserPen,
 } from '@ng-icons/lucide';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator } from '@spartan-ng/helm/menu';
 @Component({
 	selector: 'sim-dropdown-11',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmMenu,
-		HlmMenuItem,
-		HlmButton,
-		HlmMenuGroup,
-		BrnMenuTrigger,
-		HlmMenuSeparator,
-		HlmAvatar,
-		HlmAvatarImage,
-		HlmAvatarFallback,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmDropdownMenuImports],
 	providers: [
 		provideIcons({
 			lucideCircleUser,
@@ -42,13 +29,13 @@ import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator } from '@spartan-n
 	],
 	template: `
 		<div class="flex w-full items-center justify-center">
-			<button hlmBtn variant="outline" size="icon" align="center" [brnMenuTriggerFor]="menu">
+			<button hlmBtn variant="outline" size="icon" align="center" [hlmDropdownMenuTrigger]="menu">
 				<ng-icon hlm name="lucideCircleUser" size="sm" />
 			</button>
 		</div>
 		<ng-template #menu>
-			<hlm-menu class="w-50">
-				<hlm-menu-group class="flex items-center gap-2 px-2 py-1.5">
+			<hlm-dropdown-menu class="w-50">
+				<hlm-dropdown-menu-group class="flex items-center gap-2 px-2 py-1.5">
 					<hlm-avatar class="border-border/50 size-8 border">
 						<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 						<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
@@ -57,41 +44,41 @@ import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator } from '@spartan-n
 						<span class="text-foreground text-sm font-medium">Mathilde Lewis</span>
 						<span class="text-muted-foreground text-xs">m.lewis&#64;simui.dev</span>
 					</div>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideUserPen" size="sm" />
 						<span>Profile</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideSettings" size="sm" />
 						<span>Settings</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideShieldCheck" size="sm" />
 						<span>Permissions</span>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideLifeBuoy" size="sm" />
 						<span>Help & Support</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideMessageSquareWarning" size="sm" />
 						<span>Report a Problem</span>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideLogOut" size="sm" />
 						<span>Logout</span>
 					</button>
-				</hlm-menu-group>
-			</hlm-menu>
+				</hlm-dropdown-menu-group>
+			</hlm-dropdown-menu>
 		</ng-template>
 	`,
 })
@@ -108,26 +95,13 @@ import {
 	lucideShieldCheck,
 	lucideUserPen,
 } from '@ng-icons/lucide';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator } from '@spartan-ng/helm/menu';
 @Component({
 	selector: 'sim-dropdown-11',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmMenu,
-		HlmMenuItem,
-		HlmButton,
-		HlmMenuGroup,
-		BrnMenuTrigger,
-		HlmMenuSeparator,
-		HlmAvatar,
-		HlmAvatarImage,
-		HlmAvatarFallback,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmDropdownMenuImports],
 	providers: [
 		provideIcons({
 			lucideCircleUser,
@@ -141,13 +115,13 @@ import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator } from '@spartan-n
 	],
 	template: \`
 		<div class="flex w-full items-center justify-center">
-			<button hlmBtn variant="outline" size="icon" align="center" [brnMenuTriggerFor]="menu">
+			<button hlmBtn variant="outline" size="icon" align="center" [hlmDropdownMenuTrigger]="menu">
 				<ng-icon hlm name="lucideCircleUser" size="sm" />
 			</button>
 		</div>
 		<ng-template #menu>
-			<hlm-menu class="w-50">
-				<hlm-menu-group class="flex items-center gap-2 px-2 py-1.5">
+			<hlm-dropdown-menu class="w-50">
+				<hlm-dropdown-menu-group class="flex items-center gap-2 px-2 py-1.5">
 					<hlm-avatar class="border-border/50 size-8 border">
 						<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 						<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
@@ -156,41 +130,41 @@ import { HlmMenu, HlmMenuGroup, HlmMenuItem, HlmMenuSeparator } from '@spartan-n
 						<span class="text-foreground text-sm font-medium">Mathilde Lewis</span>
 						<span class="text-muted-foreground text-xs">m.lewis&#64;simui.dev</span>
 					</div>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideUserPen" size="sm" />
 						<span>Profile</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideSettings" size="sm" />
 						<span>Settings</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideShieldCheck" size="sm" />
 						<span>Permissions</span>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideLifeBuoy" size="sm" />
 						<span>Help & Support</span>
 					</button>
-					<button hlmMenuItem>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideMessageSquareWarning" size="sm" />
 						<span>Report a Problem</span>
 					</button>
-				</hlm-menu-group>
-				<hlm-menu-separator />
-				<hlm-menu-group>
-					<button hlmMenuItem>
+				</hlm-dropdown-menu-group>
+				<hlm-dropdown-menu-separator />
+				<hlm-dropdown-menu-group>
+					<button hlmDropdownMenuItem>
 						<ng-icon hlm name="lucideLogOut" size="sm" />
 						<span>Logout</span>
 					</button>
-				</hlm-menu-group>
-			</hlm-menu>
+				</hlm-dropdown-menu-group>
+			</hlm-dropdown-menu>
 		</ng-template>
 	\`,
 })

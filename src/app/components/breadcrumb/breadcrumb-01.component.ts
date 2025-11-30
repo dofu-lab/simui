@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import {
 	HlmBreadcrumb,
 	HlmBreadcrumbEllipsis,
@@ -9,7 +8,7 @@ import {
 	HlmBreadcrumbPage,
 	HlmBreadcrumbSeparator,
 } from '@spartan-ng/helm/breadcrumb';
-import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'sim-breadcrumb-01',
@@ -21,9 +20,7 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 		HlmBreadcrumbItem,
 		HlmBreadcrumbPage,
 		HlmBreadcrumbLink,
-		BrnMenuTrigger,
-		HlmMenu,
-		HlmMenuItem,
+		HlmDropdownMenuImports,
 	],
 	template: `
 		<nav hlmBreadcrumb>
@@ -33,19 +30,19 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
-					<hlm-breadcrumb-ellipsis class="h-4 w-4" [brnMenuTriggerFor]="breadcrumbDropdown" />
+					<hlm-breadcrumb-ellipsis class="h-4 w-4" [hlmDropdownMenuTrigger]="breadcrumbDropdown" />
 					<ng-template #breadcrumbDropdown>
-						<hlm-menu class="w">
-							<button hlmMenuItem id="document">
+						<hlm-dropdown-menu class="w">
+							<button hlmDropdownMenuItem id="document">
 								<span>Documentation</span>
 							</button>
-							<button hlmMenuItem id="themes">
+							<button hlmDropdownMenuItem id="themes">
 								<span>Themes</span>
 							</button>
-							<button hlmMenuItem id="github">
+							<button hlmDropdownMenuItem id="github">
 								<span>Github</span>
 							</button>
-						</hlm-menu>
+						</hlm-dropdown-menu>
 					</ng-template>
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>
@@ -63,7 +60,6 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 export class Breadcrumb01Component {}
 
 export const breadcrumb01Code = `import { Component } from '@angular/core';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import {
 	HlmBreadcrumb,
 	HlmBreadcrumbEllipsis,
@@ -73,7 +69,7 @@ import {
 	HlmBreadcrumbPage,
 	HlmBreadcrumbSeparator,
 } from '@spartan-ng/helm/breadcrumb';
-import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'sim-breadcrumb-01',
@@ -85,9 +81,7 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 		HlmBreadcrumbItem,
 		HlmBreadcrumbPage,
 		HlmBreadcrumbLink,
-		BrnMenuTrigger,
-		HlmMenu,
-		HlmMenuItem,
+		HlmDropdownMenuImports,
 	],
 	template: \`
 		<nav hlmBreadcrumb>
@@ -97,19 +91,19 @@ import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
-					<hlm-breadcrumb-ellipsis class="h-4 w-4" [brnMenuTriggerFor]="breadcrumbDropdown" />
+					<hlm-breadcrumb-ellipsis class="h-4 w-4" [hlmDropdownMenuTrigger]="breadcrumbDropdown" />
 					<ng-template #breadcrumbDropdown>
-						<hlm-menu class="w">
-							<button hlmMenuItem id="document">
+						<hlm-dropdown-menu class="w">
+							<button hlmDropdownMenuItem id="document">
 								<span>Documentation</span>
 							</button>
-							<button hlmMenuItem id="themes">
+							<button hlmDropdownMenuItem id="themes">
 								<span>Themes</span>
 							</button>
-							<button hlmMenuItem id="github">
+							<button hlmDropdownMenuItem id="github">
 								<span>Github</span>
 							</button>
-						</hlm-menu>
+						</hlm-dropdown-menu>
 					</ng-template>
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>

@@ -3,10 +3,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub, lucideMoon, lucideSquareMenu, lucideSun } from '@ng-icons/lucide';
 import { remixTwitterXFill } from '@ng-icons/remixicon';
-import { BrnMenuTrigger } from '@spartan-ng/brain/menu';
 import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmMenu, HlmMenuItem } from '@spartan-ng/helm/menu';
 import { REPO_LINK, X_LINK } from './constants';
 import { NavigationService } from './navigation.service';
 import { ThemeService } from './theme.service';
@@ -14,7 +13,7 @@ import { ThemeService } from './theme.service';
 @Component({
 	selector: 'app-header',
 	providers: [provideIcons({ lucideSun, lucideMoon, lucideGithub, lucideSquareMenu, remixTwitterXFill })],
-	imports: [HlmButton, NgIcon, HlmIcon, HlmMenu, HlmMenuItem, BrnMenuTrigger],
+	imports: [HlmButton, NgIcon, HlmIcon, HlmDropdownMenuImports],
 	template: `
 		<header
 			class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 flex w-full items-center justify-center backdrop-blur-lg">
@@ -64,13 +63,13 @@ import { ThemeService } from './theme.service';
 							variant="ghost"
 							type="button"
 							aria-label="Header menu"
-							[brnMenuTriggerFor]="menu">
+							[hlmDropdownMenuTrigger]="menu">
 							<ng-icon hlm name="lucideSquareMenu" class="text-primary" size="sm" />
 						</button>
 						<ng-template #menu>
-							<hlm-menu>
-								<button hlmMenuItem (click)="goToIntroduction()">Introduction</button>
-							</hlm-menu>
+							<hlm-dropdown-menu>
+								<button hlmDropdownMenuItem (click)="goToIntroduction()">Introduction</button>
+							</hlm-dropdown-menu>
 						</ng-template>
 					</nav>
 				</div>

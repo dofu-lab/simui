@@ -1,7 +1,7 @@
-import { HlmIcon } from '@/libs/ui/ui-icon-helm/src';
 import { Component, model } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMoon, lucideSun } from '@ng-icons/lucide';
+import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmSwitch } from '@spartan-ng/helm/switch';
 
 @Component({
