@@ -5,5 +5,4 @@ export type ComponentCardItem = {
 	component: Type<unknown>;
 	colNumber: number;
 	itemStyle: number;
-	code?: string;
 };

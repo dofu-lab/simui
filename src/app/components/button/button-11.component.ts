@@ -16,22 +16,3 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Button11Component {}
-
-export const button11Code = `import { Component } from '@angular/core';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronDown } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-
-@Component({
-	selector: 'sim-button-11',
-	providers: [provideIcons({ lucideChevronDown })],
-	imports: [HlmButton, NgIcon, HlmIcon],
-	template: \`
-		<button hlmBtn size="sm">
-			Options
-			<ng-icon hlm name="lucideChevronDown" size="sm" class="ml-1 opacity-80" />
-		</button>
-	\`,
-})
-export class Button11Component {}`;

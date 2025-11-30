@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EventCalendar01Component, eventCalendarCode01 } from '../components/event-calendar';
+import { EventCalendar01Component } from '../components/event-calendar';
 import { ComponentHeaderComponent, PageGridComponent } from '../core';
 
 @Component({
@@ -15,7 +15,6 @@ export class EventCalendarComponent {
 		{
 			id: 'event-calendar-01',
 			component: EventCalendar01Component,
-			code: eventCalendarCode01,
 			colNumber: 3,
 			itemStyle: 1,
 		},

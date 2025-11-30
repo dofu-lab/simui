@@ -16,22 +16,3 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Checkbox07Component {}
-
-export const checkbox07Code = `import { Component } from '@angular/core';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmLabel } from '@spartan-ng/helm/label';
-
-@Component({
-	selector: 'sim-checkbox-07',
-	imports: [HlmCheckbox, HlmLabel],
-	template: \`
-		<label hlmLabel class="flex items-start gap-2" for="checkbox-remember-me">
-			<hlm-checkbox id="checkbox-remember-me" [checked]="true" />
-			<div class="grid grow gap-2 pt-0.5">
-				<span>Remember me</span>
-				<span class="text-muted-foreground text-xs">Save my login details for next time.</span>
-			</div>
-		</label>
-	\`,
-})
-export class Checkbox07Component {}`;

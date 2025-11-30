@@ -1,5 +1,5 @@
 import { NgComponentOutlet } from '@angular/common';
-import { Component, computed, input, Type } from '@angular/core';
+import { Component, computed, inject, input, Type } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCode } from '@ng-icons/lucide';
 import { BrnSheetImports } from '@spartan-ng/brain/sheet';
@@ -8,6 +8,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmSheetImports } from '@spartan-ng/helm/sheet';
 import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
+import { CodeLoaderService } from './code-loader.service';
 import { CodePreviewComponent } from './code-preview.component';
 
 @Component({
@@ -32,7 +33,7 @@ import { CodePreviewComponent } from './code-preview.component';
 					<h3 hlmSheetTitle>Code</h3>
 				</hlm-sheet-header>
 				<div class="grid flex-1 px-4 pb-4">
-					<code-preview [code]="code()" class="h-full w-full overflow-auto" />
+					<code-preview [code]="displayCode()" class="h-full w-full overflow-auto" />
 				</div>
 			</hlm-sheet-content>
 		</hlm-sheet>
@@ -42,12 +43,18 @@ import { CodePreviewComponent } from './code-preview.component';
 	},
 })
 export class ComponentCardComponent {
+	private codeLoaderService = inject(CodeLoaderService);
+
 	public readonly component = input.required<Type<any> | null>();
 	public readonly componentName = input.required<string>();
 	public readonly code = input<string | undefined>('');
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	public readonly colNumber = input<number>(3);
 	public readonly itemStyle = input<number>();
+
+	protected readonly displayCode = computed(() => {
+		return this.codeLoaderService.getComponentCode(this.componentName());
+	});
 
 	protected styleClasses = computed(() => {
 		return this.itemStyle() === 1

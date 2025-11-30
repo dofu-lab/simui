@@ -1,11 +1,13 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgxSonnerToaster } from 'ngx-sonner';
 import { FooterComponent, HeaderComponent } from './core';
+import { CodeLoaderService } from './core/code-loader.service';
 
 @Component({
 	selector: 'app-root',
 	imports: [RouterOutlet, NgxSonnerToaster, FooterComponent, HeaderComponent],
+	providers: [CodeLoaderService],
 	template: `
 		<div class="overflow-hidden px-4 supports-[overflow:clip]:overflow-clip sm:px-6">
 			<ngx-sonner-toaster />
@@ -17,8 +19,14 @@ import { FooterComponent, HeaderComponent } from './core';
 		</div>
 	`,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 	isNavbarOpen = signal<boolean>(true);
+	private codeLoaderService = inject(CodeLoaderService);
+
+	ngOnInit() {
+		// Initialize the service to preload component data
+		this.codeLoaderService.loadComponentCode('').subscribe();
+	}
 
 	onNavbarChange(isOpen: boolean) {
 		this.isNavbarOpen.set(isOpen);

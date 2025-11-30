@@ -14,8 +14,7 @@ import { ComponentCardItem } from './types';
 							[componentName]="component.id"
 							[colNumber]="component.colNumber"
 							[itemStyle]="component.itemStyle"
-							[component]="component.component"
-							[code]="component.code" />
+							[component]="component.component" />
 					}
 				</div>
 			</div>
