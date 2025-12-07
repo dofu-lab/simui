@@ -25,7 +25,7 @@ import { NavigationService } from '../core/navigation.service';
 				@for (component of components; track component.path) {
 					<div
 						dfCard
-						class="border-input hover:bg-input/20 hover:border-muted-foreground/30 group mx-auto h-[240px] w-full max-w-[300px] cursor-pointer rounded-[18px] border px-1 pt-1 transition duration-100 ease-linear"
+						class="border-input hover:bg-input/20 hover:border-muted-foreground/30 group mx-auto h-fit w-full max-w-[300px] cursor-pointer rounded-[18px] border px-1 pt-1 transition duration-100 ease-linear"
 						(click)="onNavigate(component.path)">
 						<div class="bg-muted relative h-[170px] overflow-hidden rounded-xl border group-hover:shadow-xs">
 							<img
@@ -38,13 +38,13 @@ import { NavigationService } from '../core/navigation.service';
 								[hidden]="this.appearance() !== 'light'" />
 						</div>
 						<div dfCardBody>
-							<div class="text-text-md text-foreground flex items-center gap-2 font-semibold">
+							<div class="text-foreground flex items-center gap-2 text-sm font-medium">
 								{{ component.name }}
 								@if (component.isNew) {
-									<span hlmBadge variant="outline">New</span>
+									<span hlmBadge variant="outline" class="h-5">New</span>
 								}
 							</div>
-							<div class="text-text-sm text-foreground">{{ component.compNumber }} components</div>
+							<div class="text-muted-foreground text-sm">{{ component.compNumber }} components</div>
 						</div>
 					</div>
 				}
