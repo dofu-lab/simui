@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NgxSonnerToaster } from 'ngx-sonner';
 import { FooterComponent, HeaderComponent } from './core';
 import { CodeLoaderService } from './core/code-loader.service';
+import { SeoService } from './core/services/seo.service';
 
 @Component({
 	selector: 'app-root',
@@ -22,8 +23,10 @@ import { CodeLoaderService } from './core/code-loader.service';
 export class AppComponent implements OnInit {
 	isNavbarOpen = signal<boolean>(true);
 	private codeLoaderService = inject(CodeLoaderService);
+	private seoService = inject(SeoService);
 
 	ngOnInit() {
+		this.seoService.init();
 		// Initialize the service to preload component data
 		this.codeLoaderService.loadComponentCode('').subscribe();
 	}
