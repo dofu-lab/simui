@@ -10,6 +10,7 @@ export type DarkMode = (typeof DarkModes)[number];
 
 export const AppThemes = ['default', 'gray', 'red', 'green'] as const;
 export type Theme = (typeof AppThemes)[number];
+export type ColorScheme = 'light' | 'dark' | 'system';
 
 @Injectable({
 	providedIn: 'root',
@@ -19,8 +20,8 @@ export class ThemeService {
 	private readonly _renderer = inject(RendererFactory2).createRenderer(null, null);
 	private readonly _document = inject(DOCUMENT);
 	private readonly _query = inject(MediaMatcher).matchMedia('(prefers-color-scheme: dark)');
-	private readonly _darkMode$ = new ReplaySubject<'light' | 'dark' | 'system'>(1);
-	private readonly _systemDarkMode$ = new ReplaySubject<'light' | 'dark' | 'system'>(1);
+	private readonly _darkMode$ = new ReplaySubject<ColorScheme>(1);
+	private readonly _systemDarkMode$ = new ReplaySubject<ColorScheme>(1);
 	public darkMode$ = this._darkMode$.asObservable();
 
 	private readonly _theme = signal<Theme | undefined>(undefined);

@@ -3,28 +3,18 @@ import { NgClass } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail } from '@ng-icons/lucide';
-import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmPopoverContent } from '@spartan-ng/helm/popover';
+import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-04',
 	providers: [provideIcons({ lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail, lucideCheck })],
-	imports: [
-		NgClass,
-		NgIcon,
-		HlmButton,
-		BrnPopover,
-		BrnPopoverTrigger,
-		BrnPopoverContent,
-		HlmPopoverContent,
-		HlmIcon,
-		HlmInput,
-	],
+	imports: [NgClass, NgIcon, HlmButton, HlmIcon, HlmInput, HlmPopoverImports, BrnPopoverImports],
 	template: `
-		<brn-popover sideOffset="5">
+		<hlm-popover sideOffset="5">
 			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">Share</button>
 			<div hlmPopoverContent class="grid gap-3" *brnPopoverContent="let ctx">
 				<div class="text-center text-sm font-medium">Share code</div>
@@ -78,7 +68,7 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 					</div>
 				</div>
 			</div>
-		</brn-popover>
+		</hlm-popover>
 	`,
 })
 export class Popover04Component {

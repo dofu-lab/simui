@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { previewComponents } from '../constants/home.constant';
-import { NavigationService } from './navigation.service';
+import { NavigationService } from './services/navigation.service';
 
 @Component({
 	selector: 'app-component-badges',

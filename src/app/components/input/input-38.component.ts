@@ -5,11 +5,12 @@ import { MaskitoOptions } from '@maskito/core';
 import { maskitoDateOptionsGenerator } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
-import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmCalendar } from '@spartan-ng/helm/calendar';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { format, isValid, parse } from 'date-fns';
 
 @Component({
@@ -22,14 +23,13 @@ import { format, isValid, parse } from 'date-fns';
 		NgIcon,
 		HlmIcon,
 		HlmCalendar,
-		BrnPopover,
-		BrnPopoverTrigger,
-		BrnPopoverContent,
+		HlmPopoverImports,
+		BrnPopoverImports,
 	],
 	providers: [provideIcons({ lucideCalendar })],
 	host: { class: 'w-full' },
 	template: `
-		<brn-popover sideOffset="5" align="end">
+		<hlm-popover sideOffset="5" align="end">
 			<label hlmLabel for="input-38" class="mb-2 text-sm">Date picker</label>
 			<div class="relative">
 				<input
@@ -50,7 +50,7 @@ import { format, isValid, parse } from 'date-fns';
 			<div class="bg-background flex size-fit" *brnPopoverContent="let ctx">
 				<hlm-calendar [(date)]="selectedDate" (dateChange)="onDateChange($event, ctx)" />
 			</div>
-		</brn-popover>
+		</hlm-popover>
 	`,
 })
 export class Input38Component {

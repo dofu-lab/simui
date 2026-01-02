@@ -5,11 +5,12 @@ import { MaskitoOptions } from '@maskito/core';
 import { maskitoDateRangeOptionsGenerator } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
-import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmCalendarRange } from '@spartan-ng/helm/calendar';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { addDays, format, isValid, parse } from 'date-fns';
 
 type ParsedDate = { startDate: Date | null; endDate: Date | null };
@@ -24,14 +25,13 @@ type ParsedDate = { startDate: Date | null; endDate: Date | null };
 		NgIcon,
 		HlmIcon,
 		HlmCalendarRange,
-		BrnPopover,
-		BrnPopoverTrigger,
-		BrnPopoverContent,
+		HlmPopoverImports,
+		BrnPopoverImports,
 	],
 	providers: [provideIcons({ lucideCalendar })],
 	host: { class: 'w-full' },
 	template: `
-		<brn-popover sideOffset="5" align="end">
+		<hlm-popover sideOffset="5" align="end">
 			<label hlmLabel for="input-39" class="mb-2 text-sm">Date range picker</label>
 			<div class="relative">
 				<input
@@ -55,7 +55,7 @@ type ParsedDate = { startDate: Date | null; endDate: Date | null };
 					[(endDate)]="selectedEndDate"
 					(endDateChange)="onDateRangeChange(ctx)" />
 			</div>
-		</brn-popover>
+		</hlm-popover>
 	`,
 })
 export class Input39Component {

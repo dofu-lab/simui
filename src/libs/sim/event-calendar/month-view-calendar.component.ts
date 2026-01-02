@@ -1,8 +1,8 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DatePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
-import { HlmPopoverContent } from '@spartan-ng/helm/popover';
+import { BrnPopoverImports } from '@spartan-ng/brain/popover';
+import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import {
 	addDays,
 	addMinutes,
@@ -27,13 +27,11 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 		DatePipe,
 		NgClass,
 		EventItemComponent,
-		BrnPopover,
-		BrnPopoverContent,
-		BrnPopoverTrigger,
-		HlmPopoverContent,
 		CdkDrag,
 		CdkDropList,
 		CdkDropListGroup,
+		BrnPopoverImports,
+		HlmPopoverImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
@@ -110,7 +108,7 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 										}
 									}
 									@if (hasMoreEvents(day)) {
-										<brn-popover sideOffset="5">
+										<hlm-popover sideOffset="5">
 											<!-- Todo: Make this configurable -->
 											<!-- class="focus-visible:border-ring focus-visible:ring-ring/50 text-muted-foreground hover:text-foreground hover:bg-muted/50 mt-[var(--event-gap)] flex h-[var(--event-height)] w-full items-center overflow-hidden px-1 text-left text-[10px] backdrop-blur-md transition outline-none select-none focus-visible:ring-[3px] sm:px-2 sm:text-xs"> -->
 											<div class="z-10 px-1" (click)="$event.stopPropagation()">
@@ -135,7 +133,7 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 													}
 												</div>
 											</div>
-										</brn-popover>
+										</hlm-popover>
 									}
 								</div>
 							</div>
@@ -222,7 +220,7 @@ export class MonthViewCalendarComponent {
 					element.hasAttribute('cdkDrag') ||
 					element.hasAttribute('brnPopoverTrigger') ||
 					element.closest('sim-event-item') ||
-					element.closest('brn-popover')
+					element.closest('hlm-popover')
 				) {
 					return;
 				}
