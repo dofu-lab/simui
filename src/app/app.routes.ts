@@ -24,6 +24,7 @@ import {
 	SliderComponent,
 	SwitchComponent,
 	TabsComponent,
+	ThemeEditor,
 } from './pages';
 
 export const routes: Routes = [
@@ -47,6 +48,10 @@ export const routes: Routes = [
 				'Get started with SimUI. Learn how to install and use our Angular UI components, based on Spartan UI and Tailwind CSS.',
 			keywords: 'introduction, getting started, installation, angular, simui, spartan ui, shadcn, ui components',
 		},
+	},
+	{
+		path: 'theme-editor',
+		component: ThemeEditor,
 	},
 	{
 		path: 'components',

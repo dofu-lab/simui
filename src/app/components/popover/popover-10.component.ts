@@ -1,15 +1,15 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmPopoverContent } from '@spartan-ng/helm/popover';
+import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-10',
-	imports: [HlmButton, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent, HlmInput, FormsModule],
+	imports: [HlmButton, HlmInput, FormsModule, HlmPopoverImports, BrnPopoverImports],
 	template: `
-		<brn-popover sideOffset="5" autoFocus="dialog">
+		<hlm-popover sideOffset="5" autoFocus="dialog">
 			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">Command Palette</button>
 
 			<div hlmPopoverContent class="grid w-80 gap-3 p-3" *brnPopoverContent="let ctx">
@@ -32,7 +32,7 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 					<p class="text-muted-foreground text-center text-xs">No commands found.</p>
 				}
 			</div>
-		</brn-popover>
+		</hlm-popover>
 	`,
 })
 export class Popover10Component {

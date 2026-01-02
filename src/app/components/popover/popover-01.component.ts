@@ -2,30 +2,19 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideListFilter } from '@ng-icons/lucide';
-import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmPopoverContent } from '@spartan-ng/helm/popover';
+import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-01',
 	providers: [provideIcons({ lucideListFilter })],
-	imports: [
-		BrnPopover,
-		BrnPopoverContent,
-		BrnPopoverTrigger,
-		FormsModule,
-		HlmButton,
-		HlmCheckbox,
-		HlmIcon,
-		HlmLabel,
-		HlmPopoverContent,
-		NgIcon,
-	],
+	imports: [FormsModule, HlmButton, HlmCheckbox, HlmIcon, HlmLabel, NgIcon, HlmPopoverImports, BrnPopoverImports],
 	template: `
-		<brn-popover sideOffset="5">
+		<hlm-popover sideOffset="5">
 			<button variant="outline" size="icon" class="relative size-9" brnPopoverTrigger hlmBtn>
 				<ng-icon hlm name="lucideListFilter" size="sm" />
 			</button>
@@ -62,7 +51,7 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 					</button>
 				</div>
 			</div>
-		</brn-popover>
+		</hlm-popover>
 	`,
 })
 export class Popover01Component {

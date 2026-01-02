@@ -1,23 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmPopoverContent } from '@spartan-ng/helm/popover';
+import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-08',
-	imports: [
-		HlmButton,
-		BrnPopover,
-		BrnPopoverTrigger,
-		BrnPopoverContent,
-		HlmPopoverContent,
-		HlmAvatar,
-		HlmAvatarImage,
-		HlmAvatarFallback,
-	],
+	imports: [HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmPopoverImports, BrnPopoverImports],
 	template: `
-		<brn-popover sideOffset="5">
+		<hlm-popover sideOffset="5">
 			<button hlmBtn brnPopoverTrigger variant="outline" size="sm" class="pl-3">
 				<div class="flex items-center gap-2">
 					<hlm-avatar class="h-6 w-6 border">
@@ -53,7 +44,7 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 					<button hlmBtn variant="ghost" size="sm">Sign out</button>
 				</div>
 			</div>
-		</brn-popover>
+		</hlm-popover>
 	`,
 })
 export class Popover08Component {

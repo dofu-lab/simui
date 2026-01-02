@@ -1,13 +1,13 @@
 import { Component, signal } from '@angular/core';
-import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmPopoverContent } from '@spartan-ng/helm/popover';
+import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-09',
-	imports: [HlmButton, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent],
+	imports: [HlmButton, HlmPopoverImports, BrnPopoverImports],
 	template: `
-		<brn-popover sideOffset="5">
+		<hlm-popover sideOffset="5">
 			<button
 				hlmBtn
 				variant="outline"
@@ -35,7 +35,7 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 					}
 				</div>
 			</div>
-		</brn-popover>
+		</hlm-popover>
 	`,
 })
 export class Popover09Component {

@@ -8,8 +8,8 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmSheetImports } from '@spartan-ng/helm/sheet';
 import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
-import { CodeLoaderService } from './code-loader.service';
 import { CodePreviewComponent } from './code-preview.component';
+import { CodeLoaderService } from './services/code-loader.service';
 
 @Component({
 	selector: 'component-card',

@@ -7,8 +7,8 @@ import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { REPO_LINK, X_LINK } from './constants';
-import { NavigationService } from './navigation.service';
-import { ThemeService } from './theme.service';
+import { NavigationService } from './services/navigation.service';
+import { ThemeService } from './services/theme.service';
 
 @Component({
 	selector: 'app-header',
@@ -29,11 +29,16 @@ import { ThemeService } from './theme.service';
 					</a>
 					<a
 						class="text-foreground relative mr-6 hidden cursor-pointer items-center gap-0.5 space-x-2 text-sm hover:underline sm:inline-flex"
-						(click)="goToIntroduction()">
-						Introduction
+						(click)="goToThemeEditor()">
+						Theme
 					</a>
 				</div>
 				<div class="flex items-center justify-between gap-2 md:justify-end">
+					<a
+						class="text-foreground relative mr-6 hidden cursor-pointer items-center gap-0.5 space-x-2 text-sm hover:underline sm:inline-flex"
+						(click)="goToIntroduction()">
+						About
+					</a>
 					<nav class="flex items-center gap-1">
 						<button hlmBtn size="icon" variant="ghost" type="button" (click)="openX()">
 							<ng-icon hlm name="remixTwitterXFill" class="text-primary" size="sm" />
@@ -83,20 +88,24 @@ export class HeaderComponent {
 	private _darkMode = toSignal(this._themeService.darkMode$);
 	protected themeIcon = computed(() => (this._darkMode() === 'light' ? 'lucideSun' : 'lucideMoon'));
 
-	onChangeTheme() {
+	protected onChangeTheme(): void {
 		const newTheme = this._darkMode() === 'light' ? 'dark' : 'light';
 		this._themeService.setDarkMode(newTheme);
 	}
 
-	openGithub() {
+	protected openGithub(): void {
 		window.open(REPO_LINK, '_blank');
 	}
 
-	openX() {
+	protected openX(): void {
 		window.open(X_LINK, '_blank');
 	}
 
-	goToIntroduction() {
+	protected goToIntroduction(): void {
 		this._navigation.navigateTo('introduction');
+	}
+
+	protected goToThemeEditor(): void {
+		this._navigation.navigateTo('theme-editor');
 	}
 }

@@ -1,17 +1,17 @@
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowLeft, lucideArrowRight } from '@ng-icons/lucide';
-import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmPopoverContent } from '@spartan-ng/helm/popover';
+import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-11',
-	imports: [NgIcon, HlmIcon, HlmButton, BrnPopover, BrnPopoverTrigger, BrnPopoverContent, HlmPopoverContent],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmPopoverImports, BrnAccordionImports],
 	providers: [provideIcons({ lucideArrowLeft, lucideArrowRight })],
 	template: `
-		<brn-popover sideOffset="5">
+		<hlm-popover sideOffset="5">
 			<button variant="outline" brnPopoverTrigger hlmBtn>Tooltip-like with nav</button>
 			<div hlmPopoverContent class="grid gap-1" *brnPopoverContent="let ctx">
 				<div class="text-sm font-medium">
@@ -46,7 +46,7 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 					</div>
 				</div>
 			</div>
-		</brn-popover>
+		</hlm-popover>
 	`,
 })
 export class Popover11Component {

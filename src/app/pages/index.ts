@@ -22,3 +22,4 @@ export * from './radio.component';
 export * from './slider.component';
 export * from './switch.component';
 export * from './tabs.component';
+export * from './theme-editor';

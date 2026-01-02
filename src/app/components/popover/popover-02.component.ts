@@ -1,18 +1,18 @@
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell } from '@ng-icons/lucide';
-import { BrnPopover, BrnPopoverContent, BrnPopoverTrigger } from '@spartan-ng/brain/popover';
+import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmPopoverContent } from '@spartan-ng/helm/popover';
+import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-02',
 	providers: [provideIcons({ lucideBell })],
-	imports: [BrnPopover, BrnPopoverContent, BrnPopoverTrigger, HlmBadge, HlmButton, HlmIcon, HlmPopoverContent, NgIcon],
+	imports: [HlmBadge, HlmButton, HlmIcon, NgIcon, HlmPopoverImports, BrnPopoverImports],
 	template: `
-		<brn-popover sideOffset="5">
+		<hlm-popover sideOffset="5">
 			<button variant="outline" size="icon" class="relative size-9" brnPopoverTrigger hlmBtn>
 				<ng-icon hlm name="lucideBell" size="sm" />
 				@if (unreadCount() > 0) {
@@ -57,7 +57,7 @@ import { HlmPopoverContent } from '@spartan-ng/helm/popover';
 					}
 				</ul>
 			</div>
-		</brn-popover>
+		</hlm-popover>
 	`,
 })
 export class Popover02Component {
