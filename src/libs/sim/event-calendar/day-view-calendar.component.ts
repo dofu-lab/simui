@@ -267,7 +267,7 @@ export class DayViewCalendarComponent {
 					element.hasAttribute('cdkDrag') ||
 					element.hasAttribute('brnPopoverTrigger') ||
 					element.closest('sim-event-item') ||
-					element.closest('brn-popover')
+					element.closest('hlm-popover')
 				) {
 					return;
 				}

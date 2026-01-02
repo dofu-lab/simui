@@ -25,7 +25,7 @@ declare const Prism: typeof import('prismjs');
 	providers: [provideIcons({ lucideClipboard, lucideCheck })],
 	host: {
 		class:
-			'spartan-scroll relative block font-mono rounded-md text-sm text-black dark:text-white bg-[#f8f8f8] dark:bg-zinc-900',
+			'spartan-scroll relative block font-mono rounded-md text-sm text-black dark:text-white bg-[#f8f8f8] dark:bg-zinc-900 h-full',
 	},
 	template: `
 		@if (fileName()) {
@@ -52,12 +52,12 @@ declare const Prism: typeof import('prismjs');
 			</div>
 		}
 		@if (!_disableCopy) {
-			<button (click)="copyToClipBoard()" hlmBtn variant="ghost" class="absolute top-1.5 right-2 h-6 w-6">
+			<button (click)="copyToClipBoard()" hlmBtn variant="ghost" class="absolute top-1.5 right-2 z-10 h-6 w-6">
 				<ng-icon hlm size="xs" [name]="_copied ? 'lucideCheck' : 'lucideClipboard'" />
 			</button>
 		}
-		<div class="max-h-[90vh] w-full overflow-auto p-4 whitespace-nowrap">
-			<div class="h-full max-w-full" [innerHTML]="_content"></div>
+		<div class="relative h-full min-h-0 grow overflow-auto p-4 whitespace-nowrap">
+			<div class="absolute min-h-0 max-w-full" [innerHTML]="_content"></div>
 		</div>
 	`,
 	styles: [
@@ -128,11 +128,9 @@ export class CodePreviewComponent {
 	@Input()
 	public set code(value: string | null | undefined) {
 		this._code = value;
-		(this._language === 'sh'
-			? this._marked.parse(value?.trim() ?? '')
-			: // eslint-disable-next-line @typescript-eslint/no-explicit-any
-				(this._marked.parse(`\`\`\`typescript\n${value?.trim() ?? ''}\n\`\`\``) as any)
-		).then((content: string) => {
+		const codeBlock =
+			this._language === 'sh' ? (value?.trim() ?? '') : `\`\`\`${this._language}\n${value?.trim() ?? ''}\n\`\`\``;
+		(this._marked.parse(codeBlock) as Promise<string>).then((content: string) => {
 			this._content = content;
 		});
 	}
