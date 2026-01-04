@@ -1,5 +1,3 @@
-import { ColorScheme } from '../core';
-
 export interface ThemeStyleProps {
 	background: string;
 	foreground: string;
@@ -81,6 +79,7 @@ export type ThemePreset = {
 };
 
 export type ColorType = 'hex' | 'hsl' | 'rgb' | 'oklch';
+export type ColorScheme = 'light' | 'dark' | 'system';
 
 export type ColorTypeItem = {
 	label: string;

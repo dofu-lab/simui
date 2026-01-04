@@ -1,10 +1,9 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgxSonnerToaster } from 'ngx-sonner';
-import { HeaderComponent } from './core';
+import { HeaderComponent, ThemeService } from './core';
 import { CodeLoaderService } from './core/services/code-loader.service';
 import { SeoService } from './core/services/seo.service';
-import { ThemeInjectorService } from './core/services/theme-injector.service';
 
 @Component({
 	selector: 'app-root',
@@ -22,7 +21,7 @@ export class AppComponent implements OnInit {
 	isNavbarOpen = signal<boolean>(true);
 	private codeLoaderService = inject(CodeLoaderService);
 	private seoService = inject(SeoService);
-	private themeInjectorService = inject(ThemeInjectorService);
+	private themeInjectorService = inject(ThemeService);
 
 	ngOnInit() {
 		this.seoService.init();

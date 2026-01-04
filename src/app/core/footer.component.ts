@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 	template: `
 		<footer
 			class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 mx-auto mt-16 flex w-full max-w-[1200px] items-center justify-between py-8 backdrop-blur-lg">
-			<div class="text-muted-foreground text-sm">© 2025 Sim UI</div>
+			<div class="text-muted-foreground text-sm">© {{ currentYear }} Sim UI</div>
 			<div class="text-muted-foreground text-sm">
 				A project by
 				<a
@@ -19,4 +19,6 @@ import { Component } from '@angular/core';
 		</footer>
 	`,
 })
-export class FooterComponent {}
+export class FooterComponent {
+	currentYear = new Date().getFullYear();
+}

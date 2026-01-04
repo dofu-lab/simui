@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { previewComponents } from '../constants/home.constant';
 import { FooterComponent, ThemeService } from '../core';
@@ -13,7 +12,7 @@ import { NavigationService } from '../core/services/navigation.service';
 	template: `
 		<div class="relative mx-auto w-full max-w-6xl">
 			<div class="flex-1 items-start">
-				<div class="max-w-3xl pt-15 max-sm:text-center">
+				<div class="max-w-3xl pt-10 max-sm:text-center">
 					<h1 class="font-heading text-foreground mb-4 text-4xl/[1.1] font-bold tracking-tight md:text-5xl/[1.1]">
 						Beautiful Angular UI components built with Tailwind CSS and Spartan.
 					</h1>
@@ -58,7 +57,7 @@ import { NavigationService } from '../core/services/navigation.service';
 export class HomeComponent {
 	components = previewComponents;
 	_themeService = inject(ThemeService);
-	appearance = toSignal(this._themeService.darkMode$);
+	appearance = this._themeService.appearance;
 	navigationService = inject(NavigationService);
 
 	onNavigate(path: string) {

@@ -11,7 +11,9 @@ import { ComponentBadgesComponent } from './component-badges.component';
 				{{ description() }}
 			</div>
 		</div>
-		<app-component-badges />
+		@if (name() != 'Introduction') {
+			<app-component-badges />
+		}
 	`,
 })
 export class ComponentHeaderComponent {
