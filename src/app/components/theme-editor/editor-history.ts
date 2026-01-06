@@ -1,4 +1,3 @@
-import { ThemeService } from '@/app/core/services';
 import { ThemeStorageService } from '@/app/core/services/theme-storage.service';
 import { HistoryDatePipe } from '@/app/pipes/history-date.pipe';
 import { ThemeHistory, ThemePreset } from '@/app/types';
@@ -54,21 +53,13 @@ import { PresetColorPreview } from './preset-color-preview';
 					@for (history of historyList(); track history.timestamp) {
 						<div class="hover:bg-muted/50 flex items-center justify-between gap-2 rounded-md p-2">
 							<div class="grid items-center gap-1">
-								<div class="flex items-center gap-2">
-									<p class="text-muted-foreground text-xs">
-										{{ history.timestamp | historyDate }}
-									</p>
-									<span hlmBadge variant="outline" class="rounded-full">
-										@if (history.values?.colorScheme === 'light') {
-											Light
-										}
-										@if (history.values?.colorScheme === 'dark') {
-											Dark
-										}
-									</span>
-								</div>
-								@switch (history.values?.targetKey) {
-									@case ('selector') {
+								@switch (history.action) {
+									@case ('APPLY') {
+										<div class="flex items-center gap-2">
+											<p class="text-muted-foreground text-xs">
+												{{ history.timestamp | historyDate }}
+											</p>
+										</div>
 										<p class="text-sm">Select new preset</p>
 										<div class="text-muted-foreground flex items-center gap-2 text-sm font-normal">
 											<sim-theme-color-preview [preset]="getTheme(history.values?.oldValue)" />
@@ -76,7 +67,31 @@ import { PresetColorPreview } from './preset-color-preview';
 											<sim-theme-color-preview [preset]="getTheme(history.values?.newValue)" />
 										</div>
 									}
+									@case ('SAVE_THEME') {
+										<div class="flex items-center gap-2">
+											<p class="text-muted-foreground text-xs">
+												{{ history.timestamp | historyDate }}
+											</p>
+										</div>
+										<p class="text-sm">Save new theme preset:</p>
+										<div class="text-muted-foreground flex items-center gap-2 text-sm font-normal">
+											<sim-theme-color-preview [preset]="getTheme(history.preset.id)" />
+										</div>
+									}
 									@default {
+										<div class="flex items-center gap-2">
+											<p class="text-muted-foreground text-xs">
+												{{ history.timestamp | historyDate }}
+											</p>
+											<span hlmBadge variant="outline" class="rounded-full">
+												@if (history.values?.colorScheme === 'light') {
+													Light
+												}
+												@if (history.values?.colorScheme === 'dark') {
+													Dark
+												}
+											</span>
+										</div>
 										<p class="text-sm">
 											Change
 											<span class="font-bold">
@@ -115,23 +130,22 @@ import { PresetColorPreview } from './preset-color-preview';
 	`,
 })
 export class EditorHistory {
-	private _themeInjector = inject(ThemeService);
-	private _themeStorage = inject(ThemeStorageService);
+	private readonly themeStorageService = inject(ThemeStorageService);
 
-	protected appearance = computed(() => this._themeInjector.appearance());
-	protected historyList = computed(() =>
-		this._themeInjector
+	protected readonly appearance = computed(() => this.themeStorageService.appearance());
+	protected readonly historyList = computed(() =>
+		this.themeStorageService
 			.history()
 			.filter((h) => h.values)
 			.reverse(),
 	);
 
 	public onRevert(history: ThemeHistory): void {
-		this._themeInjector.restore(history);
+		this.themeStorageService.restore(history);
 	}
 
 	public getTheme(themeId?: string): ThemePreset | undefined {
-		return this._themeStorage.themes().find((t) => t.id === themeId);
+		return this.themeStorageService.themePresets().find((t) => t.id === themeId);
 	}
 
 	public getLabel(key?: string): string {

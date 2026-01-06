@@ -33,24 +33,24 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 
 					<div hlmFieldGroup>
 						<div hlmField>
-							<label hlmFieldLabel for="field-preview-name-on-card">Name on card</label>
-							<input hlmInput placeholder="John Doe" id="field-preview-name-on-card" />
+							<label hlmFieldLabel [for]="uniqueId('name-on-card')">Name on card</label>
+							<input hlmInput placeholder="John Doe" [id]="uniqueId('name-on-card')" />
 						</div>
 						<div class="grid grid-cols-3 gap-4">
 							<div hlmField class="col-span-2">
-								<label hlmFieldLabel for="field-preview-card-number">Card number</label>
-								<input hlmInput placeholder="1234 1234 1234 1234" id="field-preview-card-number" />
+								<label hlmFieldLabel [for]="uniqueId('card-number')">Card number</label>
+								<input hlmInput placeholder="1234 1234 1234 1234" [id]="uniqueId('card-number')" />
 								<p hlmFieldDescription>Enter your 16-digit card number.</p>
 							</div>
 							<div hlmField>
-								<label hlmFieldLabel for="field-preview-cvv">CVV</label>
-								<input hlmInput placeholder="123" id="field-preview-cvv" />
+								<label hlmFieldLabel [for]="uniqueId('cvv')">CVV</label>
+								<input hlmInput placeholder="123" [id]="uniqueId('cvv')" />
 							</div>
 						</div>
 						<div class="grid grid-cols-2 gap-4">
 							<div hlmField>
-								<label hlmFieldLabel for="field-exp-month--trigger">Month</label>
-								<brn-select id="field-exp-month" class="inline-block" placeholder="MM">
+								<label hlmFieldLabel [for]="uniqueId('exp-month--trigger')">Month</label>
+								<brn-select [id]="uniqueId('exp-month')" class="inline-block" placeholder="MM">
 									<hlm-select-trigger class="w-full">
 										<hlm-select-value />
 									</hlm-select-trigger>
@@ -71,8 +71,8 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 								</brn-select>
 							</div>
 							<div hlmField>
-								<label hlmFieldLabel for="field-exp-year--trigger">Year</label>
-								<brn-select id="field-exp-year" class="inline-block" placeholder="YYYY">
+								<label hlmFieldLabel [for]="uniqueId('exp-year--trigger')">Year</label>
+								<brn-select [id]="uniqueId('exp-year')" class="inline-block" placeholder="YYYY">
 									<hlm-select-trigger class="w-full">
 										<hlm-select-value />
 									</hlm-select-trigger>
@@ -95,16 +95,16 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 					<p hlmFieldDescription>The billing address associated with your payment method</p>
 					<div hlmFieldGroup>
 						<div hlmField orientation="horizontal">
-							<hlm-checkbox id="field-preview-billing-address" [checked]="true" />
-							<label hlmFieldLabel for="field-preview-billing-address">Same as shipping address.</label>
+							<hlm-checkbox [id]="uniqueId('billing-address')" [checked]="true" />
+							<label hlmFieldLabel [for]="uniqueId('billing-address')">Same as shipping address.</label>
 						</div>
 					</div>
 				</fieldset>
 				<fieldset hlmFieldSet>
 					<div hlmFieldGroup>
 						<div hlmField>
-							<label hlmFieldLabel for="field-preview-comments">Comments</label>
-							<textarea hlmTextarea id="field-preview-comments"></textarea>
+							<label hlmFieldLabel [for]="uniqueId('comments')">Comments</label>
+							<textarea hlmTextarea [id]="uniqueId('comments')"></textarea>
 						</div>
 					</div>
 				</fieldset>
@@ -114,22 +114,24 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 					<p hlmFieldDescription>Yearly and lifetime plans offer significant savings.</p>
 					<hlm-radio-group value="monthly">
 						<div hlmField orientation="horizontal">
-							<hlm-radio value="monthly" id="plan-monthly">
+							<hlm-radio value="monthly" [id]="uniqueId('plan-monthly')">
 								<hlm-radio-indicator indicator />
 							</hlm-radio>
-							<label hlmFieldLabel for="plan-monthly" class="font-normal">Monthly ($9.99/month)</label>
+							<label hlmFieldLabel [for]="uniqueId('plan-monthly')" class="font-normal">Monthly ($9.99/month)</label>
 						</div>
 						<div hlmField orientation="horizontal">
-							<hlm-radio value="yearly" id="plan-yearly">
+							<hlm-radio value="yearly" [id]="uniqueId('plan-yearly')">
 								<hlm-radio-indicator indicator />
 							</hlm-radio>
-							<label hlmFieldLabel for="plan-yearly" class="font-normal">Yearly ($99.99/year)</label>
+							<label hlmFieldLabel [for]="uniqueId('plan-yearly')" class="font-normal">Yearly ($99.99/year)</label>
 						</div>
 						<div hlmField orientation="horizontal">
-							<hlm-radio value="lifetime" id="plan-lifetime">
+							<hlm-radio value="lifetime" [id]="uniqueId('plan-lifetime')">
 								<hlm-radio-indicator indicator />
 							</hlm-radio>
-							<label hlmFieldLabel for="plan-lifetime" class="font-normal">Lifetime ($299.99/lifetime)</label>
+							<label hlmFieldLabel [for]="uniqueId('plan-lifetime')" class="font-normal">
+								Lifetime ($299.99/lifetime)
+							</label>
 						</div>
 					</hlm-radio-group>
 				</fieldset>
@@ -139,8 +141,8 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 					<p hlmFieldDescription>Save your payment method for faster checkout and easier management.</p>
 					<div hlmFieldGroup data-slot="checkbox-group">
 						<div hlmField orientation="horizontal">
-							<hlm-checkbox id="field-group-save-payment-method" [checked]="true" />
-							<label hlmFieldLabel for="field-group-save-payment-method" class="font-normal">
+							<hlm-checkbox [id]="uniqueId('save-payment-method')" [checked]="true" />
+							<label hlmFieldLabel [for]="uniqueId('save-payment-method')" class="font-normal">
 								Allow website to save my payment method
 							</label>
 						</div>
@@ -155,4 +157,10 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 		</form>
 	`,
 })
-export class FieldDemo {}
+export class FieldDemo {
+	private instanceId = Math.random().toString(36).substring(2, 9);
+
+	protected uniqueId(suffix: string): string {
+		return `field-${this.instanceId}-${suffix}`;
+	}
+}

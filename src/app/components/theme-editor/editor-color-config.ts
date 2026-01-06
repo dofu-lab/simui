@@ -1,4 +1,4 @@
-import { ThemeService } from '@/app/core';
+import { ThemeStorageService } from '@/app/core/services';
 import { ThemeStyleProps } from '@/app/types';
 import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -307,10 +307,10 @@ import { EditorColorPicker } from './editor-color-picker';
 	`,
 })
 export class EditorColorConfig {
-	private _themeInjector = inject(ThemeService);
-	protected currentPresetStyles = this._themeInjector.currentPresetStyles;
+	private readonly themeStorageService = inject(ThemeStorageService);
+	protected readonly currentPresetStyles = this.themeStorageService.currentThemeStyles;
 
 	protected updateColor(colorKey: keyof ThemeStyleProps, color: string) {
-		this._themeInjector.updateColor(colorKey, color);
+		this.themeStorageService.changeColor(colorKey, color);
 	}
 }

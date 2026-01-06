@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { previewComponents } from '../constants/home.constant';
-import { FooterComponent, ThemeService } from '../core';
+import { FooterComponent } from '../core';
 import { CardBodyDirective, CardDirective } from '../core/card';
-import { NavigationService } from '../core/services/navigation.service';
+import { NavigationService, ThemeStorageService } from '../core/services';
 
 @Component({
 	selector: 'app-home',
@@ -55,12 +55,13 @@ import { NavigationService } from '../core/services/navigation.service';
 	`,
 })
 export class HomeComponent {
-	components = previewComponents;
-	_themeService = inject(ThemeService);
-	appearance = this._themeService.appearance;
-	navigationService = inject(NavigationService);
+	private readonly themeStorageService = inject(ThemeStorageService);
+	private readonly navigationService = inject(NavigationService);
 
-	onNavigate(path: string) {
+	protected readonly appearance = this.themeStorageService.appearance.asReadonly();
+	protected readonly components = previewComponents;
+
+	public onNavigate(path: string): void {
 		this.navigationService.navigateTo(path);
 	}
 }

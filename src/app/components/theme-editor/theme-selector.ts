@@ -1,4 +1,3 @@
-import { ThemeService } from '@/app/core';
 import { ThemeStorageService } from '@/app/core/services/theme-storage.service';
 import { ThemePreset } from '@/app/types';
 import { Component, computed, inject, signal } from '@angular/core';
@@ -21,7 +20,7 @@ import { HlmSeparator } from '@spartan-ng/helm/separator';
 	template: `
 		<hlm-popover sideOffset="5" align="start">
 			<button hlmPopoverTrigger hlmBtn variant="outline" class="w-full max-w-100 justify-between border">
-				<span class="flex-1 truncate text-left">{{ currentPreset()?.label ?? 'Select a theme' }}</span>
+				<span class="flex-1 truncate text-left">{{ currentPreset().label ?? 'Select a theme' }}</span>
 				<ng-icon hlm name="lucideChevronDown" size="sm" />
 			</button>
 			<div hlmPopoverContent class="grid w-80 p-0" *brnPopoverContent="let ctx">
@@ -50,7 +49,7 @@ import { HlmSeparator } from '@spartan-ng/helm/separator';
 								(keydown)="$event.stopPropagation()">
 								<span class="flex items-center justify-between text-sm">
 									<span class="flex-1 truncate text-left">{{ preset.label }}</span>
-									@if (preset.id === currentPreset()?.id) {
+									@if (preset.id === currentPreset().id) {
 										<ng-icon hlm name="lucideCheck" size="sm" />
 									}
 								</span>
@@ -69,7 +68,7 @@ import { HlmSeparator } from '@spartan-ng/helm/separator';
 							(keydown)="$event.stopPropagation()">
 							<span class="flex items-center justify-between text-sm">
 								<span class="flex-1 truncate text-left">{{ preset.label }}</span>
-								@if (preset.id === currentPreset()?.id) {
+								@if (preset.id === currentPreset().id) {
 									<ng-icon hlm name="lucideCheck" size="sm" />
 								}
 							</span>
@@ -83,10 +82,10 @@ import { HlmSeparator } from '@spartan-ng/helm/separator';
 	`,
 })
 export class ThemeSelector {
-	private _themeInjector = inject(ThemeService);
-	private _themeStorage = inject(ThemeStorageService);
+	private readonly themeStorageService = inject(ThemeStorageService);
 
-	protected themes = this._themeStorage.themes;
+	protected readonly themes = this.themeStorageService.themePresets;
+	protected readonly currentPreset = this.themeStorageService.currentTheme;
 
 	protected searchQuery = signal('');
 
@@ -101,8 +100,6 @@ export class ThemeSelector {
 		this.filteredPresets().filter((preset) => preset.source === 'BUILT_IN'),
 	);
 
-	protected currentPreset = this._themeInjector.currentPreset;
-
 	protected onSearch(event: Event): void {
 		const input = event.target as HTMLInputElement;
 		this.searchQuery.set(input.value);
@@ -110,7 +107,7 @@ export class ThemeSelector {
 
 	protected onPresetSelect(preset: ThemePreset) {
 		if (preset.id !== this.currentPreset()?.id) {
-			this._themeInjector.setPreset(preset);
+			this.themeStorageService.selectTheme(preset);
 		}
 	}
 }

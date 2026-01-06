@@ -1,4 +1,3 @@
-import { ThemeService } from '@/app/core/services';
 import { ThemeStorageService } from '@/app/core/services/theme-storage.service';
 import { ThemePreset } from '@/app/types';
 import { Component, computed, inject } from '@angular/core';
@@ -61,10 +60,9 @@ import { HlmInput } from '@spartan-ng/helm/input';
 	`,
 })
 export class SaveTheme {
-	private _themeStorage = inject(ThemeStorageService);
-	private _themeInjector = inject(ThemeService);
+	private themeStorageService = inject(ThemeStorageService);
 
-	protected isUnsaved = computed(() => this._themeInjector.currentPreset()?.source === 'UNSAVED');
+	protected isUnsaved = computed(() => this.themeStorageService.currentTheme()?.source === 'UNSAVED');
 	protected name = new FormControl('', { validators: [Validators.required], nonNullable: true });
 
 	protected onDialogStateChange(state: 'open' | 'closed') {
@@ -74,12 +72,12 @@ export class SaveTheme {
 	}
 
 	protected onSave(ctx: any): void {
-		const currentTheme = this._themeInjector.currentPreset();
+		const currentTheme = this.themeStorageService.currentTheme();
 		if (!currentTheme) {
 			return;
 		}
 
-		const isNameExisted = this._themeStorage.themes().some((t) => t.label === this.name.value);
+		const isNameExisted = this.themeStorageService.themePresets().some((t) => t.label === this.name.value);
 
 		if (isNameExisted) {
 			this.name.setErrors({ nameExisted: true });
@@ -91,8 +89,7 @@ export class SaveTheme {
 			label: this.name.value,
 			source: 'SAVED',
 		};
-		this._themeStorage.updateTheme(savedTheme);
-		this._themeInjector.setPreset(savedTheme);
+		this.themeStorageService.updateTheme(savedTheme, 'SAVE_THEME');
 		ctx.close();
 	}
 }

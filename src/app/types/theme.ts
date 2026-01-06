@@ -79,7 +79,8 @@ export type ThemePreset = {
 };
 
 export type ColorType = 'hex' | 'hsl' | 'rgb' | 'oklch';
-export type ColorScheme = 'light' | 'dark' | 'system';
+export type ColorScheme = 'light' | 'dark';
+export type HistoryAction = 'APPLY' | 'CHANGE_COLOR' | 'RESET' | 'UPDATE_THEME' | 'SAVE_THEME';
 
 export type ColorTypeItem = {
 	label: string;
@@ -97,4 +98,5 @@ export type ThemeHistory = {
 	preset: ThemePreset;
 	values?: HistoryValue;
 	timestamp: number;
+	action: HistoryAction;
 };

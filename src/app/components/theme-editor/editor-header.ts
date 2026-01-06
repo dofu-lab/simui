@@ -1,4 +1,4 @@
-import { ThemeService } from '@/app/core/services';
+import { ThemeStorageService } from '@/app/core/services';
 import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -46,18 +46,18 @@ import { ThemeCodeSheet } from './view-code-dialog';
 	`,
 })
 export class EditorHeader {
-	private _themeInjector = inject(ThemeService);
+	private readonly themeStorageService = inject(ThemeStorageService);
 
-	protected history = this._themeInjector.history;
-	protected currentPreset = this._themeInjector.currentPreset;
-	protected disabledUndo = computed(() => this.history().length <= 1);
-	protected disabledReset = computed(() => this.history().length <= 1);
+	protected readonly history = this.themeStorageService.history;
+	protected readonly currentPreset = this.themeStorageService.currentTheme;
+	protected readonly disabledUndo = computed(() => this.history().length <= 1);
+	protected readonly disabledReset = computed(() => this.history().length <= 1);
 
 	protected undo(): void {
-		this._themeInjector.undo();
+		this.themeStorageService.undoHistoryEntry();
 	}
 
 	protected reset(): void {
-		this._themeInjector.reset();
+		this.themeStorageService.reset();
 	}
 }

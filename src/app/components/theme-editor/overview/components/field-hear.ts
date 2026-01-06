@@ -26,7 +26,7 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 											class="gap-1.5 overflow-hidden px-3! py-1.5! transition-all duration-100 ease-linear group-has-data-[state=checked]/field-label:px-2!">
 											<hlm-checkbox
 												class="-ml-6 -translate-x-1 rounded-full! transition-all duration-100 ease-linear data-[state=checked]:ml-0 data-[state=checked]:translate-x-0"
-												[id]="option.value"
+												[id]="uniqueId(option.value)"
 												[checked]="option.value === 'social-media'" />
 											<div hlmFieldTitle>{{ option.label }}</div>
 										</div>
@@ -41,6 +41,12 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 	`,
 })
 export class FieldHear {
+	private instanceId = Math.random().toString(36).substring(2, 9);
+
+	protected uniqueId(suffix: string): string {
+		return `${suffix}-${this.instanceId}`;
+	}
+
 	protected _options = [
 		{
 			label: 'Social Media',

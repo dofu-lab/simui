@@ -7,8 +7,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { REPO_LINK, X_LINK } from './constants';
-
-import { ThemeService } from './services/theme.service';
+import { ThemeStorageService } from './services';
 
 @Component({
 	selector: 'app-header',
@@ -96,7 +95,7 @@ import { ThemeService } from './services/theme.service';
 	`,
 })
 export class HeaderComponent {
-	private readonly _themeService = inject(ThemeService);
+	private readonly _themeService = inject(ThemeStorageService);
 	private readonly appearance = this._themeService.appearance;
 	protected readonly themeIcon = computed(() => (this.appearance() === 'light' ? 'lucideSun' : 'lucideMoon'));
 

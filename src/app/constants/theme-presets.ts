@@ -1,6 +1,9 @@
 import { ThemePreset } from '../types';
 
-export const defaultPreset: ThemePreset = {
+export const MAX_HISTORY_SIZE = 50;
+export const HISTORY_CLEANUP_THRESHOLD = 45;
+
+export const DEFAULT_PRESET: ThemePreset = {
 	label: 'Default',
 	id: 'styles',
 	source: 'BUILT_IN',
@@ -102,8 +105,8 @@ export const defaultPreset: ThemePreset = {
 	},
 };
 
-export const builtInPresets: ThemePreset[] = [
-	defaultPreset,
+export const BUILT_IN_PRESETS: ThemePreset[] = [
+	DEFAULT_PRESET,
 	{
 		id: 'modern-minimal',
 		label: 'Modern Minimal',
