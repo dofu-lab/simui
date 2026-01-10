@@ -4,13 +4,22 @@ import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import { STORAGE_KEYS } from '../../constants/storage-keys';
 import { LocalStorageService } from '../../core/services/local-storage.service';
 import { AuthenticationExample } from './authentication/authentication';
+import { ColorPalettes } from './color-palettes';
 import { OverviewExample } from './overview/overview';
 import { PlaygroundExample } from './playground/playground';
 import { TasksExample } from './tasks/tasks';
 
 @Component({
 	selector: 'app-editor-preview',
-	imports: [HlmTabsImports, RouterLink, OverviewExample, PlaygroundExample, AuthenticationExample, TasksExample],
+	imports: [
+		HlmTabsImports,
+		RouterLink,
+		OverviewExample,
+		PlaygroundExample,
+		AuthenticationExample,
+		TasksExample,
+		ColorPalettes,
+	],
 	template: `
 		<hlm-tabs [tab]="tab()" class="size-full px-4 pt-2 pb-4">
 			<hlm-tabs-list
@@ -20,6 +29,7 @@ import { TasksExample } from './tasks/tasks';
 				<a hlmTabsTrigger="tasks" routerLink="." fragment="tasks">Tasks</a>
 				<a hlmTabsTrigger="playground" routerLink="." fragment="playground">Playground</a>
 				<a hlmTabsTrigger="authentication" routerLink="." fragment="authentication">Authentication</a>
+				<a hlmTabsTrigger="colors" routerLink="." fragment="colors">Colors</a>
 			</hlm-tabs-list>
 			<div class="relative h-full w-full overflow-auto rounded-xl border">
 				<div class="absolute w-full">
@@ -29,7 +39,6 @@ import { TasksExample } from './tasks/tasks';
 						}
 					</div>
 				</div>
-
 				<div hlmTabsContent="tasks" class="absolute mt-0 size-full p-4">
 					<app-tasks-example />
 				</div>
@@ -38,6 +47,11 @@ import { TasksExample } from './tasks/tasks';
 				</div>
 				<div hlmTabsContent="authentication" class="mt-0 size-full p-4">
 					<app-authentication-example />
+				</div>
+				<div class="absolute w-full">
+					<div hlmTabsContent="colors" class="mt-0 size-full p-4">
+						<sim-color-palettes />
+					</div>
 				</div>
 			</div>
 		</hlm-tabs>

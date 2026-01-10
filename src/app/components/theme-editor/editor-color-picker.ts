@@ -9,7 +9,7 @@ import { debounceTime, distinctUntilChanged, merge } from 'rxjs';
 	selector: 'sim-editor-color-picker',
 	imports: [HlmInput, HlmLabel, ReactiveFormsModule],
 	template: `
-		<div class="flex w-full flex-col items-start gap-2">
+		<div class="flex w-full flex-col items-start gap-2 p-1.5">
 			<label hlmLabel class="text-xs font-medium">{{ label() }}</label>
 			<div class="flex w-full items-center gap-2">
 				<div

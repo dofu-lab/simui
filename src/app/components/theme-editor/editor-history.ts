@@ -1,4 +1,5 @@
-import { ThemeStorageService } from '@/app/core/services/theme-storage.service';
+import { ThemeStorageService } from '@/app/core/services';
+import { getLabelForColor } from '@/app/core/utils';
 import { HistoryDatePipe } from '@/app/pipes/history-date.pipe';
 import { ThemeHistory, ThemePreset } from '@/app/types';
 import { Component, computed, inject } from '@angular/core';
@@ -95,7 +96,7 @@ import { PresetColorPreview } from './preset-color-preview';
 										<p class="text-sm">
 											Change
 											<span class="font-bold">
-												{{ getLabel(history.values?.targetKey) }}
+												{{ getLabelForColor(history.values?.targetKey) }}
 											</span>
 											color
 										</p>
@@ -140,38 +141,13 @@ export class EditorHistory {
 			.reverse(),
 	);
 
+	getLabelForColor = getLabelForColor;
+
 	public onRevert(history: ThemeHistory): void {
 		this.themeStorageService.restore(history);
 	}
 
 	public getTheme(themeId?: string): ThemePreset | undefined {
 		return this.themeStorageService.themePresets().find((t) => t.id === themeId);
-	}
-
-	public getLabel(key?: string): string {
-		if (!key) return '';
-		return (
-			{
-				background: 'Background',
-				foreground: 'Foreground',
-				primary: 'Primary',
-				'primary-foreground': 'Primary Foreground',
-				secondary: 'Secondary',
-				'secondary-foreground': 'Secondary Foreground',
-				muted: 'Muted',
-				'muted-foreground': 'Muted Foreground',
-				accent: 'Accent',
-				'accent-foreground': 'Accent Foreground',
-				destructive: 'Destructive',
-				'destructive-foreground': 'Destructive Foreground',
-				border: 'Border',
-				input: 'Input',
-				ring: 'Ring',
-				card: 'Card',
-				'card-foreground': 'Card Foreground',
-				popover: 'Popover',
-				'popover-foreground': 'Popover Foreground',
-			}[key] || key
-		);
 	}
 }
