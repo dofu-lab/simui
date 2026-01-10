@@ -1,6 +1,9 @@
+import { ColorEditService, ThemeStorageService } from '@/app/core/services';
+import { ColorPipe } from '@/app/pipes';
+import { ThemeStyleProps } from '@/app/types';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { NgClass } from '@angular/common';
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy, lucideSquarePen } from '@ng-icons/lucide';
 import { BrnTooltipImports } from '@spartan-ng/brain/tooltip';
@@ -10,7 +13,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-color-card',
-	imports: [HlmTooltipImports, HlmIcon, NgIcon, NgClass, BrnTooltipImports, HlmButton],
+	imports: [HlmTooltipImports, HlmIcon, NgIcon, NgClass, BrnTooltipImports, HlmButton, ColorPipe],
 	providers: [provideIcons({ lucideCopy, lucideCheck, lucideSquarePen })],
 	template: `
 		<div
@@ -21,7 +24,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 				<div class="relative flex w-full content-stretch items-start gap-2 px-3 pt-[92px] pb-3 not-italic">
 					<div class="flex-1">
 						<p class="text-sm font-medium">{{ name() }}</p>
-						<p class="text-muted-foreground text-xs font-normal">{{ color() }}</p>
+						<p class="text-muted-foreground text-xs font-normal">{{ color() | colorFormatter: colorType() }}</p>
 					</div>
 					<div class="flex flex-col">
 						<hlm-tooltip>
@@ -65,9 +68,15 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 })
 export class ColorCard {
 	private readonly clipboard = inject(Clipboard);
+	private readonly colorEditService = inject(ColorEditService);
+	private readonly themeStorage = inject(ThemeStorageService);
+
 	public readonly color = input<string>();
 	public readonly name = input<string>();
+	public readonly colorKey = input<keyof ThemeStyleProps>();
+
 	protected readonly copied = signal<boolean>(false);
+	protected readonly colorType = computed(() => this.themeStorage.colorType());
 
 	public onSelect(): void {
 		this.copied.set(true);
@@ -78,5 +87,10 @@ export class ColorCard {
 		}, 1500);
 	}
 
-	public onEditColor(): void {}
+	public onEditColor(): void {
+		const key = this.colorKey();
+		if (key) {
+			this.colorEditService.requestEditColor(key);
+		}
+	}
 }

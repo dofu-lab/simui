@@ -1,4 +1,6 @@
-import { Component, DestroyRef, effect, inject, input, OnInit, output } from '@angular/core';
+import { getLabelForColor } from '@/app/core/utils';
+import { ThemeStyleProps } from '@/app/types';
+import { Component, computed, DestroyRef, effect, inject, input, OnInit, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HlmInput } from '@spartan-ng/helm/input';
@@ -8,6 +10,11 @@ import { debounceTime, distinctUntilChanged, merge } from 'rxjs';
 @Component({
 	selector: 'sim-editor-color-picker',
 	imports: [HlmInput, HlmLabel, ReactiveFormsModule],
+	host: {
+		'[class.ring-2]': 'isHighlighted()',
+		'[class.ring-primary]': 'isHighlighted()',
+		'[class.rounded-md]': 'isHighlighted()',
+	},
 	template: `
 		<div class="flex w-full flex-col items-start gap-2 p-1.5">
 			<label hlmLabel class="text-xs font-medium">{{ label() }}</label>
@@ -28,9 +35,22 @@ import { debounceTime, distinctUntilChanged, merge } from 'rxjs';
 export class EditorColorPicker implements OnInit {
 	private readonly destroyRef = inject(DestroyRef);
 
-	readonly color = input<string>();
-	readonly label = input.required<string>();
 	readonly colorChange = output<string>();
+
+	readonly colorKey = input<keyof ThemeStyleProps | null>(null);
+	readonly highlightedColorKey = input<keyof ThemeStyleProps | null>(null);
+	readonly currentColorStyles = input<ThemeStyleProps | null>(null);
+
+	readonly isHighlighted = computed(() => this.colorKey() === this.highlightedColorKey());
+	readonly color = computed(() => {
+		const key = this.colorKey();
+		const styles = this.currentColorStyles();
+		if (key && styles) {
+			return styles[key];
+		}
+		return null;
+	});
+	readonly label = computed(() => getLabelForColor(this.colorKey() ?? undefined));
 
 	readonly colorInput = new FormControl('', { nonNullable: true });
 	readonly colorPicker = new FormControl('', { nonNullable: true });
