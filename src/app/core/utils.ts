@@ -24,6 +24,10 @@ export function getLabelForColor(key?: string): string {
 			'card-foreground': 'Card Foreground',
 			popover: 'Popover',
 			'popover-foreground': 'Popover Foreground',
+			'font-sans': 'Sans Serif Font',
+			'font-serif': 'Serif Font',
+			'font-mono': 'Monospace Font',
+			'letter-spacing': 'Letter Spacing',
 		}[key] || key
 	);
 }

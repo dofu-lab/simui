@@ -51,12 +51,12 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 };
 
 @Component({
-	selector: 'app-editor-color-config',
+	selector: 'sim-editor-color-config',
 	imports: [HlmAccordionImports, NgIcon, HlmIcon, EditorColorPicker],
 	providers: [provideIcons({ lucideChevronDown })],
 	template: `
-		<div #scrollContainer class="relative h-full overflow-y-auto">
-			<div hlmAccordion #accordion="brnAccordion" type="multiple" class="absolute w-full gap-4 p-4">
+		<div #scrollContainer>
+			<div hlmAccordion #accordion="brnAccordion" type="multiple" class="absolute w-full gap-4 px-4 pb-4">
 				<div
 					id="primary"
 					hlmAccordionItem
@@ -483,6 +483,6 @@ export class EditorColorConfig {
 					this.highlightedColorKey.set(null);
 				}, 2000);
 			}
-		}, 100);
+		}, 200);
 	}
 }

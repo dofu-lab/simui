@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { HlmResizableImports } from '@spartan-ng/helm/resizable';
-import { EditorColorConfig, EditorHeader, EditorPreview } from '../components/theme-editor';
+import { EditorHeader, EditorPreview, ThemeConfigComponent } from '../components/theme-editor';
 
 @Component({
 	selector: 'sim-theme-editor',
-	imports: [HlmResizableImports, EditorPreview, EditorHeader, EditorColorConfig],
+	imports: [HlmResizableImports, EditorPreview, EditorHeader, ThemeConfigComponent],
 	host: {
 		class: 'flex flex-1 size-full p-4',
 	},
@@ -14,7 +14,7 @@ import { EditorColorConfig, EditorHeader, EditorPreview } from '../components/th
 			<div id="editor-content" class="relative flex min-h-0 w-full flex-1">
 				<hlm-resizable-group>
 					<hlm-resizable-panel defaultSize="20" minSize="10" maxSize="30">
-						<app-editor-color-config />
+						<sim-theme-config />
 					</hlm-resizable-panel>
 					<hlm-resizable-handle withHandle="true" />
 					<hlm-resizable-panel>

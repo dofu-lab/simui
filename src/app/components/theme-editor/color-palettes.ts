@@ -40,7 +40,7 @@ import { ColorTypeSelector } from './color-type-selector';
 				</div>
 			</div>
 
-			<div class="flex flex-col gap-4">
+			<div class="flex flex-col gap-2">
 				<span class="text-md text-accent-foreground font-medium">UI Components</span>
 				<div class="grid grid-cols-4 gap-4">
 					<sim-color-card [color]="currentPresetStyles()?.card" name="Card" colorKey="card" />
@@ -67,6 +67,17 @@ import { ColorTypeSelector } from './color-type-selector';
 					<sim-color-card [color]="currentPresetStyles()?.border" name="Border" colorKey="border" />
 					<sim-color-card [color]="currentPresetStyles()?.input" name="Input" colorKey="input" />
 					<sim-color-card [color]="currentPresetStyles()?.ring" name="Ring" colorKey="ring" />
+				</div>
+			</div>
+
+			<div class="flex flex-col gap-2">
+				<span class="text-md text-accent-foreground font-medium">Destructive</span>
+				<div class="grid grid-cols-4 gap-4">
+					<sim-color-card [color]="currentPresetStyles()?.destructive" name="Destructive" colorKey="destructive" />
+					<sim-color-card
+						[color]="currentPresetStyles()?.['destructive-foreground']"
+						name="Destructive Foreground"
+						colorKey="destructive-foreground" />
 				</div>
 			</div>
 
