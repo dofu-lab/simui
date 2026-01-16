@@ -36,12 +36,11 @@ export class RadiusSliderComponent {
 		const preset = this.themeStorageService.currentThemeStyles();
 		return preset?.radius ? parseFloat(preset.radius.replace('rem', '')) : this.defaultRadius;
 	});
+	private readonly defaultRadius = 1;
 
-	public readonly defaultRadius = 1;
-	public readonly initialRadius = 1.25;
-	public readonly min = 0;
-	public readonly max = 5;
-	public readonly value = signal<number>(this.currentRadius());
+	protected readonly min = 0;
+	protected readonly max = 5;
+	protected readonly value = signal<number>(this.currentRadius());
 
 	constructor() {
 		effect(() => {
@@ -53,7 +52,7 @@ export class RadiusSliderComponent {
 		});
 	}
 
-	public onRadiusChange(radius: number) {
+	protected onRadiusChange(radius: number): void {
 		this.value.set(radius);
 		this.themeService.applyRadius(`${radius}rem`);
 
