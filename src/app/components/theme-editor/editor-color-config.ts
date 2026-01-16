@@ -7,6 +7,7 @@ import { BrnAccordion } from '@spartan-ng/brain/accordion';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { EditorColorPicker } from './editor-color-picker';
+import { RadiusSliderComponent } from './radius-slider';
 
 type AccordionSection =
 	| 'primary'
@@ -52,11 +53,30 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 
 @Component({
 	selector: 'sim-editor-color-config',
-	imports: [HlmAccordionImports, NgIcon, HlmIcon, EditorColorPicker],
+	imports: [HlmAccordionImports, NgIcon, HlmIcon, EditorColorPicker, RadiusSliderComponent],
 	providers: [provideIcons({ lucideChevronDown })],
 	template: `
 		<div #scrollContainer>
 			<div hlmAccordion #accordion="brnAccordion" type="multiple" class="absolute w-full gap-4 px-4 pb-4">
+				<div
+					hlmAccordionItem
+					isOpened="true"
+					class="has-focus-visible:ring-ring/50 rounded-md border has-focus-visible:ring-[3px] has-focus-visible:outline-none">
+					<h3 class="contents">
+						<button
+							hlmAccordionTrigger
+							class="p-3 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+							<span class="text-sm leading-6">Radius</span>
+							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+						</button>
+					</h3>
+
+					<hlm-accordion-content class="[&>div]:pb-0">
+						<div class="border-t p-4">
+							<sim-radius-slider />
+						</div>
+					</hlm-accordion-content>
+				</div>
 				<div
 					id="primary"
 					hlmAccordionItem

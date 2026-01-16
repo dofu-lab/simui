@@ -27,4 +27,8 @@ export class ThemeService {
 			}
 		}
 	}
+
+	public applyRadius(radius: string): void {
+		this._document.documentElement.style.setProperty(`--radius`, radius);
+	}
 }

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import { EditorColorConfig } from './editor-color-config';
+import { ThemeLayoutComponent } from './layout';
 
 @Component({
 	selector: 'sim-theme-config',
-	imports: [HlmTabsImports, EditorColorConfig],
+	imports: [HlmTabsImports, EditorColorConfig, ThemeLayoutComponent],
 	template: `
 		<hlm-tabs tab="tab01" class="size-full gap-0">
 			<hlm-tabs-list
@@ -22,12 +23,11 @@ import { EditorColorConfig } from './editor-color-config';
 					Layout
 				</button>
 			</hlm-tabs-list>
-			<div hlmTabsContent="tab01" class="relative mt-0 h-full overflow-y-auto pt-2">
+			<div hlmTabsContent="tab01" tabindex="0" class="relative mt-0 h-full overflow-y-auto pt-2">
 				<sim-editor-color-config />
 			</div>
-
-			<div hlmTabsContent="tab03">
-				<p class="text-muted-foreground p-4 text-center text-xs">Content for Tab 3</p>
+			<div hlmTabsContent="tab03" tabindex="1" class="relative mt-0 h-full overflow-y-auto pt-2">
+				<sim-theme-layout />
 			</div>
 		</hlm-tabs>
 	`,

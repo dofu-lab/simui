@@ -80,7 +80,7 @@ export type ThemePreset = {
 
 export type ColorType = 'hex' | 'hsl' | 'rgb' | 'oklch';
 export type ColorScheme = 'light' | 'dark';
-export type HistoryAction = 'APPLY' | 'CHANGE_COLOR' | 'RESET' | 'UPDATE_THEME' | 'SAVE_THEME';
+export type HistoryAction = 'APPLY' | 'CHANGE_COLOR' | 'CHANGE_RADIUS' | 'RESET' | 'UPDATE_THEME' | 'SAVE_THEME';
 
 export type ColorTypeItem = {
 	label: string;

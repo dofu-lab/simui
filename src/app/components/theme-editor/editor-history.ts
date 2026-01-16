@@ -79,6 +79,19 @@ import { PresetColorPreview } from './preset-color-preview';
 											<sim-theme-color-preview [preset]="getTheme(history.preset.id)" />
 										</div>
 									}
+									@case ('CHANGE_RADIUS') {
+										<div class="flex items-center gap-2">
+											<p class="text-muted-foreground text-xs">
+												{{ history.timestamp | historyDate }}
+											</p>
+										</div>
+										<p class="text-sm">Change radius</p>
+										<div class="text-muted-foreground flex items-center gap-2 text-sm font-normal">
+											<span class="text-foreground text-left text-sm font-medium">{{ history.values?.oldValue }}</span>
+											<ng-icon hlm name="lucideArrowRight" size="sm" />
+											<span class="text-foreground text-left text-sm font-medium">{{ history.values?.newValue }}</span>
+										</div>
+									}
 									@default {
 										<div class="flex items-center gap-2">
 											<p class="text-muted-foreground text-xs">

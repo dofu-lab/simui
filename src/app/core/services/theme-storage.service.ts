@@ -216,7 +216,10 @@ export class ThemeStorageService {
 			newValue: value,
 			colorScheme: appearance,
 		};
-		this.addHistory(newPreset, 'CHANGE_COLOR', historyValue);
+
+		const action = key === 'radius' ? 'CHANGE_RADIUS' : 'CHANGE_COLOR';
+
+		this.addHistory(newPreset, action, historyValue);
 	}
 
 	public reset(): void {
