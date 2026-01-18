@@ -19,9 +19,12 @@ export class LocalStorageService {
 				return null;
 			}
 
+			// Try to parse as JSON first
 			try {
 				return JSON.parse(item) as T;
 			} catch (parseError) {
+				// If JSON parsing fails, return the raw string value
+				// This handles cases where we store simple strings directly
 				console.warn(`Failed to parse stored value for key "${key}":`, parseError);
 				return item as unknown as T;
 			}
@@ -37,11 +40,17 @@ export class LocalStorageService {
 		}
 
 		try {
-			localStorage.setItem(key, JSON.stringify(value));
+			// For simple string values, store them directly without JSON.stringify
+			// to avoid adding unnecessary quotes
+			if (typeof value === 'string') {
+				localStorage.setItem(key, value);
+			} else {
+				localStorage.setItem(key, JSON.stringify(value));
+			}
 			return true;
 		} catch (error) {
 			console.error(`Failed to set item in localStorage for key "${key}":`, error);
-			
+
 			// Handle specific localStorage errors
 			if (error instanceof Error) {
 				if (error.name === 'QuotaExceededError') {

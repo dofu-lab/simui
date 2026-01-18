@@ -3,5 +3,7 @@ export * from './editor-header';
 export * from './editor-preview';
 export * from './layout';
 export * from './radius-slider';
+export * from './shadow-config';
+export * from './shadow-slider';
 export * from './theme-config';
 export * from './theme-selector';

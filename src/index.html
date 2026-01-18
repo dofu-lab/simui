@@ -18,11 +18,9 @@
 				if (document && document.documentElement) {
 					document.documentElement.classList.add('dark');
 				}
-			} else {
-				if (document && document.documentElement) {
-					document.documentElement.classList.remove('dark');
-					localStorage.setItem('simui-appearance', 'light');
-				}
+			} else if (document && document.documentElement) {
+				document.documentElement.classList.remove('dark');
+				localStorage.setItem('simui-appearance', 'light');
 			}
 		</script>
 	</head>

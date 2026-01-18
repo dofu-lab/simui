@@ -79,13 +79,18 @@ import { PresetColorPreview } from './preset-color-preview';
 											<sim-theme-color-preview [preset]="getTheme(history.preset.id)" />
 										</div>
 									}
-									@case ('CHANGE_RADIUS') {
+									@case ('CHANGE_PROPERTY') {
 										<div class="flex items-center gap-2">
 											<p class="text-muted-foreground text-xs">
 												{{ history.timestamp | historyDate }}
 											</p>
 										</div>
-										<p class="text-sm">Change radius</p>
+										<p class="text-sm">
+											Change
+											<span class="font-bold">
+												{{ getLabelForProperty(history.values?.targetKey) }}
+											</span>
+										</p>
 										<div class="text-muted-foreground flex items-center gap-2 text-sm font-normal">
 											<span class="text-foreground text-left text-sm font-medium">{{ history.values?.oldValue }}</span>
 											<ng-icon hlm name="lucideArrowRight" size="sm" />
@@ -154,13 +159,42 @@ export class EditorHistory {
 			.reverse(),
 	);
 
-	getLabelForColor = getLabelForColor;
+	protected getLabelForColor = getLabelForColor;
 
-	public onRevert(history: ThemeHistory): void {
+	protected getLabelForProperty = (key?: string): string => {
+		if (!key) return 'property';
+
+		const propertyLabels: Record<string, string> = {
+			radius: 'border radius',
+			spacing: 'spacing',
+			'letter-spacing': 'letter spacing',
+			'font-sans': 'sans font',
+			'font-serif': 'serif font',
+			'font-mono': 'monospace font',
+			'shadow-color': 'shadow color',
+			'shadow-opacity': 'shadow opacity',
+			'shadow-blur': 'shadow blur',
+			'shadow-spread': 'shadow spread',
+			'shadow-offset-x': 'shadow X offset',
+			'shadow-offset-y': 'shadow Y offset',
+			'shadow-2xs': 'shadow 2xs',
+			'shadow-xs': 'shadow xs',
+			'shadow-sm': 'shadow small',
+			shadow: 'shadow',
+			'shadow-md': 'shadow medium',
+			'shadow-lg': 'shadow large',
+			'shadow-xl': 'shadow xl',
+			'shadow-2xl': 'shadow 2xl',
+		};
+
+		return propertyLabels[key] || key.replace('-', ' ');
+	};
+
+	protected onRevert(history: ThemeHistory): void {
 		this.themeStorageService.restore(history);
 	}
 
-	public getTheme(themeId?: string): ThemePreset | undefined {
+	protected getTheme(themeId?: string): ThemePreset | undefined {
 		return this.themeStorageService.themePresets().find((t) => t.id === themeId);
 	}
 }

@@ -10,7 +10,7 @@ import { SeoService } from './core/services/seo.service';
 	imports: [RouterOutlet, NgxSonnerToaster, HeaderComponent],
 	providers: [CodeLoaderService],
 	template: `
-		<div class="relative flex min-h-svh flex-col overflow-clip [--header-height:4rem]">
+		<div class="relative flex min-h-svh flex-col overflow-clip px-5 [--header-height:4rem]">
 			<ngx-sonner-toaster />
 			<app-header class="sticky top-0 z-50" />
 			<router-outlet />
@@ -19,9 +19,9 @@ import { SeoService } from './core/services/seo.service';
 })
 export class AppComponent implements OnInit {
 	isNavbarOpen = signal<boolean>(true);
-	private codeLoaderService = inject(CodeLoaderService);
-	private seoService = inject(SeoService);
-	private themeInjectorService = inject(ThemeService);
+	private readonly codeLoaderService = inject(CodeLoaderService);
+	private readonly seoService = inject(SeoService);
+	private readonly themeInjectorService = inject(ThemeService);
 
 	ngOnInit() {
 		this.seoService.init();

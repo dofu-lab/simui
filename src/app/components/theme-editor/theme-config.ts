@@ -1,35 +1,50 @@
-import { Component } from '@angular/core';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
+import { Component, signal } from '@angular/core';
+import { HlmButton } from '@spartan-ng/helm/button';
 import { EditorColorConfig } from './editor-color-config';
 import { ThemeLayoutComponent } from './layout';
 
 @Component({
 	selector: 'sim-theme-config',
-	imports: [HlmTabsImports, EditorColorConfig, ThemeLayoutComponent],
+	imports: [EditorColorConfig, ThemeLayoutComponent, HlmButton],
 	template: `
-		<hlm-tabs tab="tab01" class="size-full gap-0">
-			<hlm-tabs-list
-				class="before:bg-border relative h-auto w-full justify-start gap-0.5 bg-transparent p-0 pt-2 before:absolute before:inset-x-0 before:bottom-0 before:h-px [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
+		<div class="flex size-full flex-col gap-0">
+			<div
+				class="before:bg-border relative flex h-auto w-full justify-start gap-0.5 bg-transparent p-0 pt-2 before:absolute before:inset-x-0 before:bottom-0 before:z-0 before:h-px [&>button]:mr-0 [&>button]:data-[state=active]:shadow-none"
 				aria-label="tabs example">
 				<button
-					hlmTabsTrigger="tab01"
-					class="border-border bg-muted dark:data-[state=active]:bg-background ml-4 flex-none overflow-hidden rounded-b-none border-b-0 px-3 py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
+					hlmBtn
+					size="sm"
+					variant="outline"
+					class="bg-muted dark:data-[state=active]:bg-background data-[state=active]:bg-background data-[state=active]:border-b-background z-1 ml-4 flex-none overflow-hidden rounded-b-none px-3 py-2 shadow-none data-[state=active]:z-10 data-[state=active]:shadow-none"
+					[attr.data-state]="activeTab() === 'colors' ? 'active' : 'inactive'"
+					(click)="activeTab.set('colors')">
 					Colors
 				</button>
 
 				<button
-					hlmTabsTrigger="tab03"
-					class="border-border bg-muted dark:data-[state=active]:bg-background flex-none overflow-hidden rounded-b-none border-b-0 px-3 py-2 data-[state=active]:z-10 data-[state=active]:shadow-none">
+					hlmBtn
+					size="sm"
+					variant="outline"
+					class="bg-muted dark:data-[state=active]:bg-background data-[state=active]:bg-background data-[state=active]:border-b-background z-1 flex-none overflow-hidden rounded-b-none px-3 py-2 shadow-none data-[state=active]:z-10 data-[state=active]:shadow-none"
+					[attr.data-state]="activeTab() === 'layout' ? 'active' : 'inactive'"
+					(click)="activeTab.set('layout')">
 					Layout
 				</button>
-			</hlm-tabs-list>
-			<div hlmTabsContent="tab01" tabindex="0" class="relative mt-0 h-full overflow-y-auto pt-2">
-				<sim-editor-color-config />
 			</div>
-			<div hlmTabsContent="tab03" tabindex="1" class="relative mt-0 h-full overflow-y-auto pt-2">
-				<sim-theme-layout />
+
+			<div class="mt-0 flex-1">
+				@switch (activeTab()) {
+					@case ('colors') {
+						<sim-editor-color-config />
+					}
+					@case ('layout') {
+						<sim-theme-layout />
+					}
+				}
 			</div>
-		</hlm-tabs>
+		</div>
 	`,
 })
-export class ThemeConfigComponent {}
+export class ThemeConfigComponent {
+	protected readonly activeTab = signal<'colors' | 'layout'>('colors');
+}

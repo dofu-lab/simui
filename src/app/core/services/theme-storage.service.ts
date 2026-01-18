@@ -29,7 +29,7 @@ export class ThemeStorageService {
 
 	public readonly history = signal<ThemeHistory[]>([]);
 	public readonly colorType = signal<ColorType>('hex');
-	public readonly appearance = signal<ColorScheme>('light');
+	public readonly appearance = signal<ColorScheme | undefined>(undefined);
 	public readonly themePresets = signal<ThemePreset[]>([]);
 
 	// Performance: Cache the current theme to avoid repeated array access
@@ -64,7 +64,7 @@ export class ThemeStorageService {
 	}
 
 	public selectTheme(preset: ThemePreset): void {
-		if (!preset || !preset.id || !preset.styles) {
+		if (!preset?.id || !preset.styles) {
 			console.error('Invalid theme preset provided');
 			return;
 		}
@@ -87,6 +87,7 @@ export class ThemeStorageService {
 	}
 
 	public setAppearance(appearance: ColorScheme): void {
+		console.log('Setting appearance to:', appearance);
 		this.appearance.set(appearance);
 		const success = this.localStorageService.setItem(STORAGE_KEYS.APPEARANCE, appearance);
 		if (!success) {
@@ -96,7 +97,7 @@ export class ThemeStorageService {
 	}
 
 	public addHistoryEntry(entry: ThemeHistory): void {
-		if (!entry || !entry.preset || !entry.timestamp || !entry.action) {
+		if (!entry?.preset || !entry.timestamp || !entry.action) {
 			console.error('Invalid history entry provided');
 			return;
 		}
@@ -121,7 +122,7 @@ export class ThemeStorageService {
 	public undoHistoryEntry(): void {
 		const history = this.history();
 		if (history.length > 1) {
-			this.history.update((h) => h.slice(0, h.length - 1));
+			this.history.update((h) => h.slice(0, -1));
 			const success = this.localStorageService.setItem(STORAGE_KEYS.HISTORY, this.history());
 			if (!success) {
 				console.error('Failed to save history after undo');
@@ -130,7 +131,7 @@ export class ThemeStorageService {
 	}
 
 	public restore(historyItem: ThemeHistory): void {
-		if (!historyItem || !historyItem.preset || !historyItem.timestamp) {
+		if (!historyItem?.preset || !historyItem.timestamp) {
 			console.error('Invalid history item provided');
 			return;
 		}
@@ -153,7 +154,7 @@ export class ThemeStorageService {
 	}
 
 	public addThemePreset(preset: ThemePreset): void {
-		if (!preset || !preset.id || !preset.styles) {
+		if (!preset?.id || !preset.styles) {
 			console.error('Invalid theme preset provided');
 			return;
 		}
@@ -179,7 +180,7 @@ export class ThemeStorageService {
 		this.addHistoryEntry(newEntry);
 	}
 
-	public changeColor(key: keyof ThemeStyleProps, value: string): void {
+	public changeColor(key: keyof ThemeStyleProps, value: string, action: HistoryAction = 'CHANGE_COLOR'): void {
 		let currentPreset = this.currentTheme();
 		const appearance = this.appearance();
 
@@ -188,7 +189,7 @@ export class ThemeStorageService {
 			return;
 		}
 
-		if (!currentPreset.styles || !currentPreset.styles[appearance]) {
+		if (!currentPreset.styles?.[appearance]) {
 			console.error('Invalid theme structure');
 			return;
 		}
@@ -216,8 +217,6 @@ export class ThemeStorageService {
 			newValue: value,
 			colorScheme: appearance,
 		};
-
-		const action = key === 'radius' ? 'CHANGE_RADIUS' : 'CHANGE_COLOR';
 
 		this.addHistory(newPreset, action, historyValue);
 	}
@@ -255,7 +254,7 @@ export class ThemeStorageService {
 	}
 
 	public updateTheme(theme: ThemePreset, action: HistoryAction): void {
-		if (!theme || !theme.id || !action) {
+		if (!theme?.id || !action) {
 			console.error('Invalid theme or action provided');
 			return;
 		}
@@ -329,11 +328,14 @@ export class ThemeStorageService {
 		}
 
 		const savedAppearance = this.localStorageService.getItem<ColorScheme>(STORAGE_KEYS.APPEARANCE);
-		if (savedAppearance) {
+		console.log('Loaded appearance from storage:', savedAppearance);
+		if (savedAppearance && (savedAppearance === 'light' || savedAppearance === 'dark')) {
 			this.appearance.set(savedAppearance);
 		} else if (savedAppearance) {
 			console.warn('Invalid appearance value in storage:', savedAppearance);
+			// Keep the current default value ('light')
 		}
+		// If no saved appearance, keep the default 'light' value from signal initialization
 	}
 
 	private loadColorTypeFromStorage(): void {
@@ -344,7 +346,7 @@ export class ThemeStorageService {
 		const savedColorType = this.localStorageService.getItem<ColorType>(STORAGE_KEYS.COLOR_TYPE);
 		if (savedColorType) {
 			this.colorType.set(savedColorType);
-		} else if (savedColorType) {
+		} else {
 			console.warn('Invalid color type value in storage:', savedColorType);
 		}
 	}

@@ -1,6 +1,7 @@
 import { CodePreviewComponent } from '@/app/core/code-preview.component';
 import { ColorService } from '@/app/core/services/color.service';
 import { ThemeStorageService } from '@/app/core/services/theme-storage.service';
+import { getShadowMap } from '@/app/core/utils/shadow.utils';
 import { ThemePreset, ThemeStyleProps } from '@/app/types';
 import { Component, computed, inject, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -39,11 +40,10 @@ import { ColorTypeSelector } from './color-type-selector';
 	`,
 })
 export class ThemeCodeSheet {
-	private themeStorage = inject(ThemeStorageService);
+	private readonly themeStorage = inject(ThemeStorageService);
+	private readonly _colorService = inject(ColorService);
 
 	public preset = input<ThemePreset>();
-
-	private _colorService = inject(ColorService);
 
 	protected cssCode = computed(() => {
 		const preset = this.preset();
@@ -51,23 +51,53 @@ export class ThemeCodeSheet {
 
 		const formatStyles = (styles: ThemeStyleProps) => {
 			return Object.entries(styles as unknown as Record<string, string>)
-				.map(([key, value]) => `\t--${key}: ${this._colorService.convertColor(value, this.themeStorage.colorType())};`)
+				.map(([key, value]) => {
+					// Only convert colors, not other CSS properties like spacing, shadow, radius, etc.
+					const isColorProperty = !key.includes('radius') && !key.includes('shadow') && !key.includes('spacing');
+					const formattedValue = isColorProperty
+						? this._colorService.convertColor(value, this.themeStorage.colorType())
+						: value;
+					return `\t--${key}: ${formattedValue};`;
+				})
+				.join('\n');
+		};
+
+		const formatShadowStyles = (styles: Partial<ThemeStyleProps>) => {
+			const shadowMap = getShadowMap(styles);
+			return Object.entries(shadowMap)
+				.map(([key, value]) => `\t--${key}: ${value};`)
 				.join('\n');
 		};
 
 		const lightStyles = preset.styles.light ? formatStyles(preset.styles.light) : '';
+		const lightShadow = formatShadowStyles(getShadowMap(preset.styles.light));
 		const darkStyles = preset.styles.dark ? formatStyles(preset.styles.dark) : '';
+		const darkShadow = formatShadowStyles(getShadowMap(preset.styles.dark));
 
 		return `:root {
 	color-scheme: light;
 
 ${lightStyles}
+${lightShadow}
 }
 
 :root.dark {
 	color-scheme: dark;
 
 ${darkStyles}
-}`;
+${darkShadow}
+}
+
+@theme inline {
+	--shadow-2xs: var(--shadow-2xs);
+	--shadow-xs: var(--shadow-xs);
+	--shadow-sm: var(--shadow-sm);
+	--shadow: var(--shadow);
+	--shadow-md: var(--shadow-md);
+	--shadow-lg: var(--shadow-lg);
+	--shadow-xl: var(--shadow-xl);
+	--shadow-2xl: var(--shadow-2xl);
+}
+`;
 	});
 }

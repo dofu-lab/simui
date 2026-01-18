@@ -12,20 +12,23 @@ export class ColorPipe implements PipeTransform {
 		}
 
 		switch (colorType) {
-			case 'hsl':
+			case 'hsl': {
 				const hslConverter = converter('hsl');
 				const formattedHslColor = hslConverter(color);
 				return formatHsl(formattedHslColor);
-			case 'rgb':
+			}
+			case 'rgb': {
 				const rgbConverter = converter('rgb');
 				const formattedRgbColor = rgbConverter(color);
 				return formatRgb(formattedRgbColor);
-			case 'oklch':
+			}
+			case 'oklch': {
 				const oklchConverter = converter('oklch');
 				const formattedOklchColor = oklchConverter(color);
 				return formattedOklchColor
 					? `oklch(${formatNumber(formattedOklchColor.l)} ${formatNumber(formattedOklchColor.c)} ${formatNumber(formattedOklchColor.h)})`
 					: color;
+			}
 			default:
 				return color;
 		}

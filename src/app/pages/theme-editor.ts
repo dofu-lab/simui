@@ -6,7 +6,7 @@ import { EditorHeader, EditorPreview, ThemeConfigComponent } from '../components
 	selector: 'sim-theme-editor',
 	imports: [HlmResizableImports, EditorPreview, EditorHeader, ThemeConfigComponent],
 	host: {
-		class: 'flex flex-1 size-full p-4',
+		class: 'flex flex-1 size-full py-4',
 	},
 	template: `
 		<div class="flex min-h-0 grow flex-col rounded-xl border">

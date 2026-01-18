@@ -43,7 +43,7 @@ import { CodeLoaderService } from './services/code-loader.service';
 	},
 })
 export class ComponentCardComponent {
-	private codeLoaderService = inject(CodeLoaderService);
+	private readonly codeLoaderService = inject(CodeLoaderService);
 
 	public readonly component = input.required<Type<any> | null>();
 	public readonly componentName = input.required<string>();

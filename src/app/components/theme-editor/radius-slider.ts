@@ -7,6 +7,8 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmSlider } from '@spartan-ng/helm/slider';
 import { debounceTime, Subject } from 'rxjs';
 
+const DEBOUNCE_TIME = 1000;
+
 @Component({
 	selector: 'sim-radius-slider',
 	imports: [HlmSlider, HlmLabel, HlmInput, FormsModule],
@@ -15,8 +17,10 @@ import { debounceTime, Subject } from 'rxjs';
 			<span hlmLabel>Radius</span>
 			<div class="flex gap-1">
 				<input
+					aria-label="Radius value in rem"
 					hlmInput
 					class="h-7 w-20 px-2 py-0"
+					type="number"
 					[min]="min"
 					[max]="max"
 					[ngModel]="value()"
@@ -32,9 +36,9 @@ export class RadiusSliderComponent {
 	private readonly themeService = inject(ThemeService);
 	private readonly radiusSubject$ = new Subject<number>();
 
-	private currentRadius = computed(() => {
+	private readonly currentRadius = computed(() => {
 		const preset = this.themeStorageService.currentThemeStyles();
-		return preset?.radius ? parseFloat(preset.radius.replace('rem', '')) : this.defaultRadius;
+		return preset?.radius ? Number.parseFloat(preset.radius.replace('rem', '')) : this.defaultRadius;
 	});
 	private readonly defaultRadius = 1;
 
@@ -47,15 +51,19 @@ export class RadiusSliderComponent {
 			this.value.set(this.currentRadius());
 		});
 
-		this.radiusSubject$.pipe(debounceTime(500), takeUntilDestroyed()).subscribe((radius) => {
-			this.themeStorageService.changeColor('radius', `${radius}rem`);
+		this.radiusSubject$.pipe(debounceTime(DEBOUNCE_TIME), takeUntilDestroyed()).subscribe((radius) => {
+			this.themeStorageService.changeColor('radius', `${radius}rem`, 'CHANGE_PROPERTY');
 		});
 	}
 
 	protected onRadiusChange(radius: number): void {
-		this.value.set(radius);
-		this.themeService.applyRadius(`${radius}rem`);
-
-		this.radiusSubject$.next(radius);
+		try {
+			const clampedRadius = Math.min(Math.max(radius, this.min), this.max);
+			this.value.set(clampedRadius);
+			this.themeService.applyRadius(`${clampedRadius}rem`);
+			this.radiusSubject$.next(clampedRadius);
+		} catch (error) {
+			console.error('Failed to update radius:', error);
+		}
 	}
 }
