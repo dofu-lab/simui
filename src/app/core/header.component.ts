@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub, lucideMoon, lucideSquareMenu, lucideSun } from '@ng-icons/lucide';
 import { remixTwitterXFill } from '@ng-icons/remixicon';
@@ -16,7 +16,7 @@ import { ThemeStorageService } from './services';
 	template: `
 		<header class="mx-auto flex justify-center pt-3">
 			<div
-				class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 flex h-14 w-full max-w-6xl items-center justify-between rounded-2xl border px-8 shadow-xs backdrop-blur-lg">
+				class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 flex h-14 w-full max-w-6xl items-center justify-between rounded-2xl border px-2 shadow-xs backdrop-blur-lg sm:px-8">
 				<div class="mr-4 flex">
 					<a class="relative mr-6 flex items-center space-x-2" href="/">
 						<img src="/assets/logos/logo-base.svg" alt="Magic UI" class="h-10 w-10" />
@@ -48,7 +48,7 @@ import { ThemeStorageService } from './services';
 						routerLinkActive="bg-muted font-medium">
 						About
 					</a>
-					<div class="bg-border h-6 w-px"></div>
+					<div class="bg-border hidden h-6 w-px sm:inline-flex"></div>
 					<nav>
 						<button hlmBtn size="icon" variant="ghost" type="button" (click)="openX()">
 							<ng-icon hlm name="remixTwitterXFill" class="text-primary" size="sm" />
@@ -59,7 +59,8 @@ import { ThemeStorageService } from './services';
 							<ng-icon hlm name="lucideGithub" class="text-primary" size="sm" />
 						</button>
 					</nav>
-					<div class="bg-border h-6 w-px"></div>
+
+					<div class="bg-border hidden h-6 w-px sm:inline-flex"></div>
 					<nav class="flex items-center gap-1">
 						<button
 							hlmBtn
@@ -83,9 +84,9 @@ import { ThemeStorageService } from './services';
 						</button>
 						<ng-template #menu>
 							<hlm-dropdown-menu>
-								<button hlmDropdownMenuItem routerLink="/introduction" routerLinkActive="font-bold">
-									Introduction
-								</button>
+								<button hlmDropdownMenuItem routerLink="/components" routerLinkActive="font-bold">Components</button>
+								<button hlmDropdownMenuItem routerLink="/theme-editor" routerLinkActive="font-bold">Theme</button>
+								<button hlmDropdownMenuItem routerLink="/introduction" routerLinkActive="font-bold">About</button>
 							</hlm-dropdown-menu>
 						</ng-template>
 					</nav>
@@ -96,8 +97,17 @@ import { ThemeStorageService } from './services';
 })
 export class HeaderComponent {
 	private readonly _themeService = inject(ThemeStorageService);
+	private readonly _router = inject(Router);
 	private readonly appearance = this._themeService.appearance;
 	protected readonly themeIcon = computed(() => (this.appearance() === 'light' ? 'lucideSun' : 'lucideMoon'));
+
+	protected readonly activePageName = computed(() => {
+		const url = this._router.url;
+		if (url.startsWith('/components')) return 'Components';
+		if (url.startsWith('/theme-editor')) return 'Theme';
+		if (url.startsWith('/introduction')) return 'About';
+		return 'Menu';
+	});
 
 	protected onChangeTheme(): void {
 		const newTheme = this.appearance() === 'light' ? 'dark' : 'light';

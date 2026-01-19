@@ -10,7 +10,7 @@ import { SeoService } from './core/services/seo.service';
 	imports: [RouterOutlet, NgxSonnerToaster, HeaderComponent],
 	providers: [CodeLoaderService],
 	template: `
-		<div class="relative flex min-h-svh flex-col overflow-clip px-5 [--header-height:4rem]">
+		<div class="relative flex min-h-svh flex-col overflow-clip px-3 [--header-height:4rem]">
 			<ngx-sonner-toaster />
 			<app-header class="sticky top-0 z-50" />
 			<router-outlet />

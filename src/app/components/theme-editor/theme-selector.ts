@@ -15,7 +15,7 @@ import { HlmSeparator } from '@spartan-ng/helm/separator';
 	imports: [HlmButton, NgIcon, HlmIcon, HlmInputGroupImports, HlmPopoverImports, BrnPopoverImports, HlmSeparator],
 	providers: [provideIcons({ lucideChevronDown, lucideSearch, lucideCheck })],
 	host: {
-		class: 'flex-1',
+		class: 'w-full',
 	},
 	template: `
 		<hlm-popover sideOffset="5" align="start">
