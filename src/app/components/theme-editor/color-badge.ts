@@ -15,9 +15,9 @@ import { Component, computed, inject, input } from '@angular/core';
 	`,
 })
 export class ColorBadge {
-	private themeStorage = inject(ThemeStorageService);
-	private colorService = inject(ColorService);
-	private colorType = computed(() => this.themeStorage.colorType());
+	private readonly themeStorage = inject(ThemeStorageService);
+	private readonly colorService = inject(ColorService);
+	private readonly colorType = computed(() => this.themeStorage.colorType());
 
 	public readonly color = input.required<string>();
 

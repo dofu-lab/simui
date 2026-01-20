@@ -245,13 +245,16 @@ import { type Task, TASK_DATA } from './services/tasks.models';
 					</div>
 				}
 			</div>
-			<div class="flex flex-col justify-between sm:flex-row sm:items-center">
-				<span class="text-muted-foreground text-sm">
+			<div class="flex flex-row justify-between sm:items-center">
+				<span class="text-muted-foreground hidden items-center text-sm lg:inline-flex">
 					{{ table.getSelectedRowModel().rows.length }} of {{ table.getRowCount() }} row(s) selected
 				</span>
-				<div class="flex gap-8 sm:mt-0">
+				<span class="text-muted-foreground inline-flex items-center text-sm lg:hidden">
+					{{ table.getSelectedRowModel().rows.length }}/{{ table.getRowCount() }} selected
+				</span>
+				<div class="flex gap-4 sm:mt-0 md:gap-8">
 					<div class="flex gap-2">
-						<span hlmLabel>Row per page:</span>
+						<span hlmLabel class="hidden lg:inline-flex">Row per page:</span>
 						<brn-select
 							class="inline-block"
 							placeholder="{{ _availablePageSizes[0] }}"
@@ -270,7 +273,9 @@ import { type Task, TASK_DATA } from './services/tasks.models';
 						</brn-select>
 					</div>
 
-					<span hlmLabel>Page {{ table.getState().pagination.pageIndex + 1 }} of {{ table.getPageCount() }}</span>
+					<span hlmLabel class="hidden md:inline-flex">
+						Page {{ table.getState().pagination.pageIndex + 1 }} of {{ table.getPageCount() }}
+					</span>
 
 					<div class="flex space-x-1">
 						<button
@@ -382,18 +387,18 @@ export class TasksExample {
 			columnVisibility: this._visibility(),
 		},
 		onColumnVisibilityChange: (updater) => {
-			updater instanceof Function ? this._visibility.update(updater) : this._visibility.set(updater);
+			typeof updater === 'function' ? this._visibility.update(updater) : this._visibility.set(updater);
 			this._localStorageService.saveTaskTableColumns(this._visibility());
 		},
 
 		onColumnFiltersChange: (updater) => {
-			updater instanceof Function ? this._columnFilters.update(updater) : this._columnFilters.set(updater);
+			typeof updater === 'function' ? this._columnFilters.update(updater) : this._columnFilters.set(updater);
 		},
 		onSortingChange: (updater) => {
-			updater instanceof Function ? this._sorting.update(updater) : this._sorting.set(updater);
+			typeof updater === 'function' ? this._sorting.update(updater) : this._sorting.set(updater);
 		},
 		onPaginationChange: (updater) => {
-			updater instanceof Function ? this._pagination.update(updater) : this._pagination.set(updater);
+			typeof updater === 'function' ? this._pagination.update(updater) : this._pagination.set(updater);
 		},
 		getCoreRowModel: getCoreRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),

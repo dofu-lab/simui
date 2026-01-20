@@ -77,123 +77,123 @@ import { TasksExample } from '../tasks';
 	},
 	template: `
 		<div class="wip-table-search flex flex-col justify-between gap-4 sm:flex-row">
-			<div class="flex flex-col justify-between gap-4 sm:flex-row">
+			<div class="flex w-full flex-col justify-between gap-4 md:flex-row">
 				<!-- TASK TITLE FILTER -->
 				<input hlmInput class="h-8 w-full md:w-80" placeholder="Filter tasks..." (input)="taskFilterChange($event)" />
+				<div class="flex flex-1 gap-2">
+					<!-- STATUS FILTER -->
+					<hlm-popover
+						[state]="_statusState()"
+						(stateChanged)="statusStateChanged($event)"
+						sideOffset="5"
+						closeDelay="100"
+						align="start">
+						<button hlmBtn hlmPopoverTrigger variant="outline" size="sm" class="border-dashed">
+							<ng-icon hlm name="lucideCirclePlus" class="mr-2" size="sm" />
+							Status
+							@if (_statusFilter().length) {
+								<div data-orientation="vertical" role="none" class="bg-border mx-2 h-4 w-px shrink-0"></div>
+								<div class="flex gap-1">
+									@for (status of _statusFilter(); track status) {
+										<span class="bg-secondary text-secondary-foreground rounded px-1 py-0.5 text-xs">
+											{{ status }}
+										</span>
+									}
+								</div>
+							}
+						</button>
+						<hlm-command *brnPopoverContent="let ctx" hlmPopoverContent class="w-[200px] p-0">
+							<hlm-command-search>
+								<ng-icon hlm name="lucideSearch" class="text-muted-foreground" />
+								<input placeholder="Status" hlm-command-search-input />
+							</hlm-command-search>
+							<div *brnCommandEmpty hlmCommandEmpty>No results found.</div>
+							<hlm-command-list>
+								<hlm-command-group>
+									@for (status of _statuses(); track status) {
+										<button hlm-command-item [value]="status" (selected)="statusSelected(status)">
+											<hlm-checkbox class="mr-2" [checked]="isStatusSelected(status)" />
 
-				<!-- STATUS FILTER -->
-				<hlm-popover
-					[state]="_statusState()"
-					(stateChanged)="statusStateChanged($event)"
-					sideOffset="5"
-					closeDelay="100"
-					align="start">
-					<button hlmBtn hlmPopoverTrigger variant="outline" size="sm" class="border-dashed">
-						<ng-icon hlm name="lucideCirclePlus" class="mr-2" size="sm" />
-						Status
-						@if (_statusFilter().length) {
-							<div data-orientation="vertical" role="none" class="bg-border mx-2 h-4 w-[1px] shrink-0"></div>
+											<ng-icon hlm [name]="status | statusIcon" class="text-muted-foreground mx-2" size="sm" />
+											{{ status }}
+										</button>
+									}
+								</hlm-command-group>
+							</hlm-command-list>
+						</hlm-command>
+					</hlm-popover>
 
-							<div class="flex gap-1">
-								@for (status of _statusFilter(); track status) {
-									<span class="bg-secondary text-secondary-foreground rounded px-1 py-0.5 text-xs">
-										{{ status }}
-									</span>
-								}
-							</div>
-						}
-					</button>
-					<hlm-command *brnPopoverContent="let ctx" hlmPopoverContent class="w-[200px] p-0">
-						<hlm-command-search>
-							<ng-icon hlm name="lucideSearch" class="text-muted-foreground" />
-							<input placeholder="Status" hlm-command-search-input />
-						</hlm-command-search>
-						<div *brnCommandEmpty hlmCommandEmpty>No results found.</div>
-						<hlm-command-list>
-							<hlm-command-group>
-								@for (status of _statuses(); track status) {
-									<button hlm-command-item [value]="status" (selected)="statusSelected(status)">
-										<hlm-checkbox class="mr-2" [checked]="isStatusSelected(status)" />
+					<!-- PRIORITY FILTER -->
+					<hlm-popover
+						[state]="_priorityState()"
+						(stateChanged)="priorityStateChanged($event)"
+						sideOffset="5"
+						closeDelay="100"
+						align="start">
+						<button hlmBtn hlmPopoverTrigger variant="outline" size="sm" class="border-dashed">
+							<ng-icon hlm name="lucideCirclePlus" class="mr-2" size="sm" />
+							Priority
+							@if (_priorityFilter().length) {
+								<div data-orientation="vertical" role="none" class="bg-border mx-2 h-4 w-[1px] shrink-0"></div>
 
-										<ng-icon hlm [name]="status | statusIcon" class="text-muted-foreground mx-2" size="sm" />
-										{{ status }}
-									</button>
-								}
-							</hlm-command-group>
-						</hlm-command-list>
-					</hlm-command>
-				</hlm-popover>
+								<div class="flex gap-1">
+									@for (priority of _priorityFilter(); track priority) {
+										<span class="bg-secondary text-secondary-foreground rounded px-1 py-0.5 text-xs">
+											{{ priority }}
+										</span>
+									}
+								</div>
+							}
+						</button>
+						<hlm-command *brnPopoverContent="let ctx" hlmPopoverContent class="w-[200px] p-0">
+							<hlm-command-search>
+								<ng-icon hlm name="lucideSearch" class="text-muted-foreground" />
+								<input placeholder="Priority" hlm-command-search-input />
+							</hlm-command-search>
+							<div *brnCommandEmpty hlmCommandEmpty>No results found.</div>
+							<hlm-command-list>
+								<hlm-command-group>
+									@for (priority of _priorities(); track priority) {
+										<button hlm-command-item [value]="priority" (selected)="prioritySelected(priority)">
+											<hlm-checkbox class="mr-2" [checked]="isPrioritySelected(priority)" />
 
-				<!-- PRIORITY FILTER -->
-				<hlm-popover
-					[state]="_priorityState()"
-					(stateChanged)="priorityStateChanged($event)"
-					sideOffset="5"
-					closeDelay="100"
-					align="start">
-					<button hlmBtn hlmPopoverTrigger variant="outline" size="sm" class="border-dashed">
-						<ng-icon hlm name="lucideCirclePlus" class="mr-2" size="sm" />
-						Priority
-						@if (_priorityFilter().length) {
-							<div data-orientation="vertical" role="none" class="bg-border mx-2 h-4 w-[1px] shrink-0"></div>
+											<ng-icon hlm [name]="priority | priorityIcon" class="text-muted-foreground mx-2" size="sm" />
+											{{ priority }}
+										</button>
+									}
+								</hlm-command-group>
+							</hlm-command-list>
+						</hlm-command>
+					</hlm-popover>
 
-							<div class="flex gap-1">
-								@for (priority of _priorityFilter(); track priority) {
-									<span class="bg-secondary text-secondary-foreground rounded px-1 py-0.5 text-xs">
-										{{ priority }}
-									</span>
-								}
-							</div>
-						}
-					</button>
-					<hlm-command *brnPopoverContent="let ctx" hlmPopoverContent class="w-[200px] p-0">
-						<hlm-command-search>
-							<ng-icon hlm name="lucideSearch" class="text-muted-foreground" />
-							<input placeholder="Priority" hlm-command-search-input />
-						</hlm-command-search>
-						<div *brnCommandEmpty hlmCommandEmpty>No results found.</div>
-						<hlm-command-list>
-							<hlm-command-group>
-								@for (priority of _priorities(); track priority) {
-									<button hlm-command-item [value]="priority" (selected)="prioritySelected(priority)">
-										<hlm-checkbox class="mr-2" [checked]="isPrioritySelected(priority)" />
-
-										<ng-icon hlm [name]="priority | priorityIcon" class="text-muted-foreground mx-2" size="sm" />
-										{{ priority }}
-									</button>
-								}
-							</hlm-command-group>
-						</hlm-command-list>
-					</hlm-command>
-				</hlm-popover>
-
-				@if (_statusFilter().length || _priorityFilter().length) {
-					<button hlmBtn variant="ghost" size="sm" align="end" (click)="resetFilters()">
-						Reset
-						<ng-icon hlm name="lucideX" class="ml-2" size="sm" />
-					</button>
-				}
-			</div>
-
-			<!-- Column visibility -->
-			<button hlmBtn variant="outline" align="end" size="sm" [hlmDropdownMenuTrigger]="menu">
-				Columns
-				<ng-icon hlm name="lucideChevronDown" class="ml-2" size="sm" />
-			</button>
-			<ng-template #menu>
-				<hlm-dropdown-menu class="w-32">
-					@for (column of _hidableColumns; track column.id) {
-						<button
-							hlmDropdownMenuCheckbox
-							class="capitalize"
-							[checked]="column.getIsVisible()"
-							(triggered)="column.toggleVisibility()">
-							<hlm-dropdown-menu-checkbox-indicator />
-							{{ column.columnDef.id }}
+					@if (_statusFilter().length || _priorityFilter().length) {
+						<button hlmBtn variant="ghost" size="sm" align="end" (click)="resetFilters()">
+							Reset
+							<ng-icon hlm name="lucideX" class="ml-2" size="sm" />
 						</button>
 					}
-				</hlm-dropdown-menu>
-			</ng-template>
+
+					<!-- Column visibility -->
+					<button hlmBtn variant="outline" align="end" size="sm" [hlmDropdownMenuTrigger]="menu" class="ml-auto">
+						Columns
+						<ng-icon hlm name="lucideChevronDown" class="ml-2" size="sm" />
+					</button>
+					<ng-template #menu>
+						<hlm-dropdown-menu class="w-32">
+							@for (column of _hidableColumns; track column.id) {
+								<button
+									hlmDropdownMenuCheckbox
+									class="capitalize"
+									[checked]="column.getIsVisible()"
+									(triggered)="column.toggleVisibility()">
+									<hlm-dropdown-menu-checkbox-indicator />
+									{{ column.columnDef.id }}
+								</button>
+							}
+						</hlm-dropdown-menu>
+					</ng-template>
+				</div>
+			</div>
 		</div>
 	`,
 })
@@ -216,7 +216,7 @@ export class TableActions {
 	}
 
 	isStatusSelected(status: TaskStatus): boolean {
-		return this._statusFilter().some((s) => s === status);
+		return this._statusFilter().includes(status);
 	}
 
 	statusStateChanged(state: 'open' | 'closed') {
@@ -235,7 +235,7 @@ export class TableActions {
 	}
 
 	isPrioritySelected(priority: TaskPriority): boolean {
-		return this._priorityFilter().some((p) => p === priority);
+		return this._priorityFilter().includes(priority);
 	}
 
 	priorityStateChanged(state: 'open' | 'closed') {
