@@ -9,10 +9,20 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { HlmSeparator } from '@spartan-ng/helm/separator';
+import { SelectorColorPreview } from './selector-color-preview';
 
 @Component({
 	selector: 'app-theme-selector',
-	imports: [HlmButton, NgIcon, HlmIcon, HlmInputGroupImports, HlmPopoverImports, BrnPopoverImports, HlmSeparator],
+	imports: [
+		HlmButton,
+		NgIcon,
+		HlmIcon,
+		HlmSeparator,
+		SelectorColorPreview,
+		HlmInputGroupImports,
+		HlmPopoverImports,
+		BrnPopoverImports,
+	],
 	providers: [provideIcons({ lucideChevronDown, lucideSearch, lucideCheck })],
 	host: {
 		class: 'w-full',
@@ -47,7 +57,8 @@ import { HlmSeparator } from '@spartan-ng/helm/separator';
 								class="hover:bg-accent h-9 w-full rounded-md px-2 text-left text-base"
 								(click)="onPresetSelect(preset)"
 								(keydown)="$event.stopPropagation()">
-								<span class="flex items-center justify-between text-sm">
+								<span class="flex items-center justify-between gap-2 text-sm">
+									<sim-selector-color-preview [preset]="preset" />
 									<span class="flex-1 truncate text-left">{{ preset.label }}</span>
 									@if (preset.id === currentPreset().id) {
 										<ng-icon hlm name="lucideCheck" size="sm" />
@@ -66,8 +77,11 @@ import { HlmSeparator } from '@spartan-ng/helm/separator';
 							class="hover:bg-accent h-9 w-full rounded-md px-2 text-left text-base"
 							(click)="onPresetSelect(preset)"
 							(keydown)="$event.stopPropagation()">
-							<span class="flex items-center justify-between text-sm">
-								<span class="flex-1 truncate text-left">{{ preset.label }}</span>
+							<span class="flex items-center justify-between gap-2 text-sm">
+								<sim-selector-color-preview [preset]="preset" />
+								<span class="flex-1 truncate text-left">
+									{{ preset.label }}
+								</span>
 								@if (preset.id === currentPreset().id) {
 									<ng-icon hlm name="lucideCheck" size="sm" />
 								}
