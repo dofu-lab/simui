@@ -1,4 +1,4 @@
-import { ThemeStorageService } from '@/app/core/services';
+import { AppearanceService } from '@/app/core/services';
 import { ThemePreset } from '@/app/types';
 import { Component, computed, inject, input } from '@angular/core';
 
@@ -22,9 +22,10 @@ import { Component, computed, inject, input } from '@angular/core';
 	`,
 })
 export class SelectorColorPreview {
-	private readonly themeStorage = inject(ThemeStorageService);
 	public readonly preset = input.required<ThemePreset | undefined>();
-	protected readonly appearance = computed(() => this.themeStorage.appearance());
+	private readonly appearanceService = inject(AppearanceService);
+
+	protected readonly appearance = computed(() => this.appearanceService.appearance());
 	protected readonly currentPreset = computed(() => {
 		const appearance = this.appearance();
 

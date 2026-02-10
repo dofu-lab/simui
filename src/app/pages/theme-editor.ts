@@ -2,13 +2,18 @@ import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmResizableImports } from '@spartan-ng/helm/resizable';
-import { EditorHeader, EditorPreview, ThemeConfigComponent, ThemeSelector } from '../components/theme-editor';
-import { ThemeAction } from '../components/theme-editor/theme-action';
+import {
+	EditorHeader,
+	EditorPreview,
+	EditThemeButton,
+	ThemeAction,
+	ThemeConfigComponent,
+	ThemeSelector,
+} from '../components/theme-editor';
 
 @Component({
 	selector: 'sim-theme-editor',
 	imports: [
-		HlmResizableImports,
 		NgClass,
 		EditorPreview,
 		EditorHeader,
@@ -16,12 +21,14 @@ import { ThemeAction } from '../components/theme-editor/theme-action';
 		HlmButton,
 		ThemeSelector,
 		ThemeAction,
+		EditThemeButton,
+		HlmResizableImports,
 	],
 	host: {
-		class: 'flex flex-1 size-full py-4',
+		class: 'flex flex-1 size-full py-2',
 	},
 	template: `
-		<div class="hidden min-h-0 grow flex-col rounded-xl border md:flex">
+		<div class="hidden min-h-0 grow flex-col overflow-hidden rounded-xl border md:flex">
 			<app-editor-header />
 			<div id="editor-content" class="relative flex min-h-0 w-full flex-1">
 				<hlm-resizable-group>
@@ -56,8 +63,9 @@ import { ThemeAction } from '../components/theme-editor/theme-action';
 				</button>
 			</div>
 			<div class="flex flex-1 flex-col" [class.hidden]="selectedTab() !== 'editor'">
-				<div class="border-b p-2">
+				<div class="flex w-full gap-2 border-b p-2">
 					<app-theme-selector />
+					<sim-edit-theme-button />
 				</div>
 				<div id="theme-config" class="flex-1">
 					<sim-theme-config />

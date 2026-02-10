@@ -4,6 +4,7 @@
         "maskito",
         "oklch",
         "postprocessors",
-        "simui"
+        "simui",
+        "Themecolor"
     ]
 }

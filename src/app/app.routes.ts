@@ -1,31 +1,6 @@
 import { Routes } from '@angular/router';
-import {
-	AccordionComponent,
-	AlertComponent,
-	AvatarComponent,
-	BadgeComponent,
-	BannerComponent,
-	BreadcrumbComponent,
-	ButtonComponent,
-	CardComponent,
-	CheckboxComponent,
-	CompLayoutComponent,
-	DialogComponent,
-	DropdownComponent,
-	EventCalendarComponent,
-	FileUploadComponent,
-	HomeComponent,
-	InputComponent,
-	IntroductionComponent,
-	NotificationComponent,
-	PaginationComponent,
-	PopoverComponent,
-	RadioComponent,
-	SliderComponent,
-	SwitchComponent,
-	TabsComponent,
-	ThemeEditor,
-} from './pages';
+import { unsavedChangesGuard } from './guards/unsaved-changes.guard';
+import { HomeComponent, IntroductionComponent, ThemeEditor } from './pages';
 
 export const routes: Routes = [
 	{
@@ -37,6 +12,24 @@ export const routes: Routes = [
 				'SimUI is a comprehensive Angular UI component library building with TailwindCSS, inspired by Shadcn UI and Spartan UI. Perfect for building modern web applications.',
 			keywords:
 				'simui, angular, tailwind css, shadcn, spartan ui, ui components, angular ui collection, react ui collection, web development',
+		},
+	},
+	{
+		path: 'terms-and-conditions',
+		loadComponent: () => import('./pages/term-condition').then((m) => m.TermConditionComponent),
+		data: {
+			title: 'Terms and Conditions - SimUI',
+			description: 'Read the terms and conditions for using SimUI, the Angular UI component library.',
+			keywords: 'terms and conditions, simui, angular, ui components, legal',
+		},
+	},
+	{
+		path: 'privacy-policy',
+		loadComponent: () => import('./pages/privacy-policy').then((m) => m.PrivacyPolicyComponent),
+		data: {
+			title: 'Privacy Policy - SimUI',
+			description: 'Learn how SimUI collects, uses, and protects your personal information.',
+			keywords: 'privacy policy, data protection, simui, gdpr, user privacy',
 		},
 	},
 	{
@@ -52,14 +45,23 @@ export const routes: Routes = [
 	{
 		path: 'theme-editor',
 		component: ThemeEditor,
+		canDeactivate: [unsavedChangesGuard],
+	},
+	{
+		path: 'auth/google/callback',
+		loadComponent: () => import('./pages/google-callback.component').then((m) => m.GoogleCallbackComponent),
+		data: {
+			title: 'Signing in...',
+			description: 'Google authentication callback',
+		},
 	},
 	{
 		path: 'components',
-		component: CompLayoutComponent,
+		loadComponent: () => import('./pages').then((m) => m.CompLayoutComponent),
 		children: [
 			{
 				path: 'accordion',
-				component: AccordionComponent,
+				loadComponent: () => import('./pages').then((m) => m.AccordionComponent),
 				data: {
 					title: 'Accordion',
 					description: 'Accordion component for toggling content visibility.',
@@ -68,7 +70,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'alert',
-				component: AlertComponent,
+				loadComponent: () => import('./pages').then((m) => m.AlertComponent),
 				data: {
 					title: 'Alert',
 					description: 'Alert component for displaying important messages.',
@@ -77,7 +79,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'avatar',
-				component: AvatarComponent,
+				loadComponent: () => import('./pages').then((m) => m.AvatarComponent),
 				data: {
 					title: 'Avatar',
 					description: 'Avatar component to represent users or entities.',
@@ -86,7 +88,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'badge',
-				component: BadgeComponent,
+				loadComponent: () => import('./pages').then((m) => m.BadgeComponent),
 				data: {
 					title: 'Badge',
 					description: 'Badge component for status and labeling.',
@@ -95,7 +97,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'banner',
-				component: BannerComponent,
+				loadComponent: () => import('./pages').then((m) => m.BannerComponent),
 				data: {
 					title: 'Banner',
 					description: 'Banner component for prominent messages.',
@@ -104,7 +106,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'breadcrumb',
-				component: BreadcrumbComponent,
+				loadComponent: () => import('./pages').then((m) => m.BreadcrumbComponent),
 				data: {
 					title: 'Breadcrumb',
 					description: 'Breadcrumb navigation component.',
@@ -113,7 +115,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'button',
-				component: ButtonComponent,
+				loadComponent: () => import('./pages').then((m) => m.ButtonComponent),
 				data: {
 					title: 'Button',
 					description: 'Button component with various styles and sizes.',
@@ -122,7 +124,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'card',
-				component: CardComponent,
+				loadComponent: () => import('./pages').then((m) => m.CardComponent),
 				data: {
 					title: 'Card',
 					description: 'Card container for organizing content.',
@@ -131,7 +133,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'checkbox',
-				component: CheckboxComponent,
+				loadComponent: () => import('./pages').then((m) => m.CheckboxComponent),
 				data: {
 					title: 'Checkbox',
 					description: 'Checkbox input for boolean selection.',
@@ -140,7 +142,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'dialog',
-				component: DialogComponent,
+				loadComponent: () => import('./pages').then((m) => m.DialogComponent),
 				data: {
 					title: 'Dialog',
 					description: 'Modal dialog component for focused tasks.',
@@ -149,7 +151,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'dropdown',
-				component: DropdownComponent,
+				loadComponent: () => import('./pages').then((m) => m.DropdownComponent),
 				data: {
 					title: 'Dropdown',
 					description: 'Dropdown menu for displaying lists of actions.',
@@ -158,7 +160,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'event-calendar',
-				component: EventCalendarComponent,
+				loadComponent: () => import('./pages').then((m) => m.EventCalendarComponent),
 				data: {
 					title: 'Event Calendar',
 					description: 'Calendar component for displaying events.',
@@ -167,7 +169,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'file-upload',
-				component: FileUploadComponent,
+				loadComponent: () => import('./pages').then((m) => m.FileUploadComponent),
 				data: {
 					title: 'File Upload',
 					description: 'Component for uploading files.',
@@ -176,7 +178,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'input',
-				component: InputComponent,
+				loadComponent: () => import('./pages').then((m) => m.InputComponent),
 				data: {
 					title: 'Input',
 					description: 'Input field for text data.',
@@ -185,7 +187,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'notification',
-				component: NotificationComponent,
+				loadComponent: () => import('./pages').then((m) => m.NotificationComponent),
 				data: {
 					title: 'Notification',
 					description: 'Toast notification component.',
@@ -194,7 +196,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'popover',
-				component: PopoverComponent,
+				loadComponent: () => import('./pages').then((m) => m.PopoverComponent),
 				data: {
 					title: 'Popover',
 					description: 'Popover component for contextual information.',
@@ -203,7 +205,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'radio',
-				component: RadioComponent,
+				loadComponent: () => import('./pages').then((m) => m.RadioComponent),
 				data: {
 					title: 'Radio',
 					description: 'Radio button for single selection.',
@@ -212,17 +214,17 @@ export const routes: Routes = [
 			},
 			{
 				path: 'slider',
-				component: SliderComponent,
+				loadComponent: () => import('./pages').then((m) => m.SliderComponent),
 				data: { title: 'Slider', description: 'Range slider component.', keywords: 'slider, range, input, angular' },
 			},
 			{
 				path: 'switch',
-				component: SwitchComponent,
+				loadComponent: () => import('./pages').then((m) => m.SwitchComponent),
 				data: { title: 'Switch', description: 'Toggle switch component.', keywords: 'switch, toggle, angular' },
 			},
 			{
 				path: 'tabs',
-				component: TabsComponent,
+				loadComponent: () => import('./pages').then((m) => m.TabsComponent),
 				data: {
 					title: 'Tabs',
 					description: 'Tabs component for navigation between views.',
@@ -231,7 +233,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'pagination',
-				component: PaginationComponent,
+				loadComponent: () => import('./pages').then((m) => m.PaginationComponent),
 				data: {
 					title: 'Pagination',
 					description: 'Pagination for navigating lists.',

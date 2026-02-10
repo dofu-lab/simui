@@ -1,29 +1,27 @@
 import { ThemeStorageService } from '@/app/core/services';
 import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import {
-	lucideBraces,
-	lucideClipboardClock,
-	lucideImport,
-	lucideRotateCcw,
-	lucideSave,
-	lucideUndo,
-} from '@ng-icons/lucide';
+import { lucideBraces, lucideImport, lucideRotateCcw, lucideSave, lucideUndo } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmSeparator } from '@spartan-ng/helm/separator';
 import { EditorHistory } from './editor-history';
 import { SaveTheme } from './save-theme';
 import { ThemeCodeSheet } from './view-code-dialog';
 
 @Component({
 	selector: 'sim-theme-action',
-	imports: [NgIcon, HlmIcon, HlmButton, EditorHistory, HlmSeparator, SaveTheme, ThemeCodeSheet],
+	imports: [NgIcon, HlmIcon, HlmButton, EditorHistory, SaveTheme, ThemeCodeSheet],
 	providers: [
-		provideIcons({ lucideBraces, lucideSave, lucideRotateCcw, lucideImport, lucideUndo, lucideClipboardClock }),
+		provideIcons({
+			lucideBraces,
+			lucideSave,
+			lucideRotateCcw,
+			lucideImport,
+			lucideUndo,
+		}),
 	],
 	host: {
-		class: 'flex items-center gap-2 justify-end',
+		class: 'flex items-center gap-2 justify-end h-full',
 	},
 	template: `
 		<button hlmBtn size="sm" variant="ghost" [disabled]="disabledUndo()" (click)="undo()">
@@ -34,7 +32,7 @@ import { ThemeCodeSheet } from './view-code-dialog';
 			Reset
 		</button>
 		<sim-editor-history />
-		<hlm-separator orientation="vertical" />
+		<div class="bg-input h-full w-px"></div>
 		<sim-save-theme />
 		<sim-theme-code-sheet [preset]="currentPreset()" />
 	`,

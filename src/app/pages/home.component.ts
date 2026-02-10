@@ -3,7 +3,8 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 import { previewComponents } from '../constants/home.constant';
 import { FooterComponent } from '../core';
 import { CardBodyDirective, CardDirective } from '../core/card';
-import { NavigationService, ThemeStorageService } from '../core/services';
+import { NavigationService } from '../core/services';
+import { AppearanceService } from '../core/services/appearance.service';
 
 @Component({
 	selector: 'app-home',
@@ -55,10 +56,10 @@ import { NavigationService, ThemeStorageService } from '../core/services';
 	`,
 })
 export class HomeComponent {
-	private readonly themeStorageService = inject(ThemeStorageService);
+	private readonly appearanceService = inject(AppearanceService);
 	private readonly navigationService = inject(NavigationService);
 
-	protected readonly appearance = this.themeStorageService.appearance.asReadonly();
+	protected readonly appearance = this.appearanceService.appearance.asReadonly();
 	protected readonly components = previewComponents;
 
 	public onNavigate(path: string): void {

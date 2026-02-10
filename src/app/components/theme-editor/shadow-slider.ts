@@ -1,11 +1,14 @@
 import { ThemeService, ThemeStorageService } from '@/app/core/services';
 import { ThemeStyleProps } from '@/app/types';
+import { HlmSimSlider } from '@/libs/sim/slider/hlm-sim-slider';
 import { Component, computed, effect, inject, input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideSettings2, lucideTextCursorInput } from '@ng-icons/lucide';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { debounceTime, Subject } from 'rxjs';
 
 const DEBOUNCE_TIME = 1000;
@@ -14,38 +17,55 @@ type ShadowKey = 'shadow-opacity' | 'shadow-blur' | 'shadow-spread' | 'shadow-of
 
 @Component({
 	selector: 'sim-shadow-slider',
-	imports: [HlmSlider, HlmLabel, HlmInput, FormsModule],
+	imports: [FormsModule, HlmButton, HlmSimSlider, HlmIcon, NgIcon, HlmInputGroupImports],
+	providers: [provideIcons({ lucideTextCursorInput, lucideSettings2 })],
 	template: `
-		<div class="mb-2 flex items-center justify-between">
-			<span hlmLabel class="text-xs">{{ label() }}</span>
-			<div class="flex gap-1">
-				<input
-					[attr.aria-label]="label() + ' value'"
-					hlmInput
-					class="h-7 w-20 px-2 py-0"
-					type="number"
+		<div class="flex gap-2">
+			@if (mode() === 'input') {
+				<div hlmInputGroup class="rounded-[8px]" [class.hidden]="mode() === 'slider'">
+					<input
+						[attr.aria-label]="label() + ' value'"
+						hlmInputGroupInput
+						type="number"
+						[min]="min()"
+						[max]="max()"
+						[ngModel]="value()"
+						(ngModelChange)="onValueChange($event)" />
+					<div hlmInputGroupAddon class="pl-[15px]">
+						<span hlmInputGroupText>{{ label() }}:</span>
+					</div>
+					<div hlmInputGroupAddon align="inline-end">
+						<span hlmInputGroupText>{{ unit() }}</span>
+					</div>
+				</div>
+			} @else {
+				<hlm-sim-slider
+					[label]="label()"
 					[min]="min()"
 					[max]="max()"
 					[step]="step()"
+					[class.hidden]="mode() === 'input'"
 					[ngModel]="value()"
 					(ngModelChange)="onValueChange($event)" />
-				@if (unit()) {
-					<span class="text-muted-foreground flex items-center text-xs">{{ unit() }}</span>
-				}
-			</div>
+			}
+			@if (mode() === 'slider') {
+				<button hlmBtn size="icon" (click)="mode.set('input')">
+					<ng-icon hlm name="lucideTextCursorInput" size="sm" />
+				</button>
+			} @else {
+				<button hlmBtn size="icon" (click)="mode.set('slider')">
+					<ng-icon hlm name="lucideSettings2" size="sm" />
+				</button>
+			}
 		</div>
-		<hlm-slider
-			[min]="min()"
-			[max]="max()"
-			[step]="step()"
-			[ngModel]="value()"
-			(ngModelChange)="onValueChange($event)" />
 	`,
 })
 export class ShadowSliderComponent {
 	private readonly themeStorageService = inject(ThemeStorageService);
 	private readonly themeService = inject(ThemeService);
 	private readonly valueSubject$ = new Subject<number>();
+
+	protected mode = signal<'slider' | 'input'>('slider');
 
 	readonly label = input.required<string>();
 	readonly cssKey = input.required<ShadowKey>();

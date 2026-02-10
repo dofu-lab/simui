@@ -6,13 +6,14 @@ import { remixTwitterXFill } from '@ng-icons/remixicon';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
+import { AuthenticationComponent } from './authentication';
 import { REPO_LINK, X_LINK } from './constants';
-import { ThemeStorageService } from './services';
+import { AppearanceService } from './services';
 
 @Component({
 	selector: 'app-header',
 	providers: [provideIcons({ lucideSun, lucideMoon, lucideGithub, lucideSquareMenu, remixTwitterXFill })],
-	imports: [HlmButton, NgIcon, HlmIcon, HlmDropdownMenuImports, RouterLink, RouterLinkActive],
+	imports: [HlmButton, NgIcon, HlmIcon, HlmDropdownMenuImports, RouterLink, RouterLinkActive, AuthenticationComponent],
 	template: `
 		<header class="mx-auto flex justify-center pt-3">
 			<div
@@ -59,7 +60,6 @@ import { ThemeStorageService } from './services';
 							<ng-icon hlm name="lucideGithub" class="text-primary" size="sm" />
 						</button>
 					</nav>
-
 					<div class="bg-border hidden h-6 w-px sm:inline-flex"></div>
 					<nav class="flex items-center gap-1">
 						<button
@@ -90,15 +90,16 @@ import { ThemeStorageService } from './services';
 							</hlm-dropdown-menu>
 						</ng-template>
 					</nav>
+					<sim-authentication />
 				</div>
 			</div>
 		</header>
 	`,
 })
 export class HeaderComponent {
-	private readonly _themeService = inject(ThemeStorageService);
+	private readonly appearanceService = inject(AppearanceService);
 	private readonly _router = inject(Router);
-	private readonly appearance = this._themeService.appearance;
+	private readonly appearance = this.appearanceService.appearance;
 	protected readonly themeIcon = computed(() => (this.appearance() === 'light' ? 'lucideSun' : 'lucideMoon'));
 
 	protected readonly activePageName = computed(() => {
@@ -111,7 +112,7 @@ export class HeaderComponent {
 
 	protected onChangeTheme(): void {
 		const newTheme = this.appearance() === 'light' ? 'dark' : 'light';
-		this._themeService.setAppearance(newTheme);
+		this.appearanceService.setAppearance(newTheme);
 	}
 
 	protected openGithub(): void {

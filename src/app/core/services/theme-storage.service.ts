@@ -5,17 +5,13 @@ import {
 	HISTORY_CLEANUP_THRESHOLD,
 	MAX_HISTORY_SIZE,
 } from '@/app/constants/theme-presets';
-import {
-	ColorScheme,
-	ColorType,
-	HistoryAction,
-	HistoryValue,
-	ThemeHistory,
-	ThemePreset,
-	ThemeStyleProps,
-} from '@/app/types';
+import { ThemeHttpService } from '@/app/services';
+import { AuthService } from '@/app/services/auth.service';
+import { ColorType, HistoryAction, HistoryValue, ThemeHistory, ThemePreset, ThemeStyleProps } from '@/app/types';
 import { isPlatformBrowser } from '@angular/common';
-import { computed, effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, PLATFORM_ID, resource, signal } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+import { AppearanceService } from './appearance.service';
 import { LocalStorageService } from './local-storage.service';
 import { ThemeService } from './theme.service';
 
@@ -26,19 +22,17 @@ export class ThemeStorageService {
 	private readonly platformId = inject(PLATFORM_ID);
 	private readonly localStorageService = inject(LocalStorageService);
 	private readonly themeService = inject(ThemeService);
+	private readonly themeHttpService = inject(ThemeHttpService);
+	private readonly appearanceService = inject(AppearanceService);
+	private readonly authService = inject(AuthService);
 
+	private readonly appearance = this.appearanceService.appearance;
 	public readonly history = signal<ThemeHistory[]>([]);
 	public readonly colorType = signal<ColorType>('hex');
-	public readonly appearance = signal<ColorScheme | undefined>(undefined);
-	public readonly themePresets = signal<ThemePreset[]>([]);
-
-	// Performance: Cache the current theme to avoid repeated array access
-	public readonly currentTheme = computed(() => {
-		const historyArray = this.history();
-		const length = historyArray.length;
-		return length > 0 ? (historyArray[length - 1]?.preset ?? DEFAULT_PRESET) : DEFAULT_PRESET;
-	});
-
+	public readonly themePresets = signal<ThemePreset[]>(BUILT_IN_PRESETS);
+	public readonly editMode = signal<{ themeId: string; originalTheme: ThemePreset } | null>(null);
+	public readonly hasUnsavedChanges = signal<boolean>(false);
+	public readonly currentTheme = signal<ThemePreset>(DEFAULT_PRESET);
 	public readonly currentThemeStyles = computed(() => {
 		const currentTheme = this.currentTheme();
 		const appearance = this.appearance();
@@ -48,6 +42,18 @@ export class ThemeStorageService {
 		}
 
 		return currentTheme.styles[appearance];
+	});
+
+	public readonly themeResources = resource({
+		params: () => ({
+			isAuth: this.authService.isAuthenticated(),
+		}),
+		loader: async ({ params }) => {
+			if (params.isAuth) {
+				return firstValueFrom(this.themeHttpService.getThemes());
+			}
+			return [];
+		},
 	});
 
 	constructor() {
@@ -61,6 +67,14 @@ export class ThemeStorageService {
 				this.themeService.applyTheme(currentTheme, appearance);
 			}
 		});
+
+		effect(() => {
+			if (this.themeResources.hasValue()) {
+				const userThemes = this.themeResources.value();
+				// Always combine built-in themes with user themes from API
+				this.themePresets.set([...BUILT_IN_PRESETS, ...userThemes]);
+			}
+		});
 	}
 
 	public selectTheme(preset: ThemePreset): void {
@@ -68,14 +82,24 @@ export class ThemeStorageService {
 			console.error('Invalid theme preset provided');
 			return;
 		}
+		this.exitEditMode();
 
-		const historyValue: HistoryValue = {
-			targetKey: 'selector',
-			oldValue: this.currentTheme()?.id ?? '',
-			newValue: preset.id,
-			colorScheme: this.appearance() ?? 'light',
+		// Clear history when selecting a new theme
+		const initialHistory: ThemeHistory = {
+			preset: preset,
+			timestamp: Date.now(),
+			action: 'APPLY',
+			values: {
+				oldValue: this.currentTheme().id,
+				newValue: preset.id,
+				targetKey: 'selector',
+				colorScheme: 'light',
+			},
 		};
-		this.addHistory(preset, 'APPLY', historyValue);
+
+		this.currentTheme.set(preset);
+		this.history.set([initialHistory]);
+		this.localStorageService.setItem(STORAGE_KEYS.HISTORY, [initialHistory]);
 	}
 
 	public setColorType(colorType: ColorType): void {
@@ -84,16 +108,6 @@ export class ThemeStorageService {
 		if (!success) {
 			console.error('Failed to save color type to storage');
 		}
-	}
-
-	public setAppearance(appearance: ColorScheme): void {
-		console.log('Setting appearance to:', appearance);
-		this.appearance.set(appearance);
-		const success = this.localStorageService.setItem(STORAGE_KEYS.APPEARANCE, appearance);
-		if (!success) {
-			console.error('Failed to save appearance to storage');
-		}
-		this.themeService.setAppearance(appearance);
 	}
 
 	public addHistoryEntry(entry: ThemeHistory): void {
@@ -121,12 +135,22 @@ export class ThemeStorageService {
 
 	public undoHistoryEntry(): void {
 		const history = this.history();
-		if (history.length > 1) {
-			this.history.update((h) => h.slice(0, -1));
-			const success = this.localStorageService.setItem(STORAGE_KEYS.HISTORY, this.history());
-			if (!success) {
-				console.error('Failed to save history after undo');
-			}
+		if (history.length === 1) {
+			return;
+		}
+
+		const newHistory = history.slice(0, -1);
+		this.history.set(newHistory);
+
+		const lastEntry = newHistory.at(-1);
+		if (lastEntry?.preset) {
+			console.log('Reverting to theme from history:', lastEntry);
+			this.currentTheme.set(lastEntry.preset);
+		}
+
+		const success = this.localStorageService.setItem(STORAGE_KEYS.HISTORY, this.history());
+		if (!success) {
+			console.error('Failed to save history after undo');
 		}
 	}
 
@@ -169,6 +193,8 @@ export class ThemeStorageService {
 			return;
 		}
 
+		this.currentTheme.set(preset);
+
 		const newEntry: ThemeHistory = {
 			values,
 			preset,
@@ -194,7 +220,12 @@ export class ThemeStorageService {
 			return;
 		}
 
-		if (currentPreset.source !== 'UNSAVED') {
+		// Mark as changed if in edit mode
+		if (this.isInEditMode()) {
+			this.markAsChanged();
+		}
+
+		if (currentPreset.source !== 'UNSAVED' && !this.isInEditMode()) {
 			currentPreset = { ...currentPreset, id: crypto.randomUUID(), source: 'UNSAVED', label: 'Custom theme (unsaved)' };
 		}
 
@@ -222,33 +253,19 @@ export class ThemeStorageService {
 	}
 
 	public reset(): void {
-		const defaultPreset = BUILT_IN_PRESETS[0];
-		if (!defaultPreset) {
-			console.error('No default preset available');
+		const currentHistory = this.history();
+		if (currentHistory.length === 0) {
 			return;
 		}
 
-		const initialHistory: ThemeHistory = {
-			preset: defaultPreset,
-			timestamp: Date.now(),
-			action: 'APPLY',
-			values: {
-				oldValue: '',
-				newValue: defaultPreset.id,
-				targetKey: 'selector',
-				colorScheme: 'light',
-			},
-		};
+		// Keep only the first item in the history array
+		const firstHistoryItem = currentHistory[0];
+		const resetHistory = [firstHistoryItem];
+		this.history.set(resetHistory);
+		this.currentTheme.set(firstHistoryItem.preset);
+		const historySuccess = this.localStorageService.setItem(STORAGE_KEYS.HISTORY, resetHistory);
 
-		this.history.set([initialHistory]);
-		this.appearance.set('light');
-		this.colorType.set('hex');
-
-		const historySuccess = this.localStorageService.setItem(STORAGE_KEYS.HISTORY, [initialHistory]);
-		const appearanceSuccess = this.localStorageService.setItem(STORAGE_KEYS.APPEARANCE, 'light');
-		const colorTypeSuccess = this.localStorageService.setItem(STORAGE_KEYS.COLOR_TYPE, 'hex');
-
-		if (!historySuccess || !appearanceSuccess || !colorTypeSuccess) {
+		if (!historySuccess) {
 			console.error('Failed to save reset data to storage');
 		}
 	}
@@ -267,18 +284,62 @@ export class ThemeStorageService {
 			this.themePresets.update((themes) => [...themes, theme]);
 		}
 
-		const newHistory: ThemeHistory = {
+		const initialHistory: ThemeHistory = {
 			preset: theme,
 			timestamp: Date.now(),
-			action,
+			action: 'APPLY',
 			values: {
-				oldValue: '',
-				newValue: 'New theme saved',
+				oldValue: this.currentTheme().id,
+				newValue: theme.id,
 				targetKey: 'selector',
-				colorScheme: this.appearance() ?? 'light',
+				colorScheme: 'light',
 			},
 		};
-		this.addHistoryEntry(newHistory);
+
+		this.history.set([initialHistory]);
+		this.currentTheme.set(theme);
+		const historySuccess = this.localStorageService.setItem(STORAGE_KEYS.HISTORY, [initialHistory]);
+		if (!historySuccess) {
+			console.error('Failed to save updated theme to storage');
+		}
+	}
+
+	public enterEditMode(theme: ThemePreset): void {
+		if (!theme?.id || theme.source !== 'SAVED') {
+			console.error('Can only edit saved themes');
+			return;
+		}
+
+		// Save the original theme for comparison
+		this.editMode.set({
+			themeId: theme.id,
+			originalTheme: structuredClone(theme), // Deep clone
+		});
+		this.hasUnsavedChanges.set(false);
+	}
+
+	public exitEditMode(): void {
+		this.editMode.set(null);
+		this.hasUnsavedChanges.set(false);
+	}
+
+	public isInEditMode(): boolean {
+		return this.editMode() !== null;
+	}
+
+	public markAsChanged(): void {
+		if (this.isInEditMode()) {
+			this.hasUnsavedChanges.set(true);
+		}
+	}
+
+	public discardChanges(): void {
+		const editModeData = this.editMode();
+		if (editModeData?.originalTheme) {
+			// Restore original theme
+			this.selectTheme(editModeData.originalTheme);
+			this.exitEditMode();
+		}
 	}
 
 	/**
@@ -314,28 +375,8 @@ export class ThemeStorageService {
 	}
 
 	private loadFromStorage(): void {
-		// Load themes
-		this.themePresets.set(BUILT_IN_PRESETS);
-
-		this.loadAppearanceFromStorage();
 		this.loadColorTypeFromStorage();
 		this.loadHistoryFromStorage();
-	}
-
-	private loadAppearanceFromStorage(): void {
-		if (!isPlatformBrowser(this.platformId)) {
-			return;
-		}
-
-		const savedAppearance = this.localStorageService.getItem<ColorScheme>(STORAGE_KEYS.APPEARANCE);
-		console.log('Loaded appearance from storage:', savedAppearance);
-		if (savedAppearance && (savedAppearance === 'light' || savedAppearance === 'dark')) {
-			this.appearance.set(savedAppearance);
-		} else if (savedAppearance) {
-			console.warn('Invalid appearance value in storage:', savedAppearance);
-			// Keep the current default value ('light')
-		}
-		// If no saved appearance, keep the default 'light' value from signal initialization
 	}
 
 	private loadColorTypeFromStorage(): void {

@@ -1,3 +1,4 @@
+export * from './edit-theme-button';
 export * from './editor-color-config';
 export * from './editor-header';
 export * from './editor-preview';
@@ -6,5 +7,7 @@ export * from './radius-slider';
 export * from './selector-color-preview';
 export * from './shadow-config';
 export * from './shadow-slider';
+export * from './theme-action';
 export * from './theme-config';
 export * from './theme-selector';
+export * from './theme-version-history';
