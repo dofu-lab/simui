@@ -19,6 +19,7 @@ export * from './notification.component';
 export * from './pagination.component';
 export * from './popover.component';
 export * from './privacy-policy';
+export * from './profile-settings';
 export * from './radio.component';
 export * from './slider.component';
 export * from './switch.component';

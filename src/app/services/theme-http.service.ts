@@ -20,7 +20,7 @@ export class ThemeHttpService {
 	private readonly http = inject(HttpClient);
 	private readonly authService = inject(AuthService);
 
-	getThemes(page: number = 1, pageSize: number = 100): Observable<ThemePreset[]> {
+	public getThemes(page: number = 1, pageSize: number = 100): Observable<ThemePreset[]> {
 		// Only fetch user themes if authenticated
 		if (!this.authService.isAuthenticated()) {
 			return of([]);
@@ -33,7 +33,7 @@ export class ThemeHttpService {
 			.pipe(map((response) => response.items));
 	}
 
-	createTheme(theme: ThemePreset): Observable<ThemePreset> {
+	public createTheme(theme: ThemePreset): Observable<ThemePreset> {
 		const payload = {
 			id: theme.id,
 			label: theme.label,
@@ -42,7 +42,7 @@ export class ThemeHttpService {
 		return this.http.post<ThemePreset>(`${this.apiUrl}/theme`, payload);
 	}
 
-	updateTheme(themeId: string, theme: ThemeHistoryPayload): Observable<ThemePreset> {
+	public updateTheme(themeId: string, theme: ThemeHistoryPayload): Observable<ThemePreset> {
 		if (!this.authService.isAuthenticated()) {
 			return of({} as ThemePreset);
 		}
@@ -55,7 +55,19 @@ export class ThemeHttpService {
 		return this.http.put<ThemePreset>(`${this.apiUrl}/theme/${themeId}`, payload);
 	}
 
-	getThemeHistory(themeId: string, page: number = 1, pageSize: number = 20): Observable<ThemeVersionHistoryEntry[]> {
+	public deleteTheme(themeId: string): Observable<void> {
+		if (!this.authService.isAuthenticated()) {
+			return of(undefined);
+		}
+
+		return this.http.delete<void>(`${this.apiUrl}/theme/${themeId}`);
+	}
+
+	public getThemeHistory(
+		themeId: string,
+		page: number = 1,
+		pageSize: number = 20,
+	): Observable<ThemeVersionHistoryEntry[]> {
 		if (!this.authService.isAuthenticated()) {
 			return of([]);
 		}

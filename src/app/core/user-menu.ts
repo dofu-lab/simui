@@ -1,13 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import {
-	lucideChevronDown,
-	lucideHandshake,
-	lucideLogOut,
-	lucideMessageSquareWarning,
-	lucideShield,
-	lucideUserPen,
-} from '@ng-icons/lucide';
+import { lucideChevronDown, lucideHandshake, lucideLogOut, lucideShield, lucideUserPen } from '@ng-icons/lucide';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
@@ -34,7 +27,6 @@ import { SignOutDialogComponent } from './sign-out-dialog';
 			lucideUserPen,
 			lucideHandshake,
 			lucideShield,
-			lucideMessageSquareWarning,
 			lucideLogOut,
 		}),
 	],
@@ -57,7 +49,7 @@ import { SignOutDialogComponent } from './sign-out-dialog';
 		<ng-template #menu>
 			<hlm-dropdown-menu class="w-50">
 				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+					<button hlmDropdownMenuItem (click)="navigateToProfile()">
 						<ng-icon hlm name="lucideUserPen" size="sm" />
 						<span>Profile</span>
 					</button>
@@ -71,10 +63,6 @@ import { SignOutDialogComponent } from './sign-out-dialog';
 					<button hlmDropdownMenuItem (click)="navigateToPrivacy()">
 						<ng-icon hlm name="lucideShield" size="sm" />
 						<span>Privacy Policy</span>
-					</button>
-					<button hlmDropdownMenuItem>
-						<ng-icon hlm name="lucideMessageSquareWarning" size="sm" />
-						<span>Report a Problem</span>
 					</button>
 				</hlm-dropdown-menu-group>
 				<hlm-dropdown-menu-separator />
@@ -101,5 +89,9 @@ export class UserMenuComponent {
 
 	protected navigateToPrivacy(): void {
 		this.navigation.navigateTo('/privacy-policy');
+	}
+
+	protected navigateToProfile(): void {
+		this.navigation.navigateTo('/profile');
 	}
 }

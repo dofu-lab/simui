@@ -304,6 +304,40 @@ export class ThemeStorageService {
 		}
 	}
 
+	public async deleteTheme(theme: ThemePreset): Promise<void> {
+		if (!theme?.id) {
+			console.error('Invalid theme provided');
+			return;
+		}
+
+		if (theme.source !== 'SAVED') {
+			console.error('Can only delete saved themes');
+			return;
+		}
+
+		try {
+			// Call API to delete theme from server
+			await firstValueFrom(this.themeHttpService.deleteTheme(theme.id));
+
+			// Remove theme from local state
+			this.themePresets.update((themes) => themes.filter((t) => t.id !== theme.id));
+
+			// If the deleted theme was the current theme, reset to default
+			if (this.currentTheme().id === theme.id) {
+				this.selectTheme(DEFAULT_PRESET);
+			}
+
+			// If the deleted theme was being edited, exit edit mode
+			const editModeData = this.editMode();
+			if (editModeData?.themeId === theme.id) {
+				this.exitEditMode();
+			}
+		} catch (error) {
+			console.error('Failed to delete theme:', error);
+			throw error;
+		}
+	}
+
 	public enterEditMode(theme: ThemePreset): void {
 		if (!theme?.id || theme.source !== 'SAVED') {
 			console.error('Can only edit saved themes');

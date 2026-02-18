@@ -58,7 +58,7 @@ import { GoogleSigninButtonComponent } from './google-signin-button.component';
 						<p hlmDialogDescription class="text-center">{{ dialogDescription() }}</p>
 					</hlm-dialog-header>
 					<div class="mt-4 flex w-full flex-col gap-4">
-						<app-google-signin-button />
+						<app-google-signin-button [buttonLabel]="buttonLabel()" />
 						<hlm-separator class="my-2" />
 						<div class="bg-muted border-input flex h-8 w-full rounded-md border">
 							<button
@@ -106,6 +106,10 @@ export class SignInDialogComponent {
 		this.mode() === 'signIn'
 			? 'Welcome back! Sign in with your Google account to get started.'
 			: 'Sign up with your Google account to get started.',
+	);
+
+	protected readonly buttonLabel = computed(() =>
+		this.mode() === 'signIn' ? 'Sign in with Google' : 'Sign up with Google',
 	);
 
 	protected onDialogStateChange(state: 'open' | 'closed'): void {

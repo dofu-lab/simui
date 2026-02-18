@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { unsavedChangesGuard } from './guards/unsaved-changes.guard';
-import { HomeComponent, IntroductionComponent, ThemeEditor } from './pages';
+import { HomeComponent, IntroductionComponent, ProfileSettingsComponent, ThemeEditor } from './pages';
 
 export const routes: Routes = [
 	{
@@ -12,6 +12,15 @@ export const routes: Routes = [
 				'SimUI is a comprehensive Angular UI component library building with TailwindCSS, inspired by Shadcn UI and Spartan UI. Perfect for building modern web applications.',
 			keywords:
 				'simui, angular, tailwind css, shadcn, spartan ui, ui components, angular ui collection, react ui collection, web development',
+		},
+	},
+	{
+		path: 'profile',
+		component: ProfileSettingsComponent,
+		data: {
+			title: 'Profile Settings - SimUI',
+			description: 'Manage your profile settings and preferences in SimUI.',
+			keywords: 'profile settings, user preferences, simui, angular',
 		},
 	},
 	{

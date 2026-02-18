@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { AuthService } from '../services/auth.service';
 
@@ -33,15 +33,17 @@ import { AuthService } from '../services/auth.service';
 						</clipPath>
 					</defs>
 				</svg>
-				Sign in with Google
+				{{ buttonLabel() }}
 			</button>
 		</div>
 	`,
 })
 export class GoogleSigninButtonComponent {
+	public readonly buttonLabel = input('Sign in with Google');
+
 	private readonly authService = inject(AuthService);
 
-	onSignInWithGoogle(): void {
+	protected onSignInWithGoogle(): void {
 		this.authService.signInWithGoogle();
 	}
 }

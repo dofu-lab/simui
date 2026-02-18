@@ -3,7 +3,7 @@ import { SignInDialogComponent } from '@/app/core/sign-in-dialog';
 import { ThemeHttpService } from '@/app/services';
 import { AuthService } from '@/app/services/auth.service';
 import { ThemeHistoryPayload, ThemePreset } from '@/app/types';
-import { Component, computed, inject, viewChild } from '@angular/core';
+import { Component, computed, inject, signal, viewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSave } from '@ng-icons/lucide';
@@ -13,6 +13,7 @@ import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-save-theme',
@@ -26,6 +27,7 @@ import { HlmInput } from '@spartan-ng/helm/input';
 		HlmInput,
 		ReactiveFormsModule,
 		SignInDialogComponent,
+		HlmSpinner,
 	],
 	providers: [provideIcons({ lucideSave })],
 	template: `
@@ -52,7 +54,12 @@ import { HlmInput } from '@spartan-ng/helm/input';
 						<div hlmFieldGroup>
 							<div hlmField class="col-span-2">
 								<label hlmFieldLabel for="theme-name">Theme name</label>
-								<input hlmInput id="themeName" placeholder="Your theme name" [formControl]="name" />
+								<input
+									hlmInput
+									id="themeName"
+									placeholder="Your theme name"
+									[formControl]="name"
+									(input)="capitalizeFirstChar(name)" />
 								@if (name.errors?.['nameExisted']) {
 									<hlm-field-error>Theme name already exists.</hlm-field-error>
 								}
@@ -65,7 +72,12 @@ import { HlmInput } from '@spartan-ng/helm/input';
 							<div hlmFieldGroup>
 								<div hlmField class="col-span-2">
 									<label hlmFieldLabel for="change-note">Change note</label>
-									<input hlmInput id="changeNote" placeholder="Describe what changed..." [formControl]="changeNote" />
+									<input
+										hlmInput
+										id="changeNote"
+										placeholder="Describe what changed..."
+										[formControl]="changeNote"
+										(input)="capitalizeFirstChar(changeNote)" />
 									@if (changeNote.errors?.['required'] && changeNote.touched) {
 										<hlm-field-error>Change note is required.</hlm-field-error>
 									}
@@ -75,9 +87,14 @@ import { HlmInput } from '@spartan-ng/helm/input';
 					</div>
 				</div>
 				<hlm-dialog-footer>
-					<button hlmBtn variant="outline" brnDialogClose>Cancel</button>
-					<button hlmBtn type="submit" (click)="onSave(ctx)" [disabled]="name.invalid">
-						{{ isEditMode() ? 'Update' : 'Save changes' }}
+					<button hlmBtn variant="outline" brnDialogClose [disabled]="isSaving()">Cancel</button>
+					<button hlmBtn type="submit" (click)="onSave(ctx)" [disabled]="name.invalid || isSaving()">
+						@if (isSaving()) {
+							<hlm-spinner class="mr-2 size-4" />
+							{{ isEditMode() ? 'Updating...' : 'Saving...' }}
+						} @else {
+							{{ isEditMode() ? 'Update' : 'Save changes' }}
+						}
 					</button>
 				</hlm-dialog-footer>
 			</hlm-dialog-content>
@@ -105,8 +122,20 @@ export class SaveTheme {
 		return 'Save';
 	});
 
+	protected isSaving = signal(false);
+
 	protected name = new FormControl('', { validators: [Validators.required], nonNullable: true });
 	protected changeNote = new FormControl('', { validators: [Validators.required], nonNullable: true });
+
+	protected capitalizeFirstChar(control: FormControl): void {
+		const value = control.value;
+		if (value && value.length > 0) {
+			const capitalized = value.charAt(0).toUpperCase() + value.slice(1);
+			if (capitalized !== value) {
+				control.setValue(capitalized, { emitEvent: false });
+			}
+		}
+	}
 
 	protected onSaveClick(event: Event) {
 		// Check if user is authenticated
@@ -166,14 +195,17 @@ export class SaveTheme {
 				changeNote: this.changeNote.value || undefined,
 			};
 
+			this.isSaving.set(true);
 			this.themeHttpService.updateTheme(editModeData.themeId, updatedTheme).subscribe({
 				next: (updated) => {
 					this.themeStorageService.updateTheme(updated, 'UPDATE_THEME');
 					this.themeStorageService.exitEditMode();
+					this.isSaving.set(false);
 					ctx.close();
 				},
 				error: (error) => {
 					console.error('Failed to update theme:', error);
+					this.isSaving.set(false);
 				},
 			});
 		}
@@ -199,13 +231,16 @@ export class SaveTheme {
 			source: 'SAVED',
 		};
 
+		this.isSaving.set(true);
 		this.themeHttpService.createTheme(savedTheme).subscribe({
 			next: (createdTheme) => {
 				this.themeStorageService.updateTheme(createdTheme, 'SAVE_THEME');
+				this.isSaving.set(false);
 				ctx.close();
 			},
 			error: (error) => {
 				console.error('Failed to save theme:', error);
+				this.isSaving.set(false);
 			},
 		});
 	}
