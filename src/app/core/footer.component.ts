@@ -10,6 +10,12 @@ import { RouterLink } from '@angular/router';
 			<div class="text-muted-foreground text-sm">© {{ currentYear }} Sim UI</div>
 			<div class="flex gap-4 text-sm">
 				<a
+					routerLink="/introduction"
+					class="text-muted-foreground hover:text-primary underline-offset-4 hover:underline">
+					About
+				</a>
+				<span class="text-muted-foreground">·</span>
+				<a
 					routerLink="/terms-and-conditions"
 					class="text-muted-foreground hover:text-primary underline-offset-4 hover:underline">
 					Terms & Conditions

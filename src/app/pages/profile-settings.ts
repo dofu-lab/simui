@@ -70,11 +70,11 @@ import { ThemePreset } from '../types';
 		}),
 	],
 	host: {
-		class: 'flex flex-1 size-full py-2',
+		class: 'flex flex-1 size-full py-2 max-w-7xl mx-auto',
 	},
 	template: `
 		<div class="min-h-0 grow grid-cols-[250px_auto] overflow-hidden md:grid">
-			<div class="flex h-full flex-col gap-2 rounded-xl p-4">
+			<div class="flex h-full flex-col gap-1 rounded-xl px-2 py-4">
 				<button
 					hlmBtn
 					variant="ghost"
@@ -94,9 +94,9 @@ import { ThemePreset } from '../types';
 					Account
 				</button>
 			</div>
-			<div class="flex flex-col gap-2 pt-4">
+			<div class="flex flex-col gap-1 pt-4">
 				@if (activeTab() === 'themes') {
-					<div class="flex justify-end">
+					<div class="flex">
 						<div hlmInputGroup class="max-w-[300px]">
 							<input hlmInputGroupInput placeholder="Search your theme..." [(ngModel)]="searchTerm" />
 							<div hlmInputGroupAddon>
@@ -104,7 +104,7 @@ import { ThemePreset } from '../types';
 							</div>
 						</div>
 					</div>
-					<div class="relative size-full overflow-y-auto rounded-xl border">
+					<div class="relative size-full overflow-y-auto rounded-md border">
 						<div class="absolute grid w-full grid-cols-1 gap-3 p-4 sm:grid-cols-2 lg:grid-cols-3">
 							@for (theme of customThemes(); track theme.id) {
 								<div
@@ -154,7 +154,7 @@ import { ThemePreset } from '../types';
 				} @else if (activeTab() === 'account') {
 					<!-- Account / Subscription tab -->
 					<div class="flex max-w-xl flex-col gap-4 pr-4">
-						<div hlmCard class="flex flex-col gap-4 p-6">
+						<div hlmCard class="flex flex-col gap-4 rounded-md border p-4 shadow-none">
 							<div class="flex items-center justify-between">
 								<h2 class="text-base font-semibold">Current plan</h2>
 								@if (subscriptionLoading()) {

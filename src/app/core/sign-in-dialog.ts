@@ -30,7 +30,7 @@ import { GoogleSigninButtonComponent } from './google-signin-button.component';
 	template: `
 		<hlm-dialog (stateChanged)="onDialogStateChange($event)">
 			@if (!hideButton()) {
-				<button id="login-button" brnDialogTrigger hlmBtn variant="default" size="sm">Sign up</button>
+				<button id="login-button" brnDialogTrigger hlmBtn variant="default" size="sm">Sign In</button>
 			}
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[400px] max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
@@ -97,7 +97,7 @@ export class SignInDialogComponent {
 	public readonly hideButton = input<boolean>(false);
 	public readonly dialogRef = viewChild(BrnDialog);
 
-	protected mode = signal<'signIn' | 'signUp'>('signUp');
+	protected mode = signal<'signIn' | 'signUp'>('signIn');
 
 	protected readonly dialogTitle = computed(() =>
 		this.mode() === 'signIn' ? 'Sign in to SimUI' : 'Create your SimUI account',
@@ -114,12 +114,12 @@ export class SignInDialogComponent {
 
 	protected onDialogStateChange(state: 'open' | 'closed'): void {
 		if (state === 'open') {
-			this.mode.set('signUp');
+			this.mode.set('signIn');
 		}
 	}
 
 	public open(): void {
-		this.mode.set('signUp'); // Reset to default mode
+		this.mode.set('signIn'); // Reset to default mode
 		this.dialogRef()?.open();
 	}
 }

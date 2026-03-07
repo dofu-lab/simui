@@ -45,12 +45,6 @@ import { AppearanceService } from './services';
 					</a>
 				</div>
 				<div class="flex items-center justify-between gap-2 md:justify-end">
-					<a
-						class="text-foreground relative hidden cursor-pointer items-center rounded-lg px-3 py-2 text-sm sm:inline-flex"
-						routerLink="/introduction"
-						routerLinkActive="bg-muted font-medium">
-						About
-					</a>
 					<div class="bg-border hidden h-6 w-px sm:inline-flex"></div>
 					<nav>
 						<button hlmBtn size="icon" variant="ghost" type="button" (click)="openX()">
@@ -88,7 +82,6 @@ import { AppearanceService } from './services';
 							<hlm-dropdown-menu>
 								<button hlmDropdownMenuItem routerLink="/components" routerLinkActive="font-bold">Components</button>
 								<button hlmDropdownMenuItem routerLink="/theme-editor" routerLinkActive="font-bold">Theme</button>
-								<button hlmDropdownMenuItem routerLink="/introduction" routerLinkActive="font-bold">About</button>
 								@if (isFreePlan()) {
 									<button hlmDropdownMenuItem routerLink="/pricing">⚡ Upgrade to Pro</button>
 								}
