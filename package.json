@@ -3,12 +3,13 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"build": "ng build",
+		"build": "node scripts/set-env.js && ng build",
 		"codes": "ts-node src/tools/generators.ts",
 		"lint": "ng lint",
 		"ng": "ng",
 		"serve:ssr:simui": "node dist/simui/server/server.mjs",
-		"start": "ng serve",
+		"set-env": "node scripts/set-env.js",
+		"start": "node scripts/set-env.js && ng serve",
 		"test": "ng test",
 		"watch": "ng build --watch --configuration development"
 	},
@@ -64,6 +65,7 @@
 		"@types/node": "^18.18.0",
 		"@types/prismjs": "1.26.4",
 		"angular-eslint": "19.3.0",
+		"dotenv": "^17.3.1",
 		"eslint": "^9.23.0",
 		"eslint-config-prettier": "^10.1.2",
 		"jasmine-core": "~5.6.0",

@@ -1,17 +1,16 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgxSonnerToaster } from 'ngx-sonner';
-import { HeaderComponent } from './core';
+import { HeaderComponent, ThemeService } from './core';
 import { CodeLoaderService } from './core/services/code-loader.service';
 import { SeoService } from './core/services/seo.service';
-import { ThemeInjectorService } from './core/services/theme-injector.service';
 
 @Component({
 	selector: 'app-root',
 	imports: [RouterOutlet, NgxSonnerToaster, HeaderComponent],
 	providers: [CodeLoaderService],
 	template: `
-		<div class="relative flex min-h-svh flex-col overflow-clip [--header-height:4rem]">
+		<div class="relative flex min-h-svh flex-col overflow-clip px-2 [--header-height:4rem]">
 			<ngx-sonner-toaster />
 			<app-header class="sticky top-0 z-50" />
 			<router-outlet />
@@ -20,9 +19,9 @@ import { ThemeInjectorService } from './core/services/theme-injector.service';
 })
 export class AppComponent implements OnInit {
 	isNavbarOpen = signal<boolean>(true);
-	private codeLoaderService = inject(CodeLoaderService);
-	private seoService = inject(SeoService);
-	private themeInjectorService = inject(ThemeInjectorService);
+	private readonly codeLoaderService = inject(CodeLoaderService);
+	private readonly seoService = inject(SeoService);
+	private readonly themeInjectorService = inject(ThemeService);
 
 	ngOnInit() {
 		this.seoService.init();

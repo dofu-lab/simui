@@ -1,23 +1,25 @@
 import { Component, computed, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub, lucideMoon, lucideSquareMenu, lucideSun } from '@ng-icons/lucide';
 import { remixTwitterXFill } from '@ng-icons/remixicon';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
+import { isFreeUser } from '../models/user-role';
+import { AuthService } from '../services/auth.service';
+import { AuthenticationComponent } from './authentication';
 import { REPO_LINK, X_LINK } from './constants';
-import { NavigationService } from './services/navigation.service';
-import { ThemeService } from './services/theme.service';
+import { AppearanceService } from './services';
 
 @Component({
 	selector: 'app-header',
 	providers: [provideIcons({ lucideSun, lucideMoon, lucideGithub, lucideSquareMenu, remixTwitterXFill })],
-	imports: [HlmButton, NgIcon, HlmIcon, HlmDropdownMenuImports],
+	imports: [HlmButton, NgIcon, HlmIcon, HlmDropdownMenuImports, RouterLink, RouterLinkActive, AuthenticationComponent],
 	template: `
-		<header
-			class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 flex w-full items-center justify-center backdrop-blur-lg">
-			<div class="flex h-16 w-full max-w-6xl items-center justify-between">
+		<header class="mx-auto flex justify-center pt-3">
+			<div
+				class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 flex h-14 w-full max-w-6xl items-center justify-between rounded-2xl border px-2 shadow-xs backdrop-blur-lg sm:px-8">
 				<div class="mr-4 flex">
 					<a class="relative mr-6 flex items-center space-x-2" href="/">
 						<img src="/assets/logos/logo-base.svg" alt="Magic UI" class="h-10 w-10" />
@@ -28,23 +30,39 @@ import { ThemeService } from './services/theme.service';
 						</div>
 					</a>
 				</div>
+				<div class="mr-4 flex gap-1">
+					<a
+						class="text-foreground relative hidden cursor-pointer items-center rounded-lg px-3 py-2 text-sm sm:inline-flex"
+						routerLink="/components"
+						routerLinkActive="bg-muted font-medium">
+						Components
+					</a>
+					<a
+						class="text-foreground relative hidden cursor-pointer items-center rounded-lg px-3 py-2 text-sm sm:inline-flex"
+						routerLink="/theme-editor"
+						routerLinkActive="bg-muted font-medium">
+						Theme
+					</a>
+				</div>
 				<div class="flex items-center justify-between gap-2 md:justify-end">
 					<a
-						class="text-foreground relative mr-6 hidden cursor-pointer items-center gap-0.5 space-x-2 text-sm hover:underline sm:inline-flex"
-						(click)="goToIntroduction()">
+						class="text-foreground relative hidden cursor-pointer items-center rounded-lg px-3 py-2 text-sm sm:inline-flex"
+						routerLink="/introduction"
+						routerLinkActive="bg-muted font-medium">
 						About
 					</a>
-					<nav class="flex items-center gap-1">
+					<div class="bg-border hidden h-6 w-px sm:inline-flex"></div>
+					<nav>
 						<button hlmBtn size="icon" variant="ghost" type="button" (click)="openX()">
 							<ng-icon hlm name="remixTwitterXFill" class="text-primary" size="sm" />
 						</button>
 					</nav>
-					<nav class="flex items-center gap-1">
+					<nav>
 						<button hlmBtn size="icon" variant="ghost" type="button" (click)="openGithub()">
 							<ng-icon hlm name="lucideGithub" class="text-primary" size="sm" />
 						</button>
 					</nav>
-					<div class="bg-border h-6 w-[1px]"></div>
+					<div class="bg-border hidden h-6 w-px sm:inline-flex"></div>
 					<nav class="flex items-center gap-1">
 						<button
 							hlmBtn
@@ -68,24 +86,40 @@ import { ThemeService } from './services/theme.service';
 						</button>
 						<ng-template #menu>
 							<hlm-dropdown-menu>
-								<button hlmDropdownMenuItem (click)="goToIntroduction()">Introduction</button>
+								<button hlmDropdownMenuItem routerLink="/components" routerLinkActive="font-bold">Components</button>
+								<button hlmDropdownMenuItem routerLink="/theme-editor" routerLinkActive="font-bold">Theme</button>
+								<button hlmDropdownMenuItem routerLink="/introduction" routerLinkActive="font-bold">About</button>
+								@if (isFreePlan()) {
+									<button hlmDropdownMenuItem routerLink="/pricing">⚡ Upgrade to Pro</button>
+								}
 							</hlm-dropdown-menu>
 						</ng-template>
 					</nav>
+					<sim-authentication />
 				</div>
 			</div>
 		</header>
 	`,
 })
 export class HeaderComponent {
-	private _themeService = inject(ThemeService);
-	private _navigation = inject(NavigationService);
-	private _darkMode = toSignal(this._themeService.darkMode$);
-	protected themeIcon = computed(() => (this._darkMode() === 'light' ? 'lucideSun' : 'lucideMoon'));
+	private readonly appearanceService = inject(AppearanceService);
+	private readonly authService = inject(AuthService);
+	private readonly _router = inject(Router);
+
+	protected readonly appearance = this.appearanceService.appearance;
+	protected readonly themeIcon = computed(() => (this.appearance() === 'light' ? 'lucideSun' : 'lucideMoon'));
+	protected readonly isFreePlan = computed(() => isFreeUser(this.authService.currentUser()));
+	protected readonly activePageName = computed(() => {
+		const url = this._router.url;
+		if (url.startsWith('/components')) return 'Components';
+		if (url.startsWith('/theme-editor')) return 'Theme';
+		if (url.startsWith('/introduction')) return 'About';
+		return 'Menu';
+	});
 
 	protected onChangeTheme(): void {
-		const newTheme = this._darkMode() === 'light' ? 'dark' : 'light';
-		this._themeService.setDarkMode(newTheme);
+		const newTheme = this.appearance() === 'light' ? 'dark' : 'light';
+		this.appearanceService.setAppearance(newTheme);
 	}
 
 	protected openGithub(): void {
@@ -94,13 +128,5 @@ export class HeaderComponent {
 
 	protected openX(): void {
 		window.open(X_LINK, '_blank');
-	}
-
-	protected goToIntroduction(): void {
-		this._navigation.navigateTo('introduction');
-	}
-
-	protected goToThemeEditor(): void {
-		this._navigation.navigateTo('theme-editor');
 	}
 }

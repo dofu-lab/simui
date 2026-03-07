@@ -3,6 +3,8 @@
         "culori",
         "maskito",
         "oklch",
-        "postprocessors"
+        "postprocessors",
+        "simui",
+        "Themecolor"
     ]
 }
