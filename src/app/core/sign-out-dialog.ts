@@ -18,7 +18,12 @@ import { AuthService } from '../services/auth.service';
 	],
 	template: `
 		<hlm-dialog>
-			<button id="sign-out-button" hlmDropdownMenuItem brnDialogTrigger>
+			<button
+				id="sign-out-button"
+				variant="destructive"
+				class="hover:bg-destructive/10 dark:hover:bg-destructive/40"
+				hlmDropdownMenuItem
+				brnDialogTrigger>
 				<ng-icon hlm name="lucideLogOut" size="sm" />
 				<span>Logout</span>
 			</button>
