@@ -1,12 +1,14 @@
 import { ThemeStorageService } from '@/app/core/services/theme-storage.service';
 import { SignInDialogComponent } from '@/app/core/sign-in-dialog';
+import { isFreeUser } from '@/app/models/user-role';
 import { ThemeHttpService } from '@/app/services';
 import { AuthService } from '@/app/services/auth.service';
 import { ThemeHistoryPayload, ThemePreset } from '@/app/types';
 import { Component, computed, inject, signal, viewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideSave } from '@ng-icons/lucide';
+import { lucideSave, lucideZap } from '@ng-icons/lucide';
 import { BrnDialog, BrnDialogImports } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
@@ -14,6 +16,7 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { toast } from 'ngx-sonner';
 
 @Component({
 	selector: 'sim-save-theme',
@@ -28,10 +31,32 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 		ReactiveFormsModule,
 		SignInDialogComponent,
 		HlmSpinner,
+		RouterLink,
 	],
-	providers: [provideIcons({ lucideSave })],
+	providers: [provideIcons({ lucideSave, lucideZap })],
 	template: `
 		<sim-sign-in-dialog #signInDialog [hideButton]="true" />
+
+		<!-- Upgrade prompt dialog (shown when free user is at theme limit) -->
+		<hlm-dialog #upgradeLimitDialog>
+			<hlm-dialog-content class="w-[420px]" *brnDialogContent="let ctx">
+				<hlm-dialog-header>
+					<h3 hlmDialogTitle class="flex items-center gap-2">
+						<ng-icon hlm name="lucideZap" size="sm" class="text-yellow-500" />
+						Theme limit reached
+					</h3>
+					<p hlmDialogDescription>Free plan allows up to 5 saved themes. Upgrade to Pro for unlimited themes.</p>
+				</hlm-dialog-header>
+				<hlm-dialog-footer>
+					<button hlmBtn variant="outline" brnDialogClose>Cancel</button>
+					<a hlmBtn routerLink="/pricing" (click)="ctx.close()">
+						<ng-icon hlm name="lucideZap" size="sm" class="text-yellow-500" />
+						Upgrade to Pro
+					</a>
+				</hlm-dialog-footer>
+			</hlm-dialog-content>
+		</hlm-dialog>
+
 		<hlm-dialog #saveThemeDialog (stateChanged)="onDialogStateChange($event)">
 			<button
 				hlmBtn
@@ -105,12 +130,21 @@ export class SaveTheme {
 	private readonly themeStorageService = inject(ThemeStorageService);
 	private readonly themeHttpService = inject(ThemeHttpService);
 	private readonly authService = inject(AuthService);
+	private readonly router = inject(Router);
 
 	private readonly saveThemeDialog = viewChild<BrnDialog>('saveThemeDialog');
 	private readonly signInDialog = viewChild<SignInDialogComponent>('signInDialog');
+	private readonly upgradeLimitDialog = viewChild<BrnDialog>('upgradeLimitDialog');
+
+	private readonly FREE_THEME_LIMIT = 5;
 
 	protected isUnsaved = computed(() => this.themeStorageService.currentTheme()?.source === 'UNSAVED');
 	protected isEditMode = computed(() => this.themeStorageService.isInEditMode());
+	protected isAtFreeLimit = computed(() => {
+		if (!isFreeUser(this.authService.currentUser())) return false;
+		const savedCount = this.themeStorageService.themePresets().filter((t) => t.source === 'SAVED').length;
+		return savedCount >= this.FREE_THEME_LIMIT;
+	});
 	protected canSave = computed(
 		() => this.isUnsaved() || (this.isEditMode() && this.themeStorageService.hasUnsavedChanges()),
 	);
@@ -143,6 +177,12 @@ export class SaveTheme {
 		if (!this.authService.isAuthenticated()) {
 			console.log('User not authenticated. Opening sign-in dialog.', this.signInDialog());
 			this.signInDialog()?.open();
+			return;
+		}
+
+		// Check free tier limit before opening save dialog
+		if (!this.isEditMode() && this.isAtFreeLimit()) {
+			this.upgradeLimitDialog()?.open();
 			return;
 		}
 
@@ -237,10 +277,25 @@ export class SaveTheme {
 				this.themeStorageService.updateTheme(createdTheme, 'SAVE_THEME');
 				this.isSaving.set(false);
 				ctx.close();
+				toast('Theme saved', { description: `"${createdTheme.label}" has been added to your themes.` });
 			},
 			error: (error) => {
-				console.error('Failed to save theme:', error);
 				this.isSaving.set(false);
+				if (error?.status === 402) {
+					ctx.close();
+					toast('Theme limit reached', {
+						description: error.error?.message ?? 'Upgrade to Pro for unlimited saved themes.',
+						action: {
+							label: 'Upgrade',
+							onClick: () => {
+								void this.router.navigate(['/pricing']);
+							},
+						},
+						duration: 8000,
+					});
+				} else {
+					toast('Failed to save theme', { description: 'Something went wrong. Please try again.' });
+				}
 			},
 		});
 	}

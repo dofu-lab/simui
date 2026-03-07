@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 import { unsavedChangesGuard } from './guards/unsaved-changes.guard';
 import { HomeComponent, IntroductionComponent, ProfileSettingsComponent, ThemeEditor } from './pages';
 
@@ -17,6 +18,7 @@ export const routes: Routes = [
 	{
 		path: 'profile',
 		component: ProfileSettingsComponent,
+		canActivate: [authGuard],
 		data: {
 			title: 'Profile Settings - SimUI',
 			description: 'Manage your profile settings and preferences in SimUI.',
@@ -62,6 +64,25 @@ export const routes: Routes = [
 		data: {
 			title: 'Signing in...',
 			description: 'Google authentication callback',
+		},
+	},
+	{
+		path: 'pricing',
+		loadComponent: () => import('./pages/pricing').then((m) => m.PricingComponent),
+		data: {
+			title: 'Pricing - SimUI',
+			description:
+				'Simple, transparent pricing for SimUI. Get unlimited themes and full version history with the Pro plan.',
+			keywords: 'pricing, pro, subscription, simui, upgrade',
+		},
+	},
+	{
+		path: 'payment/success',
+		loadComponent: () => import('./pages/payment-success').then((m) => m.PaymentSuccessComponent),
+		canActivate: [authGuard],
+		data: {
+			title: 'Subscription Activated - SimUI',
+			description: 'Your SimUI Pro subscription is active.',
 		},
 	},
 	{

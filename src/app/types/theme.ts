@@ -133,6 +133,7 @@ export interface ThemeVersionHistoryEntry {
 		light: ThemeStyleProps;
 		dark: ThemeStyleProps;
 	};
+	isBlurred?: boolean;
 }
 
 export interface ThemeVersionHistoryListResponse {

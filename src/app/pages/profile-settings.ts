@@ -1,9 +1,22 @@
-import { Component, computed, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { Component, computed, ElementRef, inject, OnInit, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucidePencil, lucideSearch, lucideSwatchBook, lucideTrash, lucideTriangleAlert } from '@ng-icons/lucide';
+import {
+	lucideBadgeCheck,
+	lucideCalendarDays,
+	lucideCreditCard,
+	lucideExternalLink,
+	lucidePencil,
+	lucideSearch,
+	lucideSwatchBook,
+	lucideTrash,
+	lucideTriangleAlert,
+	lucideUser,
+	lucideZap,
+} from '@ng-icons/lucide';
 import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
+import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
@@ -12,9 +25,12 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { toast } from 'ngx-sonner';
 import { PresetColorPreview } from '../components/theme-editor/preset-color-preview';
 import { ThemeStorageService } from '../core/services/theme-storage.service';
 import { HistoryDatePipe } from '../pipes/history-date.pipe';
+import { PaymentHttpService, SubscriptionStatus } from '../services/payment-http.service';
 import { ThemePreset } from '../types';
 
 @Component({
@@ -23,7 +39,9 @@ import { ThemePreset } from '../types';
 		HlmButton,
 		NgIcon,
 		HlmIcon,
+		HlmBadge,
 		HlmCardImports,
+		HlmSpinner,
 		PresetColorPreview,
 		HlmInputGroupImports,
 		FormsModule,
@@ -34,8 +52,23 @@ import { ThemePreset } from '../types';
 		BrnDialogContent,
 		HlmInput,
 		HlmLabel,
+		RouterLink,
 	],
-	providers: [provideIcons({ lucideSwatchBook, lucidePencil, lucideSearch, lucideTrash, lucideTriangleAlert })],
+	providers: [
+		provideIcons({
+			lucideSwatchBook,
+			lucidePencil,
+			lucideSearch,
+			lucideTrash,
+			lucideTriangleAlert,
+			lucideUser,
+			lucideCreditCard,
+			lucideBadgeCheck,
+			lucideZap,
+			lucideExternalLink,
+			lucideCalendarDays,
+		}),
+	],
 	host: {
 		class: 'flex flex-1 size-full py-2',
 	},
@@ -46,67 +79,131 @@ import { ThemePreset } from '../types';
 					hlmBtn
 					variant="ghost"
 					class="data-[state=active]:bg-accent justify-start"
-					[attr.data-state]="activeTab() === 'themes' ? 'active' : 'inactive'">
+					[attr.data-state]="activeTab() === 'themes' ? 'active' : 'inactive'"
+					(click)="activeTab.set('themes')">
 					<ng-icon hlmIcon name="lucideSwatchBook" size="sm" />
 					Themes
 				</button>
+				<button
+					hlmBtn
+					variant="ghost"
+					class="data-[state=active]:bg-accent justify-start"
+					[attr.data-state]="activeTab() === 'account' ? 'active' : 'inactive'"
+					(click)="activeTab.set('account')">
+					<ng-icon hlmIcon name="lucideUser" size="sm" />
+					Account
+				</button>
 			</div>
 			<div class="flex flex-col gap-2 pt-4">
-				<div class="flex justify-end">
-					<div hlmInputGroup class="max-w-[300px]">
-						<input hlmInputGroupInput placeholder="Search your theme..." [(ngModel)]="searchTerm" />
-						<div hlmInputGroupAddon>
-							<ng-icon name="lucideSearch" />
+				@if (activeTab() === 'themes') {
+					<div class="flex justify-end">
+						<div hlmInputGroup class="max-w-[300px]">
+							<input hlmInputGroupInput placeholder="Search your theme..." [(ngModel)]="searchTerm" />
+							<div hlmInputGroupAddon>
+								<ng-icon name="lucideSearch" />
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="relative size-full overflow-y-auto rounded-xl border">
-					<div class="absolute grid w-full grid-cols-1 gap-3 p-4 sm:grid-cols-2 lg:grid-cols-3">
-						@for (theme of customThemes(); track theme.id) {
-							<div
-								hlmCard
-								class="border-input hover:border-muted-foreground/30 flex flex-row justify-between gap-3 p-3 shadow-none">
-								<div class="flex flex-col items-start justify-between">
-									<p class="text-muted-foreground px-[3px] text-xs">
-										{{ theme.createdAt ?? '' | historyDate }}
-									</p>
-									<sim-theme-color-preview [preset]="theme" />
+					<div class="relative size-full overflow-y-auto rounded-xl border">
+						<div class="absolute grid w-full grid-cols-1 gap-3 p-4 sm:grid-cols-2 lg:grid-cols-3">
+							@for (theme of customThemes(); track theme.id) {
+								<div
+									hlmCard
+									class="border-input hover:border-muted-foreground/30 flex flex-row justify-between gap-3 p-3 shadow-none">
+									<div class="flex flex-col items-start justify-between">
+										<p class="text-muted-foreground px-[3px] text-xs">
+											{{ theme.createdAt ?? '' | historyDate }}
+										</p>
+										<sim-theme-color-preview [preset]="theme" />
+									</div>
+									<div class="flex flex-col items-end gap-1">
+										<button hlmBtn variant="ghost" size="icon-sm" (click)="onEditTheme(theme)">
+											<ng-icon hlm name="lucidePencil" size="sm" class="text-muted-foreground" />
+										</button>
+										<button
+											hlmBtn
+											variant="ghost"
+											size="icon-sm"
+											class="group hover:bg-destructive/5"
+											(click)="onDeleteTheme(theme)">
+											<ng-icon
+												hlm
+												name="lucideTrash"
+												size="sm"
+												class="text-muted-foreground group-hover:text-destructive" />
+										</button>
+									</div>
 								</div>
-								<div class="flex flex-col items-end gap-1">
-									<button hlmBtn variant="ghost" size="icon-sm" (click)="onEditTheme(theme)">
-										<ng-icon hlm name="lucidePencil" size="sm" class="text-muted-foreground" />
-									</button>
-									<button
-										hlmBtn
-										variant="ghost"
-										size="icon-sm"
-										class="group hover:bg-destructive/5"
-										(click)="onDeleteTheme(theme)">
-										<ng-icon
-											hlm
-											name="lucideTrash"
-											size="sm"
-											class="text-muted-foreground group-hover:text-destructive" />
-									</button>
+							}
+						</div>
+						@if (themes().length === 0) {
+							<div hlmEmpty class="size-full">
+								<div hlmEmptyHeader>
+									<div hlmEmptyMedia variant="icon">
+										<ng-icon name="lucideSwatchBook" />
+									</div>
+									<div hlmEmptyTitle>No Themes Yet</div>
+									<div hlmEmptyDescription>Create your first custom theme to personalize your experience.</div>
+								</div>
+								<div hlmEmptyContent>
+									<button hlmBtn variant="outline" (click)="onCreateTheme()">Create Theme</button>
 								</div>
 							</div>
 						}
 					</div>
-					@if (themes().length === 0) {
-						<div hlmEmpty class="size-full">
-							<div hlmEmptyHeader>
-								<div hlmEmptyMedia variant="icon">
-									<ng-icon name="lucideSwatchBook" />
+				} @else if (activeTab() === 'account') {
+					<!-- Account / Subscription tab -->
+					<div class="flex max-w-xl flex-col gap-4 pr-4">
+						<div hlmCard class="flex flex-col gap-4 p-6">
+							<div class="flex items-center justify-between">
+								<h2 class="text-base font-semibold">Current plan</h2>
+								@if (subscriptionLoading()) {
+									<hlm-spinner class="size-4" />
+								}
+							</div>
+
+							@if (subscriptionLoading()) {
+								<p class="text-muted-foreground text-sm">Loading subscription info…</p>
+							} @else if (subscription()?.isPaid) {
+								<div class="flex items-center gap-2">
+									<span hlmBadge class="bg-primary text-primary-foreground gap-1">
+										<ng-icon hlm name="lucideZap" size="sm" />
+										Pro
+									</span>
+									<span class="text-muted-foreground text-sm">{{ subscription()?.status }}</span>
 								</div>
-								<div hlmEmptyTitle>No Themes Yet</div>
-								<div hlmEmptyDescription>Create your first custom theme to personalize your experience.</div>
-							</div>
-							<div hlmEmptyContent>
-								<button hlmBtn variant="outline" (click)="onCreateTheme()">Create Theme</button>
-							</div>
+								<p class="text-muted-foreground text-sm">
+									You have access to unlimited themes and full version history.
+								</p>
+								@if (subscription()?.customerPortalUrl) {
+									<a
+										hlmBtn
+										variant="outline"
+										class="w-fit gap-2"
+										[href]="subscription()!.customerPortalUrl!"
+										target="_blank"
+										rel="noopener noreferrer">
+										<ng-icon hlm name="lucideExternalLink" size="sm" />
+										Manage subscription
+									</a>
+								}
+							} @else {
+								<div class="flex items-center gap-2">
+									<span hlmBadge variant="outline">Free</span>
+									<span class="text-muted-foreground text-sm">Limited features</span>
+								</div>
+								<ul class="text-muted-foreground flex flex-col gap-1 text-sm">
+									<li>• Up to 5 saved themes</li>
+									<li>• Last 3 days of version history</li>
+								</ul>
+								<button hlmBtn class="w-fit gap-2" routerLink="/pricing">
+									<ng-icon hlm name="lucideZap" size="sm" />
+									Upgrade to Pro
+								</button>
+							}
 						</div>
-					}
-				</div>
+					</div>
+				}
 			</div>
 		</div>
 
@@ -157,15 +254,18 @@ import { ThemePreset } from '../types';
 		</hlm-dialog>
 	`,
 })
-export class ProfileSettingsComponent {
+export class ProfileSettingsComponent implements OnInit {
 	private readonly themeStorageService = inject(ThemeStorageService);
 	private readonly router = inject(Router);
+	private readonly paymentService = inject(PaymentHttpService);
 
 	protected readonly searchTerm = signal<string>('');
 	protected readonly activeTab = signal<'themes' | 'account'>('themes');
 	protected readonly themeToDelete = signal<ThemePreset | null>(null);
 	protected readonly deleteConfirmInput = signal<string>('');
 	protected readonly isDeleting = signal<boolean>(false);
+	protected readonly subscription = signal<SubscriptionStatus | null>(null);
+	protected readonly subscriptionLoading = signal(false);
 
 	protected readonly deleteDialogButton = viewChild<ElementRef<HTMLButtonElement>>('deleteDialogButton');
 	protected readonly dialogRef = viewChild<BrnDialog>('deleteDialog');
@@ -182,6 +282,19 @@ export class ProfileSettingsComponent {
 
 		return savedThemes.filter((theme) => theme.label?.toLowerCase().includes(searchTerm));
 	});
+
+	ngOnInit(): void {
+		this.subscriptionLoading.set(true);
+		this.paymentService.getSubscription().subscribe({
+			next: (status) => {
+				this.subscription.set(status);
+				this.subscriptionLoading.set(false);
+			},
+			error: () => {
+				this.subscriptionLoading.set(false);
+			},
+		});
+	}
 
 	protected onEditTheme(theme: ThemePreset): void {
 		this.themeStorageService.selectTheme(theme);
@@ -207,10 +320,11 @@ export class ProfileSettingsComponent {
 		try {
 			await this.themeStorageService.deleteTheme(theme);
 			this.dialogRef()?.close({});
+			toast('Theme deleted', { description: `"${theme.label}" has been permanently deleted.` });
 			this.themeToDelete.set(null);
 			this.deleteConfirmInput.set('');
-		} catch (error) {
-			console.error('Failed to delete theme:', error);
+		} catch {
+			toast('Failed to delete theme', { description: 'Something went wrong. Please try again.' });
 		} finally {
 			this.isDeleting.set(false);
 		}

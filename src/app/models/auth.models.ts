@@ -4,6 +4,7 @@ export interface GoogleSignInRequest {
 
 export interface AuthResponse {
   token: string;
+  expiresIn: number; // seconds until access token expiry
   user: UserDto;
 }
 

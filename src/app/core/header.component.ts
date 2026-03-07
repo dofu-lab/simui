@@ -6,6 +6,8 @@ import { remixTwitterXFill } from '@ng-icons/remixicon';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
+import { isFreeUser } from '../models/user-role';
+import { AuthService } from '../services/auth.service';
 import { AuthenticationComponent } from './authentication';
 import { REPO_LINK, X_LINK } from './constants';
 import { AppearanceService } from './services';
@@ -87,6 +89,9 @@ import { AppearanceService } from './services';
 								<button hlmDropdownMenuItem routerLink="/components" routerLinkActive="font-bold">Components</button>
 								<button hlmDropdownMenuItem routerLink="/theme-editor" routerLinkActive="font-bold">Theme</button>
 								<button hlmDropdownMenuItem routerLink="/introduction" routerLinkActive="font-bold">About</button>
+								@if (isFreePlan()) {
+									<button hlmDropdownMenuItem routerLink="/pricing">⚡ Upgrade to Pro</button>
+								}
 							</hlm-dropdown-menu>
 						</ng-template>
 					</nav>
@@ -98,10 +103,12 @@ import { AppearanceService } from './services';
 })
 export class HeaderComponent {
 	private readonly appearanceService = inject(AppearanceService);
+	private readonly authService = inject(AuthService);
 	private readonly _router = inject(Router);
-	private readonly appearance = this.appearanceService.appearance;
-	protected readonly themeIcon = computed(() => (this.appearance() === 'light' ? 'lucideSun' : 'lucideMoon'));
 
+	protected readonly appearance = this.appearanceService.appearance;
+	protected readonly themeIcon = computed(() => (this.appearance() === 'light' ? 'lucideSun' : 'lucideMoon'));
+	protected readonly isFreePlan = computed(() => isFreeUser(this.authService.currentUser()));
 	protected readonly activePageName = computed(() => {
 		const url = this._router.url;
 		if (url.startsWith('/components')) return 'Components';

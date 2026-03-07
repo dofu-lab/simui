@@ -1,4 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
@@ -15,9 +16,7 @@ import { AuthService } from '../services/auth.service';
 				<div class="text-destructive mt-4 rounded-lg border border-red-300 bg-red-50 p-4">
 					<p class="font-semibold">Sign-in failed</p>
 					<p class="text-sm">{{ errorMessage }}</p>
-					<button
-						class="text-primary hover:text-primary/80 mt-2 text-sm underline"
-						(click)="returnToHome()">
+					<button class="text-primary hover:text-primary/80 mt-2 text-sm underline" (click)="returnToHome()">
 						Return to home
 					</button>
 				</div>
@@ -29,10 +28,16 @@ export class GoogleCallbackComponent implements OnInit {
 	private readonly route = inject(ActivatedRoute);
 	private readonly router = inject(Router);
 	private readonly authService = inject(AuthService);
+	private readonly platformId = inject(PLATFORM_ID);
 
 	errorMessage: string | null = null;
 
 	ngOnInit(): void {
+		// Authorization codes are single-use. During SSR the server-side render
+		// would consume the code, then the browser hydration would try the same
+		// code again causing an "invalid_grant" from Google. Skip on the server.
+		if (!isPlatformBrowser(this.platformId)) return;
+
 		// Extract the authorization code from the URL query parameters
 		const code = this.route.snapshot.queryParamMap.get('code');
 		const error = this.route.snapshot.queryParamMap.get('error');

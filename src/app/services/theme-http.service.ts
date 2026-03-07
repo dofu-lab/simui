@@ -16,18 +16,18 @@ import { AuthService } from './auth.service';
 	providedIn: 'root',
 })
 export class ThemeHttpService {
-	private readonly apiUrl = environment.apiUrl;
+	private readonly apiUrl = `${environment.apiUrl}/v1/theme`;
 	private readonly http = inject(HttpClient);
 	private readonly authService = inject(AuthService);
 
-	public getThemes(page: number = 1, pageSize: number = 100): Observable<ThemePreset[]> {
+	public getThemes(page: number = 1, pageSize: number = 50): Observable<ThemePreset[]> {
 		// Only fetch user themes if authenticated
 		if (!this.authService.isAuthenticated()) {
 			return of([]);
 		}
 
 		return this.http
-			.get<ThemeListResponse>(`${this.apiUrl}/theme`, {
+			.get<ThemeListResponse>(`${this.apiUrl}`, {
 				params: { page: page.toString(), pageSize: pageSize.toString() },
 			})
 			.pipe(map((response) => response.items));
@@ -39,7 +39,7 @@ export class ThemeHttpService {
 			label: theme.label,
 			styles: theme.styles,
 		};
-		return this.http.post<ThemePreset>(`${this.apiUrl}/theme`, payload);
+		return this.http.post<ThemePreset>(`${this.apiUrl}`, payload);
 	}
 
 	public updateTheme(themeId: string, theme: ThemeHistoryPayload): Observable<ThemePreset> {
@@ -52,7 +52,7 @@ export class ThemeHttpService {
 			styles: theme.styles,
 			changeNote: theme.changeNote,
 		};
-		return this.http.put<ThemePreset>(`${this.apiUrl}/theme/${themeId}`, payload);
+		return this.http.put<ThemePreset>(`${this.apiUrl}/${themeId}`, payload);
 	}
 
 	public deleteTheme(themeId: string): Observable<void> {
@@ -60,7 +60,7 @@ export class ThemeHttpService {
 			return of(undefined);
 		}
 
-		return this.http.delete<void>(`${this.apiUrl}/theme/${themeId}`);
+		return this.http.delete<void>(`${this.apiUrl}/${themeId}`);
 	}
 
 	public getThemeHistory(
@@ -73,7 +73,7 @@ export class ThemeHttpService {
 		}
 
 		return this.http
-			.get<ThemeVersionHistoryListResponse>(`${this.apiUrl}/theme/${themeId}/history`, {
+			.get<ThemeVersionHistoryListResponse>(`${this.apiUrl}/${themeId}/history`, {
 				params: { page: page.toString(), pageSize: pageSize.toString() },
 			})
 			.pipe(map((response) => response.history));

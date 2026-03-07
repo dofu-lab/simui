@@ -1,4 +1,4 @@
 [build]
-command = "ng build"
+command = "node scripts/set-env.js && ng build"
 functions = "netlify/functions"
 publish = "dist/simui/browser"

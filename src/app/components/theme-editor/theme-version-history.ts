@@ -1,8 +1,11 @@
+import { isFreeUser } from '@/app/models/user-role';
+import { AuthService } from '@/app/services/auth.service';
 import { ThemeHttpService } from '@/app/services/theme-http.service';
 import { ThemeChange, ThemePreset, ThemeVersionHistoryEntry } from '@/app/types';
 import { Component, computed, inject, input, resource } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronRight, lucideHistory, lucideLoaderCircle, lucideUndo2 } from '@ng-icons/lucide';
+import { lucideChevronRight, lucideHistory, lucideLoaderCircle, lucideUndo2, lucideZap } from '@ng-icons/lucide';
 import { BrnSheetImports } from '@spartan-ng/brain/sheet';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
@@ -23,13 +26,24 @@ import { HistoryDatePipe } from '../../pipes/history-date.pipe';
 		HlmButton,
 		HistoryDatePipe,
 		HlmSpinner,
+		RouterLink,
 		HlmSheetImports,
 		BrnSheetImports,
 		HlmEmptyImports,
 		HlmTooltipImports,
 	],
-	providers: [provideIcons({ lucideHistory, lucideChevronRight, lucideLoaderCircle, lucideUndo2 })],
+	providers: [provideIcons({ lucideHistory, lucideChevronRight, lucideLoaderCircle, lucideUndo2, lucideZap })],
 	template: `
+		@if (isFreePlan()) {
+			<div class="border-border bg-muted/30 mb-4 flex items-start gap-2 rounded-md border p-3 text-sm">
+				<ng-icon hlm name="lucideZap" size="sm" class="mt-0.5 shrink-0 text-yellow-500" />
+				<p class="text-muted-foreground">
+					Free plan: showing history from the last 3 days.
+					<a routerLink="/pricing" class="text-foreground underline">Upgrade to Pro</a>
+					for full history.
+				</p>
+			</div>
+		}
 		@if (loading()) {
 			<div class="flex items-center justify-center py-8">
 				<hlm-spinner />
@@ -49,7 +63,9 @@ import { HistoryDatePipe } from '../../pipes/history-date.pipe';
 						<span hlmBadge class="rounded-full">v{{ entry.version }}</span>
 						<div class="bg-border mx-auto h-full w-px"></div>
 					</div>
-					<div class="hover:bg-muted/50 flex flex-1 cursor-pointer space-y-2 rounded-md px-2 pt-1 pb-6">
+					<div
+						class="relative flex flex-1 space-y-2 overflow-hidden rounded-md px-2 pt-1 pb-6"
+						[class.cursor-pointer]="!entry.isBlurred">
 						<div class="flex flex-1 flex-col">
 							<div class="flex flex-col items-start">
 								<p class="text-muted-foreground text-xs">
@@ -110,6 +126,11 @@ import { HistoryDatePipe } from '../../pipes/history-date.pipe';
 							(click)="selectHistoryEntry(entry)">
 							<ng-icon hlm name="lucideUndo2" size="sm" />
 						</button>
+
+						@if (entry.isBlurred) {
+							<div
+								class="bg-background/60 absolute inset-0 z-10 flex items-center justify-center rounded-md backdrop-blur-xs"></div>
+						}
 					</div>
 				</div>
 			}
@@ -117,10 +138,10 @@ import { HistoryDatePipe } from '../../pipes/history-date.pipe';
 	`,
 })
 export class ThemeVersionHistoryComponent {
-	private readonly themeHttpService = inject(ThemeHttpService);
-
 	public readonly currentTheme = input.required<ThemePreset>();
 
+	private readonly themeHttpService = inject(ThemeHttpService);
+	private readonly authService = inject(AuthService);
 	private readonly themeHistoryResources = resource({
 		params: () => ({
 			themeId: this.currentTheme()?.id,
@@ -134,6 +155,7 @@ export class ThemeVersionHistoryComponent {
 		defaultValue: [],
 	});
 
+	protected readonly isFreePlan = computed(() => isFreeUser(this.authService.currentUser()));
 	protected readonly loading = computed(() => this.themeHistoryResources.status() === 'loading');
 	protected readonly historyEntries = computed(() => {
 		if (this.themeHistoryResources.hasValue()) {

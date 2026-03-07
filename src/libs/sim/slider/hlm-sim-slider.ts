@@ -70,7 +70,6 @@ export class HlmSimSlider {
 		const valueWidth = this.sliderValue()?.nativeElement.offsetWidth || 0;
 
 		const rangeSize = (this._slider.percentage() * trackWidth) / 100;
-		console.log('rangeSize', rangeSize, this.label());
 		const thumbPosition = rangeSize < 20 ? 'after:left-2' : '';
 
 		const isLabelOverlap = this.label() && rangeSize >= 24 && rangeSize <= labelWidth + 30;

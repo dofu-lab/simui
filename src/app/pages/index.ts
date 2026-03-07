@@ -18,6 +18,8 @@ export * from './intro.component';
 export * from './notification.component';
 export * from './pagination.component';
 export * from './popover.component';
+export * from './payment-success';
+export * from './pricing';
 export * from './privacy-policy';
 export * from './profile-settings';
 export * from './radio.component';
