@@ -66,24 +66,7 @@ if (isMainModule(import.meta.url)) {
 }
 
 export async function netlifyCommonEngineHandler(request: Request, context: any): Promise<Response> {
-	const authUser = process.env['BASIC_AUTH_USER'];
-	const authPassword = process.env['BASIC_AUTH_PASSWORD'];
-
-	if (authUser && authPassword) {
-		const authHeader = request.headers.get('authorization');
-		if (authHeader?.startsWith('Basic ')) {
-			const [user, pass] = atob(authHeader.split(' ')[1]).split(':');
-			if (user === authUser && pass === authPassword) {
-				return render(commonEngine);
-			}
-		}
-		return new Response('Unauthorized', {
-			status: 401,
-			headers: { 'WWW-Authenticate': 'Basic realm="Restricted"' },
-		});
-	}
-
-	return render(commonEngine);
+	return await render(commonEngine);
 }
 
 export default app;
