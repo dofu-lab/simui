@@ -13,6 +13,23 @@ const indexHtml = join(serverDistFolder, 'index.server.html');
 const app = express();
 const commonEngine = new CommonEngine();
 
+// Basic auth guard for non-production environments (e.g. integration)
+// Set BASIC_AUTH_USER and BASIC_AUTH_PASSWORD in Netlify env vars to enable.
+if (process.env['BASIC_AUTH_USER'] && process.env['BASIC_AUTH_PASSWORD']) {
+  app.use((req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    if (authHeader) {
+      const encoded = authHeader.split(' ')[1];
+      const [user, pass] = Buffer.from(encoded, 'base64').toString().split(':');
+      if (user === process.env['BASIC_AUTH_USER'] && pass === process.env['BASIC_AUTH_PASSWORD']) {
+        return next();
+      }
+    }
+    res.setHeader('WWW-Authenticate', 'Basic realm="Restricted"');
+    res.status(401).send('Unauthorized');
+  });
+}
+
 /**
  * Example Express Rest API endpoints can be defined here.
  * Uncomment and define endpoints as necessary.
