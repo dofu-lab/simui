@@ -11,6 +11,10 @@
  *   NG_APP_BASE_URL         — API base URL (e.g. https://api.example.com)
  *   NG_APP_API_URL          — API URL (e.g. https://api.example.com/api)
  *   NG_APP_GOOGLE_CLIENT_ID — Google OAuth client ID
+ *
+ * Optional variables:
+ *   NG_APP_POSTHOG_KEY      — PostHog project API key (e.g. phc_xxxx)
+ *   NG_APP_POSTHOG_HOST     — PostHog instance URL (default: https://us.i.posthog.com)
  */
 
 const fs = require('fs');
@@ -39,6 +43,9 @@ const apiUrl = process.env['NG_APP_API_URL'];
 const googleClientId = process.env['NG_APP_GOOGLE_CLIENT_ID'];
 // Optional: defaults to true; set to "false" on integration Netlify site
 const isProduction = process.env['NG_APP_PRODUCTION'] !== 'false';
+// Optional analytics — leave blank to disable tracking
+const posthogKey = process.env['NG_APP_POSTHOG_KEY'] || '';
+const posthogHost = process.env['NG_APP_POSTHOG_HOST'] || 'https://us.i.posthog.com';
 
 const environmentsDir = path.resolve(__dirname, '..', 'src', 'environments');
 fs.mkdirSync(environmentsDir, { recursive: true });
@@ -49,6 +56,8 @@ export const environment = {
 \tbaseUrl: '${baseUrl}',
 \tapiUrl: '${apiUrl}',
 \tgoogleClientId: '${googleClientId}',
+\tposthogKey: '${posthogKey}',
+\tposthogHost: '${posthogHost}',
 };
 `;
 
@@ -58,6 +67,8 @@ export const environment = {
 \tbaseUrl: '${baseUrl}',
 \tapiUrl: '${apiUrl}',
 \tgoogleClientId: '${googleClientId}',
+\tposthogKey: '${posthogKey}',
+\tposthogHost: '${posthogHost}',
 };
 `;
 

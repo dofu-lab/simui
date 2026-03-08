@@ -2,32 +2,34 @@ import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { AnalyticsService } from '../../services/analytics.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class SeoService {
 	constructor(
-		private titleService: Title,
-		private metaService: Meta,
-		private router: Router,
-		private activatedRoute: ActivatedRoute,
+		private readonly titleService: Title,
+		private readonly metaService: Meta,
+		private readonly router: Router,
+		private readonly activatedRoute: ActivatedRoute,
+		private readonly analyticsService: AnalyticsService,
 	) {}
 
 	init() {
 		this.router.events
 			.pipe(
 				filter((event) => event instanceof NavigationEnd),
-				map(() => this.activatedRoute),
-				map((route) => {
+				map((event) => ({ route: this.activatedRoute, url: event.urlAfterRedirects })),
+				map(({ route, url }) => {
 					while (route.firstChild) {
 						route = route.firstChild;
 					}
-					return route;
+					return { route, url };
 				}),
-				mergeMap((route) => route.data),
+				mergeMap(({ route, url }) => route.data.pipe(map((data) => ({ data, url })))),
 			)
-			.subscribe((data) => {
+			.subscribe(({ data, url }) => {
 				// Set Title
 				if (data['title']) {
 					this.titleService.setTitle(`${data['title']} - SimUI`);
@@ -58,6 +60,10 @@ export class SeoService {
 					property: 'og:description',
 					content: data['description'] || 'SimUI is a modern, responsive Angular UI component library.',
 				});
+
+				// Track page view in analytics
+				const pageTitle = data['title'] ? `${data['title']} - SimUI` : 'SimUI - Modern Angular UI Component Library';
+				this.analyticsService.trackPageView(url, pageTitle);
 			});
 	}
 }
