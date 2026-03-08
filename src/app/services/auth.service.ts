@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { AuthResponse, AuthState, GoogleSignInRequest, UserDto } from '../models/auth.models';
+import { AnalyticsService } from './analytics.service';
 
 // How many seconds before expiry to trigger a proactive silent refresh
 const REFRESH_BUFFER_SECONDS = 5 * 60; // 5 minutes
@@ -16,6 +17,7 @@ export class AuthService {
 	private readonly http = inject(HttpClient);
 	private readonly router = inject(Router);
 	private readonly platformId = inject(PLATFORM_ID);
+	private readonly analyticsService = inject(AnalyticsService);
 	private readonly isBrowser = isPlatformBrowser(this.platformId);
 	private readonly apiUrl = `${environment.apiUrl}/v1/auth`;
 
@@ -202,6 +204,11 @@ export class AuthService {
 					isAuthenticated: true,
 				});
 				this.scheduleTokenRefresh(response.expiresIn);
+				this.analyticsService.identifyUser(response.user.id, {
+					email: response.user.email,
+					name: response.user.name ?? undefined,
+					role: response.user.role,
+				});
 			}),
 		);
 	}
@@ -210,6 +217,7 @@ export class AuthService {
 		this.clearRefreshTimer();
 		// Revoke refresh token server-side (fire-and-forget)
 		this.http.post(`${this.apiUrl}/signout`, {}, { withCredentials: true }).subscribe({ error: () => {} });
+		this.analyticsService.resetUser();
 		this.clearAuthState();
 		window.location.reload();
 	}

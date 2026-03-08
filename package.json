@@ -47,6 +47,7 @@
 		"ngx-scrollbar": ">=16.0.0",
 		"ngx-sonner": "^3.0.0",
 		"postcss": "^8.5.3",
+		"posthog-js": "^1.359.1",
 		"prismjs": "1.29.0",
 		"rxjs": "~7.8.0",
 		"tailwindcss": "^4.0.17",
