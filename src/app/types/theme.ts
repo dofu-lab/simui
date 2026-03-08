@@ -1,5 +1,3 @@
-import { ColorScheme } from '../core';
-
 export interface ThemeStyleProps {
 	background: string;
 	foreground: string;
@@ -43,6 +41,14 @@ export interface ThemeStyleProps {
 	'shadow-spread': string;
 	'shadow-offset-x': string;
 	'shadow-offset-y': string;
+	'shadow-2xs'?: string;
+	'shadow-xs'?: string;
+	'shadow-sm'?: string;
+	shadow?: string;
+	'shadow-md'?: string;
+	'shadow-lg'?: string;
+	'shadow-xl'?: string;
+	'shadow-2xl'?: string;
 	'letter-spacing': string;
 	spacing?: string;
 }
@@ -80,7 +86,11 @@ export type ThemePreset = {
 	};
 };
 
+export type ThemeHistoryPayload = Partial<ThemePreset> & { changeNote?: string };
+
 export type ColorType = 'hex' | 'hsl' | 'rgb' | 'oklch';
+export type ColorScheme = 'light' | 'dark';
+export type HistoryAction = 'APPLY' | 'CHANGE_COLOR' | 'CHANGE_PROPERTY' | 'RESET' | 'UPDATE_THEME' | 'SAVE_THEME';
 
 export type ColorTypeItem = {
 	label: string;
@@ -98,4 +108,35 @@ export type ThemeHistory = {
 	preset: ThemePreset;
 	values?: HistoryValue;
 	timestamp: number;
+	action: HistoryAction;
 };
+
+// Theme Version History Types (for saved theme version history from backend)
+
+export interface ThemeChange {
+	property: string;
+	label: string;
+	colorScheme: string;
+	oldValue?: string;
+	newValue?: string;
+}
+
+export interface ThemeVersionHistoryEntry {
+	id: string;
+	themeId: string;
+	label: string;
+	version: number;
+	createdAt: string;
+	changeNote?: string;
+	changeDetail: ThemeChange[];
+	styles: {
+		light: ThemeStyleProps;
+		dark: ThemeStyleProps;
+	};
+	isBlurred?: boolean;
+}
+
+export interface ThemeVersionHistoryListResponse {
+	history: ThemeVersionHistoryEntry[];
+	totalCount: number;
+}

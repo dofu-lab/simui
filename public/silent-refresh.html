@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Silent Refresh</title>
+	</head>
+	<body>
+		<script>
+			/**
+			 * Silent Refresh Page
+			 *
+			 * Loaded in a hidden iframe by the Angular app to refresh the access token.
+			 * Reads the refresh API URL from a query parameter, calls it with credentials
+			 * (so the HttpOnly refresh token cookie is sent), and posts the result back
+			 * to the parent window via postMessage.
+			 */
+			(function () {
+				var params = new URLSearchParams(window.location.search);
+				var apiUrl = params.get('apiUrl');
+
+				if (!apiUrl) {
+					window.parent.postMessage(
+						{ type: 'silent-refresh-error', error: 'No apiUrl provided' },
+						window.location.origin,
+					);
+					return;
+				}
+
+				fetch(apiUrl, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					credentials: 'include',
+					body: '{}',
+				})
+					.then(function (res) {
+						if (!res.ok) {
+							throw new Error('Refresh failed with status ' + res.status);
+						}
+						return res.json();
+					})
+					.then(function (data) {
+						window.parent.postMessage({ type: 'silent-refresh-success', response: data }, window.location.origin);
+					})
+					.catch(function (err) {
+						window.parent.postMessage(
+							{ type: 'silent-refresh-error', error: err.message || 'Unknown error' },
+							window.location.origin,
+						);
+					});
+			})();
+		</script>
+	</body>
+</html>

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { ComponentBadgesComponent } from './component-badges.component';
 
 @Component({
@@ -11,11 +11,16 @@ import { ComponentBadgesComponent } from './component-badges.component';
 				{{ description() }}
 			</div>
 		</div>
-		<app-component-badges />
+		@if (shouldShowComponentBadges()) {
+			<app-component-badges />
+		}
 	`,
 })
 export class ComponentHeaderComponent {
-	name = input.required<string>();
-	description = input.required<string>();
-	constructor() {}
+	public readonly name = input.required<string>();
+	public readonly description = input.required<string>();
+
+	protected readonly shouldShowComponentBadges = computed(
+		() => this.name() !== 'Introduction' && this.name() !== 'Terms and Conditions' && this.name() !== 'Privacy Policy',
+	);
 }

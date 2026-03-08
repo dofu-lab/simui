@@ -1,13 +1,14 @@
 import { NgComponentOutlet } from '@angular/common';
-import { Component, computed, inject, input, Type } from '@angular/core';
+import { Component, computed, inject, input, Type, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCode } from '@ng-icons/lucide';
-import { BrnSheetImports } from '@spartan-ng/brain/sheet';
+import { BrnSheet, BrnSheetImports } from '@spartan-ng/brain/sheet';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmSheetImports } from '@spartan-ng/helm/sheet';
 import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
+import { AnalyticsService } from '../services/analytics.service';
 import { CodePreviewComponent } from './code-preview.component';
 import { CodeLoaderService } from './services/code-loader.service';
 
@@ -17,13 +18,13 @@ import { CodeLoaderService } from './services/code-loader.service';
 	imports: [NgComponentOutlet, HlmButton, NgIcon, HlmIcon, CodePreviewComponent, BrnSheetImports, HlmSheetImports],
 	template: `
 		<ng-container *ngComponentOutlet="component()"></ng-container>
-		<hlm-sheet side="right">
+		<hlm-sheet #sheet side="right">
 			<div class="absolute -top-2 -right-2 items-center gap-2 p-4 group-hover:flex lg:hidden">
 				<button
 					hlmBtn
 					size="icon"
 					variant="link"
-					brnSheetTrigger
+					(click)="trackCodeClick()"
 					class="text-muted-foreground/80 hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100 lg:opacity-0 lg:group-focus-within/item:opacity-100 lg:group-hover/item:opacity-100">
 					<ng-icon hlm name="lucideCode" size="sm" />
 				</button>
@@ -33,7 +34,7 @@ import { CodeLoaderService } from './services/code-loader.service';
 					<h3 hlmSheetTitle>Code</h3>
 				</hlm-sheet-header>
 				<div class="grid flex-1 px-4 pb-4">
-					<code-preview [code]="displayCode()" class="h-full w-full overflow-auto" />
+					<code-preview [code]="displayCode()" [fileName]="componentName()" class="h-full w-full overflow-auto" />
 				</div>
 			</hlm-sheet-content>
 		</hlm-sheet>
@@ -43,7 +44,9 @@ import { CodeLoaderService } from './services/code-loader.service';
 	},
 })
 export class ComponentCardComponent {
-	private codeLoaderService = inject(CodeLoaderService);
+	private readonly codeLoaderService = inject(CodeLoaderService);
+	private readonly analyticsService = inject(AnalyticsService);
+	private readonly sheetRef = viewChild<BrnSheet>('sheet');
 
 	public readonly component = input.required<Type<any> | null>();
 	public readonly componentName = input.required<string>();
@@ -95,4 +98,9 @@ export class ComponentCardComponent {
 			this.userClass(),
 		),
 	);
+
+	protected trackCodeClick(): void {
+		this.sheetRef()?.open();
+		this.analyticsService.trackEvent('code_view', { component: this.componentName() });
+	}
 }
