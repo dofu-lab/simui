@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { HlmButton } from '@spartan-ng/helm/button';\n\n@Component({\n\tselector: 'sim-button-12',\n\timports: [HlmButton],\n\ttemplate: `\n\t\t<div class=\"flex gap-2\">\n\t\t\t<button hlmBtn variant=\"ghost\" size=\"sm\">Cancel</button>\n\t\t\t<button hlmBtn size=\"sm\">Save</button>\n\t\t</div>\n\t`,\n})\nexport class Button12Component {}"
+}

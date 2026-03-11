@@ -14,12 +14,12 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 			<span hlmLabel>Temperature</span>
 			<span
 				class="text-muted-foreground hover:border-border w-12 rounded-md border border-transparent px-2 py-0.5 text-right text-sm">
-				{{ value() }}
+				{{ value()[0] }}
 			</span>
 		</div>
 		<hlm-slider [step]="0.01" [min]="0" [max]="1" [(value)]="value" class="w-full" />
 	`,
 })
 export class TemperatureSelector {
-	public readonly value = signal<number>(0.64);
+	public readonly value = signal<number[]>([0.64]);
 }

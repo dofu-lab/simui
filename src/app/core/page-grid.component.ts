@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, effect, inject, input } from '@angular/core';
 import { ComponentCardComponent } from './component-card.component';
+import { CodeLoaderService } from './services/code-loader.service';
 import { SuggestionComponent } from './suggestion.component';
 import { ComponentCardItem } from './types';
 
@@ -24,5 +25,15 @@ import { ComponentCardItem } from './types';
 	imports: [ComponentCardComponent, SuggestionComponent],
 })
 export class PageGridComponent {
-	components = input<ComponentCardItem[]>([]);
+	public components = input<ComponentCardItem[]>([]);
+	private readonly codeLoaderService = inject(CodeLoaderService);
+
+	constructor() {
+		effect(() => {
+			const ids = this.components().map((c) => c.id);
+			if (ids.length) {
+				this.codeLoaderService.preloadComponents(ids);
+			}
+		});
+	}
 }

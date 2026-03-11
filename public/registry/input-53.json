@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { HlmInput } from '@spartan-ng/helm/input';\nimport { HlmLabel } from '@spartan-ng/helm/label';\n\n@Component({\n\tselector: 'sim-input-53',\n\timports: [HlmLabel, HlmInput],\n\thost: { class: 'w-full' },\n\ttemplate: `\n\t\t<label hlmLabel class=\"mb-2 text-sm\">Simple input</label>\n\t\t<div class=\"flex -space-x-px\">\n\t\t\t<input hlmInput type=\"text\" placeholder=\"From\" class=\"rounded-r-none focus-visible:z-20\" />\n\t\t\t<input hlmInput type=\"text\" placeholder=\"To\" class=\"rounded-l-none focus-visible:z-20\" />\n\t\t</div>\n\t`,\n})\nexport class Input53Component {}"
+}

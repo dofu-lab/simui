@@ -9,9 +9,8 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSave, lucideZap } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogImports } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
@@ -21,9 +20,6 @@ import { toast } from 'ngx-sonner';
 @Component({
 	selector: 'sim-save-theme',
 	imports: [
-		HlmDialogImports,
-		BrnDialogImports,
-		HlmFieldImports,
 		HlmButton,
 		NgIcon,
 		HlmIcon,
@@ -32,6 +28,8 @@ import { toast } from 'ngx-sonner';
 		SignInDialogComponent,
 		HlmSpinner,
 		RouterLink,
+		HlmDialogImports,
+		HlmFieldImports,
 	],
 	providers: [provideIcons({ lucideSave, lucideZap })],
 	template: `
@@ -39,7 +37,7 @@ import { toast } from 'ngx-sonner';
 
 		<!-- Upgrade prompt dialog (shown when free user is at theme limit) -->
 		<hlm-dialog #upgradeLimitDialog>
-			<hlm-dialog-content class="w-[420px]" *brnDialogContent="let ctx">
+			<hlm-dialog-content class="w-[420px]" *hlmDialogPortal="let ctx">
 				<hlm-dialog-header>
 					<h3 hlmDialogTitle class="flex items-center gap-2">
 						<ng-icon hlm name="lucideZap" size="sm" class="text-yellow-500" />
@@ -48,7 +46,7 @@ import { toast } from 'ngx-sonner';
 					<p hlmDialogDescription>Free plan allows up to 5 saved themes. Upgrade to Pro for unlimited themes.</p>
 				</hlm-dialog-header>
 				<hlm-dialog-footer>
-					<button hlmBtn variant="outline" brnDialogClose>Cancel</button>
+					<button hlmBtn variant="outline" (click)="ctx.close()">Cancel</button>
 					<a hlmBtn routerLink="/pricing" (click)="ctx.close()">
 						<ng-icon hlm name="lucideZap" size="sm" class="text-yellow-500" />
 						Upgrade to Pro
@@ -67,7 +65,7 @@ import { toast } from 'ngx-sonner';
 				<ng-icon hlm name="lucideSave" size="sm" />
 				{{ saveButtonText() }}
 			</button>
-			<hlm-dialog-content class="w-[500px]" *brnDialogContent="let ctx">
+			<hlm-dialog-content class="w-[500px]" *hlmDialogPortal="let ctx">
 				<hlm-dialog-header>
 					<h3 hlmDialogTitle>{{ isEditMode() ? 'Update theme' : 'Save new theme' }}</h3>
 					<p hlmDialogDescription>
@@ -112,7 +110,7 @@ import { toast } from 'ngx-sonner';
 					</div>
 				</div>
 				<hlm-dialog-footer>
-					<button hlmBtn variant="outline" brnDialogClose [disabled]="isSaving()">Cancel</button>
+					<button hlmBtn variant="outline" [disabled]="isSaving()" (click)="ctx.close()">Cancel</button>
 					<button hlmBtn type="submit" (click)="onSave(ctx)" [disabled]="name.invalid || isSaving()">
 						@if (isSaving()) {
 							<hlm-spinner class="mr-2 size-4" />
@@ -131,11 +129,9 @@ export class SaveTheme {
 	private readonly themeHttpService = inject(ThemeHttpService);
 	private readonly authService = inject(AuthService);
 	private readonly router = inject(Router);
-
-	private readonly saveThemeDialog = viewChild<BrnDialog>('saveThemeDialog');
+	private readonly saveThemeDialog = viewChild<HlmDialog>('saveThemeDialog');
 	private readonly signInDialog = viewChild<SignInDialogComponent>('signInDialog');
-	private readonly upgradeLimitDialog = viewChild<BrnDialog>('upgradeLimitDialog');
-
+	private readonly upgradeLimitDialog = viewChild<HlmDialog>('upgradeLimitDialog');
 	private readonly FREE_THEME_LIMIT = 5;
 
 	protected isUnsaved = computed(() => this.themeStorageService.currentTheme()?.source === 'UNSAVED');

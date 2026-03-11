@@ -8,24 +8,23 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 		class: 'w-full',
 	},
 	template: `
-		<hlm-tabs tab="tab01" class="flex w-full flex-row gap-2">
+		<hlm-tabs tab="tab01" class="flex w-full flex-row gap-2" orientation="vertical">
 			<hlm-tabs-list
-				class="mt-0 flex-col rounded-none border-l bg-transparent p-0"
-				orientation="vertical"
+				class="mt-0 h-auto flex-col gap-1 rounded-none border-l bg-transparent p-0"
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
+					class="data-[state=active]:after:bg-primary! relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:-start-px! after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none! data-[state=active]:after:opacity-100 dark:data-[state=active]:bg-transparent">
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
+					class="data-[state=active]:after:bg-primary! relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:-start-px! after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none! data-[state=active]:after:opacity-100 dark:data-[state=active]:bg-transparent">
 					Project
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="data-[state=active]:after:bg-primary relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:start-0 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
+					class="data-[state=active]:after:bg-primary! relative w-full justify-start rounded-none border-none after:absolute after:inset-y-0 after:-start-px! after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none! data-[state=active]:after:opacity-100 dark:data-[state=active]:bg-transparent">
 					Packages
 				</button>
 			</hlm-tabs-list>

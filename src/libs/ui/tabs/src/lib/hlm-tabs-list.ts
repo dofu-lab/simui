@@ -1,39 +1,36 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Directive, input } from '@angular/core';
 import { BrnTabsList } from '@spartan-ng/brain/tabs';
-import { hlm } from '@spartan-ng/helm/utils';
+import { classes } from '@spartan-ng/helm/utils';
 import { type VariantProps, cva } from 'class-variance-authority';
-import type { ClassValue } from 'clsx';
 
 export const listVariants = cva(
-	'bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]',
+	'group/tabs-list text-muted-foreground inline-flex w-fit items-center justify-center rounded-lg p-[3px] group-data-horizontal/tabs:h-9 group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col data-[variant=line]:rounded-none',
 	{
 		variants: {
-			orientation: {
-				horizontal: 'h-10 space-x-1',
-				vertical: 'mt-2 h-fit flex-col space-y-1',
+			variant: {
+				default: 'bg-muted',
+				line: 'gap-1 bg-transparent',
 			},
 		},
 		defaultVariants: {
-			orientation: 'horizontal',
+			variant: 'default',
 		},
 	},
 );
 type ListVariants = VariantProps<typeof listVariants>;
 
-@Component({
-	selector: 'hlm-tabs-list',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+@Directive({
+	selector: '[hlmTabsList],hlm-tabs-list',
 	hostDirectives: [BrnTabsList],
 	host: {
-		'[class]': '_computedClass()',
+		'data-slot': 'tabs-list',
+		'[attr.data-variant]': 'variant()',
 	},
-	template: '<ng-content/>',
 })
 export class HlmTabsList {
-	public readonly orientation = input<ListVariants['orientation']>('horizontal');
+	public readonly variant = input<ListVariants['variant']>('default');
 
-	public readonly userClass = input<ClassValue>('', { alias: 'class' });
-	protected readonly _computedClass = computed(() =>
-		hlm(listVariants({ orientation: this.orientation() }), this.userClass()),
-	);
+	constructor() {
+		classes(() => listVariants({ variant: this.variant() }));
+	}
 }

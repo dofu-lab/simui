@@ -11,11 +11,11 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 	},
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
 	template: `
-		<hlm-tabs tab="tab01" class="flex w-full flex-row gap-2">
-			<hlm-tabs-list class="mt-0 h-auto w-fit p-0.5" orientation="vertical" aria-label="tabs example">
-				<button hlmTabsTrigger="tab01" class="w-full">Overview</button>
-				<button hlmTabsTrigger="tab02" class="w-full">Project</button>
-				<button hlmTabsTrigger="tab03" class="w-full">Package</button>
+		<hlm-tabs tab="tab01" orientation="vertical" class="flex w-full flex-row gap-2">
+			<hlm-tabs-list class="mt-0 h-auto w-fit p-0.5" aria-label="tabs example">
+				<button hlmTabsTrigger="tab01" class="w-full justify-center!">Overview</button>
+				<button hlmTabsTrigger="tab02" class="w-full justify-center!">Project</button>
+				<button hlmTabsTrigger="tab03" class="w-full justify-center!">Package</button>
 			</hlm-tabs-list>
 			<div class="grow rounded-md border text-start">
 				<div hlmTabsContent="tab01" class="mt-0">

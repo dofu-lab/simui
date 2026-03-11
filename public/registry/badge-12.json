@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { NgIcon, provideIcons } from '@ng-icons/core';\nimport { lucideArrowUp } from '@ng-icons/lucide';\nimport { HlmBadgeImports } from '@spartan-ng/helm/badge';\n\n@Component({\n\tselector: 'sim-badge-12',\n\tproviders: [provideIcons({ lucideArrowUp })],\n\timports: [HlmBadgeImports, NgIcon],\n\ttemplate: `\n\t\t<span hlmBadge variant=\"outline\">\n\t\t\t<span>Up trend</span>\n\t\t\t<ng-icon name=\"lucideArrowUp\" class=\"text-primary\" />\n\t\t</span>\n\t`,\n})\nexport class Badge12Component {}"
+}

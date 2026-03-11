@@ -5,7 +5,6 @@ import { ThemeHistory, ThemePreset } from '@/app/types';
 import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight, lucideUndo2 } from '@ng-icons/lucide';
-import { BrnTooltipImports } from '@spartan-ng/brain/tooltip';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
@@ -16,17 +15,7 @@ import { PresetColorPreview } from './preset-color-preview';
 @Component({
 	selector: 'sim-unsaved-history',
 	providers: [provideIcons({ lucideArrowRight, lucideUndo2 })],
-	imports: [
-		PresetColorPreview,
-		NgIcon,
-		HlmIcon,
-		HistoryDatePipe,
-		ColorBadge,
-		HlmBadge,
-		HlmButton,
-		HlmTooltipImports,
-		BrnTooltipImports,
-	],
+	imports: [PresetColorPreview, NgIcon, HlmIcon, HistoryDatePipe, ColorBadge, HlmBadge, HlmButton, HlmTooltipImports],
 	template: `
 		@if (historyList().length > 0) {
 			<span hlmBadge class="rounded-full">Unsaved changes</span>
@@ -116,12 +105,12 @@ import { PresetColorPreview } from './preset-color-preview';
 							}
 						</div>
 						@if ($index !== 0) {
-							<hlm-tooltip>
-								<button hlmBtn hlmTooltipTrigger size="icon" variant="outline" (click)="onRevert(history)">
-									<ng-icon hlm name="lucideUndo2" size="sm" />
-								</button>
-								<span *brnTooltipContent class="flex items-center">Revert to this version</span>
-							</hlm-tooltip>
+							<button hlmBtn size="icon" variant="outline" [hlmTooltip]="tooltipContent" (click)="onRevert(history)">
+								<ng-icon hlm name="lucideUndo2" size="sm" />
+							</button>
+							<ng-template #tooltipContent>
+								<span class="flex items-center">Revert to this version</span>
+							</ng-template>
 						}
 					</div>
 				</div>

@@ -1,33 +1,19 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogContent, HlmDialogDescription, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-14',
-	imports: [
-		FormsModule,
-		ReactiveFormsModule,
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmDialogDescription,
-		HlmLabel,
-		HlmInput,
-		HlmButton,
-	],
+	imports: [FormsModule, ReactiveFormsModule, HlmButton, HlmLabel, HlmInput, HlmButton, HlmDialogImports],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Sign Up</button>
+			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Sign Up</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[400px] max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<form [formGroup]="form" (submit)="closeDialog()">
 					<div class="flex flex-col items-center gap-1">
 						<div class="flex shrink-0 items-center justify-center rounded-full border p-2">
@@ -123,7 +109,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Dialog14Component {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 	private _formBuilder = inject(FormBuilder);
 
 	public form = this._formBuilder.group({

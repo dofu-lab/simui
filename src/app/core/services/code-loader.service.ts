@@ -1,47 +1,51 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class CodeLoaderService {
 	private readonly http = inject(HttpClient);
-	private componentsData: { [key: string]: string } = {};
-	private dataLoaded = false;
-	private loadRequest$?: Observable<void>;
+	private readonly platformId = inject(PLATFORM_ID);
+	private readonly cache = new Map<string, string>();
+	private readonly inFlight = new Map<string, Observable<string>>();
 
-	private loadComponentsData(): Observable<void> {
-		if (this.dataLoaded) {
-			return of(void 0);
+	loadComponentCode(componentName: string): Observable<string> {
+		if (!componentName) return of('');
+
+		if (this.cache.has(componentName)) {
+			return of(this.cache.get(componentName)!);
 		}
 
-		if (this.loadRequest$) {
-			return this.loadRequest$;
+		if (this.inFlight.has(componentName)) {
+			return this.inFlight.get(componentName)!;
 		}
 
-		this.loadRequest$ = this.http.get<{ [key: string]: string }>(`/assets/generated-code/components.json`).pipe(
-			tap((data) => {
-				this.componentsData = data;
-				this.dataLoaded = true;
+		const request$ = this.http.get<{ content: string }>(`/registry/${componentName}.json`).pipe(
+			map((data) => data.content),
+			tap((code) => {
+				this.cache.set(componentName, code);
+				this.inFlight.delete(componentName);
 			}),
-			map(() => void 0),
 			catchError((error) => {
-				console.error('Error loading components data:', error);
-				this.componentsData = {};
-				this.dataLoaded = true;
-				return of(void 0);
+				console.error(`Error loading component code for ${componentName}:`, error);
+				this.inFlight.delete(componentName);
+				return of('');
 			}),
 			shareReplay(1),
 		);
 
-		return this.loadRequest$;
+		this.inFlight.set(componentName, request$);
+		return request$;
 	}
 
-	loadComponentCode(componentName: string): Observable<string> {
-		return this.loadComponentsData().pipe(map(() => this.componentsData[componentName] || ''));
-	}
-
-	getComponentCode(componentName: string): string {
-		return this.componentsData[componentName] || '';
+	preloadComponents(componentNames: string[]): void {
+		if (!isPlatformBrowser(this.platformId)) return;
+		for (const name of componentNames) {
+			if (!this.cache.has(name) && !this.inFlight.has(name)) {
+				this.loadComponentCode(name).subscribe();
+			}
+		}
 	}
 }

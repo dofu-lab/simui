@@ -1,34 +1,20 @@
 import { Component, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogContent, HlmDialogFooter, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-dialog-11',
-	imports: [
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		HlmDialogFooter,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmInput,
-		HlmLabel,
-		HlmRadioGroup,
-		HlmRadio,
-		FormsModule,
-	],
+	imports: [HlmButton, HlmInput, HlmLabel, HlmRadioGroup, HlmRadio, FormsModule, HlmDialogImports],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button brnDialogTrigger hlmBtn variant="outline">Rating</button>
+			<button hlmDialogTrigger hlmBtn variant="outline">Rating</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-y-auto rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<hlm-dialog-header class="contents space-y-0 border-b text-left">
 					<h2 class="mb-0 border-b px-6 py-4 text-lg font-semibold">Help us improve</h2>
 				</hlm-dialog-header>
@@ -72,7 +58,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 	`,
 })
 export class Dialog11Component {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 	public ratingNumber = model<number>();
 
 	closeDialog() {

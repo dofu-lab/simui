@@ -8,10 +8,9 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 		class: 'w-full',
 	},
 	template: `
-		<hlm-tabs tab="tab01" class="flex w-full flex-row gap-2">
+		<hlm-tabs tab="tab01" class="flex w-full flex-row gap-2" orientation="vertical">
 			<hlm-tabs-list
-				orientation="vertical"
-				class="[&>button]:data-[state=active]:bg-muted mt-0 flex w-fit flex-col bg-transparent [&>button]:data-[state=active]:shadow-none"
+				class="[&>button]:data-[state=active]:bg-muted mt-0 flex w-fit flex-col gap-1 bg-transparent [&>button]:data-[state=active]:shadow-none"
 				aria-label="tabs example">
 				<button hlmTabsTrigger="tab01" class="w-full justify-start">Overview</button>
 				<button hlmTabsTrigger="tab02" class="w-full justify-start">Projects</button>

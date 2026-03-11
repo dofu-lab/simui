@@ -1,11 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-09',
-	imports: [HlmButton, HlmPopoverImports, BrnPopoverImports],
+	imports: [HlmButton, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button
@@ -13,12 +12,12 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 				variant="outline"
 				size="icon"
 				class="size-9 text-xl"
-				brnPopoverTrigger
+				hlmPopoverTrigger
 				aria-label="Open emoji picker">
 				{{ currentEmoji() }}
 			</button>
 
-			<div hlmPopoverContent class="grid w-64 gap-2 p-4 text-center text-xl" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid w-64 gap-2 p-4 text-center text-xl" *hlmPopoverPortal="let ctx">
 				<div class="text-left text-sm font-semibold">Pick an emoji</div>
 
 				<div class="grid grid-cols-6 gap-2">

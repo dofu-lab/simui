@@ -6,8 +6,8 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	selector: 'sim-button-13',
 	imports: [HlmButton, HlmSpinner],
 	template: `
-		<button hlmBtn disabled size="sm" class="group">
-			<hlm-spinner class="mr-2 size-4" />
+		<button hlmBtn disabled size="sm">
+			<hlm-spinner class="size-4" />
 			Saving...
 		</button>
 	`,

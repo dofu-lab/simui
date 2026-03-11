@@ -6,14 +6,13 @@ import { NgClass } from '@angular/common';
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy, lucideSquarePen } from '@ng-icons/lucide';
-import { BrnTooltipImports } from '@spartan-ng/brain/tooltip';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-color-card',
-	imports: [HlmTooltipImports, HlmIcon, NgIcon, NgClass, BrnTooltipImports, HlmButton, ColorPipe],
+	imports: [HlmTooltipImports, HlmIcon, NgIcon, NgClass, HlmButton, ColorPipe],
 	providers: [provideIcons({ lucideCopy, lucideCheck, lucideSquarePen })],
 	template: `
 		<div
@@ -27,36 +26,34 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 						<p class="text-muted-foreground text-xs font-normal">{{ color() | colorFormatter: colorType() }}</p>
 					</div>
 					<div class="flex flex-col">
-						<hlm-tooltip>
-							<button
-								hlmBtn
-								hlmTooltipTrigger
-								variant="ghost"
-								size="icon"
-								class="size-6"
-								[disabled]="copied()"
-								(click)="onSelect()">
-								<ng-icon
-									hlm
-									name="lucideCopy"
-									size="xs"
-									class="transition-all"
-									[ngClass]="{
-										'scale-0 opacity-0': copied(),
-										'scale-100 opacity-100': !copied(),
-									}" />
-								<ng-icon
-									hlm
-									name="lucideCheck"
-									size="xs"
-									class="absolute text-emerald-500 transition-all"
-									[ngClass]="{
-										'scale-0 opacity-0': !copied(),
-										'scale-100 opacity-100': copied(),
-									}" />
-							</button>
-							<span *brnTooltipContent class="flex items-center">Copy color</span>
-						</hlm-tooltip>
+						<button
+							hlmBtn
+							variant="ghost"
+							size="icon"
+							class="size-6"
+							[hlmTooltip]="tooltipContent"
+							[disabled]="copied()"
+							(click)="onSelect()">
+							<ng-icon
+								hlm
+								name="lucideCopy"
+								size="xs"
+								class="transition-all"
+								[ngClass]="{
+									'scale-0 opacity-0': copied(),
+									'scale-100 opacity-100': !copied(),
+								}" />
+							<ng-icon
+								hlm
+								name="lucideCheck"
+								size="xs"
+								class="absolute text-emerald-500 transition-all"
+								[ngClass]="{
+									'scale-0 opacity-0': !copied(),
+									'scale-100 opacity-100': copied(),
+								}" />
+						</button>
+						<ng-template #tooltipContent><span class="flex items-center">Copy color</span></ng-template>
 						<button hlmBtn variant="ghost" size="icon" class="size-6" (click)="onEditColor()">
 							<ng-icon hlm name="lucideSquarePen" size="xs" />
 						</button>

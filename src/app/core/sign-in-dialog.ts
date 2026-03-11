@@ -3,9 +3,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogContent, HlmDialogDescription, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogDescription, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmSeparator, HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { GoogleSigninButtonComponent } from './google-signin-button.component';
 
@@ -16,25 +15,21 @@ import { GoogleSigninButtonComponent } from './google-signin-button.component';
 		FormsModule,
 		ReactiveFormsModule,
 		RouterLink,
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		BrnDialogTrigger,
-		BrnDialogContent,
 		HlmButton,
 		HlmDialogDescription,
 		GoogleSigninButtonComponent,
 		HlmSeparator,
 		HlmSeparatorImports,
+		HlmDialogImports,
 	],
 	template: `
 		<hlm-dialog (stateChanged)="onDialogStateChange($event)">
 			@if (!hideButton()) {
-				<button id="login-button" brnDialogTrigger hlmBtn variant="default" size="sm">Sign In</button>
+				<button id="login-button" hlmDialogTrigger hlmBtn variant="default" size="sm">Sign In</button>
 			}
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[400px] max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col items-center gap-1">
 					<div class="flex shrink-0 items-center justify-center rounded-full border p-2">
 						<svg width="36" height="36" viewBox="0 0 36 36" class="fill-primary" xmlns="http://www.w3.org/2000/svg">
@@ -95,7 +90,7 @@ import { GoogleSigninButtonComponent } from './google-signin-button.component';
 })
 export class SignInDialogComponent {
 	public readonly hideButton = input<boolean>(false);
-	public readonly dialogRef = viewChild(BrnDialog);
+	public readonly dialogRef = viewChild(HlmDialog);
 
 	protected mode = signal<'signIn' | 'signUp'>('signIn');
 

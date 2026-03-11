@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { HlmCheckbox } from '@spartan-ng/helm/checkbox';\nimport { HlmLabel } from '@spartan-ng/helm/label';\n\n@Component({\n\tselector: 'sim-checkbox-13',\n\timports: [HlmCheckbox, HlmLabel],\n\ttemplate: `\n\t\t<label hlmLabel class=\"flex items-center\" for=\"checkbox-13\">\n\t\t\t<hlm-checkbox id=\"checkbox-13\" />\n\t\t\t<span>\n\t\t\t\tI agree to the\n\t\t\t\t<a href=\"#\" class=\"underline\">terms and conditions</a>\n\t\t\t</span>\n\t\t</label>\n\t`,\n})\nexport class Checkbox13Component {}"
+}

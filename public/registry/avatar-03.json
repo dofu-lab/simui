@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { NgIcon, provideIcons } from '@ng-icons/core';\nimport { lucideUser } from '@ng-icons/lucide';\nimport { HlmAvatar, HlmAvatarFallback } from '@spartan-ng/helm/avatar';\nimport { HlmIcon } from '@spartan-ng/helm/icon';\n\n@Component({\n\tselector: 'sim-avatar-03',\n\tproviders: [provideIcons({ lucideUser })],\n\timports: [HlmAvatar, HlmAvatarFallback, HlmIcon, NgIcon],\n\ttemplate: `\n\t\t<hlm-avatar class=\"border-border/50 size-10 border\">\n\t\t\t<span hlmAvatarFallback class=\"bg-muted text-muted-foreground\">\n\t\t\t\t<ng-icon hlm name=\"lucideUser\" />\n\t\t\t</span>\n\t\t</hlm-avatar>\n\t`,\n})\nexport class Avatar03Component {}"
+}

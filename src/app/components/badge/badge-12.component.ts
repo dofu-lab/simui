@@ -1,19 +1,16 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp } from '@ng-icons/lucide';
-import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-badge-12',
 	providers: [provideIcons({ lucideArrowUp })],
-	imports: [HlmBadge, HlmIcon, NgIcon],
+	imports: [HlmBadgeImports, NgIcon],
 	template: `
-		<span hlmBadge variant="outline" class="rounded-full">
-			<div class="flex items-center justify-center gap-1">
-				<span>Icon badge</span>
-				<ng-icon hlm name="lucideArrowUp" size="xs" class="text-primary" />
-			</div>
+		<span hlmBadge variant="outline">
+			<span>Up trend</span>
+			<ng-icon name="lucideArrowUp" class="text-primary" />
 		</span>
 	`,
 })

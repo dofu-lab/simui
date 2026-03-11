@@ -1,15 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-06',
-	imports: [HlmButton, HlmPopoverImports, BrnPopoverImports],
+	imports: [HlmButton, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
-			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">Tooltip-like with steps</button>
-			<div hlmPopoverContent class="grid gap-1" *brnPopoverContent="let ctx">
+			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">Tooltip-like with steps</button>
+			<div hlmPopoverContent class="grid gap-1" *hlmPopoverPortal="let ctx">
 				<div class="text-sm font-medium">
 					{{ steps[currentStep()].title }}
 				</div>

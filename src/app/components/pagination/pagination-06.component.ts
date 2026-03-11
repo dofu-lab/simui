@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute }
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
-import { hlm } from '@spartan-ng/helm/utils';
 import { map } from 'rxjs';
 
 type PaginationReturn = {
@@ -19,8 +18,12 @@ type PaginationReturn = {
 	template: `
 		<nav hlmPagination>
 			<ul hlmPaginationContent>
-				<li hlmPaginationItem [class]="computedPreviousClass()">
-					<hlm-pagination-previous link="." [queryParams]="{ page: currentPage() - 1 }" queryParamsHandling="merge" />
+				<li hlmPaginationItem>
+					<hlm-pagination-previous
+						link="."
+						[class]="computedPreviousClass()"
+						[queryParams]="{ page: currentPage() - 1 }"
+						queryParamsHandling="merge" />
 				</li>
 				@if (paginationRange().showLeftEllipsis) {
 					<li hlmPaginationItem>
@@ -44,8 +47,12 @@ type PaginationReturn = {
 						<hlm-pagination-ellipsis />
 					</li>
 				}
-				<li hlmPaginationItem [class]="computedNextClass()">
-					<hlm-pagination-next link="." [queryParams]="{ page: currentPage() + 1 }" queryParamsHandling="merge" />
+				<li hlmPaginationItem>
+					<hlm-pagination-next
+						link="."
+						[class]="computedNextClass()"
+						[queryParams]="{ page: currentPage() + 1 }"
+						queryParamsHandling="merge" />
 				</li>
 			</ul>
 		</nav>
@@ -62,18 +69,18 @@ export class Pagination06Component {
 		),
 	);
 
-	protected pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+	protected readonly pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+	protected readonly paginationRange = computed(() =>
+		calculatePaginationRange(this.currentPage(), this.totalPages(), 5),
+	);
 	protected readonly currentPage = computed(() => this._pageQuery() ?? 1);
 	protected readonly totalPages = computed(() => this.pages.length);
-	protected readonly computedPreviousClass = computed(() => {
-		const isDisabled = this.currentPage() <= 1;
-		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '');
-	});
-	protected readonly computedNextClass = computed(() => {
-		const isDisabled = this.currentPage() >= this.pages.length;
-		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '');
-	});
-	protected paginationRange = computed(() => calculatePaginationRange(this.currentPage(), this.totalPages(), 5));
+	protected readonly computedPreviousClass = computed(() => this.navButtonClass(this.currentPage() <= 1));
+	protected readonly computedNextClass = computed(() => this.navButtonClass(this.currentPage() >= this.pages.length));
+
+	private navButtonClass(isDisabled: boolean): string {
+		return ['px-0!', isDisabled && 'opacity-50 select-none pointer-events-none'].filter(Boolean).join(' ');
+	}
 }
 
 function calculatePaginationRange(

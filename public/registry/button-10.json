@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { NgIcon, provideIcons } from '@ng-icons/core';\nimport { lucideArrowRight, lucideMail } from '@ng-icons/lucide';\nimport { HlmButton } from '@spartan-ng/helm/button';\n\n@Component({\n\tselector: 'sim-button-10',\n\tproviders: [provideIcons({ lucideMail, lucideArrowRight })],\n\timports: [HlmButton, NgIcon],\n\ttemplate: `\n\t\t<button hlmBtn size=\"sm\" variant=\"secondary\" class=\"group/btn10\">\n\t\t\t<ng-icon name=\"lucideMail\" />\n\t\t\tSubscribe\n\t\t\t<ng-icon name=\"lucideArrowRight\" class=\"transition-transform group-hover/btn10:translate-x-0.5\" />\n\t\t</button>\n\t`,\n})\nexport class Button10Component {}"
+}

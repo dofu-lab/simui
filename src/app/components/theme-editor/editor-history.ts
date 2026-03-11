@@ -5,7 +5,6 @@ import { ThemeHistory, ThemePreset } from '@/app/types';
 import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideClipboardClock } from '@ng-icons/lucide';
-import { BrnSheetImports } from '@spartan-ng/brain/sheet';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmSheetImports } from '@spartan-ng/helm/sheet';
@@ -22,18 +21,17 @@ import { UnsavedHistory } from './unsaved-history';
 		ColorTypeSelector,
 		ThemeVersionHistoryComponent,
 		HlmSheetImports,
-		BrnSheetImports,
 		UnsavedHistory,
 	],
 	providers: [provideIcons({ lucideClipboardClock })],
 	template: `
 		<hlm-sheet side="right">
-			<button brnSheetTrigger hlmBtn size="sm" variant="ghost" [disabled]="!canShowHistory()">
+			<button hlmSheetTrigger hlmBtn size="sm" variant="ghost" [disabled]="!canShowHistory()">
 				<ng-icon hlm name="lucideClipboardClock" size="sm" />
 				History
 			</button>
 			<hlm-sheet-content
-				*brnSheetContent="let ctx"
+				*hlmSheetPortal="let ctx"
 				class="flex h-full w-[calc(100%-(--spacing(12)))] max-w-sm flex-col sm:max-w-xl">
 				<hlm-sheet-header class="flex-row items-center justify-between">
 					<h3 hlmSheetTitle>Change History</h3>

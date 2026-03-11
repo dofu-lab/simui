@@ -2,15 +2,8 @@ import { Component, computed, model, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import {
-	HlmDialog,
-	HlmDialogContent,
-	HlmDialogDescription,
-	HlmDialogFooter,
-	HlmDialogHeader,
-} from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
@@ -18,27 +11,13 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-dialog-08',
 	providers: [provideIcons({ lucideCircleAlert })],
-	imports: [
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		HlmDialogFooter,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmDialogDescription,
-		NgIcon,
-		HlmIcon,
-		HlmInput,
-		FormsModule,
-		HlmLabel,
-	],
+	imports: [HlmButton, NgIcon, HlmIcon, HlmInput, FormsModule, HlmLabel, HlmDialogImports],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Delete project</button>
+			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Delete project</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col items-center gap-2">
 					<div class="flex size-9 shrink-0 items-center justify-center rounded-full border">
 						<ng-icon hlm name="lucideCircleAlert" size="sm"></ng-icon>
@@ -75,7 +54,7 @@ export class Dialog08Component {
 	inputValue = model<string>('');
 	isDisabled = computed(() => this.inputValue() !== this.projectName());
 
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 
 	closeDialog() {
 		this.dialogRef()?.close({});

@@ -2,20 +2,19 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 
 @Component({
 	selector: 'sim-button-38',
 	providers: [provideIcons({ lucideChevronLeft })],
-	imports: [HlmIcon, HlmButton, NgIcon],
+	imports: [HlmButton, NgIcon, HlmButtonGroupImports],
 	template: `
-		<button hlmBtn class="relative ps-12" size="sm">
-			<span
-				class="bg-primary-foreground/15 pointer-events-none absolute inset-y-0 start-0 flex w-9 items-center justify-center">
-				<ng-icon hlm name="lucideChevronLeft" size="sm" />
-			</span>
-			Previous
-		</button>
+		<div hlmButtonGroup>
+			<button hlmBtn size="icon-sm" class="bg-primary/85">
+				<ng-icon name="lucideChevronLeft" />
+			</button>
+			<button hlmBtn size="sm">Previous</button>
+		</div>
 	`,
 })
 export class Button38Component {}

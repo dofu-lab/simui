@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { HlmInput } from '@spartan-ng/helm/input';\nimport { HlmLabel } from '@spartan-ng/helm/label';\n\n@Component({\n\tselector: 'sim-input-06',\n\timports: [HlmLabel, HlmInput],\n\thost: { class: 'w-full' },\n\ttemplate: `\n\t\t<label hlmLabel for=\"input-06\" class=\"mb-2 text-sm\">Input with helper text</label>\n\t\t<input\n\t\t\thlmInput\n\t\t\tclass=\"peer\"\n\t\t\tid=\"input-06\"\n\t\t\ttype=\"email\"\n\t\t\tplaceholder=\"Email\"\n\t\t\tvalue=\"invalid@mail.com\"\n\t\t\taria-invalid=\"true\"\n\t\t\t[error]=\"true\" />\n\t\t<p class=\"peer-aria-invalid:text-destructive mt-2 text-xs\" role=\"region\" aria-live=\"polite\">Email is invalid</p>\n\t`,\n})\nexport class Input06Component {}"
+}

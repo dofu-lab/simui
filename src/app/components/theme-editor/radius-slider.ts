@@ -73,11 +73,11 @@ export class RadiusSliderComponent {
 
 	protected readonly min = 0;
 	protected readonly max = 5;
-	protected readonly value = signal<number>(this.currentRadius());
+	protected readonly value = signal<number[]>([this.currentRadius()]);
 
 	constructor() {
 		effect(() => {
-			this.value.set(this.currentRadius());
+			this.value.set([this.currentRadius()]);
 		});
 
 		this.radiusSubject$.pipe(debounceTime(DEBOUNCE_TIME), takeUntilDestroyed()).subscribe((radius) => {
@@ -88,7 +88,7 @@ export class RadiusSliderComponent {
 	protected onRadiusChange(radius: number): void {
 		try {
 			const clampedRadius = Math.min(Math.max(radius, this.min), this.max);
-			this.value.set(clampedRadius);
+			this.value.set([clampedRadius]);
 			this.themeService.applyRadius(`${clampedRadius}rem`);
 			this.radiusSubject$.next(clampedRadius);
 		} catch (error) {

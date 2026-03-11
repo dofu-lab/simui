@@ -2,12 +2,11 @@ import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail, lucideSave } from '@ng-icons/lucide';
-import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
@@ -20,10 +19,6 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		FormsModule,
 		ReactiveFormsModule,
 		HlmIcon,
-		HlmDialog,
-		HlmDialogContent,
-		BrnDialogTrigger,
-		BrnDialogContent,
 		HlmButton,
 		HlmAspectRatio,
 		HlmAvatar,
@@ -33,14 +28,15 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		HlmLabel,
 		BrnSelectImports,
 		HlmSelectImports,
+		HlmDialogImports,
 	],
 	providers: [provideIcons({ lucideSave, lucideMail })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button brnDialogTrigger hlmBtn variant="outline">Edit profile</button>
+			<button hlmDialogTrigger hlmBtn variant="outline">Edit profile</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(1000px,85vh)] sm:max-w-150"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<div class="relative p-2">
 						<div class="shadow-xs" [hlmAspectRatio]="39 / 8">

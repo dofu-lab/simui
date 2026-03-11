@@ -1,0 +1,3 @@
+{
+  "content": "import { Component, signal } from '@angular/core';\nimport { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';\n\n@Component({\n\tselector: 'sim-button-34',\n\timports: [HlmToggleGroupImports],\n\ttemplate: `\n\t\t<hlm-toggle-group variant=\"outline\">\n\t\t\t<button hlmToggleGroupItem value=\"left\" variant=\"outline\">Left</button>\n\t\t\t<button hlmToggleGroupItem value=\"top\" variant=\"outline\">Center</button>\n\t\t\t<button hlmToggleGroupItem value=\"right\" variant=\"outline\">Right</button>\n\t\t</hlm-toggle-group>\n\t`,\n})\nexport class Button34Component {\n\ttheme = signal<'light' | 'dark'>('light');\n\n\tchangeTheme() {\n\t\tthis.theme.set(this.theme() === 'light' ? 'dark' : 'light');\n\t}\n}"
+}

@@ -11,7 +11,6 @@ import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 		<hlm-toggle-group variant="outline" class="flex w-full">
 			<button hlmToggleGroupItem value="left" variant="outline" class="flex-1">Left</button>
 			<button hlmToggleGroupItem value="top" variant="outline" data-variant="outline" class="flex-1">Center</button>
-
 			<button hlmToggleGroupItem value="right" variant="outline" data-variant="outline" class="flex-1">Right</button>
 		</hlm-toggle-group>
 	`,

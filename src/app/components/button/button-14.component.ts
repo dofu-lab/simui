@@ -6,9 +6,9 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	selector: 'sim-button-14',
 	imports: [HlmButton, HlmSpinner],
 	template: `
-		<button hlmBtn size="sm" class="group" [disabled]="isLoading()" (click)="submit()">
+		<button hlmBtn size="sm" [disabled]="isLoading()" (click)="submit()">
 			@if (isLoading()) {
-				<hlm-spinner class="mr-2 size-4" />
+				<hlm-spinner class="size-4" />
 				Submitting...
 			} @else {
 				Submit
@@ -17,9 +17,9 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	`,
 })
 export class Button14Component {
-	isLoading = signal<boolean>(false);
+	protected readonly isLoading = signal<boolean>(false);
 
-	submit() {
+	protected submit(): void {
 		this.isLoading.set(true);
 		setTimeout(() => this.isLoading.set(false), 1500);
 	}

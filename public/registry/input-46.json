@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { MaskitoDirective } from '@maskito/angular';\nimport { MaskitoOptions } from '@maskito/core';\nimport { HlmInput } from '@spartan-ng/helm/input';\nimport { HlmLabel } from '@spartan-ng/helm/label';\n\n@Component({\n\tselector: 'sim-input-46',\n\timports: [HlmLabel, FormsModule, MaskitoDirective, HlmInput],\n\thost: { class: 'w-full' },\n\ttemplate: `\n\t\t<label hlmLabel for=\"input-46\" class=\"mb-2 text-sm\">CVC Code</label>\n\t\t<input hlmInput id=\"input-46\" type=\"text\" placeholder=\"CVC\" [maskito]=\"cvcMask\" />\n\t`,\n})\nexport class Input46Component {\n\treadonly cvcMask: MaskitoOptions = {\n\t\tmask: [...new Array(3).fill(/\\d/)],\n\t};\n}"
+}

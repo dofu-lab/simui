@@ -1,34 +1,17 @@
 import { Component, viewChild } from '@angular/core';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import {
-	HlmDialog,
-	HlmDialogContent,
-	HlmDialogDescription,
-	HlmDialogFooter,
-	HlmDialogHeader,
-} from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmInput } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-dialog-10',
-	imports: [
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		HlmDialogFooter,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmDialogDescription,
-		HlmInput,
-	],
+	imports: [HlmButton, HlmInput, HlmDialogImports],
 	template: `
 		<hlm-dialog>
-			<button brnDialogTrigger hlmBtn variant="outline">Feedback</button>
+			<button hlmDialogTrigger hlmBtn variant="outline">Feedback</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 overflow-y-auto rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<hlm-dialog-header>
 					<h2 class="mb-0 text-lg font-semibold">Send us feedback</h2>
 					<span hlmDialogDescription>
@@ -50,7 +33,7 @@ import { HlmInput } from '@spartan-ng/helm/input';
 	`,
 })
 export class Dialog10Component {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 
 	closeDialog() {
 		this.dialogRef()?.close({});

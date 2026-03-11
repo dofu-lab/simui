@@ -93,5 +93,5 @@ import {
 	`,
 })
 export class Card04Component {
-	public readonly value = signal(50);
+	public readonly value = signal([50]);
 }

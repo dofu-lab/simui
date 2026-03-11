@@ -1,7 +1,6 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DatePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import {
 	addDays,
@@ -23,16 +22,7 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 
 @Component({
 	selector: 'sim-month-view-calendar',
-	imports: [
-		DatePipe,
-		NgClass,
-		EventItemComponent,
-		CdkDrag,
-		CdkDropList,
-		CdkDropListGroup,
-		BrnPopoverImports,
-		HlmPopoverImports,
-	],
+	imports: [DatePipe, NgClass, EventItemComponent, CdkDrag, CdkDropList, CdkDropListGroup, HlmPopoverImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="contents">
@@ -115,12 +105,12 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 												<button
 													id="edit-profile"
 													variant="outline"
-													brnPopoverTrigger
+													hlmPopoverTrigger
 													class="focus-visible:border-ring focus-visible:ring-ring/50 text-muted-foreground hover:text-foreground hover:bg-muted/50 mt-1 flex h-6 w-full items-center overflow-hidden rounded-sm px-1 text-left text-[10px] backdrop-blur-md transition outline-none select-none focus-visible:ring-[3px] sm:px-2 sm:text-xs">
 													+ {{ remainingCount(day) }} more
 												</button>
 											</div>
-											<div hlmPopoverContent class="grid w-48 gap-1 p-3" *brnPopoverContent="let ctx">
+											<div hlmPopoverContent class="grid w-48 gap-1 p-3" *hlmPopoverPortal="let ctx">
 												<span class="text-sm font-medium">{{ day | date: 'EEE dd' }}</span>
 												<div class="grid gap-1">
 													@for (event of getDayEvents(day); track event.id; let index = $index) {
@@ -218,7 +208,7 @@ export class MonthViewCalendarComponent {
 				if (
 					element.tagName === 'BUTTON' ||
 					element.hasAttribute('cdkDrag') ||
-					element.hasAttribute('brnPopoverTrigger') ||
+					element.hasAttribute('hlmPopoverTrigger') ||
 					element.closest('sim-event-item') ||
 					element.closest('hlm-popover')
 				) {

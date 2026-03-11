@@ -7,7 +7,6 @@ import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { hlm } from '@spartan-ng/helm/utils';
 import { map } from 'rxjs';
 
 type PaginationReturn = {
@@ -26,10 +25,11 @@ type PaginationReturn = {
 			<div class="grow">
 				<nav hlmPagination>
 					<ul hlmPaginationContent>
-						<li hlmPaginationItem [class]="computedPreviousClass()">
+						<li hlmPaginationItem>
 							<hlm-pagination-previous
 								link="."
 								queryParamsHandling="merge"
+								[class]="computedPreviousClass()"
 								[iconOnly]="true"
 								[queryParams]="{ page: currentPage() - 1 }" />
 						</li>
@@ -55,10 +55,11 @@ type PaginationReturn = {
 								<hlm-pagination-ellipsis />
 							</li>
 						}
-						<li hlmPaginationItem [class]="computedNextClass()">
+						<li hlmPaginationItem>
 							<hlm-pagination-next
 								link="."
 								queryParamsHandling="merge"
+								[class]="computedNextClass()"
 								[iconOnly]="true"
 								[queryParams]="{ page: currentPage() + 1 }" />
 						</li>
@@ -87,17 +88,15 @@ export class Pagination12Component {
 	protected readonly pageSizes = [5, 10, 20, 50, 100];
 	protected readonly currentPage = computed(() => this._pageQuery() ?? 1);
 	protected readonly totalPages = computed(() => this.pages.length);
-	protected readonly computedPreviousClass = computed(() => {
-		const isDisabled = this.currentPage() <= 1;
-		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '');
-	});
-	protected readonly computedNextClass = computed(() => {
-		const isDisabled = this.currentPage() >= this.pages.length;
-		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '');
-	});
+	protected readonly computedPreviousClass = computed(() => this.navButtonClass(this.currentPage() <= 1));
+	protected readonly computedNextClass = computed(() => this.navButtonClass(this.currentPage() >= this.pages.length));
 	protected readonly paginationRange = computed(() =>
 		calculatePaginationRange(this.currentPage(), this.totalPages(), 5),
 	);
+
+	private navButtonClass(isDisabled: boolean): string {
+		return ['px-0!', isDisabled && 'opacity-50 select-none pointer-events-none'].filter(Boolean).join(' ');
+	}
 }
 
 function calculatePaginationRange(
