@@ -38,10 +38,13 @@ import { AppearanceService } from './services';
 						Components
 					</a>
 					<a
-						class="text-foreground relative hidden cursor-pointer items-center rounded-lg px-3 py-2 text-sm sm:inline-flex"
+						class="relative hidden cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-medium transition-transform duration-200 hover:scale-105 sm:inline-flex"
 						routerLink="/theme-editor"
-						routerLinkActive="bg-muted font-medium">
-						Theme
+						routerLinkActive="bg-muted">
+						<span class="bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+							Theme
+						</span>
+						<span class="ml-0.5 inline-block animate-bounce text-[0.65rem]">✨</span>
 					</a>
 				</div>
 				<div class="flex items-center justify-between gap-2 md:justify-end">

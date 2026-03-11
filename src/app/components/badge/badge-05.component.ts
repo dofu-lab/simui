@@ -5,7 +5,7 @@ import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 	selector: 'sim-badge-05',
 	imports: [HlmBadgeImports],
 	template: `
-		<span hlmBadge>Badge</span>
+		<span hlmBadge class="rounded-sm">Badge</span>
 	`,
 })
 export class Badge05Component {}
