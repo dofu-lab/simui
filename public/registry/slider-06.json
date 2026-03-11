@@ -1,0 +1,3 @@
+{
+  "content": "import { Component, signal } from '@angular/core';\nimport { HlmLabel } from '@spartan-ng/helm/label';\nimport { HlmSlider } from '@spartan-ng/helm/slider';\n\n@Component({\n\tselector: 'sim-slider-06',\n\timports: [HlmSlider, HlmLabel],\n\thost: {\n\t\tclass: 'w-full',\n\t},\n\ttemplate: `\n\t\t<span hlmLabel class=\"mb-4\">Slider with reference labels</span>\n\t\t<hlm-slider [(value)]=\"value\" />\n\t\t<div class=\"text-muted-foreground mt-4 flex items-center justify-between gap-1 text-xs\">\n\t\t\t<span>5 GB</span>\n\t\t\t<span>20 GB</span>\n\t\t\t<span>35 GB</span>\n\t\t</div>\n\t`,\n})\nexport class Slider06Component {\n\tpublic readonly value = signal([45]);\n}"
+}

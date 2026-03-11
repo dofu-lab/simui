@@ -2,35 +2,22 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleDollarSign } from '@ng-icons/lucide';
-import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-33',
-	imports: [
-		NgIcon,
-		FormsModule,
-		ReactiveFormsModule,
-		HlmIcon,
-		HlmDialog,
-		HlmDialogContent,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmCheckbox,
-		HlmLabel,
-	],
+	imports: [NgIcon, FormsModule, ReactiveFormsModule, HlmIcon, HlmButton, HlmCheckbox, HlmLabel, HlmDialogImports],
 	providers: [provideIcons({ lucideCircleDollarSign })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button brnDialogTrigger hlmBtn variant="outline">Payment method</button>
+			<button hlmDialogTrigger hlmBtn variant="outline">Payment method</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-120! max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-6 sm:max-h-[min(640px,80vh)] sm:max-w-120"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col gap-6">
 					<div class="flex flex-col gap-4">
 						<div class="flex size-11 items-center justify-center rounded-lg border">

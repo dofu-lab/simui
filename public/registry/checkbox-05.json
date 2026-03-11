@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { HlmCheckbox } from '@spartan-ng/helm/checkbox';\nimport { HlmLabel } from '@spartan-ng/helm/label';\n\n@Component({\n\tselector: 'sim-checkbox-05',\n\timports: [HlmCheckbox, HlmLabel],\n\ttemplate: `\n\t\t<label hlmLabel class=\"flex items-center\" for=\"cb-05\">\n\t\t\t<hlm-checkbox disabled id=\"cb-05\" />\n\t\t\tDisabled checkbox\n\t\t</label>\n\t`,\n})\nexport class Checkbox05Component {}"
+}

@@ -14,16 +14,11 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 	template: `
 		@if (canEdit()) {
 			@if (isEditMode()) {
-				<button
-					hlmBtn
-					size="icon-sm"
-					variant="outline"
-					hlmTooltipTrigger="Discard changes"
-					(click)="onDiscardChanges()">
+				<button hlmBtn size="icon-sm" variant="outline" hlmTooltip="Discard changes" (click)="onDiscardChanges()">
 					<ng-icon hlm name="lucideClipboardX" size="sm" />
 				</button>
 			} @else {
-				<button hlmBtn size="icon-sm" variant="outline" hlmTooltipTrigger="Edit theme" (click)="onEditTheme()">
+				<button hlmBtn size="icon-sm" variant="outline" hlmTooltip="Edit theme" (click)="onEditTheme()">
 					<ng-icon hlm name="lucidePencil" size="sm" />
 				</button>
 			}

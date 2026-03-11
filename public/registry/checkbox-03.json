@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { provideIcons } from '@ng-icons/core';\nimport { lucideMoon } from '@ng-icons/lucide';\nimport { HlmCheckbox } from '@spartan-ng/helm/checkbox';\nimport { HlmLabel } from '@spartan-ng/helm/label';\n\n@Component({\n\tselector: 'sim-checkbox-03',\n\timports: [HlmCheckbox, HlmLabel],\n\tproviders: [provideIcons({ lucideMoon })],\n\ttemplate: `\n\t\t<label hlmLabel class=\"flex items-center\" for=\"checkbox-03\">\n\t\t\t<hlm-checkbox id=\"checkbox-03\" checkIconName=\"lucideMoon\" />\n\t\t\tCustom icon\n\t\t</label>\n\t`,\n})\nexport class Checkbox03Component {}"
+}

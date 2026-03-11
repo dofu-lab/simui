@@ -191,8 +191,8 @@ export class Slider17Component {
 	public readonly minValue = Math.min(...this.items.map((item) => item.price));
 	public readonly maxValue = Math.max(...this.items.map((item) => item.price));
 	public readonly priceStep = (this.maxValue - this.minValue) / this.tick_count;
-	public readonly minPrice = signal(0);
-	public readonly maxPrice = signal(300);
+	public readonly minPrice = signal([0]);
+	public readonly maxPrice = signal([300]);
 	public readonly itemCounts = Array(this.tick_count)
 		.fill(0)
 		.map((_, tick) => {
@@ -202,7 +202,7 @@ export class Slider17Component {
 		});
 	public readonly maxCount = Math.max(...this.itemCounts);
 	public computedFilteredItems = computed(() =>
-		this.items.filter((item) => item.price >= this.minPrice() && item.price <= this.maxPrice()),
+		this.items.filter((item) => item.price >= this.minPrice()[0] && item.price <= this.maxPrice()[0]),
 	);
 
 	public generateRandomId(): string {

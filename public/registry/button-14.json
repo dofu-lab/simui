@@ -1,0 +1,3 @@
+{
+  "content": "import { Component, signal } from '@angular/core';\nimport { HlmButton } from '@spartan-ng/helm/button';\nimport { HlmSpinner } from '@spartan-ng/helm/spinner';\n\n@Component({\n\tselector: 'sim-button-14',\n\timports: [HlmButton, HlmSpinner],\n\ttemplate: `\n\t\t<button hlmBtn size=\"sm\" [disabled]=\"isLoading()\" (click)=\"submit()\">\n\t\t\t@if (isLoading()) {\n\t\t\t\t<hlm-spinner class=\"size-4\" />\n\t\t\t\tSubmitting...\n\t\t\t} @else {\n\t\t\t\tSubmit\n\t\t\t}\n\t\t</button>\n\t`,\n})\nexport class Button14Component {\n\tprotected readonly isLoading = signal<boolean>(false);\n\n\tprotected submit(): void {\n\t\tthis.isLoading.set(true);\n\t\tsetTimeout(() => this.isLoading.set(false), 1500);\n\t}\n}"
+}

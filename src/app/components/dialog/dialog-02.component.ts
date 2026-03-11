@@ -1,38 +1,20 @@
 import { Component, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import {
-	HlmDialog,
-	HlmDialogContent,
-	HlmDialogDescription,
-	HlmDialogFooter,
-	HlmDialogHeader,
-} from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-02',
 	providers: [provideIcons({ lucideCircleAlert })],
-	imports: [
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		HlmDialogFooter,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmDialogDescription,
-		NgIcon,
-		HlmIcon,
-	],
+	imports: [HlmButton, NgIcon, HlmIcon, HlmDialogImports],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Confirm dialog with icon</button>
+			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Confirm dialog with icon</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col gap-2 max-sm:items-center sm:flex-row sm:gap-4">
 					<div class="flex size-9 shrink-0 items-center justify-center rounded-full border">
 						<ng-icon hlm name="lucideCircleAlert" size="sm"></ng-icon>
@@ -53,9 +35,9 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Dialog02Component {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 
-	closeDialog() {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 }

@@ -1,22 +1,22 @@
+import type { BooleanInput } from '@angular/cdk/coercion';
 import {
+	booleanAttribute,
 	ChangeDetectionStrategy,
 	Component,
-	ElementRef,
-	Renderer2,
-	computed,
 	effect,
+	ElementRef,
 	inject,
 	input,
+	Renderer2,
 	signal,
 } from '@angular/core';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { provideIcons } from '@ng-icons/core';
 import { lucideX } from '@ng-icons/lucide';
 import { injectExposedSideProvider, injectExposesStateProvider } from '@spartan-ng/brain/core';
-import { BrnSheetClose } from '@spartan-ng/brain/sheet';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { hlm } from '@spartan-ng/helm/utils';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { classes } from '@spartan-ng/helm/utils';
 import { cva } from 'class-variance-authority';
-import type { ClassValue } from 'clsx';
 import { HlmSheetClose } from './hlm-sheet-close';
 
 export const sheetVariants = cva(
@@ -40,19 +40,22 @@ export const sheetVariants = cva(
 
 @Component({
 	selector: 'hlm-sheet-content',
-	imports: [HlmSheetClose, BrnSheetClose, NgIcon, HlmIcon],
+	imports: [HlmIconImports, HlmButton, HlmSheetClose],
 	providers: [provideIcons({ lucideX })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
-		'[class]': '_computedClass()',
+		'data-slot': 'sheet-content',
 		'[attr.data-state]': 'state()',
 	},
 	template: `
 		<ng-content />
-		<button brnSheetClose hlm>
-			<span class="sr-only">Close</span>
-			<ng-icon hlm size="sm" name="lucideX" />
-		</button>
+
+		@if (showCloseButton()) {
+			<button hlmBtn variant="ghost" size="icon-sm" class="absolute end-4 top-4" hlmSheetClose>
+				<span class="sr-only">Close</span>
+				<ng-icon hlm size="sm" name="lucideX" />
+			</button>
+		}
 	`,
 })
 export class HlmSheetContent {
@@ -62,14 +65,12 @@ export class HlmSheetContent {
 	private readonly _renderer = inject(Renderer2);
 	private readonly _element = inject(ElementRef);
 
+	public readonly showCloseButton = input<boolean, BooleanInput>(true, { transform: booleanAttribute });
+
 	constructor() {
+		classes(() => sheetVariants({ side: this._sideProvider.side() }));
 		effect(() => {
 			this._renderer.setAttribute(this._element.nativeElement, 'data-state', this.state());
 		});
 	}
-
-	public readonly userClass = input<ClassValue>('', { alias: 'class' });
-	protected readonly _computedClass = computed(() =>
-		hlm(sheetVariants({ side: this._sideProvider.side() }), this.userClass()),
-	);
 }

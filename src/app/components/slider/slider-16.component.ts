@@ -20,30 +20,30 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 		<div class="flex flex-col gap-3">
 			<div class="flex items-center justify-between gap-2">
 				<span class="text-muted-foreground text-xs">X</span>
-				<hlm-slider class="[&>span]:rounded" [min]="-10" [max]="10" [(value)]="objectX" />
+				<hlm-slider class="[&>div>span]:rounded" [min]="-10" [max]="10" [(value)]="objectX" />
 				<input
 					hlmInput
 					class="h-8 w-12 shrink-0 px-2 py-1"
-					[ngModel]="objectX()"
-					(ngModelChange)="objectX.set($event)" />
+					[ngModel]="objectX()[0]"
+					(ngModelChange)="objectX.set([$event])" />
 			</div>
 			<div class="flex items-center justify-between gap-2">
 				<span class="text-muted-foreground text-xs">Y</span>
-				<hlm-slider class="[&>span]:rounded" [min]="-10" [max]="10" [(value)]="objectY" />
+				<hlm-slider class="[&>div>span]:rounded" [min]="-10" [max]="10" [(value)]="objectY" />
 				<input
 					hlmInput
 					class="h-8 w-12 shrink-0 px-2 py-1"
-					[ngModel]="objectY()"
-					(ngModelChange)="objectY.set($event)" />
+					[ngModel]="objectY()[0]"
+					(ngModelChange)="objectY.set([$event])" />
 			</div>
 			<div class="flex items-center justify-between gap-2">
 				<span class="text-muted-foreground text-xs">Z</span>
-				<hlm-slider class="[&>span]:rounded" [min]="-10" [max]="10" [(value)]="objectZ" />
+				<hlm-slider class="[&>div>span]:rounded" [min]="-10" [max]="10" [(value)]="objectZ" />
 				<input
 					hlmInput
 					class="h-8 w-12 shrink-0 px-2 py-1"
-					[ngModel]="objectZ()"
-					(ngModelChange)="objectZ.set($event)" />
+					[ngModel]="objectZ()[0]"
+					(ngModelChange)="objectZ.set([$event])" />
 			</div>
 		</div>
 		<button hlmBtn variant="outline" class="mt-4 w-full" (click)="onReset()">
@@ -53,19 +53,19 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider16Component {
-	public readonly initialObjectX = -2;
-	public readonly initialObjectY = 4;
-	public readonly initialObjectZ = 2;
-	public readonly defaultObjectX = 0;
-	public readonly defaultObjectY = 0;
-	public readonly defaultObjectZ = 0;
-	public readonly objectX = signal(this.initialObjectX);
-	public readonly objectY = signal(this.initialObjectY);
-	public readonly objectZ = signal(this.initialObjectZ);
+	protected readonly initialObjectX = -2;
+	protected readonly initialObjectY = 4;
+	protected readonly initialObjectZ = 2;
+	protected readonly defaultObjectX = 0;
+	protected readonly defaultObjectY = 0;
+	protected readonly defaultObjectZ = 0;
+	protected readonly objectX = signal([this.initialObjectX]);
+	protected readonly objectY = signal([this.initialObjectY]);
+	protected readonly objectZ = signal([this.initialObjectZ]);
 
-	public onReset(): void {
-		this.objectX.set(this.defaultObjectX);
-		this.objectY.set(this.defaultObjectY);
-		this.objectZ.set(this.defaultObjectZ);
+	protected onReset(): void {
+		this.objectX.set([this.defaultObjectX]);
+		this.objectY.set([this.defaultObjectY]);
+		this.objectZ.set([this.defaultObjectZ]);
 	}
 }

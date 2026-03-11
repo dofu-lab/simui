@@ -12,26 +12,25 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 		class: 'w-full',
 	},
 	template: `
-		<hlm-tabs tab="tab01" class="flex w-full flex-row gap-2">
+		<hlm-tabs tab="tab01" class="flex w-full flex-row gap-2" orientation="vertical">
 			<hlm-tabs-list
 				class="text-foreground mt-0 flex-col gap-1 rounded-none bg-transparent px-1 py-0"
-				orientation="vertical"
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative w-full justify-start border-none after:absolute after:inset-y-0 after:start-0 after:-ms-1 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
+					class="hover:bg-accent hover:text-foreground data-[state=active]:hover:bg-accent data-[state=active]:after:bg-primary! relative w-full justify-start border-none after:absolute after:inset-y-0 after:-start-px! after:-ms-1 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none! data-[state=active]:after:opacity-100 dark:data-[state=active]:bg-transparent">
 					<ng-icon hlm name="lucideHouse" size="sm" class="mr-2" />
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative w-full justify-start border-none after:absolute after:inset-y-0 after:start-0 after:-ms-1 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
+					class="hover:bg-accent hover:text-foreground data-[state=active]:hover:bg-accent data-[state=active]:after:bg-primary! relative w-full justify-start border-none after:absolute after:inset-y-0 after:-start-px! after:-ms-1 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none! data-[state=active]:after:opacity-100 dark:data-[state=active]:bg-transparent">
 					<ng-icon hlm name="lucidePanelsTopLeft" size="sm" class="mr-2" />
 					Project
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative w-full justify-start border-none after:absolute after:inset-y-0 after:start-0 after:-ms-1 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent">
+					class="hover:bg-accent hover:text-foreground data-[state=active]:hover:bg-accent data-[state=active]:after:bg-primary! relative w-full justify-start border-none after:absolute after:inset-y-0 after:-start-px! after:-ms-1 after:w-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none! data-[state=active]:after:opacity-100 dark:data-[state=active]:bg-transparent">
 					<ng-icon hlm name="lucidePackage" size="sm" class="mr-2" />
 					Packages
 				</button>

@@ -12,11 +12,10 @@ import {
 	lucideSquareSlash,
 	lucideZap,
 } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmDialog, HlmDialogContent, HlmDialogHeader } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
 
@@ -25,17 +24,13 @@ import { HlmInput } from '@spartan-ng/helm/input';
 	imports: [
 		NgIcon,
 		HlmIcon,
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		BrnDialogTrigger,
-		BrnDialogContent,
 		HlmButton,
 		HlmAvatar,
 		HlmAvatarFallback,
 		HlmAvatarImage,
 		HlmCheckbox,
 		HlmInput,
+		HlmDialogImports,
 	],
 	providers: [
 		provideIcons({
@@ -53,10 +48,10 @@ import { HlmInput } from '@spartan-ng/helm/input';
 	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button brnDialogTrigger hlmBtn variant="outline">Request support</button>
+			<button hlmDialogTrigger hlmBtn variant="outline">Request support</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-120! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<hlm-dialog-header class="flex flex-col items-center gap-5 p-6">
 						<img src="assets/logos/logo-square.svg" alt="Logo" class="size-14 w-full rounded-md" />
@@ -132,7 +127,7 @@ import { HlmInput } from '@spartan-ng/helm/input';
 	`,
 })
 export class Dialog26Component {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 
 	reasons = [
 		{

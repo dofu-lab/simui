@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-badge-04',
-	imports: [HlmBadge],
+	imports: [HlmBadgeImports],
 	template: `
 		<span hlmBadge variant="destructive" class="rounded-full">Badge</span>
 	`,

@@ -18,5 +18,5 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider09Component {
-	public readonly value = signal(45);
+	public readonly value = signal([45]);
 }

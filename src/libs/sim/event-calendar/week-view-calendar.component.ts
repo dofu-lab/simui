@@ -311,7 +311,7 @@ export class WeekViewCalendarComponent {
 				if (
 					element.tagName === 'BUTTON' ||
 					element.hasAttribute('cdkDrag') ||
-					element.hasAttribute('brnPopoverTrigger') ||
+					element.hasAttribute('hlmPopoverTrigger') ||
 					element.closest('sim-event-item') ||
 					element.closest('hlm-popover')
 				) {

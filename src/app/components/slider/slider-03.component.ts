@@ -10,9 +10,9 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 	},
 	template: `
 		<span hlmLabel class="mb-4">Slider with square thumb</span>
-		<hlm-slider class="[&>span]:rounded" [(value)]="value" />
+		<hlm-slider class="[&>div>span]:rounded" [(value)]="value" />
 	`,
 })
 export class Slider03Component {
-	public readonly value = signal(25);
+	public readonly value = signal([25]);
 }

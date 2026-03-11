@@ -73,7 +73,7 @@ export class ShadowSliderComponent {
 	readonly max = input<number>(50);
 	readonly step = input<number>(0.5);
 	readonly unit = input<string>('px');
-	readonly defaultValue = input<number>(0);
+	readonly defaultValue = input<number[]>([0]);
 
 	private readonly currentValue = computed(() => {
 		const preset = this.themeStorageService.currentThemeStyles();
@@ -81,12 +81,12 @@ export class ShadowSliderComponent {
 		if (preset?.[key]) {
 			const rawValue = preset[key];
 			// Parse numeric value, removing unit if present
-			return Number.parseFloat(rawValue.replaceAll(/[^-\d.]/g, '')) || this.defaultValue();
+			return [Number.parseFloat(rawValue.replaceAll(/[^-\d.]/g, '')) || this.defaultValue()[0]];
 		}
 		return this.defaultValue();
 	});
 
-	protected readonly value = signal<number>(0);
+	protected readonly value = signal<number[]>([0]);
 
 	constructor() {
 		effect(() => {
@@ -104,7 +104,7 @@ export class ShadowSliderComponent {
 	protected onValueChange(newValue: number): void {
 		try {
 			const clampedValue = Math.min(Math.max(newValue, this.min()), this.max());
-			this.value.set(clampedValue);
+			this.value.set([clampedValue]);
 
 			const key = this.cssKey();
 			const unit = this.unit();

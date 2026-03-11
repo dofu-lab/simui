@@ -2,16 +2,9 @@ import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChi
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
 import { HlmButton } from '@spartan-ng/helm/button';
-import {
-	HlmDialog,
-	HlmDialogContent,
-	HlmDialogDescription,
-	HlmDialogFooter,
-	HlmDialogHeader,
-} from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
 
@@ -22,25 +15,19 @@ import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm
 		FormsModule,
 		NgIcon,
 		HlmIcon,
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		HlmDialogFooter,
-		BrnDialogTrigger,
-		BrnDialogContent,
 		HlmButton,
-		HlmDialogDescription,
 		HlmInputOtp,
 		HlmInputOtpGroup,
 		HlmInputOtpSlot,
 		BrnInputOtp,
+		HlmDialogImports,
 	],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Email OTP</button>
+			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Email OTP</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[400px] max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col items-center gap-1">
 					<div class="flex size-12 shrink-0 items-center justify-center rounded-full border">
 						<ng-icon hlm name="lucideMail" />
@@ -97,7 +84,7 @@ import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm
 	`,
 })
 export class Dialog13Component implements OnDestroy {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 	public defaultOtpValue = '1234';
 	public otpValue = model<string>('');
 	public countdown = signal(60);

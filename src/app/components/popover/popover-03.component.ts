@@ -1,7 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell } from '@ng-icons/lucide';
-import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
@@ -11,20 +10,10 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 @Component({
 	selector: 'sim-popover-03',
 	providers: [provideIcons({ lucideBell })],
-	imports: [
-		HlmAvatar,
-		HlmAvatarFallback,
-		HlmAvatarImage,
-		HlmBadge,
-		HlmButton,
-		HlmIcon,
-		NgIcon,
-		HlmPopoverImports,
-		BrnPopoverImports,
-	],
+	imports: [HlmAvatar, HlmAvatarFallback, HlmAvatarImage, HlmBadge, HlmButton, HlmIcon, NgIcon, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
-			<button variant="outline" size="icon" class="relative size-9" brnPopoverTrigger hlmBtn>
+			<button variant="outline" size="icon" class="relative size-9" hlmPopoverTrigger hlmBtn>
 				<ng-icon hlm name="lucideBell" size="sm" />
 				@if (unreadCount() > 0) {
 					<span
@@ -34,7 +23,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 					</span>
 				}
 			</button>
-			<div hlmPopoverContent class="grid w-80 gap-1 p-1" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid w-80 gap-1 p-1" *hlmPopoverPortal="let ctx">
 				<div class="flex items-center justify-between px-3 py-2">
 					<span class="text-sm font-semibold">Notifications</span>
 					@if (unreadCount() > 0) {

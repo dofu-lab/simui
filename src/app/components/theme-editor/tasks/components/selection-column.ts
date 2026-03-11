@@ -12,8 +12,7 @@ import { type CellContext, type HeaderContext, injectFlexRenderContext } from '@
 		<hlm-checkbox
 			[checked]="_context.table.getIsAllRowsSelected()"
 			[indeterminate]="_context.table.getIsSomeRowsSelected()"
-			(checkedChange)="_context.table.toggleAllRowsSelected()"
-		/>
+			(checkedChange)="_context.table.toggleAllRowsSelected()" />
 	`,
 })
 export class TableHeadSelection<T> {
@@ -29,8 +28,7 @@ export class TableHeadSelection<T> {
 	template: `
 		<hlm-checkbox
 			[checked]="_context.row.getIsSelected()"
-			(checkedChange)="_context.row.getToggleSelectedHandler()($event)"
-		/>
+			(checkedChange)="_context.row.getToggleSelectedHandler()($event)" />
 	`,
 })
 export class TableRowSelection<T> {

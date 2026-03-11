@@ -1,0 +1,3 @@
+{
+  "content": "import { Component, signal } from '@angular/core';\nimport { HlmLabel } from '@spartan-ng/helm/label';\nimport { HlmSlider } from '@spartan-ng/helm/slider';\n\n@Component({\n\tselector: 'sim-slider-05',\n\timports: [HlmSlider, HlmLabel],\n\thost: {\n\t\tclass: 'w-full',\n\t},\n\ttemplate: `\n\t\t<span hlmLabel class=\"mb-4\">Slider with tiny thumb</span>\n\t\t<hlm-slider\n\t\t\tclass=\"[&>div>span]:border-background [&>div>span]:bg-primary [&>div>span]:h-6 [&>div>span]:w-2.5 [&>div>span]:border-[3px] [&>div>span]:shadow-none [&>div>span]:ring-offset-0\"\n\t\t\t[(value)]=\"value\" />\n\t`,\n})\nexport class Slider05Component {\n\tpublic readonly value = signal([25]);\n}"
+}

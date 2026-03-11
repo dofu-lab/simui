@@ -19,7 +19,7 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 		<div class="mb-4 flex items-center justify-between">
 			<span hlmLabel>Temperature</span>
 			<div class="flex gap-1">
-				@if (value() !== defaultTemperature) {
+				@if (value()[0] !== defaultTemperature) {
 					<button hlmBtn size="icon" class="size-7" variant="ghost" (click)="onReset()">
 						<ng-icon hlm name="lucideRotateCcw" size="sm" />
 					</button>
@@ -29,8 +29,8 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 					class="h-7 w-12 px-2 py-0"
 					[min]="min"
 					[max]="max"
-					[ngModel]="value()"
-					(ngModelChange)="value.set($event)" />
+					[ngModel]="value()[0]"
+					(ngModelChange)="value.set([$event])" />
 			</div>
 		</div>
 		<hlm-slider [min]="min" [max]="max" [step]="0.01" [(value)]="value" />
@@ -41,9 +41,9 @@ export class Slider11Component {
 	public readonly initialTemperature = 1.25;
 	public readonly min = 0;
 	public readonly max = 2;
-	public readonly value = signal(this.initialTemperature);
+	public readonly value = signal([this.initialTemperature]);
 
 	public onReset(): void {
-		this.value.set(this.defaultTemperature);
+		this.value.set([this.defaultTemperature]);
 	}
 }

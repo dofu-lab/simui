@@ -10,7 +10,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { hlm } from '@spartan-ng/helm/utils';
 import { map } from 'rxjs';
 
 @Component({
@@ -43,37 +42,49 @@ import { map } from 'rxjs';
 					</hlm-select-content>
 				</brn-select>
 			</div>
-			<p aria-live="polite" class="text-muted-foreground flex grow justify-end gap-1 text-sm whitespace-nowrap">
+			<p aria-live="polite" class="text-muted-foreground flex w-fit justify-end gap-1 text-sm whitespace-nowrap">
 				<span class="text-foreground">1-25</span>
 				<span>of</span>
 				<span class="text-foreground">100</span>
 			</p>
-			<div class="grow">
-				<nav hlmPagination>
+			<div class="w-fit">
+				<nav hlmPagination class="mx-0 w-fit">
 					<ul hlmPaginationContent>
-						<li hlmPaginationItem [class]="computedPreviousClass()">
-							<a hlmPaginationLink link="." [queryParams]="{ page: 1 }" queryParamsHandling="merge">
+						<li hlmPaginationItem>
+							<a
+								hlmPaginationLink
+								link="."
+								queryParamsHandling="merge"
+								[class]="computedPreviousClass()"
+								[queryParams]="{ page: 1 }">
 								<button hlmBtn size="icon" variant="ghost">
 									<ng-icon hlm size="sm" name="lucideChevronFirst" />
 								</button>
 							</a>
 						</li>
-						<li hlmPaginationItem [class]="computedPreviousClass()">
+						<li hlmPaginationItem>
 							<hlm-pagination-previous
 								link="."
 								queryParamsHandling="merge"
+								[class]="computedPreviousClass()"
 								[queryParams]="{ page: currentPage() - 1 }"
 								[iconOnly]="true" />
 						</li>
-						<li hlmPaginationItem [class]="computedNextClass()">
+						<li hlmPaginationItem>
 							<hlm-pagination-next
 								link="."
 								queryParamsHandling="merge"
 								iconOnly="true"
+								[class]="computedNextClass()"
 								[queryParams]="{ page: currentPage() + 1 }" />
 						</li>
-						<li hlmPaginationItem [class]="computedNextClass()">
-							<a hlmPaginationLink link="." [queryParams]="{ page: 10 }" queryParamsHandling="merge">
+						<li hlmPaginationItem>
+							<a
+								hlmPaginationLink
+								link="."
+								queryParamsHandling="merge"
+								[class]="computedNextClass()"
+								[queryParams]="{ page: 10 }">
 								<button hlmBtn size="icon" variant="ghost">
 									<ng-icon hlm size="sm" name="lucideChevronLast" />
 								</button>
@@ -101,12 +112,10 @@ export class Pagination10Component {
 
 	protected readonly currentPage = computed(() => this._pageQuery() ?? 1);
 	protected readonly totalPages = computed(() => this.pages.length);
-	protected readonly computedPreviousClass = computed(() => {
-		const isDisabled = this.currentPage() <= 1;
-		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '');
-	});
-	protected readonly computedNextClass = computed(() => {
-		const isDisabled = this.currentPage() >= this.pages.length;
-		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '');
-	});
+	protected readonly computedPreviousClass = computed(() => this.navButtonClass(this.currentPage() <= 1));
+	protected readonly computedNextClass = computed(() => this.navButtonClass(this.currentPage() >= this.pages.length));
+
+	private navButtonClass(isDisabled: boolean): string {
+		return ['px-0!', isDisabled && 'opacity-50 select-none pointer-events-none'].filter(Boolean).join(' ');
+	}
 }

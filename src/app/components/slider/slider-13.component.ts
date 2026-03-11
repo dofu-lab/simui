@@ -25,6 +25,6 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 })
 export class Slider13Component {
 	public readonly ratingLabels = ['Awful', 'Poor', 'Okay', 'Good', 'Amazing'];
-	public readonly value = signal(3);
-	public computedLabel = computed(() => this.ratingLabels[this.value() - 1]);
+	public readonly value = signal([3]);
+	public computedLabel = computed(() => this.ratingLabels[this.value()[0] - 1]);
 }

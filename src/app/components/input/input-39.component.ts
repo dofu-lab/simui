@@ -5,7 +5,6 @@ import { MaskitoOptions } from '@maskito/core';
 import { maskitoDateRangeOptionsGenerator } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
-import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmCalendarRange } from '@spartan-ng/helm/calendar';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
@@ -17,17 +16,7 @@ type ParsedDate = { startDate: Date | null; endDate: Date | null };
 
 @Component({
 	selector: 'sim-input-39',
-	imports: [
-		HlmLabel,
-		FormsModule,
-		MaskitoDirective,
-		HlmInput,
-		NgIcon,
-		HlmIcon,
-		HlmCalendarRange,
-		HlmPopoverImports,
-		BrnPopoverImports,
-	],
+	imports: [HlmLabel, FormsModule, MaskitoDirective, HlmInput, NgIcon, HlmIcon, HlmCalendarRange, HlmPopoverImports],
 	providers: [provideIcons({ lucideCalendar })],
 	host: { class: 'w-full' },
 	template: `
@@ -44,12 +33,12 @@ type ParsedDate = { startDate: Date | null; endDate: Date | null };
 					[(ngModel)]="inputValue"
 					(ngModelChange)="onInputChange($event)" />
 				<button
-					brnPopoverTrigger
+					hlmPopoverTrigger
 					class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
 					<ng-icon hlm size="sm" name="lucideCalendar" />
 				</button>
 			</div>
-			<div class="bg-background flex size-fit" *brnPopoverContent="let ctx">
+			<div class="bg-background flex size-fit" *hlmPopoverPortal="let ctx">
 				<hlm-calendar-range
 					[(startDate)]="selectedStartDate"
 					[(endDate)]="selectedEndDate"

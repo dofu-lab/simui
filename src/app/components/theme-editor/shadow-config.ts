@@ -40,7 +40,7 @@ const DEBOUNCE_TIME = 1000;
 					[max]="50"
 					[step]="0.5"
 					unit="px"
-					[defaultValue]="3" />
+					[defaultValue]="[3]" />
 
 				<!-- Spread -->
 				<sim-shadow-slider
@@ -50,7 +50,7 @@ const DEBOUNCE_TIME = 1000;
 					[max]="50"
 					[step]="0.5"
 					unit="px"
-					[defaultValue]="0" />
+					[defaultValue]="[0]" />
 
 				<!-- Opacity -->
 				<sim-shadow-slider
@@ -60,7 +60,7 @@ const DEBOUNCE_TIME = 1000;
 					[max]="1"
 					[step]="0.1"
 					unit=""
-					[defaultValue]="0.1" />
+					[defaultValue]="[0.1]" />
 
 				<!-- Offset X -->
 				<sim-shadow-slider
@@ -70,7 +70,7 @@ const DEBOUNCE_TIME = 1000;
 					[max]="50"
 					[step]="0.5"
 					unit="px"
-					[defaultValue]="0" />
+					[defaultValue]="[0]" />
 
 				<!-- Offset Y -->
 				<sim-shadow-slider
@@ -80,7 +80,7 @@ const DEBOUNCE_TIME = 1000;
 					[max]="50"
 					[step]="0.5"
 					unit="px"
-					[defaultValue]="1" />
+					[defaultValue]="[1]" />
 			</div>
 		</div>
 	`,

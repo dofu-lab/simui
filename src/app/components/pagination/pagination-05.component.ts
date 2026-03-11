@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute }
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
-import { hlm } from '@spartan-ng/helm/utils';
 import { map } from 'rxjs';
 
 @Component({
@@ -21,11 +20,19 @@ import { map } from 'rxjs';
 			<nav hlmPagination class="w-auto">
 				<ul hlmPaginationContent class="gap-3">
 					<li hlmPaginationItem></li>
-					<li hlmPaginationItem [class]="computedPreviousClass()">
-						<hlm-pagination-previous link="." queryParamsHandling="merge" [queryParams]="{ page: currentPage() - 1 }" />
+					<li hlmPaginationItem>
+						<hlm-pagination-previous
+							link="."
+							queryParamsHandling="merge"
+							[class]="computedPreviousClass()"
+							[queryParams]="{ page: currentPage() - 1 }" />
 					</li>
-					<li hlmPaginationItem [class]="computedNextClass()">
-						<hlm-pagination-next link="." queryParamsHandling="merge" [queryParams]="{ page: currentPage() + 1 }" />
+					<li hlmPaginationItem>
+						<hlm-pagination-next
+							link="."
+							queryParamsHandling="merge"
+							[class]="computedNextClass()"
+							[queryParams]="{ page: currentPage() + 1 }" />
 					</li>
 				</ul>
 			</nav>
@@ -48,12 +55,15 @@ export class Pagination05Component {
 
 	protected readonly currentPage = computed(() => this._pageQuery() ?? 1);
 	protected readonly totalPages = computed(() => this.pages.length);
-	protected readonly computedPreviousClass = computed(() => {
-		const isDisabled = this.currentPage() <= 1;
-		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '', 'border rounded-md shadow-xs');
-	});
-	protected readonly computedNextClass = computed(() => {
-		const isDisabled = this.currentPage() >= this.pages.length;
-		return hlm(isDisabled ? 'opacity-50 pointer-events-none' : '', 'border rounded-md shadow-xs');
-	});
+	protected readonly computedPreviousClass = computed(() => this.navButtonClass(this.currentPage() <= 1));
+	protected readonly computedNextClass = computed(() => this.navButtonClass(this.currentPage() >= this.pages.length));
+
+	private navButtonClass(isDisabled: boolean): string {
+		return [
+			'[&>a]:border [&>a]:rounded-md [&>a]:shadow-xs px-0!',
+			isDisabled && 'opacity-50 pointer-events-none select-none',
+		]
+			.filter(Boolean)
+			.join(' ');
+	}
 }

@@ -1,21 +1,20 @@
 import { Component } from '@angular/core';
-import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-07',
-	imports: [HlmButton, HlmPopoverImports, BrnPopoverImports],
+	imports: [HlmButton, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
-			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">
+			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">
 				<div class="flex items-center gap-2">
 					<span class="inline-block h-4 w-4 rounded-full" [style.background]="selectedColor"></span>
 					Pick a color
 				</div>
 			</button>
 
-			<div hlmPopoverContent class="grid w-fit gap-4 p-2" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid w-fit gap-4 p-2" *hlmPopoverPortal="let ctx">
 				<div class="text-sm font-semibold">Choose a color</div>
 
 				<div class="grid w-fit grid-cols-5 gap-2">

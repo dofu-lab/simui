@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { HlmBadgeImports } from '@spartan-ng/helm/badge';\n\n@Component({\n\tselector: 'sim-badge-08',\n\timports: [HlmBadgeImports],\n\ttemplate: `\n\t\t<span hlmBadge variant=\"outline\" class=\"gap-1.5\">\n\t\t\t<div class=\"size-1.5 rounded-full bg-emerald-500\"></div>\n\t\t\t<span>Success</span>\n\t\t</span>\n\t`,\n})\nexport class Badge08Component {}"
+}

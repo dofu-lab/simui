@@ -38,8 +38,7 @@ import type { ClassValue } from 'clsx';
 			[dateDisabled]="dateDisabled()"
 			[weekStartsOn]="weekStartsOn()"
 			[defaultFocusedDate]="defaultFocusedDate()"
-			[class]="_computedCalenderClass()"
-		>
+			[class]="_computedCalenderClass()">
 			<div class="inline-flex flex-col space-y-4">
 				<!-- Header -->
 				<div class="space-y-4">
@@ -92,15 +91,13 @@ import type { ClassValue } from 'clsx';
 						<div class="flex items-center space-x-1">
 							<button
 								brnCalendarPreviousButton
-								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute left-1 inline-flex h-7 w-7 items-center justify-center rounded-md border bg-transparent p-0 text-sm font-medium whitespace-nowrap opacity-50 transition-colors hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
-							>
+								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute left-1 inline-flex h-7 w-7 items-center justify-center rounded-md border bg-transparent p-0 text-sm font-medium whitespace-nowrap opacity-50 transition-colors hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
 								<ng-icon hlm name="lucideChevronLeft" size="sm" />
 							</button>
 
 							<button
 								brnCalendarNextButton
-								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute right-1 inline-flex h-7 w-7 items-center justify-center rounded-md border bg-transparent p-0 text-sm font-medium whitespace-nowrap opacity-50 transition-colors hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
-							>
+								class="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent hover:text-accent-foreground absolute right-1 inline-flex h-7 w-7 items-center justify-center rounded-md border bg-transparent p-0 text-sm font-medium whitespace-nowrap opacity-50 transition-colors hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
 								<ng-icon hlm name="lucideChevronRight" size="sm" />
 							</button>
 						</div>
@@ -114,8 +111,7 @@ import type { ClassValue } from 'clsx';
 								*brnCalendarWeekday="let weekday"
 								scope="col"
 								class="text-muted-foreground w-8 rounded-md text-[0.8rem] font-normal"
-								[attr.aria-label]="_i18n.config().labelWeekday(weekday)"
-							>
+								[attr.aria-label]="_i18n.config().labelWeekday(weekday)">
 								{{ _i18n.config().formatWeekdayName(weekday) }}
 							</th>
 						</tr>
@@ -126,8 +122,7 @@ import type { ClassValue } from 'clsx';
 							@for (date of week; track _dateAdapter.getTime(date)) {
 								<td
 									brnCalendarCell
-									class="data-[selected]:data-[outside]:bg-accent/50 data-[selected]:bg-accent relative h-8 w-8 p-0 text-center text-sm focus-within:relative focus-within:z-20 first:data-[selected]:rounded-l-md last:data-[selected]:rounded-r-md [&:has([aria-selected].day-range-end)]:rounded-r-md"
-								>
+									class="data-[selected]:data-[outside]:bg-accent/50 data-[selected]:bg-accent relative h-8 w-8 p-0 text-center text-sm focus-within:relative focus-within:z-20 first:data-[selected]:rounded-l-md last:data-[selected]:rounded-r-md [&:has([aria-selected].day-range-end)]:rounded-r-md">
 									<button brnCalendarCellButton [date]="date" [class]="_btnClass">
 										{{ _dateAdapter.getDate(date) }}
 									</button>

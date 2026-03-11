@@ -1,5 +1,5 @@
-import { getShadowMap, applyShadowVariablesToElement, ShadowStyles } from './shadow.utils';
 import { ThemeStyleProps } from '@/app/types';
+import { applyShadowVariablesToElement, getShadowMap } from './shadow.utils';
 
 describe('Shadow Utils', () => {
 	describe('getShadowMap', () => {

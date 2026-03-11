@@ -25,30 +25,37 @@ import type { ClassValue } from 'clsx';
 		'[class]': '_computedClass()',
 	},
 	template: `
-		<div [id]="this.label()" brnSliderTrack class="bg-muted relative h-9 w-full grow overflow-hidden rounded-[8px]">
-			<span brnSliderThumb>
+		<div class="relative flex w-full items-center group-data-vertical:w-auto group-data-vertical:flex-col">
+			<div #trackElement brnSliderTrack class="bg-muted relative h-9 w-full grow overflow-hidden rounded-[8px]">
 				<div #trackElement class="absolute top-1/2 z-2 flex w-full -translate-y-1/2 justify-between px-4">
 					<div #sliderLabel class="text-muted-foreground font-medium">{{ label() }}</div>
 					<div #sliderValue>{{ _slider.value() }}</div>
 				</div>
 				<div [class]="computedSliderRangeClass()" brnSliderRange></div>
-			</span>
+			</div>
+
+			@for (i of _slider.thumbIndexes(); track i) {
+				<span brnSliderThumb></span>
+			}
 		</div>
 
 		@if (_slider.showTicks()) {
-			<div class="pointer-events-none absolute -inset-x-px top-2 h-1 w-full cursor-pointer transition-all">
+			<div
+				class="text-muted-foreground mt-3 flex w-full items-start justify-between gap-1 px-1.5 text-xs font-medium group-data-horizontal:group-data-inverted:flex-row-reverse group-data-vertical:ms-3 group-data-vertical:mt-0 group-data-vertical:w-auto group-data-vertical:flex-col-reverse group-data-vertical:px-0 group-data-vertical:py-1.5 group-data-vertical:group-data-inverted:flex-col">
 				<div
-					*brnSliderTick="let tick; let position = position"
-					class="absolute size-1 rounded-full"
-					[class.bg-secondary]="tick"
-					[class.bg-primary]="!tick"
-					[style.inset-inline-start.%]="position"></div>
+					*brnSliderTick="let tick; let formattedTick = formattedTick"
+					class="group flex w-0 flex-col items-center justify-center gap-2 group-data-vertical:h-0 group-data-vertical:w-auto group-data-vertical:flex-row">
+					<div
+						class="bg-muted-foreground/70 h-1 w-px group-data-vertical:h-px group-data-vertical:w-1 group-data-horizontal:group-data-[skip]:h-0.5 group-data-vertical:group-data-[skip]:w-0.5"></div>
+					<div class="text-center group-data-[skip]:opacity-0">{{ formattedTick }}</div>
+				</div>
 			</div>
 		}
 	`,
 })
 export class HlmSimSlider {
 	protected readonly _slider = injectBrnSlider();
+
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	public readonly label = input<string>();
 
@@ -69,7 +76,11 @@ export class HlmSimSlider {
 		const labelWidth = this.sliderLabel()?.nativeElement.offsetWidth || 0;
 		const valueWidth = this.sliderValue()?.nativeElement.offsetWidth || 0;
 
-		const rangeSize = (this._slider.percentage() * trackWidth) / 100;
+		const [value] = this._slider.value();
+		const min = this._slider.min();
+		const max = this._slider.max();
+		const percentage = max > min ? ((value - min) / (max - min)) * 100 : 0;
+		const rangeSize = (percentage * trackWidth) / 100;
 		const thumbPosition = rangeSize < 20 ? 'after:left-2' : '';
 
 		const isLabelOverlap = this.label() && rangeSize >= 24 && rangeSize <= labelWidth + 30;

@@ -2,41 +2,21 @@ import { Component, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideMail } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import {
-	HlmDialog,
-	HlmDialogContent,
-	HlmDialogDescription,
-	HlmDialogFooter,
-	HlmDialogHeader,
-} from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-dialog-09',
 	providers: [provideIcons({ lucideCircleAlert, lucideMail })],
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmInput,
-		FormsModule,
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		HlmDialogFooter,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmDialogDescription,
-	],
+	imports: [NgIcon, HlmIcon, HlmInput, FormsModule, HlmButton, HlmDialogImports],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Newsletter</button>
+			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Newsletter</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[400px] max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col items-center gap-2">
 					<div class="flex size-9 shrink-0 items-center justify-center">
 						<svg width="36" height="36" viewBox="0 0 36 36" class="fill-primary" xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +61,7 @@ import { HlmInput } from '@spartan-ng/helm/input';
 	`,
 })
 export class Dialog09Component {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 
 	closeDialog() {
 		this.dialogRef()?.close({});

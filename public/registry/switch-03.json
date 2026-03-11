@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { HlmSwitch } from '@spartan-ng/helm/switch';\n\n@Component({\n\tselector: 'sim-switch-03',\n\timports: [HlmSwitch],\n\ttemplate: `\n\t\t<hlm-switch\n\t\t\tid=\"switch-03\"\n\t\t\tclass=\"mr-2 h-6 w-10 border-[2px] [--primary:var(--color-indigo-500)] [--ring:var(--color-indigo-300)] in-[.dark]:[--primary:var(--color-indigo-500)] in-[.dark]:[--ring:var(--color-indigo-900)] [&>brn-switch-thumb]:size-5 [&>brn-switch-thumb]:group-data-[state=checked]:translate-x-[calc(100%-4px)]\" />\n\t`,\n})\nexport class Switch03Component {}"
+}

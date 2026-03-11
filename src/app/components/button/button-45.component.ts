@@ -6,7 +6,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 	imports: [HlmButton],
 	template: `
 		<div class="flex items-center justify-center gap-1.5">
-			<button hlmBtn variant="outline" size="icon" class="h-9 w-9">
+			<button hlmBtn variant="outline" size="icon">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g clip-path="url(#clip0_317_958)">
 						<path
@@ -22,7 +22,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 					</defs>
 				</svg>
 			</button>
-			<button hlmBtn variant="outline" size="icon" class="h-9 w-9">
+			<button hlmBtn variant="outline" size="icon">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g clip-path="url(#clip0_317_957)">
 						<path
@@ -36,14 +36,14 @@ import { HlmButton } from '@spartan-ng/helm/button';
 					</defs>
 				</svg>
 			</button>
-			<button hlmBtn variant="outline" size="icon" class="h-9 w-9">
+			<button hlmBtn variant="outline" size="icon">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M13.8949 11.4298C13.6731 11.9422 13.4105 12.4139 13.1064 12.8475C12.6917 13.4387 12.3522 13.8479 12.0906 14.0751C11.685 14.4481 11.2504 14.6392 10.7851 14.65C10.451 14.65 10.0482 14.555 9.57922 14.3621C9.10873 14.1702 8.67635 14.0751 8.281 14.0751C7.86636 14.0751 7.42166 14.1702 6.94601 14.3621C6.46963 14.555 6.08586 14.6554 5.79245 14.6654C5.34622 14.6844 4.90143 14.488 4.45746 14.0751C4.1741 13.828 3.81967 13.4043 3.39507 12.8041C2.93951 12.1631 2.56498 11.4198 2.27157 10.5724C1.95733 9.65716 1.7998 8.77085 1.7998 7.91279C1.7998 6.92988 2.01219 6.08214 2.4376 5.37173C2.77194 4.80111 3.21672 4.35098 3.7734 4.02054C4.33009 3.6901 4.93158 3.52171 5.57934 3.51093C5.93377 3.51093 6.39856 3.62057 6.97616 3.83603C7.55212 4.05222 7.92195 4.16186 8.08409 4.16186C8.20531 4.16186 8.61614 4.03366 9.31261 3.77809C9.97123 3.54108 10.5271 3.44294 10.9825 3.4816C12.2164 3.58119 13.1435 4.06761 13.76 4.94397C12.6564 5.61264 12.1105 6.54919 12.1214 7.75065C12.1313 8.68648 12.4708 9.46524 13.138 10.0836C13.4404 10.3706 13.7781 10.5924 14.1538 10.7499C14.0723 10.9862 13.9863 11.2125 13.8949 11.4298V11.4298ZM11.0649 0.293417C11.0649 1.02692 10.7969 1.71179 10.2627 2.34569C9.61815 3.09928 8.83849 3.53474 7.99301 3.46603C7.98224 3.37803 7.97599 3.28542 7.97599 3.18809C7.97599 2.48393 8.28253 1.73034 8.8269 1.11418C9.09868 0.802208 9.44433 0.542806 9.8635 0.335876C10.2818 0.132034 10.6774 0.0193044 11.0495 0C11.0603 0.0980576 11.0649 0.196121 11.0649 0.293407V0.293417Z"
 						fill="#717680" />
 				</svg>
 			</button>
-			<button hlmBtn variant="outline" size="icon" class="h-9 w-9">
+			<button hlmBtn variant="outline" size="icon">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
 						fill-rule="evenodd"

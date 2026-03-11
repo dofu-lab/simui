@@ -72,11 +72,11 @@ export class SpacingSliderComponent {
 
 	protected readonly min = 0.1;
 	protected readonly max = 0.35;
-	protected readonly value = signal<number>(this.currentSpacing());
+	protected readonly value = signal<number[]>([this.currentSpacing()]);
 
 	constructor() {
 		effect(() => {
-			this.value.set(this.currentSpacing());
+			this.value.set([this.currentSpacing()]);
 		});
 
 		this.spacingSubject$.pipe(debounceTime(DEBOUNCE_TIME), takeUntilDestroyed()).subscribe((spacing) => {
@@ -87,7 +87,7 @@ export class SpacingSliderComponent {
 	protected onSpacingChange(spacing: number): void {
 		try {
 			const clampedSpacing = Math.min(Math.max(spacing, this.min), this.max);
-			this.value.set(clampedSpacing);
+			this.value.set([clampedSpacing]);
 			this.themeService.applySpacing(`${clampedSpacing}rem`);
 			this.spacingSubject$.next(clampedSpacing);
 		} catch (error) {

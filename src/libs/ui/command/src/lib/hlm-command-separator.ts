@@ -1,19 +1,16 @@
-import { computed, Directive, input } from '@angular/core';
-import { hlm } from '@spartan-ng/helm/utils';
-import type { ClassValue } from 'clsx';
+import { Directive } from '@angular/core';
+import { BrnCommandSeparator } from '@spartan-ng/brain/command';
+import { classes } from '@spartan-ng/helm/utils';
 
 @Directive({
 	selector: '[hlmCommandSeparator],hlm-command-separator',
+	hostDirectives: [BrnCommandSeparator],
 	host: {
 		'data-slot': 'command-separator',
-		role: 'separator',
-		'[class]': '_computedClass()',
 	},
 })
 export class HlmCommandSeparator {
-	/** The user defined class  */
-	public readonly userClass = input<ClassValue>('', { alias: 'class' });
-
-	/** The styles to apply  */
-	protected readonly _computedClass = computed(() => hlm('bg-border -mx-1 block h-px', this.userClass()));
+	constructor() {
+		classes(() => 'bg-border -mx-1 block h-px w-auto data-hidden:hidden');
+	}
 }

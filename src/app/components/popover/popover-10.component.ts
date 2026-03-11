@@ -1,18 +1,17 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-10',
-	imports: [HlmButton, HlmInput, FormsModule, HlmPopoverImports, BrnPopoverImports],
+	imports: [HlmButton, HlmInput, FormsModule, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5" autoFocus="dialog">
-			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">Command Palette</button>
+			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">Command Palette</button>
 
-			<div hlmPopoverContent class="grid w-80 gap-3 p-3" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid w-80 gap-3 p-3" *hlmPopoverPortal="let ctx">
 				<input hlmInput type="text" placeholder="Type a command..." [(ngModel)]="query" class="w-full" />
 
 				<ul class="grid max-h-56 overflow-y-auto text-sm">

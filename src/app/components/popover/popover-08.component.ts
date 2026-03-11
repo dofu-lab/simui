@@ -1,15 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-08',
-	imports: [HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmPopoverImports, BrnPopoverImports],
+	imports: [HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
-			<button hlmBtn brnPopoverTrigger variant="outline" size="sm" class="pl-3">
+			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm" class="pl-3">
 				<div class="flex items-center gap-2">
 					<hlm-avatar class="h-6 w-6 border">
 						<img hlmAvatarImage [src]="currentAccount().avatar" [alt]="currentAccount().name" />
@@ -19,7 +18,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 				</div>
 			</button>
 
-			<div hlmPopoverContent class="grid w-64 gap-2 p-0" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid w-64 gap-2 p-0" *hlmPopoverPortal="let ctx">
 				<div class="px-2 pt-2">
 					<div class="px-2 pt-2 text-sm font-semibold">Switch account</div>
 					<ul class="mt-2 space-y-1">

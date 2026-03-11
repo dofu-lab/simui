@@ -26,7 +26,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 				class="rounded-full"
 				[disabled]="volume() === 0"
 				(click)="decreaseVolume()">
-				<ng-icon hlm name="lucideMinus" size="sm" />
+				<ng-icon name="lucideMinus" />
 			</button>
 			<div class="flex items-center gap-2 px-3 text-sm">
 				<ng-icon hlm [name]="volumeIcon()" size="sm" class="opacity-60" />
@@ -39,31 +39,37 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 				class="rounded-full"
 				[disabled]="volume() === 6"
 				(click)="increaseVolume()">
-				<ng-icon hlm name="lucidePlus" size="sm" />
+				<ng-icon name="lucidePlus" />
 			</button>
 		</div>
 	`,
 })
 export class Button29Component {
-	volume = signal<number>(4);
-	volumeIcon = computed(() => {
-		return this.volume() === 0
-			? 'lucideVolumeX'
-			: this.volume() < 3
-				? 'lucideVolume'
-				: this.volume() < 5
-					? 'lucideVolume1'
-					: 'lucideVolume2';
-	});
+	protected readonly volume = signal<number>(4);
+	protected readonly volumeIcon = computed(() => this.getVolumeIcon());
 
-	decreaseVolume() {
+	private getVolumeIcon(): string {
+		const vol = this.volume();
+		if (vol === 0) {
+			return 'lucideVolumeX';
+		}
+		if (vol < 3) {
+			return 'lucideVolume';
+		}
+		if (vol < 5) {
+			return 'lucideVolume1';
+		}
+		return 'lucideVolume2';
+	}
+
+	protected decreaseVolume(): void {
 		if (this.volume() === 0) {
 			return;
 		}
 		this.volume.set(this.volume() - 1);
 	}
 
-	increaseVolume() {
+	protected increaseVolume(): void {
 		if (this.volume() === 6) {
 			return;
 		}

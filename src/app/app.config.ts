@@ -1,9 +1,15 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, ErrorHandler, inject, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
+import {
+	ApplicationConfig,
+	ErrorHandler,
+	inject,
+	provideAppInitializer,
+	provideZoneChangeDetection,
+} from '@angular/core';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
-import { AnalyticsErrorHandler } from './core/analytics-error-handler';
 import { routes } from './app.routes';
+import { AnalyticsErrorHandler } from './core/analytics-error-handler';
 import { authInterceptor } from './interceptors/auth.interceptor';
 import { AnalyticsService } from './services/analytics.service';
 

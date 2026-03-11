@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { ColorPipe } from './color.pipe';
 import { ColorType } from '../types';
+import { ColorPipe } from './color.pipe';
 
 describe('ColorPipe', () => {
 	let pipe: ColorPipe;

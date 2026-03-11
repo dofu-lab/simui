@@ -1,21 +1,20 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogContent, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-24',
-	imports: [NgIcon, HlmIcon, HlmDialog, HlmDialogContent, BrnDialogTrigger, BrnDialogContent, HlmButton],
+	imports: [NgIcon, HlmIcon, HlmDialog, HlmDialogContent, HlmButton, HlmDialogImports],
 	providers: [provideIcons({ lucideArrowRight })],
 	template: `
 		<hlm-dialog>
-			<button brnDialogTrigger hlmBtn variant="outline">Onboarding</button>
+			<button hlmDialogTrigger hlmBtn variant="outline">Onboarding</button>
 			<hlm-dialog-content
 				class="[&>button>ng-icon]:text-primary-foreground top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="p-2">
 					<img src="assets/logos/logo-with-bg.png" alt="Logo" class="w-full rounded-md" width="382" height="216" />
 				</div>
@@ -55,7 +54,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Dialog24Component {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 	public currentStepIndex = signal(1);
 	public currentStep = computed(() => this.steps.find((step) => step.id === this.currentStepIndex()));
 

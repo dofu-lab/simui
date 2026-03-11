@@ -1,32 +1,16 @@
 import { Component, viewChild } from '@angular/core';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import {
-	HlmDialog,
-	HlmDialogContent,
-	HlmDialogDescription,
-	HlmDialogFooter,
-	HlmDialogHeader,
-} from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-07',
-	imports: [
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		HlmDialogFooter,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmDialogDescription,
-	],
+	imports: [HlmButton, HlmDialogImports],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Term & Conditions</button>
+			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Term & Conditions</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-y-auto rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-lg"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<hlm-dialog-header class="contents space-y-0 text-left">
 					<h2 class="mb-0 px-6 py-4 text-lg font-semibold">Terms & Conditions</h2>
 					<div class="overflow-y-auto border-t">
@@ -128,7 +112,7 @@ import {
 	`,
 })
 export class Dialog07Component {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 
 	closeDialog() {
 		this.dialogRef()?.close({});
