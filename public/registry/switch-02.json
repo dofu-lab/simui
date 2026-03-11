@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { HlmSwitch } from '@spartan-ng/helm/switch';\n\n@Component({\n\tselector: 'sim-switch-02',\n\timports: [HlmSwitch],\n\ttemplate: `\n\t\t<hlm-switch />\n\t`,\n})\nexport class Switch02Component {}"
+}

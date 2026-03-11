@@ -14,7 +14,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 				<div class="text-muted-foreground flex max-w-[900px] flex-col items-start justify-start gap-8">
 					<!-- Section 1: Introduction -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">1. Introduction & Acceptance</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">1. Introduction & Acceptance</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							Welcome to SimUI ("Service", "we", "us", or "our"). By accessing or using SimUI, you agree to be bound by
 							these Terms and Conditions ("Terms"). If you do not agree to these Terms, please do not use our Service.
@@ -27,7 +27,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 2: Service Description -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">2. Service Description</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">2. Service Description</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							SimUI is a modern Angular UI component library and theme customization platform. We offer:
 						</p>
@@ -54,7 +54,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 3: Account Terms -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">3. Account Terms</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">3. Account Terms</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							To save themes and access certain features, you must sign in using Google OAuth. By signing in, you agree
 							to provide accurate information and maintain the security of your account.
@@ -76,7 +76,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 4: Payment Terms -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">4. Subscription & Payment Terms</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">4. Subscription & Payment Terms</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							All payments are processed by
 							<a href="https://polar.sh/" target="_blank" class="font-semibold underline">Polar Software, Inc.</a>
@@ -110,7 +110,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 5: Refund Policy -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">5. Refund Policy</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">5. Refund Policy</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							We offer a
 							<strong>7-day money-back guarantee</strong>
@@ -133,7 +133,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 6: Cancellation -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">6. Cancellation</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">6. Cancellation</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							You may cancel your subscription at any time through your account settings or via the Polar customer
 							portal. Upon cancellation:
@@ -148,7 +148,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 7: User Content -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">7. User Content (Saved Themes)</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">7. User Content (Saved Themes)</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							You retain all ownership rights to custom themes you create using SimUI. However, by saving themes to our
 							Service, you grant us a non-exclusive, worldwide license to host, store, and display your themes for the
@@ -166,7 +166,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 8: Intellectual Property -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">8. Intellectual Property</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">8. Intellectual Property</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							All components, code, design, documentation, and other materials provided by SimUI are proprietary and
 							protected by intellectual property laws. Subscribers receive a personal, non-transferable license to use
@@ -198,7 +198,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 9: Prohibited Uses -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">9. Prohibited Uses</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">9. Prohibited Uses</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							You agree not to use SimUI for any unlawful purpose or in any way that could damage, disable, or impair
 							the Service. Prohibited activities include:
@@ -216,7 +216,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 10: Limitation of Liability -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">10. Limitation of Liability</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">10. Limitation of Liability</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							<strong>THE SERVICE IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND.</strong>
 							We do not guarantee uptime, availability, or preservation of your data. While we take reasonable measures
@@ -235,7 +235,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 11: Indemnification -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">11. Indemnification</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">11. Indemnification</h2>
 						<p class="text-base leading-relaxed">
 							You agree to indemnify and hold harmless SimUI, its operators, and affiliates from any claims, damages, or
 							expenses (including legal fees) arising from your use of the Service, your violation of these Terms, or
@@ -245,7 +245,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 12: Termination -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">12. Termination</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">12. Termination</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							We reserve the right to suspend or terminate your account at any time for violations of these Terms, with
 							or without notice. Upon termination:
@@ -263,7 +263,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 13: Modifications to Terms -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">13. Modifications to Terms</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">13. Modifications to Terms</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							We reserve the right to modify these Terms at any time. Material changes will be communicated via email to
 							registered users at least 30 days before taking effect.
@@ -276,7 +276,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 14: Governing Law -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">14. Governing Law & Dispute Resolution</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">14. Governing Law & Dispute Resolution</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							These Terms are governed by the laws of Vietnam, without regard to conflict of law principles. The Service
 							is available globally, but these Terms are interpreted under Vietnamese law.
@@ -291,7 +291,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 
 					<!-- Section 15: Contact -->
 					<section>
-						<h2 class="mb-4 text-xl font-semibold text-primary">15. Contact Information</h2>
+						<h2 class="text-primary mb-4 text-xl font-semibold">15. Contact Information</h2>
 						<p class="mb-3 text-base leading-relaxed">
 							If you have any questions about these Terms or need support, please contact us:
 						</p>

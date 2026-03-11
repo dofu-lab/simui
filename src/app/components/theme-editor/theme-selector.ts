@@ -3,11 +3,9 @@ import { ThemePreset } from '@/app/types';
 import { Component, computed, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideChevronDown, lucideSearch } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
-import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
@@ -17,19 +15,16 @@ import { SelectorColorPreview } from './selector-color-preview';
 @Component({
 	selector: 'app-theme-selector',
 	imports: [
-    HlmButton,
-    NgIcon,
-    HlmIcon,
-    HlmSeparator,
-    BrnDialogContent,
-    BrnDialogTrigger,
-    HlmBadge,
-    HlmInputGroupImports,
-    HlmPopoverImports,
-    BrnPopoverImports,
-    HlmDialogImports,
-    SelectorColorPreview
-],
+		HlmButton,
+		NgIcon,
+		HlmIcon,
+		HlmSeparator,
+		HlmBadge,
+		SelectorColorPreview,
+		HlmInputGroupImports,
+		HlmPopoverImports,
+		HlmDialogImports,
+	],
 	providers: [provideIcons({ lucideChevronDown, lucideSearch, lucideCheck })],
 	host: {
 		class: 'w-full max-w-100',
@@ -45,7 +40,7 @@ import { SelectorColorPreview } from './selector-color-preview';
 				</span>
 				<ng-icon hlm name="lucideChevronDown" size="sm" />
 			</button>
-			<div hlmPopoverContent class="grid w-80 overflow-hidden rounded-xl p-0" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid w-80 overflow-hidden rounded-xl p-0" *hlmPopoverPortal="let ctx">
 				<div class="p-1">
 					<div hlmInputGroup>
 						<input
@@ -111,7 +106,7 @@ import { SelectorColorPreview } from './selector-color-preview';
 			<button
 				id="change-theme-dialog-button"
 				#changeThemeDialogButton
-				brnDialogTrigger
+				hlmDialogTrigger
 				hlmBtn
 				variant="outline"
 				class="hidden">
@@ -119,7 +114,7 @@ import { SelectorColorPreview } from './selector-color-preview';
 			</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<hlm-dialog-header>
 					<h2 class="text-lg font-semibold">Unsaved Changes</h2>
 					<p hlmDialogDescription>
@@ -145,7 +140,7 @@ export class ThemeSelector {
 	protected temporarySelectedPreset = signal<ThemePreset | null>(null);
 
 	protected changeThemeDialogButton = viewChild<ElementRef<HTMLButtonElement>>('changeThemeDialogButton');
-	public dialogRef = viewChild<BrnDialog>('changeThemeDialog');
+	public dialogRef = viewChild<HlmDialog>('changeThemeDialog');
 
 	protected filteredPresets = computed(() => {
 		const query = this.searchQuery().toLowerCase();

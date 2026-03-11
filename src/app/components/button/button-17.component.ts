@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-17',
-	imports: [HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
+	imports: [HlmButton, HlmAvatarImports],
 	template: `
-		<button hlmBtn size="sm" class="rounded-full pl-1.5">
-			<hlm-avatar class="mr-2 size-6">
+		<button hlmBtn size="sm" class="rounded-full pl-1">
+			<hlm-avatar class="size-6">
 				<img src="assets/avatars/alan-cooper.png" alt="Alan Cooper" hlmAvatarImage />
 				<span class="bg-primary text-primary-foreground" hlmAvatarFallback>AC</span>
 			</hlm-avatar>

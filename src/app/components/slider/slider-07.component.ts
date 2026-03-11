@@ -28,5 +28,5 @@ export class Slider07Component {
 	public readonly max = 12;
 	public readonly skipInterval = 2;
 	public readonly ticks = [...Array(this.max + 1)].map((_, i) => i);
-	public readonly value = signal(4);
+	public readonly value = signal([4]);
 }

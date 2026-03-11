@@ -3,14 +3,12 @@ import { Component, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgxSonnerToaster } from 'ngx-sonner';
 import { HeaderComponent, ThemeService } from './core';
-import { CodeLoaderService } from './core/services/code-loader.service';
 import { SeoService } from './core/services/seo.service';
 import { AnalyticsService } from './services/analytics.service';
 
 @Component({
 	selector: 'app-root',
 	imports: [RouterOutlet, NgxSonnerToaster, HeaderComponent],
-	providers: [CodeLoaderService],
 	template: `
 		<div class="relative flex min-h-svh flex-col overflow-clip px-2 [--header-height:4rem]">
 			<ngx-sonner-toaster />
@@ -21,7 +19,6 @@ import { AnalyticsService } from './services/analytics.service';
 })
 export class AppComponent implements OnInit {
 	isNavbarOpen = signal<boolean>(true);
-	private readonly codeLoaderService = inject(CodeLoaderService);
 	private readonly seoService = inject(SeoService);
 	private readonly themeInjectorService = inject(ThemeService);
 	private readonly analyticsService = inject(AnalyticsService);
@@ -29,8 +26,6 @@ export class AppComponent implements OnInit {
 
 	ngOnInit() {
 		this.seoService.init();
-		// Initialize the service to preload component data
-		this.codeLoaderService.loadComponentCode('').subscribe();
 		this.observeWebVitals();
 	}
 
@@ -51,7 +46,11 @@ export class AppComponent implements OnInit {
 		this.observeEntry('layout-shift', (entry) => {
 			const cls = entry as PerformanceEntry & { value: number; hadRecentInput: boolean };
 			if (!cls.hadRecentInput) {
-				this.analyticsService.trackWebVital('CLS', Number.parseFloat(cls.value.toFixed(4)), this.rateMetric('CLS', cls.value));
+				this.analyticsService.trackWebVital(
+					'CLS',
+					Number.parseFloat(cls.value.toFixed(4)),
+					this.rateMetric('CLS', cls.value),
+				);
 			}
 		});
 

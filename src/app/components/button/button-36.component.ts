@@ -2,18 +2,19 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideQrCode } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 
 @Component({
 	selector: 'sim-button-36',
 	providers: [provideIcons({ lucideQrCode })],
-	imports: [HlmIcon, HlmButton, NgIcon],
+	imports: [HlmButton, NgIcon, HlmButtonGroupImports],
 	template: `
-		<div class="divide-primary-foreground/30 inline-flex divide-x rounded-md shadow-xs rtl:space-x-reverse">
-			<button hlmBtn class="rounded-none rounded-s-md border-r shadow-none focus-visible:z-10" size="sm">
-				<ng-icon hlm name="lucideQrCode" size="sm" />
+		<div hlmButtonGroup>
+			<button hlmBtn size="icon-sm">
+				<ng-icon name="lucideQrCode" />
 			</button>
-			<button hlmBtn class="rounded-none rounded-e-md shadow-none focus-visible:z-10" size="sm">Sign in</button>
+			<hlm-button-group-separator />
+			<button hlmBtn size="sm">Sign in</button>
 		</div>
 	`,
 })

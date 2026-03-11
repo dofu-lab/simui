@@ -23,9 +23,9 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider14Component {
-	public readonly ratingLabels = ['Awful', 'Poor', 'Okay', 'Good', 'Amazing'];
-	public readonly emojiLabels = ['😡', '😕', '😐', '🙂', '😍'];
-	public readonly value = signal(3);
-	public computedLabel = computed(() => this.ratingLabels[this.value() - 1]);
-	public computedEmoji = computed(() => this.emojiLabels[this.value() - 1]);
+	protected readonly ratingLabels = ['Awful', 'Poor', 'Okay', 'Good', 'Amazing'];
+	protected readonly emojiLabels = ['😡', '😕', '😐', '🙂', '😍'];
+	protected readonly value = signal([3]);
+	protected readonly computedLabel = computed(() => this.ratingLabels[this.value()[0] - 1]);
+	protected readonly computedEmoji = computed(() => this.emojiLabels[this.value()[0] - 1]);
 }

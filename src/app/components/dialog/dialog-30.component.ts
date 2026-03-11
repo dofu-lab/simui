@@ -1,33 +1,22 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleCheck } from '@ng-icons/lucide';
-import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmSwitch } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-dialog-30',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmDialog,
-		HlmDialogContent,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmLabel,
-		HlmSwitch,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmLabel, HlmSwitch, HlmDialogImports],
 	providers: [provideIcons({ lucideCircleCheck })],
 	template: `
 		<hlm-dialog>
-			<button brnDialogTrigger hlmBtn variant="outline">Post setting</button>
+			<button hlmDialogTrigger hlmBtn variant="outline">Post setting</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-6 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col gap-6">
 					<div class="flex flex-col gap-1">
 						<div class="flex size-12 items-center justify-center rounded-full bg-emerald-100">

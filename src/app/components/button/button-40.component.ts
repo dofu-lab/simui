@@ -3,12 +3,11 @@ import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideThumbsUp } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-40',
 	providers: [provideIcons({ lucideThumbsUp })],
-	imports: [HlmIcon, HlmButton, NgClass, NgIcon],
+	imports: [HlmButton, NgClass, NgIcon],
 	template: `
 		<button
 			hlmBtn
@@ -19,15 +18,13 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			(click)="onPressLike()">
 			<div class="flex items-center">
 				<ng-icon
-					hlm
 					name="lucideThumbsUp"
-					size="sm"
 					class="mr-2 transition-transform duration-150"
 					[ngClass]="{
 						'text-sky-800 dark:text-sky-600': liked(),
 						'scale-115': animate(),
 					}" />
-				<span class="mr-1" [ngClass]="{ 'text-sky-800 dark:text-sky-600': liked() }">
+				<span [ngClass]="{ 'text-sky-800 dark:text-sky-600': liked() }">
 					{{ likeLabel() }}
 				</span>
 				<span

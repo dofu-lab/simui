@@ -3,7 +3,6 @@ import { NgClass } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail } from '@ng-icons/lucide';
-import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
@@ -12,11 +11,11 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 @Component({
 	selector: 'sim-popover-04',
 	providers: [provideIcons({ lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail, lucideCheck })],
-	imports: [NgClass, NgIcon, HlmButton, HlmIcon, HlmInput, HlmPopoverImports, BrnPopoverImports],
+	imports: [NgClass, NgIcon, HlmButton, HlmIcon, HlmInput, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
-			<button hlmBtn brnPopoverTrigger variant="outline" size="sm">Share</button>
-			<div hlmPopoverContent class="grid gap-3" *brnPopoverContent="let ctx">
+			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">Share</button>
+			<div hlmPopoverContent class="grid gap-3" *hlmPopoverPortal="let ctx">
 				<div class="text-center text-sm font-medium">Share code</div>
 
 				<div class="flex items-center justify-center gap-2">

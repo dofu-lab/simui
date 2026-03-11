@@ -2,16 +2,9 @@ import { Component, computed, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideImagePlus, lucideX } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
-import {
-	HlmDialog,
-	HlmDialogContent,
-	HlmDialogDescription,
-	HlmDialogFooter,
-	HlmDialogHeader,
-} from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
@@ -107,24 +100,18 @@ export class ProfileAvatarComponent {
 		ReactiveFormsModule,
 		HlmInput,
 		HlmLabel,
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		HlmDialogFooter,
-		BrnDialogTrigger,
-		BrnDialogContent,
 		HlmButton,
-		HlmDialogDescription,
 		ProfileBackgroundComponent,
 		ProfileAvatarComponent,
+		HlmDialogImports,
 	],
 	providers: [provideIcons({ lucideCheck })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Edit profile (2)</button>
+			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Edit profile (2)</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-y-auto rounded-lg p-0 sm:max-h-[min(1000px,90vh)]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<hlm-dialog-header class="contents space-y-0 text-left">
 					<h2 class="mb-0 px-6 py-4 text-lg font-semibold">Edit profile</h2>
 					<div class="overflow-y-auto border-t">
@@ -226,7 +213,7 @@ export class ProfileAvatarComponent {
 })
 export class Dialog23Component {
 	private readonly _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 	public maxLength = 180;
 	public lengthCount = signal<number>(0);
 	public isValidUserName = signal<boolean>(true);

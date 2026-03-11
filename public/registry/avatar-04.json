@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';\n\n@Component({\n\tselector: 'sim-avatar-04',\n\timports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback],\n\ttemplate: `\n\t\t<hlm-avatar class=\"border-border/50 size-10 rounded-lg border\">\n\t\t\t<img hlmAvatarImage src=\"assets/avatars/mathilde-lewis.png\" alt=\"Mathilde Lewis\" />\n\t\t\t<span hlmAvatarFallback class=\"bg-primary text-primary-foreground\">ML</span>\n\t\t</hlm-avatar>\n\t`,\n})\nexport class Avatar04Component {}"
+}

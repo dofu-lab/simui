@@ -1,34 +1,22 @@
 import { Component, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBellRing, lucideCalendar, lucideClock, lucidePlus } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { toast } from 'ngx-sonner';
 
 @Component({
 	selector: 'sim-dialog-25',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmDialog,
-		HlmDialogContent,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmAvatar,
-		HlmAvatarImage,
-		HlmAvatarFallback,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmDialogImports],
 	providers: [provideIcons({ lucideCalendar, lucideClock, lucideBellRing, lucidePlus })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button brnDialogTrigger hlmBtn variant="outline">Meeting invitation</button>
+			<button hlmDialogTrigger hlmBtn variant="outline">Meeting invitation</button>
 			<hlm-dialog-content
 				class="[&>button>ng-icon]:text-primary-foreground top-1/2 left-1/2 max-h-[calc(100vh-2rem)] !w-100 max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex items-center justify-center pt-6">
 					<div class="flex h-14 w-16 flex-col rounded-lg border text-center">
 						<div class="bg-muted flex h-6 items-center justify-center text-xs">JAN</div>
@@ -122,7 +110,7 @@ import { toast } from 'ngx-sonner';
 	`,
 })
 export class Dialog25Component {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 
 	public acceptInvitation(): void {
 		toast.success('Accepted!', {

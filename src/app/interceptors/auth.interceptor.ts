@@ -16,10 +16,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 	const isCookieAuthRequest = COOKIE_AUTH_PATHS.some((path) => req.url.includes(path));
 
 	// Clone the request and add the authorization header if token exists
-	const authReq =
-		token && !isCookieAuthRequest
-			? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
-			: req;
+	const authReq = token && !isCookieAuthRequest ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } }) : req;
 
 	return next(authReq).pipe(
 		catchError((error) => {

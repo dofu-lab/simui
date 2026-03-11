@@ -6,7 +6,6 @@ import { Component, computed, inject, input, resource } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideHistory, lucideLoaderCircle, lucideUndo2, lucideZap } from '@ng-icons/lucide';
-import { BrnSheetImports } from '@spartan-ng/brain/sheet';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
@@ -28,7 +27,6 @@ import { HistoryDatePipe } from '../../pipes/history-date.pipe';
 		HlmSpinner,
 		RouterLink,
 		HlmSheetImports,
-		BrnSheetImports,
 		HlmEmptyImports,
 		HlmTooltipImports,
 	],
@@ -119,7 +117,7 @@ import { HistoryDatePipe } from '../../pipes/history-date.pipe';
 						</div>
 						<button
 							hlmBtn
-							hlmTooltipTrigger="Revert to this version"
+							hlmTooltip="Revert to this version"
 							size="icon"
 							variant="outline"
 							class="hidden"

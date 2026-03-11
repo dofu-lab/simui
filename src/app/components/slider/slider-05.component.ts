@@ -11,10 +11,10 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 	template: `
 		<span hlmLabel class="mb-4">Slider with tiny thumb</span>
 		<hlm-slider
-			class="[&>span]:border-background [&>span]:bg-primary [&>span]:h-6 [&>span]:w-2.5 [&>span]:border-[3px] [&>span]:shadow-none [&>span]:ring-offset-0"
+			class="[&>div>span]:border-background [&>div>span]:bg-primary [&>div>span]:h-6 [&>div>span]:w-2.5 [&>div>span]:border-[3px] [&>div>span]:shadow-none [&>div>span]:ring-offset-0"
 			[(value)]="value" />
 	`,
 })
 export class Slider05Component {
-	public readonly value = signal(25);
+	public readonly value = signal([25]);
 }

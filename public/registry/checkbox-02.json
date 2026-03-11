@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { HlmCheckbox } from '@spartan-ng/helm/checkbox';\nimport { HlmLabel } from '@spartan-ng/helm/label';\n\n@Component({\n\tselector: 'sim-checkbox-02',\n\timports: [HlmCheckbox, HlmLabel],\n\ttemplate: `\n\t\t<label class=\"flex items-center\" hlmLabel for=\"checkbox-02\">\n\t\t\t<hlm-checkbox\n\t\t\t\tid=\"checkbox-02\"\n\t\t\t\tclass=\"data-[state=checked]:text-background data-[state=unchecked]:bg-background border-border focus-visible:ring-[#7F56D9] data-[state=checked]:border-[#7F56D9] data-[state=checked]:bg-[#7F56D9]\" />\n\t\t\tCustom color checkbox\n\t\t</label>\n\t`,\n})\nexport class Checkbox02Component {}"
+}

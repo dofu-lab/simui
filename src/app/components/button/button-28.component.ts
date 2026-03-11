@@ -1,43 +1,33 @@
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideChevronUp } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 
 @Component({
 	selector: 'sim-button-28',
 	providers: [provideIcons({ lucideChevronDown, lucideChevronUp })],
-	imports: [HlmIcon, HlmButton, NgIcon],
+	imports: [HlmButtonImports, HlmButtonGroupImports, NgIcon],
 	template: `
-		<div class="inline-flex -space-x-px rounded-full shadow-xs rtl:space-x-reverse">
-			<button
-				hlmBtn
-				class="rounded-none shadow-none first:rounded-s-full last:rounded-e-full focus-visible:z-10"
-				size="icon"
-				(click)="downvote()">
-				<ng-icon hlm name="lucideChevronDown" size="sm" />
+		<div hlmButtonGroup>
+			<button hlmBtn size="icon" class="rounded-full" (click)="downvote()">
+				<ng-icon name="lucideChevronDown" />
 			</button>
-			<span class="bg-primary text-primary-foreground flex items-center px-1 text-sm font-medium">
-				{{ votes() }}
-			</span>
-			<button
-				hlmBtn
-				class="rounded-none shadow-none first:rounded-s-full last:rounded-e-full focus-visible:z-10"
-				size="icon"
-				(click)="upvote()">
-				<ng-icon hlm name="lucideChevronUp" size="sm" />
+			<button hlmBtn class="px-2">{{ votes() }}</button>
+			<button hlmBtn size="icon" class="rounded-full" (click)="upvote()">
+				<ng-icon name="lucideChevronUp" />
 			</button>
 		</div>
 	`,
 })
 export class Button28Component {
-	votes = signal<number>(235);
+	protected readonly votes = signal<number>(235);
 
-	upvote() {
+	protected upvote(): void {
 		this.votes.set(this.votes() + 1);
 	}
 
-	downvote() {
+	protected downvote(): void {
 		this.votes.set(this.votes() - 1);
 	}
 }

@@ -1,0 +1,3 @@
+{
+  "content": "import { Component, model } from '@angular/core';\nimport { HlmCheckbox } from '@spartan-ng/helm/checkbox';\nimport { HlmLabel } from '@spartan-ng/helm/label';\n\n@Component({\n\tselector: 'sim-checkbox-04',\n\timports: [HlmCheckbox, HlmLabel],\n\ttemplate: `\n\t\t<label hlmLabel class=\"flex items-center\" for=\"indeterminate-checkbox\">\n\t\t\t<hlm-checkbox id=\"indeterminate-checkbox\" [(indeterminate)]=\"checked\" />\n\t\t\tIndeterminate checkbox\n\t\t</label>\n\t`,\n})\nexport class Checkbox04Component {\n\tpublic readonly checked = model<boolean>(true);\n}"
+}

@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
-import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-badge-07',
-	imports: [HlmBadge],
+	imports: [HlmBadgeImports],
 	template: `
-		<span hlmBadge class="rounded-full">
-			<div class="flex items-center justify-center gap-1">
-				<span>Messages</span>
-				<span class="text-primary-foreground/60 text-[0.625rem]">12</span>
-			</div>
+		<span hlmBadge>
+			Messages
+			<span class="text-primary-foreground/60 text-[0.625rem]">12</span>
 		</span>
 	`,
 })

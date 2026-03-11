@@ -3,19 +3,16 @@ import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideStar } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-44',
 	providers: [provideIcons({ lucideStar })],
-	imports: [HlmIcon, HlmButton, NgClass, NgIcon],
+	imports: [HlmButton, NgClass, NgIcon],
 	template: `
 		<button hlmBtn size="sm" class="shadow-none focus-visible:z-10" (click)="toggleStart()">
 			<ng-icon
-				hlm
 				name="lucideStar"
-				size="sm"
-				class="mr-2 opacity-60 transition-all"
+				class="mr-1 opacity-60 transition-all"
 				[ngClass]="{
 					'text-yellow-300 opacity-100': stared(),
 					'scale-115': animated(),
@@ -28,17 +25,17 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Button44Component {
-	stared = signal<boolean>(false);
-	animated = signal<boolean>(false);
-	defaultStars = 699;
-	starCount = computed(() => (this.stared() ? this.defaultStars + 1 : this.defaultStars));
-	starLabel = computed(() => (this.stared() ? 'Unstar' : 'Star'));
+	protected readonly stared = signal<boolean>(false);
+	protected readonly animated = signal<boolean>(false);
+	protected readonly defaultStars = 699;
+	protected readonly starCount = computed(() => (this.stared() ? this.defaultStars + 1 : this.defaultStars));
+	protected readonly starLabel = computed(() => (this.stared() ? 'Unstar' : 'Star'));
 
-	toggleStart() {
+	protected readonly toggleStart = (): void => {
 		this.stared.set(!this.stared());
 		this.animated.set(true);
 		setTimeout(() => {
 			this.animated.set(false);
 		}, 300);
-	}
+	};
 }

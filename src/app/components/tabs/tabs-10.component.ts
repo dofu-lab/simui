@@ -15,19 +15,19 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 				aria-label="tabs example">
 				<button
 					hlmTabsTrigger="tab01"
-					class="border-input data-[state=active]:bg-muted data-[state=active]:after:bg-primary relative flex gap-2 overflow-hidden rounded-none border py-2 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 first:rounded-s first:border-r-0 last:rounded-e last:border-l-0">
+					class="data-[state=active]:after:bg-primary! border-input relative mr-0 overflow-hidden rounded-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0! after:h-0.5 first:rounded-s first:border-r-0 last:rounded-e data-[state=active]:bg-transparent data-[state=active]:shadow-none! data-[state=active]:after:opacity-100 dark:data-[state=active]:bg-transparent">
 					<ng-icon hlm name="lucideHouse" size="sm" />
 					Overview
 				</button>
 				<button
 					hlmTabsTrigger="tab02"
-					class="border-input data-[state=active]:bg-muted data-[state=active]:after:bg-primary relative flex gap-2 overflow-hidden rounded-none border py-2 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 first:rounded-s first:border-r-0 last:rounded-e last:border-l-0">
+					class="data-[state=active]:after:bg-primary! border-input relative mr-0 overflow-hidden rounded-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0! after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none! data-[state=active]:after:opacity-100 dark:data-[state=active]:bg-transparent">
 					<ng-icon hlm name="lucidePanelsTopLeft" size="sm" />
 					Projects
 				</button>
 				<button
 					hlmTabsTrigger="tab03"
-					class="border-input data-[state=active]:bg-muted data-[state=active]:after:bg-primary relative flex gap-2 overflow-hidden rounded-none border py-2 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 first:rounded-s first:border-r-0 last:rounded-e last:border-l-0">
+					class="data-[state=active]:after:bg-primary! border-input relative mr-0 overflow-hidden rounded-none px-3 py-2 after:absolute after:inset-x-0 after:bottom-0! after:h-0.5 first:rounded-s last:rounded-e last:border-l-0 data-[state=active]:bg-transparent data-[state=active]:shadow-none! data-[state=active]:after:opacity-100 dark:data-[state=active]:bg-transparent">
 					<ng-icon hlm name="lucidePackage" size="sm" />
 					Packages
 				</button>

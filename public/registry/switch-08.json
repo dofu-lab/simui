@@ -1,0 +1,3 @@
+{
+  "content": "import { Component, model } from '@angular/core';\nimport { HlmLabel } from '@spartan-ng/helm/label';\nimport { HlmSwitch } from '@spartan-ng/helm/switch';\n\n@Component({\n\tselector: 'sim-switch-08',\n\timports: [HlmSwitch, HlmLabel],\n\ttemplate: `\n\t\t<div class=\"flex items-center gap-2\">\n\t\t\t<hlm-switch\n\t\t\t\tid=\"switch-08\"\n\t\t\t\tclass=\"h-6 w-10 border-[2px] [&>brn-switch-thumb]:size-5 [&>brn-switch-thumb]:group-data-[state=checked]:translate-x-[calc(100%-4px)]\"\n\t\t\t\t[(checked)]=\"value\" />\n\t\t\t<span hlmLabel>\n\t\t\t\t@if (value()) {\n\t\t\t\t\tOn\n\t\t\t\t} @else {\n\t\t\t\t\tOff\n\t\t\t\t}\n\t\t\t</span>\n\t\t</div>\n\t`,\n})\nexport class Switch08Component {\n\treadonly value = model(true);\n}"
+}

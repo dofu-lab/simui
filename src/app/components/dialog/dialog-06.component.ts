@@ -1,32 +1,16 @@
 import { Component, viewChild } from '@angular/core';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import {
-	HlmDialog,
-	HlmDialogContent,
-	HlmDialogDescription,
-	HlmDialogFooter,
-	HlmDialogHeader,
-} from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-06',
-	imports: [
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		HlmDialogFooter,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmDialogDescription,
-	],
+	imports: [HlmButton, HlmDialogImports],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Scrollable (sticky footer)</button>
+			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Scrollable (sticky footer)</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-lg"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<hlm-dialog-header>
 						<h2 class="mb-0 px-6 pt-6 text-lg font-semibold">Frequently Asked Questions (FAQ)</h2>
@@ -144,7 +128,7 @@ import {
 	`,
 })
 export class Dialog06Component {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 
 	closeDialog() {
 		this.dialogRef()?.close({});

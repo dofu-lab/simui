@@ -1,32 +1,16 @@
 import { Component, viewChild } from '@angular/core';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import {
-	HlmDialog,
-	HlmDialogContent,
-	HlmDialogDescription,
-	HlmDialogFooter,
-	HlmDialogHeader,
-} from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogDescription, HlmDialogImports } from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-01',
-	imports: [
-		HlmDialog,
-		HlmDialogContent,
-		HlmDialogHeader,
-		HlmDialogFooter,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmDialogDescription,
-	],
+	imports: [HlmButton, HlmDialogDescription, HlmDialogImports],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Confirm dialog</button>
+			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Confirm dialog</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<hlm-dialog-header>
 					<h2 class="text-lg font-semibold">Are you sure?</h2>
 					<p hlmDialogDescription>
@@ -42,9 +26,9 @@ import {
 	`,
 })
 export class Dialog01Component {
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 
-	closeDialog() {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 }

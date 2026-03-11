@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { NgIcon, provideIcons } from '@ng-icons/core';\nimport { lucidePlus } from '@ng-icons/lucide';\nimport { HlmButton } from '@spartan-ng/helm/button';\nimport { HlmTooltipImports } from '@spartan-ng/helm/tooltip';\n\n@Component({\n\tselector: 'sim-button-22',\n\tproviders: [provideIcons({ lucidePlus })],\n\timports: [HlmButton, HlmTooltipImports, NgIcon],\n\ttemplate: `\n\t\t<button hlmBtn variant=\"outline\" size=\"icon\" [showDelay]=\"10\" [hideDelay]=\"10\" [hlmTooltip]=\"tooltipContent\">\n\t\t\t<ng-icon name=\"lucidePlus\" />\n\t\t</button>\n\t\t<ng-template #tooltipContent><span class=\"flex items-center\">Tooltip</span></ng-template>\n\t`,\n})\nexport class Button22Component {}"
+}

@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute }
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
-import { hlm } from '@spartan-ng/helm/utils';
 import { map } from 'rxjs';
 
 @Component({
@@ -13,11 +12,19 @@ import { map } from 'rxjs';
 	template: `
 		<nav hlmPagination class="w-full">
 			<ul hlmPaginationContent class="w-full justify-between">
-				<li hlmPaginationItem [class]="computedPreviousClass()">
-					<hlm-pagination-previous link="." [queryParams]="{ page: currentPage() - 1 }" queryParamsHandling="merge" />
+				<li hlmPaginationItem>
+					<hlm-pagination-previous
+						link="."
+						[class]="computedPreviousClass()"
+						[queryParams]="{ page: currentPage() - 1 }"
+						queryParamsHandling="merge" />
 				</li>
-				<li hlmPaginationItem [class]="computedNextClass()">
-					<hlm-pagination-next link="." [queryParams]="{ page: currentPage() + 1 }" queryParamsHandling="merge" />
+				<li hlmPaginationItem>
+					<hlm-pagination-next
+						link="."
+						[class]="computedNextClass()"
+						[queryParams]="{ page: currentPage() + 1 }"
+						queryParamsHandling="merge" />
 				</li>
 			</ul>
 		</nav>
@@ -35,12 +42,11 @@ export class Pagination01Component {
 	);
 
 	protected readonly pages = [1, 2, 3, 4];
-
 	protected readonly currentPage = computed(() => this._pageQuery() ?? 1);
-	protected readonly computedPreviousClass = computed(() =>
-		hlm(this.currentPage() <= 1 ? 'opacity-50 pointer-events-none' : ''),
-	);
-	protected readonly computedNextClass = computed(() =>
-		hlm(this.currentPage() >= this.pages.length ? 'opacity-50 pointer-events-none' : ''),
-	);
+	protected readonly computedPreviousClass = computed(() => this.navButtonClass(this.currentPage() <= 1));
+	protected readonly computedNextClass = computed(() => this.navButtonClass(this.currentPage() >= this.pages.length));
+
+	private navButtonClass(isDisabled: boolean): string {
+		return ['px-0!', isDisabled && 'opacity-50 select-none pointer-events-none'].filter(Boolean).join(' ');
+	}
 }

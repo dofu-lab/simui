@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideListFilter } from '@ng-icons/lucide';
-import { BrnPopoverImports } from '@spartan-ng/brain/popover';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
 import { HlmIcon } from '@spartan-ng/helm/icon';
@@ -12,13 +11,13 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 @Component({
 	selector: 'sim-popover-01',
 	providers: [provideIcons({ lucideListFilter })],
-	imports: [FormsModule, HlmButton, HlmCheckbox, HlmIcon, HlmLabel, NgIcon, HlmPopoverImports, BrnPopoverImports],
+	imports: [FormsModule, HlmButton, HlmCheckbox, HlmIcon, HlmLabel, NgIcon, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
-			<button variant="outline" size="icon" class="relative size-9" brnPopoverTrigger hlmBtn>
+			<button variant="outline" size="icon" class="relative size-9" hlmPopoverTrigger hlmBtn>
 				<ng-icon hlm name="lucideListFilter" size="sm" />
 			</button>
-			<div hlmPopoverContent class="grid w-36 gap-3 p-3" *brnPopoverContent="let ctx">
+			<div hlmPopoverContent class="grid w-36 gap-3 p-3" *hlmPopoverPortal="let ctx">
 				<div class="text-muted-foreground text-xs font-semibold">Filters</div>
 
 				<div class="space-y-2">

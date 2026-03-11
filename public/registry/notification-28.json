@@ -1,0 +1,3 @@
+{
+  "content": "import { DatePipe } from '@angular/common';\nimport { Component, inject } from '@angular/core';\nimport { HlmButton } from '@spartan-ng/helm/button';\nimport { toast } from 'ngx-sonner';\n\n@Component({\n\tselector: 'sim-notification-28',\n\tproviders: [DatePipe],\n\timports: [HlmButton],\n\ttemplate: `\n\t\t<button hlmBtn variant=\"outline\" size=\"sm\" class=\"h-8\" (click)=\"showNotification()\">Success</button>\n\t`,\n})\nexport class Notification28Component {\n\tdatePipe = inject(DatePipe);\n\n\tshowNotification() {\n\t\ttoast.success('Request is approved', {\n\t\t\tdescription: 'Your manager has approved your request.',\n\t\t});\n\t}\n}"
+}

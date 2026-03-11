@@ -2,9 +2,8 @@ import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBadgeCheck, lucideCreditCard, lucideMessagesSquare, lucideWalletCards } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
@@ -19,22 +18,18 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 		ReactiveFormsModule,
 		HlmIcon,
 		HlmButton,
-		HlmDialog,
-		HlmDialogContent,
-		HlmButton,
 		HlmLabel,
 		HlmSpinner,
 		HlmRadio,
 		HlmRadioGroup,
-		BrnDialogTrigger,
-		BrnDialogContent,
+		HlmDialogImports,
 	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Select plan</button>
+			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Select plan</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-150 sm:min-w-150"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<div class="flex flex-row gap-2 border-b px-6 py-5">
 						<div class="flex size-11 items-center justify-center rounded-lg border">
@@ -158,7 +153,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 })
 export class Dialog21Component {
 	private readonly _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(BrnDialog);
+	public dialogRef = viewChild(HlmDialog);
 	public form: FormGroup = this._formBuilder.group({
 		plan: ['basic'],
 	});

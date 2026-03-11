@@ -5,16 +5,13 @@ import { fileURLToPath } from 'url';
 // Get current directory for ES modules
 const __filename = fileURLToPath(import.meta.url);
 
-function convertComponentsToJson(componentsDir: string, outputDir: string, publicDir: string): void {
-	// Ensure both output directories exist
-	if (!fs.existsSync(outputDir)) {
-		fs.mkdirSync(outputDir, { recursive: true });
-	}
+function convertComponentsToJson(componentsDir: string, publicDir: string): void {
+	// Ensure public output directory exists
 	if (!fs.existsSync(publicDir)) {
 		fs.mkdirSync(publicDir, { recursive: true });
 	}
 
-	const componentsData: { [key: string]: string } = {};
+	let count = 0;
 
 	function processDirectory(dir: string): void {
 		const items = fs.readdirSync(dir);
@@ -40,17 +37,11 @@ function convertComponentsToJson(componentsDir: string, outputDir: string, publi
 
 			const fileName = path.basename(filePath, '.component.ts');
 
-			// Add to components data object for the single file
-			componentsData[fileName] = componentCode;
-
 			// Create individual JSON file in public folder
 			const jsonFileName = `${fileName}.json`;
 			const individualOutputPath = path.join(publicDir, jsonFileName);
-			const individualJsonOutput = {
-				content: componentCode,
-			};
-			fs.writeFileSync(individualOutputPath, JSON.stringify(individualJsonOutput, null, 2));
-
+			fs.writeFileSync(individualOutputPath, JSON.stringify({ content: componentCode }, null, 2));
+			count++;
 			console.log(`✓ Processed: ${fileName}.component.ts -> public/${jsonFileName}`);
 		} catch (error) {
 			console.error(`✗ Error processing ${filePath}:`, error);
@@ -59,25 +50,16 @@ function convertComponentsToJson(componentsDir: string, outputDir: string, publi
 
 	// Process all components
 	processDirectory(componentsDir);
-
-	// Write single components.json file in assets
-	const componentsJsonPath = path.join(outputDir, 'components.json');
-	fs.writeFileSync(componentsJsonPath, JSON.stringify(componentsData, null, 2));
-	console.log(
-		`✓ Generated: assets/generated-code/components.json with ${Object.keys(componentsData).length} components`,
-	);
-	console.log(`✓ Generated: ${Object.keys(componentsData).length} individual JSON files in public folder`);
+	console.log(`✓ Generated: ${count} individual JSON files in public/registry`);
 }
 
 // Usage function
 export function generateComponentJsons(): void {
 	const componentsDir = path.join(process.cwd(), 'src/app/components');
-	const outputDir = path.join(process.cwd(), 'src/assets/generated-code');
 	const publicDir = path.join(process.cwd(), 'public/registry');
 
 	console.log('Starting component to JSON conversion...');
 	console.log(`Source: ${componentsDir}`);
-	console.log(`Assets Output: ${outputDir}`);
 	console.log(`Public Output: ${publicDir}`);
 
 	if (!fs.existsSync(componentsDir)) {
@@ -85,7 +67,7 @@ export function generateComponentJsons(): void {
 		return;
 	}
 
-	convertComponentsToJson(componentsDir, outputDir, publicDir);
+	convertComponentsToJson(componentsDir, publicDir);
 	console.log('Conversion completed!');
 }
 

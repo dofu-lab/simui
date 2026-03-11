@@ -15,11 +15,10 @@ import {
 	lucideUser,
 	lucideZap,
 } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
@@ -40,19 +39,17 @@ import { ThemePreset } from '../types';
 		NgIcon,
 		HlmIcon,
 		HlmBadge,
-		HlmCardImports,
 		HlmSpinner,
 		PresetColorPreview,
-		HlmInputGroupImports,
 		FormsModule,
 		HistoryDatePipe,
-		HlmEmptyImports,
-		HlmDialogImports,
-		BrnDialogTrigger,
-		BrnDialogContent,
 		HlmInput,
 		HlmLabel,
 		RouterLink,
+		HlmCardImports,
+		HlmInputGroupImports,
+		HlmEmptyImports,
+		HlmDialogImports,
 	],
 	providers: [
 		provideIcons({
@@ -208,12 +205,12 @@ import { ThemePreset } from '../types';
 		</div>
 
 		<hlm-dialog #deleteDialog>
-			<button id="delete-dialog-button" #deleteDialogButton brnDialogTrigger hlmBtn variant="outline" class="hidden">
+			<button id="delete-dialog-button" #deleteDialogButton hlmDialogTrigger hlmBtn variant="outline" class="hidden">
 				Delete Theme
 			</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col items-center gap-2">
 					<div class="flex size-9 shrink-0 items-center justify-center rounded-full border">
 						<ng-icon hlm name="lucideTriangleAlert" size="sm"></ng-icon>
@@ -268,7 +265,7 @@ export class ProfileSettingsComponent implements OnInit {
 	protected readonly subscriptionLoading = signal(false);
 
 	protected readonly deleteDialogButton = viewChild<ElementRef<HTMLButtonElement>>('deleteDialogButton');
-	protected readonly dialogRef = viewChild<BrnDialog>('deleteDialog');
+	protected readonly dialogRef = viewChild<HlmDialog>('deleteDialog');
 
 	protected readonly themes = computed(() => this.themeStorageService.themePresets());
 	protected readonly isDeleteConfirmed = computed(() => this.deleteConfirmInput() === this.themeToDelete()?.label);

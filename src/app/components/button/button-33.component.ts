@@ -1,52 +1,27 @@
-import { Component, signal } from '@angular/core';
+import { HlmButton } from '@/libs/ui/button/src';
+import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis, lucideFiles, lucideFilm } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 
 @Component({
 	selector: 'sim-button-33',
 	providers: [provideIcons({ lucideFiles, lucideFilm, lucideEllipsis })],
-	imports: [HlmIcon, HlmButton, NgIcon],
+	imports: [HlmButtonGroupImports, HlmButton, NgIcon],
 	template: `
-		<div class="inline-flex -space-x-px rounded-md shadow-xs rtl:space-x-reverse">
-			<button
-				hlmBtn
-				class="rounded-none rounded-s-md shadow-none focus-visible:z-10"
-				variant="outline"
-				size="sm"
-				(click)="downvote()">
-				<ng-icon hlm name="lucideFiles" size="sm" class="mr-2" />
+		<div hlmButtonGroup>
+			<button hlmBtn variant="outline" size="sm">
+				<ng-icon name="lucideFiles" />
 				Files
 			</button>
-			<button
-				hlmBtn
-				class="rounded-none shadow-none focus-visible:z-10"
-				variant="outline"
-				size="sm"
-				(click)="downvote()">
-				<ng-icon hlm name="lucideFilm" size="sm" class="mr-2" />
+			<button hlmBtn variant="outline" size="sm">
+				<ng-icon name="lucideFilm" />
 				Media
 			</button>
-			<button
-				hlmBtn
-				class="rounded-none rounded-e-md shadow-none focus-visible:z-10"
-				variant="outline"
-				size="sm"
-				(click)="upvote()">
-				<ng-icon hlm name="lucideEllipsis" size="sm" />
+			<button hlmBtn variant="outline" size="icon-sm">
+				<ng-icon name="lucideEllipsis" />
 			</button>
 		</div>
 	`,
 })
-export class Button33Component {
-	votes = signal<number>(235);
-
-	upvote() {
-		this.votes.set(this.votes() + 1);
-	}
-
-	downvote() {
-		this.votes.set(this.votes() - 1);
-	}
-}
+export class Button33Component {}

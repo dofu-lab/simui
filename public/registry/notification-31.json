@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\nimport { HlmButton } from '@spartan-ng/helm/button';\nimport { toast } from 'ngx-sonner';\n\n@Component({\n\tselector: 'sim-notification-31',\n\timports: [HlmButton],\n\ttemplate: `\n\t\t<button hlmBtn variant=\"outline\" size=\"sm\" class=\"h-8\" (click)=\"showNotification()\">Bottom center</button>\n\t`,\n})\nexport class Notification31Component {\n\tshowNotification() {\n\t\ttoast.success('Saved your changes', { position: 'bottom-center' });\n\t}\n}"
+}

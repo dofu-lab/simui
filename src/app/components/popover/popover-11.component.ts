@@ -12,8 +12,8 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	providers: [provideIcons({ lucideArrowLeft, lucideArrowRight })],
 	template: `
 		<hlm-popover sideOffset="5">
-			<button variant="outline" brnPopoverTrigger hlmBtn>Tooltip-like with nav</button>
-			<div hlmPopoverContent class="grid gap-1" *brnPopoverContent="let ctx">
+			<button variant="outline" hlmPopoverTrigger hlmBtn>Tooltip-like with nav</button>
+			<div hlmPopoverContent class="grid gap-1" *hlmPopoverPortal="let ctx">
 				<div class="text-sm font-medium">
 					{{ steps[currentStep()].title }}
 				</div>

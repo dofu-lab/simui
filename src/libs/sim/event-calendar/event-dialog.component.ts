@@ -11,12 +11,11 @@ import {
 } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendarPlus, lucidePlus } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
 import { HlmDatePicker } from '@spartan-ng/helm/date-picker';
-import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmLabel } from '@spartan-ng/helm/label';
@@ -38,31 +37,28 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 		ReactiveFormsModule,
 		HlmIcon,
 		HlmButton,
-		HlmDialog,
-		HlmDialogContent,
 		HlmButton,
 		HlmInput,
 		HlmLabel,
 		HlmCheckbox,
-		BrnDialogTrigger,
-		BrnDialogContent,
 		HlmDatePicker,
 		NgScrollbar,
 		HlmScrollArea,
-		BrnSelectImports,
-		HlmSelectImports,
 		HlmRadioGroup,
 		HlmRadio,
+		HlmDialogImports,
+		BrnSelectImports,
+		HlmSelectImports,
 	],
 	template: `
 		<hlm-dialog autoFocus="first-tabbable">
-			<button brnDialogTrigger hlmBtn size="sm" class="flex items-center gap-2">
+			<button hlmDialogTrigger hlmBtn size="sm" class="flex items-center gap-2">
 				<ng-icon name="lucidePlus" />
 				<span class="hidden sm:inline">New Event</span>
 			</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg p-0 sm:max-h-[min(900px,90vh)] sm:max-w-100 sm:min-w-100"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<ng-scrollbar hlm>
 					<div class="p-6">
 						<div class="mb-4 flex flex-col gap-2">
@@ -216,25 +212,24 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 	`,
 })
 export class EventDialogComponent implements OnInit {
-	private _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(BrnDialog);
+	private readonly _formBuilder = inject(FormBuilder);
 
-	shouldShowButton = input(true);
-	initialStartDate = input<Date>();
-	initialEndDate = input<Date>();
-	timeOptions = input<TimeOption[]>(DefaultTimeOptions);
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly isAllDay = signal(false);
+	protected readonly error = signal<string | null>(null);
+	protected readonly formMode = signal<'create' | 'edit'>('create');
 
-	onEventAdded = output<CalendarEvent>();
-	onEventUpdated = output<CalendarEvent>();
-
-	isAllDay = signal(false);
-	error = signal<string | null>(null);
-	formMode = signal<'create' | 'edit'>('create');
+	public readonly shouldShowButton = input(true);
+	public readonly initialStartDate = input<Date>();
+	public readonly initialEndDate = input<Date>();
+	public readonly timeOptions = input<TimeOption[]>(DefaultTimeOptions);
+	public readonly onEventAdded = output<CalendarEvent>();
+	public readonly onEventUpdated = output<CalendarEvent>();
 
 	colorOptions = DefaultEventStyle;
 
 	// Custom validator to check if start date is before end date
-	private dateRangeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+	private readonly dateRangeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
 		const startDate = control.get('startDate')?.value;
 		const endDate = control.get('endDate')?.value;
 		const startTime = control.get('startTime')?.value;

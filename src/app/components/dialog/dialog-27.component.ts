@@ -1,33 +1,21 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideUserPlus } from '@ng-icons/lucide';
-import { BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-27',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmDialog,
-		HlmDialogContent,
-		HlmButton,
-		HlmAvatar,
-		HlmAvatarFallback,
-		HlmAvatarImage,
-		BrnDialogTrigger,
-		BrnDialogContent,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, HlmAvatar, HlmAvatarFallback, HlmAvatarImage, HlmDialogImports],
 	providers: [provideIcons({ lucideUserPlus })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button brnDialogTrigger hlmBtn variant="outline">Request access</button>
+			<button hlmDialogTrigger hlmBtn variant="outline">Request access</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-100! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-6 sm:max-h-[min(640px,80vh)]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<div class="flex flex-col gap-5">
 						<div class="flex size-11 items-center justify-center rounded-lg border shadow-xs">

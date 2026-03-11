@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { effect, inject, Injectable, OnDestroy, PLATFORM_ID, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -10,10 +10,13 @@ import { AnalyticsService } from './analytics.service';
 // How many seconds before expiry to trigger a proactive silent refresh
 const REFRESH_BUFFER_SECONDS = 5 * 60; // 5 minutes
 
+// Max number of consecutive silent-refresh retries before forcing sign-out
+const MAX_REFRESH_RETRIES = 3;
+
 @Injectable({
 	providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
 	private readonly http = inject(HttpClient);
 	private readonly router = inject(Router);
 	private readonly platformId = inject(PLATFORM_ID);
@@ -29,6 +32,8 @@ export class AuthService {
 	});
 
 	private refreshTimerRef: ReturnType<typeof setTimeout> | null = null;
+	private refreshRetryCount = 0;
+	private readonly onVisibilityChange = () => this.handleVisibilityChange();
 
 	// Public readonly signals
 	readonly user = this.authState.asReadonly();
@@ -52,6 +57,46 @@ export class AuthService {
 				localStorage.removeItem('user');
 			}
 		});
+
+		// Detect when the user returns to the tab after it was backgrounded.
+		// Browsers throttle/freeze setTimeout in inactive tabs, so the scheduled
+		// refresh timer may drift significantly. Re-checking on visibility change
+		// ensures we always have a valid token when the user is actually present.
+		if (this.isBrowser) {
+			document.addEventListener('visibilitychange', this.onVisibilityChange);
+		}
+	}
+
+	ngOnDestroy(): void {
+		if (this.isBrowser) {
+			document.removeEventListener('visibilitychange', this.onVisibilityChange);
+		}
+		this.clearRefreshTimer();
+	}
+
+	/**
+	 * Called whenever the tab becomes visible or hidden.
+	 * On becoming visible, we correct for any timer drift caused by browser throttling:
+	 * - If the token is already expired → attempt silent refresh immediately.
+	 * - If the token is expiring soon → attempt silent refresh immediately.
+	 * - If the token is still healthy → reschedule the timer with the corrected remaining time.
+	 */
+	private handleVisibilityChange(): void {
+		if (document.visibilityState !== 'visible') return;
+		if (!this.authState().isAuthenticated) return;
+
+		const token = this.authState().token;
+		if (!token) return;
+
+		const remainingSeconds = this.getTokenRemainingSeconds(token);
+		if (remainingSeconds <= REFRESH_BUFFER_SECONDS) {
+			// Token already expired or expiring within the buffer window — refresh now.
+			this.silentRefresh();
+		} else {
+			// Token is still healthy but the timer may have drifted — reschedule it
+			// with the actual remaining time so it fires at the right moment.
+			this.scheduleTokenRefresh(remainingSeconds);
+		}
 	}
 
 	private loadAuthState(): void {
@@ -105,7 +150,19 @@ export class AuthService {
 		const delayMs = delaySeconds * 1000;
 
 		this.refreshTimerRef = setTimeout(() => {
-			this.silentRefresh();
+			// Guard against timer drift: the browser may have throttled this timer
+			// (e.g. the tab was backgrounded). Re-check the actual remaining time
+			// before deciding what to do.
+			const token = this.authState().token;
+			if (!token) return;
+
+			const actualRemaining = this.getTokenRemainingSeconds(token);
+			if (actualRemaining > REFRESH_BUFFER_SECONDS) {
+				// Timer fired early (unusual) — reschedule with the corrected delay.
+				this.scheduleTokenRefresh(actualRemaining);
+			} else {
+				this.silentRefresh();
+			}
 		}, delayMs);
 	}
 
@@ -144,6 +201,7 @@ export class AuthService {
 
 			if (event.data?.type === 'silent-refresh-success') {
 				const response = event.data.response as AuthResponse;
+				this.refreshRetryCount = 0;
 				this.authState.set({
 					user: response.user,
 					token: response.token,
@@ -152,24 +210,39 @@ export class AuthService {
 				this.scheduleTokenRefresh(response.expiresIn);
 				cleanup();
 			} else if (event.data?.type === 'silent-refresh-error') {
-				// Refresh token is invalid/expired — force sign out
-				this.clearRefreshTimer();
-				this.clearAuthState();
-				this.router.navigate(['/']);
 				cleanup();
+				this.handleRefreshFailure();
 			}
 		};
 
 		// Timeout fallback in case the iframe never responds
 		const timeoutId = setTimeout(() => {
-			this.clearRefreshTimer();
-			this.clearAuthState();
-			this.router.navigate(['/']);
 			cleanup();
+			this.handleRefreshFailure();
 		}, TIMEOUT_MS);
 
 		window.addEventListener('message', onMessage);
 		document.body.appendChild(iframe);
+	}
+
+	/**
+	 * Called when a silent refresh attempt fails (error response or timeout).
+	 * Retries up to MAX_REFRESH_RETRIES times with exponential back-off before
+	 * forcing a sign-out. This handles transient network hiccups and the brief
+	 * window where the browser is waking up from suspension.
+	 */
+	private handleRefreshFailure(): void {
+		if (this.refreshRetryCount < MAX_REFRESH_RETRIES) {
+			const backoffMs = Math.pow(2, this.refreshRetryCount) * 1000; // 1s, 2s, 4s
+			this.refreshRetryCount++;
+			this.refreshTimerRef = setTimeout(() => this.silentRefresh(), backoffMs);
+		} else {
+			// All retries exhausted — refresh token is likely expired; sign out.
+			this.refreshRetryCount = 0;
+			this.clearRefreshTimer();
+			this.clearAuthState();
+			this.router.navigate(['/']);
+		}
 	}
 
 	/**

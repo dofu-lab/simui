@@ -4,39 +4,22 @@ import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy, lucidePlus, lucideTrash2, lucideUserPlus } from '@ng-icons/lucide';
-import { BrnDialog, BrnDialogContent, BrnDialogTrigger } from '@spartan-ng/brain/dialog';
-import { BrnTooltipContentTemplate, BrnTooltipTrigger } from '@spartan-ng/brain/tooltip';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogContent } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
+import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-dialog-17',
 	providers: [provideIcons({ lucideUserPlus, lucidePlus, lucideTrash2, lucideCheck, lucideCopy })],
-	imports: [
-		NgIcon,
-		NgClass,
-		ReactiveFormsModule,
-		HlmIcon,
-		HlmInput,
-		HlmButton,
-		HlmDialog,
-		HlmDialogContent,
-		BrnDialogTrigger,
-		BrnDialogContent,
-		HlmButton,
-		HlmTooltipTrigger,
-		HlmTooltip,
-		BrnTooltipContentTemplate,
-	],
+	imports: [NgIcon, NgClass, ReactiveFormsModule, HlmIcon, HlmInput, HlmButton, HlmDialogImports, HlmTooltipImports],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" brnDialogTrigger hlmBtn variant="outline">Invite members</button>
+			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Invite members</button>
 			<hlm-dialog-content
 				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*brnDialogContent="let ctx">
+				*hlmDialogPortal="let ctx">
 				<div class="flex flex-1 flex-col gap-4 overflow-y-auto p-6">
 					<div class="flex flex-col gap-2">
 						<div class="flex size-11 items-center justify-center rounded-full border">
@@ -74,46 +57,42 @@ import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 					<div class="w-full">
 						<div class="text-foreground mb-2 text-sm">Invite via link</div>
 						<div class="relative">
-							<hlm-tooltip>
-								<input
-									hlmInput
-									class="peer w-full pe-9 text-sm"
-									type="email"
+							<input
+								hlmInput
+								class="peer w-full pe-9 text-sm"
+								type="email"
+								size="sm"
+								readonly
+								value="https://simui.dev/reference/12374" />
+							<button
+								hlmBtn
+								variant="link"
+								size="icon"
+								class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
+								hlmTooltip="Copy to clipboard"
+								[showDelay]="200"
+								[hideDelay]="200"
+								[disabled]="copied()"
+								(click)="onSelect()">
+								<ng-icon
+									hlm
+									name="lucideCopy"
 									size="sm"
-									readonly
-									value="https://simui.dev/reference/12374" />
-								<button
-									hlmBtn
-									variant="link"
-									size="icon"
-									hlmTooltipTrigger
-									hideDelay="200"
-									showDelay="200"
-									exitAnimationDuration="100"
-									class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
-									[disabled]="copied()"
-									(click)="onSelect()">
-									<ng-icon
-										hlm
-										name="lucideCopy"
-										size="sm"
-										class="transition-all"
-										[ngClass]="{
-											'scale-0 opacity-0': copied(),
-											'scale-100 opacity-100': !copied(),
-										}" />
-									<ng-icon
-										hlm
-										name="lucideCheck"
-										size="sm"
-										class="absolute text-emerald-500 transition-all"
-										[ngClass]="{
-											'scale-0 opacity-0': !copied(),
-											'scale-100 opacity-100': copied(),
-										}" />
-								</button>
-								<span *brnTooltipContent class="flex items-center text-xs">Copy to clipboard</span>
-							</hlm-tooltip>
+									class="transition-all"
+									[ngClass]="{
+										'scale-0 opacity-0': copied(),
+										'scale-100 opacity-100': !copied(),
+									}" />
+								<ng-icon
+									hlm
+									name="lucideCheck"
+									size="sm"
+									class="absolute text-emerald-500 transition-all"
+									[ngClass]="{
+										'scale-0 opacity-0': !copied(),
+										'scale-100 opacity-100': copied(),
+									}" />
+							</button>
 						</div>
 					</div>
 				</div>
@@ -122,12 +101,11 @@ import { HlmTooltip, HlmTooltipTrigger } from '@spartan-ng/helm/tooltip';
 	`,
 })
 export class Dialog17Component {
-	public dialogRef = viewChild(BrnDialog);
-	public tooltip = viewChild<BrnTooltipTrigger>(BrnTooltipTrigger);
+	public dialogRef = viewChild(HlmDialog);
 	public copied = signal<boolean>(false);
 	public clipboard = inject(Clipboard);
 	public form: FormGroup;
-	private _formBuilder = inject(FormBuilder);
+	private readonly _formBuilder = inject(FormBuilder);
 
 	constructor() {
 		this.form = this._formBuilder.group({
@@ -152,7 +130,6 @@ export class Dialog17Component {
 	}
 
 	onSelect(): void {
-		this.tooltip()?.hide();
 		this.copied.set(true);
 		this.clipboard.copy('https://simui.dev/reference/12374');
 

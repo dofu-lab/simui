@@ -23,7 +23,7 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 				size="icon"
 				variant="outline"
 				class="size-8"
-				[disabled]="value() === 0"
+				[disabled]="value()[0] === 0"
 				(click)="onDecreaseCredits()">
 				<ng-icon hlm name="lucideMinus" size="sm" />
 			</button>
@@ -33,7 +33,7 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 				size="icon"
 				variant="outline"
 				class="size-8"
-				[disabled]="value() === 200"
+				[disabled]="value()[0] === 200"
 				(click)="onIncreaseCredits()">
 				<ng-icon hlm name="lucidePlus" size="sm" />
 			</button>
@@ -41,21 +41,21 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider15Component {
-	public readonly value = signal(50);
+	public readonly value = signal([50]);
 
 	public onDecreaseCredits(): void {
-		if (this.value() === 0) {
+		if (this.value()[0] === 0) {
 			return;
 		}
 
-		this.value.update((value) => value - 5);
+		this.value.update((value) => [value[0] - 5]);
 	}
 
 	public onIncreaseCredits(): void {
-		if (this.value() === 200) {
+		if (this.value()[0] === 200) {
 			return;
 		}
 
-		this.value.update((value) => value + 5);
+		this.value.update((value) => [value[0] + 5]);
 	}
 }
