@@ -32,11 +32,11 @@ import { CodeLoaderService } from './services/code-loader.service';
 				<hlm-sheet-header>
 					<h3 hlmSheetTitle>Code</h3>
 				</hlm-sheet-header>
-				<div class="grid flex-1 px-4 pb-4">
+				<div class="min-h-0 px-4 pb-4">
 					@if (codeLoading()) {
-						<div class="flex items-center justify-center h-full text-muted-foreground text-sm">Loading...</div>
+						<div class="text-muted-foreground flex h-full items-center justify-center text-sm">Loading...</div>
 					} @else {
-						<code-preview [code]="displayCode()" [fileName]="componentName()" class="h-full w-full overflow-auto" />
+						<code-preview [code]="displayCode()" [fileName]="componentName()" />
 					}
 				</div>
 			</hlm-sheet-content>
