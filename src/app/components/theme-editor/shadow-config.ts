@@ -112,7 +112,7 @@ export class ShadowConfigComponent {
 		this.setupValueChanges();
 
 		this.colorSubject$.pipe(debounceTime(DEBOUNCE_TIME), takeUntilDestroyed()).subscribe((color) => {
-			this.themeStorageService.changeColor('shadow-color' as keyof ThemeStyleProps, color);
+			this.themeStorageService.changeColorForBothModes('shadow-color' as keyof ThemeStyleProps, color);
 		});
 	}
 

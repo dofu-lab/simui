@@ -80,7 +80,7 @@ export class SpacingSliderComponent {
 		});
 
 		this.spacingSubject$.pipe(debounceTime(DEBOUNCE_TIME), takeUntilDestroyed()).subscribe((spacing) => {
-			this.themeStorageService.changeColor('spacing', `${spacing}rem`);
+			this.themeStorageService.changeColorForBothModes('spacing', `${spacing}rem`);
 		});
 	}
 

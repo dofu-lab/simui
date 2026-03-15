@@ -1,4 +1,6 @@
-import { Component, effect, inject, input } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Component, effect, inject, input, PLATFORM_ID, signal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ComponentCardComponent } from './component-card.component';
 import { CodeLoaderService } from './services/code-loader.service';
 import { SuggestionComponent } from './suggestion.component';
@@ -15,7 +17,8 @@ import { ComponentCardItem } from './types';
 							[componentName]="component.id"
 							[colNumber]="component.colNumber"
 							[itemStyle]="component.itemStyle"
-							[component]="component.component" />
+							[component]="component.component"
+							[highlighted]="highlightedId() === component.id" />
 					}
 				</div>
 			</div>
@@ -27,6 +30,10 @@ import { ComponentCardItem } from './types';
 export class PageGridComponent {
 	public components = input<ComponentCardItem[]>([]);
 	private readonly codeLoaderService = inject(CodeLoaderService);
+	private readonly route = inject(ActivatedRoute);
+	private readonly document = inject(DOCUMENT);
+	private readonly platformId = inject(PLATFORM_ID);
+	protected readonly highlightedId = signal<string | null>(null);
 
 	constructor() {
 		effect(() => {
@@ -35,5 +42,24 @@ export class PageGridComponent {
 				this.codeLoaderService.preloadComponents(ids);
 			}
 		});
+
+		if (isPlatformBrowser(this.platformId)) {
+			this.route.fragment.subscribe((fragment) => {
+				if (fragment) {
+					setTimeout(() => this.scrollToAndHighlight(fragment), 150);
+				}
+			});
+		}
+	}
+
+	private scrollToAndHighlight(id: string): void {
+		const element = this.document.getElementById(id);
+		if (!element) {
+			return;
+		}
+
+		element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		this.highlightedId.set(id);
+		setTimeout(() => this.highlightedId.set(null), 2000);
 	}
 }
