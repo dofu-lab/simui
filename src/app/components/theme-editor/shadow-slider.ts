@@ -97,7 +97,7 @@ export class ShadowSliderComponent {
 			const key = this.cssKey();
 			const unit = this.unit();
 			const formattedValue = unit ? `${newValue}${unit}` : `${newValue}`;
-			this.themeStorageService.changeColor(key as keyof ThemeStyleProps, formattedValue, 'CHANGE_PROPERTY');
+			this.themeStorageService.changeColorForBothModes(key as keyof ThemeStyleProps, formattedValue);
 		});
 	}
 

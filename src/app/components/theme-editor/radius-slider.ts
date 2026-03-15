@@ -81,7 +81,7 @@ export class RadiusSliderComponent {
 		});
 
 		this.radiusSubject$.pipe(debounceTime(DEBOUNCE_TIME), takeUntilDestroyed()).subscribe((radius) => {
-			this.themeStorageService.changeColor('radius', `${radius}rem`, 'CHANGE_PROPERTY');
+			this.themeStorageService.changeColorForBothModes('radius', `${radius}rem`);
 		});
 	}
 

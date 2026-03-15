@@ -1,10 +1,12 @@
-import { NgComponentOutlet } from '@angular/common';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { DOCUMENT, NgComponentOutlet } from '@angular/common';
 import { Component, computed, inject, input, signal, Type, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideCode } from '@ng-icons/lucide';
+import { lucideCheck, lucideCode, lucideLink } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmSheet, HlmSheetImports } from '@spartan-ng/helm/sheet';
+import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
 import { AnalyticsService } from '../services/analytics.service';
@@ -13,20 +15,33 @@ import { CodeLoaderService } from './services/code-loader.service';
 
 @Component({
 	selector: 'component-card',
-	providers: [provideIcons({ lucideCode })],
-	imports: [NgComponentOutlet, HlmButton, NgIcon, HlmIcon, CodePreviewComponent, HlmSheetImports],
+	providers: [provideIcons({ lucideCode, lucideLink, lucideCheck })],
+	imports: [NgComponentOutlet, HlmButton, NgIcon, HlmIcon, CodePreviewComponent, HlmSheetImports, HlmTooltipImports],
 	template: `
 		<ng-container *ngComponentOutlet="component()"></ng-container>
 		<hlm-sheet #sheet side="right">
-			<div class="absolute -top-2 -right-2 items-center gap-2 p-4 group-hover:flex lg:hidden">
+			<div
+				class="absolute -top-2 -right-2 flex items-center gap-0 p-4 lg:opacity-0 lg:group-focus-within/item:opacity-100 lg:group-hover/item:opacity-100">
 				<button
 					hlmBtn
 					size="icon"
 					variant="link"
-					(click)="trackCodeClick()"
-					class="text-muted-foreground/80 hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100 lg:opacity-0 lg:group-focus-within/item:opacity-100 lg:group-hover/item:opacity-100">
+					class="text-muted-foreground/80 hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100"
+					[hlmTooltip]="shareTooltip"
+					(click)="shareComponent()">
+					<ng-icon hlm [name]="linkCopied() ? 'lucideCheck' : 'lucideLink'" size="sm" />
+				</button>
+				<ng-template #shareTooltip><span class="flex items-center">Copy link</span></ng-template>
+				<button
+					hlmBtn
+					size="icon"
+					variant="link"
+					class="text-muted-foreground/80 hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100"
+					[hlmTooltip]="viewCodeTooltip"
+					(click)="trackCodeClick()">
 					<ng-icon hlm name="lucideCode" size="sm" />
 				</button>
+				<ng-template #viewCodeTooltip><span class="flex items-center">View code</span></ng-template>
 			</div>
 			<hlm-sheet-content *hlmSheetPortal="let ctx" class="w-[calc(100%-(--spacing(12)))] max-w-sm sm:max-w-3xl">
 				<hlm-sheet-header>
@@ -44,15 +59,19 @@ import { CodeLoaderService } from './services/code-loader.service';
 	`,
 	host: {
 		'[class]': '_computedClass()',
+		'[id]': 'componentName()',
 	},
 })
 export class ComponentCardComponent {
 	private readonly codeLoaderService = inject(CodeLoaderService);
 	private readonly analyticsService = inject(AnalyticsService);
+	private readonly clipboard = inject(Clipboard);
+	private readonly document = inject(DOCUMENT);
 	private readonly sheetRef = viewChild<HlmSheet>('sheet');
 
 	public readonly component = input.required<Type<any> | null>();
 	public readonly componentName = input.required<string>();
+	public readonly highlighted = input<boolean>(false);
 	public readonly code = input<string | undefined>('');
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	public readonly colNumber = input<number>(3);
@@ -60,6 +79,7 @@ export class ComponentCardComponent {
 
 	protected readonly displayCode = signal<string>('');
 	protected readonly codeLoading = signal<boolean>(false);
+	protected readonly linkCopied = signal<boolean>(false);
 
 	protected styleClasses = computed(() => {
 		return this.itemStyle() === 1
@@ -94,12 +114,22 @@ export class ComponentCardComponent {
 
 	protected readonly _computedClass = computed(() =>
 		hlm(
-			'group/item flex border has-[[data-comp-loading=true]]:border-none relative group',
+			'group/item flex border has-[[data-comp-loading=true]]:border-none relative group transition-[box-shadow] duration-500',
+			this.highlighted() ? 'ring-2 ring-inset ring-primary/50' : '',
 			this.colSpanClasses(),
 			this.styleClasses(),
 			this.userClass(),
 		),
 	);
+
+	protected shareComponent(): void {
+		const loc = this.document.location;
+		const url = `${loc.origin}${loc.pathname}#${this.componentName()}`;
+		this.clipboard.copy(url);
+		this.linkCopied.set(true);
+		setTimeout(() => this.linkCopied.set(false), 3000);
+		this.analyticsService.trackEvent('component_shared', { component: this.componentName() });
+	}
 
 	protected trackCodeClick(): void {
 		this.sheetRef()?.open();

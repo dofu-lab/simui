@@ -252,6 +252,59 @@ export class ThemeStorageService {
 		this.addHistory(newPreset, action, historyValue);
 	}
 
+	public changeColorForBothModes(
+		key: keyof ThemeStyleProps,
+		value: string,
+		action: HistoryAction = 'CHANGE_PROPERTY',
+	): void {
+		let currentPreset = this.currentTheme();
+		const appearance = this.appearance();
+
+		if (!currentPreset || !appearance) {
+			console.error('No current theme or appearance available');
+			return;
+		}
+
+		if (!currentPreset.styles?.light || !currentPreset.styles?.dark) {
+			console.error('Invalid theme structure');
+			return;
+		}
+
+		// Mark as changed if in edit mode
+		if (this.isInEditMode()) {
+			this.markAsChanged();
+		}
+
+		if (currentPreset.source !== 'UNSAVED' && !this.isInEditMode()) {
+			currentPreset = { ...currentPreset, id: crypto.randomUUID(), source: 'UNSAVED', label: 'Custom theme (unsaved)' };
+		}
+
+		const oldValue = currentPreset.styles[appearance][key];
+
+		const newPreset: ThemePreset = {
+			...currentPreset,
+			styles: {
+				light: {
+					...currentPreset.styles.light,
+					[key]: value,
+				},
+				dark: {
+					...currentPreset.styles.dark,
+					[key]: value,
+				},
+			},
+		};
+
+		const historyValue: HistoryValue = {
+			targetKey: key,
+			oldValue: oldValue ?? 'empty',
+			newValue: value,
+			colorScheme: appearance,
+		};
+
+		this.addHistory(newPreset, action, historyValue);
+	}
+
 	public reset(): void {
 		const currentHistory = this.history();
 		if (currentHistory.length === 0) {
