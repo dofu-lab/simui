@@ -29,14 +29,21 @@ import { AppearanceService } from '../core/services/appearance.service';
 							class="border-input hover:bg-input/20 hover:border-muted-foreground/30 group mx-auto h-fit w-full max-w-[300px] cursor-pointer rounded-[18px] border px-1 pt-1 transition duration-100 ease-linear"
 							(click)="onNavigate(component.path)">
 							<div class="bg-muted relative h-[170px] overflow-hidden rounded-xl border group-hover:shadow-xs">
-								<img
-									[src]="'assets/thumbnails/dark-' + component.image"
-									class="absolute size-full object-cover"
-									[hidden]="this.appearance() !== 'dark'" />
-								<img
-									[src]="'assets/thumbnails/' + component.image"
-									class="absolute size-full object-cover"
-									[hidden]="this.appearance() !== 'light'" />
+								@if (appearance() === 'dark') {
+									<img
+										[src]="'assets/thumbnails/dark-' + component.image"
+										class="absolute size-full object-cover"
+										width="300"
+										height="170"
+										loading="lazy" />
+								} @else {
+									<img
+										[src]="'assets/thumbnails/' + component.image"
+										class="absolute size-full object-cover"
+										width="300"
+										height="170"
+										loading="lazy" />
+								}
 							</div>
 							<div dfCardBody>
 								<div class="text-foreground flex items-center gap-2 text-sm font-medium">
