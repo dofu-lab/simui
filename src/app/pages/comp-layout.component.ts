@@ -6,7 +6,7 @@ import { FooterComponent } from '../core';
 	selector: 'app-comp-layout',
 	imports: [RouterOutlet, FooterComponent],
 	template: `
-		<div class="relative mx-auto w-full max-w-6xl">
+		<div class="relative mx-auto w-full max-w-7xl">
 			<div class="mx-auto max-w-[1200px] grow">
 				<router-outlet />
 			</div>

@@ -14,6 +14,7 @@ export * from './notification.constant';
 export * from './pagination.constant';
 export * from './popover.constant';
 export * from './radio.constant';
+export * from './select.constant';
 export * from './slider.constant';
 export * from './switch.constant';
 export * from './tabs.constant';

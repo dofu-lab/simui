@@ -1,17 +1,17 @@
+import { NgComponentOutlet } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { previewComponents } from '../constants/home.constant';
 import { FooterComponent } from '../core';
 import { CardBodyDirective, CardDirective } from '../core/card';
 import { NavigationService } from '../core/services';
-import { AppearanceService } from '../core/services/appearance.service';
 
 @Component({
 	selector: 'app-home',
 	providers: [NavigationService],
-	imports: [CardDirective, CardBodyDirective, HlmBadge, FooterComponent],
+	imports: [NgComponentOutlet, CardDirective, CardBodyDirective, HlmBadge, FooterComponent],
 	template: `
-		<div class="relative mx-auto w-full max-w-6xl">
+		<div class="relative mx-auto w-full max-w-7xl">
 			<div class="flex-1 items-start">
 				<div class="max-w-3xl pt-10 max-sm:text-center">
 					<h1 class="font-heading text-foreground mb-4 text-4xl/[1.1] font-bold tracking-tight md:text-5xl/[1.1]">
@@ -28,22 +28,8 @@ import { AppearanceService } from '../core/services/appearance.service';
 							dfCard
 							class="border-input hover:bg-input/20 hover:border-muted-foreground/30 group mx-auto h-fit w-full max-w-[300px] cursor-pointer rounded-[18px] border px-1 pt-1 transition duration-100 ease-linear"
 							(click)="onNavigate(component.path)">
-							<div class="bg-muted relative h-[170px] overflow-hidden rounded-xl border group-hover:shadow-xs">
-								@if (appearance() === 'dark') {
-									<img
-										[src]="'assets/thumbnails/dark-' + component.image"
-										class="absolute size-full object-cover"
-										width="300"
-										height="170"
-										loading="lazy" />
-								} @else {
-									<img
-										[src]="'assets/thumbnails/' + component.image"
-										class="absolute size-full object-cover"
-										width="300"
-										height="170"
-										loading="lazy" />
-								}
+							<div class="bg-muted/50 relative h-[170px] overflow-hidden rounded-xl border px-6 group-hover:shadow-xs">
+								<ng-container *ngComponentOutlet="component.thumbnail" />
 							</div>
 							<div dfCardBody>
 								<div class="text-foreground flex items-center gap-2 text-sm font-medium">
@@ -63,10 +49,8 @@ import { AppearanceService } from '../core/services/appearance.service';
 	`,
 })
 export class HomeComponent {
-	private readonly appearanceService = inject(AppearanceService);
 	private readonly navigationService = inject(NavigationService);
 
-	protected readonly appearance = this.appearanceService.appearance.asReadonly();
 	protected readonly components = previewComponents;
 
 	public onNavigate(path: string): void {

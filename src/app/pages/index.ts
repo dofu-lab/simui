@@ -23,6 +23,7 @@ export * from './pricing';
 export * from './privacy-policy';
 export * from './profile-settings';
 export * from './radio.component';
+export * from './select.component';
 export * from './slider.component';
 export * from './switch.component';
 export * from './tabs.component';
