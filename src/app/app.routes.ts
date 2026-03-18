@@ -243,6 +243,15 @@ export const routes: Routes = [
 				},
 			},
 			{
+				path: 'select',
+				loadComponent: () => import('./pages').then((m) => m.SelectComponent),
+				data: {
+					title: 'Select',
+					description: 'Select component.',
+					keywords: 'select, dropdown, form, angular',
+				},
+			},
+			{
 				path: 'slider',
 				loadComponent: () => import('./pages').then((m) => m.SliderComponent),
 				data: { title: 'Slider', description: 'Range slider component.', keywords: 'slider, range, input, angular' },

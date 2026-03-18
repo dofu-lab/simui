@@ -11,15 +11,15 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	},
 	template: `
 		<span hlmBadge class="rounded-full">
-			<hlm-spinner class="size-3" />
+			<hlm-spinner />
 			Loading
 		</span>
 		<span hlmBadge variant="secondary" class="rounded-full">
-			<hlm-spinner class="size-3" />
+			<hlm-spinner />
 			Syncing
 		</span>
 		<span hlmBadge variant="outline" class="rounded-full">
-			<hlm-spinner class="size-3" />
+			<hlm-spinner />
 			Updating
 		</span>
 	`,
