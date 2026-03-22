@@ -17,10 +17,11 @@ import {
 	PaginationThumbnailComponent,
 	PopoverThumbnailComponent,
 	RadioThumbnailComponent,
+	SelectThumbnailComponent,
 	SliderThumbnailComponent,
 	SwitchThumbnailComponent,
 	TabsThumbnailComponent,
-} from '../components/thumbnails';
+} from '../core/thumbnails';
 import { ComponentInfo } from '../types';
 import { accordionComponents } from './accordion.constant';
 import { alertComponents } from './alert.constant';
@@ -37,11 +38,19 @@ import { inputComponents } from './input.constant';
 import { notificationComponents } from './notification.constant';
 import { paginationComponents } from './pagination.constant';
 import { radioComponents } from './radio.constant';
+import { selectComponents } from './select.constant';
 import { sliderComponents } from './slider.constant';
 import { switchComponents } from './switch.constant';
 import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Select',
+		compNumber: selectComponents.length,
+		thumbnail: SelectThumbnailComponent,
+		path: 'components/select',
+		isNew: true,
+	},
 	{
 		name: 'Accordion',
 		compNumber: accordionComponents.length,

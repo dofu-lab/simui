@@ -40,15 +40,6 @@ import {
 	Select39Component,
 	Select40Component,
 	Select41Component,
-	Select42Component,
-	Select43Component,
-	Select44Component,
-	Select45Component,
-	Select46Component,
-	Select47Component,
-	Select48Component,
-	Select49Component,
-	Select50Component,
 } from '../components/select';
 import { ComponentCardItem } from '../core';
 
@@ -222,6 +213,18 @@ export const selectComponents: ComponentCardItem[] = [
 		itemStyle: 1,
 	},
 	{
+		id: 'select-40',
+		component: Select40Component,
+		colNumber: 4,
+		itemStyle: 1,
+	},
+	{
+		id: 'select-41',
+		component: Select41Component,
+		colNumber: 4,
+		itemStyle: 1,
+	},
+	{
 		id: 'select-29',
 		component: Select29Component,
 		colNumber: 4,
@@ -284,72 +287,6 @@ export const selectComponents: ComponentCardItem[] = [
 	{
 		id: 'select-39',
 		component: Select39Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-40',
-		component: Select40Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-41',
-		component: Select41Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-42',
-		component: Select42Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-43',
-		component: Select43Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-44',
-		component: Select44Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-45',
-		component: Select45Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-46',
-		component: Select46Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-47',
-		component: Select47Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-48',
-		component: Select48Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-49',
-		component: Select49Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-50',
-		component: Select50Component,
 		colNumber: 4,
 		itemStyle: 1,
 	},
