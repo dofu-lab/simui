@@ -1,4 +1,15 @@
-import { afterNextRender, Component, computed, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
+import {
+	afterNextRender,
+	Component,
+	computed,
+	DestroyRef,
+	ElementRef,
+	inject,
+	model,
+	signal,
+	viewChild,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideX } from '@ng-icons/lucide';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
@@ -13,7 +24,7 @@ type Option = {
 
 @Component({
 	selector: 'sim-select-39',
-	imports: [HlmFieldImports, HlmPopoverImports, NgIcon, HlmIcon, HlmCommandImports],
+	imports: [HlmFieldImports, HlmPopoverImports, NgIcon, HlmIcon, HlmCommandImports, FormsModule],
 	providers: [provideIcons({ lucideChevronDown, lucideX })],
 	host: { class: 'block w-full' },
 	template: `
@@ -47,6 +58,9 @@ type Option = {
 									id="input-55"
 									type="text"
 									placeholder="Add framework"
+									[ngModel]="filterValue()"
+									(ngModelChange)="filterValue.set($event)"
+									(keydown.backspace)="handleBackspace()"
 									class="border-input placeholder:text-muted-foreground flex h-7 w-full min-w-20 flex-1 rounded-md border-0 bg-transparent px-2 py-1 text-sm shadow-none transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50" />
 							</div>
 						</div>
@@ -56,7 +70,7 @@ type Option = {
 						<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
 						<hlm-command-list autofocus="">
 							<hlm-command-group>
-								@for (framework of frameworkSelections(); track framework.value) {
+								@for (framework of displayedFrameworks(); track framework.value) {
 									<button hlm-command-item [value]="framework.value" (selected)="commandSelected(framework)">
 										<span>{{ framework.label }}</span>
 										<ng-icon
@@ -147,8 +161,12 @@ export class Select39Component {
 		},
 	];
 
-	protected readonly frameworkSelections = computed(() =>
-		this.frameworks.filter((framework) => !this.isSelected(framework)),
+	readonly filterValue = model<string>('');
+	protected readonly displayedFrameworks = computed(() =>
+		this.frameworks.filter(
+			(framework) =>
+				!this.isSelected(framework) && framework.label.toLowerCase().includes(this.filterValue().toLowerCase()),
+		),
 	);
 
 	public readonly triggerWidth = signal(0);
@@ -193,5 +211,16 @@ export class Select39Component {
 
 	protected removeFramework(value: string): void {
 		this.currentFramework.set(this.currentFramework()?.filter((framework) => framework.value !== value));
+	}
+
+	protected handleBackspace(): void {
+		if (this.filterValue()) {
+			return;
+		}
+		const currentFramework = this.currentFramework();
+		if (currentFramework && currentFramework.length > 0) {
+			currentFramework.pop();
+			this.currentFramework.set([...currentFramework]);
+		}
 	}
 }

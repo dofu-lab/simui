@@ -14,7 +14,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">
 				<label hlmFieldLabel for="select-16">Select with icon</label>
-				<brn-select placeholder="Select a framework" id="select-16">
+				<brn-select placeholder="Select a timeslot" id="select-16">
 					<hlm-select-trigger class="relative [&>button]:w-full [&>button]:ps-9">
 						<div
 							class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 group-has-[select[disabled]]:opacity-50">
