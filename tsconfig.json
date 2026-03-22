@@ -60,6 +60,7 @@
 			"@spartan-ng/helm/dialog": ["./src/libs/ui/dialog/src/index.ts"],
 			"@spartan-ng/helm/item": ["./src/libs/ui/item/src/index.ts"],
 			"@spartan-ng/helm/table": ["./src/libs/ui/table/src/index.ts"],
+			"@spartan-ng/helm/native-select": ["./src/libs/ui/native-select/src/index.ts"],
 			"@/*": ["./src/*"]
 		}
 	},
