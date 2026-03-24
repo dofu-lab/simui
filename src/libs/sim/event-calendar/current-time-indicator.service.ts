@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { endOfWeek, isSameDay, isWithinInterval, startOfWeek } from 'date-fns';
 import { BehaviorSubject, Observable, combineLatest, interval } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { EndHour, StartHour } from '../constants';
+import { EndHour, StartHour } from './constants';
 
 export interface CurrentTimeIndicatorState {
 	currentTimePosition: number;
@@ -11,8 +11,8 @@ export interface CurrentTimeIndicatorState {
 
 @Injectable()
 export class CurrentTimeIndicatorService {
-	private currentDateSubject = new BehaviorSubject<Date>(new Date());
-	private viewSubject = new BehaviorSubject<'day' | 'week'>('week');
+	private readonly currentDateSubject = new BehaviorSubject<Date>(new Date());
+	private readonly viewSubject = new BehaviorSubject<'day' | 'week'>('week');
 
 	constructor() {}
 

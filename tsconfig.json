@@ -16,7 +16,8 @@
 		"target": "ES2022",
 		"module": "ES2022",
 		"paths": {
-			"@sim/ui-file-helm": ["./src/libs/sim/ui-file-helm/index.ts"],
+			"@sim/file": ["./src/libs/sim/file/index.ts"],
+			"@sim/event-calendar": ["./src/libs/sim/event-calendar/index.ts"],
 			"@spartan-ng/helm/dropdown-menu": ["./src/libs/ui/dropdown-menu/src/index.ts"],
 			"@spartan-ng/helm/accordion": ["./src/libs/ui/accordion/src/index.ts"],
 			"@spartan-ng/helm/utils": ["./src/libs/ui/utils/src/index.ts"],

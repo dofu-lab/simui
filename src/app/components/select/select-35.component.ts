@@ -24,7 +24,7 @@ type Option = {
 				<hlm-popover [state]="state()" (stateChanged)="stateChanged($event)" sideOffset="5">
 					<button
 						id="select-35"
-						#triggerBtn
+						#triggerBtn35
 						class="border-input bg-background hover:bg-background w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]"
 						hlmPopoverTrigger
 						hlmBtn
@@ -60,7 +60,7 @@ type Option = {
 	`,
 })
 export class Select35Component {
-	private triggerBtn = viewChild.required<ElementRef<HTMLButtonElement>>('triggerBtn');
+	private readonly triggerBtn35 = viewChild.required<ElementRef<HTMLButtonElement>>('triggerBtn35');
 	private readonly timezones = Intl.supportedValuesOf('timeZone');
 
 	private readonly destroyRef = inject(DestroyRef);
@@ -93,7 +93,7 @@ export class Select35Component {
 
 	constructor() {
 		afterNextRender(() => {
-			const el = this.triggerBtn().nativeElement;
+			const el = this.triggerBtn35().nativeElement;
 			this.triggerWidth.set(el.offsetWidth);
 			const observer = new ResizeObserver(() => this.triggerWidth.set(el.offsetWidth));
 			observer.observe(el);

@@ -16,9 +16,11 @@ import {
 	startOfDay,
 	startOfWeek,
 } from 'date-fns';
+import { CalendarDateService } from './calendar-date.service';
 import { EndHour, StartHour } from './constants';
+import { CurrentTimeIndicatorService } from './current-time-indicator.service';
 import { EventItemComponent } from './event-item.component';
-import { CalendarDateService, CurrentTimeIndicatorService, EventPositioningService } from './services';
+import { EventPositioningService } from './event-positioning.service';
 import { CalendarEvent, EventDuration, PositionedEvent } from './type';
 import { getDateFromContainerId, isMultiDayEvent } from './utils';
 

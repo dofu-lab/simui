@@ -47,12 +47,26 @@ import { CodeLoaderService } from './services/code-loader.service';
 				<hlm-sheet-header>
 					<h3 hlmSheetTitle>Code</h3>
 				</hlm-sheet-header>
-				<div class="min-h-0 px-4 pb-4">
-					@if (codeLoading()) {
-						<div class="text-muted-foreground flex h-full items-center justify-center text-sm">Loading...</div>
-					} @else {
-						<code-preview [code]="displayCode()" [fileName]="componentName()" />
-					}
+				<div class="mb-4 flex min-h-0 flex-col px-4 pb-4">
+					<!-- Installation -->
+					<div class="mb-4">
+						<h4 class="mb-2 text-lg font-semibold">Installation</h4>
+						<div class="mt-3">
+							<code-preview language="sh" [code]="installCommand()" [fileName]="componentName() + '-install'" />
+						</div>
+						<ng-template #installTooltip><span class="flex items-center">Copy install command</span></ng-template>
+					</div>
+
+					<!-- Code -->
+					<div class="mb-4 min-h-0 flex-1">
+						<h4 class="mb-2 text-lg font-semibold">Code</h4>
+						@if (codeLoading()) {
+							<div class="text-muted-foreground flex h-full items-center justify-center text-sm">Loading...</div>
+						} @else {
+							<code-preview [code]="displayCode()" [fileName]="componentName()" />
+						}
+					</div>
+					<ng-template #codeTooltip><span class="flex items-center">Copy code to clipboard</span></ng-template>
 				</div>
 			</hlm-sheet-content>
 		</hlm-sheet>
@@ -76,10 +90,18 @@ export class ComponentCardComponent {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	public readonly colNumber = input<number>(3);
 	public readonly itemStyle = input<number>();
+	// CLI scope/package to display for copying. Configurable via input binding.
+	public readonly cliScope = input<string>('@dofu-lab/simui-cli');
 
 	protected readonly displayCode = signal<string>('');
 	protected readonly codeLoading = signal<boolean>(false);
 	protected readonly linkCopied = signal<boolean>(false);
+	protected readonly cliCopied = signal<boolean>(false);
+	protected readonly installCopied = signal<boolean>(false);
+	protected readonly selectedManager = signal<string>('pnpm');
+	protected readonly codeCopied = signal<boolean>(false);
+	protected readonly installCommand = computed(() => `npx ${this.cliScope()} add ${this.componentName()}`);
+	protected readonly cliCommand = computed(() => `npx ${this.cliScope()} add ${this.componentName()}`);
 
 	protected styleClasses = computed(() => {
 		return this.itemStyle() === 1
@@ -129,6 +151,35 @@ export class ComponentCardComponent {
 		this.linkCopied.set(true);
 		setTimeout(() => this.linkCopied.set(false), 3000);
 		this.analyticsService.trackEvent('component_shared', { component: this.componentName() });
+	}
+
+	protected copyCliCommand(): void {
+		const cmd = this.cliCommand();
+		this.clipboard.copy(cmd);
+		this.cliCopied.set(true);
+		setTimeout(() => this.cliCopied.set(false), 3000);
+		this.analyticsService.trackEvent('cli_copied', { component: this.componentName(), command: cmd });
+	}
+
+	protected copyInstallCommand(): void {
+		const cmd = this.installCommand();
+		this.clipboard.copy(cmd);
+		this.installCopied.set(true);
+		setTimeout(() => this.installCopied.set(false), 3000);
+		this.analyticsService.trackEvent('install_cmd_copied', {
+			component: this.componentName(),
+			manager: this.selectedManager(),
+			command: cmd,
+		});
+	}
+
+	protected copyCode(): void {
+		const txt = this.displayCode();
+		if (!txt) return;
+		this.clipboard.copy(txt);
+		this.codeCopied.set(true);
+		setTimeout(() => this.codeCopied.set(false), 3000);
+		this.analyticsService.trackEvent('code_copied', { component: this.componentName() });
 	}
 
 	protected trackCodeClick(): void {

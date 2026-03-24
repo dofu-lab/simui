@@ -8,9 +8,9 @@ import {
 	isSameDay,
 	startOfDay,
 } from 'date-fns';
-import { StartHour, WeekCellsHeight } from '../constants';
-import { CalendarEvent, PositionedEvent } from '../type';
-import { isMultiDayEvent } from '../utils';
+import { StartHour, WeekCellsHeight } from './constants';
+import { CalendarEvent, PositionedEvent } from './type';
+import { isMultiDayEvent } from './utils';
 
 @Injectable()
 export class EventPositioningService {

@@ -1,3 +1,10 @@
+import {
+	FileDragDropDirective,
+	FileMetadata,
+	FileUploadState,
+	FileWithPreview,
+	formatBytes,
+} from '@/libs/sim/file/file-drag-drop.directive';
 import { Component, computed, input, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -14,7 +21,6 @@ import {
 	lucideVideo,
 	lucideX,
 } from '@ng-icons/lucide';
-import { FileDragDropDirective, FileMetadata, FileUploadState, FileWithPreview, formatBytes } from '@sim/ui-file-helm';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
