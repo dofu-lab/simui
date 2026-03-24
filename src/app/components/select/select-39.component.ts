@@ -34,7 +34,7 @@ type Option = {
 				<hlm-popover autoFocus="none" sideOffset="5" [state]="state()" (stateChanged)="stateChanged($event)">
 					<button
 						id="select-39"
-						#triggerBtn
+						#triggerBtn39
 						hlmPopoverTrigger
 						variant="outline"
 						class="w-full"
@@ -91,7 +91,7 @@ type Option = {
 	`,
 })
 export class Select39Component {
-	protected triggerBtn = viewChild.required<ElementRef<HTMLButtonElement>>('triggerBtn');
+	protected triggerBtn39 = viewChild.required<ElementRef<HTMLButtonElement>>('triggerBtn39');
 	private readonly destroyRef = inject(DestroyRef);
 
 	protected readonly frameworks: Option[] = [
@@ -175,7 +175,7 @@ export class Select39Component {
 
 	constructor() {
 		afterNextRender(() => {
-			const el = this.triggerBtn().nativeElement;
+			const el = this.triggerBtn39().nativeElement;
 			this.triggerWidth.set(el.offsetWidth);
 			const observer = new ResizeObserver(() => {
 				this.triggerWidth.set(el.offsetWidth);

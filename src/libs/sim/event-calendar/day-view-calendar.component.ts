@@ -15,9 +15,11 @@ import {
 	startOfDay,
 	startOfWeek,
 } from 'date-fns';
+import { CalendarDateService } from './calendar-date.service';
 import { EndHour, StartHour } from './constants';
+import { CurrentTimeIndicatorService } from './current-time-indicator.service';
 import { EventItemComponent } from './event-item.component';
-import { CalendarDateService, CurrentTimeIndicatorService, EventPositioningService } from './services';
+import { EventPositioningService } from './event-positioning.service';
 import { CalendarEvent, EventDuration, PositionedEvent } from './type';
 import { getDateFromContainerId, isMultiDayEvent } from './utils';
 
@@ -30,7 +32,7 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 		<div data-slot="day-view" class="border-border/70 flex h-full flex-col border-t">
 			@if (showAllDaySection()) {
 				<div class="border-border/70 bg-muted/50 grid grid-cols-[64px_auto] border-b">
-					<div class="border-border/70 relative flex w-[64px] items-center justify-end border-r">
+					<div class="border-border/70 relative flex w-16 items-center justify-end border-r">
 						<span
 							class="text-muted-foreground/70 flex h-6 w-16 max-w-full items-center justify-center text-[10px] sm:text-xs">
 							All day
@@ -59,7 +61,7 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 			<div cdkDropListGroup class="grid flex-1 grid-cols-[64px_auto] overflow-hidden">
 				<div class="border-border/70 grid auto-cols-fr border-r">
 					@for (hour of hours(); track hour.toString(); let index = $index) {
-						<div class="border-border/70 relative h-[64px] border-b last:border-b-0">
+						<div class="border-border/70 relative h-16 border-b last:border-b-0">
 							@if (index > 0) {
 								<span
 									class="bg-background text-muted-foreground/70 absolute -top-3 left-0 flex h-6 w-16 max-w-full items-center justify-end pe-2 text-[10px] sm:pe-4 sm:text-xs">
@@ -78,16 +80,16 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 							<div class="relative flex items-center">
 								@if (isToday()) {
 									<div class="bg-primary absolute -left-1 h-2 w-2 rounded-full"></div>
-									<div class="bg-primary h-[2px] w-full"></div>
+									<div class="bg-primary h-0.5 w-full"></div>
 								} @else {
-									<div class="border-primary mx-[1px] w-full border-t-[2px] border-dashed"></div>
+									<div class="border-primary mx-px w-full border-t-[2px] border-dashed"></div>
 								}
 							</div>
 						</div>
 					}
 
 					@for (hour of hours(); track hour.toString()) {
-						<div class="border-border/70 relative h-[64px] border-b last:border-b-0">
+						<div class="border-border/70 relative h-16 border-b last:border-b-0">
 							@for (quarter of [0, 1, 2, 3]; track quarter) {
 								<div
 									cdkDropList
@@ -127,16 +129,16 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 	`,
 })
 export class DayViewCalendarComponent {
-	private _calendarDateService = inject(CalendarDateService);
-	private _eventPositioningService = inject(EventPositioningService);
-	private _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
+	private readonly _calendarDateService = inject(CalendarDateService);
+	private readonly _eventPositioningService = inject(EventPositioningService);
+	private readonly _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
 
 	readonly currentDate = input.required<Date>();
 	readonly events = input.required<CalendarEvent[]>();
 
-	onEventSelect = output<CalendarEvent>();
-	onEventCreate = output<EventDuration>();
-	onEventUpdated = output<CalendarEvent>();
+	public readonly onEventSelect = output<CalendarEvent>();
+	public readonly onEventCreate = output<EventDuration>();
+	public readonly onEventUpdated = output<CalendarEvent>();
 
 	currentTimeIndicator = toSignal(this._currentTimeIndicatorService.getCurrentTimeIndicator());
 

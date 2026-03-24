@@ -278,16 +278,16 @@ export const selectComponents: ComponentCardItem[] = [
 		colNumber: 4,
 		itemStyle: 1,
 	},
-	{
-		id: 'select-38',
-		component: Select38Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'select-39',
-		component: Select39Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
+	// {
+	// 	id: 'select-38',
+	// 	component: Select38Component,
+	// 	colNumber: 4,
+	// 	itemStyle: 1,
+	// },
+	// {
+	// 	id: 'select-39',
+	// 	component: Select39Component,
+	// 	colNumber: 4,
+	// 	itemStyle: 1,
+	// },
 ];

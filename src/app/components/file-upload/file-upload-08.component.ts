@@ -1,7 +1,7 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucidePaperclip, lucideUpload, lucideX } from '@ng-icons/lucide';
-import { FileDragDropDirective, FileMetadata, FileUploadState } from '@sim/ui-file-helm';
+import { FileDragDropDirective, FileMetadata, FileUploadState } from '@sim/file';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 @Component({

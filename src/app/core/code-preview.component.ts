@@ -48,6 +48,23 @@ declare const Prism: typeof import('prismjs');
 								}
 							}
 						</div>
+					} @else if (language === 'sh') {
+						<div class="text-muted-foreground border-input rounded-sm border p-0.5 text-xs">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-terminal-icon lucide-terminal">
+								<path d="M12 19h8" />
+								<path d="m4 17 6-6-6-6" />
+							</svg>
+						</div>
 					}
 					<span class="text-muted-foreground truncate text-xs font-medium">{{ fileName() }}</span>
 				</div>
@@ -64,7 +81,11 @@ declare const Prism: typeof import('prismjs');
 		</div>
 		<div
 			class="spartan-scroll relative h-fit overflow-auto bg-zinc-50 font-mono text-sm text-zinc-800 dark:bg-zinc-950 dark:text-zinc-100">
-			<div class="min-h-0 max-w-full" [innerHTML]="_content"></div>
+			@if (language === 'sh') {
+				<div class="min-h-0 max-w-full p-4" [innerHTML]="_content"></div>
+			} @else {
+				<div class="min-h-0 max-w-full" [innerHTML]="_content"></div>
+			}
 		</div>
 	`,
 	styles: [

@@ -44,15 +44,19 @@ import { getAgendaEventsForDay } from './utils';
 	`,
 })
 export class AgendaViewComponent {
-	currentDate = input.required<Date>();
-	events = input.required<CalendarEvent[]>();
+	public readonly currentDate = input.required<Date>();
+	public readonly events = input.required<CalendarEvent[]>();
 
-	onEventSelect = output<CalendarEvent>();
-	onEventCreate = output<Date>();
+	public readonly onEventSelect = output<CalendarEvent>();
+	public readonly onEventCreate = output<Date>();
 
-	days = computed(() => Array.from({ length: AgendaDaysToShow }, (_, i) => addDays(new Date(this.currentDate()), i)));
-	hasEvents = computed(() => this.days().some((day) => getAgendaEventsForDay(this.events(), day).length > 0));
-	isToday = isToday;
+	protected readonly days = computed(() =>
+		Array.from({ length: AgendaDaysToShow }, (_, i) => addDays(new Date(this.currentDate()), i)),
+	);
+	protected readonly hasEvents = computed(() =>
+		this.days().some((day) => getAgendaEventsForDay(this.events(), day).length > 0),
+	);
+	protected readonly isToday = isToday;
 
 	public getAgendaEventsForDay(day: Date): CalendarEvent[] {
 		return getAgendaEventsForDay(this.events(), day);

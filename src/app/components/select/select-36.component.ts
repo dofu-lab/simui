@@ -30,7 +30,7 @@ type CountryItem = {
 				<hlm-popover [state]="state()" (stateChanged)="stateChanged($event)" sideOffset="5">
 					<button
 						id="select-36"
-						#triggerBtn
+						#triggerBtn36
 						class="border-input bg-background hover:bg-background w-full justify-between px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]"
 						hlmPopoverTrigger
 						hlmBtn
@@ -80,7 +80,7 @@ type CountryItem = {
 	`,
 })
 export class Select36Component {
-	private triggerBtn = viewChild.required<ElementRef<HTMLButtonElement>>('triggerBtn');
+	private readonly triggerBtn36 = viewChild.required<ElementRef<HTMLButtonElement>>('triggerBtn36');
 	private readonly destroyRef = inject(DestroyRef);
 
 	public readonly currentCountry = signal<CountryItem | undefined>(undefined);
@@ -131,7 +131,7 @@ export class Select36Component {
 
 	constructor() {
 		afterNextRender(() => {
-			const el = this.triggerBtn().nativeElement;
+			const el = this.triggerBtn36().nativeElement;
 			this.triggerWidth.set(el.offsetWidth);
 			const observer = new ResizeObserver(() => this.triggerWidth.set(el.offsetWidth));
 			observer.observe(el);
