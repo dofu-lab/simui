@@ -1,0 +1,3 @@
+{
+  "content": "import { Injectable } from '@angular/core';\nimport { addMinutes, getHours } from 'date-fns';\n\n@Injectable()\nexport class CalendarDateService {\n\tpublic getQuarterTime(day: Date, hour: Date, quarter: number): string {\n\t\treturn addMinutes(day, getHours(hour) * 60 + quarter * 15).toString();\n\t}\n}"
+}
