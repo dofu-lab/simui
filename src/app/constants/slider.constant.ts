@@ -18,6 +18,7 @@ import {
 	Slider17Component,
 	Slider18Component,
 	Slider19Component,
+	Slider20Component,
 } from '../components/slider';
 import { ComponentCardItem } from '../core';
 
@@ -115,6 +116,12 @@ export const sliderComponents: ComponentCardItem[] = [
 	{
 		component: Slider15Component,
 		id: 'slider-15',
+		colNumber: 4,
+		itemStyle: 1,
+	},
+	{
+		component: Slider20Component,
+		id: 'slider-20',
 		colNumber: 4,
 		itemStyle: 1,
 	},
