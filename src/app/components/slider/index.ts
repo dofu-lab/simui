@@ -17,3 +17,4 @@ export * from './slider-16.component';
 export * from './slider-17.component';
 export * from './slider-18.component';
 export * from './slider-19.component';
+export * from './slider-20.component';
