@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'app-select-thumbnail',
-	standalone: true,
 	host: { class: 'flex w-full h-full items-center justify-center' },
 	template: `
 		<div class="flex flex-col items-center gap-1.5">

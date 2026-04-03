@@ -13,7 +13,6 @@ import { ColorTypeSelector } from './color-type-selector';
 
 @Component({
 	selector: 'sim-theme-code-sheet',
-	standalone: true,
 	imports: [HlmSheetImports, CodePreviewComponent, NgIcon, HlmIcon, HlmButton, ColorTypeSelector],
 	providers: [ColorService, provideIcons({ lucideBraces })],
 	template: `

@@ -62,6 +62,9 @@ importers:
       '@ng-icons/tabler-icons':
         specifier: ^33.0.0
         version: 33.0.0
+      '@sim-space/image-cropper':
+        specifier: 1.0.0
+        version: 1.0.0(@angular/common@20.0.7(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))
       '@spartan-ng/brain':
         specifier: 0.0.1-alpha.655
         version: 0.0.1-alpha.655(@angular/cdk@20.0.6(@angular/common@20.0.7(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/common@20.0.7(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/forms@20.0.7(@angular/common@20.0.7(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.0.7(@angular/common@20.0.7(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2))(clsx@2.1.1)(luxon@3.7.2)(rxjs@7.8.2)(tailwindcss@4.1.17)
@@ -2880,6 +2883,12 @@ packages:
   '@sigstore/verify@2.1.1':
     resolution: {integrity: sha512-hVJD77oT67aowHxwT4+M6PGOp+E2LtLdTK3+FC0lBO9T7sYwItDMXZ7Z07IDCvR1M717a4axbIWckrW67KMP/w==}
     engines: {node: ^18.17.0 || >=20.5.0}
+
+  '@sim-space/image-cropper@1.0.0':
+    resolution: {integrity: sha512-RRCDt1Wv//u5eCAteGEYM2al+/5TX21QoLwKRM3F0oR+tuDzvAxtPDyY2nFOVfTSTCAmnDnzob/1EORILabymw==}
+    peerDependencies:
+      '@angular/common': ^19.0.0 || ^20.0.0 || ^21.0.0
+      '@angular/core': ^19.0.0 || ^20.0.0 || ^21.0.0
 
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
@@ -11289,6 +11298,12 @@ snapshots:
       '@sigstore/bundle': 3.1.0
       '@sigstore/core': 2.0.0
       '@sigstore/protobuf-specs': 0.4.3
+
+  '@sim-space/image-cropper@1.0.0(@angular/common@20.0.7(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))':
+    dependencies:
+      '@angular/common': 20.0.7(@angular/core@20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/core': 20.0.7(@angular/compiler@20.0.7)(rxjs@7.8.2)(zone.js@0.15.1)
+      tslib: 2.8.1
 
   '@sinclair/typebox@0.27.8': {}
 

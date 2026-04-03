@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'app-notification-thumbnail',
-	standalone: true,
 	host: { class: 'flex w-full h-full items-center justify-center' },
 	template: `
 		<div class="relative flex flex-1 justify-center">

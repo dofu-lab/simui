@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'app-dialog-thumbnail',
-	standalone: true,
 	host: { class: 'relative flex w-full h-full items-center justify-center overflow-hidden' },
 	template: `
 		<div

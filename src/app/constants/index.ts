@@ -10,6 +10,7 @@ export * from './checkbox.constant';
 export * from './dialog.constant';
 export * from './dropdown.constant';
 export * from './file-upload.constant';
+export * from './image-cropper.constant';
 export * from './notification.constant';
 export * from './pagination.constant';
 export * from './popover.constant';

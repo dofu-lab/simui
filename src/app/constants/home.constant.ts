@@ -12,6 +12,7 @@ import {
 	DropdownThumbnailComponent,
 	EventCalendarThumbnailComponent,
 	FileUploadThumbnailComponent,
+	ImageCropperThumbnailComponent,
 	InputThumbnailComponent,
 	NotificationThumbnailComponent,
 	PaginationThumbnailComponent,
@@ -34,6 +35,7 @@ import { checkBoxComponents } from './checkbox.constant';
 import { dialogComponents } from './dialog.constant';
 import { dropdownComponents } from './dropdown.constant';
 import { fileUploadComponents } from './file-upload.constant';
+import { imageCropperComponents } from './image-cropper.constant';
 import { inputComponents } from './input.constant';
 import { notificationComponents } from './notification.constant';
 import { paginationComponents } from './pagination.constant';
@@ -44,6 +46,13 @@ import { switchComponents } from './switch.constant';
 import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Image Cropper',
+		compNumber: imageCropperComponents.length,
+		thumbnail: ImageCropperThumbnailComponent,
+		path: 'components/image-cropper',
+		isNew: true,
+	},
 	{
 		name: 'Select',
 		compNumber: selectComponents.length,

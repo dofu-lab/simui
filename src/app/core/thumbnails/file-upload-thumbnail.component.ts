@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'app-file-upload-thumbnail',
-	standalone: true,
 	host: { class: 'flex w-full h-full items-center justify-center' },
 	template: `
 		<div class="flex w-full max-w-[190px] flex-col gap-2">
