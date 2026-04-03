@@ -10,6 +10,7 @@ export { DialogThumbnailComponent } from './dialog-thumbnail.component';
 export { DropdownThumbnailComponent } from './dropdown-thumbnail.component';
 export { EventCalendarThumbnailComponent } from './event-calendar-thumbnail.component';
 export { FileUploadThumbnailComponent } from './file-upload-thumbnail.component';
+export { ImageCropperThumbnailComponent } from './image-cropper-thumbnail.component';
 export { InputThumbnailComponent } from './input-thumbnail.component';
 export { NotificationThumbnailComponent } from './notification-thumbnail.component';
 export { PaginationThumbnailComponent } from './pagination-thumbnail.component';

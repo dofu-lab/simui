@@ -216,6 +216,15 @@ export const routes: Routes = [
 				},
 			},
 			{
+				path: 'image-cropper',
+				loadComponent: () => import('./pages').then((m) => m.ImageCropperComponent),
+				data: {
+					title: 'Image Cropper',
+					description: 'Image Cropper component.',
+					keywords: 'image-cropper, angular component',
+				},
+			},
+			{
 				path: 'notification',
 				loadComponent: () => import('./pages').then((m) => m.NotificationComponent),
 				data: {

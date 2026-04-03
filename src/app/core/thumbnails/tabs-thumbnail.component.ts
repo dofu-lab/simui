@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'app-tabs-thumbnail',
-	standalone: true,
 	host: { class: 'flex w-full h-full items-center justify-center' },
 	template: `
 		<div class="flex max-w-50 flex-col gap-4">

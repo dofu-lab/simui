@@ -13,6 +13,7 @@ export * from './dropdown.component';
 export * from './event-calendar.component';
 export * from './file-upload.component';
 export * from './home.component';
+export * from './image-cropper.component';
 export * from './input.component';
 export * from './intro.component';
 export * from './notification.component';
