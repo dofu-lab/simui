@@ -27,7 +27,7 @@ import {
 
 		<p class="text-muted-foreground mt-2 w-full text-center text-xs">
 			Cropper with custom zoom limits &middot;
-			<a class="underline" href="https://github.com/dofu-lab/sim-image-cropper" rel="noreferrer" target="_blank">API</a>
+			<a class="underline" href="https://github.com/dofu-lab/image-cropper" rel="noreferrer" target="_blank">API</a>
 		</p>
 	`,
 })
