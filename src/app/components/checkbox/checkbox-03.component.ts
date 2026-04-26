@@ -9,10 +9,10 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCheckbox, HlmLabel],
 	providers: [provideIcons({ lucideMoon })],
 	template: `
-		<label hlmLabel class="flex items-center" for="checkbox-03">
+		<div class="flex items-center gap-3">
 			<hlm-checkbox id="checkbox-03" checkIconName="lucideMoon" />
-			Custom icon
-		</label>
+			<label hlmLabel class="flex items-center" for="checkbox-03">Custom icon</label>
+		</div>
 	`,
 })
 export class Checkbox03Component {}

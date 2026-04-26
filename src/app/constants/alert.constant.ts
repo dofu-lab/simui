@@ -17,10 +17,59 @@ import {
 	Alert16Component,
 	Alert17Component,
 	Alert18Component,
+	Alert19Component,
+	Alert20Component,
+	Alert21Component,
+	Alert22Component,
+	Alert23Component,
+	Alert24Component,
+	Alert25Component,
 } from '../components/alert';
 import { ComponentCardItem } from '../core';
 
 export const alertComponents: ComponentCardItem[] = [
+	{
+		id: 'alert-19',
+		component: Alert19Component,
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		id: 'alert-20',
+		component: Alert20Component,
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		id: 'alert-21',
+		component: Alert21Component,
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		id: 'alert-22',
+		component: Alert22Component,
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		id: 'alert-23',
+		component: Alert23Component,
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		id: 'alert-24',
+		component: Alert24Component,
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		id: 'alert-25',
+		component: Alert25Component,
+		colNumber: 2,
+		itemStyle: 1,
+	},
 	{
 		id: 'alert-01',
 		component: Alert01Component,

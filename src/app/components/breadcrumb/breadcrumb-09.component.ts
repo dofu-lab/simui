@@ -36,19 +36,23 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
-					<brn-select class="inline-block shadow-xs" placeholder="Select a database" [ngModel]="1">
-						<hlm-select-trigger class="flex w-[150px] justify-start gap-2">
-							<div class="flex items-center">
-								<ng-icon hlm name="lucideDatabase" size="sm" />
-							</div>
-							<hlm-select-value class="text-foreground" />
+					<hlm-select id="select-breadcrumb" value="Accounts" class="w-[150px]">
+						<hlm-select-trigger class="[&>button]:w-full">
+							<span class="flex items-center gap-2" *hlmSelectValueTemplate="let value">
+								<div class="flex items-center">
+									<ng-icon hlm name="lucideDatabase" size="sm" />
+								</div>
+								<span class="truncate">{{ value }}</span>
+							</span>
 						</hlm-select-trigger>
-						<hlm-select-content>
-							<hlm-option [value]="1">Accounts</hlm-option>
-							<hlm-option [value]="2">Appointments</hlm-option>
-							<hlm-option [value]="3">Schedule</hlm-option>
+						<hlm-select-content *hlmSelectPortal>
+							<hlm-select-group>
+								<hlm-select-item [value]="'Accounts'">Accounts</hlm-select-item>
+								<hlm-select-item [value]="'Appointments'">Appointments</hlm-select-item>
+								<hlm-select-item [value]="'Schedule'">Schedule</hlm-select-item>
+							</hlm-select-group>
 						</hlm-select-content>
-					</brn-select>
+					</hlm-select>
 				</li>
 			</ol>
 		</nav>

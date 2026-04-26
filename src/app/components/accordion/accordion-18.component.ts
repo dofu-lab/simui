@@ -1,57 +1,44 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucidePlus } from '@ng-icons/lucide';
-import {
-	HlmAccordion,
-	HlmAccordionContent,
-	HlmAccordionIcon,
-	HlmAccordionItem,
-	HlmAccordionTrigger,
-} from '@spartan-ng/helm/accordion';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { lucideMinus, lucidePlus } from '@ng-icons/lucide';
+import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
+import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
 @Component({
 	selector: 'sim-accordion-18',
-	imports: [
-		HlmAccordion,
-		HlmAccordionItem,
-		HlmAccordionTrigger,
-		HlmAccordionContent,
-		HlmAccordionIcon,
-		HlmIcon,
-		NgIcon,
-	],
-	viewProviders: [provideIcons({ lucidePlus })],
+	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon],
+	providers: [provideIcons({ lucidePlus, lucideMinus })],
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Table W/ left plus-minus</h2>
-			<div hlmAccordion>
-				@for (item of items; track item.id) {
-					<div
-						hlmAccordionItem
-						class="bg-background has-focus-visible:ring-ring/50 relative border border-b-0 px-4 py-1 outline-none first:rounded-t-md last:rounded-b-md last:border-b has-focus-visible:z-10 has-focus-visible:ring-[3px]">
-						<h3 class="contents">
+			<hlm-accordion class="rounded-lg border">
+				@for (item of items; track $index) {
+					<hlm-accordion-item class="border-b px-4 last:border-b-0">
+						<h3 brnAccordionHeader class="flex">
 							<button
-								hlmAccordionTrigger
-								class="flex flex-1 items-center justify-start gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0 disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
-								<ng-icon hlm hlmAccIcon name="lucidePlus" class="opacity-60" />
-								<span class="text-[15px] leading-6 font-semibold">
-									{{ item.title }}
-								</span>
+								brnAccordionTrigger
+								data-slot="accordion-trigger"
+								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-4 text-start text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)] **:data-[slot=accordion-trigger-label]:me-auto">
+								<ng-icon
+									name="lucidePlus"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+								<ng-icon
+									name="lucideMinus"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
+								<span data-slot="accordion-trigger-label" class="ms-2">{{ item.title }}</span>
 							</button>
 						</h3>
-
-						<hlm-accordion-content class="text-muted-foreground ps-8 [&>div>p]:pb-2">
-							{{ item.content }}
-						</hlm-accordion-content>
-					</div>
+						<hlm-accordion-content class="pl-6">{{ item.content }}</hlm-accordion-content>
+					</hlm-accordion-item>
 				}
-			</div>
+			</hlm-accordion>
 		</div>
 	`,
 })
 export class Accordion18Component {
-	items = [
+	protected readonly items = [
 		{
 			id: 'acc-18-1',
 			title: 'Why choose SimUI?',

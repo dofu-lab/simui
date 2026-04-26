@@ -12,8 +12,8 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 		<label
 			hlmLabel
 			class="border-input has-data-[state=checked]:border-ring relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors ease-in-out"
-			for="checkbox-15">
-			<div class="peer flex flex-1 items-start gap-2">
+			for="checkbox15">
+			<div class="flex flex-1 items-start gap-2">
 				<svg width="46" height="32" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M0.5 4C0.5 2.067 2.067 0.5 4 0.5H42C43.933 0.5 45.5 2.067 45.5 4V28C45.5 29.933 43.933 31.5 42 31.5H4C2.067 31.5 0.5 29.933 0.5 28V4Z"
@@ -41,7 +41,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 					<span>Mastercard ending in 1234</span>
 					<span class="text-muted-foreground truncate text-xs">Expiry 06/2024</span>
 				</div>
-				<hlm-checkbox id="checkbox-15" />
+				<hlm-checkbox id="checkbox15" />
 			</div>
 		</label>
 	`,

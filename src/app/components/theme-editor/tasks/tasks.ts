@@ -60,17 +60,17 @@ import { type Task, TASK_DATA } from './services/tasks.models';
 	selector: 'app-tasks-example',
 	imports: [
 		FormsModule,
+		HlmIcon,
+		TableActions,
+		NgIcon,
+		FlexRender,
+		HlmLabel,
 		HlmDropdownMenuImports,
 		HlmTableImports,
 		HlmButtonImports,
 		BrnSelectImports,
 		HlmSelectImports,
 		HlmAvatarImports,
-		HlmIcon,
-		TableActions,
-		NgIcon,
-		FlexRender,
-		HlmLabel,
 	],
 	providers: [
 		provideIcons({
@@ -255,22 +255,21 @@ import { type Task, TASK_DATA } from './services/tasks.models';
 				<div class="flex gap-4 sm:mt-0 md:gap-8">
 					<div class="flex gap-2">
 						<span hlmLabel class="hidden lg:inline-flex">Row per page:</span>
-						<brn-select
+						<hlm-select
 							class="inline-block"
-							placeholder="{{ _availablePageSizes[0] }}"
 							[ngModel]="table.getState().pagination.pageSize"
 							(ngModelChange)="table.setPageSize($event); table.resetPageIndex()">
 							<hlm-select-trigger size="sm" class="mr-1 inline-flex h-8 w-fit">
 								<hlm-select-value />
 							</hlm-select-trigger>
-							<hlm-select-content>
+							<hlm-select-content *hlmSelectPortal>
 								@for (size of _availablePageSizes; track size) {
-									<hlm-option [value]="size">
+									<hlm-select-item [value]="size">
 										{{ size === 10000 ? 'All' : size }}
-									</hlm-option>
+									</hlm-select-item>
 								}
 							</hlm-select-content>
-						</brn-select>
+						</hlm-select>
 					</div>
 
 					<span hlmLabel class="hidden md:inline-flex">

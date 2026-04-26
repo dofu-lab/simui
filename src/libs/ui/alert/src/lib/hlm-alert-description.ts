@@ -2,10 +2,16 @@ import { Directive } from '@angular/core';
 import { classes } from '@spartan-ng/helm/utils';
 
 @Directive({
-	selector: '[hlmAlertDesc],[hlmAlertDescription]',
+	selector: '[hlmAlertDescription]',
+	host: {
+		'data-slot': 'alert-description',
+	},
 })
 export class HlmAlertDescription {
 	constructor() {
-		classes(() => 'text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed');
+		classes(
+			() =>
+				'text-muted-foreground text-sm text-balance md:text-pretty [&_p:not(:last-child)]:mb-4 [&_a]:hover:text-foreground [&_a]:underline [&_a]:underline-offset-3',
+		);
 	}
 }

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronFirst, lucideChevronLast } from '@ng-icons/lucide';
-import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
@@ -13,16 +12,7 @@ import { map } from 'rxjs';
 
 @Component({
 	selector: 'sim-pagination-11',
-	imports: [
-		HlmPaginationImports,
-		BrnSelectImports,
-		HlmSelectImports,
-		FormsModule,
-		NgIcon,
-		HlmIcon,
-		HlmButton,
-		RouterLink,
-	],
+	imports: [HlmPaginationImports, HlmSelectImports, FormsModule, NgIcon, HlmIcon, HlmButton, RouterLink],
 	providers: [provideIcons({ lucideChevronLast, lucideChevronFirst })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'block w-full' },
@@ -51,13 +41,13 @@ import { map } from 'rxjs';
 							[class]="computedPreviousClass()" />
 					</li>
 					<div class="flex items-center">
-						<brn-select [value]="currentPage()" class="ml-auto" placeholder="Page size">
+						<hlm-select class="ml-auto" [value]="currentPage()">
 							<hlm-select-trigger class="w-fit">
 								<hlm-select-value />
 							</hlm-select-trigger>
-							<hlm-select-content>
+							<hlm-select-content *hlmSelectPortal>
 								@for (pageSize of pages; track pageSize) {
-									<hlm-option routerLink="" [value]="pageSize">
+									<hlm-select-item routerLink="" [value]="pageSize">
 										<a
 											routerLink="."
 											[queryParams]="{ page: pageSize }"
@@ -65,10 +55,10 @@ import { map } from 'rxjs';
 											class="h-fit w-full">
 											Page {{ pageSize }}
 										</a>
-									</hlm-option>
+									</hlm-select-item>
 								}
 							</hlm-select-content>
-						</brn-select>
+						</hlm-select>
 					</div>
 					<li hlmPaginationItem>
 						<hlm-pagination-next

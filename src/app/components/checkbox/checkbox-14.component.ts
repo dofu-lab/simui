@@ -16,8 +16,8 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 		<label
 			hlmLabel
 			class="border-input has-data-[state=checked]:border-ring relative flex w-full rounded-md border p-4 shadow-xs transition-colors ease-in-out"
-			for="checkbox-14">
-			<div class="peer flex flex-1 items-start gap-2">
+			for="checkbox14">
+			<div class="flex flex-1 items-start gap-2">
 				<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border">
 					<ng-icon hlm name="lucideRocket" class="text-primary" size="sm" />
 				</div>
@@ -25,7 +25,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 					<span>Basic plan</span>
 					<span class="text-muted-foreground truncate text-xs">Includes up to 10 users and 5 projects</span>
 				</div>
-				<hlm-checkbox id="checkbox-14" [(checked)]="checked" />
+				<hlm-checkbox id="checkbox14" [(checked)]="checked" />
 			</div>
 		</label>
 	`,

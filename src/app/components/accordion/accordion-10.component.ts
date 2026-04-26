@@ -1,65 +1,59 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell, lucideLifeBuoy, lucideLink, lucideMinus, lucidePlus, lucideShieldCheck } from '@ng-icons/lucide';
-import {
-	HlmAccordion,
-	HlmAccordionContent,
-	HlmAccordionIcon,
-	HlmAccordionItem,
-	HlmAccordionTrigger,
-} from '@spartan-ng/helm/accordion';
+import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
+import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-10',
-	imports: [
-		HlmAccordion,
-		HlmAccordionItem,
-		HlmAccordionTrigger,
-		HlmAccordionContent,
-		HlmAccordionIcon,
-		HlmIcon,
-		NgIcon,
-	],
-	viewProviders: [provideIcons({ lucidePlus, lucideMinus, lucideLink, lucideBell, lucideShieldCheck, lucideLifeBuoy })],
+	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon, HlmIcon],
+	providers: [provideIcons({ lucidePlus, lucideMinus, lucideLink, lucideBell, lucideShieldCheck, lucideLifeBuoy })],
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ icon, sub-header and plus-minus</h2>
-			<div hlmAccordion>
+			<hlm-accordion>
 				@for (item of items; track item.id) {
-					<div hlmAccordionItem class="py-2">
-						<h3 class="contents">
+					<hlm-accordion-item>
+						<h3 brnAccordionHeader class="flex">
 							<button
-								hlmAccordionTrigger
-								class="focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md px-0 py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none hover:no-underline disabled:pointer-events-none disabled:opacity-50 [&>ng-icon>svg>path:last-child]:origin-center [&>ng-icon>svg>path:last-child]:transition-all [&>ng-icon>svg>path:last-child]:duration-200 [&[data-state=open]>ng-icon>svg]:rotate-180 [&[data-state=open]>ng-icon>svg>path:last-child]:rotate-90 [&[data-state=open]>ng-icon>svg>path:last-child]:opacity-0">
-								<span class="flex items-center gap-3">
+								brnAccordionTrigger
+								data-slot="accordion-trigger"
+								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-4 text-start text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
+								<span class="flex items-center gap-2">
 									<span
 										class="flex size-10 shrink-0 items-center justify-center rounded-full border"
 										aria-hidden="true">
 										<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
 									</span>
-									<span class="flex flex-col items-start gap-1 text-[15px] leading-6 font-semibold">
+									<span class="flex flex-col items-start gap-1">
 										<span>
 											{{ item.title }}
 										</span>
-										<span class="text-sm font-normal">{{ item.subTitle }}</span>
+										<span class="text-muted-foreground text-sm font-normal">{{ item.subTitle }}</span>
 									</span>
 								</span>
-								<ng-icon hlm hlmAccIcon name="lucidePlus" class="opacity-60" />
+								<ng-icon
+									name="lucidePlus"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+								<ng-icon
+									name="lucideMinus"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 							</button>
 						</h3>
-
-						<hlm-accordion-content class="text-muted-foreground">
+						<hlm-accordion-content class="pl-12">
 							{{ item.content }}
 						</hlm-accordion-content>
-					</div>
+					</hlm-accordion-item>
 				}
-			</div>
+			</hlm-accordion>
 		</div>
 	`,
 })
 export class Accordion10Component {
-	items = [
+	protected readonly items = [
 		{
 			id: 'acc-10-1',
 			title: 'Connected accounts',

@@ -1,63 +1,62 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideBell, lucideChevronDown, lucideLifeBuoy, lucideLink, lucideShieldCheck } from '@ng-icons/lucide';
 import {
-	HlmAccordion,
-	HlmAccordionContent,
-	HlmAccordionIcon,
-	HlmAccordionItem,
-	HlmAccordionTrigger,
-} from '@spartan-ng/helm/accordion';
+	lucideBell,
+	lucideChevronDown,
+	lucideChevronUp,
+	lucideLifeBuoy,
+	lucideLink,
+	lucideShieldCheck,
+} from '@ng-icons/lucide';
+import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
+import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-21',
-	imports: [
-		HlmAccordion,
-		HlmAccordionItem,
-		HlmAccordionTrigger,
-		HlmAccordionContent,
-		HlmAccordionIcon,
-		HlmIcon,
-		NgIcon,
+	imports: [HlmAccordionImports, BrnAccordionImports, HlmIcon, NgIcon],
+	providers: [
+		provideIcons({ lucideChevronDown, lucideChevronUp, lucideLink, lucideBell, lucideShieldCheck, lucideLifeBuoy }),
 	],
-	viewProviders: [provideIcons({ lucideChevronDown, lucideLink, lucideBell, lucideShieldCheck, lucideLifeBuoy })],
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Connected W/ icon and chevron</h2>
-			<div hlmAccordion>
+			<hlm-accordion>
 				@for (item of items; track item.id) {
-					<div hlmAccordionItem class="border-b-0">
-						<h3 class="contents">
+					<hlm-accordion-item class="border-b-0!">
+						<h3 brnAccordionHeader class="flex">
 							<button
-								hlmAccordionTrigger
-								class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-0 hover:no-underline">
-								<span class="flex items-center gap-3">
-									<span
-										class="flex size-10 shrink-0 items-center justify-center rounded-full border"
-										aria-hidden="true">
-										<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
-									</span>
-									<span class="text-[15px] leading-6 font-semibold">
-										{{ item.title }}
-									</span>
+								brnAccordionTrigger
+								data-slot="accordion-trigger"
+								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-center justify-between rounded-md border-0 border-transparent text-start text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
+								<span
+									class="mr-2 flex size-10 shrink-0 items-center justify-center rounded-full border"
+									aria-hidden="true">
+									<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
 								</span>
-								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+								{{ item.title }}
+								<ng-icon
+									name="lucideChevronDown"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+								<ng-icon
+									name="lucideChevronUp"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 							</button>
 						</h3>
-
-						<hlm-accordion-content class="text-muted-foreground ml-5 border-l ps-8">
+						<hlm-accordion-content class="ml-5 border-l pl-7">
 							{{ item.content }}
 						</hlm-accordion-content>
-					</div>
+					</hlm-accordion-item>
 					<div class="ml-5 h-4 border-l ps-8 last:hidden"></div>
 				}
-			</div>
+			</hlm-accordion>
 		</div>
 	`,
 })
 export class Accordion21Component {
-	items = [
+	protected readonly items = [
 		{
 			id: 'acc-09-1',
 			title: 'Connected accounts',

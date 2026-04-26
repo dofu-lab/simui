@@ -17,15 +17,16 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 		<label
 			hlmLabel
 			class="border-input has-data-[state=checked]:border-ring relative flex w-full flex-col gap-0 rounded-md border shadow-xs"
-			for="checkbox-19">
+			for="checkbox19">
 			<div class="peer flex w-full flex-1 items-start gap-2 p-3">
 				<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border">
 					<ng-icon hlm name="lucideRocket" class="text-primary" size="sm" />
 				</div>
 				<span class="grid h-8 grow items-center gap-2 select-none">Basic plan</span>
-				<hlm-checkbox id="checkbox-19" [(checked)]="checked" />
+				<hlm-checkbox id="checkbox19" [(checked)]="checked" />
 			</div>
-			<div class="peer-has-checked:border-ring text-primary flex w-full flex-col gap-2 border-t p-3 text-sm">
+			<div
+				class="peer-has-data-[state=checked]:border-ring text-primary flex w-full flex-col gap-2 border-t p-3 text-sm">
 				<div class="flex items-center justify-between">
 					<div class="space-x-1">
 						<span class="text-lg">$10</span>

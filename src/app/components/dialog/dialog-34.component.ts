@@ -1,9 +1,10 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail, lucideSave } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
-import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
+import { HlmAspectRatioImports } from '@spartan-ng/helm/aspect-ratio';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
@@ -20,15 +21,16 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		ReactiveFormsModule,
 		HlmIcon,
 		HlmButton,
-		HlmAspectRatio,
 		HlmAvatar,
 		HlmAvatarImage,
 		HlmAvatarFallback,
 		HlmInput,
 		HlmLabel,
+		NgOptimizedImage,
 		BrnSelectImports,
 		HlmSelectImports,
 		HlmDialogImports,
+		HlmAspectRatioImports,
 	],
 	providers: [provideIcons({ lucideSave, lucideMail })],
 	template: `
@@ -40,7 +42,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				<div class="flex-1 overflow-y-auto">
 					<div class="relative p-2">
 						<div class="shadow-xs" [hlmAspectRatio]="39 / 8">
-							<img src="assets/backgrounds/bg-02.jpg" class="rounded-lg" />
+							<img ngSrc="assets/backgrounds/bg-02.jpg" fill class="rounded-lg" />
 						</div>
 						<hlm-avatar class="border-background peer -mt-10 ml-6 size-20 border-4">
 							<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
@@ -101,7 +103,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 					</div>
 					<form [formGroup]="formGroup">
 						<div class="mt-6 flex w-full flex-col gap-4 px-6">
-							<div class="flex flex-col gap-2 border-t-[2px] border-dotted pt-4 sm:flex-row sm:justify-between">
+							<div class="flex flex-col gap-2 border-t-2 border-dotted pt-4 sm:flex-row sm:justify-between">
 								<label hlmLabel class="text-secondary-foreground text-sm">Name</label>
 								<div class="grid grid-cols-2 items-center gap-4">
 									<input
@@ -118,7 +120,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 										class="flex-1 sm:max-w-43" />
 								</div>
 							</div>
-							<div class="flex flex-col gap-2 border-t-[2px] border-dotted pt-4 sm:flex-row sm:justify-between">
+							<div class="flex flex-col gap-2 border-t-2 border-dotted pt-4 sm:flex-row sm:justify-between">
 								<label hlmLabel class="text-secondary-foreground text-sm font-semibold">Email</label>
 								<div class="flex w-full flex-1 flex-col gap-2 sm:max-w-90">
 									<div class="relative">
@@ -165,7 +167,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 								</div>
 							</div>
 
-							<div class="border-t-[2px] border-dotted pt-4">
+							<div class="border-t-2 border-dotted pt-4">
 								<label hlmLabel for="website" class="flex flex-col justify-between gap-2 sm:flex-row">
 									Website
 									<div class="mt-1 flex w-full flex-1 flex-row -space-x-px sm:max-w-90">
@@ -184,27 +186,25 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 								</label>
 							</div>
 
-							<div class="flex flex-col gap-2 border-t-[2px] border-dotted py-4 sm:flex-row sm:justify-between">
+							<div class="flex flex-col gap-2 border-t-2 border-dotted py-4 sm:flex-row sm:justify-between">
 								<label hlmLabel class="text-secondary-foreground text-sm font-semibold">Country</label>
 								<div class="flex flex-1 flex-col items-start gap-1 sm:max-w-90">
-									<brn-select class="inline-block w-full" placeholder="Select your country" formControlName="country">
+									<hlm-select class="inline-block w-full" formControlName="country">
 										<hlm-select-trigger class="h-9 w-full">
-											<hlm-select-value>
-												<div class="flex items-center gap-x-2" *brnSelectValue="let value">
-													<img [src]="'assets/flags/' + value.icon" />
-													<span class="text-secondary-foreground text-sm font-medium">
-														{{ value.label }}
-													</span>
-													<span class="text-muted-foreground text-sm">
-														{{ value.timezone }}
-													</span>
-												</div>
-											</hlm-select-value>
+											<div class="flex items-center gap-x-2" *hlmSelectValueTemplate="let value">
+												<img [src]="'assets/flags/' + value.icon" />
+												<span class="text-secondary-foreground text-sm font-medium">
+													{{ value.label }}
+												</span>
+												<span class="text-muted-foreground text-sm">
+													{{ value.timezone }}
+												</span>
+											</div>
 										</hlm-select-trigger>
 
-										<hlm-select-content>
+										<hlm-select-content *hlmSelectPortal>
 											@for (country of countries; track country.label) {
-												<hlm-option [value]="country" class="gap-2">
+												<hlm-select-item [value]="country" class="gap-2">
 													<img [src]="'assets/flags/' + country.icon" />
 													<span class="text-secondary-foreground text-sm font-medium">
 														{{ country.label }}
@@ -212,17 +212,17 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 													<span class="text-muted-foreground text-sm">
 														{{ country.timezone }}
 													</span>
-												</hlm-option>
+												</hlm-select-item>
 											}
 										</hlm-select-content>
-									</brn-select>
+									</hlm-select>
 									<span class="text-muted-foreground mt-1 w-full text-sm">Estimates based on recent IP address.</span>
 								</div>
 							</div>
 						</div>
 					</form>
 				</div>
-				<div class="mx-6 border-t-[2px] border-dotted"></div>
+				<div class="mx-6 border-t-2 border-dotted"></div>
 				<div class="flex gap-4 p-6">
 					<button hlmBtn variant="outline" class="flex-1" size="sm" (click)="ctx.close()">
 						<ng-icon hlm name="lucideSave" class="text-muted-foreground mr-2" size="sm" />

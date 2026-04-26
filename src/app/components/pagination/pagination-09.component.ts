@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, computed, inject, model, numberAttr
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { map } from 'rxjs';
@@ -15,7 +14,7 @@ type PaginationReturn = {
 
 @Component({
 	selector: 'sim-pagination-09',
-	imports: [HlmPaginationImports, BrnSelectImports, HlmSelectImports, FormsModule],
+	imports: [HlmPaginationImports, HlmSelectImports, FormsModule],
 	host: { class: 'block w-full' },
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
@@ -71,16 +70,16 @@ type PaginationReturn = {
 				</nav>
 			</div>
 			<div class="flex flex-1 justify-end">
-				<brn-select [(ngModel)]="itemsPerPage" class="ml-auto" placeholder="Page size">
+				<hlm-select class="ml-auto" [(ngModel)]="itemsPerPage">
 					<hlm-select-trigger class="w-fit">
 						<hlm-select-value />
 					</hlm-select-trigger>
-					<hlm-select-content>
+					<hlm-select-content *hlmSelectPortal>
 						@for (pageSize of pageSizes; track pageSize) {
-							<hlm-option [value]="pageSize">{{ pageSize }} / page</hlm-option>
+							<hlm-select-item [value]="pageSize">{{ pageSize }} / page</hlm-select-item>
 						}
 					</hlm-select-content>
-				</brn-select>
+				</hlm-select>
 			</div>
 		</div>
 	`,
@@ -109,9 +108,7 @@ export class Pagination09Component {
 	);
 
 	private navButtonClass(isDisabled: boolean): string {
-		return ['px-0!', isDisabled && 'opacity-50 select-none pointer-events-none']
-			.filter(Boolean)
-			.join(' ');
+		return ['px-0!', isDisabled && 'opacity-50 select-none pointer-events-none'].filter(Boolean).join(' ');
 	}
 }
 

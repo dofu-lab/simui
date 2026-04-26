@@ -18,24 +18,22 @@ type Option = {
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">
 				<label hlmFieldLabel for="select-32">Select options with portrait</label>
-				<brn-select placeholder="Select an option" id="select-32" [value]="options[2]">
+				<hlm-select id="select-32" [value]="options[2]">
 					<hlm-select-trigger class="[&>button]:h-fit! [&>button]:w-full [&>button]:pl-2">
-						<hlm-select-value class="h-fit">
-							<span class="flex items-center gap-2" *brnSelectValue="let value">
-								<img [src]="'assets/avatars/' + value.avatarUrl" alt="{{ value.label }}" class="size-10 rounded-full" />
-								<span class="text-left">
-									<span class="block font-medium">{{ value.label }}</span>
-									<span class="text-muted-foreground mt-0.5 block text-xs">
-										{{ value.username }}
-									</span>
+						<span class="flex items-center gap-2" *hlmSelectValueTemplate="let value">
+							<img [src]="'assets/avatars/' + value.avatarUrl" alt="{{ value.label }}" class="size-10 rounded-full" />
+							<span class="text-left">
+								<span class="block font-medium">{{ value.label }}</span>
+								<span class="text-muted-foreground mt-0.5 block text-xs">
+									{{ value.username }}
 								</span>
 							</span>
-						</hlm-select-value>
+						</span>
 					</hlm-select-trigger>
-					<hlm-select-content class="[&>button]:h-fit">
+					<hlm-select-content *hlmSelectPortal class="[&>button]:h-fit">
 						<hlm-select-label>Marketing team</hlm-select-label>
 						@for (option of options; track option.label) {
-							<hlm-option [value]="option">
+							<hlm-select-item [value]="option">
 								<span class="flex items-center gap-2">
 									<img
 										[src]="'assets/avatars/' + option.avatarUrl"
@@ -48,10 +46,10 @@ type Option = {
 										</span>
 									</span>
 								</span>
-							</hlm-option>
+							</hlm-select-item>
 						}
 					</hlm-select-content>
-				</brn-select>
+				</hlm-select>
 			</div>
 		</div>
 	`,

@@ -6,16 +6,18 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	selector: 'sim-checkbox-08',
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
-		<label hlmLabel class="flex items-start gap-2" for="checkbox-08">
-			<hlm-checkbox id="checkbox-08" [checked]="true" />
-			<div class="grid grow gap-2 pt-0.5">
-				<div>
-					Checkbox label
-					<span class="text-muted-foreground text-xs">(Sublabel)</span>
+		<div class="flex items-center gap-3">
+			<hlm-checkbox id="checkbox08" [checked]="true" />
+			<label hlmLabel class="flex items-start gap-2" for="checkbox08">
+				<div class="grid grow gap-2 pt-0.5">
+					<div>
+						Checkbox label
+						<span class="text-muted-foreground text-xs">(Sublabel)</span>
+					</div>
+					<span class="text-muted-foreground text-xs">Save my login details for next time.</span>
 				</div>
-				<span class="text-muted-foreground text-xs">Save my login details for next time.</span>
-			</div>
-		</label>
+			</label>
+		</div>
 	`,
 })
 export class Checkbox08Component {}

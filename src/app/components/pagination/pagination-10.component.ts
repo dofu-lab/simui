@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronFirst, lucideChevronLast } from '@ng-icons/lucide';
-import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmLabel } from '@spartan-ng/helm/label';
@@ -14,16 +13,7 @@ import { map } from 'rxjs';
 
 @Component({
 	selector: 'sim-pagination-10',
-	imports: [
-		HlmPaginationImports,
-		BrnSelectImports,
-		HlmSelectImports,
-		FormsModule,
-		NgIcon,
-		HlmIcon,
-		HlmButton,
-		HlmLabel,
-	],
+	imports: [HlmPaginationImports, HlmSelectImports, FormsModule, NgIcon, HlmIcon, HlmButton, HlmLabel],
 	providers: [provideIcons({ lucideChevronLast, lucideChevronFirst })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'block w-full' },
@@ -31,16 +21,16 @@ import { map } from 'rxjs';
 		<div class="flex items-center justify-between gap-3">
 			<div class="flex items-center gap-3">
 				<label hlmLabel>Rows per page</label>
-				<brn-select [(ngModel)]="itemsPerPage" class="ml-auto" placeholder="Page size">
+				<hlm-select class="ml-auto" [(ngModel)]="itemsPerPage">
 					<hlm-select-trigger class="w-fit">
 						<hlm-select-value />
 					</hlm-select-trigger>
-					<hlm-select-content>
+					<hlm-select-content *hlmSelectPortal>
 						@for (pageSize of pageSizes; track pageSize) {
-							<hlm-option [value]="pageSize">{{ pageSize }}</hlm-option>
+							<hlm-select-item [value]="pageSize">{{ pageSize }}</hlm-select-item>
 						}
 					</hlm-select-content>
-				</brn-select>
+				</hlm-select>
 			</div>
 			<p aria-live="polite" class="text-muted-foreground flex w-fit justify-end gap-1 text-sm whitespace-nowrap">
 				<span class="text-foreground">1-25</span>

@@ -11,17 +11,19 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">
 				<label hlmFieldLabel for="select-26">Timezone select</label>
-				<hlm-select scrollable="true" placeholder="Select an option" id="select-26" value="Asia/Saigon">
+				<hlm-select scrollable="true" id="select-26" value="Asia/Saigon">
 					<hlm-select-trigger class="[&>button]:w-full">
-						<hlm-select-value />
+						<hlm-select-value placeholder="Select an option" />
 					</hlm-select-trigger>
 					<hlm-select-content
+						*hlmSelectPortal
+						showScroll=""
 						class="max-h-96 [&>div]:[-ms-overflow-style:none] [&>div]:[-webkit-overflow-scrolling:touch] [&>div]:[scrollbar-width:none] [&>div]:[&::-webkit-scrollbar]:hidden">
-						<hlm-select-scroll-up />
-						@for (timezone of formattedTimezones(); track timezone.label) {
-							<hlm-option [value]="timezone.value">{{ timezone.label }}</hlm-option>
-						}
-						<hlm-select-scroll-down />
+						<hlm-select-group>
+							@for (timezone of formattedTimezones(); track timezone.label) {
+								<hlm-select-item [value]="timezone.value">{{ timezone.label }}</hlm-select-item>
+							}
+						</hlm-select-group>
 					</hlm-select-content>
 				</hlm-select>
 			</div>

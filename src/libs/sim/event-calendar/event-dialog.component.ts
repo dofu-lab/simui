@@ -107,55 +107,55 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 										<div class="flex flex-col gap-4">
 											<div class="flex w-full flex-col gap-2 text-sm">
 												<label hlmLabel for="start-time" class="flex flex-col gap-2 text-sm">Start time</label>
-												<brn-select class="inline-block w-full" placeholder="Time" formControlName="startTime">
+												<hlm-select class="inline-block w-full" formControlName="startTime">
 													<hlm-select-trigger class="h-9 w-full">
-														<hlm-select-value>
-															<div class="flex items-center gap-x-2" *brnSelectValue="let value">
-																<span class="text-foreground text-sm">
-																	{{ value.label }}
-																</span>
-															</div>
-														</hlm-select-value>
+														<div class="flex items-center gap-x-2" *hlmSelectValueTemplate="let value">
+															<span class="text-foreground text-sm">
+																{{ value.label }}
+															</span>
+														</div>
 													</hlm-select-trigger>
 
-													<hlm-select-content class="max-h-60 overflow-auto">
+													<hlm-select-content *hlmSelectPortal class="max-h-60 overflow-auto">
 														<hlm-select-scroll-up />
-														@for (timeOption of this.timeOptions(); track timeOption.label + 'start-time') {
-															<hlm-option [value]="timeOption" class="gap-2">
-																<span class="text-foreground text-sm">
-																	{{ timeOption.label }}
-																</span>
-															</hlm-option>
-														}
+														<hlm-select-group>
+															@for (timeOption of this.timeOptions(); track timeOption.label + 'start-time') {
+																<hlm-select-item [value]="timeOption" class="gap-2">
+																	<span class="text-foreground text-sm">
+																		{{ timeOption.label }}
+																	</span>
+																</hlm-select-item>
+															}
+														</hlm-select-group>
 														<hlm-select-scroll-down />
 													</hlm-select-content>
-												</brn-select>
+												</hlm-select>
 											</div>
 											<div class="flex w-full flex-col gap-2 text-sm">
 												<label hlmLabel for="end-time" class="flex flex-col gap-2 text-sm">End time</label>
-												<brn-select class="inline-block w-full" placeholder="Time" formControlName="endTime">
+												<hlm-select class="inline-block w-full" formControlName="endTime">
 													<hlm-select-trigger class="h-9 w-full">
-														<hlm-select-value>
-															<div class="flex items-center gap-x-2" *brnSelectValue="let value">
-																<span class="text-foreground text-sm">
-																	{{ value.label }}
-																</span>
-															</div>
-														</hlm-select-value>
+														<div class="flex items-center gap-x-2" *hlmSelectValueTemplate="let value">
+															<span class="text-foreground text-sm">
+																{{ value.label }}
+															</span>
+														</div>
 													</hlm-select-trigger>
 
-													<hlm-select-content class="max-h-60 overflow-auto">
+													<hlm-select-content *hlmSelectPortal class="max-h-60 overflow-auto">
 														<hlm-select-scroll-up />
-														@for (timeOption of this.timeOptions(); track timeOption.label + 'end-time') {
-															<hlm-option [value]="timeOption" class="gap-2">
-																<span class="text-foreground text-sm">
-																	{{ timeOption.label }}
-																</span>
-															</hlm-option>
-														}
+														<hlm-select-group>
+															@for (timeOption of this.timeOptions(); track timeOption.label + 'end-time') {
+																<hlm-select-item [value]="timeOption" class="gap-2">
+																	<span class="text-foreground text-sm">
+																		{{ timeOption.label }}
+																	</span>
+																</hlm-select-item>
+															}
+														</hlm-select-group>
 														<hlm-select-scroll-down />
 													</hlm-select-content>
-												</brn-select>
+												</hlm-select>
 											</div>
 										</div>
 									}

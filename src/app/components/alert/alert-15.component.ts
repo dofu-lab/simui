@@ -1,29 +1,29 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
-import { HlmAlert, HlmAlertDescription, HlmAlertIcon } from '@spartan-ng/helm/alert';
+import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-alert-15',
 	providers: [provideIcons({ lucideCircleAlert })],
-	imports: [NgIcon, HlmIcon, HlmAlert, HlmAlertDescription, HlmAlertIcon],
+	imports: [NgIcon, HlmIcon, HlmAlertImports],
 	host: {
 		class: 'w-full',
 	},
 	template: `
-		<div hlmAlert class="flex gap-3">
+		<hlm-alert class="flex gap-3">
 			<span class="pt-0.5">
-				<ng-icon hlm hlmAlertIcon variant="destructive" name="lucideCircleAlert" class="text-red-500" />
+				<ng-icon hlm size="sm" name="lucideCircleAlert" class="text-red-500" />
 			</span>
 			<div>
 				<h4 hlmAlertTitle class="text-sm font-medium">Password does not meet requirements:</h4>
-				<ul hlmAlertDesc class="text-muted-foreground list-inside list-disc text-sm">
+				<ul hlmAlertDescription class="text-muted-foreground list-inside list-disc text-sm">
 					<li>Minimum 8 characters</li>
 					<li>Include a special character</li>
 				</ul>
 			</div>
-		</div>
+		</hlm-alert>
 	`,
 })
 export class Alert15Component {}

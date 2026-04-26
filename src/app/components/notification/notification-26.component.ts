@@ -31,9 +31,9 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 							<hlm-progress-indicator />
 						</hlm-progress>
 					</div>
-					<div class="flex gap-3">
-						<button class="text-secondary-foreground h-5 text-xs hover:underline">Cancel</button>
-						<button class="text-primary h-5 text-xs font-bold hover:underline">Upload another</button>
+					<div class="flex gap-1">
+						<button hlmBtn size="xs" variant="outline">Cancel</button>
+						<button hlmBtn size="xs">Upload another</button>
 					</div>
 				</div>
 			</div>

@@ -15,18 +15,20 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				<label hlmFieldLabel for="select-25" class="text-foreground block px-3 pt-2 text-xs font-medium">
 					Select with inset label
 				</label>
-				<brn-select placeholder="Select framework" id="select-25">
+				<hlm-select id="select-25">
 					<hlm-select-trigger
 						class="shadow-none [&>button]:w-full [&>button]:border-none [&>button]:bg-transparent [&>button]:focus-visible:ring-0 [&>button]:focus-visible:ring-offset-0">
-						<hlm-select-value />
+						<hlm-select-value placeholder="Select framework" />
 					</hlm-select-trigger>
-					<hlm-select-content>
-						<hlm-option value="Angular">Angular</hlm-option>
-						<hlm-option value="React">React</hlm-option>
-						<hlm-option value="Vue">Vue</hlm-option>
-						<hlm-option value="Svelte">Svelte</hlm-option>
+					<hlm-select-content *hlmSelectPortal>
+						<hlm-select-group>
+							<hlm-select-item value="Angular">Angular</hlm-select-item>
+							<hlm-select-item value="React">React</hlm-select-item>
+							<hlm-select-item value="Vue">Vue</hlm-select-item>
+							<hlm-select-item value="Svelte">Svelte</hlm-select-item>
+						</hlm-select-group>
 					</hlm-select-content>
-				</brn-select>
+				</hlm-select>
 			</div>
 		</div>
 	`,

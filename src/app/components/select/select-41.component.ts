@@ -17,26 +17,26 @@ type Option = {
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">
 				<label hlmFieldLabel for="select-41">Select with left text</label>
-				<brn-select placeholder="Select an option" id="select-41" value="1">
+				<hlm-select id="select-41" [value]="options[0]">
 					<hlm-select-trigger class="[&>button]:w-full">
-						<hlm-select-value>
-							<span *brnSelectValue="let value">
+						<hlm-select-value placeholder="Select an option">
+							<span *hlmSelectValueTemplate="let value">
 								Selected Plan:
 								<span>{{ value.label }}</span>
 							</span>
 						</hlm-select-value>
 					</hlm-select-trigger>
-					<hlm-select-content>
+					<hlm-select-content *hlmSelectPortal>
 						@for (option of options; track option.value) {
-							<hlm-option [value]="option">
+							<hlm-select-item [value]="option">
 								<div class="flex flex-col">
 									{{ option.label }}
 									<p class="text-muted-foreground mt-1 block text-xs" data-desc>{{ option.description }}</p>
 								</div>
-							</hlm-option>
+							</hlm-select-item>
 						}
 					</hlm-select-content>
-				</brn-select>
+				</hlm-select>
 			</div>
 		</div>
 	`,

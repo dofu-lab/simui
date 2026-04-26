@@ -38,27 +38,25 @@ export class PlaceholderAvatar {
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">
 				<label hlmFieldLabel for="select-31">Select with placeholder avatar</label>
-				<brn-select placeholder="Select an option" id="select-31" [value]="options[0]">
+				<hlm-select id="select-31" [value]="options[0]">
 					<hlm-select-trigger class="[&>button]:w-full">
-						<hlm-select-value>
-							<span class="flex items-center gap-2" *brnSelectValue="let value">
-								<sim-placeholder-avatar [option]="value" />
-								<span class="truncate">{{ value.label }}</span>
-							</span>
-						</hlm-select-value>
+						<span class="flex items-center gap-2" *hlmSelectValueTemplate="let value">
+							<sim-placeholder-avatar [option]="value" />
+							<span class="truncate">{{ value.label }}</span>
+						</span>
 					</hlm-select-trigger>
-					<hlm-select-content>
+					<hlm-select-content *hlmSelectPortal>
 						<hlm-select-label>Engineering team</hlm-select-label>
 						@for (option of options; track option.label) {
-							<hlm-option [value]="option">
+							<hlm-select-item [value]="option">
 								<span class="flex items-center gap-2">
 									<sim-placeholder-avatar [option]="option" />
 									<span class="truncate">{{ option.label }}</span>
 								</span>
-							</hlm-option>
+							</hlm-select-item>
 						}
 					</hlm-select-content>
-				</brn-select>
+				</hlm-select>
 			</div>
 		</div>
 	`,
