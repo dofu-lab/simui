@@ -25,10 +25,10 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 				<label
 					hlmLabel
 					class="border-input has-data-[state=checked]:border-ring tran relative grid w-full items-start gap-3 rounded-md border p-4 shadow-xs transition-colors ease-in-out"
-					for="checkbox-{{ item.value }}">
+					for="checkbox{{ item.value }}">
 					<div class="flex flex-1 items-center justify-between">
 						<ng-icon hlm class="opacity-60" size="sm" [name]="item.icon" />
-						<hlm-checkbox id="checkbox-{{ item.value }}" />
+						<hlm-checkbox id="checkbox{{ item.value }}" />
 					</div>
 					<div class="text-md text-primary select-none">{{ item.label }}</div>
 				</label>

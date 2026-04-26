@@ -6,10 +6,10 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	selector: 'sim-checkbox-04',
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
-		<label hlmLabel class="flex items-center" for="indeterminate-checkbox">
+		<div class="flex items-center gap-3">
 			<hlm-checkbox id="indeterminate-checkbox" [(indeterminate)]="checked" />
-			Indeterminate checkbox
-		</label>
+			<label hlmLabel class="flex items-center" for="indeterminate-checkbox">Indeterminate checkbox</label>
+		</div>
 	`,
 })
 export class Checkbox04Component {

@@ -40,8 +40,7 @@ import { listVariants } from './hlm-tabs-list';
 			[disabled]="disableScrollBefore || null"
 			(click)="_handlePaginatorClick('before')"
 			(mousedown)="_handlePaginatorPress('before', $event)"
-			(touchend)="_stopInterval()"
-		>
+			(touchend)="_stopInterval()">
 			<ng-icon hlm size="base" name="lucideChevronLeft" />
 		</button>
 
@@ -65,8 +64,7 @@ import { listVariants } from './hlm-tabs-list';
 			[disabled]="disableScrollAfter || null"
 			(click)="_handlePaginatorClick('after')"
 			(mousedown)="_handlePaginatorPress('after', $event)"
-			(touchend)="_stopInterval()"
-		>
+			(touchend)="_stopInterval()">
 			<ng-icon hlm size="base" name="lucideChevronRight" />
 		</button>
 	`,

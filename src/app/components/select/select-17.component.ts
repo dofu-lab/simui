@@ -11,17 +11,19 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">
 				<label hlmFieldLabel for="select-17">Select with helper text</label>
-				<brn-select placeholder="Select an option" id="select-17" value="Angular">
+				<hlm-select id="select-17" value="Angular">
 					<hlm-select-trigger class="[&>button]:w-full">
-						<hlm-select-value />
+						<hlm-select-value placeholder="Select an option" />
 					</hlm-select-trigger>
-					<hlm-select-content>
-						<hlm-option value="Angular">Angular</hlm-option>
-						<hlm-option value="React">React</hlm-option>
-						<hlm-option value="Vue">Vue</hlm-option>
-						<hlm-option value="Svelte">Svelte</hlm-option>
+					<hlm-select-content *hlmSelectPortal>
+						<hlm-select-group>
+							<hlm-select-item value="Angular">Angular</hlm-select-item>
+							<hlm-select-item value="React">React</hlm-select-item>
+							<hlm-select-item value="Vue">Vue</hlm-select-item>
+							<hlm-select-item value="Svelte">Svelte</hlm-select-item>
+						</hlm-select-group>
 					</hlm-select-content>
-				</brn-select>
+				</hlm-select>
 				<p hlmFieldDescription class="text-xs">Tell us what‘s your favorite Select framework.</p>
 			</div>
 		</div>

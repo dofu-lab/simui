@@ -1,14 +1,17 @@
-import { Directive, computed, input } from '@angular/core';
-import { hlm } from '@spartan-ng/helm/utils';
-import type { ClassValue } from 'clsx';
+import { Directive } from '@angular/core';
+import { classes } from '@spartan-ng/helm/utils';
 
 @Directive({
-	selector: '[hlmCardFooter]',
+	selector: '[hlmCardFooter],hlm-card-footer',
 	host: {
-		'[class]': '_computedClass()',
+		'data-slot': 'card-footer',
 	},
 })
 export class HlmCardFooter {
-	public readonly userClass = input<ClassValue>('', { alias: 'class' });
-	protected readonly _computedClass = computed(() => hlm('flex items-center px-6 [.border-t]:pt-6', this.userClass()));
+	constructor() {
+		classes(
+			() =>
+				'rounded-b-xl px-6 group-data-[size=sm]/card:px-4 [.border-t]:pt-6 group-data-[size=sm]/card:[.border-t]:pt-4 flex items-center',
+		);
+	}
 }

@@ -1,57 +1,44 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronDown } from '@ng-icons/lucide';
-import {
-	HlmAccordion,
-	HlmAccordionContent,
-	HlmAccordionIcon,
-	HlmAccordionItem,
-	HlmAccordionTrigger,
-} from '@spartan-ng/helm/accordion';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { lucideChevronDown, lucideChevronUp } from '@ng-icons/lucide';
+import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
+import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
 @Component({
 	selector: 'sim-accordion-17',
-	imports: [
-		HlmAccordion,
-		HlmAccordionItem,
-		HlmAccordionTrigger,
-		HlmAccordionContent,
-		HlmAccordionIcon,
-		HlmIcon,
-		NgIcon,
-	],
-	viewProviders: [provideIcons({ lucideChevronDown })],
+	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon],
+	providers: [provideIcons({ lucideChevronDown, lucideChevronUp })],
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Table W/ left chevron</h2>
-			<div hlmAccordion>
-				@for (item of items; track item.id) {
-					<div
-						hlmAccordionItem
-						class="bg-background has-focus-visible:ring-ring/50 relative border border-b-0 px-4 py-1 outline-none first:rounded-t-md last:rounded-b-md last:border-b has-focus-visible:z-10 has-focus-visible:ring-[3px]">
-						<h3 class="contents">
+			<hlm-accordion class="rounded-lg border">
+				@for (item of items; track $index) {
+					<hlm-accordion-item class="border-b px-4 last:border-b-0">
+						<h3 brnAccordionHeader class="flex">
 							<button
-								hlmAccordionTrigger
-								class="justify-start gap-4 px-0 py-2 hover:no-underline focus-visible:ring-0 focus-visible:ring-offset-0">
-								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-								<span class="text-[15px] leading-6 font-semibold">
-									{{ item.title }}
-								</span>
+								brnAccordionTrigger
+								data-slot="accordion-trigger"
+								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-4 text-start text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)] **:data-[slot=accordion-trigger-label]:me-auto">
+								<ng-icon
+									name="lucideChevronDown"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+								<ng-icon
+									name="lucideChevronUp"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
+								<span data-slot="accordion-trigger-label" class="ms-2">{{ item.title }}</span>
 							</button>
 						</h3>
-
-						<hlm-accordion-content class="text-muted-foreground ps-8 [&>div>p]:pb-2">
-							{{ item.content }}
-						</hlm-accordion-content>
-					</div>
+						<hlm-accordion-content class="pl-6">{{ item.content }}</hlm-accordion-content>
+					</hlm-accordion-item>
 				}
-			</div>
+			</hlm-accordion>
 		</div>
 	`,
 })
 export class Accordion17Component {
-	items = [
+	protected readonly items = [
 		{
 			id: 'acc-17-1',
 			title: 'Why choose SimUI?',

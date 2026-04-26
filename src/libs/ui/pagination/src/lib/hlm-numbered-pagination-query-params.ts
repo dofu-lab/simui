@@ -10,7 +10,6 @@ import {
 	untracked,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { createPageArray, outOfBoundCorrection } from './hlm-numbered-pagination';
 import { HlmPagination } from './hlm-pagination';
@@ -32,8 +31,6 @@ import { HlmPaginationPrevious } from './hlm-pagination-previous';
 		HlmPaginationNext,
 		HlmPaginationLink,
 		HlmPaginationEllipsis,
-
-		BrnSelectImports,
 		HlmSelectImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -53,8 +50,7 @@ import { HlmPaginationPrevious } from './hlm-pagination-previous';
 							<hlm-pagination-previous
 								[link]="link()"
 								[queryParams]="{ page: currentPage() - 1 }"
-								queryParamsHandling="merge"
-							/>
+								queryParamsHandling="merge" />
 						</li>
 					}
 
@@ -68,8 +64,7 @@ import { HlmPaginationPrevious } from './hlm-pagination-previous';
 									[link]="currentPage() !== page ? link() : undefined"
 									[queryParams]="{ page }"
 									queryParamsHandling="merge"
-									[isActive]="currentPage() === page"
-								>
+									[isActive]="currentPage() === page">
 									{{ page }}
 								</a>
 							}
@@ -81,24 +76,25 @@ import { HlmPaginationPrevious } from './hlm-pagination-previous';
 							<hlm-pagination-next
 								[link]="link()"
 								[queryParams]="{ page: currentPage() + 1 }"
-								queryParamsHandling="merge"
-							/>
+								queryParamsHandling="merge" />
 						</li>
 					}
 				</ul>
 			</nav>
 
 			<!-- Show Page Size selector -->
-			<brn-select [(ngModel)]="itemsPerPage" class="ml-auto" placeholder="Page size">
+			<hlm-select [(ngModel)]="itemsPerPage" class="ml-auto">
 				<hlm-select-trigger class="w-fit">
 					<hlm-select-value />
 				</hlm-select-trigger>
-				<hlm-select-content>
-					@for (pageSize of _pageSizesWithCurrent(); track pageSize) {
-						<hlm-option [value]="pageSize">{{ pageSize }} / page</hlm-option>
-					}
+				<hlm-select-content *hlmSelectPortal>
+					<hlm-select-group>
+						@for (pageSize of _pageSizesWithCurrent(); track pageSize) {
+							<hlm-select-item [value]="pageSize">{{ pageSize }}</hlm-select-item>
+						}
+					</hlm-select-group>
 				</hlm-select-content>
-			</brn-select>
+			</hlm-select>
 		</div>
 	`,
 })

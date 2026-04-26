@@ -1,57 +1,33 @@
 import { Component } from '@angular/core';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
-import {
-	HlmAccordion,
-	HlmAccordionContent,
-	HlmAccordionIcon,
-	HlmAccordionItem,
-	HlmAccordionTrigger,
-} from '@spartan-ng/helm/accordion';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
 @Component({
 	selector: 'sim-accordion-11',
-	imports: [
-		HlmAccordion,
-		HlmAccordionItem,
-		HlmAccordionTrigger,
-		HlmAccordionContent,
-		HlmAccordionIcon,
-		HlmIcon,
-		NgIcon,
-	],
-	viewProviders: [provideIcons({ lucideChevronDown })],
+	imports: [HlmAccordionImports],
+	providers: [provideIcons({ lucideChevronDown })],
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Tabs W/ chevron</h2>
-			<div hlmAccordion class="flex flex-col gap-2">
-				@for (item of items; track item.id) {
-					<div
-						hlmAccordionItem
-						class="has-focus-visible:ring-ring/50 rounded-md border px-4 py-1 has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-						<h3 class="contents">
-							<button
-								hlmAccordionTrigger
-								class="px-0 py-2 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
-								<span class="text-[15px] leading-6 font-semibold">
-									{{ item.title }}
-								</span>
-								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-							</button>
-						</h3>
 
-						<hlm-accordion-content class="text-muted-foreground [&>div>p]:pb-2">
+			<hlm-accordion class="gap-2">
+				@for (item of items; track item.id) {
+					<hlm-accordion-item class="rounded-md border px-4">
+						<hlm-accordion-trigger triggerClass="py-3">
+							{{ item.title }}
+						</hlm-accordion-trigger>
+						<hlm-accordion-content>
 							{{ item.content }}
 						</hlm-accordion-content>
-					</div>
+					</hlm-accordion-item>
 				}
-			</div>
+			</hlm-accordion>
 		</div>
 	`,
 })
 export class Accordion11Component {
-	items = [
+	protected readonly items = [
 		{
 			id: 'acc-11-1',
 			title: 'Why choose SimUI?',

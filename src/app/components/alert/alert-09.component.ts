@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight, lucideTriangleAlert } from '@ng-icons/lucide';
-import { HlmAlert, HlmAlertDescription, HlmAlertIcon } from '@spartan-ng/helm/alert';
+import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-alert-09',
+	imports: [NgIcon, HlmIcon, HlmAlertImports],
 	providers: [provideIcons({ lucideTriangleAlert, lucideArrowRight })],
-	imports: [NgIcon, HlmIcon, HlmAlert, HlmAlertDescription, HlmAlertIcon],
 	host: {
 		class: 'w-full',
 	},
 	template: `
-		<div hlmAlert class="flex gap-3 py-3">
+		<hlm-alert class="flex gap-3 py-3">
 			<span class="flex items-center">
-				<ng-icon hlm hlmAlertIcon name="lucideTriangleAlert" class="text-amber-500" />
+				<ng-icon hlm size="sm" name="lucideTriangleAlert" class="text-amber-500" />
 			</span>
 			<div class="flex flex-1 justify-between">
-				<p hlmAlertDesc>Some information is missing</p>
+				<p hlmAlertDescription>Some information is missing</p>
 				<div class="group flex cursor-pointer items-center gap-1">
 					<span class="text-sm font-medium">Check now</span>
 					<ng-icon
@@ -27,7 +27,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 						class="ms-1 transition-transform group-hover:translate-x-0.5" />
 				</div>
 			</div>
-		</div>
+		</hlm-alert>
 	`,
 })
 export class Alert09Component {}

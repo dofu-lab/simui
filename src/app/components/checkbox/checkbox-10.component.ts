@@ -9,9 +9,9 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 		<label
 			hlmLabel
 			class="border-input has-data-[state=checked]:border-ring relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors ease-in-out"
-			for="checkbox-10">
-			<div class="peer flex items-start gap-2">
-				<hlm-checkbox id="checkbox-10" [(checked)]="checked" />
+			for="checkbox10">
+			<div class="flex items-start gap-2">
+				<hlm-checkbox id="checkbox10" [(checked)]="checked" />
 				<div class="grid grow gap-2 pt-0.5 select-none">
 					<span>
 						Checkbox label

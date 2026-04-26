@@ -20,8 +20,7 @@ import { HlmPaginationLink } from './hlm-pagination-link';
 			[queryParams]="queryParams()"
 			[queryParamsHandling]="queryParamsHandling()"
 			[size]="_size()"
-			[attr.aria-label]="ariaLabel()"
-		>
+			[attr.aria-label]="ariaLabel()">
 			<ng-icon hlm size="sm" name="lucideChevronLeft" />
 			<span [class]="_labelClass()">{{ text() }}</span>
 		</a>

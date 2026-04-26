@@ -2,10 +2,9 @@ import { ColorEditService, ThemeStorageService } from '@/app/core/services';
 import { ThemeStyleProps } from '@/app/types';
 import { Component, effect, ElementRef, inject, signal, viewChild, viewChildren } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronDown } from '@ng-icons/lucide';
-import { BrnAccordion } from '@spartan-ng/brain/accordion';
+import { lucideChevronDown, lucideChevronUp } from '@ng-icons/lucide';
+import { BrnAccordion, BrnAccordionImports } from '@spartan-ng/brain/accordion';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
-import { HlmIcon } from '@spartan-ng/helm/icon';
 import { EditorColorPicker } from './editor-color-picker';
 
 type AccordionSection =
@@ -52,23 +51,30 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 
 @Component({
 	selector: 'sim-editor-color-config',
-	imports: [HlmAccordionImports, NgIcon, HlmIcon, EditorColorPicker],
-	providers: [provideIcons({ lucideChevronDown })],
+	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon, EditorColorPicker],
+	providers: [provideIcons({ lucideChevronDown, lucideChevronUp })],
 	template: `
 		<div #scrollContainer class="relative h-full overflow-y-auto pt-2">
-			<div hlmAccordion #accordion="brnAccordion" type="multiple" class="absolute w-full gap-4 px-4 pb-4">
-				<div
+			<hlm-accordion #accordion="brnAccordion" type="multiple" class="absolute w-full gap-4 px-4 pb-4">
+				<hlm-accordion-item
 					id="primary"
-					hlmAccordionItem
 					#accordionItem
 					[isOpened]="true"
 					class="has-focus-visible:ring-ring/50 rounded-md border has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-					<h3 class="contents">
+					<h3 brnAccordionHeader class="flex">
 						<button
-							hlmAccordionTrigger
-							class="p-3 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+							brnAccordionTrigger
+							data-slot="accordion-trigger"
+							class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent p-3 text-start text-sm font-medium transition-all outline-none focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 							<span class="text-sm leading-6">Primary color</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							<ng-icon
+								name="lucideChevronDown"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+							<ng-icon
+								name="lucideChevronUp"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 						</button>
 					</h3>
 
@@ -88,19 +94,26 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 								(colorChange)="updateColor('primary-foreground', $event)" />
 						</div>
 					</hlm-accordion-content>
-				</div>
+				</hlm-accordion-item>
 
-				<div
+				<hlm-accordion-item
 					id="secondary"
-					hlmAccordionItem
 					#accordionItem
 					class="has-focus-visible:ring-ring/50 rounded-md border has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-					<h3 class="contents">
+					<h3 brnAccordionHeader class="flex">
 						<button
-							hlmAccordionTrigger
-							class="p-3 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+							brnAccordionTrigger
+							data-slot="accordion-trigger"
+							class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent p-3 text-start text-sm font-medium transition-all outline-none focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 							<span class="text-sm leading-6">Secondary color</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							<ng-icon
+								name="lucideChevronDown"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+							<ng-icon
+								name="lucideChevronUp"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 						</button>
 					</h3>
 
@@ -120,19 +133,26 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 								(colorChange)="updateColor('secondary-foreground', $event)" />
 						</div>
 					</hlm-accordion-content>
-				</div>
+				</hlm-accordion-item>
 
-				<div
+				<hlm-accordion-item
 					id="accent"
-					hlmAccordionItem
 					#accordionItem
 					class="has-focus-visible:ring-ring/50 rounded-md border has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-					<h3 class="contents">
+					<h3 brnAccordionHeader class="flex">
 						<button
-							hlmAccordionTrigger
-							class="p-3 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+							brnAccordionTrigger
+							data-slot="accordion-trigger"
+							class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent p-3 text-start text-sm font-medium transition-all outline-none focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 							<span class="text-sm leading-6">Accent color</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							<ng-icon
+								name="lucideChevronDown"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+							<ng-icon
+								name="lucideChevronUp"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 						</button>
 					</h3>
 
@@ -152,19 +172,26 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 								(colorChange)="updateColor('accent-foreground', $event)" />
 						</div>
 					</hlm-accordion-content>
-				</div>
+				</hlm-accordion-item>
 
-				<div
+				<hlm-accordion-item
 					id="base"
-					hlmAccordionItem
 					#accordionItem
 					class="has-focus-visible:ring-ring/50 rounded-md border has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-					<h3 class="contents">
+					<h3 brnAccordionHeader class="flex">
 						<button
-							hlmAccordionTrigger
-							class="p-3 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+							brnAccordionTrigger
+							data-slot="accordion-trigger"
+							class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent p-3 text-start text-sm font-medium transition-all outline-none focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 							<span class="text-sm leading-6">Base color</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							<ng-icon
+								name="lucideChevronDown"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+							<ng-icon
+								name="lucideChevronUp"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 						</button>
 					</h3>
 
@@ -184,19 +211,26 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 								(colorChange)="updateColor('foreground', $event)" />
 						</div>
 					</hlm-accordion-content>
-				</div>
+				</hlm-accordion-item>
 
-				<div
+				<hlm-accordion-item
 					id="card"
-					hlmAccordionItem
 					#accordionItem
 					class="has-focus-visible:ring-ring/50 rounded-md border has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-					<h3 class="contents">
+					<h3 brnAccordionHeader class="flex">
 						<button
-							hlmAccordionTrigger
-							class="p-3 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+							brnAccordionTrigger
+							data-slot="accordion-trigger"
+							class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent p-3 text-start text-sm font-medium transition-all outline-none focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 							<span class="text-sm leading-6">Card color</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							<ng-icon
+								name="lucideChevronDown"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+							<ng-icon
+								name="lucideChevronUp"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 						</button>
 					</h3>
 
@@ -216,19 +250,26 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 								(colorChange)="updateColor('card-foreground', $event)" />
 						</div>
 					</hlm-accordion-content>
-				</div>
+				</hlm-accordion-item>
 
-				<div
+				<hlm-accordion-item
 					id="popover"
-					hlmAccordionItem
 					#accordionItem
 					class="has-focus-visible:ring-ring/50 rounded-md border has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-					<h3 class="contents">
+					<h3 brnAccordionHeader class="flex">
 						<button
-							hlmAccordionTrigger
-							class="p-3 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+							brnAccordionTrigger
+							data-slot="accordion-trigger"
+							class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent p-3 text-start text-sm font-medium transition-all outline-none focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 							<span class="text-sm leading-6">Popover color</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							<ng-icon
+								name="lucideChevronDown"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+							<ng-icon
+								name="lucideChevronUp"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 						</button>
 					</h3>
 
@@ -248,19 +289,26 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 								(colorChange)="updateColor('popover-foreground', $event)" />
 						</div>
 					</hlm-accordion-content>
-				</div>
+				</hlm-accordion-item>
 
-				<div
+				<hlm-accordion-item
 					id="muted"
-					hlmAccordionItem
 					#accordionItem
 					class="has-focus-visible:ring-ring/50 rounded-md border has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-					<h3 class="contents">
+					<h3 brnAccordionHeader class="flex">
 						<button
-							hlmAccordionTrigger
-							class="p-3 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+							brnAccordionTrigger
+							data-slot="accordion-trigger"
+							class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent p-3 text-start text-sm font-medium transition-all outline-none focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 							<span class="text-sm leading-6">Muted color</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							<ng-icon
+								name="lucideChevronDown"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+							<ng-icon
+								name="lucideChevronUp"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 						</button>
 					</h3>
 
@@ -280,19 +328,26 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 								(colorChange)="updateColor('muted-foreground', $event)" />
 						</div>
 					</hlm-accordion-content>
-				</div>
+				</hlm-accordion-item>
 
-				<div
+				<hlm-accordion-item
 					id="destructive"
-					hlmAccordionItem
 					#accordionItem
 					class="has-focus-visible:ring-ring/50 rounded-md border has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-					<h3 class="contents">
+					<h3 brnAccordionHeader class="flex">
 						<button
-							hlmAccordionTrigger
-							class="p-3 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+							brnAccordionTrigger
+							data-slot="accordion-trigger"
+							class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent p-3 text-start text-sm font-medium transition-all outline-none focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 							<span class="text-sm leading-6">Destructive color</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							<ng-icon
+								name="lucideChevronDown"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+							<ng-icon
+								name="lucideChevronUp"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 						</button>
 					</h3>
 
@@ -312,19 +367,26 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 								(colorChange)="updateColor('destructive-foreground', $event)" />
 						</div>
 					</hlm-accordion-content>
-				</div>
+				</hlm-accordion-item>
 
-				<div
+				<hlm-accordion-item
 					id="border"
-					hlmAccordionItem
 					#accordionItem
 					class="has-focus-visible:ring-ring/50 rounded-md border has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-					<h3 class="contents">
+					<h3 brnAccordionHeader class="flex">
 						<button
-							hlmAccordionTrigger
-							class="p-3 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+							brnAccordionTrigger
+							data-slot="accordion-trigger"
+							class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent p-3 text-start text-sm font-medium transition-all outline-none focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 							<span class="text-sm leading-6">Border & Input color</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							<ng-icon
+								name="lucideChevronDown"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+							<ng-icon
+								name="lucideChevronUp"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 						</button>
 					</h3>
 
@@ -350,19 +412,26 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 								(colorChange)="updateColor('ring', $event)" />
 						</div>
 					</hlm-accordion-content>
-				</div>
+				</hlm-accordion-item>
 
-				<div
+				<hlm-accordion-item
 					id="sidebar"
-					hlmAccordionItem
 					#accordionItem
 					class="has-focus-visible:ring-ring/50 rounded-md border has-focus-visible:ring-[3px] has-focus-visible:outline-none">
-					<h3 class="contents">
+					<h3 brnAccordionHeader class="flex">
 						<button
-							hlmAccordionTrigger
-							class="p-3 hover:no-underline focus-visible:ring-transparent focus-visible:ring-offset-0">
+							brnAccordionTrigger
+							data-slot="accordion-trigger"
+							class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent p-3 text-start text-sm font-medium transition-all outline-none focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 							<span class="text-sm leading-6">Sidebar Colors</span>
-							<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+							<ng-icon
+								name="lucideChevronDown"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+							<ng-icon
+								name="lucideChevronUp"
+								data-slot="accordion-trigger-icon"
+								class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 						</button>
 					</h3>
 
@@ -418,8 +487,8 @@ const COLOR_TO_SECTION_MAP: Record<string, AccordionSection> = {
 								(colorChange)="updateColor('sidebar-ring', $event)" />
 						</div>
 					</hlm-accordion-content>
-				</div>
-			</div>
+				</hlm-accordion-item>
+			</hlm-accordion>
 		</div>
 	`,
 })

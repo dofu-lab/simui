@@ -10,8 +10,8 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	},
 	template: `
 		<div class="flex flex-row items-center justify-between gap-2">
-			<label for="checkbox-11" class="flex-1" hlmLabel>Right checkbox</label>
-			<hlm-checkbox id="checkbox-11" />
+			<label for="checkbox11" class="flex-1" hlmLabel>Right checkbox</label>
+			<hlm-checkbox id="checkbox11" />
 		</div>
 	`,
 })

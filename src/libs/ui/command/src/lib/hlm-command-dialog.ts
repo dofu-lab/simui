@@ -22,8 +22,7 @@ import { ClassValue } from 'clsx';
 			<hlm-dialog-content
 				*hlmDialogPortal="let ctx"
 				[class]="_computedDialogContentClass()"
-				[showCloseButton]="showCloseButton()"
-			>
+				[showCloseButton]="showCloseButton()">
 				<hlm-dialog-header class="sr-only">
 					<h2 hlmDialogTitle>{{ title() }}</h2>
 					<p hlmDialogDescription>{{ description() }}</p>

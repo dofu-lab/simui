@@ -1,65 +1,68 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideBell, lucideChevronDown, lucideLifeBuoy, lucideLink, lucideShieldCheck } from '@ng-icons/lucide';
 import {
-	HlmAccordion,
-	HlmAccordionContent,
-	HlmAccordionIcon,
-	HlmAccordionItem,
-	HlmAccordionTrigger,
-} from '@spartan-ng/helm/accordion';
+	lucideBell,
+	lucideChevronDown,
+	lucideChevronUp,
+	lucideLifeBuoy,
+	lucideLink,
+	lucideShieldCheck,
+} from '@ng-icons/lucide';
+import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
+import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-09',
-	imports: [
-		HlmAccordion,
-		HlmAccordionItem,
-		HlmAccordionTrigger,
-		HlmAccordionContent,
-		HlmAccordionIcon,
-		HlmIcon,
-		NgIcon,
+	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon, HlmIcon],
+	providers: [
+		provideIcons({ lucideChevronDown, lucideChevronUp, lucideLink, lucideBell, lucideShieldCheck, lucideLifeBuoy }),
 	],
-	viewProviders: [provideIcons({ lucideChevronDown, lucideLink, lucideBell, lucideShieldCheck, lucideLifeBuoy })],
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ icon, sub-title and chevron</h2>
-			<div hlmAccordion>
+			<hlm-accordion>
 				@for (item of items; track item.id) {
-					<div hlmAccordionItem class="py-2">
-						<h3 class="contents">
+					<hlm-accordion-item>
+						<h3 brnAccordionHeader class="flex">
 							<button
-								hlmAccordionTrigger
-								class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-2 hover:no-underline">
-								<span class="flex items-center gap-3">
+								brnAccordionTrigger
+								data-slot="accordion-trigger"
+								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-4 text-start text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
+								<span class="flex items-center gap-2">
 									<span
 										class="flex size-10 shrink-0 items-center justify-center rounded-full border"
 										aria-hidden="true">
 										<ng-icon hlm [name]="item.icon" size="sm" class="opacity-60" />
 									</span>
-									<span class="flex flex-col items-start gap-1 text-[15px] leading-6 font-semibold">
+									<span class="flex flex-col items-start gap-1">
 										<span>
 											{{ item.title }}
 										</span>
-										<span class="text-sm font-normal">{{ item.subTitle }}</span>
+										<span class="text-muted-foreground text-sm font-normal">{{ item.subTitle }}</span>
 									</span>
 								</span>
-								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+								<ng-icon
+									name="lucideChevronDown"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+								<ng-icon
+									name="lucideChevronUp"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 							</button>
 						</h3>
-
-						<hlm-accordion-content class="text-muted-foreground ps-13">
+						<hlm-accordion-content class="pl-12">
 							{{ item.content }}
 						</hlm-accordion-content>
-					</div>
+					</hlm-accordion-item>
 				}
-			</div>
+			</hlm-accordion>
 		</div>
 	`,
 })
 export class Accordion09Component {
-	items = [
+	protected readonly items = [
 		{
 			id: 'acc-09-1',
 			title: 'Connected accounts',

@@ -38,27 +38,28 @@ export class StatusDot {
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">
 				<label hlmFieldLabel for="select-27">Simple select with status indicator</label>
-				<brn-select placeholder="Select an option" id="select-27" [value]="options[0]">
+				<hlm-select id="select-27" [value]="options[0]">
 					<hlm-select-trigger class="[&>button]:w-full">
-						<hlm-select-value>
-							<span class="flex items-center gap-2" *brnSelectValue="let value">
-								<sim-status-dot [class]="value.dotColor" />
-								<span class="truncate">{{ value.label }}</span>
-							</span>
-						</hlm-select-value>
+						<span class="flex items-center gap-2" *hlmSelectValueTemplate="let value">
+							<sim-status-dot [class]="value.dotColor" />
+							<span class="truncate">{{ value.label }}</span>
+						</span>
 					</hlm-select-trigger>
 					<hlm-select-content
+						*hlmSelectPortal
 						class="[&_*[role=option]>span>svg]:text-muted-foreground/80 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]>span>svg]:shrink-0">
-						@for (option of options; track option.label) {
-							<hlm-option [value]="option">
-								<span class="flex items-center gap-2">
-									<sim-status-dot [class]="option.dotColor" />
-									<span class="truncate">{{ option.label }}</span>
-								</span>
-							</hlm-option>
-						}
+						<hlm-select-group>
+							@for (option of options; track option.label) {
+								<hlm-select-item [value]="option">
+									<span class="flex items-center gap-2">
+										<sim-status-dot [class]="option.dotColor" />
+										<span class="truncate">{{ option.label }}</span>
+									</span>
+								</hlm-select-item>
+							}
+						</hlm-select-group>
 					</hlm-select-content>
-				</brn-select>
+				</hlm-select>
 			</div>
 		</div>
 	`,

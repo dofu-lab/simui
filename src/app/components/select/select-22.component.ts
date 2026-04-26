@@ -11,28 +11,28 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">
 				<label hlmFieldLabel for="select-22">Select with separator</label>
-				<brn-select placeholder="Select an option" id="select-22" value="Angular" required>
+				<hlm-select id="select-22" value="Angular" required>
 					<hlm-select-trigger class="[&>button]:w-full">
-						<hlm-select-value />
+						<hlm-select-value placeholder="Select an option" />
 					</hlm-select-trigger>
-					<hlm-select-content>
+					<hlm-select-content *hlmSelectPortal>
 						<hlm-select-group>
 							<hlm-select-label>Frontend Frameworks</hlm-select-label>
-							<hlm-option value="Angular">Angular</hlm-option>
-							<hlm-option value="React">React</hlm-option>
-							<hlm-option value="Vue">Vue</hlm-option>
-							<hlm-option value="Svelte">Svelte</hlm-option>
+							<hlm-select-item value="Angular">Angular</hlm-select-item>
+							<hlm-select-item value="React">React</hlm-select-item>
+							<hlm-select-item value="Vue">Vue</hlm-select-item>
+							<hlm-select-item value="Svelte">Svelte</hlm-select-item>
 						</hlm-select-group>
 						<div hlmSelectSeparator class="mx-0"></div>
 						<hlm-select-group>
 							<hlm-select-label>Backend Frameworks</hlm-select-label>
-							<hlm-option value="Node.js">Node.js</hlm-option>
-							<hlm-option value="Django">Django</hlm-option>
-							<hlm-option value="Ruby on Rails">Ruby on Rails</hlm-option>
-							<hlm-option value="Spring">Spring</hlm-option>
+							<hlm-select-item value="Node.js">Node.js</hlm-select-item>
+							<hlm-select-item value="Django">Django</hlm-select-item>
+							<hlm-select-item value="Ruby on Rails">Ruby on Rails</hlm-select-item>
+							<hlm-select-item value="Spring">Spring</hlm-select-item>
 						</hlm-select-group>
 					</hlm-select-content>
-				</brn-select>
+				</hlm-select>
 			</div>
 		</div>
 	`,

@@ -13,8 +13,7 @@ import { classes } from '@spartan-ng/helm/utils';
 		<hlm-separator class="absolute inset-0 top-1/2" />
 		<span
 			data-slot="field-separator-content"
-			class="bg-background text-muted-foreground relative mx-auto block w-fit px-2"
-		>
+			class="bg-background text-muted-foreground relative mx-auto block w-fit px-2">
 			<ng-content />
 		</span>
 	`,

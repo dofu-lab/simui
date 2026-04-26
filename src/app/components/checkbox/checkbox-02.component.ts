@@ -6,12 +6,12 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	selector: 'sim-checkbox-02',
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
-		<label class="flex items-center" hlmLabel for="checkbox-02">
+		<div class="flex items-center gap-3">
 			<hlm-checkbox
-				id="checkbox-02"
+				id="checkbox02"
 				class="data-[state=checked]:text-background data-[state=unchecked]:bg-background border-border focus-visible:ring-[#7F56D9] data-[state=checked]:border-[#7F56D9] data-[state=checked]:bg-[#7F56D9]" />
-			Custom color checkbox
-		</label>
+			<label class="flex items-center" hlmLabel for="checkbox02">Custom color checkbox</label>
+		</div>
 	`,
 })
 export class Checkbox02Component {}

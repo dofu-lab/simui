@@ -12,7 +12,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	template: `
 		<div hlmAlert class="bg-background z-50 flex gap-3 py-3 shadow-lg">
 			<span class="flex items-center">
-				<ng-icon hlm hlmAlertIcon name="lucideCircleAlert" class="text-blue-500" />
+				<ng-icon hlm size="sm" name="lucideCircleAlert" class="text-blue-500" />
 			</span>
 			<p hlmAlertDesc class="grow">Just a quick note!</p>
 			<button hlmBtn variant="ghost" class="group -my-1.5 -me-2 size-8 shrink-0 p-0 hover:bg-transparent">

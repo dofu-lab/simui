@@ -1,15 +1,10 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideCheck, lucideChevronDown, lucideMinus } from '@ng-icons/lucide';
-import {
-	HlmAccordion,
-	HlmAccordionContent,
-	HlmAccordionIcon,
-	HlmAccordionItem,
-	HlmAccordionTrigger,
-} from '@spartan-ng/helm/accordion';
+import { lucideCheck, lucideChevronDown, lucideChevronUp, lucideMinus } from '@ng-icons/lucide';
+import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
+import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
@@ -21,25 +16,23 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 		FormsModule,
 		ReactiveFormsModule,
 		HlmCheckbox,
-		HlmAccordion,
-		HlmAccordionItem,
-		HlmAccordionTrigger,
-		HlmAccordionContent,
-		HlmAccordionIcon,
 		HlmIcon,
+		HlmAccordionImports,
+		BrnAccordionImports,
 	],
 	host: { ngSkipHydration: 'true' },
-	viewProviders: [provideIcons({ lucideChevronDown, lucideCheck, lucideMinus })],
+	providers: [provideIcons({ lucideChevronDown, lucideChevronUp, lucideCheck, lucideMinus })],
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Connected W/ checkbox and state</h2>
-			<div hlmAccordion [formGroup]="form">
+			<hlm-accordion [formGroup]="form">
 				@for (item of items; track item.id) {
-					<div hlmAccordionItem class="border-b-0">
-						<h3 class="contents">
+					<hlm-accordion-item class="border-b-0!">
+						<h3 brnAccordionHeader class="flex">
 							<button
-								hlmAccordionTrigger
-								class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-0 hover:no-underline">
+								brnAccordionTrigger
+								data-slot="accordion-trigger"
+								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-center justify-between rounded-md border-0 border-transparent text-start text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 								<span class="flex items-center gap-3">
 									<span
 										class="relative flex size-10 shrink-0 items-center justify-center rounded-full"
@@ -67,11 +60,16 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 												'scale-100 opacity-60': !isGroupFullyChecked(item.id),
 											}" />
 									</span>
-									<span class="text-[15px] leading-6 font-semibold">
-										{{ item.title }}
-									</span>
+									{{ item.title }}
 								</span>
-								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
+								<ng-icon
+									name="lucideChevronDown"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
+								<ng-icon
+									name="lucideChevronUp"
+									data-slot="accordion-trigger-icon"
+									class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline group-aria-[expanded=false]/accordion-trigger:hidden" />
 							</button>
 						</h3>
 
@@ -94,24 +92,24 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 								</div>
 							</div>
 						</hlm-accordion-content>
-					</div>
+					</hlm-accordion-item>
 					<div
 						class="ml-5 h-4 border-l ps-8 last:hidden"
 						[ngClass]="{ 'border-sky-600/20': isGroupFullyChecked(item.id) }"></div>
 				}
-			</div>
+			</hlm-accordion>
 		</div>
 	`,
 })
 export class Accordion22Component {
-	form: FormGroup;
+	private readonly fb = inject(FormBuilder);
+	protected readonly form = this.fb.group({});
 
-	constructor(private fb: FormBuilder) {
-		this.form = this.fb.group({});
+	constructor() {
 		this.initFormGroups();
 	}
 
-	initFormGroups() {
+	private initFormGroups(): void {
 		this.items.forEach((item) => {
 			const group = this.fb.group({});
 			item.options.forEach((option) => {
@@ -121,14 +119,16 @@ export class Accordion22Component {
 		});
 	}
 
-	isGroupFullyChecked(groupId: string): boolean {
+	protected isGroupFullyChecked(groupId: string): boolean {
 		const group = this.form.get(groupId) as FormGroup;
-		if (!group) return false;
+		if (!group) {
+			return false;
+		}
 
 		return Object.keys(group.controls).every((key) => group.get(key)?.value === true);
 	}
 
-	items = [
+	protected readonly items = [
 		{
 			id: 'project-setup',
 			title: 'Project Setup',

@@ -10,13 +10,15 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 		class: 'w-full',
 	},
 	template: `
-		<label hlmLabel class="peer flex items-start gap-2" for="checkbox-09">
-			<hlm-checkbox id="checkbox-09" [(checked)]="checked" />
-			<div class="grid grow gap-2 pt-0.5">
-				<span>Subscribe to newsletter</span>
-				<span class="text-muted-foreground text-xs">Get the latest news and updates from us.</span>
-			</div>
-		</label>
+		<div class="flex items-start gap-3">
+			<hlm-checkbox id="checkbox09" [(checked)]="checked" />
+			<label hlmLabel class="flex items-start gap-2" for="checkbox09">
+				<div class="grid grow gap-2 pt-0.5">
+					<span>Subscribe to newsletter</span>
+					<span class="text-muted-foreground text-xs">Get the latest news and updates from us.</span>
+				</div>
+			</label>
+		</div>
 		<div
 			class="grid transition-all ease-in-out data-[state=collapsed]:grid-rows-[0fr] data-[state=collapsed]:opacity-0 data-[state=expanded]:grid-rows-[1fr] data-[state=expanded]:opacity-100"
 			[attr.data-state]="checked() ? 'expanded' : 'collapsed'">

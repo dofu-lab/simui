@@ -1,58 +1,39 @@
 import { Component } from '@angular/core';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
-import {
-	HlmAccordion,
-	HlmAccordionContent,
-	HlmAccordionIcon,
-	HlmAccordionItem,
-	HlmAccordionTrigger,
-} from '@spartan-ng/helm/accordion';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
 @Component({
 	selector: 'sim-accordion-07',
-	imports: [
-		HlmAccordion,
-		HlmAccordionItem,
-		HlmAccordionTrigger,
-		HlmAccordionContent,
-		HlmAccordionIcon,
-		HlmIcon,
-		NgIcon,
-	],
-	viewProviders: [provideIcons({ lucideChevronDown })],
+	imports: [HlmAccordionImports],
+	providers: [provideIcons({ lucideChevronDown })],
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ sub-title and chevron</h2>
-			<div hlmAccordion>
+			<hlm-accordion>
 				@for (item of items; track item.id) {
-					<div hlmAccordionItem class="py-2">
-						<h3 class="contents">
-							<button
-								hlmAccordionTrigger
-								class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-2 hover:no-underline">
-								<span class="flex flex-col items-start gap-1 text-[15px] leading-6 font-semibold">
-									<span>
-										{{ item.title }}
-									</span>
-									<span class="text-sm font-normal">{{ item.subTitle }}</span>
+					<hlm-accordion-item>
+						<hlm-accordion-trigger>
+							<div class="flex flex-col items-start gap-1">
+								<span>
+									{{ item.title }}
 								</span>
-								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-							</button>
-						</h3>
-
-						<hlm-accordion-content class="text-muted-foreground">
+								<span class="text-muted-foreground text-sm font-normal">
+									{{ item.subTitle }}
+								</span>
+							</div>
+						</hlm-accordion-trigger>
+						<hlm-accordion-content>
 							{{ item.content }}
 						</hlm-accordion-content>
-					</div>
+					</hlm-accordion-item>
 				}
-			</div>
+			</hlm-accordion>
 		</div>
 	`,
 })
 export class Accordion07Component {
-	items = [
+	protected readonly items = [
 		{
 			id: 'acc-07-1',
 			title: 'Connected accounts',

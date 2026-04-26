@@ -1,55 +1,27 @@
 import { Component } from '@angular/core';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronDown } from '@ng-icons/lucide';
-import {
-	HlmAccordion,
-	HlmAccordionContent,
-	HlmAccordionIcon,
-	HlmAccordionItem,
-	HlmAccordionTrigger,
-} from '@spartan-ng/helm/accordion';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
 @Component({
 	selector: 'sim-accordion-01',
-	imports: [
-		HlmAccordion,
-		HlmAccordionItem,
-		HlmAccordionTrigger,
-		HlmAccordionContent,
-		HlmAccordionIcon,
-		HlmIcon,
-		NgIcon,
-	],
-	viewProviders: [provideIcons({ lucideChevronDown })],
+	imports: [HlmAccordionImports],
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ chevron</h2>
-			<div hlmAccordion>
+			<hlm-accordion>
 				@for (item of items; track item.id) {
-					<div hlmAccordionItem class="py-2">
-						<h3 class="contents">
-							<button
-								hlmAccordionTrigger
-								class="focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-0 py-2 hover:no-underline">
-								<span class="text-[15px] leading-6 font-semibold">
-									{{ item.title }}
-								</span>
-								<ng-icon hlm hlmAccIcon name="lucideChevronDown" class="opacity-60" />
-							</button>
-						</h3>
-
-						<hlm-accordion-content class="text-muted-foreground">
+					<hlm-accordion-item>
+						<hlm-accordion-trigger>{{ item.title }}</hlm-accordion-trigger>
+						<hlm-accordion-content>
 							{{ item.content }}
 						</hlm-accordion-content>
-					</div>
+					</hlm-accordion-item>
 				}
-			</div>
+			</hlm-accordion>
 		</div>
 	`,
 })
 export class Accordion01Component {
-	items = [
+	protected readonly items = [
 		{
 			id: 'acc-01-1',
 			title: 'Why choose SimUI?',

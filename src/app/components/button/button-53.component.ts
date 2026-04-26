@@ -6,7 +6,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 	imports: [HlmButton],
 	template: `
 		<div class="flex flex-col gap-2">
-			<button hlmBtn class="h-fit pl-2">
+			<button hlmBtn class="pl-2">
 				<div class="flex items-center">
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
 						<mask
@@ -85,7 +85,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 					</div>
 				</div>
 			</button>
-			<button hlmBtn class="h-fit pl-2">
+			<button hlmBtn class="pl-2">
 				<div class="flex items-center">
 					<svg viewBox="0 0 24 24" class="fill-background mr-2 size-6" xmlns="http://www.w3.org/2000/svg">
 						<path

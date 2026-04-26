@@ -1,16 +1,16 @@
 import { Clipboard } from '@angular/cdk/clipboard';
-import { NgClass } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy } from '@ng-icons/lucide';
-import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
+import { HlmAspectRatioImports } from '@spartan-ng/helm/aspect-ratio';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-29',
-	imports: [NgIcon, NgClass, HlmIcon, HlmButton, HlmAspectRatio, HlmDialogImports],
+	imports: [NgIcon, NgClass, HlmIcon, HlmButton, NgOptimizedImage, HlmAspectRatioImports, HlmDialogImports],
 	providers: [provideIcons({ lucideCopy, lucideCheck })],
 	template: `
 		<hlm-dialog>
@@ -21,7 +21,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 				<div class="flex flex-col gap-6">
 					<div class="px-2 pt-2">
 						<div [hlmAspectRatio]="4 / 3">
-							<img src="assets/backgrounds/bg-01.jpg" alt="Logo" class="w-full rounded-md" />
+							<img ngSrc="assets/backgrounds/bg-01.jpg" fill alt="Logo" class="w-full rounded-md" />
 						</div>
 					</div>
 					<div class="flex flex-col gap-1 px-6 text-center">
