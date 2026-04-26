@@ -24,14 +24,12 @@ import { ColorTypeSelector } from './color-type-selector';
 			<hlm-sheet-content
 				*hlmSheetPortal="let ctx"
 				class="flex h-full w-[calc(100%-(--spacing(12)))] max-w-sm flex-col sm:max-w-3xl">
-				<hlm-sheet-header>
+				<hlm-sheet-header class="flex-row items-center justify-between pr-15">
 					<h3 hlmSheetTitle>Theme CSS code</h3>
-				</hlm-sheet-header>
-				<div class="flex flex-1 flex-col gap-2 px-4 pb-4">
 					<sim-color-type />
-					<div class="h-full min-h-0 flex-1 overflow-auto">
-						<code-preview [code]="cssCode()" />
-					</div>
+				</hlm-sheet-header>
+				<div class="mb-4 min-h-0 flex-1 px-4">
+					<code-preview [code]="cssCode()" />
 				</div>
 			</hlm-sheet-content>
 		</hlm-sheet>
