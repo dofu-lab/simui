@@ -25,7 +25,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 						@for (user of users; track $index) {
 							<li
 								(click)="switchUser(user, ctx)"
-								class="hover:bg-muted flex cursor-pointer items-center gap-2 rounded-md p-2 transition-colors">
+								class="hover:bg-muted flex cursor-pointer items-center gap-2 rounded-md p-2 transition-colors motion-reduce:transition-none">
 								<hlm-avatar class="h-6 w-6 border">
 									<img hlmAvatarImage [src]="user.avatar" [alt]="user.name" />
 									<span hlmAvatarFallback>{{ user.initials }}</span>

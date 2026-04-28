@@ -27,7 +27,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 					<button hlmBtn size="sm" class="h-8 text-xs">Notify me</button>
 				</div>
 				<button hlmBtn variant="ghost" class="group -my-1.5 -me-2 size-8 shrink-0 p-0 hover:bg-transparent">
-					<ng-icon hlm name="lucideX" size="sm" class="opacity-60 transition-opacity group-hover:opacity-100" />
+					<ng-icon hlm name="lucideX" size="sm" class="opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" />
 				</button>
 			</div>
 		</div>

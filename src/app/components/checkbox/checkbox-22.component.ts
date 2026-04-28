@@ -21,17 +21,17 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 					hlmLabel
 					for="theme-checkbox"
 					[attr.data-state]="checked() ? 'dark' : 'light'"
-					class="group border-input bg-background text-foreground hover:bg-accent hover:text-accent-foreground peer-focus-visible:border-ring peer-focus-visible:ring-ring/50 relative inline-flex size-9 items-center justify-center rounded-md border shadow-xs transition-all ease-in-out outline-none select-none peer-focus-visible:ring-[3px]">
+					class="group border-input bg-background text-foreground hover:bg-accent hover:text-accent-foreground peer-focus-visible:border-ring peer-focus-visible:ring-ring/50 relative inline-flex size-9 items-center justify-center rounded-md border shadow-xs transition-all motion-reduce:transition-none duration-150 ease outline-none select-none peer-focus-visible:ring-[3px]">
 					<ng-icon
 						hlm
 						name="lucideSun"
 						size="sm"
-						class="shrink-0 scale-0 opacity-0 transition-all group-data-[state=light]:scale-100 group-data-[state=light]:opacity-100" />
+						class="shrink-0 scale-95 opacity-0 transition-all motion-reduce:transition-none group-data-[state=light]:scale-100 group-data-[state=light]:opacity-100" />
 					<ng-icon
 						hlm
 						name="lucideMoon"
 						size="sm"
-						class="absolute shrink-0 scale-100 opacity-100 transition-all group-data-[state=light]:scale-0 group-data-[state=light]:opacity-0" />
+						class="absolute shrink-0 scale-100 opacity-100 transition-all motion-reduce:transition-none group-data-[state=light]:scale-95 group-data-[state=light]:opacity-0" />
 				</label>
 			</div>
 		</fieldset>

@@ -34,23 +34,37 @@ import { TasksExample } from './tasks/tasks';
 			<div class="relative h-full w-full overflow-auto rounded-xl border">
 				<div class="absolute w-full">
 					<div hlmTabsContent="examples" class="mt-0 p-4">
-						@defer {
+						@defer (when tab() === 'examples') {
 							<app-overview-example />
+						} @placeholder {
+							<div class="flex h-40 items-center justify-center text-sm text-muted-foreground">Loading...</div>
 						}
 					</div>
 				</div>
 				<div hlmTabsContent="tasks" class="absolute mt-0 size-full p-4">
-					<app-tasks-example />
+					@defer (when tab() === 'tasks') {
+						<app-tasks-example />
+					} @placeholder {
+						<div class="flex h-40 items-center justify-center text-sm text-muted-foreground">Loading...</div>
+					}
 				</div>
 				<div hlmTabsContent="playground" class="mt-0 size-full p-4">
-					<app-playground-example />
+					@defer (when tab() === 'playground') {
+						<app-playground-example />
+					} @placeholder {
+						<div class="flex h-40 items-center justify-center text-sm text-muted-foreground">Loading...</div>
+					}
 				</div>
 				<div hlmTabsContent="authentication" class="mt-0 size-full p-4">
-					<app-authentication-example />
+					@defer (when tab() === 'authentication') {
+						<app-authentication-example />
+					}
 				</div>
 				<div class="absolute w-full">
 					<div hlmTabsContent="colors" class="mt-0 size-full p-4">
-						<sim-color-palettes />
+						@defer (when tab() === 'colors') {
+							<sim-color-palettes />
+						}
 					</div>
 				</div>
 			</div>

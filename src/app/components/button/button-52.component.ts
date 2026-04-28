@@ -42,7 +42,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 					hlm
 					name="lucideCircleDot"
 					size="sm"
-					class="opacity-100 transition-all duration-300"
+					class="opacity-100 transition-all motion-reduce:transition-none duration-200"
 					[ngClass]="{
 						'translate-x-3': direction() === 'right',
 						'-translate-x-3': direction() === 'left',

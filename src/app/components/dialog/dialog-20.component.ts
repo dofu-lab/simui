@@ -52,7 +52,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 							<hlm-radio-group class="flex gap-3 rounded-md shadow-xs" formControlName="plan">
 								<label
 									hlmLabel
-									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
+									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
 									<div class="flex w-full flex-col gap-1 text-left font-normal select-none">
 										<span>Monthly</span>
 										<span class="text-muted-foreground">25$/month</span>
@@ -61,7 +61,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 								</label>
 								<label
 									hlmLabel
-									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
+									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
 									<div class="flex w-full flex-col gap-1 text-left font-normal select-none">
 										<div class="flex flex-1 justify-between">
 											<span>Yearly</span>

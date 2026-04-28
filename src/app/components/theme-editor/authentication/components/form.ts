@@ -33,7 +33,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 						autocomplete="off" />
 					<button hlmBtn [disabled]="isLoading()" class="mt-2 w-full" type="submit">
 						@if (isLoading()) {
-							<ng-icon hlm name="lucideLoaderCircle" size="sm" class="mr-2 animate-spin" />
+							<ng-icon hlm name="lucideLoaderCircle" size="sm" class="mr-2 animate-spin motion-reduce:animate-none" />
 						}
 						Sign In with Email
 					</button>
@@ -46,7 +46,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 				</div>
 				<button hlmBtn variant="outline" [disabled]="isLoading()">
 					@if (isLoading()) {
-						<ng-icon hlm name="lucideLoaderCircle" size="sm" class="mr-2 animate-spin" />
+						<ng-icon hlm name="lucideLoaderCircle" size="sm" class="mr-2 animate-spin motion-reduce:animate-none" />
 					} @else {
 						<ng-icon hlm class="mr-2" size="sm" name="lucideGithub" />
 					}

@@ -10,7 +10,7 @@ import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
 		<div hlmFieldGroup>
 			<div
 				hlmField
-				class="border-input bg-background focus-within:border-ring focus-within:ring-ring/50 has-aria-invalid:border-destructive has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 relative gap-0 rounded-md border shadow-xs transition-[color,box-shadow] outline-none focus-within:ring-[3px] has-[select:disabled]:cursor-not-allowed has-[select:disabled]:opacity-50 has-[select:is(:disabled)_*]:pointer-events-none">
+				class="border-input bg-background focus-within:border-ring focus-within:ring-ring/50 has-aria-invalid:border-destructive has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 relative gap-0 rounded-md border shadow-xs transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none focus-within:ring-[3px] has-[select:disabled]:cursor-not-allowed has-[select:disabled]:opacity-50 has-[select:is(:disabled)_*]:pointer-events-none">
 				<label hlmFieldLabel for="native-select-13" class="text-foreground block px-3 pt-2 text-xs font-medium">
 					Select with inset label (native)
 				</label>

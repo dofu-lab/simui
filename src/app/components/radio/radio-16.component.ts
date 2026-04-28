@@ -21,7 +21,7 @@ import { hlm } from '@spartan-ng/helm/utils';
 					(ngModelChange)="rating.set($event)">
 					@for (item of items; track item) {
 						<label
-							class="group has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative cursor-pointer rounded p-1 transition-all outline-none hover:scale-110 has-focus-visible:ring-[3px] has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
+							class="group has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative cursor-pointer rounded p-1 transition-all motion-reduce:transition-none outline-none hover:scale-110 has-focus-visible:ring-[3px] has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 							hlmLabel
 							(mouseenter)="hoverRating.set(item.value)"
 							(mouseleave)="hoverRating.set(null)">

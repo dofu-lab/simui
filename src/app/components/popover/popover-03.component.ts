@@ -36,7 +36,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 				<ul class="max-h-96 overflow-y-auto">
 					@for (notification of notifications(); track $index) {
 						<li
-							class="hover:bg-muted flex items-start justify-between gap-2 rounded-md px-3 py-2 transition-colors select-none"
+							class="hover:bg-muted flex items-start justify-between gap-2 rounded-md px-3 py-2 transition-colors motion-reduce:transition-none select-none"
 							(click)="markAsRead($index)">
 							<hlm-avatar class="border-border/50 size-10 border">
 								<img hlmAvatarImage [src]="notification.avatar" [alt]="notification.user" />

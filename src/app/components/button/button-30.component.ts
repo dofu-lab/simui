@@ -20,16 +20,16 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 			(click)="onSelect()">
 			<ng-icon
 				name="lucideCopy"
-				class="transition-all"
+				class="transition-all motion-reduce:transition-none"
 				[ngClass]="{
-					'scale-0 opacity-0': copied(),
+					'scale-95 opacity-0': copied(),
 					'scale-100 opacity-100': !copied(),
 				}" />
 			<ng-icon
 				name="lucideCheck"
-				class="absolute text-emerald-500 transition-all"
+				class="absolute text-emerald-500 transition-all motion-reduce:transition-none"
 				[ngClass]="{
-					'scale-0 opacity-0': !copied(),
+					'scale-95 opacity-0': !copied(),
 					'scale-100 opacity-100': copied(),
 				}" />
 		</button>

@@ -12,7 +12,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 		<button hlmBtn size="sm" class="shadow-none focus-visible:z-10" (click)="toggleStart()">
 			<ng-icon
 				name="lucideStar"
-				class="mr-1 opacity-60 transition-all"
+				class="mr-1 opacity-60 transition-all motion-reduce:transition-none"
 				[ngClass]="{
 					'text-yellow-300 opacity-100': stared(),
 					'scale-115': animated(),

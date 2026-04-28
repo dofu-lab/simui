@@ -22,7 +22,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 					<div class="text-primary-foreground group flex cursor-pointer items-center gap-1 pl-7 md:pl-0">
 						<span>Learn more</span>
-						<ng-icon hlm name="lucideArrowRight" size="sm" class="group-hover:translate-x-0.5" />
+						<ng-icon hlm name="lucideArrowRight" size="sm" class="[@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5" />
 					</div>
 				</div>
 				<button

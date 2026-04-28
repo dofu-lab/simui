@@ -10,7 +10,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 	template: `
 		<button hlmBtn size="sm" class="group/btn09">
 			Next page
-			<ng-icon name="lucideArrowRight" class="transition-transform group-hover/btn09:translate-x-0.5" />
+			<ng-icon name="lucideArrowRight" class="transition-transform motion-reduce:transition-none [@media(hover:hover)_and_(pointer:fine)]:group-hover/btn09:translate-x-0.5" />
 		</button>
 	`,
 })

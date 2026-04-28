@@ -7,7 +7,7 @@ import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/a
 	template: `
 		<div class="flex -space-x-4.5">
 			<div class="group/avatar relative">
-				<div class="transition-transform duration-100 group-hover/avatar:-translate-y-5">
+				<div class="transition-transform motion-reduce:transition-none duration-100 group-hover/avatar:-translate-y-5">
 					<svg viewBox="0 0 500 500" class="absolute -top-2.5 -left-2.5 z-0 opacity-0 group-hover/avatar:opacity-100">
 						<path
 							id="curve"
@@ -27,7 +27,7 @@ import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/a
 				</div>
 			</div>
 			<div class="group/avatar relative">
-				<div class="transition-transform duration-100 group-hover/avatar:-translate-y-5">
+				<div class="transition-transform motion-reduce:transition-none duration-100 group-hover/avatar:-translate-y-5">
 					<svg viewBox="0 0 500 500" class="absolute -top-2.5 -left-2.5 z-0 opacity-0 group-hover/avatar:opacity-100">
 						<path
 							id="curve"
@@ -47,7 +47,7 @@ import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/a
 				</div>
 			</div>
 			<div class="group/avatar relative">
-				<div class="transition-transform duration-100 group-hover/avatar:-translate-y-5">
+				<div class="transition-transform motion-reduce:transition-none duration-100 group-hover/avatar:-translate-y-5">
 					<svg viewBox="0 0 500 500" class="absolute -top-2.5 -left-2.5 z-0 opacity-0 group-hover/avatar:opacity-100">
 						<path
 							id="curve"
@@ -67,7 +67,7 @@ import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/a
 				</div>
 			</div>
 			<div class="group/avatar relative">
-				<div class="transition-transform duration-100 group-hover/avatar:-translate-y-5">
+				<div class="transition-transform motion-reduce:transition-none duration-100 group-hover/avatar:-translate-y-5">
 					<svg viewBox="0 0 500 500" class="absolute -top-2.5 -left-2.5 z-0 opacity-0 group-hover/avatar:opacity-100">
 						<path
 							id="curve"

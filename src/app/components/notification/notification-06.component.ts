@@ -21,12 +21,12 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 								hlm
 								size="sm"
 								name="lucideArrowRight"
-								class="ms-1 -mt-0.5 inline-flex opacity-60 transition-transform group-hover:translate-x-0.5" />
+								class="ms-1 -mt-0.5 inline-flex opacity-60 transition-transform motion-reduce:transition-none duration-150 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5" />
 						</a>
 					</div>
 				</div>
 				<button hlmBtn variant="ghost" class="group -my-1.5 -me-2 size-8 shrink-0 p-0 hover:bg-transparent">
-					<ng-icon hlm size="sm" name="lucideX" class="opacity-60 transition-opacity group-hover:opacity-100" />
+					<ng-icon hlm size="sm" name="lucideX" class="opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" />
 				</button>
 			</div>
 		</div>

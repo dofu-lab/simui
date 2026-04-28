@@ -24,7 +24,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 			@for (item of items; track item.id) {
 				<label
 					hlmLabel
-					class="border-input has-data-[state=checked]:border-ring tran relative grid w-full items-start gap-3 rounded-md border p-4 shadow-xs transition-colors ease-in-out"
+					class="border-input has-data-[state=checked]:border-ring tran relative grid w-full items-start gap-3 rounded-md border p-4 shadow-xs transition-colors motion-reduce:transition-none duration-200 ease"
 					for="checkbox{{ item.value }}">
 					<div class="flex flex-1 items-center justify-between">
 						<ng-icon hlm class="opacity-60" size="sm" [name]="item.icon" />

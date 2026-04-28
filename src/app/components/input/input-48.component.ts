@@ -24,7 +24,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 				[type]="inputType()" />
 			<button
 				aria-controls="password"
-				class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+				class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
 				(click)="handleUpdateVisibility()">
 				<ng-icon hlm size="sm" [name]="computedIcon()" />
 			</button>
@@ -37,8 +37,8 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 			aria-valuemax="4"
 			[attr.aria-valuenow]="score()">
 			<div
-				class="h-full {{ strengthColor() }} transition-all duration-500 ease-out"
-				style="width: {{ (score() / 4) * 100 }}%"></div>
+				class="h-full {{ strengthColor() }} origin-left transition-transform motion-reduce:transition-none duration-300 ease-out"
+				style="transform: scaleX({{ (score() / 4) }})"></div>
 		</div>
 		<p class="mt-3 mb-2 text-sm">{{ strengthText() }}. Must contain:</p>
 		<ul class="space-y-1.5" aria-label="Password requirements">

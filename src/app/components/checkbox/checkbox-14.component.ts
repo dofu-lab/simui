@@ -15,7 +15,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	template: `
 		<label
 			hlmLabel
-			class="border-input has-data-[state=checked]:border-ring relative flex w-full rounded-md border p-4 shadow-xs transition-colors ease-in-out"
+			class="border-input has-data-[state=checked]:border-ring relative flex w-full rounded-md border p-4 shadow-xs transition-colors motion-reduce:transition-none duration-200 ease"
 			for="checkbox14">
 			<div class="flex flex-1 items-start gap-2">
 				<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border">

@@ -15,10 +15,10 @@ import { HlmToggleImports } from '@spartan-ng/helm/toggle';
 			(click)="changeTheme()">
 			<ng-icon
 				name="lucideSun"
-				class="shrink-0 scale-0 opacity-0 transition-all group-data-[state=on]:scale-100 group-data-[state=on]:opacity-100" />
+				class="shrink-0 scale-95 opacity-0 transition-all motion-reduce:transition-none group-data-[state=on]:scale-100 group-data-[state=on]:opacity-100" />
 			<ng-icon
 				name="lucideMoon"
-				class="absolute shrink-0 scale-100 opacity-100 transition-all group-data-[state=on]:scale-0 group-data-[state=on]:opacity-0" />
+				class="absolute shrink-0 scale-100 opacity-100 transition-all motion-reduce:transition-none group-data-[state=on]:scale-95 group-data-[state=on]:opacity-0" />
 		</button>
 	`,
 })

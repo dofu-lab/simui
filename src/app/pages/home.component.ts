@@ -26,7 +26,7 @@ import { NavigationService } from '../core/services';
 					@for (component of components; track component.path) {
 						<div
 							dfCard
-							class="border-input hover:bg-input/20 hover:border-muted-foreground/30 group mx-auto h-fit w-full max-w-[300px] cursor-pointer rounded-[18px] border px-1 pt-1 transition duration-100 ease-linear"
+							class="border-input hover:bg-input/20 hover:border-muted-foreground/30 group mx-auto h-fit w-full max-w-[300px] cursor-pointer rounded-[18px] border px-1 pt-1 transition-transform duration-150 ease-out will-change-transform hover:scale-[1.02]"
 							(click)="onNavigate(component.path)">
 							<div class="bg-muted/50 relative h-[170px] overflow-hidden rounded-xl border px-6 group-hover:shadow-xs">
 								<ng-container *ngComponentOutlet="component.thumbnail" />

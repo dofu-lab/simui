@@ -13,7 +13,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 				[checked]="true" />
 			<label hlmLabel class="flex items-center" for="checkbox18">
 				<span
-					class="after:bg-muted-foreground peer-has-checked:text-muted-foreground relative peer-has-checked:line-through after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:origin-left after:-translate-y-1/2 after:scale-x-0 after:transition-transform after:ease-in-out peer-has-checked:after:scale-x-100">
+					class="after:bg-muted-foreground peer-has-checked:text-muted-foreground relative peer-has-checked:line-through after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:origin-left after:-translate-y-1/2 after:scale-x-0 after:transition-transform after:motion-reduce:transition-none after:ease-in-out peer-has-checked:after:scale-x-100">
 					Implement new landing page
 				</span>
 			</label>

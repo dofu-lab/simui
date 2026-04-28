@@ -29,10 +29,10 @@ type TagItem = {
 		<div class="flex w-full flex-row flex-wrap gap-1 py-2">
 			@for (tag of tags(); track tag.id) {
 				<span
-					class="text-secondary-foreground animate-fadeIn bg-background border-input hover:bg-background relative inline-flex h-7 cursor-default items-center rounded-md border border-solid ps-2 pe-7 pl-2 text-xs font-medium transition-all disabled:cursor-not-allowed disabled:opacity-50">
+					class="text-secondary-foreground animate-fadeIn bg-background border-input hover:bg-background relative inline-flex h-7 cursor-default items-center rounded-md border border-solid ps-2 pe-7 pl-2 text-xs font-medium transition-all disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:animate-none motion-reduce:transition-none">
 					{{ tag.value }}
 					<button
-						class="focus-visible:border-ring focus-visible:ring-ring/50 text-muted-foreground/80 hover:text-foreground absolute -inset-y-px -end-px flex size-7 items-center justify-center rounded-md rounded-s-none rounded-e-md p-0 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] outline-none hover:bg-transparent focus-visible:ring-[3px] focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+						class="focus-visible:border-ring focus-visible:ring-ring/50 text-muted-foreground/80 hover:text-foreground ease absolute -inset-y-px -end-px flex size-7 items-center justify-center rounded-md rounded-s-none rounded-e-md p-0 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] duration-150 outline-none hover:bg-transparent focus-visible:ring-[3px] focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 motion-reduce:transition-none"
 						(click)="removeTag(tag.id)">
 						<ng-icon hlm name="lucideX" size="sm" />
 					</button>

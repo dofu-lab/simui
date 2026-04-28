@@ -23,9 +23,9 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 										<div
 											hlmField
 											orientation="horizontal"
-											class="gap-1.5 overflow-hidden px-3! py-1.5! transition-all duration-100 ease-linear group-has-data-[state=checked]/field-label:px-2!">
+											class="gap-1.5 overflow-hidden px-3! py-1.5! transition-all motion-reduce:transition-none duration-100 ease-linear group-has-data-[state=checked]/field-label:px-2!">
 											<hlm-checkbox
-												class="-ml-6 -translate-x-1 rounded-full! transition-all duration-100 ease-linear data-[state=checked]:ml-0 data-[state=checked]:translate-x-0"
+												class="-ml-6 -translate-x-1 rounded-full! transition-all motion-reduce:transition-none duration-100 ease-linear data-[state=checked]:ml-0 data-[state=checked]:translate-x-0"
 												[id]="uniqueId(option.value)"
 												[checked]="option.value === 'social-media'" />
 											<div hlmFieldTitle>{{ option.label }}</div>
