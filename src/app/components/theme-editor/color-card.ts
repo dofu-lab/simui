@@ -38,18 +38,18 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 								hlm
 								name="lucideCopy"
 								size="xs"
-								class="transition-all"
+								class="transition-all motion-reduce:transition-none"
 								[ngClass]="{
-									'scale-0 opacity-0': copied(),
+									'scale-95 opacity-0': copied(),
 									'scale-100 opacity-100': !copied(),
 								}" />
 							<ng-icon
 								hlm
 								name="lucideCheck"
 								size="xs"
-								class="absolute text-emerald-500 transition-all"
+								class="absolute text-emerald-500 transition-all motion-reduce:transition-none"
 								[ngClass]="{
-									'scale-0 opacity-0': !copied(),
+									'scale-95 opacity-0': !copied(),
 									'scale-100 opacity-100': copied(),
 								}" />
 						</button>

@@ -19,7 +19,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 			<div class="flex items-center">
 				<ng-icon
 					name="lucideThumbsUp"
-					class="mr-2 transition-transform duration-150"
+					class="mr-2 transition-transform motion-reduce:transition-none duration-150"
 					[ngClass]="{
 						'text-sky-800 dark:text-sky-600': liked(),
 						'scale-115': animate(),

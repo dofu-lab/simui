@@ -20,7 +20,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 			</label>
 		</div>
 		<div
-			class="grid transition-all ease-in-out data-[state=collapsed]:grid-rows-[0fr] data-[state=collapsed]:opacity-0 data-[state=expanded]:grid-rows-[1fr] data-[state=expanded]:opacity-100"
+			class="grid transition-all motion-reduce:transition-none duration-200 ease-in-out data-[state=collapsed]:grid-rows-[0fr] data-[state=collapsed]:opacity-0 data-[state=expanded]:grid-rows-[1fr] data-[state=expanded]:opacity-100"
 			[attr.data-state]="checked() ? 'expanded' : 'collapsed'">
 			<div class="pointer-events-none -m-2 overflow-hidden p-2">
 				<div class="pointer-events-auto mt-3">

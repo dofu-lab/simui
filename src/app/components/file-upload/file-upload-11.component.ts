@@ -122,7 +122,7 @@ import { HlmTable, HlmTd, HlmTh, HlmTr } from '@spartan-ng/helm/table';
 					fileDragDrop
 					[hidden]="files().length > 0"
 					role="button"
-					class="border-input has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:items-start! has-[input:focus]:ring-[3px]"
+					class="border-input has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors motion-reduce:transition-none has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:items-start! has-[input:focus]:ring-[3px]"
 					dragClass="bg-accent/50"
 					[multiple]="true"
 					[maxFiles]="maxFiles"

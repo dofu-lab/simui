@@ -18,7 +18,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 			<button
 				hlmBtn
 				size="icon"
-				class="border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex size-9 items-center justify-center rounded-s-none border text-sm transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
+				class="border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex size-9 items-center justify-center rounded-s-none border text-sm transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
 				<ng-icon hlm name="lucideDownload" size="sm" />
 			</button>
 		</div>

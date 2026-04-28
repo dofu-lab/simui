@@ -18,7 +18,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 					@for (action of filteredActions(); track $index) {
 						<li
 							(click)="execute(action, ctx)"
-							class="hover:bg-muted flex cursor-pointer items-center justify-between rounded-md p-2 transition-colors">
+							class="hover:bg-muted flex cursor-pointer items-center justify-between rounded-md p-2 transition-colors motion-reduce:transition-none">
 							<span>{{ action.label }}</span>
 							<kbd class="bg-muted rounded px-1 py-0.5 text-xs">
 								{{ action.shortcut }}

@@ -29,7 +29,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 						<ng-icon hlm name="lucidePanelsTopLeft" size="sm" class="mx-auto" />
 					</button>
 					<span
-						class="bg-primary text-primary-foreground absolute top-1 right-0.5 flex size-4 items-center justify-center rounded-full text-xs transition-opacity group-data-[state=inactive]:opacity-50">
+						class="bg-primary text-primary-foreground absolute top-1 right-0.5 flex size-4 items-center justify-center rounded-full text-xs transition-opacity motion-reduce:transition-none group-data-[state=inactive]:opacity-50">
 						3
 					</span>
 					<ng-template #projectTooltip>

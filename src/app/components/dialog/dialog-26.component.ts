@@ -67,7 +67,7 @@ import { HlmInput } from '@spartan-ng/helm/input';
 						@for (item of reasons; track item.id) {
 							<label
 								hlmLabel
-								class="border-input has-data-[state=checked]:border-ring relative flex w-fit cursor-pointer items-center justify-center gap-1 rounded-md border py-0.75 pr-2.5 pl-2 shadow-xs transition-colors ease-in-out"
+								class="border-input has-data-[state=checked]:border-ring relative flex w-fit cursor-pointer items-center justify-center gap-1 rounded-md border py-0.75 pr-2.5 pl-2 shadow-xs transition-colors motion-reduce:transition-none duration-200 ease"
 								for="checkbox-{{ item.id }}">
 								<hlm-checkbox id="checkbox-{{ item.id }}" class="hidden" />
 								<ng-icon hlm class="opacity-60" size="xs" [name]="item.icon" />

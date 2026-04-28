@@ -32,7 +32,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 							hlm
 							name="lucideX"
 							size="sm"
-							class="text-primary opacity-60 transition-opacity group-hover:opacity-100" />
+							class="text-primary opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" />
 					</button>
 				</div>
 			</div>

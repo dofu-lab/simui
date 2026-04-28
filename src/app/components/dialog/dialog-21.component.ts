@@ -45,7 +45,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 							<hlm-radio-group class="flex flex-col gap-3 rounded-md sm:flex-row" formControlName="plan">
 								<label
 									hlmLabel
-									class="border-input has-data-[checked=true]:border-primary has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-[17px] py-[13px] text-center text-sm shadow-xs transition-[color,box-shadow] outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[checked=true]:border-[2px] has-data-[checked=true]:p-0 has-data-[checked=true]:px-4 has-data-[checked=true]:py-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
+									class="border-input has-data-[checked=true]:border-primary has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-[17px] py-[13px] text-center text-sm shadow-xs transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[checked=true]:border-[2px] has-data-[checked=true]:p-0 has-data-[checked=true]:px-4 has-data-[checked=true]:py-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
 									<div class="flex w-full flex-col text-left font-normal select-none">
 										<div class="mb-1 flex flex-row justify-between">
 											<span class="text-lg font-semibold">10$ per month</span>
@@ -53,9 +53,9 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 												<div
 													class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 													<div
-														class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+														class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform motion-reduce:transition-none duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
 													<div
-														class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+														class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all motion-reduce:transition-none duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
 												</div>
 											</hlm-radio>
 										</div>
@@ -83,7 +83,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 								</label>
 								<label
 									hlmLabel
-									class="border-input has-data-[checked=true]:border-primary has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-[17px] py-[13px] text-center text-sm shadow-xs transition-[color,box-shadow] outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[checked=true]:border-[2px] has-data-[checked=true]:px-4 has-data-[checked=true]:py-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
+									class="border-input has-data-[checked=true]:border-primary has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-[17px] py-[13px] text-center text-sm shadow-xs transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[checked=true]:border-[2px] has-data-[checked=true]:px-4 has-data-[checked=true]:py-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
 									<div class="flex w-full flex-col text-left font-normal select-none">
 										<div class="mb-1 flex flex-row justify-between">
 											<span class="text-lg font-semibold">25$ per month</span>
@@ -91,9 +91,9 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 												<div
 													class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 													<div
-														class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+														class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform motion-reduce:transition-none duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
 													<div
-														class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+														class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all motion-reduce:transition-none duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
 												</div>
 											</hlm-radio>
 										</div>

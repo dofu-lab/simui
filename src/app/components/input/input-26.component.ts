@@ -31,13 +31,13 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 			<div
 				class="absolute inset-y-0 end-0 mr-px flex flex-col items-center justify-between overflow-hidden rounded-md py-px pr-px pl-1.5">
 				<button
-					class="border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-foreground -me-px flex h-1/2 w-6 flex-1 items-center justify-center rounded-tr-md border border-t-0 border-r-0 text-sm transition-[color,box-shadow] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+					class="border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-foreground -me-px flex h-1/2 w-6 flex-1 items-center justify-center rounded-tr-md border border-t-0 border-r-0 text-sm transition-[color,box-shadow] motion-reduce:transition-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
 					(click)="increaseValue()">
 					<ng-icon hlm size="xs" name="lucideChevronUp" />
 				</button>
 
 				<button
-					class="border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-foreground -me-px -mt-px flex h-1/2 w-6 flex-1 items-center justify-center rounded-br-md border border-r-0 border-b-0 text-sm transition-[color,box-shadow] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+					class="border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-foreground -me-px -mt-px flex h-1/2 w-6 flex-1 items-center justify-center rounded-br-md border border-r-0 border-b-0 text-sm transition-[color,box-shadow] motion-reduce:transition-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
 					[disabled]="isDecreaseDisabled()"
 					(click)="descreaseValue()">
 					<ng-icon hlm size="xs" name="lucideChevronDown" />

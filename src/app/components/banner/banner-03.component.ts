@@ -42,7 +42,7 @@ import { HlmInput } from '@spartan-ng/helm/input';
 							hlm
 							name="lucideX"
 							size="sm"
-							class="text-primary opacity-60 transition-opacity group-hover:opacity-100" />
+							class="text-primary opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" />
 					</button>
 				</div>
 			</div>

@@ -11,7 +11,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 		<button hlmBtn variant="outline" size="icon" class="group rounded-full" (click)="onOpen()" [ariaExpanded]="open()">
 			<ng-icon
 				name="lucidePlus"
-				class="transition-transform duration-500 ease-[cubic-bezier(0.68,-0.6,0.32,1.6)] group-aria-expanded:rotate-135" />
+				class="transition-transform motion-reduce:transition-none duration-300 ease-[cubic-bezier(0.68,-0.6,0.32,1.6)] group-aria-expanded:rotate-135" />
 		</button>
 	`,
 })

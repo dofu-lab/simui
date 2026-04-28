@@ -32,7 +32,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 							<button
 								brnAccordionTrigger
 								data-slot="accordion-trigger"
-								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-center justify-between rounded-md border-0 border-transparent text-start text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
+								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-center justify-between rounded-md border-0 border-transparent text-start text-sm font-medium transition-all motion-reduce:transition-none outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
 								<span class="flex items-center gap-3">
 									<span
 										class="relative flex size-10 shrink-0 items-center justify-center rounded-full"
@@ -45,18 +45,18 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 											hlm
 											size="sm"
 											name="lucideCheck"
-											class="transition-all duration-200"
+											class="transition-all motion-reduce:transition-none duration-200"
 											[ngClass]="{
 												'scale-100 opacity-60': isGroupFullyChecked(item.id),
-												'scale-0 opacity-0': !isGroupFullyChecked(item.id),
+												'scale-95 opacity-0': !isGroupFullyChecked(item.id),
 											}" />
 										<ng-icon
 											hlm
 											size="sm"
 											name="lucideMinus"
-											class="absolute transition-all duration-200"
+											class="absolute transition-all motion-reduce:transition-none duration-200"
 											[ngClass]="{
-												'scale-0 opacity-0': isGroupFullyChecked(item.id),
+												'scale-95 opacity-0': isGroupFullyChecked(item.id),
 												'scale-100 opacity-60': !isGroupFullyChecked(item.id),
 											}" />
 									</span>

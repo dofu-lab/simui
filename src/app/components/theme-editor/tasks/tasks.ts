@@ -1,4 +1,4 @@
-import { Component, inject, signal, type TrackByFunction } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, type TrackByFunction } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -58,6 +58,7 @@ import { type Task, TASK_DATA } from './services/tasks.models';
 
 @Component({
 	selector: 'app-tasks-example',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		FormsModule,
 		HlmIcon,
@@ -196,55 +197,9 @@ import { type Task, TASK_DATA } from './services/tasks.models';
 				</div>
 			} @placeholder {
 				<div class="flex h-96 items-center justify-center">
-					<ng-icon name="lucideLoader" class="h-4 w-4 animate-spin" />
+					<ng-icon name="lucideLoader" class="h-4 w-4 animate-spin motion-reduce:animate-none" />
 				</div>
 			}
-
-			<div class="hidden size-full flex-1 overflow-auto rounded-md border">
-				@defer {
-					<div hlmTableContainer>
-						<table hlmTable>
-							<thead hlmTHead class="bg-background sticky top-0 z-10">
-								@for (headerGroup of table.getHeaderGroups(); track headerGroup.id) {
-									<tr hlmTr>
-										@for (header of headerGroup.headers; track header.id) {
-											<th hlmTh [attr.colSpan]="header.colSpan">
-												@if (!header.isPlaceholder) {
-													<ng-container
-														*flexRender="header.column.columnDef.header; props: header.getContext(); let headerText">
-														<div [innerHTML]="headerText"></div>
-													</ng-container>
-												}
-											</th>
-										}
-									</tr>
-								}
-							</thead>
-							<tbody hlmTBody class="w-full">
-								@for (row of table.getRowModel().rows; track row.id) {
-									<tr hlmTr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
-										@for (cell of row.getVisibleCells(); track $index) {
-											<td hlmTd>
-												<ng-container *flexRender="cell.column.columnDef.cell; props: cell.getContext(); let cell">
-													<div [innerHTML]="cell"></div>
-												</ng-container>
-											</td>
-										}
-									</tr>
-								} @empty {
-									<tr hlmTr>
-										<td hlmTd class="h-24 text-center" [attr.colspan]="_columns.length">No results.</td>
-									</tr>
-								}
-							</tbody>
-						</table>
-					</div>
-				} @placeholder {
-					<div class="flex h-96 items-center justify-center">
-						<ng-icon name="lucideLoader" class="h-4 w-4 animate-spin" />
-					</div>
-				}
-			</div>
 			<div class="flex flex-row justify-between sm:items-center">
 				<span class="text-muted-foreground hidden items-center text-sm lg:inline-flex">
 					{{ table.getSelectedRowModel().rows.length }} of {{ table.getRowCount() }} row(s) selected
@@ -372,7 +327,7 @@ export class TasksExample {
 	private readonly _columnFilters = signal<ColumnFiltersState>([]);
 	private readonly _sorting = signal<SortingState>([]);
 	private readonly _pagination = signal<PaginationState>({
-		pageSize: 20,
+		pageSize: 10,
 		pageIndex: 0,
 	});
 
@@ -405,7 +360,7 @@ export class TasksExample {
 		getPaginationRowModel: getPaginationRowModel(),
 		initialState: {
 			pagination: {
-				pageSize: 20,
+				pageSize: 10,
 			},
 		},
 	}));

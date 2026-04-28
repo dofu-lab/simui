@@ -22,14 +22,14 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 				<div class="absolute inset-0 flex items-center justify-center gap-2">
 					<button
 						hlmBtn
-						class="focus-visible:border-ring focus-visible:ring-ring/50 z-50 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] outline-none hover:bg-black/80 focus-visible:ring-[3px]"
+						class="focus-visible:border-ring focus-visible:ring-ring/50 z-50 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none hover:bg-black/80 focus-visible:ring-[3px]"
 						size="icon"
 						(click)="fileInput.click()">
 						<ng-icon hlm name="lucideImagePlus" size="sm" />
 					</button>
 					<button
 						hlmBtn
-						class="focus-visible:border-ring focus-visible:ring-ring/50 z-50 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] outline-none hover:bg-black/80 focus-visible:ring-[3px]"
+						class="focus-visible:border-ring focus-visible:ring-ring/50 z-50 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none hover:bg-black/80 focus-visible:ring-[3px]"
 						size="icon"
 						(click)="removeBackground()">
 						<ng-icon hlm name="lucideX" size="sm" />
@@ -69,7 +69,7 @@ export class ProfileBackgroundComponent {
 			</hlm-avatar>
 			<button
 				hlmBtn
-				class="focus-visible:border-ring focus-visible:ring-ring/50 absolute top-6 left-6 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] outline-none hover:bg-black/80 focus-visible:ring-[3px]"
+				class="focus-visible:border-ring focus-visible:ring-ring/50 absolute top-6 left-6 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none hover:bg-black/80 focus-visible:ring-[3px]"
 				size="icon"
 				(click)="fileInput.click()">
 				<ng-icon hlm name="lucideImagePlus" size="sm" />
