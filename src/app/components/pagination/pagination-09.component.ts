@@ -108,7 +108,7 @@ export class Pagination09Component {
 	);
 
 	private navButtonClass(isDisabled: boolean): string {
-		return ['px-0!', isDisabled && 'opacity-50 select-none pointer-events-none'].filter(Boolean).join(' ');
+		return isDisabled ? 'opacity-50 select-none pointer-events-none' : '';
 	}
 }
 

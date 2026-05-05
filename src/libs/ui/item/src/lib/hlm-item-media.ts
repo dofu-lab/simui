@@ -4,13 +4,14 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { injectHlmItemMediaConfig } from './hlm-item-token';
 
 const itemMediaVariants = cva(
-	'flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:translate-y-0.5 group-has-[[data-slot=item-description]]/item:self-start [&_ng-icon]:pointer-events-none',
+	'gap-2 group-has-data-[slot=item-description]/item:translate-y-0.5 group-has-data-[slot=item-description]/item:self-start flex shrink-0 items-center justify-center [&_ng-icon]:pointer-events-none',
 	{
 		variants: {
 			variant: {
 				default: 'bg-transparent',
-				icon: "bg-muted size-8 rounded-sm border [&_ng-icon:not([class*='text-'])]:text-base",
-				image: 'size-10 overflow-hidden rounded-sm [&_img]:size-full [&_img]:object-cover',
+				icon: "[&_ng-icon:not([class*='text-'])]:text-[calc(var(--spacing)*4)]",
+				image:
+					'size-10 overflow-hidden rounded-sm group-data-[size=sm]/item:size-8 group-data-[size=xs]/item:size-6 [&_img]:size-full [&_img]:object-cover',
 			},
 		},
 		defaultVariants: {

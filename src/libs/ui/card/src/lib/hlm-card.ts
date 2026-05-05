@@ -1,5 +1,6 @@
 import { Directive, input } from '@angular/core';
 import { classes } from '@spartan-ng/helm/utils';
+import { HlmCardConfig, injectHlmCardConfig } from './hlm-card.token';
 
 @Directive({
 	selector: '[hlmCard],hlm-card',
@@ -9,7 +10,8 @@ import { classes } from '@spartan-ng/helm/utils';
 	},
 })
 export class HlmCard {
-	public readonly size = input<'sm' | 'default'>('default');
+	private readonly _defaultConfig = injectHlmCardConfig();
+	public readonly size = input<HlmCardConfig['size']>(this._defaultConfig.size);
 
 	constructor() {
 		classes(

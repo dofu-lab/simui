@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
+import { buttonVariants } from '@spartan-ng/helm/button';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
+import { hlm } from '@spartan-ng/helm/utils';
 import { map } from 'rxjs';
 
 @Component({
@@ -59,11 +61,11 @@ export class Pagination05Component {
 	protected readonly computedNextClass = computed(() => this.navButtonClass(this.currentPage() >= this.pages.length));
 
 	private navButtonClass(isDisabled: boolean): string {
-		return [
-			'[&>a]:border [&>a]:rounded-md [&>a]:shadow-xs px-0!',
-			isDisabled && 'opacity-50 pointer-events-none select-none',
-		]
-			.filter(Boolean)
-			.join(' ');
+		return hlm(
+			buttonVariants({
+				variant: 'outline',
+			}),
+			isDisabled && 'opacity-50 select-none pointer-events-none',
+		);
 	}
 }
