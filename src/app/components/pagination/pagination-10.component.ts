@@ -106,6 +106,6 @@ export class Pagination10Component {
 	protected readonly computedNextClass = computed(() => this.navButtonClass(this.currentPage() >= this.pages.length));
 
 	private navButtonClass(isDisabled: boolean): string {
-		return ['px-0!', isDisabled && 'opacity-50 select-none pointer-events-none'].filter(Boolean).join(' ');
+		return isDisabled ? 'opacity-50 select-none pointer-events-none' : '';
 	}
 }
