@@ -5,68 +5,73 @@ import { MaskitoDirective } from '@maskito/angular';
 import { maskitoNumberOptionsGenerator, maskitoParseNumber } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus, lucidePlus } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-25',
-	imports: [HlmLabel, HlmInput, NgIcon, HlmIcon, ReactiveFormsModule, HlmButton, MaskitoDirective],
+	imports: [
+		HlmLabel,
+		MaskitoDirective,
+		NgIcon,
+		ReactiveFormsModule,
+		HlmButtonGroupImports,
+		HlmButtonImports,
+		HlmInputGroupImports,
+	],
 	providers: [provideIcons({ lucideMinus, lucidePlus })],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-25" class="mb-2 text-sm">Number input with plus/minus buttons</label>
-		<div class="flex -space-x-px" [formGroup]="form">
-			<button
-				hlmBtn
-				variant="outline"
-				size="icon"
-				class="rounded-e-none"
-				[disabled]="isDecreaseDisabled()"
-				(click)="descreaseValue()">
-				<ng-icon hlm size="sm" name="lucideMinus" />
+		<hlm-button-group class="w-full" [formGroup]="form">
+			<button hlmBtn variant="outline" size="icon" [disabled]="isDecreaseDisabled()" (click)="descreaseValue()">
+				<ng-icon name="lucideMinus" />
 			</button>
-			<input
-				hlmInput
-				id="input-25"
-				type="text"
-				class="z-20 rounded-none text-center"
-				formControlName="control"
-				[maskito]="numberMaskedInput" />
-			<button hlmBtn variant="outline" size="icon" class="rounded-s-none" (click)="increaseValue()">
-				<ng-icon hlm size="sm" name="lucidePlus" />
+			<hlm-input-group>
+				<input
+					hlmInputGroupInput
+					id="input-25"
+					type="text"
+					class="text-center"
+					formControlName="control"
+					[maskito]="numberMaskedInput" />
+			</hlm-input-group>
+			<button hlmBtn variant="outline" size="icon" (click)="increaseValue()">
+				<ng-icon name="lucidePlus" />
 			</button>
-		</div>
+		</hlm-button-group>
 	`,
 })
 export class Input25Component {
-	readonly form = new FormGroup({
+	protected readonly form = new FormGroup({
 		control: new FormControl('2048'),
 	});
-	readonly formValueChange = toSignal(this.form.valueChanges);
-	readonly isDecreaseDisabled = computed(() => this.formValueChange()?.control === '0');
-	readonly numberMaskedInput = maskitoNumberOptionsGenerator({
+	protected readonly isDecreaseDisabled = computed(() => this.formValueChange()?.control === '0');
+	protected readonly numberMaskedInput = maskitoNumberOptionsGenerator({
 		maximumFractionDigits: 2,
 		thousandSeparator: ',',
 		decimalSeparator: '.',
 	});
 
-	descreaseValue(): void {
+	private readonly formValueChange = toSignal(this.form.valueChanges);
+
+	protected descreaseValue(): void {
 		const currentValue = this.form.get('control')?.value ?? '';
 		const value = maskitoParseNumber(currentValue);
 
-		if (!isNaN(value) && value > 0) {
+		if (!Number.isNaN(value) && value > 0) {
 			const newValue = value - 1;
 			this.form.get('control')?.setValue(newValue.toString());
 		}
 	}
 
-	increaseValue(): void {
+	protected increaseValue(): void {
 		const currentValue = this.form.get('control')?.value ?? '';
 		const value = maskitoParseNumber(currentValue);
 
-		if (!isNaN(value) && value >= 0) {
+		if (!Number.isNaN(value) && value >= 0) {
 			const newValue = value + 1;
 			this.form.get('control')?.setValue(newValue.toString());
 		} else if (currentValue === '') {

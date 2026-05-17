@@ -62,6 +62,7 @@
 			"@spartan-ng/helm/toggle-group": ["./src/libs/ui/toggle-group/src/index.ts"],
 			"@spartan-ng/helm/tooltip": ["./src/libs/ui/tooltip/src/index.ts"],
 			"@spartan-ng/helm/utils": ["./src/libs/ui/utils/src/index.ts"],
+			"@spartan-ng/helm/kbd": ["./src/libs/ui/kbd/src/index.ts"],
 			"@/*": ["./src/*"]
 		}
 	},

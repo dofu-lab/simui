@@ -5,15 +5,13 @@ import { classes } from '@spartan-ng/helm/utils';
 @Directive({
 	selector: 'textarea[hlmInputGroupTextarea]',
 	hostDirectives: [HlmTextarea],
-	host: {
-		'data-slot': 'input-group-control',
-	},
+	host: { 'data-slot': 'input-group-control' },
 })
 export class HlmInputGroupTextarea {
 	constructor() {
 		classes(
 			() =>
-				'flex-1 resize-none rounded-none border-0 bg-transparent py-3 shadow-none focus-visible:ring-0 dark:bg-transparent',
+				'rounded-none border-0 bg-transparent py-2 shadow-none ring-0 focus-visible:ring-0 data-[matches-spartan-invalid=true]:ring-0 dark:bg-transparent flex-1 resize-none',
 		);
 	}
 }

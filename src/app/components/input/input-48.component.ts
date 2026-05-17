@@ -3,32 +3,30 @@ import { FormsModule } from '@angular/forms';
 import { IconType, NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideEye, lucideEyeOff, lucideX } from '@ng-icons/lucide';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-48',
-	imports: [HlmLabel, HlmInput, NgIcon, HlmIcon, FormsModule],
+	imports: [HlmLabel, NgIcon, HlmIcon, FormsModule, HlmInputGroupImports],
 	providers: [provideIcons({ lucideEye, lucideEyeOff, lucideCheck, lucideX })],
 	host: { class: 'w-full' },
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<label hlmLabel for="input-48" class="mb-2 text-sm">Input with end inline button</label>
-		<div class="relative">
+		<hlm-input-group>
 			<input
-				hlmInput
+				hlmInputGroupInput
 				id="input-48"
 				placeholder="Enter your password"
-				class="peer pe-9 [&::-ms-clear]:hidden [&::-ms-reveal]:hidden [&::-webkit-credentials-auto-fill-button]:hidden [&::-webkit-strong-password-auto-fill-button]:hidden"
 				[(ngModel)]="passwordValue"
 				[type]="inputType()" />
-			<button
-				aria-controls="password"
-				class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
-				(click)="handleUpdateVisibility()">
-				<ng-icon hlm size="sm" [name]="computedIcon()" />
-			</button>
-		</div>
+			<hlm-input-group-addon align="inline-end">
+				<button hlmInputGroupButton size="icon-xs" aria-controls="password" (click)="handleUpdateVisibility()">
+					<ng-icon [name]="computedIcon()" />
+				</button>
+			</hlm-input-group-addon>
+		</hlm-input-group>
 		<div
 			class="bg-border mt-3 mb-4 h-1 w-full overflow-hidden rounded-full"
 			role="progressbar"
@@ -37,8 +35,10 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 			aria-valuemax="4"
 			[attr.aria-valuenow]="score()">
 			<div
-				class="h-full {{ strengthColor() }} origin-left transition-transform motion-reduce:transition-none duration-300 ease-out"
-				style="transform: scaleX({{ (score() / 4) }})"></div>
+				class="h-full {{
+					strengthColor()
+				}} origin-left transition-transform motion-reduce:transition-none duration-300 ease-out"
+				style="transform: scaleX({{ score() / 4 }})"></div>
 		</div>
 		<p class="mt-3 mb-2 text-sm">{{ strengthText() }}. Must contain:</p>
 		<ul class="space-y-1.5" aria-label="Password requirements">

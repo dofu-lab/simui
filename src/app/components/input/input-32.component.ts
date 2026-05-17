@@ -24,7 +24,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input32Component {
-	readonly maxLength = 10;
-	readonly value = model('');
-	readonly computedCharacterCount = computed(() => `${this.maxLength - this.value().length} characters left`);
+	protected readonly maxLength = 10;
+	protected readonly value = model('');
+	protected readonly computedCharacterCount = computed(() => `${this.maxLength - this.value().length} characters left`);
 }

@@ -8,7 +8,7 @@ const emptyMediaVariants = cva(
 		variants: {
 			variant: {
 				default: 'bg-transparent',
-				icon: "bg-muted text-foreground flex size-10 shrink-0 items-center justify-center rounded-lg [&_ng-icon:not([class*='text-'])]:text-2xl",
+				icon: "bg-muted text-foreground flex size-10 shrink-0 items-center justify-center rounded-lg [&_ng-icon:not([class*='text-'])]:text-[calc(var(--spacing)*6)]",
 			},
 		},
 		defaultVariants: {
@@ -23,12 +23,13 @@ export type EmptyMediaVariants = VariantProps<typeof emptyMediaVariants>;
 	selector: '[hlmEmptyMedia],hlm-empty-media',
 	host: {
 		'data-slot': 'empty-media',
+		'[attr.data-variant]': 'variant()',
 	},
 })
 export class HlmEmptyMedia {
+	public readonly variant = input<EmptyMediaVariants['variant']>();
+
 	constructor() {
 		classes(() => emptyMediaVariants({ variant: this.variant() }));
 	}
-
-	public readonly variant = input<EmptyMediaVariants['variant']>();
 }
