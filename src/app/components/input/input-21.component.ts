@@ -2,33 +2,32 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleX } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-21',
-	imports: [HlmLabel, HlmInput, NgIcon, HlmIcon, ReactiveFormsModule],
+	imports: [HlmLabel, NgIcon, ReactiveFormsModule, HlmInputGroupImports],
 	providers: [provideIcons({ lucideCircleX })],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-21" class="mb-2 text-sm">Input with clear button</label>
-		<div class="relative" [formGroup]="form">
-			<input
-				hlmInput
-				id="input-21"
-				formControlName="something"
-				type="text"
-				placeholder="Type something"
-				class="peer pe-9" />
+		<hlm-input-group [formGroup]="form">
+			<input hlmInputGroupInput id="input-21" formControlName="something" type="text" placeholder="Type something" />
 			@if (!!this.form.get('something')?.value) {
-				<button
-					class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
-					(click)="clearInput()">
-					<ng-icon hlm size="sm" name="lucideCircleX" />
-				</button>
+				<hlm-input-group-addon align="inline-end">
+					<button
+						hlmInputGroupButton
+						aria-label="Send"
+						title="Send"
+						size="icon-xs"
+						variant="ghost"
+						(click)="clearInput()">
+						<ng-icon name="lucideCircleX" />
+					</button>
+				</hlm-input-group-addon>
 			}
-		</div>
+		</hlm-input-group>
 	`,
 })
 export class Input21Component {

@@ -1,20 +1,18 @@
 import { Component } from '@angular/core';
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-30',
-	imports: [HlmLabel],
+	imports: [HlmLabel, HlmInputGroupImports],
 	host: { class: 'w-full' },
 	template: `
-		<div
-			class="border-input bg-background focus-within:border-ring focus-within:ring-ring/50 has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 has-aria-invalid:border-destructive relative rounded-md border shadow-xs transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none focus-within:ring-[3px] has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50 has-[input:is(:disabled)]:*:pointer-events-none">
-			<label hlmLabel for="input-30" class="text-foreground block px-3 pt-2 text-xs">Input with insert label</label>
-			<input
-				id="input-30"
-				type="text"
-				placeholder="Email"
-				class="text-foreground placeholder:text-muted-foreground/70 flex h-10 w-full border-none bg-transparent px-3 pb-2 text-sm focus-visible:outline-none" />
-		</div>
+		<hlm-input-group>
+			<input hlmInputGroupInput id="input-30" type="text" placeholder="Email" />
+			<hlm-input-group-addon align="block-start">
+				<label hlmLabel for="input-30" class="text-foreground text-xs">Input with insert label</label>
+			</hlm-input-group-addon>
+		</hlm-input-group>
 	`,
 })
 export class Input30Component {}

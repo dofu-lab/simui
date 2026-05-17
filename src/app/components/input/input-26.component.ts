@@ -31,13 +31,13 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 			<div
 				class="absolute inset-y-0 end-0 mr-px flex flex-col items-center justify-between overflow-hidden rounded-md py-px pr-px pl-1.5">
 				<button
-					class="border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-foreground -me-px flex h-1/2 w-6 flex-1 items-center justify-center rounded-tr-md border border-t-0 border-r-0 text-sm transition-[color,box-shadow] motion-reduce:transition-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+					class="border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-foreground -me-px flex h-1/2 w-6 flex-1 items-center justify-center rounded-tr-md border border-t-0 border-r-0 text-sm transition-[color,box-shadow] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none"
 					(click)="increaseValue()">
 					<ng-icon hlm size="xs" name="lucideChevronUp" />
 				</button>
 
 				<button
-					class="border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-foreground -me-px -mt-px flex h-1/2 w-6 flex-1 items-center justify-center rounded-br-md border border-r-0 border-b-0 text-sm transition-[color,box-shadow] motion-reduce:transition-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+					class="border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-foreground -me-px -mt-px flex h-1/2 w-6 flex-1 items-center justify-center rounded-br-md border border-r-0 border-b-0 text-sm transition-[color,box-shadow] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none"
 					[disabled]="isDecreaseDisabled()"
 					(click)="descreaseValue()">
 					<ng-icon hlm size="xs" name="lucideChevronDown" />
@@ -47,33 +47,33 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input26Component {
-	readonly form = new FormGroup({
+	protected readonly form = new FormGroup({
 		control: new FormControl('99.00'),
 	});
-	readonly formValueChange = toSignal(this.form.valueChanges);
-	readonly isDecreaseDisabled = computed(() => this.formValueChange()?.control === '0');
-	readonly numberMaskedInput = maskitoNumberOptionsGenerator({
+	protected readonly formValueChange = toSignal(this.form.valueChanges);
+	protected readonly isDecreaseDisabled = computed(() => this.formValueChange()?.control === '0');
+	protected readonly numberMaskedInput = maskitoNumberOptionsGenerator({
 		maximumFractionDigits: 2,
 		thousandSeparator: ',',
 		decimalSeparator: '.',
 	});
 
-	descreaseValue(): void {
+	protected descreaseValue(): void {
 		const currentValue = this.form.get('control')?.value ?? '';
 		const value = maskitoParseNumber(currentValue);
 		console.log(value);
 
-		if (!isNaN(value) && value > 0) {
+		if (!Number.isNaN(value) && value > 0) {
 			const newValue = value - 1;
 			this.form.get('control')?.setValue(newValue.toFixed(2));
 		}
 	}
 
-	increaseValue(): void {
+	protected increaseValue(): void {
 		const currentValue = this.form.get('control')?.value ?? '';
 		const value = maskitoParseNumber(currentValue);
 
-		if (!isNaN(value) && value >= 0) {
+		if (!Number.isNaN(value) && value >= 0) {
 			const newValue = value + 1;
 			this.form.get('control')?.setValue(newValue.toFixed(2));
 		} else if (currentValue === '') {

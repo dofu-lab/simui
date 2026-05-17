@@ -1,23 +1,21 @@
 import { Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-18',
-	imports: [HlmLabel, HlmInput, HlmButton],
+	imports: [HlmLabel, HlmInputGroupImports, HlmButtonGroupImports, HlmButtonImports],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-18" class="mb-2 text-sm">Input with end button</label>
-		<div class="flex -space-x-px">
-			<input hlmInput id="input-18" type="text" placeholder="Email" class="peer z-10 rounded-r-none" />
-			<button
-				hlmBtn
-				variant="outline"
-				class="border-input bg-background hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex items-center justify-center rounded-s-none border text-sm transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
-				Send
-			</button>
-		</div>
+		<hlm-button-group class="w-full">
+			<hlm-input-group>
+				<input hlmInputGroupInput id="input-18" type="text" placeholder="Email" />
+			</hlm-input-group>
+			<button hlmBtn variant="outline" aria-label="Send" align="end">Send</button>
+		</hlm-button-group>
 	`,
 })
 export class Input18Component {}

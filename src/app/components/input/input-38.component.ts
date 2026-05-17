@@ -5,37 +5,45 @@ import { MaskitoOptions } from '@maskito/core';
 import { maskitoDateOptionsGenerator } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCalendar } from '@spartan-ng/helm/calendar';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { format, isValid, parse } from 'date-fns';
 
 @Component({
 	selector: 'sim-input-38',
-	imports: [HlmLabel, FormsModule, MaskitoDirective, HlmInput, NgIcon, HlmIcon, HlmCalendar, HlmPopoverImports],
+	imports: [
+		HlmLabel,
+		FormsModule,
+		MaskitoDirective,
+		NgIcon,
+		HlmCalendar,
+		HlmButtonImports,
+		HlmPopoverImports,
+		HlmInputGroupImports,
+	],
 	providers: [provideIcons({ lucideCalendar })],
 	host: { class: 'w-full' },
 	template: `
 		<hlm-popover sideOffset="5" align="end">
 			<label hlmLabel for="input-38" class="mb-2 text-sm">Date picker</label>
-			<div class="relative">
+			<hlm-input-group>
 				<input
-					hlmInput
-					class="pe-8"
+					hlmInputGroupInput
 					id="input-38"
 					type="text"
 					placeholder="mm / dd / yyyy"
 					[maskito]="mask"
 					[(ngModel)]="inputValue"
 					(ngModelChange)="onInputChange($event)" />
-				<button
-					hlmPopoverTrigger
-					class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
-					<ng-icon hlm size="sm" name="lucideCalendar" />
-				</button>
-			</div>
+				<hlm-input-group-addon align="inline-end">
+					<button hlmPopoverTrigger hlmInputGroupButton variant="ghost" size="icon-xs">
+						<ng-icon name="lucideCalendar" />
+					</button>
+				</hlm-input-group-addon>
+			</hlm-input-group>
 			<div class="bg-background flex size-fit" *hlmPopoverPortal="let ctx">
 				<hlm-calendar [(date)]="selectedDate" (dateChange)="onDateChange($event, ctx)" />
 			</div>
@@ -43,19 +51,19 @@ import { format, isValid, parse } from 'date-fns';
 	`,
 })
 export class Input38Component {
-	readonly selectedDate = model<Date | null>(new Date());
-	readonly mask: MaskitoOptions = maskitoDateOptionsGenerator({ mode: 'mm/dd/yyyy', separator: '/' });
+	protected readonly selectedDate = model<Date | null>(new Date());
+	protected readonly mask: MaskitoOptions = maskitoDateOptionsGenerator({ mode: 'mm/dd/yyyy', separator: '/' });
 
-	inputValue = this.formatDate(this.selectedDate());
+	protected inputValue = this.formatDate(this.selectedDate());
 
-	onInputChange(value: string): void {
+	protected onInputChange(value: string): void {
 		const date = this.parseDate(value);
 		if (date && isValid(date)) {
 			this.selectedDate.set(date);
 		}
 	}
 
-	onDateChange(date: Date | null, ctx: any): void {
+	protected onDateChange(date: Date | null, ctx: any): void {
 		this.selectedDate.set(date);
 		this.inputValue = this.formatDate(date);
 		ctx.close();

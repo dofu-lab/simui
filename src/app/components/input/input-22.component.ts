@@ -1,23 +1,26 @@
 import { Component } from '@angular/core';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideSearch } from '@ng-icons/lucide';
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
+import { HlmKbdImports } from '@spartan-ng/helm/kbd';
 import { HlmLabel } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-22',
-	imports: [HlmLabel, HlmInput],
+	imports: [HlmLabel, NgIcon, HlmInputGroupImports, HlmKbdImports],
+	providers: [provideIcons({ lucideSearch })],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-22" class="mb-2 text-sm">Search input with shortcut</label>
-		<div class="relative">
-			<input hlmInput id="input-22" type="text" placeholder="Search..." class="peer pe-9" />
-			<div
-				class="text-muted-foreground pointer-events-none absolute inset-y-0 end-0 flex items-center justify-center pe-2">
-				<kbd
-					class="text-muted-foreground/70 inline-flex h-5 max-h-full items-center rounded border px-1 font-[inherit] text-[0.625rem] font-medium">
-					⌘K
-				</kbd>
-			</div>
-		</div>
+		<hlm-input-group>
+			<input hlmInputGroupInput placeholder="Search..." />
+			<hlm-input-group-addon>
+				<ng-icon name="lucideSearch" />
+			</hlm-input-group-addon>
+			<hlm-input-group-addon align="inline-end">
+				<kbd hlmKbd>⌘K</kbd>
+			</hlm-input-group-addon>
+		</hlm-input-group>
 	`,
 })
 export class Input22Component {}
