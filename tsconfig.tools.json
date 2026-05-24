@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"target": "ES2022",
+		"esModuleInterop": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"resolveJsonModule": true,
+		"outDir": "./dist/tools"
+	},
+	"include": ["src/tools/**/*"],
+	"exclude": ["node_modules"]
+}
