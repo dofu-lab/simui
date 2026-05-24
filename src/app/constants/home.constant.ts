@@ -49,6 +49,13 @@ import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
 	{
+		name: 'Calendar',
+		compNumber: calendarComponents.length,
+		thumbnail: CalendarThumbnailComponent,
+		path: 'components/calendar',
+		isNew: true,
+	},
+	{
 		name: 'Image Cropper',
 		compNumber: imageCropperComponents.length,
 		thumbnail: ImageCropperThumbnailComponent,
@@ -103,13 +110,6 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: buttonComponents.length,
 		thumbnail: ButtonThumbnailComponent,
 		path: 'components/button',
-	},
-	{
-		name: 'Calendar',
-		compNumber: calendarComponents.length,
-		thumbnail: CalendarThumbnailComponent,
-		path: 'components/calendar',
-		isNew: true,
 	},
 	{
 		name: 'Checkbox',

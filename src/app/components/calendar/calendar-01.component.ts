@@ -6,6 +6,7 @@ import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 	imports: [HlmCalendarImports],
 	template: `
 		<hlm-calendar [(date)]="selectedDate" [min]="minDate" [max]="maxDate" />
+		<p class="text-muted-foreground mt-4 text-center text-xs">Single day selection</p>
 	`,
 })
 export class Calendar01Component {

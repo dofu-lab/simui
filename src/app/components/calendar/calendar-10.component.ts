@@ -1,12 +1,25 @@
 import { Component } from '@angular/core';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
+import { addDays } from 'date-fns';
 
 @Component({
 	selector: 'sim-calendar-10',
-	imports: [],
+	imports: [HlmCalendarImports, HlmButtonImports],
 	template: `
-		<div class="flex items-center justify-center p-4">
-			<p class="text-muted-foreground text-sm">Calendar 10</p>
+		<div class="rounded-md border p-2">
+			<hlm-calendar class="**:[[brncalendar]]:border-none" [(date)]="selectedDate" [defaultFocusedDate]="month" />
+			<button hlmBtn variant="outline" size="sm" (click)="setCurrentMonth()">Current Month</button>
 		</div>
+		<p class="text-muted-foreground mt-4 text-center text-xs">With button</p>
 	`,
 })
-export class Calendar10Component {}
+export class Calendar10Component {
+	protected selectedDate = addDays(new Date(), -28);
+	protected month = this.selectedDate;
+
+	protected setCurrentMonth(): void {
+		const newDate = new Date();
+		this.month = newDate;
+	}
+}

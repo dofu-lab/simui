@@ -6,6 +6,7 @@ import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 	imports: [HlmCalendarImports],
 	template: `
 		<hlm-calendar-range [(startDate)]="start" [(endDate)]="end" [min]="minDate" [max]="maxDate" />
+		<p class="text-muted-foreground mt-4 text-center text-xs">Range calendar</p>
 	`,
 })
 export class Calendar02Component {

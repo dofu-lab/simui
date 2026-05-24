@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
+import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 
 @Component({
 	selector: 'sim-calendar-06',
-	imports: [],
+	imports: [HlmCalendarImports],
 	template: `
-		<div class="flex items-center justify-center p-4">
-			<p class="text-muted-foreground text-sm">Calendar 06</p>
-		</div>
+		<hlm-calendar-range
+			class="[&_button[brncalendarcellbutton]]:rounded-full [&_button[data-range-between]]:rounded-none!"
+			[(startDate)]="start"
+			[(endDate)]="end"
+			[min]="minDate"
+			[max]="maxDate" />
+		<p class="text-muted-foreground mt-4 text-center text-xs">Custom select range style</p>
 	`,
 })
-export class Calendar06Component {}
+export class Calendar06Component {
+	public start = new Date();
+	public end = new Date(this.start.getTime() + 5 * 24 * 60 * 60 * 1000);
+	public minDate = new Date(2023, 0, 1);
+	public maxDate = new Date(2030, 11, 31);
+}

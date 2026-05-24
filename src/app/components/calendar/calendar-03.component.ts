@@ -1,12 +1,31 @@
 import { Component } from '@angular/core';
+import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
+import { addDays, isSameDay, isWeekend } from 'date-fns';
 
 @Component({
 	selector: 'sim-calendar-03',
-	imports: [],
+	imports: [HlmCalendarImports],
 	template: `
-		<div class="flex items-center justify-center p-4">
-			<p class="text-muted-foreground text-sm">Calendar 03</p>
-		</div>
+		<hlm-calendar-range [dateDisabled]="isDateUnavailable" [min]="minDate" />
+		<p class="text-muted-foreground mt-4 text-center text-xs">Disabled dates</p>
 	`,
 })
-export class Calendar03Component {}
+export class Calendar03Component {
+	public minDate = new Date();
+
+	private readonly disabledRanges: Date[] = [
+		this.minDate, // Disables today
+		addDays(this.minDate, 14), // Disables only the 14th day from now
+		addDays(this.minDate, 23), // Disables only the 23rd day from now
+	];
+
+	public readonly isDateUnavailable = (date: Date): boolean => {
+		// Check if the date is a weekend
+		if (isWeekend(date)) {
+			return true;
+		}
+
+		// Check if the date is one of the specifically disabled dates
+		return this.disabledRanges.some((disabledDate) => isSameDay(date, disabledDate));
+	};
+}
