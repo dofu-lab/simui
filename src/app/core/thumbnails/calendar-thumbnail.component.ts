@@ -4,25 +4,74 @@ import { Component } from '@angular/core';
 	selector: 'app-calendar-thumbnail',
 	host: { class: 'flex w-full h-full items-center justify-center' },
 	template: `
-		<div class="bg-card text-card-foreground relative flex w-full max-w-28 flex-col gap-1 rounded-xl border p-2 shadow-sm">
-			<div class="bg-primary/10 flex items-center justify-between rounded px-1 py-0.5">
-				<div class="bg-muted h-1 w-6 rounded-full"></div>
-				<div class="bg-primary h-1 w-4 rounded-full"></div>
-			</div>
-			<div class="grid grid-cols-7 gap-0.5">
-				@for (cell of cells; track $index) {
-					<div
-						[class]="
-							cell === 14
-								? 'bg-primary h-2.5 w-2.5 rounded-full'
-								: 'bg-muted h-2.5 w-2.5 rounded-full opacity-60'
-						"
-					></div>
-				}
+		<div
+			class="text-card-foreground relative flex w-full max-w-36 flex-col rounded-2xl border bg-linear-to-b from-[color-mix(in_srgb,var(--card)_96%,var(--color-white))] to-[color-mix(in_srgb,var(--card)_99%,var(--color-black))] shadow-md/5 [--radius-2xl:14px] not-dark:bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-2xl)-1px)] before:shadow-[0_-1px_--theme(--color-white/6%),0_1px_--theme(--color-black/6%)] dark:to-[color-mix(in_srgb,var(--card)_98%,var(--color-white))]">
+			<div class="flex flex-1 flex-col gap-4 p-4">
+				<div class="flex items-center gap-2">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="text-muted-foreground/88 size-4"
+						aria-hidden="true">
+						<path d="m15 18-6-6 6-6"></path>
+					</svg>
+					<div class="bg-muted-foreground/20 h-1.5 w-[60%] rounded-full"></div>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="text-muted-foreground/88 size-4"
+						aria-hidden="true">
+						<path d="m9 18 6-6-6-6"></path>
+					</svg>
+				</div>
+
+				<div class="flex items-center gap-2">
+					<div class="bg-muted-foreground/20 h-1.5 flex-1 rounded-full"></div>
+					<div class="bg-muted-foreground/20 h-1.5 flex-1 rounded-full"></div>
+					<div class="bg-muted-foreground/40 h-1.5 flex-1 rounded-full"></div>
+					<div class="h-1.5 flex-1 rounded-full bg-transparent"></div>
+					<div class="bg-muted-foreground/40 h-1.5 flex-1 rounded-full"></div>
+				</div>
+
+				<div class="flex items-center gap-2">
+					<div class="bg-muted-foreground/40 h-1.5 flex-1 rounded-full"></div>
+					<div class="h-1.5 flex-1 rounded-full bg-transparent"></div>
+					<div class="bg-muted-foreground/40 h-1.5 flex-1 rounded-full"></div>
+					<div class="bg-muted-foreground/40 h-1.5 flex-1 rounded-full"></div>
+					<div class="bg-muted-foreground/40 h-1.5 flex-1 rounded-full"></div>
+				</div>
+
+				<div class="flex items-center gap-2">
+					<div class="h-1.5 flex-1 rounded-full bg-transparent"></div>
+					<div class="bg-muted-foreground/40 h-1.5 flex-1 rounded-full"></div>
+					<div class="bg-primary h-1.5 flex-1 rounded-full"></div>
+					<div class="bg-muted-foreground/40 h-1.5 flex-1 rounded-full"></div>
+					<div class="h-1.5 flex-1 rounded-full bg-transparent"></div>
+				</div>
+
+				<div class="flex items-center gap-2">
+					<div class="bg-muted-foreground/40 h-1.5 flex-1 rounded-full"></div>
+					<div class="bg-muted-foreground/40 h-1.5 flex-1 rounded-full"></div>
+					<div class="h-1.5 flex-1 rounded-full bg-transparent"></div>
+					<div class="bg-muted-foreground/20 h-1.5 flex-1 rounded-full"></div>
+					<div class="bg-muted-foreground/20 h-1.5 flex-1 rounded-full"></div>
+				</div>
 			</div>
 		</div>
 	`,
 })
-export class CalendarThumbnailComponent {
-	cells = Array.from({ length: 35 }, (_, i) => i + 1);
-}
+export class CalendarThumbnailComponent {}
