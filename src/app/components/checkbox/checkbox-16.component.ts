@@ -26,7 +26,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 					</span>
 					<span class="text-muted-foreground truncate text-xs">Frontend Developer, Payment</span>
 				</div>
-				<hlm-checkbox id="checkbox16" />
+				<hlm-checkbox [inputId]="'checkbox16'" />
 			</div>
 		</label>
 	`,

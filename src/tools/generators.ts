@@ -1,9 +1,5 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
-
-// Get current directory for ES modules
-const __filename = fileURLToPath(import.meta.url);
 
 interface ConvertOptions {
 	filterFile: (fileName: string) => boolean;
@@ -103,6 +99,6 @@ export function generateComponentJsons(): void {
 }
 
 // Check if this file is being run directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (require.main === module) {
 	generateComponentJsons();
 }

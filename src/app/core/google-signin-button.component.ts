@@ -1,11 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: 'app-google-signin-button',
-	imports: [CommonModule, HlmButton],
+	imports: [HlmButton],
 	host: {
 		class: 'w-full',
 	},

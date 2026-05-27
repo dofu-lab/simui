@@ -25,7 +25,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 					<span>Basic plan</span>
 					<span class="text-muted-foreground truncate text-xs">Includes up to 10 users and 5 projects</span>
 				</div>
-				<hlm-checkbox id="checkbox14" [(checked)]="checked" />
+				<hlm-checkbox [inputId]="'checkbox14'" [(checked)]="checked" />
 			</div>
 		</label>
 	`,

@@ -1,0 +1,3 @@
+{
+  "content": "import { Component } from '@angular/core';\n\n@Component({\n\tselector: 'sim-calendar-20',\n\timports: [],\n\ttemplate: `\n\t\t<div class=\"flex items-center justify-center p-4\">\n\t\t\t<p class=\"text-muted-foreground text-sm\">Calendar 20</p>\n\t\t</div>\n\t`,\n})\nexport class Calendar20Component {}"
+}

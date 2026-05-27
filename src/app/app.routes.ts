@@ -153,6 +153,15 @@ export const routes: Routes = [
 				},
 			},
 			{
+				path: 'calendar',
+				loadComponent: () => import('./pages').then((m) => m.CalendarComponent),
+				data: {
+					title: 'Calendar',
+					description: 'Calendar component.',
+					keywords: 'calendar, angular component',
+				},
+			},
+			{
 				path: 'card',
 				loadComponent: () => import('./pages').then((m) => m.CardComponent),
 				data: {

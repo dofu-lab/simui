@@ -23,7 +23,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 					<ng-icon hlm name="lucideRocket" class="text-primary" size="sm" />
 				</div>
 				<span class="grid h-8 grow items-center gap-2 select-none">Basic plan</span>
-				<hlm-checkbox id="checkbox19" [(checked)]="checked" />
+				<hlm-checkbox [inputId]="'checkbox19'" [(checked)]="checked" />
 			</div>
 			<div
 				class="peer-has-data-[state=checked]:border-ring text-primary flex w-full flex-col gap-2 border-t p-3 text-sm">
