@@ -16,7 +16,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 		<fieldset class="space-y-4">
 			<legend class="text-foreground text-sm leading-none font-medium">Appearance mode toggle checkbox</legend>
 			<div class="flex flex-col justify-center">
-				<hlm-checkbox id="theme-checkbox" class="peer sr-only" [(checked)]="checked" />
+				<hlm-checkbox [inputId]="'theme-checkbox'" class="peer sr-only" [(checked)]="checked" />
 				<label
 					hlmLabel
 					for="theme-checkbox"

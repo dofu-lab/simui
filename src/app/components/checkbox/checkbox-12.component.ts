@@ -16,7 +16,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 					<span class="text-muted-foreground text-xs">Save my login details for next time.</span>
 				</div>
 			</label>
-			<hlm-checkbox id="checkbox12" />
+			<hlm-checkbox [inputId]="'checkbox12'" />
 		</div>
 	`,
 })

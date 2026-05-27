@@ -28,7 +28,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 					for="checkbox{{ item.value }}">
 					<div class="flex flex-1 items-center justify-between">
 						<ng-icon hlm class="opacity-60" size="sm" [name]="item.icon" />
-						<hlm-checkbox id="checkbox{{ item.value }}" />
+						<hlm-checkbox [inputId]="'checkbox' + item.value" />
 					</div>
 					<div class="text-md text-primary select-none">{{ item.label }}</div>
 				</label>

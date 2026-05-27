@@ -41,7 +41,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 					<span>Mastercard ending in 1234</span>
 					<span class="text-muted-foreground truncate text-xs">Expiry 06/2024</span>
 				</div>
-				<hlm-checkbox id="checkbox15" />
+				<hlm-checkbox [inputId]="'checkbox15'" />
 			</div>
 		</label>
 	`,
