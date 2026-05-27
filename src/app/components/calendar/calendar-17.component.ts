@@ -1,12 +1,80 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
+import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
+import { hlm } from '@spartan-ng/helm/utils';
+import { addDays } from 'date-fns';
 
 @Component({
 	selector: 'sim-calendar-17',
-	imports: [],
+	imports: [NgIcon, HlmCalendarImports, HlmButtonImports, HlmSeparatorImports],
+	providers: [provideIcons({ lucideChevronLeft, lucideChevronRight })],
 	template: `
-		<div class="flex items-center justify-center p-4">
-			<p class="text-muted-foreground text-sm">Calendar 17</p>
+		<div class="relative flex items-start rounded-md border">
+			<div class="absolute top-0 z-10 flex w-full items-center justify-between px-3.5 pt-3.5">
+				<button hlmBtn variant="outline" size="icon-xs" (click)="jumpToPreviousMonth()">
+					<ng-icon name="lucideChevronLeft" />
+				</button>
+				<button hlmBtn variant="outline" size="icon-xs" (click)="jumpToNextMonth()">
+					<ng-icon name="lucideChevronRight" />
+				</button>
+			</div>
+			<hlm-calendar-range
+				[calendarClass]="firstMonthClass()"
+				[(startDate)]="start"
+				[(endDate)]="end"
+				[defaultFocusedDate]="firstMonthDate()" />
+			<hlm-separator orientation="vertical" />
+			<hlm-calendar-range
+				[calendarClass]="secondMonthClass()"
+				[(startDate)]="start"
+				[(endDate)]="end"
+				[defaultFocusedDate]="secondMonthDate()" />
 		</div>
+		<p class="text-muted-foreground mt-4 text-center text-xs">Two months calendar</p>
 	`,
 })
-export class Calendar17Component {}
+export class Calendar17Component {
+	protected start = signal(new Date());
+	protected end = signal(addDays(new Date(), 5));
+
+	// Separate signal for which month to display
+	protected focusedDate = signal(new Date());
+
+	// First calendar shows the focused month
+	protected firstMonthDate = computed(() => this.focusedDate());
+
+	// Second calendar shows the next month
+	protected secondMonthDate = computed(() => {
+		const date = new Date(this.focusedDate());
+		date.setMonth(date.getMonth() + 1);
+		return date;
+	});
+
+	private readonly baseCalendarClass =
+		'[&_button[brncalendarnextbutton]]:hidden! [&_button[brncalendarpreviousbutton]]:hidden! border-none [&_[data-outside]]:hidden';
+
+	protected firstMonthClass = computed(() => this.getMonthClass(this.firstMonthDate()));
+	protected secondMonthClass = computed(() => this.getMonthClass(this.secondMonthDate()));
+
+	private getMonthClass(monthDate: Date): string {
+		const hideRangeEnd = monthDate?.getMonth() !== this.end()?.getMonth() ? '[&_button[data-range-end]]:hidden!' : '';
+		const hideRangeStart =
+			monthDate?.getMonth() !== this.start()?.getMonth() ? '[&_button[data-range-start]]:hidden!' : '';
+		return hlm(this.baseCalendarClass, hideRangeEnd, hideRangeStart);
+	}
+
+	jumpToPreviousMonth() {
+		const newDate = new Date(this.focusedDate());
+		newDate.setMonth(newDate.getMonth() - 2);
+		this.focusedDate.set(newDate);
+	}
+
+	jumpToNextMonth() {
+		const newDate = new Date(this.focusedDate());
+		newDate.setMonth(newDate.getMonth() + 2);
+		this.focusedDate.set(newDate);
+	}
+}

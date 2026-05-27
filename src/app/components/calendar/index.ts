@@ -17,4 +17,3 @@ export * from './calendar-16.component';
 export * from './calendar-17.component';
 export * from './calendar-18.component';
 export * from './calendar-19.component';
-export * from './calendar-20.component';

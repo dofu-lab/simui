@@ -18,7 +18,6 @@ import {
 	Calendar17Component,
 	Calendar18Component,
 	Calendar19Component,
-	Calendar20Component,
 } from '../components/calendar';
 import { ComponentCardItem } from '../core';
 
@@ -80,67 +79,61 @@ export const calendarComponents: ComponentCardItem[] = [
 	{
 		id: 'calendar-10',
 		component: Calendar10Component,
-		colNumber: 4,
+		colNumber: 2,
 		itemStyle: 1,
 	},
 	{
 		id: 'calendar-11',
 		component: Calendar11Component,
-		colNumber: 4,
+		colNumber: 2,
 		itemStyle: 1,
 	},
 	{
 		id: 'calendar-12',
 		component: Calendar12Component,
-		colNumber: 4,
+		colNumber: 2,
 		itemStyle: 1,
 	},
 	{
 		id: 'calendar-13',
 		component: Calendar13Component,
-		colNumber: 4,
+		colNumber: 2,
 		itemStyle: 1,
 	},
 	{
 		id: 'calendar-14',
 		component: Calendar14Component,
-		colNumber: 4,
+		colNumber: 3,
 		itemStyle: 1,
 	},
 	{
 		id: 'calendar-15',
 		component: Calendar15Component,
-		colNumber: 4,
+		colNumber: 3,
 		itemStyle: 1,
 	},
 	{
 		id: 'calendar-16',
 		component: Calendar16Component,
-		colNumber: 4,
+		colNumber: 3,
 		itemStyle: 1,
 	},
 	{
 		id: 'calendar-17',
 		component: Calendar17Component,
-		colNumber: 4,
+		colNumber: 3,
 		itemStyle: 1,
 	},
 	{
 		id: 'calendar-18',
 		component: Calendar18Component,
-		colNumber: 4,
+		colNumber: 3,
 		itemStyle: 1,
 	},
 	{
 		id: 'calendar-19',
 		component: Calendar19Component,
-		colNumber: 4,
-		itemStyle: 1,
-	},
-	{
-		id: 'calendar-20',
-		component: Calendar20Component,
-		colNumber: 4,
+		colNumber: 3,
 		itemStyle: 1,
 	},
 ];

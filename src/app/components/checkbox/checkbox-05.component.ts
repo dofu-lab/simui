@@ -7,7 +7,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
 		<div class="flex items-center gap-3">
-			<hlm-checkbox disabled id="checkbox05" />
+			<hlm-checkbox disabled [inputId]="'checkbox05'" />
 			<label hlmLabel class="flex items-center" for="checkbox05">Disabled checkbox</label>
 		</div>
 	`,

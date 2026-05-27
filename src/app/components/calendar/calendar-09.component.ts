@@ -10,7 +10,7 @@ import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 	`,
 })
 export class Calendar09Component {
-	protected selectedDate = new Date();
+	protected readonly selectedDate = new Date();
 	protected readonly minDate = new Date(2023, 0, 1);
 	protected readonly maxDate = new Date(2030, 11, 31);
 	protected readonly _captionLayout = model<'dropdown' | 'label' | 'dropdown-months' | 'dropdown-years'>(

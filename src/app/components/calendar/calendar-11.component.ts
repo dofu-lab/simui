@@ -7,8 +7,8 @@ import { addDays } from 'date-fns';
 	selector: 'sim-calendar-11',
 	imports: [HlmCalendarImports, HlmButtonImports],
 	template: `
-		<div class="rounded-md border p-2">
-			<hlm-calendar class="**:[[brncalendar]]:border-none" [(date)]="selectedDate" />
+		<div class="rounded-md border p-3">
+			<hlm-calendar calendarClass="p-0 pb-3 border-none" [(date)]="selectedDate" />
 			<button hlmBtn variant="outline" size="sm" (click)="setCurrentMonth()">Today</button>
 		</div>
 		<p class="text-muted-foreground mt-4 text-center text-xs">With button</p>

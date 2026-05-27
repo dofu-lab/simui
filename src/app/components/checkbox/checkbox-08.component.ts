@@ -7,7 +7,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
 		<div class="flex items-center gap-3">
-			<hlm-checkbox id="checkbox08" [checked]="true" />
+			<hlm-checkbox [inputId]="'checkbox08'" [checked]="true" />
 			<label hlmLabel class="flex items-start gap-2" for="checkbox08">
 				<div class="grid grow gap-2 pt-0.5">
 					<div>

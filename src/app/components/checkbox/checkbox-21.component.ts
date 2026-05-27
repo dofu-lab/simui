@@ -23,7 +23,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 						for="checkbox{{ item.label }}">
 						<hlm-checkbox
 							class="sr-only after:absolute after:inset-0"
-							id="checkbox{{ item.label }}"
+							[inputId]="'checkbox' + item.label"
 							[disabled]="item.disabled"
 							[checked]="item.defaultChecked" />
 						<span aria-hidden="true" class="text-sm font-medium" [ngClass]="{ 'text-destructive': item.value === '0' }">

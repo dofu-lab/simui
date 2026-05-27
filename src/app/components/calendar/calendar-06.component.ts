@@ -15,8 +15,8 @@ import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 	`,
 })
 export class Calendar06Component {
-	public start = new Date();
-	public end = new Date(this.start.getTime() + 5 * 24 * 60 * 60 * 1000);
-	public minDate = new Date(2023, 0, 1);
-	public maxDate = new Date(2030, 11, 31);
+	protected readonly start = new Date();
+	protected readonly end = new Date(this.start.getTime() + 5 * 24 * 60 * 60 * 1000);
+	protected readonly minDate = new Date(2023, 0, 1);
+	protected readonly maxDate = new Date(2030, 11, 31);
 }
