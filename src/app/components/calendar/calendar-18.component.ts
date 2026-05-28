@@ -74,9 +74,14 @@ export class Calendar18Component {
 	protected thirdMonthClass = computed(() => this.getMonthClass(this.thirdMonthDate()));
 
 	private getMonthClass(monthDate: Date): string {
-		const hideRangeEnd = monthDate?.getMonth() !== this.end()?.getMonth() ? '[&_button[data-range-end]]:hidden!' : '';
+		const hideRangeEnd =
+			monthDate?.getMonth() !== this.end()?.getMonth()
+				? '[&_button[data-range-end]]:hidden! [&_td:has([data-range-end])]:after:hidden!'
+				: '';
 		const hideRangeStart =
-			monthDate?.getMonth() !== this.start()?.getMonth() ? '[&_button[data-range-start]]:hidden!' : '';
+			monthDate?.getMonth() !== this.start()?.getMonth()
+				? '[&_button[data-range-start]]:hidden! [&_td:has([data-range-start])]:after:hidden!'
+				: '';
 		return hlm(this.baseCalendarClass, hideRangeEnd, hideRangeStart);
 	}
 
