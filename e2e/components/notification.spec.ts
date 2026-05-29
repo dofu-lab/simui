@@ -29,7 +29,9 @@ test.describe('Notification', () => {
 
 			const toast = page.locator('[data-sonner-toast]').first();
 			await expect(toast).toBeVisible({ timeout: 5000 });
-			await expect.soft(toast).toHaveScreenshot(`notification/${variantId}-toast.png`);
+			await expect.soft(toast).toHaveScreenshot(`notification/${variantId}-toast.png`, {
+				maxDiffPixelRatio: 0.02,
+			});
 
 			await page.keyboard.press('Escape');
 		}

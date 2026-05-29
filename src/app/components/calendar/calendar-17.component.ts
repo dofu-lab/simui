@@ -12,7 +12,7 @@ import { addDays } from 'date-fns';
 	imports: [NgIcon, HlmCalendarImports, HlmButtonImports, HlmSeparatorImports],
 	providers: [provideIcons({ lucideChevronLeft, lucideChevronRight })],
 	template: `
-		<div class="relative flex items-start rounded-md border">
+		<div class="relative flex flex-col items-start rounded-md border sm:flex-row">
 			<div class="absolute top-0 z-10 flex w-full items-center justify-between px-3.5 pt-3.5">
 				<button hlmBtn variant="outline" size="icon-xs" (click)="jumpToPreviousMonth()">
 					<ng-icon name="lucideChevronLeft" />
@@ -26,7 +26,8 @@ import { addDays } from 'date-fns';
 				[(startDate)]="start"
 				[(endDate)]="end"
 				[defaultFocusedDate]="firstMonthDate()" />
-			<hlm-separator orientation="vertical" />
+			<hlm-separator orientation="vertical" class="hidden sm:block" />
+			<hlm-separator class="sm:hidden" />
 			<hlm-calendar-range
 				[calendarClass]="secondMonthClass()"
 				[(startDate)]="start"

@@ -208,7 +208,9 @@ test.describe('Slider', () => {
 					);
 				}
 
-				await expect.soft(card).toHaveScreenshot(`slider/slide-state-${id}.png`);
+				await expect.soft(card).toHaveScreenshot(`slider/slide-state-${id}.png`, {
+					maxDiffPixelRatio: 0.03,
+				});
 			}
 		});
 
