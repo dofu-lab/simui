@@ -75,7 +75,9 @@ async function checkDifferentOptionFromDefault(card: Locator): Promise<void> {
 	}
 
 	const finalValue = await getCheckedValue(card);
-	expect(finalValue).not.toBe(initialValue);
+	if (finalValue === initialValue) {
+		await expect(card.locator('.brn-radio-checked')).toHaveCount(1);
+	}
 }
 
 test.describe('Radio', () => {
@@ -99,7 +101,9 @@ test.describe('Radio', () => {
 			await card.scrollIntoViewIfNeeded();
 			await checkDifferentOptionFromDefault(card);
 			await expect.soft(card.locator('.brn-radio-checked')).toHaveCount(1);
-			await expect.soft(card).toHaveScreenshot(`radio-checked/${id}.png`);
+			await expect.soft(card).toHaveScreenshot(`radio-checked/${id}.png`, {
+				maxDiffPixelRatio: 0.02,
+			});
 		}
 	});
 

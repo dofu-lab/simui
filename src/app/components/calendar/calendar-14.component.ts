@@ -17,12 +17,11 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 		NgScrollbarModule,
 	],
 	template: `
-		<div class="flex items-start rounded-md border">
+		<div class="flex flex-col items-start rounded-md border sm:flex-row">
 			<hlm-calendar calendarClass="border-none" [(date)]="selectedDate" />
-			<hlm-separator orientation="vertical" />
-			<div class="flex h-full flex-1 flex-col items-start gap-2">
+			<div class="flex h-full w-full flex-1 flex-col items-start gap-2 max-sm:border-t sm:border-l">
 				<p class="px-3 pt-3 text-sm font-medium">{{ selectedDate() | date: 'EEE, dd' }}</p>
-				<ng-scrollbar hlm class="h-72 w-40" appearance="compact">
+				<ng-scrollbar hlm class="h-40 w-full sm:h-72 sm:w-40" appearance="compact">
 					<div class="grid gap-1.5 px-4 pb-2 max-sm:grid-cols-2">
 						@for (timeslot of timeSlots; track timeslot.time) {
 							<button

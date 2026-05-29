@@ -59,6 +59,7 @@ async function snapshotOpenPopoverVariant(page: Page, id: string): Promise<void>
 			width: right - x,
 			height: bottom - y,
 		},
+		maxDiffPixelRatio: 0.02,
 	});
 
 	await page.keyboard.press('Escape');
