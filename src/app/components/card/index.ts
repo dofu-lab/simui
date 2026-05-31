@@ -9,3 +9,8 @@ export * from './card-08.component';
 export * from './card-09.component';
 export * from './card-10.component';
 export * from './card-11.component';
+export * from './card-12.component';
+export * from './card-13.component';
+export * from './card-14.component';
+export * from './card-15.component';
+export * from './card-16.component';

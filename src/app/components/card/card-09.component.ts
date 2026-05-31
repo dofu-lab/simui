@@ -1,50 +1,61 @@
 import { Component } from '@angular/core';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideShoppingBag } from '@ng-icons/lucide';
-import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCard, HlmCardContent, HlmCardDescription, HlmCardFooter, HlmCardTitle } from '@spartan-ng/helm/card';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'sim-card-09',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmAspectRatio,
-		HlmCardContent,
-		HlmCard,
-		HlmCardTitle,
-		HlmCardDescription,
-		HlmCardFooter,
-		HlmButton,
-	],
-	providers: [provideIcons({ lucideShoppingBag })],
-	host: {
-		class: 'w-full',
-	},
+	imports: [HlmCardImports, HlmButtonImports, HlmInputImports, HlmFieldImports, HlmSelectImports],
 	template: `
-		<section hlmCard class="w-full">
-			<div [hlmAspectRatio]="7 / 3" class="group overflow-hidden rounded-t-md">
-				<img
-					src="/assets/products/product-1.webp"
-					alt="Product image"
-					class="h-full w-full object-cover transition-transform motion-reduce:transition-none duration-200 ease group-hover:scale-105" />
+		<section class="bg-muted flex w-80 flex-col gap-4 rounded-2xl px-1.5 pb-1.5 shadow-none">
+			<div hlmCardHeader class="flex-col items-start px-6 pt-4">
+				<h3 hlmCardTitle>Create project</h3>
+				<p hlmCardDescription>Deploy your new project in one-click.</p>
 			</div>
-
-			<div hlmCardContent class="flex flex-col gap-4 py-6">
-				<h3 hlmCardTitle>Sample Product</h3>
-				<p hlmCardDescription>Short description of the product goes here.</p>
-			</div>
-
-			<div hlmCardFooter class="flex justify-between pt-0">
-				<p class="text-foreground text-lg font-medium">$99.99</p>
-				<button hlmBtn size="sm" class="flex gap-2">
-					<ng-icon hlm name="lucideShoppingBag" size="sm" />
-					Buy now
-				</button>
-			</div>
+			<section class="w-full shadow-none" hlmCard>
+				<div hlmCardContent>
+					<fieldset hlmFieldSet>
+						<div hlmFieldGroup class="gap-4">
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-input-name">Name</label>
+								<input hlmInput id="field-input-name" type="text" placeholder="Project name" />
+							</div>
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-select-framework">Framework</label>
+								<hlm-select [itemToString]="itemToString">
+									<hlm-select-trigger class="w-full" buttonId="field-select-framework">
+										<hlm-select-value placeholder="Choose a framework" />
+									</hlm-select-trigger>
+									<hlm-select-content *hlmSelectPortal>
+										<hlm-select-group>
+											@for (framework of frameworkOptions; track framework.value) {
+												<hlm-select-item [value]="framework.value">
+													{{ framework.label }}
+												</hlm-select-item>
+											}
+										</hlm-select-group>
+									</hlm-select-content>
+								</hlm-select>
+							</div>
+							<div hlmField>
+								<button hlmBtn type="submit" class="w-full">Deploy</button>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</section>
 		</section>
 	`,
 })
-export class Card09Component {}
+export class Card09Component {
+	protected readonly frameworkOptions = [
+		{ label: 'Next.js', value: 'next' },
+		{ label: 'Vite', value: 'vite' },
+		{ label: 'Remix', value: 'remix' },
+		{ label: 'Astro', value: 'astro' },
+	];
+
+	public readonly itemToString = (value: string) => this.frameworkOptions.find((d) => d.value === value)?.label ?? '';
+}

@@ -1,25 +1,61 @@
 import { Component } from '@angular/core';
-import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCard } from '@spartan-ng/helm/card';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'sim-card-05',
-	imports: [HlmAspectRatio, HlmCard, HlmButton],
+	imports: [HlmCardImports, HlmButtonImports, HlmInputImports, HlmFieldImports, HlmSelectImports],
 	template: `
-		<section hlmCard class="relative w-72 overflow-hidden rounded-2xl p-0 shadow-lg">
-			<div [hlmAspectRatio]="1">
-				<img src="/assets/products/concert.webp" alt="Artist concert" class="h-full w-full object-cover" />
+		<section class="bg-muted w-80 gap-4 py-0" hlmCard>
+			<div hlmCardHeader class="bg-muted flex-col items-start px-6 pt-4">
+				<h3 hlmCardTitle>Create project</h3>
+				<p hlmCardDescription>Deploy your new project in one-click.</p>
 			</div>
-
-			<div class="absolute right-0 bottom-0 left-0 p-[2px]">
-				<div
-					class="rounded-4 via-yellow-600/40to-black/50 flex items-center justify-between gap-4 bg-gradient-to-r from-black/50 px-5 py-3 backdrop-blur-md">
-					<span class="text-sm text-white/90">Coming soon.</span>
-					<button hlmBtn size="sm" variant="secondary">Notify me</button>
+			<section class="w-full shadow-none" hlmCard>
+				<div hlmCardContent>
+					<fieldset hlmFieldSet>
+						<div hlmFieldGroup class="gap-4">
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-input-name">Name</label>
+								<input hlmInput id="field-input-name" type="text" placeholder="Project name" />
+							</div>
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-select-framework">Framework</label>
+								<hlm-select [itemToString]="itemToString">
+									<hlm-select-trigger class="w-full" buttonId="field-select-framework">
+										<hlm-select-value placeholder="Choose a framework" />
+									</hlm-select-trigger>
+									<hlm-select-content *hlmSelectPortal>
+										<hlm-select-group>
+											@for (framework of frameworkOptions; track framework.value) {
+												<hlm-select-item [value]="framework.value">
+													{{ framework.label }}
+												</hlm-select-item>
+											}
+										</hlm-select-group>
+									</hlm-select-content>
+								</hlm-select>
+							</div>
+							<div hlmField>
+							<button hlmBtn type="submit" class="w-full">Deploy</button>
+							</div>
+						</div>
+					</fieldset>
 				</div>
-			</div>
+			</section>
 		</section>
 	`,
 })
-export class Card05Component {}
+export class Card05Component {
+	protected readonly frameworkOptions = [
+		{ label: 'Next.js', value: 'next' },
+		{ label: 'Vite', value: 'vite' },
+		{ label: 'Remix', value: 'remix' },
+		{ label: 'Astro', value: 'astro' },
+	];
+
+	public readonly itemToString = (value: string) => this.frameworkOptions.find((d) => d.value === value)?.label ?? '';
+}

@@ -1,31 +1,80 @@
 import { Component } from '@angular/core';
-import { HlmCard } from '@spartan-ng/helm/card';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideAlertCircle } from '@ng-icons/lucide';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'sim-card-08',
-	imports: [HlmCard],
+	imports: [
+		NgIcon,
+		HlmIconImports,
+		HlmCardImports,
+		HlmButtonImports,
+		HlmInputImports,
+		HlmFieldImports,
+		HlmSelectImports,
+	],
+	providers: [provideIcons({ lucideAlertCircle })],
 	template: `
-		<section hlmCard class="relative mx-auto aspect-[3/2] overflow-hidden rounded-xl shadow-lg ring-1 ring-gray-200">
-			<div class="flex items-center justify-between px-5 pt-4">
-				<svg viewBox="0 0 32 22" class="h-6 w-8 text-orange-400">
-					<rect x="1" y="1" width="30" height="20" rx="2" ry="2" fill="currentColor" />
-				</svg>
-				<img src="/assets/logos/logo-base.svg" alt="Simui logo" class="h-6 w-auto opacity-90" />
-			</div>
-
-			<p class="mt-6 px-5 font-mono text-lg tracking-widest">•••• •••• •••• 4242</p>
-
-			<div class="absolute right-5 bottom-4 left-5 flex justify-between text-xs tracking-wider">
-				<div>
-					<p class="uppercase opacity-60">Card Holder</p>
-					<p class="mt-1 text-sm font-medium">JOHN&nbsp;DOE</p>
+		<section class="bg-muted flex w-80 flex-col gap-4 rounded-2xl p-1.5 pb-0 shadow-none">
+			<section class="w-full shadow-none" hlmCard>
+				<div hlmCardHeader>
+					<h3 hlmCardTitle>Create project</h3>
+					<p hlmCardDescription>Deploy your new project in one-click.</p>
 				</div>
-				<div>
-					<p class="uppercase opacity-60">Expires</p>
-					<p class="mt-1 text-sm font-medium">12/28</p>
+
+				<div hlmCardContent>
+					<fieldset hlmFieldSet>
+						<div hlmFieldGroup class="gap-4">
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-input-name">Name</label>
+								<input hlmInput id="field-input-name" type="text" placeholder="Project name" />
+							</div>
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-select-framework">Framework</label>
+								<hlm-select [itemToString]="itemToString">
+									<hlm-select-trigger class="w-full" buttonId="field-select-framework">
+										<hlm-select-value placeholder="Choose a framework" />
+									</hlm-select-trigger>
+									<hlm-select-content *hlmSelectPortal>
+										<hlm-select-group>
+											@for (framework of frameworkOptions; track framework.value) {
+												<hlm-select-item [value]="framework.value">
+													{{ framework.label }}
+												</hlm-select-item>
+											}
+										</hlm-select-group>
+									</hlm-select-content>
+								</hlm-select>
+							</div>
+							<div hlmField>
+								<button hlmBtn type="submit" class="w-full">Login</button>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</section>
+			<div hlmCardFooter class="bg-muted flex-col items-start px-6 pb-4">
+				<div class="text-muted-foreground flex items-center gap-1 text-xs">
+					<ng-icon hlm size="xs" name="lucideAlertCircle" />
+					<p>This will take a few seconds to complete.</p>
 				</div>
 			</div>
 		</section>
 	`,
 })
-export class Card08Component {}
+export class Card08Component {
+	protected readonly frameworkOptions = [
+		{ label: 'Next.js', value: 'next' },
+		{ label: 'Vite', value: 'vite' },
+		{ label: 'Remix', value: 'remix' },
+		{ label: 'Astro', value: 'astro' },
+	];
+
+	public readonly itemToString = (value: string) => this.frameworkOptions.find((d) => d.value === value)?.label ?? '';
+}

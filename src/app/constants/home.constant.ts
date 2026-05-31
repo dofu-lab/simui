@@ -8,6 +8,7 @@ import {
 	BreadcrumbThumbnailComponent,
 	ButtonThumbnailComponent,
 	CalendarThumbnailComponent,
+	CardThumbnailComponent,
 	CheckboxThumbnailComponent,
 	DialogThumbnailComponent,
 	DropdownThumbnailComponent,
@@ -33,6 +34,7 @@ import { bannerComponents } from './banner.constant';
 import { breadcrumbComponents } from './breadcrumb.constant';
 import { buttonComponents } from './button.constant';
 import { calendarComponents } from './calendar.constant';
+import { cardComponents } from './card.constant';
 import { checkBoxComponents } from './checkbox.constant';
 import { dialogComponents } from './dialog.constant';
 import { dropdownComponents } from './dropdown.constant';
@@ -48,6 +50,13 @@ import { switchComponents } from './switch.constant';
 import { tabsComponents } from './tabs.constant';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Card',
+		compNumber: cardComponents.length,
+		thumbnail: CardThumbnailComponent,
+		path: 'components/card',
+		isNew: true,
+	},
 	{
 		name: 'Calendar',
 		compNumber: calendarComponents.length,
