@@ -3,19 +3,11 @@ import { Component, signal } from '@angular/core';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
-import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'sim-calendar-14',
-	imports: [
-		HlmCalendarImports,
-		HlmScrollAreaImports,
-		HlmSeparatorImports,
-		HlmButtonImports,
-		DatePipe,
-		NgScrollbarModule,
-	],
+	imports: [HlmCalendarImports, HlmScrollAreaImports, HlmButtonImports, DatePipe, NgScrollbarModule],
 	template: `
 		<div class="flex flex-col items-start rounded-md border sm:flex-row">
 			<hlm-calendar calendarClass="border-none" [(date)]="selectedDate" />

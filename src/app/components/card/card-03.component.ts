@@ -1,48 +1,46 @@
 import { Component } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCard, HlmCardContent, HlmCardDescription, HlmCardFooter, HlmCardTitle } from '@spartan-ng/helm/card';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideShieldAlert } from '@ng-icons/lucide';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-card-03',
-	imports: [
-		HlmCardContent,
-		HlmCard,
-		HlmCardTitle,
-		HlmCardDescription,
-		HlmCardFooter,
-		HlmButton,
-		HlmAvatar,
-		HlmAvatarImage,
-		HlmAvatarFallback,
-	],
+	imports: [NgIcon, HlmIconImports, HlmCardImports, HlmButtonImports, HlmInputImports, HlmFieldImports],
+	providers: [provideIcons({ lucideShieldAlert })],
 	template: `
-		<section hlmCard class="w-60">
-			<div hlmCardContent class="flex flex-col items-center text-center">
-				<hlm-avatar class="border-border/50 mt-3 mb-3 size-14 rounded-lg border">
-					<img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
-					<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
-				</hlm-avatar>
-
-				<h4 hlmCardTitle>Mathilde Lewis</h4>
-				<p hlmCardDescription>Product Manager</p>
-				<div class="mt-4 flex w-full items-center justify-around">
-					<div>
-						<p class="text-xl font-semibold">24</p>
-						<p class="text-muted-foreground text-xs">Projects</p>
-					</div>
-					<div>
-						<p class="text-xl font-semibold">87</p>
-						<p class="text-muted-foreground text-xs">Tasks</p>
-					</div>
-					<div>
-						<p class="text-xl font-semibold">15</p>
-						<p class="text-muted-foreground text-xs">Teams</p>
-					</div>
-				</div>
+		<section class="w-80 gap-4" hlmCard>
+			<div hlmCardHeader class="border-b pb-4!">
+				<h3 hlmCardTitle>Login to your account</h3>
+				<p hlmCardDescription>Enter email and password to login</p>
 			</div>
-			<div hlmCardFooter class="pt-3">
-				<button hlmBtn variant="outline" class="w-full">View Profile</button>
+
+			<div hlmCardContent>
+				<fieldset hlmFieldSet>
+					<div hlmFieldGroup class="gap-4">
+						<div hlmField class="gap-2">
+							<label hlmFieldLabel for="field-input-email">Email</label>
+							<input hlmInput id="field-input-email" type="email" placeholder="Enter your email" />
+						</div>
+						<div hlmField class="gap-2">
+							<label hlmFieldLabel for="field-input-password">Password</label>
+							<input hlmInput id="field-input-password" type="password" placeholder="Enter your password" />
+						</div>
+						<div hlmField>
+							<button hlmBtn type="submit" class="w-full">Login</button>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+
+			<div hlmCardFooter class="flex-col items-start gap-4 border-t pt-4!">
+				<div class="text-muted-foreground flex gap-1 text-xs">
+					<ng-icon hlm size="xs" name="lucideShieldAlert" class="mt-0.5 h-lh shrink-0" />
+					<p>The information you enter is encrypted and stored securely.</p>
+				</div>
 			</div>
 		</section>
 	`,

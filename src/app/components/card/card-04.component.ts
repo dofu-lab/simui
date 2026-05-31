@@ -1,97 +1,80 @@
-import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
+import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCard, HlmCardContent } from '@spartan-ng/helm/card';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmSlider } from '@spartan-ng/helm/slider';
-
-import {
-	lucideHeartOff,
-	lucidePause,
-	lucidePlay,
-	lucideRepeat,
-	lucideShuffle,
-	lucideSkipBack,
-	lucideSkipForward,
-} from '@ng-icons/lucide';
+import { lucideAlertCircle } from '@ng-icons/lucide';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'sim-card-04',
-	imports: [FormsModule, HlmCard, HlmCardContent, HlmButton, HlmSlider, HlmIcon, NgIcon],
-	providers: [
-		provideIcons({
-			lucideHeartOff,
-			lucidePlay,
-			lucidePause,
-			lucideSkipForward,
-			lucideSkipBack,
-			lucideShuffle,
-			lucideRepeat,
-		}),
+	imports: [
+		NgIcon,
+		HlmIconImports,
+		HlmCardImports,
+		HlmButtonImports,
+		HlmInputImports,
+		HlmFieldImports,
+		HlmSelectImports,
 	],
+	providers: [provideIcons({ lucideAlertCircle })],
 	template: `
-		<section hlmCard class="relative overflow-hidden rounded-3xl shadow-lg">
-			<button
-				hlmBtn
-				size="icon"
-				variant="ghost"
-				class="text-muted-foreground hover:text-foreground absolute top-4 right-4">
-				<ng-icon hlm name="lucideHeartOff" />
-			</button>
+		<section class="bg-muted w-80 gap-4 py-0" hlmCard>
+			<section class="w-full shadow-none" hlmCard>
+				<div hlmCardHeader>
+					<h3 hlmCardTitle>Create project</h3>
+					<p hlmCardDescription>Deploy your new project in one-click.</p>
+				</div>
 
-			<div hlmCardContent class="grid gap-6 p-4 md:grid-cols-[1fr_auto]">
-				<img
-					src="/assets/products/disc.webp"
-					alt="Daily Mix cover"
-					class="aspect-square w-full max-w-70 rounded-xl object-cover md:w-36" />
-				<div class="flex min-w-0 flex-col">
-					<div>
-						<h2 class="text-xl leading-tight font-semibold">Daily Mix</h2>
-						<p class="text-muted-foreground text-xs">12 Tracks</p>
-						<h3 class="mt-4 text-2xl leading-snug font-bold">Frontend Radio</h3>
-					</div>
-
-					<div class="mt-6">
-						<hlm-slider [(value)]="value" />
-
-						<div class="text-muted-foreground mt-1 flex justify-between text-xs">
-							<span>03:00</span>
-							<span>06:00</span>
+				<div hlmCardContent>
+					<fieldset hlmFieldSet>
+						<div hlmFieldGroup class="gap-4">
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-input-name">Name</label>
+								<input hlmInput id="field-input-name" type="text" placeholder="Project name" />
+							</div>
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-select-framework">Framework</label>
+								<hlm-select [itemToString]="itemToString">
+									<hlm-select-trigger class="w-full" buttonId="field-select-framework">
+										<hlm-select-value placeholder="Choose a framework" />
+									</hlm-select-trigger>
+									<hlm-select-content *hlmSelectPortal>
+										<hlm-select-group>
+											@for (framework of frameworkOptions; track framework.value) {
+												<hlm-select-item [value]="framework.value">
+													{{ framework.label }}
+												</hlm-select-item>
+											}
+										</hlm-select-group>
+									</hlm-select-content>
+								</hlm-select>
+							</div>
+							<div hlmField>
+							<button hlmBtn type="submit" class="w-full">Deploy</button>
+							</div>
 						</div>
-					</div>
-
-					<div class="mt-6 flex items-center justify-center gap-3">
-						<button hlmBtn size="icon" variant="ghost" aria-label="Repeat">
-							<ng-icon hlm name="lucideRepeat" size="sm" />
-						</button>
-
-						<button hlmBtn size="icon" variant="ghost" aria-label="Prev">
-							<ng-icon hlm name="lucideSkipBack" size="sm" />
-						</button>
-
-						<button
-							hlmBtn
-							size="icon"
-							class="bg-foreground text-background hover:bg-foreground/90 size-10 shrink-0 rounded-full"
-							aria-label="Play">
-							<ng-icon hlm name="lucidePlay" size="sm" />
-						</button>
-
-						<button hlmBtn size="icon" variant="ghost" aria-label="Next">
-							<ng-icon hlm name="lucideSkipForward" size="sm" />
-						</button>
-
-						<button hlmBtn size="icon" variant="ghost" aria-label="Shuffle">
-							<ng-icon hlm name="lucideShuffle" size="sm" />
-						</button>
-					</div>
+					</fieldset>
+				</div>
+			</section>
+			<div hlmCardFooter class="bg-muted flex-col items-start px-6 pb-4">
+				<div class="text-muted-foreground flex items-center gap-1 text-xs">
+					<ng-icon hlm size="xs" name="lucideAlertCircle" />
+					<p>This will take a few seconds to complete.</p>
 				</div>
 			</div>
 		</section>
 	`,
 })
 export class Card04Component {
-	public readonly value = signal([50]);
+	protected readonly frameworkOptions = [
+		{ label: 'Next.js', value: 'next' },
+		{ label: 'Vite', value: 'vite' },
+		{ label: 'Remix', value: 'remix' },
+		{ label: 'Astro', value: 'astro' },
+	];
+
+	public readonly itemToString = (value: string) => this.frameworkOptions.find((d) => d.value === value)?.label ?? '';
 }

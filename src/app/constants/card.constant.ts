@@ -10,10 +10,27 @@ import {
 	Card09Component,
 	Card10Component,
 	Card11Component,
+	Card12Component,
+	Card13Component,
+	Card14Component,
+	Card15Component,
+	Card16Component,
 } from '@/app/components/card';
 import { ComponentCardItem } from '../core';
 
 export const cardComponents: ComponentCardItem[] = [
+	{
+		component: Card01Component,
+		id: 'card-01',
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		component: Card02Component,
+		id: 'card-02',
+		colNumber: 2,
+		itemStyle: 1,
+	},
 	{
 		component: Card03Component,
 		id: 'card-03',
@@ -21,8 +38,38 @@ export const cardComponents: ComponentCardItem[] = [
 		itemStyle: 1,
 	},
 	{
+		component: Card04Component,
+		id: 'card-04',
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		component: Card05Component,
+		id: 'card-05',
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
 		component: Card06Component,
 		id: 'card-06',
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		component: Card07Component,
+		id: 'card-07',
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		component: Card08Component,
+		id: 'card-08',
+		colNumber: 2,
+		itemStyle: 1,
+	},
+	{
+		component: Card09Component,
+		id: 'card-09',
 		colNumber: 2,
 		itemStyle: 1,
 	},
@@ -39,45 +86,32 @@ export const cardComponents: ComponentCardItem[] = [
 		itemStyle: 1,
 	},
 	{
-		component: Card01Component,
-		id: 'card-01',
+		component: Card12Component,
+		id: 'card-12',
 		colNumber: 2,
 		itemStyle: 1,
 	},
 	{
-		component: Card09Component,
-		id: 'card-09',
+		component: Card13Component,
+		id: 'card-13',
 		colNumber: 2,
 		itemStyle: 1,
 	},
 	{
-		component: Card02Component,
-		id: 'card-02',
+		component: Card14Component,
+		id: 'card-14',
 		colNumber: 2,
 		itemStyle: 1,
 	},
 	{
-		component: Card04Component,
-		id: 'card-04',
+		component: Card15Component,
+		id: 'card-15',
 		colNumber: 2,
 		itemStyle: 1,
 	},
 	{
-		component: Card05Component,
-		id: 'card-05',
-		colNumber: 2,
-		itemStyle: 1,
-	},
-
-	{
-		component: Card07Component,
-		id: 'card-07',
-		colNumber: 2,
-		itemStyle: 1,
-	},
-	{
-		component: Card08Component,
-		id: 'card-08',
+		component: Card16Component,
+		id: 'card-16',
 		colNumber: 2,
 		itemStyle: 1,
 	},

@@ -6,6 +6,7 @@ export { BannerThumbnailComponent } from './banner-thumbnail.component';
 export { BreadcrumbThumbnailComponent } from './breadcrumb-thumbnail.component';
 export { ButtonThumbnailComponent } from './button-thumbnail.component';
 export { CalendarThumbnailComponent } from './calendar-thumbnail.component';
+export { CardThumbnailComponent } from './card-thumbnail.component';
 export { CheckboxThumbnailComponent } from './checkbox-thumbnail.component';
 export { DialogThumbnailComponent } from './dialog-thumbnail.component';
 export { DropdownThumbnailComponent } from './dropdown-thumbnail.component';

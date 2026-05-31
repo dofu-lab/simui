@@ -1,18 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
-import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
-import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { endOfMonth, endOfYear, startOfMonth, startOfYear, subDays, subMonths, subYears } from 'date-fns';
-import { NgScrollbarModule } from 'ngx-scrollbar';
 
 type DateRange = {
 	from: Date;
 	to: Date;
 };
+
 @Component({
 	selector: 'sim-calendar-16',
-	imports: [HlmCalendarImports, HlmScrollAreaImports, HlmSeparatorImports, HlmButtonImports, NgScrollbarModule],
+	imports: [HlmCalendarImports, HlmButtonImports],
 	template: `
 		<div class="flex flex-col items-start rounded-md border sm:flex-row">
 			<div class="flex size-full flex-1 items-start gap-2 max-sm:order-1 max-sm:border-t sm:border-r">

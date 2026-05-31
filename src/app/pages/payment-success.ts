@@ -1,4 +1,5 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheckCircle, lucideZap } from '@ng-icons/lucide';
@@ -48,10 +49,13 @@ const POLL_INTERVAL_MS = 2000;
 export class PaymentSuccessComponent implements OnInit {
 	private readonly authService = inject(AuthService);
 	private readonly router = inject(Router);
+	private readonly platformId = inject(PLATFORM_ID);
 
 	protected readonly isRefreshing = signal(true);
 
 	ngOnInit(): void {
+		if (!isPlatformBrowser(this.platformId)) return;
+
 		// Poll the refresh endpoint until the server reflects the new PaidUser role.
 		// The payment webhook may arrive a few seconds after the redirect.
 		let attempts = 0;

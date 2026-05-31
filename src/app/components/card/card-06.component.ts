@@ -1,41 +1,71 @@
 import { Component } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCard, HlmCardContent } from '@spartan-ng/helm/card';
+import { provideIcons } from '@ng-icons/core';
+import { lucideAlertCircle } from '@ng-icons/lucide';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'sim-card-06',
-	imports: [HlmCardContent, HlmCard, HlmButton, HlmAvatar, HlmAvatarFallback, HlmAvatarImage],
+	imports: [HlmIconImports, HlmCardImports, HlmButtonImports, HlmInputImports, HlmFieldImports, HlmSelectImports],
+	providers: [provideIcons({ lucideAlertCircle })],
 	template: `
-		<section hlmCard class="bg-background/70 max-w-lg overflow-hidden rounded-2xl shadow-sm backdrop-blur-sm">
-			<div hlmCardContent class="p-5">
-				<div class="flex items-start justify-between">
-					<div class="flex items-center gap-3">
-						<hlm-avatar class="size-10">
-							<img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
-							<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
-						</hlm-avatar>
-						<div class="truncate">
-							<h3 class="text-md leading-snug font-semibold">Zoey Lang</h3>
-							<p class="text-muted-foreground text-sm">&#64;zoeylang</p>
+		<section class="bg-muted w-80 gap-4 py-0" hlmCard>
+			<div hlmCardHeader class="bg-muted flex-col items-start px-6 pt-4">
+				<h3 hlmCardTitle>Create project</h3>
+				<p hlmCardDescription>Deploy your new project in one-click.</p>
+			</div>
+			<section class="w-full shadow-none" hlmCard>
+				<div hlmCardContent>
+					<fieldset hlmFieldSet>
+						<div hlmFieldGroup class="gap-4">
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-input-name">Name</label>
+								<input hlmInput id="field-input-name" type="text" placeholder="Project name" />
+							</div>
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-select-framework">Framework</label>
+								<hlm-select [itemToString]="itemToString">
+									<hlm-select-trigger class="w-full" buttonId="field-select-framework">
+										<hlm-select-value placeholder="Choose a framework" />
+									</hlm-select-trigger>
+									<hlm-select-content *hlmSelectPortal>
+										<hlm-select-group>
+											@for (framework of frameworkOptions; track framework.value) {
+												<hlm-select-item [value]="framework.value">
+													{{ framework.label }}
+												</hlm-select-item>
+											}
+										</hlm-select-group>
+									</hlm-select-content>
+								</hlm-select>
+							</div>
+							<div hlmField>
+								<button hlmBtn type="submit" class="w-full">Deploy</button>
+							</div>
 						</div>
-					</div>
-					<button hlmBtn size="sm">Follow</button>
+					</fieldset>
 				</div>
-				<p class="mt-5 leading-relaxed">Frontend developer and UI/UX enthusiast. Join me on this coding adventure!</p>
-				<p class="mt-3 text-base font-medium">#SimUI 💻</p>
-				<div class="mt-6 flex gap-6 text-lg">
-					<span class="flex gap-1">
-						<span class="font-semibold">4</span>
-						<span class="text-muted-foreground">Following</span>
-					</span>
-					<span class="flex gap-1">
-						<span class="font-semibold">97.1K</span>
-						<span class="text-muted-foreground">Followers</span>
-					</span>
+			</section>
+			<div hlmCardFooter class="bg-muted flex-col items-start px-6 pb-4">
+				<div class="text-muted-foreground flex items-center gap-1 text-xs">
+					<ng-icon hlm size="xs" name="lucideAlertCircle" />
+					<p>This will take a few seconds to complete.</p>
 				</div>
 			</div>
 		</section>
 	`,
 })
-export class Card06Component {}
+export class Card06Component {
+	protected readonly frameworkOptions = [
+		{ label: 'Next.js', value: 'next' },
+		{ label: 'Vite', value: 'vite' },
+		{ label: 'Remix', value: 'remix' },
+		{ label: 'Astro', value: 'astro' },
+	];
+
+	public readonly itemToString = (value: string) => this.frameworkOptions.find((d) => d.value === value)?.label ?? '';
+}

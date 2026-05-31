@@ -1,35 +1,79 @@
 import { Component } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmCard } from '@spartan-ng/helm/card';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideAlertCircle } from '@ng-icons/lucide';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'sim-card-07',
-	imports: [HlmCard, HlmAvatar, HlmAvatarFallback, HlmAvatarImage],
+	imports: [
+		NgIcon,
+		HlmIconImports,
+		HlmCardImports,
+		HlmButtonImports,
+		HlmInputImports,
+		HlmFieldImports,
+		HlmSelectImports,
+	],
+	providers: [provideIcons({ lucideAlertCircle })],
 	template: `
-		<section class="relative mx-auto w-full max-w-md">
-			<div
-				hlmCard
-				class="border-primary bg-primary text-primary-foreground relative z-0 rounded-t-2xl px-6 py-3 shadow-md">
-				<div class="flex items-center justify-between pb-2">
-					<span class="text-sm font-semibold tracking-wide uppercase">Notice Board</span>
-					<span class="text-sm font-medium">2 days ago</span>
-				</div>
+		<section class="bg-muted w-80 gap-4 py-0" hlmCard>
+			<div hlmCardHeader class="bg-muted flex-col items-start px-6 pt-4">
+				<h3 hlmCardTitle>Create project</h3>
+				<p hlmCardDescription>Deploy your new project in one-click.</p>
 			</div>
-
-			<div hlmCard class="border-primary relative z-10 -mt-4 rounded-2xl px-6 py-5 shadow-md">
-				<p class="text-lg leading-relaxed font-medium">
-					Summer camps are filling up! Sign up below for your kids this July!
-				</p>
-
-				<div class="mt-6 flex items-center gap-3">
-					<hlm-avatar class="size-14">
-						<img hlmAvatarImage src="/assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
-						<span hlmAvatarFallback class="bg-primary">ML</span>
-					</hlm-avatar>
-					<span class="font-semibold">Mathilde Lewis</span>
+			<section class="w-full pb-0 shadow-none" hlmCard>
+				<div hlmCardContent>
+					<fieldset hlmFieldSet>
+						<div hlmFieldGroup class="gap-4">
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-input-name">Name</label>
+								<input hlmInput id="field-input-name" type="text" placeholder="Project name" />
+							</div>
+							<div hlmField class="gap-2">
+								<label hlmFieldLabel for="field-select-framework">Framework</label>
+								<hlm-select [itemToString]="itemToString">
+									<hlm-select-trigger class="w-full" buttonId="field-select-framework">
+										<hlm-select-value placeholder="Choose a framework" />
+									</hlm-select-trigger>
+									<hlm-select-content *hlmSelectPortal>
+										<hlm-select-group>
+											@for (framework of frameworkOptions; track framework.value) {
+												<hlm-select-item [value]="framework.value">
+													{{ framework.label }}
+												</hlm-select-item>
+											}
+										</hlm-select-group>
+									</hlm-select-content>
+								</hlm-select>
+							</div>
+							<div hlmField>
+								<button hlmBtn type="submit" class="w-full">Deploy</button>
+							</div>
+						</div>
+					</fieldset>
 				</div>
-			</div>
+				<div hlmCardFooter class="bg-muted flex-col items-start gap-4 border-t py-4!">
+					<div class="text-muted-foreground flex items-center gap-1 text-xs">
+						<ng-icon hlm size="xs" name="lucideAlertCircle" />
+						<p>This will take a few seconds to complete.</p>
+					</div>
+				</div>
+			</section>
 		</section>
 	`,
 })
-export class Card07Component {}
+export class Card07Component {
+	protected readonly frameworkOptions = [
+		{ label: 'Next.js', value: 'next' },
+		{ label: 'Vite', value: 'vite' },
+		{ label: 'Remix', value: 'remix' },
+		{ label: 'Astro', value: 'astro' },
+	];
+
+	public readonly itemToString = (value: string) => this.frameworkOptions.find((d) => d.value === value)?.label ?? '';
+}

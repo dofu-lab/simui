@@ -1,69 +1,40 @@
 import { Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCard } from '@spartan-ng/helm/card';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-card-02',
-	imports: [HlmCard, HlmButton],
+	imports: [HlmCardImports, HlmButtonImports, HlmInputImports, HlmFieldImports],
 	template: `
-		<section hlmCard>
-			<div class="p-6 pb-0">
-				<h3 class="text-xl leading-none font-semibold tracking-tight">Recent Activity</h3>
-				<p class="text-muted-foreground pt-1 text-sm">Last 24 hours</p>
-
-				<div class="pt-4 pb-2">
-					<span class="bg-muted text-muted-foreground rounded-full px-2.5 py-1 text-xs font-medium">
-						{{ getNewActivityCount() }} new
-					</span>
+		<section class="w-80 gap-4" hlmCard>
+			<div hlmCardHeader>
+				<div class="flex items-center justify-between gap-2">
+					<h3 hlmCardTitle>Login to your account</h3>
+					<button hlmBtn size="sm" variant="link" class="text-muted-foreground">Sign up</button>
 				</div>
 			</div>
 
-			<div class="bg-border mx-6 h-px"></div>
-
-			<div class="h-auto p-6">
-				<ul class="relative space-y-8">
-					<div class="bg-border absolute top-2 bottom-1 left-[9px] w-px"></div>
-
-					@for (item of activity; track $index) {
-						<li class="relative pl-7">
-							<span class="absolute top-1.5 left-[0.5px] flex h-[18px] w-[18px] items-center justify-center">
-								<span
-									class="block h-[9px] w-[9px] rounded-full"
-									[class.bg-primary]="item.isNew"
-									[class.bg-muted]="!item.isNew"></span>
-							</span>
-
-							<div class="flex items-start justify-between">
-								<div>
-									<p class="text-base leading-tight font-semibold">{{ item.text }}</p>
-									<p class="text-muted-foreground mt-1 text-sm">{{ item.time }}</p>
-								</div>
-
-								@if (item.isNew) {
-									<span class="bg-muted text-muted-foreground rounded-full px-2.5 py-1 text-xs">new</span>
-								}
-							</div>
-						</li>
-					}
-				</ul>
+			<div hlmCardContent>
+				<fieldset hlmFieldSet>
+					<div hlmFieldGroup class="gap-4">
+						<div hlmField class="gap-2">
+							<label hlmFieldLabel for="field-input-email">Email</label>
+							<input hlmInput id="field-input-email" type="email" placeholder="Enter your email" />
+						</div>
+						<div hlmField class="gap-2">
+							<label hlmFieldLabel for="field-input-password">Password</label>
+							<input hlmInput id="field-input-password" type="password" placeholder="Enter your password" />
+						</div>
+					</div>
+				</fieldset>
 			</div>
-			<div class="bg-border mx-6 h-px"></div>
-			<div class="flex items-center justify-between p-6 pt-4 pb-5">
-				<div class="text-muted-foreground text-sm">{{ activity.length }} total events</div>
-				<button hlmBtn>View all</button>
+
+			<div hlmCardFooter class="flex-col items-start gap-4">
+				<button hlmBtn type="submit" class="w-full">Login</button>
 			</div>
 		</section>
 	`,
 })
-export class Card02Component {
-	activity = [
-		{ text: 'Signed in from new device', time: '2h ago', isNew: true, type: 'login' },
-		{ text: 'Uploaded "report.pdf"', time: '5h ago', isNew: true, type: 'upload' },
-		{ text: 'Changed password', isNew: true, time: '1d ago', type: 'security' },
-		{ text: 'Update components', time: '1d ago', type: 'component' },
-	];
-
-	getNewActivityCount(): number {
-		return this.activity.filter((item) => item.isNew).length;
-	}
-}
+export class Card02Component {}
