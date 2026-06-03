@@ -1,7 +1,7 @@
+import type { Locator, Page } from '@playwright/test';
 import { expect } from '@playwright/test';
-import type { Page, PageScreenshotOptions } from '@playwright/test';
 
-type SnapshotOptions = Pick<PageScreenshotOptions, 'maxDiffPixelRatio' | 'threshold'>;
+type SnapshotOptions = NonNullable<Parameters<ReturnType<typeof expect<Locator>>['toHaveScreenshot']>[0]>;
 
 /**
  * Takes a visual snapshot of each component variant card by its host element ID.
