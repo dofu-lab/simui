@@ -66,8 +66,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0(@angular/common@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.15.1))
       '@spartan-ng/brain':
-        specifier: 0.0.1-alpha.699
-        version: 0.0.1-alpha.699(637f497d1f33240a1b6905fb2fde3aae)
+        specifier: 0.0.1-alpha.706
+        version: 0.0.1-alpha.706(637f497d1f33240a1b6905fb2fde3aae)
       '@tailwindcss/postcss':
         specifier: ^4.0.17
         version: 4.1.17
@@ -142,8 +142,8 @@ importers:
         specifier: ^1.60.0
         version: 1.60.0
       '@spartan-ng/cli':
-        specifier: 0.0.1-alpha.699
-        version: 0.0.1-alpha.699(@angular-devkit/core@21.2.12(chokidar@5.0.0))(@angular-devkit/schematics@21.2.12(chokidar@5.0.0))(@angular/build@21.2.12(75b80d543dafe0bd30a0b111076edcab))(@angular/compiler@21.2.14)(@babel/traverse@7.29.0)(@module-federation/enhanced@0.21.6(@rspack/core@1.6.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)(webpack@5.103.0))(@module-federation/node@2.7.25(@rspack/core@1.6.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)(webpack@5.103.0))(@rspack/core@1.6.4)(@types/express@4.17.25)(@zkochan/js-yaml@0.0.7)(chokidar@5.0.0)(eslint@9.39.1(jiti@2.6.1))(less@4.4.2)(lightningcss@1.30.2)(react-dom@19.2.0(react@19.2.0))(react-refresh@0.18.0)(react@19.2.0)(rxjs@7.8.2)(tslib@2.8.1)(zone.js@0.15.1)
+        specifier: 0.0.1-alpha.706
+        version: 0.0.1-alpha.706(@angular-devkit/core@21.2.12(chokidar@5.0.0))(@angular-devkit/schematics@21.2.12(chokidar@5.0.0))(@angular/build@21.2.12(75b80d543dafe0bd30a0b111076edcab))(@angular/compiler@21.2.14)(@babel/traverse@7.29.0)(@module-federation/enhanced@0.21.6(@rspack/core@1.6.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)(webpack@5.103.0))(@module-federation/node@2.7.25(@rspack/core@1.6.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)(webpack@5.103.0))(@rspack/core@1.6.4)(@types/express@4.17.25)(@zkochan/js-yaml@0.0.7)(chokidar@5.0.0)(eslint@9.39.1(jiti@2.6.1))(less@4.4.2)(lightningcss@1.30.2)(react-dom@19.2.0(react@19.2.0))(react-refresh@0.18.0)(react@19.2.0)(rxjs@7.8.2)(tslib@2.8.1)(zone.js@0.15.1)
       '@types/culori':
         specifier: ^4.0.1
         version: 4.0.1
@@ -2609,8 +2609,8 @@ packages:
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
-  '@spartan-ng/brain@0.0.1-alpha.699':
-    resolution: {integrity: sha512-bks4N2P5GWmXj1WGVEibrw4GI47HsGN+FYq8WIXHBP9oDLAfgvYu5Kgrx0rkuO8x68cQF9bZJQeBlW4jtuo5dw==}
+  '@spartan-ng/brain@0.0.1-alpha.706':
+    resolution: {integrity: sha512-PqqpF9lZ/bCK1AfQ1czHmNkDdYWCGtDQEEoXlqMRZ1LIzEk8ptQglDuBwU+74ynjUgEUxfwJbcZHC3eN14KOaQ==}
     peerDependencies:
       '@angular/cdk': '>=20.0.0 <22.0.0'
       '@angular/common': '>=20.0.0 <22.0.0'
@@ -2624,8 +2624,8 @@ packages:
       luxon:
         optional: true
 
-  '@spartan-ng/cli@0.0.1-alpha.699':
-    resolution: {integrity: sha512-AQLbdgDRpO+pnieA+qrvjWXpbDC7CXESL6S7qgJHmxc5WdF+L7+CZDh+ui4dOqJ24Syjz1qQSaFojRrLmiTOPA==}
+  '@spartan-ng/cli@0.0.1-alpha.706':
+    resolution: {integrity: sha512-m6w3mvY5jj9rGeizt9C0kOo0jZG1QVoUIdaArr9pVQVdhItnx3H1BKPVQJ9ICZkYD0dFPyMz+Z74KlXOG/NucQ==}
     peerDependencies:
       tslib: ^2.3.0
 
@@ -7226,8 +7226,8 @@ packages:
     peerDependencies:
       zod: ^3.25.28 || ^4
 
-  zod@3.23.8:
-    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
@@ -10053,7 +10053,7 @@ snapshots:
 
   '@socket.io/component-emitter@3.1.2': {}
 
-  '@spartan-ng/brain@0.0.1-alpha.699(637f497d1f33240a1b6905fb2fde3aae)':
+  '@spartan-ng/brain@0.0.1-alpha.706(637f497d1f33240a1b6905fb2fde3aae)':
     dependencies:
       '@angular/cdk': 21.2.12(@angular/common@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.14(@angular/common@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@angular/common': 21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
@@ -10066,7 +10066,7 @@ snapshots:
     optionalDependencies:
       luxon: 3.7.2
 
-  '@spartan-ng/cli@0.0.1-alpha.699(@angular-devkit/core@21.2.12(chokidar@5.0.0))(@angular-devkit/schematics@21.2.12(chokidar@5.0.0))(@angular/build@21.2.12(75b80d543dafe0bd30a0b111076edcab))(@angular/compiler@21.2.14)(@babel/traverse@7.29.0)(@module-federation/enhanced@0.21.6(@rspack/core@1.6.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)(webpack@5.103.0))(@module-federation/node@2.7.25(@rspack/core@1.6.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)(webpack@5.103.0))(@rspack/core@1.6.4)(@types/express@4.17.25)(@zkochan/js-yaml@0.0.7)(chokidar@5.0.0)(eslint@9.39.1(jiti@2.6.1))(less@4.4.2)(lightningcss@1.30.2)(react-dom@19.2.0(react@19.2.0))(react-refresh@0.18.0)(react@19.2.0)(rxjs@7.8.2)(tslib@2.8.1)(zone.js@0.15.1)':
+  '@spartan-ng/cli@0.0.1-alpha.706(@angular-devkit/core@21.2.12(chokidar@5.0.0))(@angular-devkit/schematics@21.2.12(chokidar@5.0.0))(@angular/build@21.2.12(75b80d543dafe0bd30a0b111076edcab))(@angular/compiler@21.2.14)(@babel/traverse@7.29.0)(@module-federation/enhanced@0.21.6(@rspack/core@1.6.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)(webpack@5.103.0))(@module-federation/node@2.7.25(@rspack/core@1.6.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)(webpack@5.103.0))(@rspack/core@1.6.4)(@types/express@4.17.25)(@zkochan/js-yaml@0.0.7)(chokidar@5.0.0)(eslint@9.39.1(jiti@2.6.1))(less@4.4.2)(lightningcss@1.30.2)(react-dom@19.2.0(react@19.2.0))(react-refresh@0.18.0)(react@19.2.0)(rxjs@7.8.2)(tslib@2.8.1)(zone.js@0.15.1)':
     dependencies:
       '@angular/core': 21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.15.1)
       '@nx/angular': 22.1.1(@angular-devkit/core@21.2.12(chokidar@5.0.0))(@angular-devkit/schematics@21.2.12(chokidar@5.0.0))(@angular/build@21.2.12(75b80d543dafe0bd30a0b111076edcab))(@babel/traverse@7.29.0)(@module-federation/enhanced@0.21.6(@rspack/core@1.6.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)(webpack@5.103.0))(@module-federation/node@2.7.25(@rspack/core@1.6.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)(webpack@5.103.0))(@rspack/core@1.6.4)(@schematics/angular@20.3.9(chokidar@5.0.0))(@types/express@4.17.25)(@zkochan/js-yaml@0.0.7)(eslint@9.39.1(jiti@2.6.1))(less@4.4.2)(lightningcss@1.30.2)(nx@22.1.1)(react-dom@19.2.0(react@19.2.0))(react-refresh@0.18.0)(react@19.2.0)(rxjs@7.8.2)(typescript@5.9.3)
@@ -10087,7 +10087,7 @@ snapshots:
       ts-morph: 25.0.1
       tslib: 2.8.1
       typescript: 5.9.3
-      zod: 3.23.8
+      zod: 3.25.76
     transitivePeerDependencies:
       - '@angular-devkit/build-angular'
       - '@angular-devkit/core'
@@ -15019,7 +15019,7 @@ snapshots:
     dependencies:
       zod: 4.3.6
 
-  zod@3.23.8: {}
+  zod@3.25.76: {}
 
   zod@4.3.6: {}
 
