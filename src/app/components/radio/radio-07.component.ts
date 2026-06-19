@@ -16,11 +16,11 @@ type OptionColor = 'sky' | 'amber' | 'violet' | 'rose' | 'emerald' | 'orange';
 				<hlm-radio-group class="mt-2 flex gap-2 rounded-md" [ngModel]="color()" (ngModelChange)="color.set($event)">
 					@for (item of colorOptions; track item) {
 						<label hlmLabel>
-							<hlm-radio class="space-x-0" [value]="item">
+							<hlm-radio class="gap-x-0" [value]="item">
 								<div
 									class="relative inline-flex size-6 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 									<div
-										class="bg-primary-foreground absolute inset-0 scale-0 rounded-full transition-transform motion-reduce:transition-none duration-100 ease-out group-[.brn-radio-checked]:scale-[30%]"></div>
+										class="bg-primary-foreground absolute inset-0 scale-0 rounded-full transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[30%] motion-reduce:transition-none"></div>
 									<div [class]="tagColor(item.bgClass)"></div>
 								</div>
 							</hlm-radio>

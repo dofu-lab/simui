@@ -1,3 +1,4 @@
+import { HlmInputGroupImports } from '@/libs/ui/input-group/src';
 import { NgOptimizedImage } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -5,7 +6,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail, lucideSave } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmAspectRatioImports } from '@spartan-ng/helm/aspect-ratio';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIcon } from '@spartan-ng/helm/icon';
@@ -21,16 +22,15 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		ReactiveFormsModule,
 		HlmIcon,
 		HlmButton,
-		HlmAvatar,
-		HlmAvatarImage,
-		HlmAvatarFallback,
 		HlmInput,
 		HlmLabel,
 		NgOptimizedImage,
+		HlmAvatarImports,
 		BrnSelectImports,
 		HlmSelectImports,
 		HlmDialogImports,
 		HlmAspectRatioImports,
+		HlmInputGroupImports,
 	],
 	providers: [provideIcons({ lucideSave, lucideMail })],
 	template: `
@@ -123,18 +123,12 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 							<div class="flex flex-col gap-2 border-t-2 border-dotted pt-4 sm:flex-row sm:justify-between">
 								<label hlmLabel class="text-secondary-foreground text-sm font-semibold">Email</label>
 								<div class="flex w-full flex-1 flex-col gap-2 sm:max-w-90">
-									<div class="relative">
-										<input
-											hlmInput
-											formControlName="email"
-											type="email"
-											placeholder="First name"
-											class="peer w-full ps-10 text-sm" />
-										<div
-											class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-end justify-center ps-3 pb-3 peer-disabled:opacity-50">
-											<ng-icon hlm name="lucideMail" size="sm" />
-										</div>
-									</div>
+									<hlm-input-group>
+										<input hlmInputGroupInput type="email" placeholder="Enter your email" formControlName="email" />
+										<hlm-input-group-addon>
+											<ng-icon name="lucideMail" />
+										</hlm-input-group-addon>
+									</hlm-input-group>
 									<span class="flex items-start justify-start gap-1 text-xs font-semibold text-[#2E90FA]">
 										<svg
 											width="16"

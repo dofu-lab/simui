@@ -10,11 +10,11 @@ import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 	imports: [HlmButtonImports, HlmButtonGroupImports, NgIcon],
 	template: `
 		<div hlmButtonGroup>
-			<button hlmBtn size="icon" class="rounded-full" (click)="downvote()">
+			<button hlmBtn size="icon" (click)="downvote()">
 				<ng-icon name="lucideChevronDown" />
 			</button>
 			<button hlmBtn class="px-2">{{ votes() }}</button>
-			<button hlmBtn size="icon" class="rounded-full" (click)="upvote()">
+			<button hlmBtn size="icon" (click)="upvote()">
 				<ng-icon name="lucideChevronUp" />
 			</button>
 		</div>

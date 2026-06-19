@@ -24,14 +24,16 @@ type Option = {
 						</hlm-select-value>
 					</hlm-select-trigger>
 					<hlm-select-content *hlmSelectPortal>
-						@for (option of options; track option.value) {
-							<hlm-select-item [value]="option">
-								<div class="flex flex-col">
-									{{ option.label }}
-									<p class="text-muted-foreground mt-1 block text-xs" data-desc>{{ option.description }}</p>
-								</div>
-							</hlm-select-item>
-						}
+						<hlm-select-group>
+							@for (option of options; track option.value) {
+								<hlm-select-item [value]="option">
+									<div class="flex flex-col">
+										{{ option.label }}
+										<p class="text-muted-foreground mt-1 block text-xs" data-desc>{{ option.description }}</p>
+									</div>
+								</hlm-select-item>
+							}
+						</hlm-select-group>
 					</hlm-select-content>
 				</hlm-select>
 			</div>

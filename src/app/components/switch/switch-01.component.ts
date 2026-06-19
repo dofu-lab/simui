@@ -7,7 +7,7 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 	template: `
 		<hlm-switch
 			id="switch-01"
-			class="mr-2 h-6 w-10 border-[2px] [&>brn-switch-thumb]:size-5 [&>brn-switch-thumb]:group-data-[state=checked]:translate-x-[calc(100%-4px)]" />
+			class="h-6! w-10! border-2 [&>brn-switch-thumb]:size-5! [&>brn-switch-thumb[data-state=checked]]:translate-x-[calc(100%-4px)]!" />
 	`,
 })
 export class Switch01Component {}

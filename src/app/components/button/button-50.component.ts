@@ -24,7 +24,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 						<ng-icon hlm name="lucideCircleUserRound" class="opacity-60" size="sm" />
 					}
 				</div>
-				<button hlmBtn size="sm" (click)="fileInput.click()">
+				<button hlmBtn (click)="fileInput.click()">
 					{{ buttonLabel() }}
 				</button>
 				<input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)" />

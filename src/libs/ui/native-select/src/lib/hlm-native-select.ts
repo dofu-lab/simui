@@ -8,7 +8,6 @@ import {
 	inject,
 	input,
 	linkedSignal,
-	model,
 	output,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
@@ -75,7 +74,7 @@ export class HlmNativeSelect implements ControlValueAccessor {
 
 	protected readonly _computedSelectClass = computed(() =>
 		hlm(
-			'border-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 h-9 w-full min-w-0 appearance-none rounded-md border bg-transparent py-1 ps-2.5 pe-8 text-sm shadow-xs transition-[color,box-shadow] select-none focus-visible:ring-3 data-[matches-spartan-invalid=true]:ring-3 data-[size=sm]:h-8 outline-none disabled:pointer-events-none disabled:cursor-not-allowed',
+			'text-[color:CanvasText] border-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 h-9 w-full min-w-0 appearance-none rounded-md border bg-transparent py-1 ps-2.5 pe-8 text-sm shadow-xs transition-[color,box-shadow] select-none focus-visible:ring-3 data-[matches-spartan-invalid=true]:ring-3 data-[size=sm]:h-8 outline-none disabled:pointer-events-none disabled:cursor-not-allowed',
 			this.selectClass(),
 		),
 	);
@@ -106,11 +105,12 @@ export class HlmNativeSelect implements ControlValueAccessor {
 
 	protected readonly _ariaInvalid = computed(() => this.ariaInvalidOverride() ?? this._invalid?.());
 
-	public readonly value = model<string | null>('');
+	public readonly valueInput = input<string | undefined | null>('', { alias: 'value' });
+	public readonly value = linkedSignal(this.valueInput);
 
-	public readonly valueChange = output<string | null>();
+	public readonly valueChange = output<string | undefined | null>();
 
-	protected _onChange?: ChangeFn<string | null>;
+	protected _onChange?: ChangeFn<string | undefined | null>;
 	protected _onTouched?: TouchFn;
 
 	public readonly labelableId = this.selectId;
@@ -137,11 +137,11 @@ export class HlmNativeSelect implements ControlValueAccessor {
 	}
 
 	/** CONTROL VALUE ACCESSOR */
-	public writeValue(value: string | null): void {
+	public writeValue(value: string | undefined | null): void {
 		this.value.set(value);
 	}
 
-	public registerOnChange(fn: ChangeFn<string | null>): void {
+	public registerOnChange(fn: ChangeFn<string | undefined | null>): void {
 		this._onChange = fn;
 	}
 

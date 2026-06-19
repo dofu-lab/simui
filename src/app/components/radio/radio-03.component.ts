@@ -8,7 +8,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 	template: `
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="1" disabled>
 			<label class="flex items-center gap-2" hlmLabel>
-				<hlm-radio value="1" class="space-x-0">
+				<hlm-radio value="1" class="gap-x-0">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
@@ -20,7 +20,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 				Option 1
 			</label>
 			<label class="flex items-center gap-2" hlmLabel>
-				<hlm-radio value="2" class="space-x-0">
+				<hlm-radio value="2" class="gap-x-0">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
@@ -32,7 +32,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 				Option 2
 			</label>
 			<label class="flex items-center gap-2" hlmLabel>
-				<hlm-radio value="3" class="space-x-0">
+				<hlm-radio value="3" class="gap-x-0">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div

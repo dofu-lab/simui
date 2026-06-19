@@ -7,12 +7,11 @@ import {
 	forwardRef,
 	input,
 	linkedSignal,
-	model,
 	output,
 } from '@angular/core';
 import { type ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { ChangeFn, TouchFn } from '@spartan-ng/brain/forms';
-import { BrnSwitch, BrnSwitchThumb } from '@spartan-ng/brain/switch';
+import { BrnSwitch, type BrnSwitchSize, BrnSwitchThumb } from '@spartan-ng/brain/switch';
 import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
 import { HlmSwitchThumb } from './hlm-switch-thumb';
@@ -37,6 +36,7 @@ export const HLM_SWITCH_VALUE_ACCESSOR = {
 	template: `
 		<brn-switch
 			[class]="_computedClass()"
+			[size]="size()"
 			[checked]="checked()"
 			(checkedChange)="handleChange($event)"
 			(touched)="_onTouched?.()"
@@ -53,13 +53,14 @@ export class HlmSwitch implements ControlValueAccessor {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() =>
 		hlm(
-			'data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 group inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
+			'data-checked:bg-primary data-unchecked:bg-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 dark:data-unchecked:bg-input/80 rounded-full border border-transparent shadow-xs focus-visible:ring-3 data-[matches-spartan-invalid=true]:ring-3 data-[size=default]:h-[18.4px] data-[size=default]:w-[32px] data-[size=sm]:h-[14px] data-[size=sm]:w-[24px] group/switch inline-flex shrink-0 items-center transition-all outline-none data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
 			this.userClass(),
 		),
 	);
 
 	/** The checked state of the switch. */
-	public readonly checked = model<boolean>(false);
+	public readonly checkedInput = input<boolean, BooleanInput>(false, { alias: 'checked', transform: booleanAttribute });
+	public readonly checked = linkedSignal(this.checkedInput);
 
 	/** Emits when the checked state of the switch changes. */
 	public readonly checkedChange = output<boolean>();
@@ -68,6 +69,9 @@ export class HlmSwitch implements ControlValueAccessor {
 	public readonly disabled = input<boolean, BooleanInput>(false, {
 		transform: booleanAttribute,
 	});
+
+	/** The size of the switch. */
+	public readonly size = input<BrnSwitchSize>('default');
 
 	/** Used to set the id on the underlying brn element. */
 	public readonly inputId = input<string | null>(null);
@@ -92,8 +96,7 @@ export class HlmSwitch implements ControlValueAccessor {
 		this.checkedChange.emit(value);
 	}
 
-	/** CONROL VALUE ACCESSOR */
-
+	/** CONTROL VALUE ACCESSOR */
 	writeValue(value: boolean): void {
 		this.checked.set(Boolean(value));
 	}

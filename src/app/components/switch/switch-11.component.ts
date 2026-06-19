@@ -17,7 +17,7 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 			</span>
 			<hlm-switch
 				id="switch-11"
-				class="h-6 w-10 border-[2px] [&>brn-switch-thumb]:size-5 [&>brn-switch-thumb]:group-data-[state=checked]:translate-x-[calc(100%-4px)]"
+				class="h-6! w-10! border-2 [&>brn-switch-thumb]:size-5! [&>brn-switch-thumb[data-state=checked]]:translate-x-[calc(100%-4px)]!"
 				[(checked)]="value" />
 			<span
 				class="group-data-[state=unchecked]:text-muted-foreground/70 flex flex-1 cursor-pointer items-center text-right text-sm font-medium"

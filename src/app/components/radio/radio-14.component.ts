@@ -18,7 +18,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 						<label
 							class="flex w-full items-center justify-start gap-2 p-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 							hlmLabel>
-							<hlm-radio [value]="item.value" class="space-x-0">
+							<hlm-radio [value]="item.value" class="gap-x-0">
 								<div
 									class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 									<div

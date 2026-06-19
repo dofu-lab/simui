@@ -43,7 +43,9 @@ import { CodeLoaderService } from './services/code-loader.service';
 				</button>
 				<ng-template #viewCodeTooltip><span class="flex items-center">View code</span></ng-template>
 			</div>
-			<hlm-sheet-content *hlmSheetPortal="let ctx" class="w-[calc(100%-(--spacing(12)))] max-w-sm sm:max-w-3xl">
+			<hlm-sheet-content
+				*hlmSheetPortal="let ctx"
+				class="data-[side=right]:w-[calc(100%-(--spacing(12)))] data-[side=right]:max-w-sm data-[side=right]:sm:max-w-3xl">
 				<hlm-sheet-header>
 					<h3 hlmSheetTitle>Code</h3>
 				</hlm-sheet-header>
@@ -52,7 +54,7 @@ import { CodeLoaderService } from './services/code-loader.service';
 					<div class="mb-4">
 						<h4 class="mb-2 text-lg font-semibold">Installation</h4>
 						<div class="mt-3">
-							<code-preview language="sh" [code]="installCommand()" [fileName]="componentName() + '-install'" />
+							<code-preview language="sh" [code]="installCommand()" [fileName]="'Install ' + componentName()" />
 						</div>
 						<ng-template #installTooltip><span class="flex items-center">Copy install command</span></ng-template>
 					</div>

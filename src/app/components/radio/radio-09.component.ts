@@ -44,7 +44,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 						</span>
 						<p class="text-muted-foreground text-xs font-normal">This is a small radio button with a sublabel.</p>
 					</div>
-					<hlm-radio class="space-x-0" value="1">
+					<hlm-radio class="gap-x-0" value="1">
 						<div
 							class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 							<div
@@ -80,7 +80,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 						</span>
 						<p class="text-muted-foreground text-xs font-normal">This is a small radio button with a sublabel.</p>
 					</div>
-					<hlm-radio class="space-x-0" value="2">
+					<hlm-radio class="gap-x-0" value="2">
 						<div
 							class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 							<div
