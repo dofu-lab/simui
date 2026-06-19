@@ -12,7 +12,7 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 		<div class="flex items-center gap-2">
 			<hlm-switch
 				id="switch-10"
-				class="h-6 w-10 border-[2px] [&>brn-switch-thumb]:size-5 [&>brn-switch-thumb]:group-data-[state=checked]:translate-x-[calc(100%-4px)]"
+				class="h-6! w-10! border-2 [&>brn-switch-thumb]:size-5! [&>brn-switch-thumb[data-state=checked]]:translate-x-[calc(100%-4px)]!"
 				[(checked)]="value" />
 			<ng-icon hlm size="sm" [name]="computedIcon()" />
 		</div>

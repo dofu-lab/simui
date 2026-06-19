@@ -12,13 +12,13 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 	template: `
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="6">
 			<label class="flex items-center gap-2" hlmLabel>
-				<hlm-radio class="space-x-0" value="6">
+				<hlm-radio class="gap-x-0" value="6">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
-							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform motion-reduce:transition-none duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375] motion-reduce:transition-none"></div>
 						<div
-							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all motion-reduce:transition-none duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2 motion-reduce:transition-none"></div>
 					</div>
 				</hlm-radio>
 				<span class="flex items-center gap-1">
@@ -27,13 +27,13 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 				</span>
 			</label>
 			<label class="flex items-center gap-2" hlmLabel>
-				<hlm-radio class="space-x-0" value="5">
+				<hlm-radio class="gap-x-0" value="5">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
-							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform motion-reduce:transition-none duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375] motion-reduce:transition-none"></div>
 						<div
-							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all motion-reduce:transition-none duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2 motion-reduce:transition-none"></div>
 					</div>
 				</hlm-radio>
 				<span class="flex items-center gap-1">
@@ -48,13 +48,13 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 				</span>
 			</label>
 			<label class="flex items-center gap-2" hlmLabel>
-				<hlm-radio class="space-x-0" value="4">
+				<hlm-radio class="gap-x-0" value="4">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
-							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform motion-reduce:transition-none duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375] motion-reduce:transition-none"></div>
 						<div
-							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all motion-reduce:transition-none duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2 motion-reduce:transition-none"></div>
 					</div>
 				</hlm-radio>
 				<span class="flex items-center gap-1">
@@ -69,13 +69,13 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 				</span>
 			</label>
 			<label class="flex items-center gap-2" hlmLabel>
-				<hlm-radio class="space-x-0" value="3">
+				<hlm-radio class="gap-x-0" value="3">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
-							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform motion-reduce:transition-none duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375] motion-reduce:transition-none"></div>
 						<div
-							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all motion-reduce:transition-none duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2 motion-reduce:transition-none"></div>
 					</div>
 				</hlm-radio>
 				<span class="flex items-center gap-1">
@@ -90,13 +90,13 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 				</span>
 			</label>
 			<label class="flex items-center gap-2" hlmLabel>
-				<hlm-radio class="space-x-0" value="2">
+				<hlm-radio class="gap-x-0" value="2">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
-							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform motion-reduce:transition-none duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375] motion-reduce:transition-none"></div>
 						<div
-							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all motion-reduce:transition-none duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2 motion-reduce:transition-none"></div>
 					</div>
 				</hlm-radio>
 				<span class="flex items-center gap-1">
@@ -111,13 +111,13 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 				</span>
 			</label>
 			<label class="flex items-center gap-2" hlmLabel>
-				<hlm-radio class="space-x-0" value="1">
+				<hlm-radio class="gap-x-0" value="1">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
-							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform motion-reduce:transition-none duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+							class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375] motion-reduce:transition-none"></div>
 						<div
-							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all motion-reduce:transition-none duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+							class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2 motion-reduce:transition-none"></div>
 					</div>
 				</hlm-radio>
 				<span class="flex items-center gap-1">

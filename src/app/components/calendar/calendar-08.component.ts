@@ -6,7 +6,7 @@ import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 	imports: [HlmCalendarImports],
 	template: `
 		<hlm-calendar
-			class="[&_button[brncalendarnextbutton]]:hidden! [&_button[brncalendarpreviousbutton]]:hidden! **:[[brncalendarmonthselect]]:flex-1!"
+			class="[&_button[brncalendarnextbutton]]:hidden! [&_button[brncalendarpreviousbutton]]:hidden! **:[[brncalendarmonthselect]]:flex-1! **:[[brnselecttrigger]]:w-full!"
 			[(date)]="selectedDate"
 			[captionLayout]="_captionLayout()"
 			[min]="minDate"

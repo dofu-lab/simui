@@ -3,15 +3,10 @@ import { classes } from '@spartan-ng/helm/utils';
 
 @Directive({
 	selector: '[hlmCardFooter],hlm-card-footer',
-	host: {
-		'data-slot': 'card-footer',
-	},
+	host: { 'data-slot': 'card-footer' },
 })
 export class HlmCardFooter {
 	constructor() {
-		classes(
-			() =>
-				'rounded-b-xl px-6 group-data-[size=sm]/card:px-4 [.border-t]:pt-6 group-data-[size=sm]/card:[.border-t]:pt-4 flex items-center',
-		);
+		classes(() => 'rounded-b-xl px-(--card-spacing) [.border-t]:pt-(--card-spacing) flex items-center');
 	}
 }

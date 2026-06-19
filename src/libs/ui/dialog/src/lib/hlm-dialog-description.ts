@@ -5,12 +5,10 @@ import { classes } from '@spartan-ng/helm/utils';
 @Directive({
 	selector: '[hlmDialogDescription]',
 	hostDirectives: [BrnDialogDescription],
-	host: {
-		'data-slot': 'dialog-description',
-	},
+	host: { 'data-slot': 'dialog-description' },
 })
 export class HlmDialogDescription {
 	constructor() {
-		classes(() => 'text-muted-foreground text-sm');
+		classes(() => 'text-muted-foreground *:[a]:hover:text-foreground text-sm *:[a]:underline *:[a]:underline-offset-3');
 	}
 }

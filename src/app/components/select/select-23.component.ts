@@ -16,10 +16,12 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 						<hlm-select-value placeholder="Select an option" />
 					</hlm-select-trigger>
 					<hlm-select-content *hlmSelectPortal>
-						<hlm-select-item value="Angular">Angular</hlm-select-item>
-						<hlm-select-item value="React" disabled>React</hlm-select-item>
-						<hlm-select-item value="Vue">Vue</hlm-select-item>
-						<hlm-select-item value="Svelte" disabled>Svelte</hlm-select-item>
+						<hlm-select-group>
+							<hlm-select-item value="Angular">Angular</hlm-select-item>
+							<hlm-select-item value="React" disabled>React</hlm-select-item>
+							<hlm-select-item value="Vue">Vue</hlm-select-item>
+							<hlm-select-item value="Svelte" disabled>Svelte</hlm-select-item>
+						</hlm-select-group>
 					</hlm-select-content>
 				</hlm-select>
 			</div>

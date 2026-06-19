@@ -8,7 +8,6 @@ import {
 	inject,
 	input,
 	linkedSignal,
-	model,
 	output,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
@@ -49,7 +48,7 @@ export const HLM_NATIVE_SELECT_VALUE_ACCESSOR = {
 			[attr.data-invalid]="_ariaInvalid() ? 'true' : null"
 			[attr.data-dirty]="_dirty?.() ? 'true' : null"
 			[attr.data-touched]="_touched?.() ? 'true' : null"
-			[attr.data-matches-spartan-invalid]="_spartanInvalid?.() ? 'true' : null"
+			[attr.data-matches-spartan-invalid]="_spartanInvalid() ? 'true' : null"
 			[value]="value()"
 			[disabled]="_disabled()"
 			(change)="_valueChanged($event)"
@@ -75,8 +74,7 @@ export class HlmNativeSelect implements ControlValueAccessor {
 
 	protected readonly _computedSelectClass = computed(() =>
 		hlm(
-			'border-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 h-9 w-full min-w-0 appearance-none rounded-md border bg-transparent py-1 pr-8 pl-2.5 text-sm shadow-xs transition-[color,box-shadow] outline-none select-none focus-visible:ring-3 disabled:pointer-events-none disabled:cursor-not-allowed data-[size=sm]:h-8',
-			'data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 data-[matches-spartan-invalid=true]:ring-3',
+			'text-[color:CanvasText] border-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 h-9 w-full min-w-0 appearance-none rounded-md border bg-transparent py-1 ps-2.5 pe-8 text-sm shadow-xs transition-[color,box-shadow] select-none focus-visible:ring-3 data-[matches-spartan-invalid=true]:ring-3 data-[size=sm]:h-8 outline-none disabled:pointer-events-none disabled:cursor-not-allowed',
 			this.selectClass(),
 		),
 	);
@@ -85,7 +83,7 @@ export class HlmNativeSelect implements ControlValueAccessor {
 
 	protected readonly _computedSelectIconClass = computed(() =>
 		hlm(
-			'text-muted-foreground pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 text-base select-none',
+			'text-muted-foreground end-2.5 top-1/2 -translate-y-1/2 text-[calc(var(--spacing)*4)] pointer-events-none absolute select-none',
 			this.selectIconClass(),
 		),
 	);
@@ -96,6 +94,9 @@ export class HlmNativeSelect implements ControlValueAccessor {
 
 	protected readonly _disabled = linkedSignal(this.disabled);
 
+	/** Whether to force the input into an invalid state. */
+	public readonly forceInvalid = input<boolean, BooleanInput>(false, { transform: booleanAttribute });
+
 	/** Manual override for aria-invalid. When not set, auto-detects from the parent autocomplete error state. */
 	public readonly ariaInvalidOverride = input<boolean | undefined, BooleanInput>(undefined, {
 		transform: (v: BooleanInput) => (v === '' || v === undefined ? undefined : booleanAttribute(v)),
@@ -104,11 +105,12 @@ export class HlmNativeSelect implements ControlValueAccessor {
 
 	protected readonly _ariaInvalid = computed(() => this.ariaInvalidOverride() ?? this._invalid?.());
 
-	public readonly value = model<string | null>('');
+	public readonly valueInput = input<string | undefined | null>('', { alias: 'value' });
+	public readonly value = linkedSignal(this.valueInput);
 
-	public readonly valueChange = output<string | null>();
+	public readonly valueChange = output<string | undefined | null>();
 
-	protected _onChange?: ChangeFn<string | null>;
+	protected _onChange?: ChangeFn<string | undefined | null>;
 	protected _onTouched?: TouchFn;
 
 	public readonly labelableId = this.selectId;
@@ -116,7 +118,7 @@ export class HlmNativeSelect implements ControlValueAccessor {
 	protected readonly _invalid = this._fieldControl?.invalid;
 	protected readonly _touched = this._fieldControl?.touched;
 	protected readonly _dirty = this._fieldControl?.dirty;
-	protected readonly _spartanInvalid = this._fieldControl?.spartanInvalid;
+	protected readonly _spartanInvalid = computed(() => this.forceInvalid() || this._fieldControl?.spartanInvalid());
 
 	constructor() {
 		classes(() => 'group/native-select relative w-fit has-[select:disabled]:opacity-50');
@@ -135,11 +137,11 @@ export class HlmNativeSelect implements ControlValueAccessor {
 	}
 
 	/** CONTROL VALUE ACCESSOR */
-	public writeValue(value: string | null): void {
+	public writeValue(value: string | undefined | null): void {
 		this.value.set(value);
 	}
 
-	public registerOnChange(fn: ChangeFn<string | null>): void {
+	public registerOnChange(fn: ChangeFn<string | undefined | null>): void {
 		this._onChange = fn;
 	}
 

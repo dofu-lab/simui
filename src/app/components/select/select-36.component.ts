@@ -47,7 +47,11 @@ type CountryItem = {
 						}
 						<ng-icon hlm size="sm" name="lucideChevronDown" class="text-muted-foreground/80 shrink-0" />
 					</button>
-					<hlm-command *hlmPopoverPortal="let ctx" hlmPopoverContent class="p-0" [style.width.px]="triggerWidth()">
+					<hlm-command
+						*hlmPopoverPortal="let ctx"
+						hlmPopoverContent
+						class="gap-0 p-0"
+						[style.width.px]="triggerWidth()">
 						<hlm-command-input placeholder="Search country..." />
 						<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
 						<hlm-command-list>
@@ -60,7 +64,6 @@ type CountryItem = {
 												<span class="text-lg leading-none">{{ item.flag }}</span>
 												<span class="truncate">{{ item.label }}</span>
 											</span>
-
 											<ng-icon
 												hlm
 												hlmCommandIcon

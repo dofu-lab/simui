@@ -28,7 +28,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 							<ng-icon hlm class="opacity-60" size="sm" [name]="item.icon" />
 							<p class="text-muted-foreground text-xs font-normal">{{ item.label }}</p>
 						</div>
-						<hlm-radio class="space-x-0" [value]="item.value" [disabled]="item.value === 'handTool'">
+						<hlm-radio class="gap-x-0" [value]="item.value" [disabled]="item.value === 'handTool'">
 							<div
 								class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 								<div

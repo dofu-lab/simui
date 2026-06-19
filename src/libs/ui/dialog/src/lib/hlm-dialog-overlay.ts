@@ -2,10 +2,11 @@ import { computed, Directive, effect, input, untracked } from '@angular/core';
 import { injectCustomClassSettable } from '@spartan-ng/brain/core';
 import { BrnDialogOverlay } from '@spartan-ng/brain/dialog';
 import { hlm } from '@spartan-ng/helm/utils';
-import { ClassValue } from 'clsx';
+import type { ClassValue } from 'clsx';
 
-export const hlmDialogOverlayClass =
-	'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 bg-black/50';
+export const hlmDialogOverlayClass = hlm(
+	'data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 bg-black/10 duration-100 supports-backdrop-filter:backdrop-blur-xs',
+);
 
 @Directive({
 	selector: '[hlmDialogOverlay],hlm-dialog-overlay',

@@ -34,7 +34,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 				variant="ghost"
 				size="lg"
 				align="center"
-				class="rounded-full py-[5px] has-[>ng-icon]:px-[5px]"
+				class="rounded-full py-[5px] has-[>ng-icon]:px-[3px]"
 				[hlmDropdownMenuTrigger]="menu">
 				<hlm-avatar class="border-border/50 size-8 border">
 					<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />

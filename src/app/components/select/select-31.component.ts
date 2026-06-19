@@ -46,15 +46,17 @@ export class PlaceholderAvatar {
 						</span>
 					</hlm-select-trigger>
 					<hlm-select-content *hlmSelectPortal>
-						<hlm-select-label>Engineering team</hlm-select-label>
-						@for (option of options; track option.label) {
-							<hlm-select-item [value]="option">
-								<span class="flex items-center gap-2">
-									<sim-placeholder-avatar [option]="option" />
-									<span class="truncate">{{ option.label }}</span>
-								</span>
-							</hlm-select-item>
-						}
+						<hlm-select-group>
+							<hlm-select-label>Engineering team</hlm-select-label>
+							@for (option of options; track option.label) {
+								<hlm-select-item [value]="option">
+									<span class="flex items-center gap-2">
+										<sim-placeholder-avatar [option]="option" />
+										<span class="truncate">{{ option.label }}</span>
+									</span>
+								</hlm-select-item>
+							}
+						</hlm-select-group>
 					</hlm-select-content>
 				</hlm-select>
 			</div>

@@ -14,7 +14,7 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 			[attr.data-state]="value() ? 'checked' : 'unchecked'">
 			<hlm-switch
 				id="switch-12"
-				class="data-[state=checked]:bg-input/50 data-[state=unchecked]:bg-input/50 absolute inset-0 h-[inherit] w-auto border-[2px] [&_span]:h-full [&_span]:w-1/2 [&_span]:transition-transform [&_span]:motion-reduce:transition-none [&_span]:duration-300 [&_span]:ease-[cubic-bezier(0.16,1,0.3,1)] [&_span]:data-[state=checked]:translate-x-full [&_span]:data-[state=checked]:rtl:-translate-x-full [&>brn-switch-thumb]:size-8 [&>brn-switch-thumb]:group-data-[state=checked]:translate-x-[calc(100%)]"
+				class="data-[state=checked]:bg-input/50 data-[state=unchecked]:bg-input/50 absolute inset-0 h-[inherit]! w-auto! border-2 [&_span]:h-full [&_span]:w-1/2 [&_span]:transition-transform [&_span]:motion-reduce:transition-none [&_span]:duration-300 [&_span]:ease-[cubic-bezier(0.16,1,0.3,1)] [&_span]:data-[state=checked]:translate-x-full [&_span]:data-[state=checked]:rtl:-translate-x-full [&>brn-switch-thumb]:size-8! [&>brn-switch-thumb[data-state=checked]]:translate-x-[calc(100%)]!"
 				[(checked)]="value" />
 			<span
 				class="group-data-[state=checked]:text-muted-foreground/70 pointer-events-none relative ms-0.5 flex min-w-8 items-center justify-center text-center"

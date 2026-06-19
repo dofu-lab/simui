@@ -2,6 +2,9 @@ import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
 import { snapshotVariants } from '../utils/visual.helpers';
 
+// Fixed date so notification-27 toast description always renders the same timestamp.
+const FIXED_DATE = new Date('2025-01-15T12:00:00.000Z');
+
 const TOAST_TRIGGER_VARIANTS = [
 	'notification-27',
 	'notification-28',
@@ -13,7 +16,30 @@ const TOAST_TRIGGER_VARIANTS = [
 ];
 
 test.describe('Notification', () => {
-	test.beforeEach(async ({ navigateToComponent }) => {
+	test.beforeEach(async ({ page, navigateToComponent }) => {
+		// Mock Date so notification-27 toast description renders a fixed timestamp.
+		await page.addInitScript((isoDate: string) => {
+			const OriginalDate = Date;
+			const fixed = new OriginalDate(isoDate);
+
+			class MockDate extends OriginalDate {
+				constructor(...args: unknown[]) {
+					if (args.length === 0) {
+						super(isoDate);
+					} else {
+						super(...(args as [string | number | Date]));
+					}
+				}
+
+				static override now(): number {
+					return fixed.getTime();
+				}
+			}
+
+			Object.setPrototypeOf(MockDate, OriginalDate);
+			(globalThis as unknown as Record<string, unknown>)['Date'] = MockDate;
+		}, FIXED_DATE.toISOString());
+
 		await navigateToComponent('notification');
 	});
 

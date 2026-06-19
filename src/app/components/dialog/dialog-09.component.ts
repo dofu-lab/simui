@@ -1,16 +1,15 @@
+import { HlmInputGroupImports } from '@/libs/ui/input-group/src';
 import { Component, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideMail } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-dialog-09',
 	providers: [provideIcons({ lucideCircleAlert, lucideMail })],
-	imports: [NgIcon, HlmIcon, HlmInput, FormsModule, HlmButton, HlmDialogImports],
+	imports: [NgIcon, FormsModule, HlmButton, HlmDialogImports, HlmInputGroupImports],
 	template: `
 		<hlm-dialog>
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Newsletter</button>
@@ -39,13 +38,12 @@ import { HlmInput } from '@spartan-ng/helm/input';
 						<p hlmDialogDescription class="text-center">Subscribe to receive news and special offers.</p>
 					</hlm-dialog-header>
 					<div class="w-full *:not-first:mt-2">
-						<div class="relative">
-							<input hlmInput class="peer mt-4 h-9 w-full ps-9" type="email" placeholder="your-email@simui.dev" />
-							<div
-								class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
-								<ng-icon hlm name="lucideMail" size="sm" />
-							</div>
-						</div>
+						<hlm-input-group>
+							<input hlmInputGroupInput type="email" placeholder="Enter your email" />
+							<hlm-input-group-addon>
+								<ng-icon name="lucideMail" />
+							</hlm-input-group-addon>
+						</hlm-input-group>
 					</div>
 				</div>
 				<hlm-dialog-footer class="flex-row gap-3 sm:space-x-0">

@@ -12,7 +12,6 @@ import {
 } from '@angular/core';
 import { BrnField, BrnFieldA11yService } from '@spartan-ng/brain/field';
 import { classes } from '@spartan-ng/helm/utils';
-import { ClassValue } from 'clsx';
 
 @Component({
 	selector: 'hlm-field-error',
@@ -35,15 +34,12 @@ export class HlmFieldError implements OnDestroy {
 	private readonly _field = inject(BrnField, { optional: true });
 	private readonly _a11y = inject(BrnFieldA11yService, { optional: true, host: true });
 
-	private _registeredId?: string;
+	private _registeredId?: string | undefined;
 
 	private readonly _hasParentField = !!this._field;
 
 	/** The unique ID for the field error. If none is supplied, it will be auto-generated. */
 	public readonly id = input<string>(`hlm-field-error-${HlmFieldError._id++}`);
-
-	/** Additional CSS classes to apply to the field error element. */
-	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
 	/**
 	 * The name of the specific validator error key to match (e.g. 'required').
@@ -89,7 +85,7 @@ export class HlmFieldError implements OnDestroy {
 		: null;
 
 	constructor() {
-		classes(() => ['text-destructive text-sm font-normal', this.userClass()]);
+		classes(() => 'text-destructive text-sm font-normal');
 	}
 
 	ngOnDestroy() {

@@ -31,23 +31,25 @@ type Option = {
 						</span>
 					</hlm-select-trigger>
 					<hlm-select-content *hlmSelectPortal class="[&>button]:h-fit">
-						<hlm-select-label>Marketing team</hlm-select-label>
-						@for (option of options; track option.label) {
-							<hlm-select-item [value]="option">
-								<span class="flex items-center gap-2">
-									<img
-										[src]="'assets/avatars/' + option.avatarUrl"
-										alt="{{ option.label }}"
-										class="size-10 rounded-full" />
-									<span class="text-left">
-										<span class="block font-medium">{{ option.label }}</span>
-										<span class="text-muted-foreground mt-0.5 block text-left text-xs">
-											{{ option.username }}
+						<hlm-select-group>
+							<hlm-select-label>Marketing team</hlm-select-label>
+							@for (option of options; track option.label) {
+								<hlm-select-item [value]="option">
+									<span class="flex items-center gap-2">
+										<img
+											[src]="'assets/avatars/' + option.avatarUrl"
+											alt="{{ option.label }}"
+											class="size-10 rounded-full" />
+										<span class="text-left">
+											<span class="block font-medium">{{ option.label }}</span>
+											<span class="text-muted-foreground mt-0.5 block text-left text-xs">
+												{{ option.username }}
+											</span>
 										</span>
 									</span>
-								</span>
-							</hlm-select-item>
-						}
+								</hlm-select-item>
+							}
+						</hlm-select-group>
 					</hlm-select-content>
 				</hlm-select>
 			</div>

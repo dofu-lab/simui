@@ -13,7 +13,6 @@ import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 			<button hlmBtn size="icon-sm">
 				<ng-icon name="lucideQrCode" />
 			</button>
-			<hlm-button-group-separator />
 			<button hlmBtn size="sm">Sign in</button>
 		</div>
 	`,

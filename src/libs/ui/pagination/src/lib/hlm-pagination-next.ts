@@ -23,7 +23,7 @@ import { HlmPaginationLink } from './hlm-pagination-link';
 			[size]="_size()"
 			[attr.aria-label]="ariaLabel()">
 			<span [class]="_labelClass()">{{ text() }}</span>
-			<ng-icon name="lucideChevronRight" class="spartan-rtl-flip rtl:rotate-180" />
+			<ng-icon name="lucideChevronRight" class="rtl:rotate-180" />
 		</a>
 	`,
 })

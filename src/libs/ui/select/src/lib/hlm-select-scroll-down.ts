@@ -18,7 +18,7 @@ export class HlmSelectScrollDown {
 	constructor() {
 		classes(
 			() =>
-				"bg-popover sticky bottom-0 z-10 flex w-full cursor-default items-center justify-center py-1 data-hidden:hidden [&_ng-icon:not([class*='text-'])]:text-base",
+				"bg-popover z-10 flex cursor-default items-center justify-center py-1 [&_ng-icon:not([class*='text-'])]:text-[calc(var(--spacing)*4)] sticky bottom-0 w-full data-hidden:hidden",
 		);
 	}
 }
