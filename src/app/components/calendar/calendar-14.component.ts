@@ -9,8 +9,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 	selector: 'sim-calendar-14',
 	imports: [HlmCalendarImports, HlmScrollAreaImports, HlmButtonImports, DatePipe, NgScrollbarModule],
 	template: `
-		<div class="flex flex-col items-start rounded-md border sm:flex-row">
-			<hlm-calendar calendarClass="border-none" [(date)]="selectedDate" />
+		<div class="relative flex flex-col items-start overflow-hidden rounded-2xl border sm:flex-row">
+			<hlm-calendar class="border-none" [(date)]="selectedDate" />
 			<div class="flex h-full w-full flex-1 flex-col items-start gap-2 max-sm:border-t sm:border-l">
 				<p class="px-3 pt-3 text-sm font-medium">{{ selectedDate() | date: 'EEE, dd' }}</p>
 				<ng-scrollbar hlm class="h-40 w-full sm:h-72 sm:w-40" appearance="compact">

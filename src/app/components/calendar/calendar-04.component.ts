@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
+import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-calendar-04',
-	imports: [HlmCalendarImports],
+	imports: [HlmCalendarImports, HlmCardImports],
 	template: `
-		<hlm-calendar-multi
-			[(date)]="selectedDates"
-			[min]="minDate"
-			[max]="maxDate"
-			[minSelection]="2"
-			[maxSelection]="6" />
+		<div hlmCardContent class="rounded-2xl border p-0">
+			<hlm-calendar-multi
+				[(date)]="selectedDates"
+				[min]="minDate"
+				[max]="maxDate"
+				[minSelection]="2"
+				[maxSelection]="6" />
+		</div>
 		<p class="text-muted-foreground mt-4 text-center text-xs">Multiple day selection</p>
 	`,
 })

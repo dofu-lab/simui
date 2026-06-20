@@ -150,7 +150,7 @@ import { addMonths, format } from 'date-fns';
 export class Calendar19Component {
 	public readonly calendarClass = input<ClassValue>('');
 
-	protected readonly _computedCalenderClass = computed(() => hlm('rounded-md border p-3', this.calendarClass()));
+	protected readonly _computedCalenderClass = computed(() => hlm('rounded-2xl border p-3', this.calendarClass()));
 
 	/** Access the calendar i18n */
 	protected readonly _i18n = injectBrnCalendarI18n();

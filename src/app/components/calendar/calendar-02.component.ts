@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
+import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-calendar-02',
-	imports: [HlmCalendarImports],
+	imports: [HlmCalendarImports, HlmCardImports],
 	template: `
-		<hlm-calendar-range [(startDate)]="start" [(endDate)]="end" [min]="minDate" [max]="maxDate" />
+		<div hlmCardContent class="rounded-2xl border p-0">
+			<hlm-calendar-range [(startDate)]="start" [(endDate)]="end" [min]="minDate" [max]="maxDate" />
+		</div>
 		<p class="text-muted-foreground mt-4 text-center text-xs">Range calendar</p>
 	`,
 })

@@ -1,11 +1,14 @@
 import { Component, model } from '@angular/core';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
+import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-calendar-09',
-	imports: [HlmCalendarImports],
+	imports: [HlmCalendarImports, HlmCardImports],
 	template: `
-		<hlm-calendar [(date)]="selectedDate" [captionLayout]="_captionLayout()" [min]="minDate" [max]="maxDate" />
+		<div hlmCardContent class="relative rounded-2xl border p-0">
+			<hlm-calendar [(date)]="selectedDate" [captionLayout]="_captionLayout()" [min]="minDate" [max]="maxDate" />
+		</div>
 		<p class="text-muted-foreground mt-4 text-center text-xs">Yearly select + nav</p>
 	`,
 })

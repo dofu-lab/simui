@@ -13,9 +13,9 @@ import {
 	viewChild,
 } from '@angular/core';
 import { type ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import type { BrnDialogState } from '@spartan-ng/brain/dialog';
 import { BrnFieldControl, provideBrnLabelable } from '@spartan-ng/brain/field';
 import type { ChangeFn, TouchFn } from '@spartan-ng/brain/forms';
+import type { BrnOverlayState } from '@spartan-ng/brain/overlay';
 import { BrnPopover } from '@spartan-ng/brain/popover';
 import { HlmCalendar } from '@spartan-ng/helm/calendar';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
@@ -38,7 +38,6 @@ export const HLM_DATE_PICKER_VALUE_ACCESSOR = {
 	template: `
 		<hlm-popover
 			sideOffset="5"
-			autoFocus="first-heading"
 			[state]="_popoverState()"
 			(stateChanged)="_popoverState.set($event)"
 			(closed)="_onTouched?.()">
@@ -47,7 +46,7 @@ export const HLM_DATE_PICKER_VALUE_ACCESSOR = {
 			<hlm-popover-content class="w-fit p-0" *hlmPopoverPortal="let ctx">
 				<ng-content select="[hlmDatePickerHeader]" />
 				<hlm-calendar
-					calendarClass="rounded-none border-0"
+					class="rounded-none border-0"
 					[captionLayout]="captionLayout()"
 					[date]="_mutableDate()"
 					[defaultFocusedDate]="_mutableDate() ?? defaultFocusedDate()"
@@ -100,7 +99,7 @@ export class HlmDatePicker<T> implements HlmDatePickerBase<T>, ControlValueAcces
 	/** Defines how the date should be transformed before saving to model/form. */
 	public readonly transformDate = input<(date: T) => T>(this._config.transformDate);
 
-	protected readonly _popoverState = signal<BrnDialogState | null>(null);
+	protected readonly _popoverState = signal<BrnOverlayState | null>(null);
 
 	protected readonly _disabled = linkedSignal(this.disabled);
 

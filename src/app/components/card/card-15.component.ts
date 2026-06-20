@@ -137,7 +137,7 @@ export const DefaultEventStyle = [
 			</div>
 			<div hlmCardContent class="bg-background rounded-xl px-3">
 				<hlm-calendar
-					[calendarClass]="calendarClass"
+					[class]="calendarClass"
 					[(date)]="selectedDate"
 					[min]="minDate"
 					[max]="maxDate"

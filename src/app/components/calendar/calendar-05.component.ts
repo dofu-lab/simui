@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
+import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-calendar-05',
-	imports: [HlmCalendarImports],
+	imports: [HlmCalendarImports, HlmCardImports],
 	template: `
-		<hlm-calendar
-			class="[&_button[brncalendarcellbutton]]:rounded-full!"
-			[(date)]="selectedDate"
-			[min]="minDate"
-			[max]="maxDate" />
+		<div hlmCardContent class="rounded-2xl border p-0">
+			<hlm-calendar
+				class="[&_button[brncalendarcellbutton]]:rounded-full!"
+				[(date)]="selectedDate"
+				[min]="minDate"
+				[max]="maxDate" />
+		</div>
 		<p class="text-muted-foreground mt-4 text-center text-xs">Custom select day style</p>
 	`,
 })

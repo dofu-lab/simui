@@ -12,7 +12,7 @@ type DateRange = {
 	selector: 'sim-calendar-16',
 	imports: [HlmCalendarImports, HlmButtonImports],
 	template: `
-		<div class="flex flex-col items-start rounded-md border sm:flex-row">
+		<div class="relative flex flex-col overflow-hidden rounded-2xl border sm:flex-row">
 			<div class="flex size-full flex-1 items-start gap-2 max-sm:order-1 max-sm:border-t sm:border-r">
 				<div class="grid w-full gap-0.5 p-3">
 					<button hlmBtn size="sm" variant="ghost" class="w-full justify-start" (click)="selectedDate.set(todayRange)">
@@ -41,7 +41,7 @@ type DateRange = {
 					</button>
 				</div>
 			</div>
-			<hlm-calendar-range calendarClass="border-none" [startDate]="selectedDate().from" [endDate]="selectedDate().to" />
+			<hlm-calendar-range class="border-none" [startDate]="selectedDate().from" [endDate]="selectedDate().to" />
 		</div>
 		<p class="text-muted-foreground mt-4 text-center text-xs">Range calendar with presets</p>
 	`,
