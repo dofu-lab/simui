@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
+import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-calendar-06',
-	imports: [HlmCalendarImports],
+	imports: [HlmCalendarImports, HlmCardImports],
 	template: `
-		<hlm-calendar-range
-			class="[&_button[brncalendarcellbutton]]:rounded-full [&_button[data-range-between]]:rounded-none!"
-			[(startDate)]="start"
-			[(endDate)]="end"
-			[min]="minDate"
-			[max]="maxDate" />
+		<div hlmCardContent class="rounded-2xl border p-0">
+			<hlm-calendar-range
+				class="[&_button[brncalendarcellbutton]]:rounded-full [&_button[data-range-between]]:rounded-none!"
+				[(startDate)]="start"
+				[(endDate)]="end"
+				[min]="minDate"
+				[max]="maxDate" />
+		</div>
 		<p class="text-muted-foreground mt-4 text-center text-xs">Custom select range style</p>
 	`,
 })

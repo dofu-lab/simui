@@ -12,8 +12,8 @@ import { addDays } from 'date-fns';
 	imports: [NgIcon, HlmCalendarImports, HlmButtonImports, HlmSeparatorImports],
 	providers: [provideIcons({ lucideChevronLeft, lucideChevronRight })],
 	template: `
-		<div class="relative flex flex-col items-start rounded-md border sm:flex-row">
-			<div class="absolute top-0 z-10 flex w-full items-center justify-between px-3.5 pt-3.5">
+		<div class="relative flex flex-col overflow-hidden rounded-2xl border sm:flex-row">
+			<div class="absolute top-0 z-10 flex w-full items-center justify-between px-3.5 pt-4">
 				<button hlmBtn variant="outline" size="icon-xs" (click)="jumpToPreviousMonth()">
 					<ng-icon name="lucideChevronLeft" />
 				</button>
@@ -22,14 +22,14 @@ import { addDays } from 'date-fns';
 				</button>
 			</div>
 			<hlm-calendar-range
-				[calendarClass]="firstMonthClass()"
+				[class]="firstMonthClass()"
 				[(startDate)]="start"
 				[(endDate)]="end"
 				[defaultFocusedDate]="firstMonthDate()" />
 			<hlm-separator orientation="vertical" class="hidden sm:block" />
 			<hlm-separator class="sm:hidden" />
 			<hlm-calendar-range
-				[calendarClass]="secondMonthClass()"
+				[class]="secondMonthClass()"
 				[(startDate)]="start"
 				[(endDate)]="end"
 				[defaultFocusedDate]="secondMonthDate()" />
@@ -55,7 +55,7 @@ export class Calendar17Component {
 	});
 
 	private readonly baseCalendarClass =
-		'[&_button[brncalendarnextbutton]]:hidden! [&_button[brncalendarpreviousbutton]]:hidden! border-none [&_[data-outside]]:hidden';
+		'[&_button[brncalendarnextbutton]]:opacity-0! [&_button[brncalendarpreviousbutton]]:opacity-0! border-none [&_[data-outside]]:hidden bg-transparent';
 
 	protected firstMonthClass = computed(() => this.getMonthClass(this.firstMonthDate()));
 	protected secondMonthClass = computed(() => this.getMonthClass(this.secondMonthDate()));

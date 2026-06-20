@@ -10,8 +10,8 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCalendarImports, HlmInputGroupImports, HlmLabel, NgIcon],
 	providers: [provideIcons({ lucideClock })],
 	template: `
-		<div class="flex flex-col items-center rounded-md border">
-			<hlm-calendar calendarClass="border-none" [(date)]="selectedDate" />
+		<div class="relative flex flex-col items-center overflow-hidden rounded-2xl border">
+			<hlm-calendar class="border-none" [(date)]="selectedDate" />
 			<div class="flex w-full items-center gap-2 border-t p-3">
 				<label hlmLabel for="time-input-13" class="shrink-0 text-xs">Enter time</label>
 				<hlm-input-group>

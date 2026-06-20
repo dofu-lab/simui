@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
+import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'sim-calendar-07',
-	imports: [HlmCalendarImports],
+	imports: [HlmCalendarImports, HlmCardImports],
 	template: `
-		<hlm-calendar
-			class="[&_button[brncalendarnextbutton]]:relative! [&_button[brncalendarpreviousbutton]]:relative! [&_div:has(>[brncalendarheader])]:justify-start! [&_div:has(>[brncalendarheader])]:pl-2!"
-			[(date)]="selectedDate"
-			[min]="minDate"
-			[max]="maxDate" />
+		<div hlmCardContent class="rounded-2xl border p-0">
+			<hlm-calendar
+				class="[&_button[brncalendarpreviousbutton]]:order-2 [&_div:has(>[brncalendarheader])]:justify-start [&_div:has(>[brncalendarheader])]:pl-2! [&_div[brncalendarheader]]:order-1 [&_div[brncalendarheader]]:mr-auto"
+				[(date)]="selectedDate"
+				[min]="minDate"
+				[max]="maxDate" />
+		</div>
 		<p class="text-muted-foreground mt-4 text-center text-xs">Right navigation</p>
 	`,
 })
