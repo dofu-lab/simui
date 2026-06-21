@@ -1,0 +1,13 @@
+[mcp_servers.angular-cli]
+command = "pnpm"
+args = ["exec", "ng", "mcp"]
+startup_timeout_sec = 20
+tool_timeout_sec = 60
+enabled = true
+
+[mcp_servers.spartan-ui]
+command = "npx"
+args = ["-y", "@spartan-ng/mcp"]
+startup_timeout_sec = 30
+tool_timeout_sec = 60
+enabled = true

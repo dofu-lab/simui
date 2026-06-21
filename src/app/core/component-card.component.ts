@@ -1,6 +1,6 @@
 import { Clipboard } from '@angular/cdk/clipboard';
 import { DOCUMENT, NgComponentOutlet } from '@angular/common';
-import { Component, computed, inject, input, signal, Type, viewChild } from '@angular/core';
+import { Component, computed, inject, input, isDevMode, signal, Type, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideLink } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
@@ -20,28 +20,33 @@ import { CodeLoaderService } from './services/code-loader.service';
 	template: `
 		<ng-container *ngComponentOutlet="component()"></ng-container>
 		<hlm-sheet #sheet side="right">
-			<div
-				class="absolute -top-2 -right-2 flex items-center gap-0 p-4 lg:opacity-0 lg:group-focus-within/item:opacity-100 lg:group-hover/item:opacity-100">
-				<button
-					hlmBtn
-					size="icon"
-					variant="link"
-					class="text-muted-foreground/80 hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100"
-					[hlmTooltip]="shareTooltip"
-					(click)="shareComponent()">
-					<ng-icon hlm [name]="linkCopied() ? 'lucideCheck' : 'lucideLink'" size="sm" />
-				</button>
-				<ng-template #shareTooltip><span class="flex items-center">Copy link</span></ng-template>
-				<button
-					hlmBtn
-					size="icon"
-					variant="link"
-					class="text-muted-foreground/80 hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100"
-					[hlmTooltip]="viewCodeTooltip"
-					(click)="trackCodeClick()">
-					<ng-icon hlm name="lucideCode" size="sm" />
-				</button>
-				<ng-template #viewCodeTooltip><span class="flex items-center">View code</span></ng-template>
+			<div class="absolute -top-2 -right-2 flex w-full items-center justify-between p-4">
+				@if (showComponentName) {
+					<span class="text-muted-foreground/80 me-1 text-xs">{{ componentName() }}</span>
+				}
+				<div
+					class="flex items-center lg:opacity-0 lg:group-focus-within/item:opacity-100 lg:group-hover/item:opacity-100">
+					<button
+						hlmBtn
+						size="icon"
+						variant="link"
+						class="text-muted-foreground/80 hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100"
+						[hlmTooltip]="shareTooltip"
+						(click)="shareComponent()">
+						<ng-icon hlm [name]="linkCopied() ? 'lucideCheck' : 'lucideLink'" size="sm" />
+					</button>
+					<ng-template #shareTooltip><span class="flex items-center">Copy link</span></ng-template>
+					<button
+						hlmBtn
+						size="icon"
+						variant="link"
+						class="text-muted-foreground/80 hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100"
+						[hlmTooltip]="viewCodeTooltip"
+						(click)="trackCodeClick()">
+						<ng-icon hlm name="lucideCode" size="sm" />
+					</button>
+					<ng-template #viewCodeTooltip><span class="flex items-center">View code</span></ng-template>
+				</div>
 			</div>
 			<hlm-sheet-content
 				*hlmSheetPortal="let ctx"
@@ -79,6 +84,8 @@ import { CodeLoaderService } from './services/code-loader.service';
 	},
 })
 export class ComponentCardComponent {
+	protected readonly showComponentName = isDevMode();
+
 	private readonly codeLoaderService = inject(CodeLoaderService);
 	private readonly analyticsService = inject(AnalyticsService);
 	private readonly clipboard = inject(Clipboard);
