@@ -37,7 +37,11 @@ import {
 					</hlm-resizable-panel>
 					<hlm-resizable-handle withHandle="true" />
 					<hlm-resizable-panel>
-						<app-editor-preview />
+						@defer (on viewport) {
+							<app-editor-preview />
+						} @placeholder {
+							<div class="size-full"></div>
+						}
 					</hlm-resizable-panel>
 				</hlm-resizable-group>
 			</div>
@@ -76,7 +80,11 @@ import {
 					<sim-theme-action />
 				</div>
 				<div id="editor-preview" class="flex-1">
-					<app-editor-preview />
+					@defer (on viewport) {
+						<app-editor-preview />
+					} @placeholder {
+						<div class="size-full"></div>
+					}
 				</div>
 			</div>
 		</div>

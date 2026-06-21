@@ -46,73 +46,83 @@ import { SpinnerEmpty } from './components/spinner-empty';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div
-			class="mx-auto hidden h-full grid-cols-1 gap-8 md:grid md:grid-cols-2 lg:grid-cols-2 xl:hidden xl:grid-cols-3 xl:gap-6 2xl:grid 2xl:grid-cols-4 2xl:gap-8">
-			<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-				<app-field-demo />
-			</div>
-			<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-				<app-empty-avatar-group />
-				<app-spinner-badge />
-				<app-button-group-input-group />
-				<app-field-slider />
-				<app-input-group />
-				<hlm-field-separator />
-				<app-password />
-				<hlm-field-separator />
-				<app-day-toggle />
-			</div>
-			<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-				<app-input-group-button-example />
-				<app-item-demo />
-				<hlm-field-separator class="my-4">Appearance Settings</hlm-field-separator>
-				<app-appearance-settings />
-			</div>
-			<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-				<app-notion-prompt />
-				<app-button-group-demo />
-				<app-field-checkbox />
-				<div class="flex justify-between gap-4">
-					<app-button-group-nested />
-					<app-button-group-popover />
+		@defer (on viewport) {
+			<div
+				class="mx-auto hidden h-full grid-cols-1 gap-8 md:grid md:grid-cols-2 lg:grid-cols-2 xl:hidden xl:grid-cols-3 xl:gap-6 2xl:grid 2xl:grid-cols-4 2xl:gap-8">
+				<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
+					<app-field-demo />
 				</div>
-				<app-field-hear />
-				<app-spinner-empty />
-				<sim-file-upload-05 />
-			</div>
-		</div>
-		<div class="mx-auto grid h-full grid-cols-1 gap-8 md:hidden xl:grid xl:grid-cols-3 xl:gap-6 2xl:hidden 2xl:gap-8">
-			<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-				<app-field-demo />
-				<app-notion-prompt />
-				<app-spinner-empty />
-			</div>
-			<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-				<app-empty-avatar-group />
-				<app-spinner-badge />
-				<app-button-group-input-group />
-				<app-field-slider />
-				<app-input-group />
-				<hlm-field-separator />
-				<app-password />
-				<hlm-field-separator />
-				<app-day-toggle />
-				<div class="flex justify-between gap-4">
-					<app-button-group-nested />
-					<app-button-group-popover />
+				<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
+					<app-empty-avatar-group />
+					<app-spinner-badge />
+					<app-button-group-input-group />
+					<app-field-slider />
+					<app-input-group />
+					<hlm-field-separator />
+					<app-password />
+					<hlm-field-separator />
+					<app-day-toggle />
 				</div>
-				<app-button-group-demo />
-				<app-field-checkbox />
-				<app-field-hear />
+				<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
+					<app-input-group-button-example />
+					<app-item-demo />
+					<hlm-field-separator class="my-4">Appearance Settings</hlm-field-separator>
+					<app-appearance-settings />
+				</div>
+				<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
+					<app-notion-prompt />
+					<app-button-group-demo />
+					<app-field-checkbox />
+					<div class="flex justify-between gap-4">
+						<app-button-group-nested />
+						<app-button-group-popover />
+					</div>
+					<app-field-hear />
+					<app-spinner-empty />
+					<sim-file-upload-05 />
+				</div>
 			</div>
-			<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
-				<app-input-group-button-example />
-				<app-item-demo />
-				<hlm-field-separator class="my-4">Appearance Settings</hlm-field-separator>
-				<app-appearance-settings />
-				<sim-file-upload-05 />
+		} @placeholder {
+			<div
+				class="mx-auto hidden h-full min-h-96 grid-cols-1 gap-8 md:grid md:grid-cols-2 lg:grid-cols-2 xl:hidden xl:grid-cols-3 xl:gap-6 2xl:grid 2xl:grid-cols-4 2xl:gap-8"></div>
+		}
+		@defer (on viewport) {
+			<div class="mx-auto grid h-full grid-cols-1 gap-8 md:hidden xl:grid xl:grid-cols-3 xl:gap-6 2xl:hidden 2xl:gap-8">
+				<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
+					<app-field-demo />
+					<app-notion-prompt />
+					<app-spinner-empty />
+				</div>
+				<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
+					<app-empty-avatar-group />
+					<app-spinner-badge />
+					<app-button-group-input-group />
+					<app-field-slider />
+					<app-input-group />
+					<hlm-field-separator />
+					<app-password />
+					<hlm-field-separator />
+					<app-day-toggle />
+					<div class="flex justify-between gap-4">
+						<app-button-group-nested />
+						<app-button-group-popover />
+					</div>
+					<app-button-group-demo />
+					<app-field-checkbox />
+					<app-field-hear />
+				</div>
+				<div class="flex flex-col gap-6 *:[div]:w-full *:[div]:max-w-full">
+					<app-input-group-button-example />
+					<app-item-demo />
+					<hlm-field-separator class="my-4">Appearance Settings</hlm-field-separator>
+					<app-appearance-settings />
+					<sim-file-upload-05 />
+				</div>
 			</div>
-		</div>
+		} @placeholder {
+			<div
+				class="mx-auto grid h-full min-h-96 grid-cols-1 gap-8 md:hidden xl:grid xl:grid-cols-3 xl:gap-6 2xl:hidden 2xl:gap-8"></div>
+		}
 	`,
 })
 export class OverviewExample {}
