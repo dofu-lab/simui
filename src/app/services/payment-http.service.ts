@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
@@ -14,9 +14,7 @@ export interface SubscriptionStatus {
 	customerPortalUrl: string | null;
 }
 
-@Injectable({
-	providedIn: 'root',
-})
+@Service()
 export class PaymentHttpService {
 	private readonly apiUrl = `${environment.apiUrl}/v1/payment`;
 	private readonly http = inject(HttpClient);

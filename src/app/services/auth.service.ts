@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { effect, inject, Injectable, OnDestroy, PLATFORM_ID, signal } from '@angular/core';
+import { effect, inject, OnDestroy, PLATFORM_ID, Service, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -13,9 +13,7 @@ const REFRESH_BUFFER_SECONDS = 5 * 60; // 5 minutes
 // Max number of consecutive silent-refresh retries before forcing sign-out
 const MAX_REFRESH_RETRIES = 3;
 
-@Injectable({
-	providedIn: 'root',
-})
+@Service()
 export class AuthService implements OnDestroy {
 	private readonly http = inject(HttpClient);
 	private readonly router = inject(Router);

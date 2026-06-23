@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheckCircle, lucideZap } from '@ng-icons/lucide';
@@ -50,6 +51,8 @@ export class PaymentSuccessComponent implements OnInit {
 	private readonly authService = inject(AuthService);
 	private readonly router = inject(Router);
 	private readonly platformId = inject(PLATFORM_ID);
+	private readonly destroyRef = inject(DestroyRef);
+	private redirectScheduled = false;
 
 	protected readonly isRefreshing = signal(true);
 
@@ -70,34 +73,37 @@ export class PaymentSuccessComponent implements OnInit {
 					return !isPaid && attempts < MAX_POLL_ATTEMPTS;
 				}, true /* inclusive — emit the last value that passes the predicate */),
 				take(MAX_POLL_ATTEMPTS),
+				takeUntilDestroyed(this.destroyRef),
 			)
 			.subscribe({
 				next: (response) => {
 					const isPaid = response.user.role === UserRole.PaidUser || response.user.role === UserRole.Admin;
 					if (isPaid) {
 						this.isRefreshing.set(false);
-						setTimeout(() => {
-							console.log('Redirecting to theme editor after successful refresh');
-							this.router.navigate(['/theme-editor']);
-						}, 3000);
+						this.scheduleRedirect('successful refresh');
 					}
 				},
 				error: () => {
 					// Refresh failed — still show the success UI
 					this.isRefreshing.set(false);
-					setTimeout(() => {
-						console.log('Redirecting to theme editor after failed refresh');
-						this.router.navigate(['/theme-editor']);
-					}, 3000);
+					this.scheduleRedirect('failed refresh');
 				},
 				complete: () => {
 					// Max attempts reached without role update — show success anyway
 					this.isRefreshing.set(false);
-					setTimeout(() => {
-						console.log('Redirecting to theme editor after max attempts reached');
-						this.router.navigate(['/theme-editor']);
-					}, 3000);
+					this.scheduleRedirect('max attempts reached');
 				},
 			});
+	}
+
+	private scheduleRedirect(reason: string): void {
+		if (this.redirectScheduled) {
+			return;
+		}
+		this.redirectScheduled = true;
+		setTimeout(() => {
+			console.log(`Redirecting to theme editor after ${reason}`);
+			this.router.navigate(['/theme-editor']);
+		}, 3000);
 	}
 }

@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { inject, PLATFORM_ID, Service } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class CodeLoaderService {
 	private readonly http = inject(HttpClient);
 	private readonly platformId = inject(PLATFORM_ID);

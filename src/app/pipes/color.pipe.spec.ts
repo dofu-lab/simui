@@ -97,7 +97,7 @@ describe('ColorPipe', () => {
 
 		it('should handle invalid color gracefully', () => {
 			const result = pipe.transform('not-a-color', 'hsl');
-			expect(result).toBeDefined();
+			expect(result).toBeUndefined();
 		});
 	});
 });

@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, inject, Input, input, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, Component, inject, Input, input, signal, ViewEncapsulation } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
@@ -31,9 +31,9 @@ declare const Prism: typeof import('prismjs');
 		<div class="sticky top-0 z-10 bg-zinc-50 dark:bg-zinc-950">
 			@if (fileName()) {
 				<div class="border-border flex flex-row items-center gap-1.5 border-b px-4 py-2.5">
-					@if (language === 'ts' || language === 'css') {
+					@if (_language() === 'ts' || _language() === 'css') {
 						<div class="fill-muted-foreground size-4 shrink-0">
-							@switch (language) {
+							@switch (_language()) {
 								@case ('ts') {
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 										<path
@@ -48,7 +48,7 @@ declare const Prism: typeof import('prismjs');
 								}
 							}
 						</div>
-					} @else if (language === 'sh') {
+					} @else if (_language() === 'sh') {
 						<div class="text-muted-foreground border-input rounded-sm border p-0.5 text-xs">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -69,22 +69,22 @@ declare const Prism: typeof import('prismjs');
 					<span class="text-muted-foreground truncate text-xs font-medium">{{ fileName() }}</span>
 				</div>
 			}
-			@if (!_disableCopy) {
+			@if (!_disableCopy()) {
 				<button
 					(click)="copyToClipBoard()"
 					hlmBtn
 					variant="ghost"
 					class="text-muted-foreground hover:text-foreground absolute top-1.5 right-2 z-10 size-7 p-0">
-					<ng-icon hlm size="xs" [name]="_copied ? 'lucideCheck' : 'lucideClipboard'" />
+					<ng-icon hlm size="xs" [name]="_copied() ? 'lucideCheck' : 'lucideClipboard'" />
 				</button>
 			}
 		</div>
 		<div
 			class="spartan-scroll relative h-fit overflow-auto bg-zinc-50 font-mono text-sm text-zinc-800 dark:bg-zinc-950 dark:text-zinc-100">
-			@if (language === 'sh') {
-				<div class="min-h-0 max-w-full p-4" [innerHTML]="_content"></div>
+			@if (_language() === 'sh') {
+				<div class="min-h-0 max-w-full p-4" [innerHTML]="_content()"></div>
 			} @else {
-				<div class="min-h-0 max-w-full" [innerHTML]="_content"></div>
+				<div class="min-h-0 max-w-full" [innerHTML]="_content()"></div>
 			}
 		</div>
 	`,
@@ -273,25 +273,25 @@ export class CodePreviewComponent {
 	private readonly _clipboard = inject(Clipboard);
 	private readonly _analyticsService = inject(AnalyticsService);
 	private readonly _marked: typeof marked;
-	protected _content = '';
-	protected _copied = false;
+	protected readonly _content = signal('');
+	protected readonly _copied = signal(false);
 
 	public readonly fileName = input('');
 
-	protected _disableCopy = false;
+	protected readonly _disableCopy = signal(false);
 	@Input({ transform: booleanAttribute })
 	public set disableCopy(value: boolean) {
-		this._disableCopy = value;
+		this._disableCopy.set(value);
 	}
 
-	private _language: 'ts' | 'sh' | 'js' | 'css' = 'ts';
+	protected readonly _language = signal<'ts' | 'sh' | 'js' | 'css'>('ts');
 	@Input()
 	public set language(value: 'ts' | 'sh' | 'js' | 'css') {
-		this._language = value;
+		this._language.set(value);
 	}
 
 	public get language() {
-		return this._language;
+		return this._language();
 	}
 
 	private _code: string | null | undefined;
@@ -299,9 +299,9 @@ export class CodePreviewComponent {
 	public set code(value: string | null | undefined) {
 		this._code = value;
 		const codeBlock =
-			this._language === 'sh' ? (value?.trim() ?? '') : `\`\`\`${this._language}\n${value?.trim() ?? ''}\n\`\`\``;
+			this._language() === 'sh' ? (value?.trim() ?? '') : `\`\`\`${this._language()}\n${value?.trim() ?? ''}\n\`\`\``;
 		(this._marked.parse(codeBlock) as Promise<string>).then((content: string) => {
-			this._content = content;
+			this._content.set(content);
 		});
 	}
 
@@ -350,10 +350,10 @@ export class CodePreviewComponent {
 	protected copyToClipBoard(): void {
 		if (!this._code) return;
 		this._clipboard.copy(this._code);
-		this._copied = true;
-		setTimeout(() => (this._copied = false), 3000);
+		this._copied.set(true);
+		setTimeout(() => this._copied.set(false), 3000);
 		this._analyticsService.trackEvent('code_copied', {
-			language: this._language,
+			language: this._language(),
 			file_name: this.fileName() || undefined,
 		});
 	}

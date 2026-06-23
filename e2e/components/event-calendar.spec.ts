@@ -1,4 +1,4 @@
-import { test } from '../fixtures/base.fixture';
+import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
 import { snapshotVariants } from '../utils/visual.helpers';
 
@@ -36,5 +36,19 @@ test.describe('Event Calendar', () => {
 
 	test('visual regression — all variants', async ({ page }) => {
 		await snapshotVariants(page, 'event-calendar', COMPONENT_IDS['event-calendar'], { maxDiffPixelRatio: 0.02 });
+	});
+
+	test('event dialog remains reactive with OnPush change detection', async ({ page }) => {
+		await page.getByRole('button', { name: 'New Event' }).click();
+
+		const dialog = page.getByRole('dialog');
+		await expect(dialog).toBeVisible();
+		await expect(dialog.getByText('Start time')).toBeVisible();
+
+		await dialog.getByText('All day').click();
+		await expect(dialog.getByText('Start time')).toBeHidden();
+
+		await dialog.getByRole('button', { name: 'Cancel' }).click();
+		await expect(dialog).toBeHidden();
 	});
 });

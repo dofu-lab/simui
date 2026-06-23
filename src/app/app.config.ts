@@ -6,7 +6,7 @@ import {
 	provideAppInitializer,
 	provideZoneChangeDetection,
 } from '@angular/core';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideClientHydration, withEventReplay, withNoIncrementalHydration } from '@angular/platform-browser';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { AnalyticsErrorHandler } from './core/analytics-error-handler';
@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
 	providers: [
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
-		provideClientHydration(withEventReplay()),
+		provideClientHydration(withEventReplay(), withNoIncrementalHydration()),
 		provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
 		{ provide: ErrorHandler, useClass: AnalyticsErrorHandler },
 		provideAppInitializer(() => {

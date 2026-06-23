@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
@@ -12,9 +12,7 @@ import {
 } from '../types';
 import { AuthService } from './auth.service';
 
-@Injectable({
-	providedIn: 'root',
-})
+@Service()
 export class ThemeHttpService {
 	private readonly apiUrl = `${environment.apiUrl}/v1/theme`;
 	private readonly http = inject(HttpClient);

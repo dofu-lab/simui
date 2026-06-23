@@ -1,3 +1,6 @@
 [build]
 command = "node scripts/set-env.js && ng build"
 publish = "dist/simui/browser"
+
+[build.environment]
+NODE_VERSION = "24.15.0"

@@ -24,7 +24,7 @@ import { classes } from '@spartan-ng/helm/utils';
 				[placeholder]="placeholder()" />
 
 			<hlm-input-group-addon>
-				<ng-icon name="lucideSearch" class="shrink-0 text-[calc(var(--spacing)*4)] opacity-50" />
+				<ng-icon name="lucideSearch" class="shrink-0 text-[length:--spacing(4)] opacity-50" />
 			</hlm-input-group-addon>
 		</hlm-input-group>
 	`,

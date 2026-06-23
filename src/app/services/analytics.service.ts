@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { inject, Injectable, NgZone, PLATFORM_ID } from '@angular/core';
+import { inject, NgZone, PLATFORM_ID, Service } from '@angular/core';
 import posthog from 'posthog-js';
 import { environment } from '../../environments/environment';
 
@@ -7,9 +7,7 @@ export interface EventProperties {
 	[key: string]: string | number | boolean | null | undefined;
 }
 
-@Injectable({
-	providedIn: 'root',
-})
+@Service()
 export class AnalyticsService {
 	private readonly platformId = inject(PLATFORM_ID);
 	private readonly ngZone = inject(NgZone);

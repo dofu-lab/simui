@@ -1,0 +1,4 @@
+interface:
+  display_name: 'New Component List'
+  short_description: 'Scaffold a complete SimUI component category'
+  default_prompt: 'Use $new-component-list to scaffold a complete SimUI component category with examples, registration, and a home thumbnail.'

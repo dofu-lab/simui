@@ -1,17 +1,17 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgxSonnerToaster } from 'ngx-sonner';
+import { BrnSonnerToaster } from '@spartan-ng/brain/sonner';
 import { HeaderComponent, ThemeService } from './core';
 import { SeoService } from './core/services/seo.service';
 import { AnalyticsService } from './services/analytics.service';
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterOutlet, NgxSonnerToaster, HeaderComponent],
+	imports: [RouterOutlet, BrnSonnerToaster, HeaderComponent],
 	template: `
 		<div class="relative flex min-h-svh flex-col overflow-clip px-2 [--header-height:4rem]">
-			<ngx-sonner-toaster />
+			<brn-sonner-toaster />
 			<app-header class="sticky top-0 z-50" />
 			<router-outlet />
 		</div>

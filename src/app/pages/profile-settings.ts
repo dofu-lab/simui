@@ -1,4 +1,5 @@
-import { Component, computed, ElementRef, inject, OnInit, signal, viewChild } from '@angular/core';
+import { Component, computed, DestroyRef, ElementRef, inject, OnInit, signal, viewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -15,6 +16,7 @@ import {
 	lucideUser,
 	lucideZap,
 } from '@ng-icons/lucide';
+import { toast } from '@spartan-ng/brain/sonner';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
@@ -25,7 +27,6 @@ import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmSpinner } from '@spartan-ng/helm/spinner';
-import { toast } from 'ngx-sonner';
 import { PresetColorPreview } from '../components/theme-editor/preset-color-preview';
 import { ThemeStorageService } from '../core/services/theme-storage.service';
 import { HistoryDatePipe } from '../pipes/history-date.pipe';
@@ -255,6 +256,7 @@ export class ProfileSettingsComponent implements OnInit {
 	private readonly themeStorageService = inject(ThemeStorageService);
 	private readonly router = inject(Router);
 	private readonly paymentService = inject(PaymentHttpService);
+	private readonly destroyRef = inject(DestroyRef);
 
 	protected readonly searchTerm = signal<string>('');
 	protected readonly activeTab = signal<'themes' | 'account'>('themes');
@@ -282,15 +284,18 @@ export class ProfileSettingsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.subscriptionLoading.set(true);
-		this.paymentService.getSubscription().subscribe({
-			next: (status) => {
-				this.subscription.set(status);
-				this.subscriptionLoading.set(false);
-			},
-			error: () => {
-				this.subscriptionLoading.set(false);
-			},
-		});
+		this.paymentService
+			.getSubscription()
+			.pipe(takeUntilDestroyed(this.destroyRef))
+			.subscribe({
+				next: (status) => {
+					this.subscription.set(status);
+					this.subscriptionLoading.set(false);
+				},
+				error: () => {
+					this.subscriptionLoading.set(false);
+				},
+			});
 	}
 
 	protected onEditTheme(theme: ThemePreset): void {

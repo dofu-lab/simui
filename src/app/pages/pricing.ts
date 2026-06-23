@@ -1,13 +1,14 @@
-import { Component, inject, signal } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideLoader, lucideX, lucideZap } from '@ng-icons/lucide';
+import { toast } from '@spartan-ng/brain/sonner';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmSpinner } from '@spartan-ng/helm/spinner';
-import { toast } from 'ngx-sonner';
 import { AuthService } from '../services/auth.service';
 import { PaymentHttpService } from '../services/payment-http.service';
 
@@ -153,7 +154,7 @@ const PRO_FEATURES: PlanFeature[] = [
 export class PricingComponent {
 	private readonly authService = inject(AuthService);
 	private readonly paymentService = inject(PaymentHttpService);
-	private readonly router = inject(Router);
+	private readonly destroyRef = inject(DestroyRef);
 
 	protected readonly freeFeatures = FREE_FEATURES;
 	protected readonly proFeatures = PRO_FEATURES;
@@ -169,16 +170,19 @@ export class PricingComponent {
 		}
 
 		this.isRedirecting.set(true);
-		this.paymentService.createCheckout(this.billingCycle()).subscribe({
-			next: (response) => {
-				window.location.href = response.checkoutUrl;
-			},
-			error: () => {
-				this.isRedirecting.set(false);
-				toast('Something went wrong', {
-					description: 'Could not create checkout session. Please try again.',
-				});
-			},
-		});
+		this.paymentService
+			.createCheckout(this.billingCycle())
+			.pipe(takeUntilDestroyed(this.destroyRef))
+			.subscribe({
+				next: (response) => {
+					window.location.href = response.checkoutUrl;
+				},
+				error: () => {
+					this.isRedirecting.set(false);
+					toast('Something went wrong', {
+						description: 'Could not create checkout session. Please try again.',
+					});
+				},
+			});
 	}
 }

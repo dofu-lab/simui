@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideLogOut, lucideUserPen } from '@ng-icons/lucide';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
@@ -11,16 +11,7 @@ import { SignOutDialogComponent } from './sign-out-dialog';
 
 @Component({
 	selector: 'sim-user-menu',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmButton,
-		HlmAvatar,
-		HlmAvatarImage,
-		HlmAvatarFallback,
-		HlmDropdownMenuImports,
-		SignOutDialogComponent,
-	],
+	imports: [NgIcon, HlmIcon, HlmButton, SignOutDialogComponent, HlmAvatarImports, HlmDropdownMenuImports],
 	providers: [
 		provideIcons({
 			lucideChevronDown,

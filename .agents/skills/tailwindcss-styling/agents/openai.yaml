@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Tailwind CSS Styling'
+  short_description: 'Style SimUI with Tailwind CSS v4'
+  default_prompt: 'Use $tailwindcss-styling to implement this UI with SimUI’s Tailwind CSS v4 conventions.'

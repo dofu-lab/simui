@@ -249,7 +249,10 @@ test.describe('Card', () => {
 
 			// The rate badge header shows "1 {sendCode} = {rate} {getCode}" — read it to detect changes.
 			// The badge renders the live value in an .absolute span; innerText skips the .invisible ghost.
-			const rateBadge = card.locator('[hlmbadge]').filter({ hasText: /1 \w+ =/ }).first();
+			const rateBadge = card
+				.locator('[hlmbadge]')
+				.filter({ hasText: /1 \w+ =/ })
+				.first();
 			const before = await rateBadge.innerText();
 
 			await card.getByRole('button', { name: 'Change send currency' }).click();
@@ -264,7 +267,10 @@ test.describe('Card', () => {
 			test.skip(!present, 'card-12 is not rendered');
 			await card.scrollIntoViewIfNeeded();
 
-			const rateBadge = card.locator('[hlmbadge]').filter({ hasText: /1 \w+ =/ }).first();
+			const rateBadge = card
+				.locator('[hlmbadge]')
+				.filter({ hasText: /1 \w+ =/ })
+				.first();
 			const before = await rateBadge.innerText();
 
 			await card.getByRole('button', { name: 'Change receive currency' }).click();
@@ -285,7 +291,10 @@ test.describe('Card', () => {
 				return match ? { send: match[1], get: match[2] } : { send: '', get: '' };
 			};
 
-			const rateBadge = card.locator('[hlmbadge]').filter({ hasText: /1 \w+ =/ }).first();
+			const rateBadge = card
+				.locator('[hlmbadge]')
+				.filter({ hasText: /1 \w+ =/ })
+				.first();
 			const before = extractCodes(await rateBadge.innerText());
 
 			await card.getByRole('button', { name: 'Swap currencies' }).click();
@@ -432,19 +441,20 @@ test.describe('Card', () => {
 			await expect(card.getByRole('button', { name: 'Start over' })).toBeVisible({ timeout: 5000 });
 			// Wait for layout to stabilize — animate.enter schedules class addition via
 			// afterNextRender which can cause brief height variance across frames.
-			await card.evaluate((el) =>
-				new Promise<void>((resolve) => {
-					let prevHeight = el.getBoundingClientRect().height;
-					let stable = 0;
-					const check = () => {
-						const h = el.getBoundingClientRect().height;
-						stable = h === prevHeight ? stable + 1 : 0;
-						prevHeight = h;
-						if (stable >= 5) resolve();
-						else requestAnimationFrame(check);
-					};
-					requestAnimationFrame(check);
-				}),
+			await card.evaluate(
+				(el) =>
+					new Promise<void>((resolve) => {
+						let prevHeight = el.getBoundingClientRect().height;
+						let stable = 0;
+						const check = () => {
+							const h = el.getBoundingClientRect().height;
+							stable = h === prevHeight ? stable + 1 : 0;
+							prevHeight = h;
+							if (stable >= 5) resolve();
+							else requestAnimationFrame(check);
+						};
+						requestAnimationFrame(check);
+					}),
 			);
 			await expect.soft(card).toHaveScreenshot('card/card-13-done.png');
 		});
@@ -715,7 +725,10 @@ test.describe('Card', () => {
 			}
 
 			// Click the first "Remove" row — this moves it to available
-			const removeRow = card.locator('div').filter({ hasText: /^.*Remove$/ }).first();
+			const removeRow = card
+				.locator('div')
+				.filter({ hasText: /^.*Remove$/ })
+				.first();
 			if ((await removeRow.count()) > 0) {
 				await removeRow.click();
 				// "Enable all" button disappears once there's at least one tool not enabled
@@ -738,7 +751,10 @@ test.describe('Card', () => {
 			}
 
 			// Click the first "Add" row
-			const addRow = card.locator('div').filter({ hasText: /^.*Add$/ }).first();
+			const addRow = card
+				.locator('div')
+				.filter({ hasText: /^.*Add$/ })
+				.first();
 			if ((await addRow.count()) > 0) {
 				await addRow.click();
 				await expect(card.getByText('Nothing enabled. Add a tool from below.')).not.toBeVisible();

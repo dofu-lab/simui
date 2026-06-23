@@ -11,7 +11,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	},
 	template: `
 		<label
-			class="border-input has-data-[state=checked]:border-ring relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors motion-reduce:transition-none duration-200 ease"
+			class="border-input has-data-[state=checked]:border-ring ease relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors duration-200 motion-reduce:transition-none"
 			hlmLabel
 			for="checkbox16">
 			<div class="flex flex-1 items-start gap-2">
@@ -26,7 +26,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 					</span>
 					<span class="text-muted-foreground truncate text-xs">Frontend Developer, Payment</span>
 				</div>
-				<hlm-checkbox [inputId]="'checkbox16'" />
+				<hlm-checkbox inputId="checkbox16" />
 			</div>
 		</label>
 	`,

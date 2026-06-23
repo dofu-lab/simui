@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideChevronLeft, lucideChevronRight, lucidePlus } from '@ng-icons/lucide';
+import { toast } from '@spartan-ng/brain/sonner';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIcon } from '@spartan-ng/helm/icon';
@@ -25,7 +26,6 @@ import {
 	subMonths,
 	subWeeks,
 } from 'date-fns';
-import { toast } from 'ngx-sonner';
 import { AgendaViewComponent } from './agenda-view.component';
 import { AgendaDaysToShow } from './constants';
 import { DayViewCalendarComponent } from './day-view-calendar.component';

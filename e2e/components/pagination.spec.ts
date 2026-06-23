@@ -13,7 +13,9 @@ test.describe('Pagination', () => {
 
 	test.describe('Behavior', () => {
 		test('page buttons are visible and clickable', async ({ page }) => {
-			const nav = page.locator('#pagination-01 nav[aria-label*="pagination" i], #pagination-01 [role="navigation"]').first();
+			const nav = page
+				.locator('#pagination-01 nav[aria-label*="pagination" i], #pagination-01 [role="navigation"]')
+				.first();
 			await expect(nav).toBeVisible();
 		});
 
@@ -24,9 +26,7 @@ test.describe('Pagination', () => {
 			const count = await pageLinks.count();
 			if (count >= 2) {
 				await pageLinks.nth(1).click();
-				const active = page.locator(
-					'#pagination-01 [aria-current="page"], #pagination-01 [aria-selected="true"]',
-				);
+				const active = page.locator('#pagination-01 [aria-current="page"], #pagination-01 [aria-selected="true"]');
 				await expect(active).toBeVisible();
 			}
 		});

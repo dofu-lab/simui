@@ -83,7 +83,7 @@ export class HlmNativeSelect implements ControlValueAccessor {
 
 	protected readonly _computedSelectIconClass = computed(() =>
 		hlm(
-			'text-muted-foreground end-2.5 top-1/2 -translate-y-1/2 text-[calc(var(--spacing)*4)] pointer-events-none absolute select-none',
+			'text-muted-foreground end-2.5 top-1/2 -translate-y-1/2 text-[length:--spacing(4)] pointer-events-none absolute select-none',
 			this.selectIconClass(),
 		),
 	);

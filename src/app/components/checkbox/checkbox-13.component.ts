@@ -7,7 +7,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
 		<div class="flex items-center gap-3">
-			<hlm-checkbox [inputId]="'checkbox13'" />
+			<hlm-checkbox inputId="checkbox13" />
 			<label hlmLabel class="flex items-center" for="checkbox13">
 				<span>
 					I agree to the

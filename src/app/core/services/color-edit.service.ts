@@ -1,9 +1,7 @@
 import { ThemeStyleProps } from '@/app/types';
-import { Injectable, signal } from '@angular/core';
+import { Service, signal } from '@angular/core';
 
-@Injectable({
-	providedIn: 'root',
-})
+@Service()
 export class ColorEditService {
 	private readonly _editColorKey = signal<keyof ThemeStyleProps | null>(null);
 	public readonly editColorKey = this._editColorKey.asReadonly();

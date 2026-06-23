@@ -15,15 +15,14 @@ module.exports = tseslint.config(
 			prettier,
 		],
 		processor: angular.processInlineTemplates,
+		plugins: {
+			'@angular-eslint/template': angular.templatePlugin,
+		},
 		rules: {
-			'@angular-eslint/template/interactive-supports-focus': [
-				'warn',
-				{
-					mouse: false,
-					keyboard: false,
-					touch: false,
-				},
-			],
+			// Angular 22's migration adds Eager to preserve pre-v22 behavior.
+			// Re-enable this rule after the tracked OnPush migration batches finish.
+			'@angular-eslint/prefer-on-push-component-change-detection': 'off',
+			'@angular-eslint/template/interactive-supports-focus': 'warn',
 			'@angular-eslint/directive-selector': [
 				'error',
 				{

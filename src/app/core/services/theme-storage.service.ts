@@ -9,15 +9,13 @@ import { ThemeHttpService } from '@/app/services';
 import { AuthService } from '@/app/services/auth.service';
 import { ColorType, HistoryAction, HistoryValue, ThemeHistory, ThemePreset, ThemeStyleProps } from '@/app/types';
 import { isPlatformBrowser } from '@angular/common';
-import { computed, effect, inject, Injectable, PLATFORM_ID, resource, signal } from '@angular/core';
+import { computed, effect, inject, PLATFORM_ID, resource, Service, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { AppearanceService } from './appearance.service';
 import { LocalStorageService } from './local-storage.service';
 import { ThemeService } from './theme.service';
 
-@Injectable({
-	providedIn: 'root',
-})
+@Service()
 export class ThemeStorageService {
 	private readonly platformId = inject(PLATFORM_ID);
 	private readonly localStorageService = inject(LocalStorageService);
