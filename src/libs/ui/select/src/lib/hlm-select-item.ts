@@ -16,7 +16,7 @@ import { classes } from '@spartan-ng/helm/utils';
 		@if (_active()) {
 			<ng-icon
 				name="lucideCheck"
-				class="absolute end-2 flex items-center justify-center text-[calc(var(--spacing)*4)]"
+				class="absolute end-2 flex items-center justify-center text-[length:--spacing(4)]"
 				aria-hidden="true" />
 		}
 	`,

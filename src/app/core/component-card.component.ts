@@ -1,6 +1,16 @@
 import { Clipboard } from '@angular/cdk/clipboard';
 import { DOCUMENT, NgComponentOutlet } from '@angular/common';
-import { Component, computed, inject, input, isDevMode, signal, Type, viewChild } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	computed,
+	inject,
+	input,
+	isDevMode,
+	signal,
+	Type,
+	viewChild,
+} from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideLink } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';

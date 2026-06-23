@@ -1,5 +1,5 @@
-import { expect, test } from '../fixtures/base.fixture';
 import type { Locator } from '@playwright/test';
+import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
 import { snapshotVariants } from '../utils/visual.helpers';
 

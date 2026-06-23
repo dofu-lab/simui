@@ -91,5 +91,5 @@ import {
 	`,
 })
 export class ThemeEditor {
-	protected selectedTab = signal<'editor' | 'preview'>('editor');
+	protected readonly selectedTab = signal<'editor' | 'preview'>('editor');
 }

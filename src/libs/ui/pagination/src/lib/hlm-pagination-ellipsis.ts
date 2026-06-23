@@ -20,7 +20,7 @@ export class HlmPaginationEllipsis {
 
 	constructor() {
 		classes(
-			() => "size-9 [&_ng-icon:not([class*='text-'])]:text-[calc(var(--spacing)*4)] flex items-center justify-center",
+			() => "size-9 [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)] flex items-center justify-center",
 		);
 	}
 }

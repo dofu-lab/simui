@@ -31,3 +31,10 @@
 - Run `pnpm build` after Angular source changes.
 - Run `pnpm lint` when changes affect application code broadly or when requested.
 - Do not overwrite or discard unrelated working-tree changes.
+
+## Angular 22 migration
+
+- Read `docs/angular-v22-migration/IMPLEMENTATION_PLAN.md` before migration work.
+- Use `docs/angular-v22-migration/TODO.md` as the migration source of truth.
+- Update the current task, checkboxes, progress summary, evidence log, and
+  blockers after each migration session.

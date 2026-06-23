@@ -1,20 +1,16 @@
-import { Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { AnalyticsService } from '../../services/analytics.service';
 
-@Injectable({
-	providedIn: 'root',
-})
+@Service()
 export class SeoService {
-	constructor(
-		private readonly titleService: Title,
-		private readonly metaService: Meta,
-		private readonly router: Router,
-		private readonly activatedRoute: ActivatedRoute,
-		private readonly analyticsService: AnalyticsService,
-	) {}
+	private readonly titleService = inject(Title);
+	private readonly metaService = inject(Meta);
+	private readonly router = inject(Router);
+	private readonly activatedRoute = inject(ActivatedRoute);
+	private readonly analyticsService = inject(AnalyticsService);
 
 	init() {
 		this.router.events

@@ -37,9 +37,9 @@ import { PresetColorPreview } from './preset-color-preview';
 									</div>
 									<p class="text-sm">Select new preset</p>
 									<div class="text-muted-foreground flex items-center gap-2 text-sm font-normal">
-										<sim-theme-color-preview [preset]="getTheme(history.values?.oldValue)" />
+										<sim-theme-color-preview [preset]="getTheme($safeNavigationMigration(history.values?.oldValue))" />
 										<ng-icon hlm name="lucideArrowRight" size="sm" />
-										<sim-theme-color-preview [preset]="getTheme(history.values?.newValue)" />
+										<sim-theme-color-preview [preset]="getTheme($safeNavigationMigration(history.values?.newValue))" />
 									</div>
 								}
 								@case ('SAVE_THEME') {
@@ -62,7 +62,7 @@ import { PresetColorPreview } from './preset-color-preview';
 									<p class="text-sm">
 										Change
 										<span class="font-bold">
-											{{ getLabelForProperty(history.values?.targetKey) }}
+											{{ getLabelForProperty($safeNavigationMigration(history.values?.targetKey)) }}
 										</span>
 									</p>
 									<div class="text-muted-foreground flex items-center gap-2 text-sm font-normal">
@@ -92,7 +92,7 @@ import { PresetColorPreview } from './preset-color-preview';
 									<p class="text-sm">
 										Change
 										<span class="font-bold">
-											{{ getLabelForColor(history.values?.targetKey) }}
+											{{ getLabelForColor($safeNavigationMigration(history.values?.targetKey)) }}
 										</span>
 										color
 									</p>

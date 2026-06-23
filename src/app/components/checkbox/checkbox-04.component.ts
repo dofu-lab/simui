@@ -7,7 +7,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
 		<div class="flex items-center gap-3">
-			<hlm-checkbox [inputId]="'indeterminate-checkbox'" [(indeterminate)]="checked" />
+			<hlm-checkbox inputId="indeterminate-checkbox" [(indeterminate)]="checked" />
 			<label hlmLabel class="flex items-center" for="indeterminate-checkbox">Indeterminate checkbox</label>
 		</div>
 	`,

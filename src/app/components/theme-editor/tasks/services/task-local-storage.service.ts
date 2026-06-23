@@ -1,6 +1,6 @@
 import { STORAGE_KEYS } from '@/app/constants/storage-keys';
 import { LocalStorageService } from '@/app/core/services/local-storage.service';
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 
 export const DEFAULT_TASK_TABLE_COLUMNS = { id: true, title: true, status: true, priority: true } as const;
 
@@ -8,9 +8,7 @@ export const DEFAULT_TASK_TABLE_COLUMNS = { id: true, title: true, status: true,
  * Manages local storage settings for the task table.
  * It persists the users selected columns.
  */
-@Injectable({
-	providedIn: 'root',
-})
+@Service()
 export class TaskLocalStorageService {
 	private readonly _localStorageService = inject(LocalStorageService);
 

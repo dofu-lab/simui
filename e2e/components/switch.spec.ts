@@ -16,9 +16,7 @@ async function isDisabledSwitch(switchEl: import('@playwright/test').Locator): P
 	if (ariaDisabled === 'true') return true;
 	const disabledAttr = await switchEl.getAttribute('disabled');
 	if (disabledAttr !== null) return true;
-	return switchEl.evaluate((el) =>
-		Boolean(el.closest('[data-disabled="true"], [aria-disabled="true"], [disabled]')),
-	);
+	return switchEl.evaluate((el) => Boolean(el.closest('[data-disabled="true"], [aria-disabled="true"], [disabled]')));
 }
 
 test.describe('Switch', () => {

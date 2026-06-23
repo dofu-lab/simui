@@ -14,9 +14,7 @@ async function isDisabledSlider(thumb: import('@playwright/test').Locator): Prom
 	if (ariaDisabled === 'true') return true;
 	const disabledAttr = await thumb.getAttribute('disabled');
 	if (disabledAttr !== null) return true;
-	return thumb.evaluate((el) =>
-		Boolean(el.closest('[data-disabled], [aria-disabled="true"], [disabled]')),
-	);
+	return thumb.evaluate((el) => Boolean(el.closest('[data-disabled], [aria-disabled="true"], [disabled]')));
 }
 
 async function moveWithKeyboard(

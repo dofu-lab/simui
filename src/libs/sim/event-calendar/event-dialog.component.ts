@@ -1,4 +1,15 @@
-import { Component, inject, input, OnInit, output, signal, viewChild } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	DestroyRef,
+	inject,
+	input,
+	OnInit,
+	output,
+	signal,
+	viewChild,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
 	AbstractControl,
 	FormBuilder,
@@ -11,7 +22,6 @@ import {
 } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendarPlus, lucidePlus } from '@ng-icons/lucide';
-import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
 import { HlmDatePicker } from '@spartan-ng/helm/date-picker';
@@ -24,6 +34,7 @@ import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { hlm } from '@spartan-ng/helm/utils';
 import { NgScrollbar } from 'ngx-scrollbar';
+import { merge } from 'rxjs';
 import { DefaultEventStyle, DefaultTimeOptions, EndHour, StartHour } from './constants';
 import { CalendarEvent, EventDuration, TimeOption } from './type';
 import { getFormattedTimeValue, getTimeFromList } from './utils';
@@ -37,7 +48,6 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 		ReactiveFormsModule,
 		HlmIcon,
 		HlmButton,
-		HlmButton,
 		HlmInput,
 		HlmLabel,
 		HlmCheckbox,
@@ -47,9 +57,9 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 		HlmRadioGroup,
 		HlmRadio,
 		HlmDialogImports,
-		BrnSelectImports,
 		HlmSelectImports,
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<hlm-dialog autoFocus="first-tabbable">
 			<button hlmDialogTrigger hlmBtn size="sm" class="flex items-center gap-2">
@@ -170,7 +180,7 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 									hlmLabel
 									for="is-default"
 									class="text-muted-foreground flex items-center gap-2 text-sm font-normal">
-									<hlm-checkbox id="is-default" formControlName="isAllDay" class="border-input" />
+									<hlm-checkbox inputId="is-default" formControlName="isAllDay" class="border-input" />
 									All day
 								</label>
 
@@ -213,6 +223,7 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 })
 export class EventDialogComponent implements OnInit {
 	private readonly _formBuilder = inject(FormBuilder);
+	private readonly _destroyRef = inject(DestroyRef);
 
 	protected readonly dialogRef = viewChild(HlmDialog);
 	protected readonly isAllDay = signal(false);
@@ -226,7 +237,7 @@ export class EventDialogComponent implements OnInit {
 	public readonly onEventAdded = output<CalendarEvent>();
 	public readonly onEventUpdated = output<CalendarEvent>();
 
-	colorOptions = DefaultEventStyle;
+	readonly colorOptions = DefaultEventStyle;
 
 	// Custom validator to check if start date is before end date
 	private readonly dateRangeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -296,28 +307,18 @@ export class EventDialogComponent implements OnInit {
 		// Set default times when form is initialized
 		this.setDefaultTimes();
 
-		this.form.get('isAllDay')?.valueChanges.subscribe((isAllDay) => {
-			this.isAllDay.set(isAllDay);
-			// Re-validate when all day status changes
-			this.form.updateValueAndValidity();
-		});
+		this.form
+			.get('isAllDay')
+			?.valueChanges.pipe(takeUntilDestroyed(this._destroyRef))
+			.subscribe((isAllDay) => this.isAllDay.set(isAllDay));
 
-		// Re-validate when dates or times change
-		this.form.get('startDate')?.valueChanges.subscribe(() => {
-			this.form.updateValueAndValidity();
-		});
+		const controlsToRevalidate = ['isAllDay', 'startDate', 'endDate', 'startTime', 'endTime']
+			.map((controlName) => this.form.get(controlName)?.valueChanges)
+			.filter((valueChanges) => valueChanges !== undefined);
 
-		this.form.get('endDate')?.valueChanges.subscribe(() => {
-			this.form.updateValueAndValidity();
-		});
-
-		this.form.get('startTime')?.valueChanges.subscribe(() => {
-			this.form.updateValueAndValidity();
-		});
-
-		this.form.get('endTime')?.valueChanges.subscribe(() => {
-			this.form.updateValueAndValidity();
-		});
+		merge(...controlsToRevalidate)
+			.pipe(takeUntilDestroyed(this._destroyRef))
+			.subscribe(() => this.form.updateValueAndValidity({ emitEvent: false }));
 	}
 
 	private setDefaultTimes(): void {

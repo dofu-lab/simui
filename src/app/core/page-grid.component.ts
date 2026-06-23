@@ -1,5 +1,6 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, effect, inject, input, PLATFORM_ID, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentCardComponent } from './component-card.component';
 import { CodeLoaderService } from './services/code-loader.service';
@@ -28,7 +29,7 @@ import { ComponentCardItem } from './types';
 	imports: [ComponentCardComponent, SuggestionComponent],
 })
 export class PageGridComponent {
-	public components = input<ComponentCardItem[]>([]);
+	public readonly components = input<ComponentCardItem[]>([]);
 	private readonly codeLoaderService = inject(CodeLoaderService);
 	private readonly route = inject(ActivatedRoute);
 	private readonly document = inject(DOCUMENT);
@@ -44,7 +45,7 @@ export class PageGridComponent {
 		});
 
 		if (isPlatformBrowser(this.platformId)) {
-			this.route.fragment.subscribe((fragment) => {
+			this.route.fragment.pipe(takeUntilDestroyed()).subscribe((fragment) => {
 				if (fragment) {
 					setTimeout(() => this.scrollToAndHighlight(fragment), 150);
 				}

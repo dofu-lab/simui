@@ -1,13 +1,11 @@
 import { STORAGE_KEYS } from '@/app/constants/storage-keys';
 import { ColorScheme } from '@/app/types';
 import { isPlatformBrowser } from '@angular/common';
-import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { inject, PLATFORM_ID, Service, signal } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { ThemeService } from './theme.service';
 
-@Injectable({
-	providedIn: 'root',
-})
+@Service()
 export class AppearanceService {
 	private readonly platformId = inject(PLATFORM_ID);
 	private readonly localStorageService = inject(LocalStorageService);

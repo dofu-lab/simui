@@ -89,7 +89,7 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 					<p hlmFieldDescription>The billing address associated with your payment method</p>
 					<div hlmFieldGroup>
 						<div hlmField orientation="horizontal">
-							<hlm-checkbox [id]="uniqueId('billing-address')" [checked]="true" />
+							<hlm-checkbox [inputId]="uniqueId('billing-address')" [checked]="true" />
 							<label hlmFieldLabel [for]="uniqueId('billing-address')">Same as shipping address.</label>
 						</div>
 					</div>
@@ -108,19 +108,19 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 					<p hlmFieldDescription>Yearly and lifetime plans offer significant savings.</p>
 					<hlm-radio-group value="monthly">
 						<div hlmField orientation="horizontal">
-							<hlm-radio value="monthly" [id]="uniqueId('plan-monthly')">
+							<hlm-radio value="monthly" [inputId]="uniqueId('plan-monthly')">
 								<hlm-radio-indicator indicator />
 							</hlm-radio>
 							<label hlmFieldLabel [for]="uniqueId('plan-monthly')" class="font-normal">Monthly ($9.99/month)</label>
 						</div>
 						<div hlmField orientation="horizontal">
-							<hlm-radio value="yearly" [id]="uniqueId('plan-yearly')">
+							<hlm-radio value="yearly" [inputId]="uniqueId('plan-yearly')">
 								<hlm-radio-indicator indicator />
 							</hlm-radio>
 							<label hlmFieldLabel [for]="uniqueId('plan-yearly')" class="font-normal">Yearly ($99.99/year)</label>
 						</div>
 						<div hlmField orientation="horizontal">
-							<hlm-radio value="lifetime" [id]="uniqueId('plan-lifetime')">
+							<hlm-radio value="lifetime" [inputId]="uniqueId('plan-lifetime')">
 								<hlm-radio-indicator indicator />
 							</hlm-radio>
 							<label hlmFieldLabel [for]="uniqueId('plan-lifetime')" class="font-normal">
@@ -135,7 +135,7 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 					<p hlmFieldDescription>Save your payment method for faster checkout and easier management.</p>
 					<div hlmFieldGroup data-slot="checkbox-group">
 						<div hlmField orientation="horizontal">
-							<hlm-checkbox [id]="uniqueId('save-payment-method')" [checked]="true" />
+							<hlm-checkbox [inputId]="uniqueId('save-payment-method')" [checked]="true" />
 							<label hlmFieldLabel [for]="uniqueId('save-payment-method')" class="font-normal">
 								Allow website to save my payment method
 							</label>

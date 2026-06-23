@@ -1,6 +1,6 @@
+import type { FilePayload, Locator, Page } from '@playwright/test';
 import { Buffer } from 'node:buffer';
 import { join } from 'node:path';
-import type { FilePayload, Locator, Page } from '@playwright/test';
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
 import { snapshotVariants } from '../utils/visual.helpers';

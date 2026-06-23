@@ -7,10 +7,10 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	imports: [HlmCheckbox, HlmLabel],
 	template: `
 		<div class="flex items-center gap-3">
-			<hlm-checkbox [inputId]="'checkbox06'" [checked]="true" />
+			<hlm-checkbox inputId="checkbox06" [checked]="true" />
 			<label hlmLabel class="group flex items-center" for="checkbox06">
 				<span
-					class="group-has-data-[state=checked]:text-muted-foreground relative transition-all motion-reduce:transition-none duration-100 before:absolute before:top-1/2 before:left-0 before:h-[1px] before:w-full before:origin-left before:scale-x-0 before:bg-current before:transition-transform before:motion-reduce:transition-none before:duration-300 before:ease-out group-has-data-[state=checked]:before:scale-x-100">
+					class="group-has-data-[state=checked]:text-muted-foreground relative transition-all duration-100 before:absolute before:top-1/2 before:left-0 before:h-[1px] before:w-full before:origin-left before:scale-x-0 before:bg-current before:transition-transform before:duration-300 before:ease-out group-has-data-[state=checked]:before:scale-x-100 motion-reduce:transition-none before:motion-reduce:transition-none">
 					Clean your bedroom?
 				</span>
 			</label>

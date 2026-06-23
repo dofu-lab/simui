@@ -1,11 +1,9 @@
 import { ColorScheme, ThemePreset, ThemeStyleProps } from '@/app/types';
 import { DOCUMENT } from '@angular/common';
-import { Injectable, RendererFactory2, inject } from '@angular/core';
+import { inject, RendererFactory2, Service } from '@angular/core';
 import { applyShadowVariablesToElement } from '../utils/shadow.utils';
 
-@Injectable({
-	providedIn: 'root',
-})
+@Service()
 export class ThemeService {
 	private readonly _renderer = inject(RendererFactory2).createRenderer(null, null);
 	private readonly _document = inject(DOCUMENT);

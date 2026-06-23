@@ -23,7 +23,7 @@ import { ColorTypeSelector } from './color-type-selector';
 			</button>
 			<hlm-sheet-content
 				*hlmSheetPortal="let ctx"
-				class="flex h-full w-[calc(100%-(--spacing(12)))] max-w-sm flex-col sm:max-w-3xl">
+				class="data-[side=right]:w-[calc(100%-(--spacing(12)))] data-[side=right]:max-w-sm data-[side=right]:sm:max-w-3xl">
 				<hlm-sheet-header class="flex-row items-center justify-between pr-15">
 					<h3 hlmSheetTitle>Theme CSS code</h3>
 					<sim-color-type />

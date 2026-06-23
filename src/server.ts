@@ -1,6 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine, isMainModule } from '@angular/ssr/node';
-import { render } from '@netlify/angular-runtime/common-engine.mjs';
+import { render } from '@netlify/angular-runtime/common-engine.js';
 import express from 'express';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -65,7 +65,7 @@ if (isMainModule(import.meta.url)) {
 	});
 }
 
-export async function netlifyCommonEngineHandler(request: Request, context: any): Promise<Response> {
+export async function netlifyCommonEngineHandler(): Promise<Response> {
 	return await render(commonEngine);
 }
 

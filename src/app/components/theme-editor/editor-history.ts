@@ -32,7 +32,7 @@ import { UnsavedHistory } from './unsaved-history';
 			</button>
 			<hlm-sheet-content
 				*hlmSheetPortal="let ctx"
-				class="flex h-full w-[calc(100%-(--spacing(12)))] max-w-sm flex-col sm:max-w-xl">
+				class="data-[side=right]:w-[calc(100%-(--spacing(12)))] data-[side=right]:max-w-sm data-[side=right]:sm:max-w-3xl">
 				<hlm-sheet-header class="flex-row items-center justify-between">
 					<h3 hlmSheetTitle>Change History</h3>
 					<div class="pr-8">

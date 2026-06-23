@@ -12,33 +12,19 @@ test.describe('Checkbox', () => {
 	});
 
 	test.describe('Behavior', () => {
-		test('toggles checked state on click', async ({ page }) => {
+		test('toggles checked state with the keyboard', async ({ page }) => {
 			const card = page.locator('component-card#checkbox-01');
 			const checkbox = card.locator('[role="checkbox"]:visible').first();
 			await expect(checkbox).toBeVisible();
 
 			const initial = await checkbox.getAttribute('aria-checked');
-			await checkbox.click({ force: true });
-			let after = await checkbox.getAttribute('aria-checked');
-
-			if (after === initial) {
-				const checkboxId = await checkbox.getAttribute('id');
-				if (checkboxId) {
-					const label = card.locator(`label[for="${checkboxId}"]`).first();
-					if ((await label.count()) > 0) {
-						await label.click({ force: true });
-						after = await checkbox.getAttribute('aria-checked');
-					}
-				}
-			}
-
-			if (after === initial) {
-				await checkbox.focus();
-				await page.keyboard.press('Space');
-				after = await checkbox.getAttribute('aria-checked');
-			}
-
-			expect(after).not.toEqual(initial);
+			await checkbox.focus();
+			await checkbox.press('Space');
+			await expect
+				.poll(() => checkbox.getAttribute('aria-checked'), {
+					message: 'checkbox should toggle after the click is processed',
+				})
+				.not.toEqual(initial);
 		});
 
 		test('disabled checkbox does not change state on click', async ({ page }) => {
@@ -51,10 +37,30 @@ test.describe('Checkbox', () => {
 			}
 		});
 
+		test('core OnPush state updates for theme, fragment highlighting, and code loading', async ({ page }) => {
+			const root = page.locator('html');
+			const wasDark = await root.evaluate((element) => element.classList.contains('dark'));
+
+			await page.getByRole('button', { name: 'Toggle theme' }).click();
+			await expect.poll(() => root.evaluate((element) => element.classList.contains('dark'))).toBe(!wasDark);
+
+			await page.goto('/components/checkbox#checkbox-01');
+			const card = page.locator('component-card#checkbox-01');
+			await expect(card).toHaveClass(/ring-2/);
+
+			await card.locator('button:has(ng-icon[name="lucideCode"])').click();
+			const sheet = page.getByRole('dialog');
+			await expect(sheet.getByRole('heading', { name: 'Code', level: 3 })).toBeVisible();
+			await expect(sheet.locator('code-preview').last().locator('pre')).toBeVisible();
+		});
+
 		test.describe('Checked snapshots', () => {
 			for (const id of COMPONENT_IDS.checkbox) {
 				test(`captures checked state in ${id}`, async ({ page }) => {
-					test.skip(id === 'checkbox-13', 'checkbox-13 includes interactive label content and is covered by behavior tests');
+					test.skip(
+						id === 'checkbox-13',
+						'checkbox-13 includes interactive label content and is covered by behavior tests',
+					);
 
 					const card = page.locator(`component-card#${id}`);
 					const isPresent = await card

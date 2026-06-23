@@ -6,9 +6,7 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-calendar',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header
-			name="Calendar"
-			description="Calendar component." />
+		<component-header name="Calendar" description="Calendar component." />
 		<page-grid [components]="components" />
 	`,
 })

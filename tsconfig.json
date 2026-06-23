@@ -72,5 +72,11 @@
 		"strictInputAccessModifiers": true,
 		"strictTemplates": true
 	},
-	"exclude": ["node_modules", ".angular", "dist", "out-tsc"]
+	"exclude": ["node_modules", ".angular", "dist", "out-tsc"],
+	"files": [],
+	"references": [
+		{ "path": "./tsconfig.app.json" },
+		{ "path": "./tsconfig.spec.json" },
+		{ "path": "./tsconfig.tools.json" }
+	]
 }
