@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus, lucidePlus } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'sim-slider-15',
-	imports: [HlmSlider, HlmLabel, HlmButton, HlmIcon, NgIcon],
+	imports: [HlmSliderImports, HlmLabelImports, HlmButtonImports, HlmIconImports, NgIcon],
 	providers: [provideIcons({ lucideMinus, lucidePlus })],
 	host: {
 		class: 'w-full',

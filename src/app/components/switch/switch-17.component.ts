@@ -1,11 +1,11 @@
 import { Component, model } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-switch-17',
-	imports: [HlmSwitch, HlmLabel, HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
+	imports: [HlmSwitchImports, HlmLabelImports, HlmAvatarImports],
 	template: `
 		<div
 			class="border-input data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border shadow-xs outline-none"

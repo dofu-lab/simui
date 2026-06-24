@@ -2,15 +2,15 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRotateCcw } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'sim-slider-11',
-	imports: [HlmSlider, HlmLabel, NgIcon, HlmIcon, HlmInput, HlmButton, FormsModule],
+	imports: [HlmSliderImports, HlmLabelImports, NgIcon, HlmIconImports, HlmInputImports, HlmButtonImports, FormsModule],
 	providers: [provideIcons({ lucideRotateCcw })],
 	host: {
 		class: 'w-full',

@@ -1,10 +1,10 @@
 import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucidePlus } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 type Option = {
@@ -14,7 +14,7 @@ type Option = {
 
 @Component({
 	selector: 'sim-select-34',
-	imports: [HlmFieldImports, HlmPopoverImports, HlmButton, NgIcon, HlmIcon, HlmCommandImports],
+	imports: [HlmFieldImports, HlmPopoverImports, HlmButtonImports, NgIcon, HlmIconImports, HlmCommandImports],
 	providers: [provideIcons({ lucideChevronDown, lucidePlus })],
 	host: { class: 'block w-full' },
 	template: `

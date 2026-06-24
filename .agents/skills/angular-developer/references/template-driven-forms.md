@@ -15,20 +15,20 @@ Template-driven forms rely on the `FormsModule` which provides these key directi
 First, import `FormsModule` into your component or module.
 
 ```ts
-import {Component} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-user-form',
-  imports: [FormsModule],
-  templateUrl: './user-form.component.html',
+	selector: 'app-user-form',
+	imports: [FormsModule],
+	templateUrl: './user-form.component.html',
 })
 export class UserForm {
-  user = {name: '', role: 'Guest'};
+	user = { name: '', role: 'Guest' };
 
-  onSubmit() {
-    console.log('Form submitted!', this.user);
-  }
+	onSubmit() {
+		console.log('Form submitted!', this.user);
+	}
 }
 ```
 
@@ -40,23 +40,23 @@ Use `[(ngModel)]` on input elements. **Every element using `[(ngModel)]` MUST ha
 
 ```html
 <form #userForm="ngForm" (ngSubmit)="onSubmit()">
-  <!-- Basic Input -->
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" id="name" required [(ngModel)]="user.name" name="name" #nameCtrl="ngModel" />
-  </div>
+	<!-- Basic Input -->
+	<div>
+		<label for="name">Name:</label>
+		<input type="text" id="name" required [(ngModel)]="user.name" name="name" #nameCtrl="ngModel" />
+	</div>
 
-  <!-- Select Box -->
-  <div>
-    <label for="role">Role:</label>
-    <select id="role" [(ngModel)]="user.role" name="role">
-      <option value="Admin">Admin</option>
-      <option value="Guest">Guest</option>
-    </select>
-  </div>
+	<!-- Select Box -->
+	<div>
+		<label for="role">Role:</label>
+		<select id="role" [(ngModel)]="user.role" name="role">
+			<option value="Admin">Admin</option>
+			<option value="Guest">Guest</option>
+		</select>
+	</div>
 
-  <!-- Submit Button (disabled if form is invalid) -->
-  <button type="submit" [disabled]="!userForm.form.valid">Submit</button>
+	<!-- Submit Button (disabled if form is invalid) -->
+	<button type="submit" [disabled]="!userForm.form.valid">Submit</button>
 </form>
 ```
 
@@ -76,10 +76,10 @@ You can use these classes to provide visual feedback in your CSS:
 ```css
 .ng-valid[required],
 .ng-valid.required {
-  border-left: 5px solid #42a948; /* green */
+	border-left: 5px solid #42a948; /* green */
 }
 .ng-invalid:not(form) {
-  border-left: 5px solid #a94442; /* red */
+	border-left: 5px solid #a94442; /* red */
 }
 ```
 
@@ -93,9 +93,9 @@ To display error messages conditionally, export the `ngModel` directive to a tem
 <!-- Show error only if the control is invalid AND (touched OR dirty) -->
 @if (nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched)) {
 <div class="alert alert-danger">
-  @if (nameCtrl.errors?.['required']) {
-  <div>Name is required.</div>
-  }
+	@if (nameCtrl.errors?.['required']) {
+	<div>Name is required.</div>
+	}
 </div>
 }
 ```

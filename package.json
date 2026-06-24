@@ -9,6 +9,7 @@
 		"e2e:report": "playwright show-report",
 		"e2e:ui": "playwright test --ui",
 		"e2e:update": "playwright test --update-snapshots",
+		"format": "prettier . --write",
 		"lint": "ng lint",
 		"ng": "ng",
 		"serve:ssr:simui": "node dist/simui/server/server.mjs",

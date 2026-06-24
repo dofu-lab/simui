@@ -5,11 +5,11 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-dialog-30',
-	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmLabelImports, HlmSwitch, HlmDialogImports],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmLabelImports, HlmSwitchImports, HlmDialogImports],
 	providers: [provideIcons({ lucideCircleCheck })],
 	template: `
 		<hlm-dialog>

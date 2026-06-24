@@ -8,9 +8,9 @@ Implement the `ResolveFn` type.
 
 ```ts
 export const userResolver: ResolveFn<User> = (route, state) => {
-  const userService = inject(UserService);
-  const id = route.paramMap.get('id')!;
-  return userService.getUser(id);
+	const userService = inject(UserService);
+	const id = route.paramMap.get('id')!;
+	return userService.getUser(id);
 };
 ```
 
@@ -58,9 +58,7 @@ Navigation is blocked if a resolver fails.
 - Use `catchError` within the resolver to return a `RedirectCommand` or fallback data.
 
 ```ts
-return userService
-  .get(id)
-  .pipe(catchError(() => of(new RedirectCommand(router.parseUrl('/error')))));
+return userService.get(id).pipe(catchError(() => of(new RedirectCommand(router.parseUrl('/error')))));
 ```
 
 ## Best Practices

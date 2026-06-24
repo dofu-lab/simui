@@ -17,16 +17,16 @@ import {
 	lucideZap,
 } from '@ng-icons/lucide';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 import { PresetColorPreview } from '../components/theme-editor/preset-color-preview';
 import { ThemeStorageService } from '../core/services/theme-storage.service';
 import { HistoryDatePipe } from '../pipes/history-date.pipe';
@@ -36,16 +36,16 @@ import { ThemePreset } from '../types';
 @Component({
 	selector: 'sim-profile-settings',
 	imports: [
-		HlmButton,
+		HlmButtonImports,
 		NgIcon,
-		HlmIcon,
-		HlmBadge,
-		HlmSpinner,
+		HlmIconImports,
+		HlmBadgeImports,
+		HlmSpinnerImports,
 		PresetColorPreview,
 		FormsModule,
 		HistoryDatePipe,
-		HlmInput,
-		HlmLabel,
+		HlmInputImports,
+		HlmLabelImports,
 		RouterLink,
 		HlmCardImports,
 		HlmInputGroupImports,

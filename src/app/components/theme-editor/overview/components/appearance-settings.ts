@@ -3,13 +3,13 @@ import { Slider13Component } from '@/app/components/slider';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus, lucidePlus } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'app-appearance-settings',
@@ -17,11 +17,11 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 		HlmRadioGroupImports,
 		HlmFieldImports,
 		HlmButtonGroupImports,
-		HlmSwitch,
+		HlmSwitchImports,
 		NgIcon,
-		HlmIcon,
-		HlmInput,
-		HlmButton,
+		HlmIconImports,
+		HlmInputImports,
+		HlmButtonImports,
 		Radio15Component,
 		Slider13Component,
 	],

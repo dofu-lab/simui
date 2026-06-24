@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-17',
-	imports: [HlmRadioGroup, HlmRadio, HlmLabel, FormsModule],
+	imports: [HlmRadioGroupImports, HlmLabelImports, FormsModule],
 	template: `
 		<div class="flex flex-1 flex-col gap-2">
 			<label hlmLabel class="flex-1">How do you feel?</label>
@@ -16,7 +16,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 					(ngModelChange)="rating.set($event)">
 					@for (item of items; track item) {
 						<label
-							class="hover:bg-accent/80 border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex size-9 cursor-pointer flex-col items-center justify-center rounded-full border text-center text-xl shadow-xs transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none has-focus-visible:ring-[3px] has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
+							class="hover:bg-accent/80 border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex size-9 cursor-pointer flex-col items-center justify-center rounded-full border text-center text-xl shadow-xs transition-[color,box-shadow] duration-150 outline-none has-focus-visible:ring-[3px] has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none"
 							hlmLabel>
 							{{ item.label }}
 							<hlm-radio class="hidden space-x-0" [value]="item.value" />

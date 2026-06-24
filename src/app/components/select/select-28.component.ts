@@ -3,7 +3,7 @@ import { IconType, NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlertCircle, lucideCirclePause, lucideClock, lucideSquareCheck, lucideSquareX } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 type Option = {
@@ -15,7 +15,7 @@ type Option = {
 
 @Component({
 	selector: 'sim-select-28',
-	imports: [NgIcon, HlmIcon, BrnSelectImports, HlmSelectImports, HlmFieldImports],
+	imports: [NgIcon, HlmIconImports, BrnSelectImports, HlmSelectImports, HlmFieldImports],
 	providers: [provideIcons({ lucideSquareCheck, lucideClock, lucideCirclePause, lucideSquareX, lucideAlertCircle })],
 	host: { class: 'block w-full' },
 	template: `

@@ -13,19 +13,19 @@ ng generate service my-data
 Or you can manually create a TypeScript class and decorate it with `@Service()`.
 
 ```ts
-import {Service} from '@angular/core';
+import { Service } from '@angular/core';
 
 @Service()
 export class BasicDataStore {
-  private data: string[] = [];
+	private data: string[] = [];
 
-  addData(item: string): void {
-    this.data.push(item);
-  }
+	addData(item: string): void {
+		this.data.push(item);
+	}
 
-  getData(): string[] {
-    return [...this.data];
-  }
+	getData(): string[] {
+		return [...this.data];
+	}
 }
 ```
 
@@ -48,21 +48,21 @@ Once a service is created, you can inject it into components, directives, or oth
 ### Injecting into a Component
 
 ```ts
-import {Component, inject} from '@angular/core';
-import {BasicDataStore} from './basic-data-store.service';
+import { Component, inject } from '@angular/core';
+import { BasicDataStore } from './basic-data-store.service';
 
 @Component({
-  selector: 'app-example',
-  template: `
-    <div>
-      <p>Data items: {{ dataStore.getData().length }}</p>
-      <button (click)="dataStore.addData('New Item')">Add Item</button>
-    </div>
-  `,
+	selector: 'app-example',
+	template: `
+		<div>
+			<p>Data items: {{ dataStore.getData().length }}</p>
+			<button (click)="dataStore.addData('New Item')">Add Item</button>
+		</div>
+	`,
 })
 export class Example {
-  // Inject the service as a class field
-  dataStore = inject(BasicDataStore);
+	// Inject the service as a class field
+	dataStore = inject(BasicDataStore);
 }
 ```
 
@@ -71,20 +71,20 @@ export class Example {
 Services can inject other services in the exact same way.
 
 ```ts
-import {Injectable, inject} from '@angular/core';
-import {AdvancedDataStore} from './advanced-data-store.service';
+import { Injectable, inject } from '@angular/core';
+import { AdvancedDataStore } from './advanced-data-store.service';
 
 @Service()
 export class BasicDataStore {
-  // Injecting another service
-  private advancedDataStore = inject(AdvancedDataStore);
+	// Injecting another service
+	private advancedDataStore = inject(AdvancedDataStore);
 
-  private data: string[] = [];
+	private data: string[] = [];
 
-  getData(): string[] {
-    // Combine data from this service and the injected service
-    return [...this.data, ...this.advancedDataStore.getData()];
-  }
+	getData(): string[] {
+		// Combine data from this service and the injected service
+		return [...this.data, ...this.advancedDataStore.getData()];
+	}
 }
 ```
 

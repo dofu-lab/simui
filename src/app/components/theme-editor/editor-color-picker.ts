@@ -3,13 +3,13 @@ import { ThemeStyleProps } from '@/app/types';
 import { Component, computed, DestroyRef, effect, inject, input, OnInit, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { debounceTime, distinctUntilChanged, merge } from 'rxjs';
 
 @Component({
 	selector: 'sim-editor-color-picker',
-	imports: [HlmInput, HlmLabel, ReactiveFormsModule],
+	imports: [HlmInputImports, HlmLabelImports, ReactiveFormsModule],
 	host: {
 		'[class.ring-2]': 'isHighlighted()',
 		'[class.ring-primary]': 'isHighlighted()',

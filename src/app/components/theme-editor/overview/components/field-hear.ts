@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 
 @Component({
 	selector: 'app-field-hear',
-	imports: [HlmCardImports, HlmFieldImports, HlmCheckbox],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [HlmCardImports, HlmFieldImports, HlmCheckboxImports],
 	template: `
 		<div hlmCard class="py-4 shadow-none">
 			<div hlmCardContent>

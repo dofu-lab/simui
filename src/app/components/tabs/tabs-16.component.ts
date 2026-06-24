@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-tabs-16',
-	imports: [NgIcon, HlmIcon, HlmTabsImports, HlmTooltipImports],
+	imports: [NgIcon, HlmIconImports, HlmTabsImports, HlmTooltipImports],
 	host: {
 		class: 'w-full',
 	},
@@ -29,7 +29,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 						<ng-icon hlm name="lucidePanelsTopLeft" size="sm" class="mx-auto" />
 					</button>
 					<span
-						class="bg-primary text-primary-foreground absolute top-1 right-0.5 flex size-4 items-center justify-center rounded-full text-xs transition-opacity motion-reduce:transition-none group-data-[state=inactive]:opacity-50">
+						class="bg-primary text-primary-foreground absolute top-1 right-0.5 flex size-4 items-center justify-center rounded-full text-xs transition-opacity group-data-[state=inactive]:opacity-50 motion-reduce:transition-none">
 						3
 					</span>
 					<ng-template #projectTooltip>

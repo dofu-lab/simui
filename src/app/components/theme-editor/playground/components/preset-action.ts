@@ -2,16 +2,24 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis } from '@ng-icons/lucide';
 
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'app-preset-actions',
-	imports: [HlmDropdownMenuImports, HlmDialogImports, HlmButton, HlmIcon, NgIcon, HlmSwitch, HlmLabel],
+	imports: [
+		HlmDropdownMenuImports,
+		HlmDialogImports,
+		HlmButtonImports,
+		HlmIconImports,
+		NgIcon,
+		HlmSwitchImports,
+		HlmLabelImports,
+	],
 	providers: [provideIcons({ lucideEllipsis })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `

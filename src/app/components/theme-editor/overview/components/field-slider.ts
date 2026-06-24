@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'app-field-slider',
-	imports: [HlmSlider, HlmFieldImports],
+	imports: [HlmSliderImports, HlmFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<fieldset hlmFieldSet>

@@ -13,7 +13,15 @@ import { map } from 'rxjs';
 
 @Component({
 	selector: 'sim-pagination-10',
-	imports: [HlmPaginationImports, HlmSelectImports, FormsModule, NgIcon, HlmIconImports, HlmButtonImports, HlmLabelImports],
+	imports: [
+		HlmPaginationImports,
+		HlmSelectImports,
+		FormsModule,
+		NgIcon,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmLabelImports,
+	],
 	providers: [provideIcons({ lucideChevronLast, lucideChevronFirst })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'block w-full' },

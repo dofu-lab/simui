@@ -5,9 +5,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSettings2, lucideTextCursorInput } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { debounceTime, Subject } from 'rxjs';
 
@@ -15,7 +15,7 @@ const DEBOUNCE_TIME = 1000;
 
 @Component({
 	selector: 'sim-radius-slider',
-	imports: [HlmSimSlider, HlmInput, FormsModule, HlmButton, NgIcon, HlmIcon, HlmInputGroupImports],
+	imports: [HlmSimSlider, HlmInputImports, FormsModule, HlmButtonImports, NgIcon, HlmIconImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideTextCursorInput, lucideSettings2 })],
 	template: `
 		<div class="flex gap-2">

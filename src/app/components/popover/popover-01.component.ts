@@ -11,7 +11,15 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 @Component({
 	selector: 'sim-popover-01',
 	providers: [provideIcons({ lucideListFilter })],
-	imports: [FormsModule, HlmButtonImports, HlmCheckboxImports, HlmIconImports, HlmLabelImports, NgIcon, HlmPopoverImports],
+	imports: [
+		FormsModule,
+		HlmButtonImports,
+		HlmCheckboxImports,
+		HlmIconImports,
+		HlmLabelImports,
+		NgIcon,
+		HlmPopoverImports,
+	],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button variant="outline" size="icon" class="relative size-9" hlmPopoverTrigger hlmBtn>

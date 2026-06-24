@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-08',
-	imports: [HlmRadioGroup, HlmRadio, HlmLabel],
+	imports: [HlmRadioGroupImports, HlmLabelImports],
 	template: `
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="1">
 			<div

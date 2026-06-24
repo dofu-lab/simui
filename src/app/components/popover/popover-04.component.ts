@@ -5,13 +5,13 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-04',
 	providers: [provideIcons({ lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail, lucideCheck })],
-	imports: [NgClass, NgIcon, HlmButtonImports, HlmIconImports, HlmInput, HlmPopoverImports],
+	imports: [NgClass, NgIcon, HlmButtonImports, HlmIconImports, HlmInputImports, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">Share</button>
@@ -41,7 +41,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 								hlmBtn
 								variant="link"
 								size="icon"
-								class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
+								class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 ease absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] duration-150 outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed motion-reduce:transition-none"
 								[disabled]="copied()"
 								(click)="onCopy()">
 								<ng-icon

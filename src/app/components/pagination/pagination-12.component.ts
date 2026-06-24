@@ -3,7 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
@@ -17,7 +17,7 @@ type PaginationReturn = {
 
 @Component({
 	selector: 'sim-pagination-12',
-	imports: [HlmPaginationImports, BrnSelectImports, HlmSelectImports, FormsModule, HlmLabelImports, HlmInput],
+	imports: [HlmPaginationImports, BrnSelectImports, HlmSelectImports, FormsModule, HlmLabelImports, HlmInputImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'block w-full' },
 	template: `

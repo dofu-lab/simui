@@ -1,11 +1,11 @@
 import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'sim-slider-07',
-	imports: [NgClass, HlmSlider, HlmLabel],
+	imports: [NgClass, HlmSliderImports, HlmLabelImports],
 	host: {
 		class: 'w-full',
 	},

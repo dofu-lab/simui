@@ -10,7 +10,15 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-29',
-	imports: [NgIcon, NgClass, HlmIconImports, HlmButtonImports, NgOptimizedImage, HlmAspectRatioImports, HlmDialogImports],
+	imports: [
+		NgIcon,
+		NgClass,
+		HlmIconImports,
+		HlmButtonImports,
+		NgOptimizedImage,
+		HlmAspectRatioImports,
+		HlmDialogImports,
+	],
 	providers: [provideIcons({ lucideCopy, lucideCheck })],
 	template: `
 		<hlm-dialog>

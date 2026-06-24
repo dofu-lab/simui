@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-18',
-	imports: [HlmRadioGroup, HlmRadio, HlmLabel, FormsModule],
+	imports: [HlmRadioGroupImports, HlmLabelImports, FormsModule],
 	template: `
 		<div class="flex flex-col gap-2">
 			<label hlmLabel for="radio18" class="flex-1">How likely are you to recommend us?</label>

@@ -3,8 +3,8 @@ import { DOCUMENT, NgComponentOutlet } from '@angular/common';
 import { Component, computed, inject, input, isDevMode, signal, Type, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideLink } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSheet, HlmSheetImports } from '@spartan-ng/helm/sheet';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import { hlm } from '@spartan-ng/helm/utils';
@@ -16,7 +16,15 @@ import { CodeLoaderService } from './services/code-loader.service';
 @Component({
 	selector: 'component-card',
 	providers: [provideIcons({ lucideCode, lucideLink, lucideCheck })],
-	imports: [NgComponentOutlet, HlmButton, NgIcon, HlmIcon, CodePreviewComponent, HlmSheetImports, HlmTooltipImports],
+	imports: [
+		NgComponentOutlet,
+		HlmButtonImports,
+		NgIcon,
+		HlmIconImports,
+		CodePreviewComponent,
+		HlmSheetImports,
+		HlmTooltipImports,
+	],
 	template: `
 		<ng-container *ngComponentOutlet="component()"></ng-container>
 		<hlm-sheet #sheet side="right">

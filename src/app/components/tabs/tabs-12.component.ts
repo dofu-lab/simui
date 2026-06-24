@@ -8,25 +8,15 @@ import {
 	lucideSettings,
 	lucideUsers,
 } from '@ng-icons/lucide';
-import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
-import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
+import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'sim-tabs-12',
-	imports: [
-		NgIcon,
-		HlmIcon,
-		HlmTabs,
-		HlmTabsList,
-		HlmTabsTrigger,
-		HlmTabsContent,
-		HlmScrollArea,
-		HlmBadge,
-		NgScrollbarModule,
-	],
+	imports: [NgIcon, HlmIconImports, HlmTabsImports, HlmScrollAreaImports, HlmBadgeImports, NgScrollbarModule],
 	providers: [
 		provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage, lucideUsers, lucideChartLine, lucideSettings }),
 	],

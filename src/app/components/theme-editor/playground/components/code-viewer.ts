@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'app-code-viewer',
-	imports: [HlmDialogImports, HlmButton],
+	imports: [HlmDialogImports, HlmButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<hlm-dialog>

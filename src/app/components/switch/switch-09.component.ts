@@ -1,10 +1,10 @@
 import { Component, model } from '@angular/core';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-switch-09',
-	imports: [HlmSwitch, HlmLabel],
+	imports: [HlmSwitchImports, HlmLabelImports],
 	template: `
 		<div class="group flex items-center gap-2" [attr.data-state]="value() ? 'checked' : 'unchecked'">
 			<span

@@ -6,13 +6,13 @@ import { NgClass } from '@angular/common';
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy, lucideSquarePen } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-color-card',
-	imports: [HlmTooltipImports, HlmIcon, NgIcon, NgClass, HlmButton, ColorPipe],
+	imports: [HlmTooltipImports, HlmIconImports, NgIcon, NgClass, HlmButtonImports, ColorPipe],
 	providers: [provideIcons({ lucideCopy, lucideCheck, lucideSquarePen })],
 	template: `
 		<div

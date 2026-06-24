@@ -10,23 +10,23 @@ import { Router, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSave, lucideZap } from '@ng-icons/lucide';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-save-theme',
 	imports: [
-		HlmButton,
+		HlmButtonImports,
 		NgIcon,
-		HlmIcon,
-		HlmInput,
+		HlmIconImports,
+		HlmInputImports,
 		ReactiveFormsModule,
 		SignInDialogComponent,
-		HlmSpinner,
+		HlmSpinnerImports,
 		RouterLink,
 		HlmDialogImports,
 		HlmFieldImports,

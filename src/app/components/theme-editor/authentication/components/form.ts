@@ -2,14 +2,14 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub, lucideLoaderCircle } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'app-auth-example-form',
-	imports: [HlmButton, NgIcon, HlmIcon, HlmInput, FormsModule, HlmLabel],
+	imports: [HlmButtonImports, NgIcon, HlmIconImports, HlmInputImports, FormsModule, HlmLabelImports],
 	providers: [provideIcons({ lucideGithub, lucideLoaderCircle })],
 	host: {
 		class: 'block',

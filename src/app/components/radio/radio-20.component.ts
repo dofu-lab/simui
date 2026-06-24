@@ -1,18 +1,18 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-20',
-	imports: [HlmRadioGroup, HlmRadio, HlmLabel, FormsModule],
+	imports: [HlmRadioGroupImports, HlmLabelImports, FormsModule],
 	host: {
 		class: 'w-full',
 	},
 	template: `
 		<div class="bg-input/50 inline-flex h-9 w-full rounded-md p-0.5">
 			<hlm-radio-group
-				class="group after:bg-background relative grid w-full grid-cols-[1fr_1fr] gap-0 text-sm font-medium after:absolute after:inset-y-0 after:w-1/2 after:rounded-sm after:transition-[translate,box-shadow] after:motion-reduce:transition-none after:duration-300 after:ease-[cubic-bezier(0.16,1,0.3,1)] data-[state=month]:after:translate-x-0 data-[state=year]:after:translate-x-full"
+				class="group after:bg-background relative grid w-full grid-cols-[1fr_1fr] gap-0 text-sm font-medium after:absolute after:inset-y-0 after:w-1/2 after:rounded-sm after:transition-[translate,box-shadow] after:duration-300 after:ease-[cubic-bezier(0.16,1,0.3,1)] data-[state=month]:after:translate-x-0 data-[state=year]:after:translate-x-full after:motion-reduce:transition-none"
 				[attr.data-state]="value()"
 				[ngModel]="value()"
 				(ngModelChange)="value.set($event)">

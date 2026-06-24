@@ -16,7 +16,7 @@ Use these directly on elements to apply CSS classes during the enter or leave ph
 ```html
 @if (isShown()) {
 <div class="enter-container" animate.enter="enter-animation">
-  <p>The box is entering.</p>
+	<p>The box is entering.</p>
 </div>
 }
 ```
@@ -24,27 +24,27 @@ Use these directly on elements to apply CSS classes during the enter or leave ph
 ```css
 /* Ensure you have a starting style if using transitions instead of keyframes */
 .enter-container {
-  border: 1px solid #dddddd;
-  margin-top: 1em;
-  padding: 20px;
-  font-weight: bold;
-  font-size: 20px;
+	border: 1px solid #dddddd;
+	margin-top: 1em;
+	padding: 20px;
+	font-weight: bold;
+	font-size: 20px;
 }
 .enter-container p {
-  margin: 0;
+	margin: 0;
 }
 .enter-animation {
-  animation: slide-fade 1s;
+	animation: slide-fade 1s;
 }
 @keyframes slide-fade {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 ```
 
@@ -84,11 +84,11 @@ Toggle CSS classes on elements using property binding to trigger transitions.
 
 ```css
 div {
-  transition: height 0.3s ease-out;
-  height: 100px;
+	transition: height 0.3s ease-out;
+	height: 100px;
 }
 div.open {
-  height: 200px;
+	height: 200px;
 }
 ```
 
@@ -98,15 +98,15 @@ You can use `css-grid` to animate to auto height.
 
 ```css
 .container {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.3s;
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 0.3s;
 }
 .container.open {
-  grid-template-rows: 1fr;
+	grid-template-rows: 1fr;
 }
 .container > div {
-  overflow: hidden;
+	overflow: hidden;
 }
 ```
 
@@ -134,27 +134,29 @@ For older projects (pre v20.2 or where `@angular/animations` is already heavily 
 
 ```ts
 bootstrapApplication(App, {
-  providers: [provideAnimationsAsync()],
+	providers: [provideAnimationsAsync()],
 });
 ```
 
 ### Defining Transitions
 
 ```ts
-import {signal} from '@angular/core';
-import {trigger, state, style, animate, transition} from '@angular/animations';
+import { signal } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
-  animations: [
-    trigger('openClose', [
-      state('open', style({opacity: 1})),
-      state('closed', style({opacity: 0})),
-      transition('open <=> closed', [animate('0.5s')]),
-    ]),
-  ],
-  template: `<div [@openClose]="isOpen() ? 'open' : 'closed'">...</div>`,
+	animations: [
+		trigger('openClose', [
+			state('open', style({ opacity: 1 })),
+			state('closed', style({ opacity: 0 })),
+			transition('open <=> closed', [animate('0.5s')]),
+		]),
+	],
+	template: `
+		<div [@openClose]="isOpen() ? 'open' : 'closed'">...</div>
+	`,
 })
 export class OpenClose {
-  protected readonly isOpen = signal(true);
+	protected readonly isOpen = signal(true);
 }
 ```

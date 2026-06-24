@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideWalletCards } from '@ng-icons/lucide';
 import { remixAppleFill, remixPaypalFill } from '@ng-icons/remixicon';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-12',
-	imports: [NgIcon, HlmIcon, HlmRadioGroup, HlmRadio, HlmLabel],
+	imports: [NgIcon, HlmIconImports, HlmRadioGroupImports, HlmLabelImports],
 	providers: [
 		provideIcons({
 			lucideWalletCards,

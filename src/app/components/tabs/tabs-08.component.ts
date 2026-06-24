@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-08',
-	imports: [NgIcon, HlmIcon, HlmBadge, HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
+	imports: [NgIcon, HlmIconImports, HlmBadgeImports, HlmTabsImports],
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">

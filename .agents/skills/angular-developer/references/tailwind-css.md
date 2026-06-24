@@ -36,9 +36,9 @@ Create a `.postcssrc.json` file in the project root:
 
 ```json
 {
-  "plugins": {
-    "@tailwindcss/postcss": {}
-  }
+	"plugins": {
+		"@tailwindcss/postcss": {}
+	}
 }
 ```
 

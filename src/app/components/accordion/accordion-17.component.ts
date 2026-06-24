@@ -18,7 +18,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 							<button
 								brnAccordionTrigger
 								data-slot="accordion-trigger"
-								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-4 text-start text-sm font-medium transition-all motion-reduce:transition-none outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)] **:data-[slot=accordion-trigger-label]:me-auto">
+								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-4 text-start text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)] **:data-[slot=accordion-trigger-label]:me-auto motion-reduce:transition-none">
 								<ng-icon
 									name="lucideChevronDown"
 									data-slot="accordion-trigger-icon"

@@ -3,10 +3,10 @@ import { ThemePreset } from '@/app/types';
 import { Component, computed, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideChevronDown, lucideSearch } from '@ng-icons/lucide';
-import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { HlmSeparator } from '@spartan-ng/helm/separator';
@@ -15,11 +15,11 @@ import { SelectorColorPreview } from './selector-color-preview';
 @Component({
 	selector: 'app-theme-selector',
 	imports: [
-		HlmButton,
+		HlmButtonImports,
 		NgIcon,
-		HlmIcon,
+		HlmIconImports,
 		HlmSeparator,
-		HlmBadge,
+		HlmBadgeImports,
 		SelectorColorPreview,
 		HlmInputGroupImports,
 		HlmPopoverImports,

@@ -53,7 +53,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 								</hlm-select>
 							</div>
 							<div hlmField>
-							<button hlmBtn type="submit" class="w-full">Deploy</button>
+								<button hlmBtn type="submit" class="w-full">Deploy</button>
 							</div>
 						</div>
 					</fieldset>

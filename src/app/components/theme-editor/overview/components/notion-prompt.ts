@@ -15,13 +15,13 @@ import {
 import { tablerCircleDashedPlus } from '@ng-icons/tabler-icons';
 import { BrnCommandEmpty } from '@spartan-ng/brain/command';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 import { MentionableItem } from './mentionable-item';
 
 export type MentionItem = {
@@ -49,11 +49,11 @@ type GroupedItems = {
 		HlmAvatarImports,
 		HlmDropdownMenuImports,
 		BrnCommandEmpty,
-		HlmIcon,
+		HlmIconImports,
 		NgIcon,
 		MentionableItem,
-		HlmBadge,
-		HlmSwitch,
+		HlmBadgeImports,
+		HlmSwitchImports,
 	],
 	providers: [
 		provideIcons({

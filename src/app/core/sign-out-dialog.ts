@@ -1,15 +1,15 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLogOut } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmDropdownMenuItem } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: 'sim-sign-out-dialog',
-	imports: [HlmButton, HlmDropdownMenuItem, HlmIcon, NgIcon, HlmDialogImports],
+	imports: [HlmButtonImports, HlmDropdownMenuImports, HlmIconImports, NgIcon, HlmDialogImports],
 	providers: [
 		provideIcons({
 			lucideLogOut,

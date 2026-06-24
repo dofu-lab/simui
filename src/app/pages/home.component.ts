@@ -1,6 +1,6 @@
 import { NgComponentOutlet } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { previewComponents } from '../constants/home.constant';
 import { FooterComponent } from '../core';
 import { CardBodyDirective, CardDirective } from '../core/card';
@@ -9,7 +9,7 @@ import { NavigationService } from '../core/services';
 @Component({
 	selector: 'app-home',
 	providers: [NavigationService],
-	imports: [NgComponentOutlet, CardDirective, CardBodyDirective, HlmBadge, FooterComponent],
+	imports: [NgComponentOutlet, CardDirective, CardBodyDirective, HlmBadgeImports, FooterComponent],
 	template: `
 		<div class="relative mx-auto w-full max-w-7xl">
 			<div class="flex-1 items-start">

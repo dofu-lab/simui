@@ -20,7 +20,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 				<div class="grid w-fit grid-cols-5 gap-2">
 					@for (color of colors; track $index) {
 						<button
-							class="border-muted hover:ring-ring h-8 w-8 rounded-full border transition-colors motion-reduce:transition-none hover:ring-2 focus:outline-none"
+							class="border-muted hover:ring-ring h-8 w-8 rounded-full border transition-colors hover:ring-2 focus:outline-none motion-reduce:transition-none"
 							[style.background]="color"
 							[attr.aria-label]="color"
 							(click)="selectColor(color, ctx)"></button>

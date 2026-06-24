@@ -28,8 +28,8 @@ import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import {
@@ -61,11 +61,11 @@ import { type Task, TASK_DATA } from './services/tasks.models';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		FormsModule,
-		HlmIcon,
+		HlmIconImports,
 		TableActions,
 		NgIcon,
 		FlexRender,
-		HlmLabel,
+		HlmLabelImports,
 		HlmDropdownMenuImports,
 		HlmTableImports,
 		HlmButtonImports,

@@ -56,19 +56,19 @@ Built on top of **[Spartan UI](https://spartan.ng)** (headless primitives) and p
 
 Browse all components and copy the source code at **[simui.dev](https://simui.dev)**.
 
-| Component | Variants | Component | Variants |
-| --- | :---: | --- | :---: |
-| [Input](https://simui.dev/components/input) | 55 | [Notification](https://simui.dev/components/notification) | 33 |
-| [Button](https://simui.dev/components/button) | 54 | [Badge](https://simui.dev/components/badge) | 23 |
-| [Dialog](https://simui.dev/components/dialog) | 35 | [Accordion](https://simui.dev/components/accordion) | 22 |
-| [Avatar](https://simui.dev/components/avatar) | 22 | [Checkbox](https://simui.dev/components/checkbox) | 22 |
-| [Tabs](https://simui.dev/components/tabs) | 20 | [Radio](https://simui.dev/components/radio) | 20 |
-| [Slider](https://simui.dev/components/slider) | 19 | [Alert](https://simui.dev/components/alert) | 18 |
-| [Switch](https://simui.dev/components/switch) | 18 | [Dropdown](https://simui.dev/components/dropdown) | 16 |
-| [File Upload](https://simui.dev/components/file-upload) | 13 | [Pagination](https://simui.dev/components/pagination) | 12 |
-| [Banner](https://simui.dev/components/banner) | 11 | [Card](https://simui.dev/components/card) | 11 |
-| [Popover](https://simui.dev/components/popover) | 11 | [Breadcrumb](https://simui.dev/components/breadcrumb) | 9 |
-| [Event Calendar](https://simui.dev/components/event-calendar) | 1 | | |
+| Component                                                     | Variants | Component                                                 | Variants |
+| ------------------------------------------------------------- | :------: | --------------------------------------------------------- | :------: |
+| [Input](https://simui.dev/components/input)                   |    55    | [Notification](https://simui.dev/components/notification) |    33    |
+| [Button](https://simui.dev/components/button)                 |    54    | [Badge](https://simui.dev/components/badge)               |    23    |
+| [Dialog](https://simui.dev/components/dialog)                 |    35    | [Accordion](https://simui.dev/components/accordion)       |    22    |
+| [Avatar](https://simui.dev/components/avatar)                 |    22    | [Checkbox](https://simui.dev/components/checkbox)         |    22    |
+| [Tabs](https://simui.dev/components/tabs)                     |    20    | [Radio](https://simui.dev/components/radio)               |    20    |
+| [Slider](https://simui.dev/components/slider)                 |    19    | [Alert](https://simui.dev/components/alert)               |    18    |
+| [Switch](https://simui.dev/components/switch)                 |    18    | [Dropdown](https://simui.dev/components/dropdown)         |    16    |
+| [File Upload](https://simui.dev/components/file-upload)       |    13    | [Pagination](https://simui.dev/components/pagination)     |    12    |
+| [Banner](https://simui.dev/components/banner)                 |    11    | [Card](https://simui.dev/components/card)                 |    11    |
+| [Popover](https://simui.dev/components/popover)               |    11    | [Breadcrumb](https://simui.dev/components/breadcrumb)     |    9     |
+| [Event Calendar](https://simui.dev/components/event-calendar) |    1     |                                                           |          |
 
 ---
 
@@ -100,14 +100,14 @@ Visit **[simui.dev](https://simui.dev)**, pick a component variant you like, and
 import { SimButtonComponent } from './ui/button/sim-button.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [SimButtonComponent],
-  template: `
-    <sim-button variant="default">Get started</sim-button>
-    <sim-button variant="outline">Learn more</sim-button>
-    <sim-button variant="ghost">Cancel</sim-button>
-  `,
+	selector: 'app-root',
+	standalone: true,
+	imports: [SimButtonComponent],
+	template: `
+		<sim-button variant="default">Get started</sim-button>
+		<sim-button variant="outline">Learn more</sim-button>
+		<sim-button variant="ghost">Cancel</sim-button>
+	`,
 })
 export class AppComponent {}
 ```
@@ -154,10 +154,10 @@ NG_APP_GOOGLE_CLIENT_ID=...
 
 **For Netlify deployments**, set these in **Site → Configuration → Environment variables**:
 
-| Variable | Description |
-| --- | --- |
-| `NG_APP_BASE_URL` | API base URL |
-| `NG_APP_API_URL` | Full API URL |
+| Variable                  | Description            |
+| ------------------------- | ---------------------- |
+| `NG_APP_BASE_URL`         | API base URL           |
+| `NG_APP_API_URL`          | Full API URL           |
 | `NG_APP_GOOGLE_CLIENT_ID` | Google OAuth Client ID |
 
 The build command (`node scripts/set-env.js && ng build`) generates the environment files automatically on every build.
@@ -166,29 +166,29 @@ The build command (`node scripts/set-env.js && ng build`) generates the environm
 
 ### Useful Commands
 
-| Command | Description |
-| --- | --- |
-| `pnpm start` | Start the development server |
-| `pnpm build` | Production build |
-| `pnpm test` | Run unit tests (Karma + Jasmine) |
+| Command          | Description                        |
+| ---------------- | ---------------------------------- |
+| `pnpm start`     | Start the development server       |
+| `pnpm build`     | Production build                   |
+| `pnpm test`      | Run unit tests (Karma + Jasmine)   |
 | `pnpm run codes` | Regenerate component registry JSON |
-| `pnpm lint` | Lint the codebase |
+| `pnpm lint`      | Lint the codebase                  |
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology | Version | Purpose |
-| --- | --- | --- |
-| [Angular](https://angular.dev) | 20 | Core framework |
-| [Spartan UI](https://spartan.ng) | alpha | Headless component primitives |
-| [Tailwind CSS](https://tailwindcss.com) | v4 | Utility-first styling |
-| [TanStack Table](https://tanstack.com/table) | v8 | Advanced table functionality |
-| [@ng-icons](https://github.com/ng-icons/ng-icons) | v32 | Icon sets (Lucide, Remix, Tabler) |
-| [class-variance-authority](https://cva.style) | 0.7 | Component variant management |
-| [date-fns](https://date-fns.org) | v4 | Date utilities |
-| [ngx-sonner](https://github.com/tutkli/ngx-sonner) | v3 | Toast notifications |
-| [Express](https://expressjs.com) | v4 | SSR server runtime |
+| Technology                                         | Version | Purpose                           |
+| -------------------------------------------------- | ------- | --------------------------------- |
+| [Angular](https://angular.dev)                     | 20      | Core framework                    |
+| [Spartan UI](https://spartan.ng)                   | alpha   | Headless component primitives     |
+| [Tailwind CSS](https://tailwindcss.com)            | v4      | Utility-first styling             |
+| [TanStack Table](https://tanstack.com/table)       | v8      | Advanced table functionality      |
+| [@ng-icons](https://github.com/ng-icons/ng-icons)  | v32     | Icon sets (Lucide, Remix, Tabler) |
+| [class-variance-authority](https://cva.style)      | 0.7     | Component variant management      |
+| [date-fns](https://date-fns.org)                   | v4      | Date utilities                    |
+| [ngx-sonner](https://github.com/tutkli/ngx-sonner) | v3      | Toast notifications               |
+| [Express](https://expressjs.com)                   | v4      | SSR server runtime                |
 
 ---
 

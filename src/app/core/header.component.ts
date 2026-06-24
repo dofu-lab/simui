@@ -3,9 +3,9 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub, lucideMoon, lucideSquareMenu, lucideSun } from '@ng-icons/lucide';
 import { remixTwitterXFill } from '@ng-icons/remixicon';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { isFreeUser } from '../models/user-role';
 import { AuthService } from '../services/auth.service';
 import { AuthenticationComponent } from './authentication';
@@ -15,7 +15,15 @@ import { AppearanceService } from './services';
 @Component({
 	selector: 'app-header',
 	providers: [provideIcons({ lucideSun, lucideMoon, lucideGithub, lucideSquareMenu, remixTwitterXFill })],
-	imports: [HlmButton, NgIcon, HlmIcon, HlmDropdownMenuImports, RouterLink, RouterLinkActive, AuthenticationComponent],
+	imports: [
+		HlmButtonImports,
+		NgIcon,
+		HlmIconImports,
+		HlmDropdownMenuImports,
+		RouterLink,
+		RouterLinkActive,
+		AuthenticationComponent,
+	],
 	template: `
 		<header class="mx-auto flex justify-center pt-3">
 			<div

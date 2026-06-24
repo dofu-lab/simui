@@ -19,13 +19,13 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 				xmlns="http://www.w3.org/2000/svg">
 				<path
 					d="M4 12L20 12"
-					class="origin-center -translate-y-[7px] transition-all motion-reduce:transition-none duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-x-0 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-315" />
+					class="origin-center -translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-x-0 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-315 motion-reduce:transition-none" />
 				<path
 					d="M4 12H20"
-					class="origin-center transition-all motion-reduce:transition-none duration-300 ease-[cubic-bezier(.5,.85,.25,1.8)] group-aria-expanded:rotate-45" />
+					class="origin-center transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.8)] group-aria-expanded:rotate-45 motion-reduce:transition-none" />
 				<path
 					d="M4 12H20"
-					class="origin-center translate-y-[7px] transition-all motion-reduce:transition-none duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-y-0 group-aria-expanded:rotate-135" />
+					class="origin-center translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-y-0 group-aria-expanded:rotate-135 motion-reduce:transition-none" />
 			</svg>
 		</button>
 	`,

@@ -4,9 +4,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheckCircle, lucideZap } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 import { repeat, take, takeWhile } from 'rxjs';
 import { UserRole } from '../models/user-role';
 import { AuthService } from '../services/auth.service';
@@ -16,7 +16,7 @@ const POLL_INTERVAL_MS = 2000;
 
 @Component({
 	selector: 'sim-payment-success',
-	imports: [HlmButton, HlmIcon, HlmSpinner, NgIcon, RouterLink],
+	imports: [HlmButtonImports, HlmIconImports, HlmSpinnerImports, NgIcon, RouterLink],
 	providers: [provideIcons({ lucideCheckCircle, lucideZap })],
 	host: { class: 'flex flex-1 size-full' },
 	template: `

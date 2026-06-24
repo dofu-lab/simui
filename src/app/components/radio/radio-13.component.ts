@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-13',
-	imports: [HlmRadioGroup, HlmRadio, HlmLabel],
+	imports: [HlmRadioGroupImports, HlmLabelImports],
 	host: {
 		class: 'w-full',
 	},

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { remixStarFill } from '@ng-icons/remixicon';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-06',
-	imports: [HlmRadioGroup, HlmRadio, HlmLabel, HlmIcon, NgIcon],
+	imports: [HlmRadioGroupImports, HlmLabelImports, HlmIconImports, NgIcon],
 	providers: [provideIcons({ remixStarFill })],
 	template: `
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="6">

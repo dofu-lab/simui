@@ -13,10 +13,10 @@ import {
 	lucideSearch,
 	lucideServer,
 } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 type Option = {
@@ -28,7 +28,7 @@ type Option = {
 
 @Component({
 	selector: 'sim-select-37',
-	imports: [HlmFieldImports, HlmPopoverImports, HlmButton, NgIcon, HlmIcon, HlmCommandImports],
+	imports: [HlmFieldImports, HlmPopoverImports, HlmButtonImports, NgIcon, HlmIconImports, HlmCommandImports],
 	providers: [
 		provideIcons({
 			lucideChartLine,

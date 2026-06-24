@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 import { hlm } from '@spartan-ng/helm/utils';
 
 type OptionColor = 'sky' | 'amber' | 'violet' | 'rose' | 'emerald' | 'orange';
 
 @Component({
 	selector: 'sim-radio-07',
-	imports: [HlmRadioGroup, HlmRadio, HlmLabel, FormsModule],
+	imports: [HlmRadioGroupImports, HlmLabelImports, FormsModule],
 	template: `
 		<div class="flex flex-1 flex-col gap-2">
 			<label hlmLabel class="flex-1">Choose a color</label>

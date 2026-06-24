@@ -3,11 +3,11 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSave, lucideX } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
+import { HlmSliderImports } from '@spartan-ng/helm/slider';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
@@ -27,15 +27,15 @@ type Profile = {
 @Component({
 	selector: 'sim-slider-18',
 	imports: [
-		HlmSlider,
-		HlmLabel,
+		NgScrollbarModule,
 		FormsModule,
 		NgClass,
-		HlmButton,
 		NgIcon,
-		HlmIcon,
-		HlmScrollArea,
-		NgScrollbarModule,
+		HlmSliderImports,
+		HlmLabelImports,
+		HlmButtonImports,
+		HlmIconImports,
+		HlmScrollAreaImports,
 		HlmTooltipImports,
 	],
 	providers: [provideIcons({ lucideSave, lucideX })],
