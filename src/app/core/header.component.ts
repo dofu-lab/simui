@@ -24,10 +24,6 @@ import { AppearanceService } from './services';
 					<a class="relative mr-6 flex items-center space-x-2" href="/">
 						<img src="/assets/logos/logo-base.svg" alt="Magic UI" class="h-10 w-10" />
 						<span class="text-foreground hidden font-bold md:inline-block">Sim UI</span>
-						<div
-							class="bg-secondary text-secondary-foreground hover:bg-secondary/80 focus:ring-ring inline-flex items-center rounded-md border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none">
-							Beta
-						</div>
 					</a>
 				</div>
 				<div class="mr-4 flex gap-1">

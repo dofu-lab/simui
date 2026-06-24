@@ -13,9 +13,9 @@ import { NavigationService } from '../core/services';
 	template: `
 		<div class="relative mx-auto w-full max-w-7xl">
 			<div class="flex-1 items-start">
-				<div class="max-w-3xl pt-10 max-sm:text-center">
+				<div class="max-w-4xl pt-10 max-sm:text-center">
 					<h1 class="font-heading text-foreground mb-4 text-4xl/[1.1] font-bold tracking-tight md:text-5xl/[1.1]">
-						Beautiful Angular UI components built with Tailwind CSS and Spartan.
+						Beautiful Angular UI components built with Spartan UI and Tailwind CSS.
 					</h1>
 					<p class="text-muted-foreground mb-10 text-lg">
 						A curated collection of ready-to-use components to quickly build modern application UIs.
