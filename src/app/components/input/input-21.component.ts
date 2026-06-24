@@ -3,11 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleX } from '@ng-icons/lucide';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-21',
-	imports: [HlmLabel, NgIcon, ReactiveFormsModule, HlmInputGroupImports],
+	imports: [HlmLabelImports, NgIcon, ReactiveFormsModule, HlmInputGroupImports],
 	providers: [provideIcons({ lucideCircleX })],
 	host: { class: 'w-full' },
 	template: `

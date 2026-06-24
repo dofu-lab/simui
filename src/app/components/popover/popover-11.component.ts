@@ -2,13 +2,13 @@ import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowLeft, lucideArrowRight } from '@ng-icons/lucide';
 import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-11',
-	imports: [NgIcon, HlmIcon, HlmButton, HlmPopoverImports, BrnAccordionImports],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmPopoverImports, BrnAccordionImports],
 	providers: [provideIcons({ lucideArrowLeft, lucideArrowRight })],
 	template: `
 		<hlm-popover sideOffset="5">

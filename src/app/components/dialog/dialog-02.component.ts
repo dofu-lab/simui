@@ -1,14 +1,14 @@
 import { Component, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-02',
 	providers: [provideIcons({ lucideCircleAlert })],
-	imports: [HlmButton, NgIcon, HlmIcon, HlmDialogImports],
+	imports: [HlmButtonImports, NgIcon, HlmIconImports, HlmDialogImports],
 	template: `
 		<hlm-dialog>
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Confirm dialog with icon</button>

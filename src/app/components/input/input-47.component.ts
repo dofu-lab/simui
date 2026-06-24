@@ -2,13 +2,13 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
-import { maskitoDateOptionsGenerator } from '@maskito/kit';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { maskitoDate } from '@maskito/kit';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-47',
-	imports: [HlmLabel, FormsModule, MaskitoDirective, HlmInput, ReactiveFormsModule],
+	imports: [FormsModule, MaskitoDirective, ReactiveFormsModule, HlmInputImports, HlmLabelImports],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel class="mb-2 text-sm">Card details</label>
@@ -65,7 +65,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 })
 export class Input47Component {
 	private readonly _formBuilder = inject(FormBuilder);
-	readonly cvcMask: MaskitoOptions = {
+	protected readonly cvcMask: MaskitoOptions = {
 		mask: [/\d/, /\d/, /\d/],
 		overwriteMode: 'replace',
 		preprocessors: [
@@ -75,8 +75,8 @@ export class Input47Component {
 			}),
 		],
 	};
-	readonly expiryDateMask: MaskitoOptions = maskitoDateOptionsGenerator({ mode: 'mm/dd', separator: ' / ' });
-	readonly creditCardMask: MaskitoOptions = {
+	protected readonly expiryDateMask: MaskitoOptions = maskitoDate({ mode: 'mm/dd', separator: ' / ' });
+	protected readonly creditCardMask: MaskitoOptions = {
 		mask: [
 			/[0-9]/,
 			/[0-9]/,

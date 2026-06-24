@@ -2,14 +2,14 @@ import { Component, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBellRing, lucideCalendar, lucideClock, lucidePlus } from '@ng-icons/lucide';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-25',
-	imports: [NgIcon, HlmIcon, HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmDialogImports],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmAvatarImports, HlmDialogImports],
 	providers: [provideIcons({ lucideCalendar, lucideClock, lucideBellRing, lucidePlus })],
 	template: `
 		<hlm-dialog autoFocus="dialog">

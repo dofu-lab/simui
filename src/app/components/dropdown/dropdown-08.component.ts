@@ -9,13 +9,13 @@ import {
 	lucideLayers2,
 	lucideTrash,
 } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dropdown-08',
-	imports: [NgIcon, HlmIcon, HlmButton, HlmDropdownMenuImports],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmDropdownMenuImports],
 	providers: [
 		provideIcons({
 			lucideChevronDown,

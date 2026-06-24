@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSparkles, lucideX } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-banner-04',
-	imports: [NgIcon, HlmIcon, HlmButton],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports],
 	providers: [provideIcons({ lucideSparkles, lucideX })],
 	host: {
 		class: 'w-full',
@@ -33,7 +33,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 							hlm
 							name="lucideX"
 							size="sm"
-							class="text-primary opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" />
+							class="text-primary opacity-60 transition-opacity group-hover:opacity-100 motion-reduce:transition-none" />
 					</button>
 				</div>
 			</div>

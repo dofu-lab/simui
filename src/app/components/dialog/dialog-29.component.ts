@@ -4,13 +4,13 @@ import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy } from '@ng-icons/lucide';
 import { HlmAspectRatioImports } from '@spartan-ng/helm/aspect-ratio';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-29',
-	imports: [NgIcon, NgClass, HlmIcon, HlmButton, NgOptimizedImage, HlmAspectRatioImports, HlmDialogImports],
+	imports: [NgIcon, NgClass, HlmIconImports, HlmButtonImports, NgOptimizedImage, HlmAspectRatioImports, HlmDialogImports],
 	providers: [provideIcons({ lucideCopy, lucideCheck })],
 	template: `
 		<hlm-dialog>

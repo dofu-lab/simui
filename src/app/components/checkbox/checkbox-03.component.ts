@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideMoon } from '@ng-icons/lucide';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-03',
-	imports: [HlmCheckbox, HlmLabel],
+	imports: [HlmCheckboxImports, HlmLabelImports],
 	providers: [provideIcons({ lucideMoon })],
 	template: `
 		<div class="flex items-center gap-3">

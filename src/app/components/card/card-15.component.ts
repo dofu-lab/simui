@@ -4,7 +4,7 @@ import { type AbstractControl } from '@angular/forms';
 import { form, FormField, required, submit } from '@angular/forms/signals';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
-import { maskitoTimeOptionsGenerator } from '@maskito/kit';
+import { maskitoTime } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight, lucidePlus, lucideX } from '@ng-icons/lucide';
 import { ErrorStateMatcher } from '@spartan-ng/brain/forms';
@@ -15,7 +15,7 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
-import { HlmSeparator } from '@spartan-ng/helm/separator';
+import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { hlm } from '@spartan-ng/helm/utils';
 
 @Injectable()
@@ -114,7 +114,7 @@ export const DefaultEventStyle = [
 		HlmCalendarImports,
 		HlmBadgeImports,
 		HlmRadioGroupImports,
-		HlmSeparator,
+		HlmSeparatorImports,
 	],
 	providers: [
 		provideIcons({ lucideChevronLeft, lucideChevronRight, lucidePlus, lucideX }),
@@ -233,7 +233,7 @@ export class Card15Component {
 	protected readonly minDate = new Date(2023, 0, 1);
 	protected readonly maxDate = new Date(2030, 11, 31);
 	protected readonly mode = signal<'edit' | 'view'>('view');
-	protected readonly timeMask: MaskitoOptions = maskitoTimeOptionsGenerator({ mode: 'HH:MM' });
+	protected readonly timeMask: MaskitoOptions = maskitoTime({ mode: 'HH:MM' });
 	protected readonly colorOptions = [
 		{
 			value: 'meeting',

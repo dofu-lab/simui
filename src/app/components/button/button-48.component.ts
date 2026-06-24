@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-48',
-	imports: [HlmButton],
+	imports: [HlmButtonImports],
 	host: {
 		class: 'w-full',
 	},

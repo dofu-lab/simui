@@ -2,16 +2,16 @@ import { Component, computed } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MaskitoDirective } from '@maskito/angular';
-import { maskitoNumberOptionsGenerator, maskitoParseNumber } from '@maskito/kit';
+import { maskitoNumber, maskitoParseNumber } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideChevronUp, lucideEuro } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-26',
-	imports: [HlmLabel, HlmInput, NgIcon, HlmIcon, ReactiveFormsModule, MaskitoDirective],
+	imports: [NgIcon, ReactiveFormsModule, MaskitoDirective, HlmLabelImports, HlmInputImports, HlmIconImports],
 	providers: [provideIcons({ lucideChevronDown, lucideChevronUp, lucideEuro })],
 	host: { class: 'w-full' },
 	template: `
@@ -52,7 +52,7 @@ export class Input26Component {
 	});
 	protected readonly formValueChange = toSignal(this.form.valueChanges);
 	protected readonly isDecreaseDisabled = computed(() => this.formValueChange()?.control === '0');
-	protected readonly numberMaskedInput = maskitoNumberOptionsGenerator({
+	protected readonly numberMaskedInput = maskitoNumber({
 		maximumFractionDigits: 2,
 		thousandSeparator: ',',
 		decimalSeparator: '.',

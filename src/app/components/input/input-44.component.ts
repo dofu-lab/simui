@@ -4,11 +4,11 @@ import { MaskitoOptions } from '@maskito/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard } from '@ng-icons/lucide';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-44',
-	imports: [HlmLabel, NgIcon, MaskitoDirective, HlmInputGroupImports],
+	imports: [NgIcon, MaskitoDirective, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideCreditCard })],
 	host: { class: 'w-full' },
 	template: `

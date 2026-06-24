@@ -3,15 +3,15 @@ import { NgClass } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-04',
 	providers: [provideIcons({ lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail, lucideCheck })],
-	imports: [NgClass, NgIcon, HlmButton, HlmIcon, HlmInput, HlmPopoverImports],
+	imports: [NgClass, NgIcon, HlmButtonImports, HlmIconImports, HlmInput, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">Share</button>

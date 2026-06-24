@@ -1,13 +1,13 @@
 import { Component, computed, signal } from '@angular/core';
 import { IconType, NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMonitorCog, lucideMoon, lucideSun } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dropdown-15',
-	imports: [NgIcon, HlmIcon, HlmButton, HlmDropdownMenuImports],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmDropdownMenuImports],
 	providers: [provideIcons({ lucideSun, lucideMoon, lucideMonitorCog })],
 	template: `
 		<div class="flex w-40 items-center justify-center">

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFrame, lucideHand, lucideMousePointer2, lucidePenTool } from '@ng-icons/lucide';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-17',
-	imports: [HlmCheckbox, HlmLabel, HlmIcon, NgIcon],
+	imports: [HlmCheckboxImports, HlmLabelImports, HlmIconImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideMousePointer2,

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlignCenter, lucideAlignJustify, lucideAlignLeft, lucideAlignRight } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 
 @Component({
 	selector: 'sim-button-32',
-	imports: [HlmToggleGroupImports, HlmIcon, NgIcon],
+	imports: [NgIcon, HlmToggleGroupImports, HlmIconImports],
 	providers: [provideIcons({ lucideAlignLeft, lucideAlignRight, lucideAlignCenter, lucideAlignJustify })],
 	template: `
 		<hlm-toggle-group multiple="false" nullable="true" class="divide-background inline-flex divide-x">

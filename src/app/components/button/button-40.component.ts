@@ -2,12 +2,12 @@ import { NgClass } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideThumbsUp } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-40',
 	providers: [provideIcons({ lucideThumbsUp })],
-	imports: [HlmButton, NgClass, NgIcon],
+	imports: [HlmButtonImports, NgClass, NgIcon],
 	template: `
 		<button
 			hlmBtn

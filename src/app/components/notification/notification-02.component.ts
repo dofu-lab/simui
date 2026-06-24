@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleCheck, lucideX } from '@ng-icons/lucide';
-import { HlmAlert } from '@spartan-ng/helm/alert';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmAlertImports } from '@spartan-ng/helm/alert';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-02',
 	providers: [provideIcons({ lucideCircleCheck, lucideX })],
-	imports: [NgIcon, HlmIcon, HlmAlert, HlmButton],
+	imports: [NgIcon, HlmIconImports, HlmAlertImports, HlmButtonImports],
 	template: `
 		<div hlmAlert class="bg-background z-50 flex gap-3 py-3 shadow-lg">
 			<span class="flex items-center">
@@ -16,7 +16,11 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			</span>
 			<p hlmAlertDesc class="grow">An error occurred!</p>
 			<button hlmBtn variant="ghost" class="group -my-1.5 -me-2 size-8 shrink-0 p-0 hover:bg-transparent">
-				<ng-icon hlm name="lucideX" class="opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" size="sm" />
+				<ng-icon
+					hlm
+					name="lucideX"
+					class="opacity-60 transition-opacity group-hover:opacity-100 motion-reduce:transition-none"
+					size="sm" />
 			</button>
 		</div>
 	`,

@@ -2,16 +2,16 @@ import { Component, computed, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideImagePlus, lucideX } from '@ng-icons/lucide';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
-	selector: 'profile-background',
-	imports: [NgIcon, HlmButton, HlmIcon],
+	selector: 'sim-profile-background',
+	imports: [NgIcon, HlmButtonImports, HlmIconImports],
 	providers: [provideIcons({ lucideImagePlus, lucideX })],
 	template: `
 		<div class="h-32">
@@ -22,14 +22,14 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 				<div class="absolute inset-0 flex items-center justify-center gap-2">
 					<button
 						hlmBtn
-						class="focus-visible:border-ring focus-visible:ring-ring/50 z-50 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none hover:bg-black/80 focus-visible:ring-[3px]"
+						class="focus-visible:border-ring focus-visible:ring-ring/50 ease z-50 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] duration-150 outline-none hover:bg-black/80 focus-visible:ring-[3px] motion-reduce:transition-none"
 						size="icon"
 						(click)="fileInput.click()">
 						<ng-icon hlm name="lucideImagePlus" size="sm" />
 					</button>
 					<button
 						hlmBtn
-						class="focus-visible:border-ring focus-visible:ring-ring/50 z-50 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none hover:bg-black/80 focus-visible:ring-[3px]"
+						class="focus-visible:border-ring focus-visible:ring-ring/50 ease z-50 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] duration-150 outline-none hover:bg-black/80 focus-visible:ring-[3px] motion-reduce:transition-none"
 						size="icon"
 						(click)="removeBackground()">
 						<ng-icon hlm name="lucideX" size="sm" />
@@ -58,8 +58,8 @@ export class ProfileBackgroundComponent {
 }
 
 @Component({
-	selector: 'profile-avatar',
-	imports: [NgIcon, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmButton, HlmIcon],
+	selector: 'sim-profile-avatar',
+	imports: [NgIcon, HlmAvatarImports, HlmButtonImports, HlmIconImports],
 	providers: [provideIcons({ lucideImagePlus })],
 	template: `
 		<div class="relative -mt-10 ml-6 w-fit">
@@ -69,7 +69,7 @@ export class ProfileBackgroundComponent {
 			</hlm-avatar>
 			<button
 				hlmBtn
-				class="focus-visible:border-ring focus-visible:ring-ring/50 absolute top-6 left-6 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none hover:bg-black/80 focus-visible:ring-[3px]"
+				class="focus-visible:border-ring focus-visible:ring-ring/50 ease absolute top-6 left-6 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] duration-150 outline-none hover:bg-black/80 focus-visible:ring-[3px] motion-reduce:transition-none"
 				size="icon"
 				(click)="fileInput.click()">
 				<ng-icon hlm name="lucideImagePlus" size="sm" />
@@ -95,15 +95,15 @@ export class ProfileAvatarComponent {
 	selector: 'sim-dialog-23',
 	imports: [
 		NgIcon,
-		HlmIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmInput,
-		HlmLabel,
-		HlmButton,
-		ProfileBackgroundComponent,
 		ProfileAvatarComponent,
+		ProfileBackgroundComponent,
+		HlmIconImports,
 		HlmDialogImports,
+		HlmInputImports,
+		HlmLabelImports,
+		HlmButtonImports,
 	],
 	providers: [provideIcons({ lucideCheck })],
 	template: `
@@ -118,8 +118,8 @@ export class ProfileAvatarComponent {
 						<div hlmDialogDescription class="sr-only">
 							Make changes to your profile here. You can change your photo and set a username.
 						</div>
-						<profile-background />
-						<profile-avatar />
+						<sim-profile-background />
+						<sim-profile-avatar />
 						<div class="flex flex-col gap-4 px-6 pt-4 pb-6" [formGroup]="form">
 							<div class="flex flex-row gap-4">
 								<label hlmLabel for="firstName" class="flex flex-col items-start gap-1">

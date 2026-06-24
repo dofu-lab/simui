@@ -1,13 +1,13 @@
 import { Component, computed, ElementRef, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleUserRound, lucideX } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-51',
 	providers: [provideIcons({ lucideCircleUserRound, lucideX })],
-	imports: [HlmButton, HlmIcon, NgIcon],
+	imports: [HlmButtonImports, HlmIconImports, NgIcon],
 	template: `
 		<div class="flex flex-col items-center justify-center">
 			<div class="relative inline-flex">

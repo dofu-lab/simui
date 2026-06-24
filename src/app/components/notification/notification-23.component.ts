@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBox, lucideX } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-23',
@@ -12,7 +12,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			lucideBox,
 		}),
 	],
-	imports: [NgIcon, HlmIcon, HlmButton],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports],
 	template: `
 		<div class="bg-background z-50 flex max-w-[400px] gap-3 rounded-md border p-4 shadow-lg">
 			<div class="flex flex-col gap-3">

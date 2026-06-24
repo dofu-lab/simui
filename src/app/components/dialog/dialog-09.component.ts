@@ -3,13 +3,13 @@ import { Component, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideMail } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-09',
 	providers: [provideIcons({ lucideCircleAlert, lucideMail })],
-	imports: [NgIcon, FormsModule, HlmButton, HlmDialogImports, HlmInputGroupImports],
+	imports: [NgIcon, FormsModule, HlmButtonImports, HlmDialogImports, HlmInputGroupImports],
 	template: `
 		<hlm-dialog>
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Newsletter</button>

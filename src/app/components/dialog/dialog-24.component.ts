@@ -1,13 +1,13 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogContent, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-24',
-	imports: [NgIcon, HlmIcon, HlmDialog, HlmDialogContent, HlmButton, HlmDialogImports],
+	imports: [NgIcon, HlmIconImports, HlmDialog, HlmDialogContent, HlmButtonImports, HlmDialogImports],
 	providers: [provideIcons({ lucideArrowRight })],
 	template: `
 		<hlm-dialog>

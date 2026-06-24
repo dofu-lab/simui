@@ -1,12 +1,12 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-10',
-	imports: [HlmButton, HlmInput, FormsModule, HlmPopoverImports],
+	imports: [HlmButtonImports, HlmInput, FormsModule, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5" autoFocus="dialog">
 			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">Command Palette</button>

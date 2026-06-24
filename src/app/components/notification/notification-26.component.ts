@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCloudUpload, lucideX } from '@ng-icons/lucide';
-import { BrnProgress, BrnProgressIndicator } from '@spartan-ng/brain/progress';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
+import { BrnProgressImports } from '@spartan-ng/brain/progress';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmProgressImports } from '@spartan-ng/helm/progress';
 
 @Component({
 	selector: 'sim-notification-26',
@@ -14,7 +14,7 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 			lucideCloudUpload,
 		}),
 	],
-	imports: [NgIcon, HlmIcon, HlmButton, BrnProgress, BrnProgressIndicator, HlmProgressIndicator, HlmProgress],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, BrnProgressImports, HlmProgressImports],
 	template: `
 		<div class="bg-background z-50 flex max-w-[400px] gap-3 rounded-md border p-4 shadow-lg">
 			<div class="flex flex-col gap-3">
@@ -38,7 +38,11 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 				</div>
 			</div>
 			<button hlmBtn variant="ghost" class="group -my-1.5 -me-2 size-8 shrink-0 p-0 hover:bg-transparent">
-				<ng-icon hlm name="lucideX" size="sm" class="opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" />
+				<ng-icon
+					hlm
+					name="lucideX"
+					size="sm"
+					class="opacity-60 transition-opacity group-hover:opacity-100 motion-reduce:transition-none" />
 			</button>
 		</div>
 	`,

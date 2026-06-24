@@ -2,12 +2,12 @@ import { NgClass } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideStar } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-44',
 	providers: [provideIcons({ lucideStar })],
-	imports: [HlmButton, NgClass, NgIcon],
+	imports: [HlmButtonImports, NgClass, NgIcon],
 	template: `
 		<button hlmBtn size="sm" class="shadow-none focus-visible:z-10" (click)="toggleStart()">
 			<ng-icon

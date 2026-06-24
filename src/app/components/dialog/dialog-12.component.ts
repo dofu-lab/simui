@@ -1,13 +1,13 @@
 import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
+import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-12',
-	imports: [FormsModule, HlmButton, HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot, BrnInputOtp, HlmDialogImports],
+	imports: [FormsModule, HlmButtonImports, HlmInputOtpImports, BrnInputOtpImports, HlmDialogImports],
 	template: `
 		<hlm-dialog>
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">OTP</button>

@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCookie, lucideX } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-banner-06',
-	imports: [NgIcon, HlmIcon, HlmButton],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports],
 	providers: [provideIcons({ lucideCookie, lucideX })],
 	host: {
 		class: 'w-full',
@@ -16,7 +16,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			<div class="relative flex max-w-[1000px] gap-2 md:mx-auto md:items-center">
 				<div class="flex grow flex-col justify-between gap-2 md:flex-row md:items-center">
 					<div class="flex items-start gap-2 md:items-center">
-						<div class="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-lg border shadow-xs">
+						<div class="flex size-8 shrink-0 items-center justify-center rounded-lg border shadow-xs">
 							<ng-icon hlm name="lucideCookie" size="sm" />
 						</div>
 						<span class="text-primary pr-4">
@@ -39,7 +39,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 						hlm
 						name="lucideX"
 						size="sm"
-						class="text-primary opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" />
+						class="text-primary opacity-60 transition-opacity group-hover:opacity-100 motion-reduce:transition-none" />
 				</button>
 			</div>
 		</div>

@@ -2,23 +2,21 @@ import { afterNextRender, Component, computed, model, signal } from '@angular/co
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLockKeyhole } from '@ng-icons/lucide';
-import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-32',
 	imports: [
 		NgIcon,
 		FormsModule,
-		HlmIcon,
-		HlmButton,
-		HlmInputOtp,
-		HlmInputOtpGroup,
-		HlmInputOtpSlot,
-		BrnInputOtp,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmInputOtpImports,
+		BrnInputOtpImports,
 		HlmDialogImports,
 	],
 	providers: [provideIcons({ lucideLockKeyhole })],

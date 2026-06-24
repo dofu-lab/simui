@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideUserPlus } from '@ng-icons/lucide';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-27',
-	imports: [NgIcon, HlmIcon, HlmButton, HlmAvatar, HlmAvatarFallback, HlmAvatarImage, HlmDialogImports],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmAvatarImports, HlmDialogImports],
 	providers: [provideIcons({ lucideUserPlus })],
 	template: `
 		<hlm-dialog autoFocus="dialog">

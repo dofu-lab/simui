@@ -2,11 +2,11 @@ import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChi
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail } from '@ng-icons/lucide';
-import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-13',
@@ -14,12 +14,10 @@ import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm
 	imports: [
 		FormsModule,
 		NgIcon,
-		HlmIcon,
-		HlmButton,
-		HlmInputOtp,
-		HlmInputOtpGroup,
-		HlmInputOtpSlot,
-		BrnInputOtp,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmInputOtpImports,
+		BrnInputOtpImports,
 		HlmDialogImports,
 	],
 	template: `

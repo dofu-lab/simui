@@ -2,9 +2,9 @@ import { Component, model, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideX } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 type TagItem = {
 	id: number;
@@ -13,7 +13,7 @@ type TagItem = {
 
 @Component({
 	selector: 'sim-input-54',
-	imports: [HlmLabel, HlmInput, FormsModule, NgIcon, HlmIcon],
+	imports: [FormsModule, NgIcon, HlmIconImports, HlmLabelImports, HlmInputImports],
 	providers: [provideIcons({ lucideX })],
 	host: { class: 'w-full' },
 	template: `

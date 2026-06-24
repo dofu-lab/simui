@@ -1,11 +1,11 @@
 import { Component, viewChild } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-dialog-10',
-	imports: [HlmButton, HlmInput, HlmDialogImports],
+	imports: [HlmButtonImports, HlmInputImports, HlmDialogImports],
 	template: `
 		<hlm-dialog>
 			<button hlmDialogTrigger hlmBtn variant="outline">Feedback</button>

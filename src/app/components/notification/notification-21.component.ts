@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight, lucideCircleAlert, lucideX } from '@ng-icons/lucide';
-import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmAspectRatioImports } from '@spartan-ng/helm/aspect-ratio';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-21',
 	providers: [provideIcons({ lucideCircleAlert, lucideArrowRight, lucideX })],
-	imports: [NgIcon, HlmIcon, HlmButton, HlmAspectRatio],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmAspectRatioImports],
 	template: `
 		<div class="flex">
 			<div [hlmAspectRatio]="16 / 3">
 				<img
+					alt="noti-21-background"
 					src="assets/backgrounds/bg-01.jpg"
 					class="rounded-r-0 h-[134px] w-50 overflow-hidden rounded-l-md border border-r-0" />
 			</div>
@@ -27,7 +28,11 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 						</div>
 					</div>
 					<button hlmBtn variant="ghost" class="group -my-1.5 -me-2 size-8 shrink-0 p-0 hover:bg-transparent">
-						<ng-icon hlm size="sm" name="lucideX" class="opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" />
+						<ng-icon
+							hlm
+							size="sm"
+							name="lucideX"
+							class="opacity-60 transition-opacity group-hover:opacity-100 motion-reduce:transition-none" />
 					</button>
 				</div>
 				<div class="flex gap-3">

@@ -3,12 +3,12 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMic, lucideSearch } from '@ng-icons/lucide';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { debounceTime } from 'rxjs';
 
 @Component({
 	selector: 'sim-input-24',
-	imports: [HlmLabel, HlmInputGroupImports, NgIcon, ReactiveFormsModule],
+	imports: [NgIcon, ReactiveFormsModule, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideSearch, lucideMic })],
 	host: { class: 'w-full' },
 	template: `

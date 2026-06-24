@@ -1,13 +1,13 @@
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus, lucidePlus, lucideUserRoundCheck } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dialog-35',
-	imports: [NgIcon, HlmIcon, HlmButton, HlmButton, HlmDialogImports],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmButtonImports, HlmDialogImports],
 	providers: [provideIcons({ lucideUserRoundCheck, lucideMinus, lucidePlus })],
 	template: `
 		<hlm-dialog autoFocus="dialog">

@@ -4,11 +4,11 @@ import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy } from '@ng-icons/lucide';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-50',
-	imports: [HlmLabel, NgIcon, NgClass, HlmInputGroupImports],
+	imports: [NgIcon, NgClass, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideCopy, lucideCheck })],
 	host: { class: 'w-full' },
 	template: `

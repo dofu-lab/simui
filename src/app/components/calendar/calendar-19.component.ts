@@ -15,7 +15,7 @@ import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import { BrnCalendar, BrnCalendarImports, injectBrnCalendarI18n, type Weekday } from '@spartan-ng/brain/calendar';
 import { injectDateAdapter } from '@spartan-ng/brain/date-time';
 import { buttonVariants } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
@@ -23,7 +23,7 @@ import { addMonths, format } from 'date-fns';
 
 @Component({
 	selector: 'sim-calendar-19',
-	imports: [BrnCalendarImports, NgIcon, HlmIcon, HlmSelectImports, NgTemplateOutlet, NgClass, CurrencyPipe],
+	imports: [BrnCalendarImports, NgIcon, HlmIconImports, HlmSelectImports, NgTemplateOutlet, NgClass, CurrencyPipe],
 	viewProviders: [provideIcons({ lucideChevronLeft, lucideChevronRight })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `

@@ -16,8 +16,8 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState, formatBytes } from '@sim/file';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-12',
@@ -38,7 +38,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			lucideDownload,
 		}),
 	],
-	imports: [HlmButton, HlmIcon, NgIcon, FileDragDropDirective],
+	imports: [HlmButtonImports, HlmIconImports, NgIcon, FileDragDropDirective],
 	host: {
 		class: 'w-full',
 	},

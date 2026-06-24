@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback } from '@spartan-ng/helm/avatar';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'sim-avatar-02',
-	imports: [HlmAvatar, HlmAvatarFallback],
+	imports: [HlmAvatarImports],
 	template: `
 		<hlm-avatar class="border-border/50 size-10 border">
 			<span hlmAvatarFallback class="bg-muted">ML</span>

@@ -1,11 +1,11 @@
 import { HlmFieldImports } from '@/libs/ui/field/src';
 import { Component } from '@angular/core';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-06',
-	imports: [HlmLabel, HlmInput, HlmFieldImports],
+	imports: [HlmLabelImports, HlmInputImports, HlmFieldImports],
 	host: { class: 'w-full' },
 	template: `
 		<hlm-field forceInvalid>

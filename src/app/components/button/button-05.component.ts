@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-05',
-	imports: [HlmButton],
+	imports: [HlmButtonImports],
 	template: `
 		<button hlmBtn disabled size="sm">Disabled</button>
 	`,

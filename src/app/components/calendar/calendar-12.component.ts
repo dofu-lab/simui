@@ -4,7 +4,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { format, isValid, parse } from 'date-fns';
 
 interface DateModel {
@@ -13,7 +13,7 @@ interface DateModel {
 
 @Component({
 	selector: 'sim-calendar-12',
-	imports: [HlmCalendarImports, HlmInputGroupImports, HlmLabel, NgIcon, FormField],
+	imports: [HlmCalendarImports, HlmInputGroupImports, HlmLabelImports, NgIcon, FormField],
 	providers: [provideIcons({ lucideCalendar })],
 	template: `
 		<div class="relative flex flex-col items-center overflow-hidden rounded-2xl border">

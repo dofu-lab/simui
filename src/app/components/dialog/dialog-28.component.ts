@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-28',
-	imports: [HlmButton, HlmAvatar, HlmAvatarFallback, HlmAvatarImage, HlmDialogImports],
+	imports: [HlmButtonImports, HlmAvatarImports, HlmDialogImports],
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Member accepted</button>

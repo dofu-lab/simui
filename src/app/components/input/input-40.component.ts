@@ -2,12 +2,12 @@ import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
-import { maskitoDateRangeOptionsGenerator } from '@maskito/kit';
+import { maskitoDateRange } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
-import { HlmCalendarRange } from '@spartan-ng/helm/calendar';
+import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { addDays, format, isValid, parse } from 'date-fns';
 
@@ -15,7 +15,15 @@ type ParsedDate = { startDate: Date | null; endDate: Date | null };
 
 @Component({
 	selector: 'sim-input-40',
-	imports: [HlmLabel, FormsModule, MaskitoDirective, NgIcon, HlmCalendarRange, HlmPopoverImports, HlmInputGroupImports],
+	imports: [
+		NgIcon,
+		FormsModule,
+		MaskitoDirective,
+		HlmLabelImports,
+		HlmCalendarImports,
+		HlmPopoverImports,
+		HlmInputGroupImports,
+	],
 	providers: [provideIcons({ lucideCalendar })],
 	host: { class: 'w-full' },
 	template: `
@@ -50,7 +58,7 @@ type ParsedDate = { startDate: Date | null; endDate: Date | null };
 export class Input40Component {
 	readonly selectedStartDate = model<Date | null>(null);
 	readonly selectedEndDate = model<Date | null>(null);
-	readonly mask: MaskitoOptions = maskitoDateRangeOptionsGenerator({
+	readonly mask: MaskitoOptions = maskitoDateRange({
 		mode: 'mm/dd/yyyy',
 		dateSeparator: '/',
 		rangeSeparator: ' - ',

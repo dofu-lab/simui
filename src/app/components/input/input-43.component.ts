@@ -1,12 +1,12 @@
 import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
-import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
+import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-43',
-	imports: [HlmLabel, HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot, BrnInputOtp, FormsModule],
+	imports: [FormsModule, HlmLabelImports, HlmInputOtpImports, BrnInputOtpImports],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-43" class="mb-2 text-sm">OTP input with space</label>

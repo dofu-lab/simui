@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-30',
-	imports: [HlmLabel, HlmInputGroupImports],
+	imports: [HlmLabelImports, HlmInputGroupImports],
 	host: { class: 'w-full' },
 	template: `
 		<hlm-input-group>

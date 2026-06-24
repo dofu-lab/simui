@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCloudUpload, lucideX } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmProgressImports } from '@spartan-ng/helm/progress';
 
 @Component({
 	selector: 'sim-notification-25',
@@ -13,7 +13,7 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 			lucideCloudUpload,
 		}),
 	],
-	imports: [NgIcon, HlmIcon, HlmButton, HlmProgressIndicator, HlmProgress],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmProgressImports],
 	template: `
 		<div class="bg-background z-50 max-w-[400px] rounded-md border p-4 shadow-lg">
 			<div class="flex gap-3">
@@ -36,7 +36,11 @@ import { HlmProgress, HlmProgressIndicator } from '@spartan-ng/helm/progress';
 					</div>
 				</div>
 				<button hlmBtn variant="ghost" class="group -my-1.5 -me-2 size-8 shrink-0 p-0 hover:bg-transparent">
-					<ng-icon hlm name="lucideX" size="sm" class="opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" />
+					<ng-icon
+						hlm
+						name="lucideX"
+						size="sm"
+						class="opacity-60 transition-opacity group-hover:opacity-100 motion-reduce:transition-none" />
 				</button>
 			</div>
 		</div>

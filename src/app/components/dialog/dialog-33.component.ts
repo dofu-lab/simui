@@ -2,15 +2,15 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleDollarSign } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-33',
-	imports: [NgIcon, FormsModule, ReactiveFormsModule, HlmIcon, HlmButton, HlmCheckbox, HlmLabel, HlmDialogImports],
+	imports: [NgIcon, FormsModule, ReactiveFormsModule, HlmIconImports, HlmButtonImports, HlmCheckboxImports, HlmLabelImports, HlmDialogImports],
 	providers: [provideIcons({ lucideCircleDollarSign })],
 	template: `
 		<hlm-dialog autoFocus="dialog">

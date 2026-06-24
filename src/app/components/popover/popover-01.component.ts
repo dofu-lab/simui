@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideListFilter } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-01',
 	providers: [provideIcons({ lucideListFilter })],
-	imports: [FormsModule, HlmButton, HlmCheckbox, HlmIcon, HlmLabel, NgIcon, HlmPopoverImports],
+	imports: [FormsModule, HlmButtonImports, HlmCheckboxImports, HlmIconImports, HlmLabelImports, NgIcon, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button variant="outline" size="icon" class="relative size-9" hlmPopoverTrigger hlmBtn>

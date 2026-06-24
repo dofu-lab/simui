@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-12',
-	imports: [HlmCheckbox, HlmLabel],
+	imports: [HlmCheckboxImports, HlmLabelImports],
 	template: `
 		<div class="flex items-start gap-3">
 			<label hlmLabel class="flex items-start gap-2" for="checkbox12">

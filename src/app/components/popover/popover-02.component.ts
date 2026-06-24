@@ -1,15 +1,15 @@
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell } from '@ng-icons/lucide';
-import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-02',
 	providers: [provideIcons({ lucideBell })],
-	imports: [HlmBadge, HlmButton, HlmIcon, NgIcon, HlmPopoverImports],
+	imports: [HlmBadgeImports, HlmButtonImports, HlmIconImports, NgIcon, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button variant="outline" size="icon" class="relative size-9" hlmPopoverTrigger hlmBtn>

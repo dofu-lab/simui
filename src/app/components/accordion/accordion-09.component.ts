@@ -10,11 +10,11 @@ import {
 } from '@ng-icons/lucide';
 import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-accordion-09',
-	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon, HlmIcon],
+	imports: [HlmAccordionImports, BrnAccordionImports, HlmIconImports, NgIcon],
 	providers: [
 		provideIcons({ lucideChevronDown, lucideChevronUp, lucideLink, lucideBell, lucideShieldCheck, lucideLifeBuoy }),
 	],
@@ -28,7 +28,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 							<button
 								brnAccordionTrigger
 								data-slot="accordion-trigger"
-								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-4 text-start text-sm font-medium transition-all motion-reduce:transition-none outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
+								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-4 text-start text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)] motion-reduce:transition-none">
 								<span class="flex items-center gap-2">
 									<span
 										class="flex size-10 shrink-0 items-center justify-center rounded-full border"

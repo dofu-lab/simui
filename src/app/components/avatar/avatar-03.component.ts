@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideUser } from '@ng-icons/lucide';
-import { HlmAvatar, HlmAvatarFallback } from '@spartan-ng/helm/avatar';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-avatar-03',
 	providers: [provideIcons({ lucideUser })],
-	imports: [HlmAvatar, HlmAvatarFallback, HlmIcon, NgIcon],
+	imports: [NgIcon, HlmAvatarImports, HlmIconImports],
 	template: `
 		<hlm-avatar class="border-border/50 size-10 border">
 			<span hlmAvatarFallback class="bg-muted text-muted-foreground">

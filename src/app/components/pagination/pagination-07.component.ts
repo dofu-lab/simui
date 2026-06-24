@@ -3,8 +3,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronFirst, lucideChevronLast } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { map } from 'rxjs';
 
@@ -16,7 +16,7 @@ type PaginationReturn = {
 
 @Component({
 	selector: 'sim-pagination-07',
-	imports: [HlmPaginationImports, HlmButton, NgIcon, HlmIcon],
+	imports: [HlmPaginationImports, HlmButtonImports, NgIcon, HlmIconImports],
 	providers: [provideIcons({ lucideChevronLast, lucideChevronFirst })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full' },

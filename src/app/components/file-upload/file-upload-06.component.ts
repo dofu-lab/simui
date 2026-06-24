@@ -2,13 +2,13 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideImageUp, lucideTrash2, lucideUpload, lucideX } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState } from '@sim/file';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-06',
 	providers: [provideIcons({ lucideX, lucideImageUp, lucideCircleAlert, lucideUpload, lucideTrash2 })],
-	imports: [HlmButton, HlmIcon, NgIcon, FileDragDropDirective],
+	imports: [HlmButtonImports, HlmIconImports, NgIcon, FileDragDropDirective],
 	host: {
 		class: 'w-full',
 	},
@@ -18,7 +18,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 				<div
 					fileDragDrop
 					role="button"
-					class="border-input has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors motion-reduce:transition-none has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:items-start! has-[input:focus]:ring-[3px]"
+					class="border-input has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:items-start! has-[input:focus]:ring-[3px] motion-reduce:transition-none"
 					dragClass="bg-accent/50"
 					[multiple]="true"
 					[accept]="accept"

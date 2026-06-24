@@ -1,11 +1,11 @@
 import { Component, model } from '@angular/core';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-09',
-	imports: [HlmCheckbox, HlmLabel, HlmInput],
+	imports: [HlmCheckboxImports, HlmLabelImports, HlmInputImports],
 	host: {
 		class: 'w-full',
 	},

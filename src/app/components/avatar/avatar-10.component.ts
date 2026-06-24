@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmBadge } from '@spartan-ng/helm/badge';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-avatar-10',
-	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmBadge],
+	imports: [HlmAvatarImports, HlmBadgeImports],
 	template: `
 		<div class="relative">
 			<hlm-avatar class="border-border/50 size-10 border">

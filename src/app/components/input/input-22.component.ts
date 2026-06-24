@@ -3,11 +3,11 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSearch } from '@ng-icons/lucide';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmKbdImports } from '@spartan-ng/helm/kbd';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-22',
-	imports: [HlmLabel, NgIcon, HlmInputGroupImports, HlmKbdImports],
+	imports: [HlmLabelImports, NgIcon, HlmInputGroupImports, HlmKbdImports],
 	providers: [provideIcons({ lucideSearch })],
 	host: { class: 'w-full' },
 	template: `

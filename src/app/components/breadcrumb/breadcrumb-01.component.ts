@@ -1,27 +1,10 @@
 import { Component } from '@angular/core';
-import {
-	HlmBreadcrumb,
-	HlmBreadcrumbEllipsis,
-	HlmBreadcrumbItem,
-	HlmBreadcrumbLink,
-	HlmBreadcrumbList,
-	HlmBreadcrumbPage,
-	HlmBreadcrumbSeparator,
-} from '@spartan-ng/helm/breadcrumb';
+import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'sim-breadcrumb-01',
-	imports: [
-		HlmBreadcrumb,
-		HlmBreadcrumbSeparator,
-		HlmBreadcrumbEllipsis,
-		HlmBreadcrumbList,
-		HlmBreadcrumbItem,
-		HlmBreadcrumbPage,
-		HlmBreadcrumbLink,
-		HlmDropdownMenuImports,
-	],
+	imports: [HlmBreadcrumbImports, HlmDropdownMenuImports],
 	template: `
 		<nav hlmBreadcrumb>
 			<ol hlmBreadcrumbList>

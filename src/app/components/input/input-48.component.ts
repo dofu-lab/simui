@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, computed, model, signal } from '@an
 import { FormsModule } from '@angular/forms';
 import { IconType, NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideEye, lucideEyeOff, lucideX } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-48',
-	imports: [HlmLabel, NgIcon, HlmIcon, FormsModule, HlmInputGroupImports],
+	imports: [NgIcon, FormsModule, HlmIconImports, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideEye, lucideEyeOff, lucideCheck, lucideX })],
 	host: { class: 'w-full' },
 	changeDetection: ChangeDetectionStrategy.OnPush,

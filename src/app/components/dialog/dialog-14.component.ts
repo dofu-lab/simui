@@ -1,13 +1,21 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-14',
-	imports: [FormsModule, ReactiveFormsModule, HlmButton, HlmLabel, HlmInput, HlmButton, HlmDialogImports],
+	imports: [
+		FormsModule,
+		ReactiveFormsModule,
+		HlmButtonImports,
+		HlmLabelImports,
+		HlmInputImports,
+		HlmButtonImports,
+		HlmDialogImports,
+	],
 	template: `
 		<hlm-dialog>
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Sign Up</button>

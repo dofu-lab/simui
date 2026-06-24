@@ -2,14 +2,14 @@ import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus } from '@ng-icons/lucide';
-import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-42',
-	imports: [NgIcon, HlmIcon, HlmLabel, HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot, BrnInputOtp, FormsModule],
+	imports: [NgIcon, FormsModule, HlmIconImports, HlmLabelImports, HlmInputOtpImports, BrnInputOtpImports],
 	providers: [provideIcons({ lucideMinus })],
 	host: { class: 'w-full' },
 	template: `

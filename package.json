@@ -63,6 +63,7 @@
 		"@angular/cli": "22.0.3",
 		"@angular/compiler-cli": "22.0.2",
 		"@angular/language-service": "22.0.2",
+		"@eslint/js": "9.39.1",
 		"@playwright/test": "^1.60.0",
 		"@spartan-ng/cli": "1.0.0",
 		"@types/culori": "^4.0.1",

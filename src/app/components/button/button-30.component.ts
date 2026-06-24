@@ -3,13 +3,13 @@ import { NgClass } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-button-30',
 	providers: [provideIcons({ lucideCheck, lucideCopy })],
-	imports: [NgClass, HlmButton, HlmTooltipImports, NgIcon],
+	imports: [NgClass, HlmButtonImports, HlmTooltipImports, NgIcon],
 	template: `
 		<button
 			hlmBtn

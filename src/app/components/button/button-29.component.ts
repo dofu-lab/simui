@@ -1,8 +1,8 @@
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus, lucidePlus, lucideVolume, lucideVolume1, lucideVolume2, lucideVolumeX } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-29',
@@ -16,7 +16,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			lucideVolume2,
 		}),
 	],
-	imports: [HlmIcon, HlmButton, NgIcon],
+	imports: [HlmIconImports, HlmButtonImports, NgIcon],
 	template: `
 		<div class="inline-flex items-center">
 			<button

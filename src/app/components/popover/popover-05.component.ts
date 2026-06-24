@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-05',
-	imports: [HlmButton, HlmInput, HlmPopoverImports],
+	imports: [HlmButtonImports, HlmInput, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">Feedback</button>

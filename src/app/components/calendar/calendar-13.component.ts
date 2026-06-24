@@ -3,11 +3,11 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideClock } from '@ng-icons/lucide';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-calendar-13',
-	imports: [HlmCalendarImports, HlmInputGroupImports, HlmLabel, NgIcon],
+	imports: [HlmCalendarImports, HlmInputGroupImports, HlmLabelImports, NgIcon],
 	providers: [provideIcons({ lucideClock })],
 	template: `
 		<div class="relative flex flex-col items-center overflow-hidden rounded-2xl border">

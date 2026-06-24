@@ -4,28 +4,27 @@ import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard, lucideWallet } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-dialog-18',
 	providers: [provideIcons({ lucideWallet, lucideCreditCard })],
 	imports: [
 		NgIcon,
-		ReactiveFormsModule,
-		HlmIcon,
-		HlmButton,
-		HlmButton,
-		HlmInput,
-		HlmLabel,
-		HlmSpinner,
-		HlmCheckbox,
 		MaskitoDirective,
+		ReactiveFormsModule,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmInputImports,
+		HlmLabelImports,
+		HlmSpinnerImports,
+		HlmCheckboxImports,
 		HlmDialogImports,
 	],
 	template: `

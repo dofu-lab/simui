@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight, lucideSearch } from '@ng-icons/lucide';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-23',
-	imports: [HlmLabel, NgIcon, HlmInputGroupImports],
+	imports: [NgIcon, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideSearch, lucideArrowRight })],
 	host: { class: 'w-full' },
 	template: `

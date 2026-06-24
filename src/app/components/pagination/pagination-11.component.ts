@@ -4,15 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronFirst, lucideChevronLast } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { map } from 'rxjs';
 
 @Component({
 	selector: 'sim-pagination-11',
-	imports: [HlmPaginationImports, HlmSelectImports, FormsModule, NgIcon, HlmIcon, HlmButton, RouterLink],
+	imports: [HlmPaginationImports, HlmSelectImports, FormsModule, NgIcon, HlmIconImports, HlmButtonImports, RouterLink],
 	providers: [provideIcons({ lucideChevronLast, lucideChevronFirst })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'block w-full' },

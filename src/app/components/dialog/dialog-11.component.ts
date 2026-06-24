@@ -1,14 +1,22 @@
 import { Component, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-dialog-11',
-	imports: [HlmButton, HlmInput, HlmLabel, HlmRadioGroup, HlmRadio, FormsModule, HlmDialogImports],
+	imports: [
+		FormsModule,
+		HlmButtonImports,
+		HlmInputImports,
+		HlmLabelImports,
+		HlmRadioGroupImports,
+		HlmRadioGroupImports,
+		HlmDialogImports,
+	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Rating</button>
@@ -28,7 +36,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 							@for (item of [0, 1, 2, 3, 4, 5, 6, 7, 8]; track item) {
 								<label
 									hlmLabel
-									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex size-9 flex-1 cursor-pointer flex-col items-center justify-center border text-center text-sm transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none first:rounded-s-md last:rounded-e-md has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
+									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex size-9 flex-1 cursor-pointer flex-col items-center justify-center border text-center text-sm transition-[color,box-shadow] duration-150 outline-none first:rounded-s-md last:rounded-e-md has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none">
 									<div>
 										{{ item }}
 										<hlm-radio [value]="item"></hlm-radio>

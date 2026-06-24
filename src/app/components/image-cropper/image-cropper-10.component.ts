@@ -6,11 +6,17 @@ import {
 	CropperDescriptionComponent,
 	CropperImageComponent,
 } from '@sim-space/image-cropper';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'app-image-cropper-10',
-	imports: [CropperComponent, CropperImageComponent, CropperCropAreaComponent, CropperDescriptionComponent, HlmButton],
+	imports: [
+		CropperComponent,
+		CropperImageComponent,
+		CropperCropAreaComponent,
+		CropperDescriptionComponent,
+		HlmButtonImports,
+	],
 	host: { class: 'flex flex-col gap-2 size-full' },
 	template: `
 		<div class="flex w-full flex-col gap-4 md:flex-row">

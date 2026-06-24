@@ -7,11 +7,11 @@ import { lucideMail, lucideSave } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmAspectRatioImports } from '@spartan-ng/helm/aspect-ratio';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
@@ -20,13 +20,13 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		NgIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmIcon,
-		HlmButton,
-		HlmInput,
-		HlmLabel,
 		NgOptimizedImage,
-		HlmAvatarImports,
 		BrnSelectImports,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmInputImports,
+		HlmLabelImports,
+		HlmAvatarImports,
 		HlmSelectImports,
 		HlmDialogImports,
 		HlmAspectRatioImports,
@@ -42,7 +42,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				<div class="flex-1 overflow-y-auto">
 					<div class="relative p-2">
 						<div class="shadow-xs" [hlmAspectRatio]="39 / 8">
-							<img ngSrc="assets/backgrounds/bg-02.jpg" fill class="rounded-lg" />
+							<img alt="dialog-24-background" ngSrc="assets/backgrounds/bg-02.jpg" fill class="rounded-lg" />
 						</div>
 						<hlm-avatar class="border-background peer -mt-10 ml-6 size-20 border-4">
 							<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />

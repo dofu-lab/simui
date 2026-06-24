@@ -2,12 +2,12 @@ import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideZap } from '@ng-icons/lucide';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-21',
-	imports: [HlmCheckbox, HlmLabel, NgClass],
+	imports: [HlmCheckboxImports, HlmLabelImports, NgClass],
 	providers: [provideIcons({ lucideZap })],
 	host: {
 		class: 'w-full',

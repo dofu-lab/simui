@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight, lucideTriangleAlert } from '@ng-icons/lucide';
 import { HlmAlertImports } from '@spartan-ng/helm/alert';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-alert-10',
 	providers: [provideIcons({ lucideTriangleAlert, lucideArrowRight })],
-	imports: [NgIcon, HlmIcon, HlmAlertImports],
+	imports: [NgIcon, HlmIconImports, HlmAlertImports],
 	host: {
 		class: 'w-full',
 	},
@@ -24,7 +24,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 						hlm
 						name="lucideArrowRight"
 						size="sm"
-						class="ms-1 transition-transform motion-reduce:transition-none duration-150 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5" />
+						class="ms-1 transition-transform duration-150 motion-reduce:transition-none [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5" />
 				</div>
 			</div>
 		</hlm-alert>

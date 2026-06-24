@@ -4,14 +4,14 @@ import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard, lucideWalletCards } from '@ng-icons/lucide';
-import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-dialog-20',
@@ -19,16 +19,15 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	imports: [
 		NgIcon,
 		FormsModule,
-		ReactiveFormsModule,
-		HlmIcon,
-		HlmButton,
-		HlmInput,
-		HlmLabel,
-		HlmSpinner,
-		HlmRadio,
-		HlmRadioGroup,
-		HlmBadge,
 		MaskitoDirective,
+		ReactiveFormsModule,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmInputImports,
+		HlmLabelImports,
+		HlmSpinnerImports,
+		HlmRadioGroupImports,
+		HlmBadgeImports,
 		HlmDialogImports,
 	],
 	template: `
@@ -52,7 +51,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 							<hlm-radio-group class="flex gap-3 rounded-md shadow-xs" formControlName="plan">
 								<label
 									hlmLabel
-									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
+									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] duration-150 outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none">
 									<div class="flex w-full flex-col gap-1 text-left font-normal select-none">
 										<span>Monthly</span>
 										<span class="text-muted-foreground">25$/month</span>
@@ -61,7 +60,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 								</label>
 								<label
 									hlmLabel
-									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
+									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] duration-150 outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none">
 									<div class="flex w-full flex-col gap-1 text-left font-normal select-none">
 										<div class="flex flex-1 justify-between">
 											<span>Yearly</span>

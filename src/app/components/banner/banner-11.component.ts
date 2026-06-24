@@ -1,14 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideDownload, lucideMail } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
-// Inspired by https://originui.com/banner
 @Component({
 	selector: 'sim-banner-11',
-	imports: [NgIcon, HlmIcon, HlmButton, HlmSpinner],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmSpinnerImports],
 	providers: [provideIcons({ lucideMail, lucideDownload })],
 	host: {
 		class: 'w-full',
@@ -41,9 +40,9 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	`,
 })
 export class Banner11Component {
-	isUpdating = signal<boolean>(false);
+	protected readonly isUpdating = signal<boolean>(false);
 
-	update() {
+	protected update(): void {
 		this.isUpdating.set(true);
 		setTimeout(() => {
 			this.isUpdating.set(false);

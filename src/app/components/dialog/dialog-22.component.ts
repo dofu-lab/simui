@@ -2,12 +2,12 @@ import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideRefreshCw } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-dialog-22',
@@ -16,10 +16,10 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 		NgIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmIcon,
-		HlmButton,
-		HlmLabel,
-		HlmSpinner,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmLabelImports,
+		HlmSpinnerImports,
 		HlmRadio,
 		HlmRadioGroup,
 		HlmDialogImports,

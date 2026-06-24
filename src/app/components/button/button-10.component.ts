@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight, lucideMail } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-10',
 	providers: [provideIcons({ lucideMail, lucideArrowRight })],
-	imports: [HlmButton, NgIcon],
+	imports: [HlmButtonImports, NgIcon],
 	template: `
 		<button hlmBtn size="sm" variant="secondary" class="group/btn10">
 			<ng-icon name="lucideMail" />
