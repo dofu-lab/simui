@@ -62,7 +62,7 @@ export class HlmDatePickerTrigger implements HlmDatePickerTriggerBase {
 
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() =>
-		hlm('data-placeholder:text-muted-foreground w-64 justify-between', this.userClass()),
+		hlm('data-placeholder:text-muted-foreground justify-between', this.userClass()),
 	);
 
 	protected readonly _isPlaceholder = computed(() => !this._datePicker.hasDate());
