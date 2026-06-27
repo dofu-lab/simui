@@ -1,28 +1,23 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRefreshCw, lucideX } from '@ng-icons/lucide';
-import { HlmAvatar, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-18',
-	providers: [
-		provideIcons({
-			lucideX,
-			lucideRefreshCw,
-		}),
-	],
-	imports: [NgIcon, HlmIcon, HlmButton, HlmAvatar, HlmAvatarImage],
+	providers: [provideIcons({ lucideX, lucideRefreshCw })],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmAvatarImports],
 	template: `
-		<div class="bg-background z-50 max-w-[400px] rounded-md border p-4 shadow-lg">
+		<div class="bg-background max-w-[400px] rounded-md border p-4 shadow-lg">
 			<div class="flex gap-3">
 				<div class="relative items-start">
 					<hlm-avatar class="border-border/50 size-10 border">
 						<img hlmAvatarImage src="assets/avatars/alan-cooper.png" alt="Alan Cooper" />
 						<span hlmAvatarFallback class="bg-primary text-primary-foreground">AC</span>
 					</hlm-avatar>
-					<div class="border-background absolute top-7.5 right-0 size-3 rounded-full border-[2px] bg-emerald-500"></div>
+					<div class="border-background absolute top-7.5 right-0 size-3 rounded-full border-2 bg-emerald-500"></div>
 				</div>
 				<div class="flex grow flex-col gap-3">
 					<div class="space-y-1">
@@ -40,7 +35,11 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 					</div>
 				</div>
 				<button hlmBtn variant="ghost" class="group -my-1.5 -me-2 size-8 shrink-0 p-0 hover:bg-transparent">
-					<ng-icon hlm name="lucideX" size="sm" class="opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" />
+					<ng-icon
+						hlm
+						name="lucideX"
+						size="sm"
+						class="opacity-60 transition-opacity group-hover:opacity-100 motion-reduce:transition-none" />
 				</button>
 			</div>
 		</div>

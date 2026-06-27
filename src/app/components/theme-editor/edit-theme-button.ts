@@ -2,13 +2,13 @@ import { ThemeStorageService } from '@/app/core/services/theme-storage.service';
 import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideClipboardX, lucidePencil } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-edit-theme-button',
-	imports: [HlmIcon, NgIcon, HlmButton, HlmTooltipImports],
+	imports: [HlmIconImports, NgIcon, HlmButtonImports, HlmTooltipImports],
 	providers: [provideIcons({ lucidePencil, lucideClipboardX })],
 	host: { class: 'inline-flex' },
 	template: `

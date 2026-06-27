@@ -12,24 +12,28 @@ import {
 	lucideSquareSlash,
 	lucideZap,
 } from '@ng-icons/lucide';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+
+interface SupportReason {
+	id: number;
+	text: string;
+	icon: string;
+}
 
 @Component({
 	selector: 'sim-dialog-26',
 	imports: [
 		NgIcon,
-		HlmIcon,
-		HlmButton,
-		HlmAvatar,
-		HlmAvatarFallback,
-		HlmAvatarImage,
-		HlmCheckbox,
-		HlmInput,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmAvatarImports,
+		HlmCheckboxImports,
+		HlmInputImports,
 		HlmDialogImports,
 	],
 	providers: [
@@ -67,7 +71,7 @@ import { HlmInput } from '@spartan-ng/helm/input';
 						@for (item of reasons; track item.id) {
 							<label
 								hlmLabel
-								class="border-input has-data-[state=checked]:border-ring relative flex w-fit cursor-pointer items-center justify-center gap-1 rounded-md border py-0.75 pr-2.5 pl-2 shadow-xs transition-colors motion-reduce:transition-none duration-200 ease"
+								class="border-input has-data-[state=checked]:border-ring ease relative flex w-fit cursor-pointer items-center justify-center gap-1 rounded-md border py-0.75 pr-2.5 pl-2 shadow-xs transition-colors duration-200 motion-reduce:transition-none"
 								for="checkbox-{{ item.id }}">
 								<hlm-checkbox id="checkbox-{{ item.id }}" class="hidden" />
 								<ng-icon hlm class="opacity-60" size="xs" [name]="item.icon" />
@@ -83,7 +87,7 @@ import { HlmInput } from '@spartan-ng/helm/input';
 										hlmInput
 										type="text"
 										placeholder="Ask me anything..."
-										class="bg-background min-h-[80px] w-full"></textarea>
+										class="bg-background min-h-20 w-full"></textarea>
 									<div
 										class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 end-0 flex cursor-pointer items-start justify-center pe-3 pt-2.5 peer-disabled:opacity-50">
 										<ng-icon hlm name="lucideMic" size="sm" />
@@ -127,9 +131,9 @@ import { HlmInput } from '@spartan-ng/helm/input';
 	`,
 })
 export class Dialog26Component {
-	public dialogRef = viewChild(HlmDialog);
+	protected readonly dialogRef = viewChild(HlmDialog);
 
-	reasons = [
+	protected readonly reasons: SupportReason[] = [
 		{
 			id: 1,
 			text: 'Create image',
@@ -162,7 +166,7 @@ export class Dialog26Component {
 		},
 	];
 
-	closeDialog() {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 }

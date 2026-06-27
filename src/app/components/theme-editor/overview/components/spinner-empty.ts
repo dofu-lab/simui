@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { Component } from '@angular/core';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'app-spinner-empty',
-	imports: [HlmEmptyImports, HlmButton, HlmSpinnerImports],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [HlmEmptyImports, HlmButtonImports, HlmSpinnerImports],
 	template: `
 		<div hlmEmpty class="w-full border md:p-6">
 			<div hlmEmptyHeader>

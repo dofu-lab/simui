@@ -4,14 +4,14 @@ import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard, lucideWalletCards } from '@ng-icons/lucide';
-import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-dialog-20',
@@ -19,16 +19,15 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	imports: [
 		NgIcon,
 		FormsModule,
-		ReactiveFormsModule,
-		HlmIcon,
-		HlmButton,
-		HlmInput,
-		HlmLabel,
-		HlmSpinner,
-		HlmRadio,
-		HlmRadioGroup,
-		HlmBadge,
 		MaskitoDirective,
+		ReactiveFormsModule,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmInputImports,
+		HlmLabelImports,
+		HlmSpinnerImports,
+		HlmRadioGroupImports,
+		HlmBadgeImports,
 		HlmDialogImports,
 	],
 	template: `
@@ -51,17 +50,19 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 						<div class="mt-4 flex flex-col gap-4">
 							<hlm-radio-group class="flex gap-3 rounded-md shadow-xs" formControlName="plan">
 								<label
+									for="monthly-20"
 									hlmLabel
-									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
+									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] duration-150 outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none">
 									<div class="flex w-full flex-col gap-1 text-left font-normal select-none">
 										<span>Monthly</span>
 										<span class="text-muted-foreground">25$/month</span>
 									</div>
-									<hlm-radio value="monthly"></hlm-radio>
+									<hlm-radio inputId="monthly-20" value="monthly"></hlm-radio>
 								</label>
 								<label
+									for="yearly-20"
 									hlmLabel
-									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
+									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] duration-150 outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none">
 									<div class="flex w-full flex-col gap-1 text-left font-normal select-none">
 										<div class="flex flex-1 justify-between">
 											<span>Yearly</span>
@@ -69,7 +70,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 										</div>
 										<span class="text-muted-foreground">19$/month</span>
 									</div>
-									<hlm-radio value="yearly"></hlm-radio>
+									<hlm-radio inputId="yearly-20" value="yearly"></hlm-radio>
 								</label>
 							</hlm-radio-group>
 							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
@@ -86,7 +87,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 							<div class="flex flex-col -space-y-px">
 								<div class="w-full text-sm">
 									<div class="relative">
-										<label hlmLabel class="flex flex-col items-start gap-2 text-sm [&>[hlmInput]]:my-0">
+										<label hlmLabel class="flex flex-col items-start gap-2 text-sm *:[[hlmInput]]:my-0">
 											Card detail
 											<input
 												id="card-number-input"
@@ -157,9 +158,10 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 })
 export class Dialog20Component {
 	private readonly _formBuilder = inject(FormBuilder);
+	protected readonly isProcessing = signal(false);
 
-	public dialogRef = viewChild(HlmDialog);
-	public form: FormGroup = this._formBuilder.group(
+	protected dialogRef = viewChild(HlmDialog);
+	protected form: FormGroup = this._formBuilder.group(
 		{
 			plan: ['yearly'],
 			fullName: ['', Validators.required],
@@ -169,7 +171,7 @@ export class Dialog20Component {
 		},
 		{ updateOn: 'submit' },
 	);
-	public readonly cvcMask: MaskitoOptions = {
+	protected readonly cvcMask: MaskitoOptions = {
 		mask: [/\d/, /\d/, /\d/],
 		overwriteMode: 'replace',
 		preprocessors: [
@@ -179,16 +181,16 @@ export class Dialog20Component {
 			}),
 		],
 	};
-	public readonly expiryDateMask: MaskitoOptions = {
+	protected readonly expiryDateMask: MaskitoOptions = {
 		mask: [/\d/, /[0-9]/, '/', /\d/, /\d/],
 		overwriteMode: 'replace',
 	};
-	public readonly nameMask: MaskitoOptions = {
+	protected readonly nameMask: MaskitoOptions = {
 		mask: /.+/,
 		overwriteMode: 'replace',
 		postprocessors: [({ value, selection }) => ({ value: value.toUpperCase(), selection })],
 	};
-	public readonly creditCardMask: MaskitoOptions = {
+	protected readonly creditCardMask: MaskitoOptions = {
 		mask: [
 			/[0-9]/,
 			/[0-9]/,
@@ -214,9 +216,7 @@ export class Dialog20Component {
 		preprocessors: [({ elementState, data }) => ({ elementState, data: data.replace(/\D/g, '') })],
 	};
 
-	public isProcessing = signal(false);
-
-	public onSubmit() {
+	protected onSubmit(): void {
 		if (this.form.valid) {
 			this.isProcessing.set(true);
 			setTimeout(() => {

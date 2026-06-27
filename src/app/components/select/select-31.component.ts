@@ -4,11 +4,11 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { hlm } from '@spartan-ng/helm/utils';
 
-type Option = {
+interface Option {
 	value: string;
 	label: string;
 	style: string;
-};
+}
 
 @Component({
 	selector: 'sim-placeholder-avatar',

@@ -4,11 +4,11 @@ import { lucideDownload } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-17',
-	imports: [HlmLabel, NgIcon, HlmInputGroupImports, HlmButtonGroupImports, HlmButtonImports],
+	imports: [NgIcon, HlmLabelImports, HlmInputGroupImports, HlmButtonGroupImports, HlmButtonImports],
 	providers: [provideIcons({ lucideDownload })],
 	host: { class: 'w-full' },
 	template: `

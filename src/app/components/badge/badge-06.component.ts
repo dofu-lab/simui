@@ -5,8 +5,8 @@ import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-badge-06',
+	imports: [NgIcon, HlmBadgeImports],
 	providers: [provideIcons({ lucideX })],
-	imports: [HlmBadgeImports, NgIcon],
 	template: `
 		<span hlmBadge>
 			<ng-icon name="lucideX" />

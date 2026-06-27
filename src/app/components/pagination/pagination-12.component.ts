@@ -1,24 +1,23 @@
-import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute } from '@angular/core';
+import { Component, computed, inject, numberAttribute } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { map } from 'rxjs';
 
-type PaginationReturn = {
+interface PaginationReturn {
 	pages: number[];
 	showLeftEllipsis: boolean;
 	showRightEllipsis: boolean;
-};
+}
 
 @Component({
 	selector: 'sim-pagination-12',
-	imports: [HlmPaginationImports, BrnSelectImports, HlmSelectImports, FormsModule, HlmLabel, HlmInput],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [FormsModule, HlmPaginationImports, BrnSelectImports, HlmSelectImports, HlmLabelImports, HlmInputImports],
 	host: { class: 'block w-full' },
 	template: `
 		<div class="flex items-center justify-between gap-3">
@@ -67,8 +66,15 @@ type PaginationReturn = {
 				</nav>
 			</div>
 			<div class="flex items-center gap-3">
-				<label hlmLabel>Go to page:</label>
-				<input hlmInput class="w-14" type="number" [min]="1" [max]="totalPages()" [value]="currentPage()" />
+				<label for="page-input" hlmLabel>Go to page:</label>
+				<input
+					id="page-input"
+					hlmInput
+					class="w-14"
+					type="number"
+					[min]="1"
+					[max]="totalPages()"
+					[value]="currentPage()" />
 			</div>
 		</div>
 	`,

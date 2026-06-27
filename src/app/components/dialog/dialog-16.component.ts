@@ -1,12 +1,12 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-dialog-16',
-	imports: [FormsModule, ReactiveFormsModule, HlmButton, HlmDialogImports, HlmInput, HlmButton],
+	imports: [FormsModule, ReactiveFormsModule, HlmButtonImports, HlmDialogImports, HlmInputImports, HlmButtonImports],
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Create account</button>
@@ -117,14 +117,14 @@ import { HlmInput } from '@spartan-ng/helm/input';
 	`,
 })
 export class Dialog16Component {
-	public dialogRef = viewChild(HlmDialog);
-	private _formBuilder = inject(FormBuilder);
+	protected readonly dialogRef = viewChild(HlmDialog);
+	private readonly formBuilder = inject(FormBuilder);
 
-	public form = this._formBuilder.group({
+	protected readonly form = this.formBuilder.group({
 		email: ['', Validators.compose([Validators.required, Validators.email])],
 	});
 
-	closeDialog() {
+	protected closeDialog(): void {
 		this.form.updateValueAndValidity();
 		if (this.form.valid) {
 			this.dialogRef()?.close({});

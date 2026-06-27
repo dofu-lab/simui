@@ -1,14 +1,23 @@
 import { Component, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-15',
-	imports: [FormsModule, ReactiveFormsModule, HlmButton, HlmDialogImports, HlmLabel, HlmInput, HlmButton, HlmCheckbox],
+	imports: [
+		FormsModule,
+		ReactiveFormsModule,
+		HlmButtonImports,
+		HlmDialogImports,
+		HlmLabelImports,
+		HlmInputImports,
+		HlmButtonImports,
+		HlmCheckboxImports,
+	],
 	template: `
 		<hlm-dialog>
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Sign In</button>
@@ -106,16 +115,16 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Dialog15Component {
-	public dialogRef = viewChild(HlmDialog);
-	private _formBuilder = inject(FormBuilder);
+	protected readonly dialogRef = viewChild(HlmDialog);
+	private readonly formBuilder = inject(FormBuilder);
 
-	public form = this._formBuilder.group({
+	protected readonly form = this.formBuilder.group({
 		email: ['', Validators.compose([Validators.required, Validators.email])],
 		password: ['', Validators.required],
 		rememberMe: [false],
 	});
 
-	closeDialog() {
+	protected closeDialog(): void {
 		this.form.updateValueAndValidity();
 		if (this.form.valid) {
 			this.dialogRef()?.close({});

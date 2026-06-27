@@ -6,8 +6,8 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-event-calendar',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header name="Event Calendar" description="A component to display alert messages" />
-		<page-grid [components]="components" />
+		<sim-component-header name="Event Calendar" description="A component to display alert messages" />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class EventCalendarComponent {

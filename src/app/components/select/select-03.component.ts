@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideClock } from '@ng-icons/lucide';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
 
 @Component({
 	selector: 'sim-select-03',
-	imports: [NgIcon, HlmIcon, HlmNativeSelectImports, HlmFieldImports],
+	imports: [NgIcon, HlmIconImports, HlmNativeSelectImports, HlmFieldImports],
 	providers: [provideIcons({ lucideClock })],
 	host: { class: 'block w-full' },
 	template: `

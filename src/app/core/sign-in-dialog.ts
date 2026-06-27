@@ -3,9 +3,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogDescription, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmSeparator, HlmSeparatorImports } from '@spartan-ng/helm/separator';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
+import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { GoogleSigninButtonComponent } from './google-signin-button.component';
 
 @Component({
@@ -15,10 +15,9 @@ import { GoogleSigninButtonComponent } from './google-signin-button.component';
 		FormsModule,
 		ReactiveFormsModule,
 		RouterLink,
-		HlmButton,
-		HlmDialogDescription,
 		GoogleSigninButtonComponent,
-		HlmSeparator,
+		HlmButtonImports,
+		HlmDialogImports,
 		HlmSeparatorImports,
 		HlmDialogImports,
 	],

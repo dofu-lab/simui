@@ -6,8 +6,8 @@ import { markedHighlight } from 'marked-highlight';
 
 import { Clipboard } from '@angular/cdk/clipboard';
 import { lucideCheck, lucideClipboard } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import 'prismjs';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-css';
@@ -17,12 +17,11 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-typescript';
 import { AnalyticsService } from '../services/analytics.service';
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 declare const Prism: typeof import('prismjs');
 
 @Component({
-	selector: 'code-preview',
-	imports: [HlmButton, NgIcon, HlmIcon],
+	selector: 'sim-code-preview',
+	imports: [HlmButtonImports, NgIcon, HlmIconImports],
 	providers: [provideIcons({ lucideClipboard, lucideCheck })],
 	host: {
 		class: 'flex flex-col flex-1 h-full border-border rounded-lg border overflow-hidden',

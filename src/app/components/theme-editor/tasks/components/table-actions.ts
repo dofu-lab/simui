@@ -21,12 +21,12 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { BrnCommandImports } from '@spartan-ng/brain/command';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { PriorityIconPipe } from '../pipes/priority-icon.pipe';
 import { StatusIconPipe } from '../pipes/status-icon.pipe';
@@ -36,11 +36,11 @@ import { TasksExample } from '../tasks';
 @Component({
 	selector: 'spartan-table-actions',
 	imports: [
-		HlmButton,
+		HlmButtonImports,
 		FormsModule,
-		HlmInput,
+		HlmInputImports,
 		NgIcon,
-		HlmIcon,
+		HlmIconImports,
 		PriorityIconPipe,
 		StatusIconPipe,
 		HlmDropdownMenuImports,

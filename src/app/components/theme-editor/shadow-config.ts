@@ -3,8 +3,8 @@ import { ThemeStyleProps } from '@/app/types';
 import { Component, computed, DestroyRef, effect, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { debounceTime, distinctUntilChanged, merge, Subject } from 'rxjs';
 import { ShadowSliderComponent } from './shadow-slider';
 
@@ -12,17 +12,18 @@ const DEBOUNCE_TIME = 1000;
 
 @Component({
 	selector: 'sim-shadow-config',
-	imports: [HlmInput, HlmLabel, ReactiveFormsModule, ShadowSliderComponent],
+	imports: [HlmInputImports, HlmLabelImports, ReactiveFormsModule, ShadowSliderComponent],
 	template: `
 		<div class="space-y-6">
 			<!-- Shadow Color -->
 			<div class="flex w-full flex-col items-start gap-2">
-				<label hlmLabel class="text-xs font-medium">Shadow Color</label>
+				<label hlmLabel class="text-xs font-medium" for="shadow-color-picker">Shadow Color</label>
 				<div class="flex w-full items-center gap-2">
 					<div
 						[style.backgroundColor]="colorPicker.value"
 						class="relative flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded border">
 						<input
+							id="shadow-color-picker"
 							type="color"
 							class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
 							[formControl]="colorPicker" />

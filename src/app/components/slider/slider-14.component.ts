@@ -1,16 +1,14 @@
 import { Component, computed, signal } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideVolume2, lucideVolumeX } from '@ng-icons/lucide';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'sim-slider-14',
-	imports: [HlmSlider, HlmLabel],
+	imports: [HlmSliderImports, HlmLabelImports],
 	providers: [provideIcons({ lucideVolumeX, lucideVolume2 })],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<div class="mb-4 flex items-center justify-between">
 			<span hlmLabel>Rate your experience</span>

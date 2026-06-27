@@ -36,26 +36,26 @@ A typical test might look like this:
 // in devtools/cypress/integration/profiler.spec.ts
 
 describe('Profiler', () => {
-  beforeEach(() => {
-    cy.visit('/?e2e-app');
-    cy.wait(1000);
-    cy.get('ng-devtools-tabs').find('a').contains('Profiler').click();
-  });
+	beforeEach(() => {
+		cy.visit('/?e2e-app');
+		cy.wait(1000);
+		cy.get('ng-devtools-tabs').find('a').contains('Profiler').click();
+	});
 
-  it('should record and display profiling data', () => {
-    // Find the record button and click it
-    cy.get('button[aria-label="start-recording-button"]').click();
+	it('should record and display profiling data', () => {
+		// Find the record button and click it
+		cy.get('button[aria-label="start-recording-button"]').click();
 
-    // Interact with the test application to generate profiling data
-    cy.get('body').find('#cards button').first().click();
-    cy.wait(500);
+		// Interact with the test application to generate profiling data
+		cy.get('body').find('#cards button').first().click();
+		cy.wait(500);
 
-    // Stop recording
-    cy.get('button[aria-label="stop-recording-button"]').click();
+		// Stop recording
+		cy.get('button[aria-label="stop-recording-button"]').click();
 
-    // Assert that the flame graph is now visible
-    cy.get('ng-devtools-recording-timeline').find('canvas').should('be.visible');
-  });
+		// Assert that the flame graph is now visible
+		cy.get('ng-devtools-recording-timeline').find('canvas').should('be.visible');
+	});
 });
 ```
 

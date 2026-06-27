@@ -15,7 +15,6 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 					<button hlmBtn size="sm" variant="link" class="text-muted-foreground">Sign up</button>
 				</div>
 			</div>
-
 			<div hlmCardContent>
 				<fieldset hlmFieldSet>
 					<div hlmFieldGroup class="gap-4">
@@ -30,7 +29,6 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 					</div>
 				</fieldset>
 			</div>
-
 			<div hlmCardFooter class="flex-col items-start gap-4">
 				<button hlmBtn type="submit" class="w-full">Login</button>
 			</div>

@@ -1,9 +1,9 @@
 import { Component, model } from '@angular/core';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-switch-14',
-	imports: [HlmSwitch],
+	imports: [HlmSwitchImports],
 	template: `
 		<div
 			class="group relative inline-grid h-9 grid-cols-[1fr_1fr] items-center text-sm font-medium"
@@ -26,5 +26,5 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 	`,
 })
 export class Switch14Component {
-	readonly value = model(false);
+	protected readonly value = model(false);
 }

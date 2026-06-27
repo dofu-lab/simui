@@ -16,31 +16,31 @@ Reactive forms are built using these fundamental classes from `@angular/forms`:
 Import `ReactiveFormsModule` into your component.
 
 ```ts
-import {Component, inject} from '@angular/core';
-import {ReactiveFormsModule, NonNullableFormBuilder, Validators} from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule, NonNullableFormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-profile-editor',
-  imports: [ReactiveFormsModule],
-  templateUrl: './profile-editor.component.html',
+	selector: 'app-profile-editor',
+	imports: [ReactiveFormsModule],
+	templateUrl: './profile-editor.component.html',
 })
 export class ProfileEditor {
-  private readonly fb = inject(NonNullableFormBuilder);
+	private readonly fb = inject(NonNullableFormBuilder);
 
-  // Using FormBuilder for concise definition
-  protected readonly profileForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: '',
-    address: this.fb.group({
-      street: '',
-      city: '',
-    }),
-    aliases: this.fb.array([this.fb.control('')]),
-  });
+	// Using FormBuilder for concise definition
+	protected readonly profileForm = this.fb.group({
+		firstName: ['', Validators.required],
+		lastName: '',
+		address: this.fb.group({
+			street: '',
+			city: '',
+		}),
+		aliases: this.fb.array([this.fb.control('')]),
+	});
 
-  protected onSubmit() {
-    console.warn(this.profileForm.value);
-  }
+	protected onSubmit() {
+		console.warn(this.profileForm.value);
+	}
 }
 ```
 
@@ -56,19 +56,19 @@ Use directives to bind the model to the view:
 
 ```html
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-  <input type="text" formControlName="firstName" />
+	<input type="text" formControlName="firstName" />
 
-  <div formGroupName="address">
-    <input type="text" formControlName="street" />
-  </div>
+	<div formGroupName="address">
+		<input type="text" formControlName="street" />
+	</div>
 
-  <div formArrayName="aliases">
-    @for (alias of profileForm.controls.aliases.controls; track alias) {
-    <input type="text" [formControlName]="$index" />
-    }
-  </div>
+	<div formArrayName="aliases">
+		@for (alias of profileForm.controls.aliases.controls; track alias) {
+		<input type="text" [formControlName]="$index" />
+		}
+	</div>
 
-  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+	<button type="submit" [disabled]="!profileForm.valid">Submit</button>
 </form>
 ```
 
@@ -101,12 +101,12 @@ updateProfile() {
 Modern Angular (v18+) provides a single `events` observable on all controls to track value, status, pristine, touched, reset, and submit events.
 
 ```ts
-import {ValueChangeEvent, StatusChangeEvent} from '@angular/forms';
+import { ValueChangeEvent, StatusChangeEvent } from '@angular/forms';
 
 this.profileForm.events.subscribe((event) => {
-  if (event instanceof ValueChangeEvent) {
-    console.log('New value:', event.value);
-  }
+	if (event instanceof ValueChangeEvent) {
+		console.log('New value:', event.value);
+	}
 });
 ```
 

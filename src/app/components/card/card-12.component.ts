@@ -97,7 +97,6 @@ const CURRENCIES: CurrencyDef[] = [
 					<div class="border-input bg-muted flex w-full items-center justify-between rounded-3xl border p-4">
 						<div class="bg-background flex items-center gap-1 rounded-full border px-3 py-2">
 							<div class="relative overflow-hidden">
-								<!-- ghost grid: all currencies overlap so container holds max width -->
 								<div class="invisible grid" aria-hidden="true">
 									@for (c of currencies; track c.code) {
 										<span class="col-start-1 row-start-1 flex items-center gap-1 whitespace-nowrap">
@@ -167,7 +166,6 @@ const CURRENCIES: CurrencyDef[] = [
 					<div class="border-input bg-muted flex w-full items-center justify-between rounded-3xl border p-4">
 						<div class="bg-background flex items-center gap-1 rounded-full border px-3 py-2">
 							<div class="relative overflow-hidden">
-								<!-- ghost grid: all currencies overlap so container holds max width -->
 								<div class="invisible grid" aria-hidden="true">
 									@for (c of currencies; track c.code) {
 										<span class="col-start-1 row-start-1 flex items-center gap-1 whitespace-nowrap">
@@ -206,7 +204,6 @@ const CURRENCIES: CurrencyDef[] = [
 						<div class="flex flex-col items-end gap-0.5">
 							<span class="text-muted-foreground text-right text-xs">THEY GET</span>
 							<div class="relative overflow-hidden">
-								<!-- ghost: sizes the container so absolute children are visible -->
 								<span class="invisible text-2xl whitespace-nowrap tabular-nums" aria-hidden="true">
 									{{ amountSlot().amount | currency: getCurrency().code : 'symbol-narrow' : getCurrency().decimals }}
 								</span>
@@ -235,7 +232,6 @@ export class Card12Component {
 	protected readonly currentDate = new Date();
 	protected readonly currencies = CURRENCIES;
 
-	// Each slot bundles an animation key + the full currency so @for can track changes
 	protected readonly sendSlot = signal({ key: 0, currency: CURRENCIES[0] });
 	protected readonly getSlot = signal({ key: 0, currency: CURRENCIES[1] });
 	protected readonly sendAmount = signal(2_000_000);
@@ -250,7 +246,6 @@ export class Card12Component {
 
 	protected readonly sendCurrency = computed(() => this.sendSlot().currency);
 	protected readonly getCurrency = computed(() => this.getSlot().currency);
-
 	protected readonly formattedRate = computed(() => {
 		const rate = this.sendSlot().currency.rateToVND / this.getSlot().currency.rateToVND;
 		return new Intl.NumberFormat('en', { maximumSignificantDigits: 4 }).format(rate);

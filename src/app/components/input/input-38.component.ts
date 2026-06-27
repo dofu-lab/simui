@@ -2,32 +2,34 @@ import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
-import { maskitoDateOptionsGenerator } from '@maskito/kit';
+import { maskitoDate } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCalendar } from '@spartan-ng/helm/calendar';
+import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
+import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { format, isValid, parse } from 'date-fns';
 
 @Component({
 	selector: 'sim-input-38',
 	imports: [
-		HlmLabel,
+		NgIcon,
 		FormsModule,
 		MaskitoDirective,
-		NgIcon,
-		HlmCalendar,
+		HlmLabelImports,
+		HlmCalendarImports,
 		HlmButtonImports,
 		HlmPopoverImports,
 		HlmInputGroupImports,
+		HlmCardImports,
 	],
 	providers: [provideIcons({ lucideCalendar })],
 	host: { class: 'w-full' },
 	template: `
-		<hlm-popover sideOffset="5" align="end">
+		<hlm-popover sideOffset="10" align="end">
 			<label hlmLabel for="input-38" class="mb-2 text-sm">Date picker</label>
 			<hlm-input-group>
 				<input
@@ -44,7 +46,7 @@ import { format, isValid, parse } from 'date-fns';
 					</button>
 				</hlm-input-group-addon>
 			</hlm-input-group>
-			<div class="bg-background flex size-fit" *hlmPopoverPortal="let ctx">
+			<div hlmCardContent class="bg-background rounded-2xl border p-0" *hlmPopoverPortal="let ctx">
 				<hlm-calendar [(date)]="selectedDate" (dateChange)="onDateChange($event, ctx)" />
 			</div>
 		</hlm-popover>
@@ -52,7 +54,7 @@ import { format, isValid, parse } from 'date-fns';
 })
 export class Input38Component {
 	protected readonly selectedDate = model<Date | null>(new Date());
-	protected readonly mask: MaskitoOptions = maskitoDateOptionsGenerator({ mode: 'mm/dd/yyyy', separator: '/' });
+	protected readonly mask: MaskitoOptions = maskitoDate({ mode: 'mm/dd/yyyy', separator: '/' });
 
 	protected inputValue = this.formatDate(this.selectedDate());
 

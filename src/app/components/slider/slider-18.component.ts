@@ -3,45 +3,43 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSave, lucideX } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
+import { HlmSliderImports } from '@spartan-ng/helm/slider';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
-type ProfileSetting = {
+interface ProfileSetting {
 	setting60Hz: number;
 	setting250Hz: number;
 	setting1kHz: number;
 	setting4kHz: number;
 	setting16kHz: number;
-};
+}
 
-type Profile = {
+interface Profile {
 	name: string;
 	settings: ProfileSetting;
-};
+}
 
 @Component({
 	selector: 'sim-slider-18',
 	imports: [
-		HlmSlider,
-		HlmLabel,
+		NgScrollbarModule,
 		FormsModule,
 		NgClass,
-		HlmButton,
 		NgIcon,
-		HlmIcon,
-		HlmScrollArea,
-		NgScrollbarModule,
+		HlmSliderImports,
+		HlmLabelImports,
+		HlmButtonImports,
+		HlmIconImports,
+		HlmScrollAreaImports,
 		HlmTooltipImports,
 	],
 	providers: [provideIcons({ lucideSave, lucideX })],
-	host: {
-		class: 'w-full h-100',
-	},
+	host: { class: 'w-full h-100' },
 	template: `
 		<span hlmLabel class="mb-4">Equalizer</span>
 		<table class="w-full border-0">
@@ -62,7 +60,7 @@ type Profile = {
 								Save profile
 								<span class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full">
 									<svg
-										class="bg-primary fill-primary z-50 block size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]"
+										class="bg-primary fill-primary block size-2.5 translate-y-[calc(-50%-2px)] rotate-45 rounded-xs"
 										width="10"
 										height="5"
 										viewBox="0 0 30 10"
@@ -168,15 +166,15 @@ type Profile = {
 	`,
 })
 export class Slider18Component {
-	public readonly skipInterval = 2;
-	public readonly ticks = [...Array(11)].map((_, i) => i);
-	public readonly valueLabels = ['-5', '-4', '-3', '-2', '-1', '0', '1', '2', '3', '4', '5'];
-	public readonly slider60Hz = signal([-1]);
-	public readonly slider250Hz = signal([3]);
-	public readonly slider1000Hz = signal([1]);
-	public readonly slider4000Hz = signal([2]);
-	public readonly slider16000Hz = signal([-4]);
-	public readonly savedProfile = signal<Profile[]>([
+	protected readonly skipInterval = 2;
+	protected readonly ticks = [...Array(11)].map((_, i) => i);
+	protected readonly valueLabels = ['-5', '-4', '-3', '-2', '-1', '0', '1', '2', '3', '4', '5'];
+	protected readonly slider60Hz = signal([-1]);
+	protected readonly slider250Hz = signal([3]);
+	protected readonly slider1000Hz = signal([1]);
+	protected readonly slider4000Hz = signal([2]);
+	protected readonly slider16000Hz = signal([-4]);
+	protected readonly savedProfile = signal<Profile[]>([
 		{
 			name: 'Bass Boost',
 			settings: {
@@ -208,9 +206,9 @@ export class Slider18Component {
 			},
 		},
 	]);
-	public profileCount = signal(1);
+	protected profileCount = signal(1);
 
-	public onLoadProfile(settings: ProfileSetting): void {
+	protected onLoadProfile(settings: ProfileSetting): void {
 		this.slider60Hz.set([settings.setting60Hz]);
 		this.slider250Hz.set([settings.setting250Hz]);
 		this.slider1000Hz.set([settings.setting1kHz]);
@@ -218,7 +216,7 @@ export class Slider18Component {
 		this.slider16000Hz.set([settings.setting16kHz]);
 	}
 
-	public saveProfile(): void {
+	protected saveProfile(): void {
 		const newProfile: Profile = {
 			name: `Profile ${this.profileCount()}`,
 			settings: {
@@ -233,7 +231,7 @@ export class Slider18Component {
 		this.profileCount.update((count) => count + 1);
 	}
 
-	public onRemoveProfile(index: number): void {
+	protected onRemoveProfile(index: number): void {
 		this.savedProfile.update((profiles) => profiles.filter((_, i) => i !== index));
 	}
 }

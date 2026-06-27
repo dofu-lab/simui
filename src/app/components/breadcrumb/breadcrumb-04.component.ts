@@ -1,29 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCompass, lucideComponent, lucideHouse } from '@ng-icons/lucide';
-import {
-	HlmBreadcrumb,
-	HlmBreadcrumbItem,
-	HlmBreadcrumbLink,
-	HlmBreadcrumbList,
-	HlmBreadcrumbPage,
-	HlmBreadcrumbSeparator,
-} from '@spartan-ng/helm/breadcrumb';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-breadcrumb-04',
+	imports: [NgIcon, HlmBreadcrumbImports, HlmIconImports],
 	providers: [provideIcons({ lucideHouse, lucideComponent, lucideCompass })],
-	imports: [
-		HlmBreadcrumb,
-		HlmBreadcrumbSeparator,
-		HlmBreadcrumbList,
-		HlmBreadcrumbItem,
-		HlmBreadcrumbPage,
-		HlmBreadcrumbLink,
-		HlmIcon,
-		NgIcon,
-	],
 	template: `
 		<nav hlmBreadcrumb>
 			<ol hlmBreadcrumbList>
@@ -34,7 +18,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 					</a>
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>
-
 				<li hlmBreadcrumbItem>
 					<a hlmBreadcrumbLink link="/components" class="flex items-center gap-1">
 						<ng-icon hlm name="lucideComponent" size="sm" />

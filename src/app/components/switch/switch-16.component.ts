@@ -1,15 +1,16 @@
 import { Component, model } from '@angular/core';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-switch-16',
-	imports: [HlmSwitch, HlmLabel],
+	imports: [HlmSwitchImports, HlmLabelImports],
 	template: `
 		<div
 			class="border-input data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border shadow-xs outline-none"
 			[attr.data-checked]="value() ? 'true' : 'false'">
 			<label
+				for="switch-16"
 				class="flex items-start gap-2 p-4 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 				hlmLabel>
 				<svg width="46" height="32" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,11 +43,11 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 					</span>
 					<p class="text-muted-foreground text-xs font-normal">A short description goes here.</p>
 				</div>
-				<hlm-switch [(checked)]="value" />
+				<hlm-switch inputId="switch-16" [(checked)]="value" />
 			</label>
 		</div>
 	`,
 })
 export class Switch16Component {
-	readonly value = model(false);
+	protected readonly value = model(false);
 }

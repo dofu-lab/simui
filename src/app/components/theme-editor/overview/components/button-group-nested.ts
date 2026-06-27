@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowLeft, lucideArrowRight } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'app-button-group-nested',
-	imports: [HlmButtonGroupImports, HlmButton, NgIcon, HlmIcon],
+	imports: [HlmButtonGroupImports, HlmButtonImports, NgIcon, HlmIconImports],
 	providers: [provideIcons({ lucideArrowLeft, lucideArrowRight })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `

@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 async function getPopoverTrigger(card: Locator, id: string): Promise<Locator> {
 	const variantHost = card.locator(`sim-${id}`);
@@ -14,7 +14,7 @@ async function getPopoverTrigger(card: Locator, id: string): Promise<Locator> {
 }
 
 async function openPopoverForVariant(page: Page, id: string): Promise<{ card: Locator; trigger: Locator }> {
-	const card = page.locator(`component-card#${id}`);
+	const card = componentCard(page, id);
 	const isPresent = await card
 		.waitFor({ state: 'visible', timeout: 5000 })
 		.then(() => true)

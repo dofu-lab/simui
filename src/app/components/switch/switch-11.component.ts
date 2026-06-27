@@ -1,12 +1,12 @@
 import { Component, model } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMoon, lucideSun } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-switch-11',
-	imports: [HlmSwitch, NgIcon, HlmIcon],
+	imports: [HlmSwitchImports, NgIcon, HlmIconImports],
 	providers: [provideIcons({ lucideSun, lucideMoon })],
 	template: `
 		<div class="group flex items-center gap-2" [attr.data-state]="value() ? 'checked' : 'unchecked'">
@@ -28,5 +28,5 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 	`,
 })
 export class Switch11Component {
-	readonly value = model(false);
+	protected readonly value = model(false);
 }

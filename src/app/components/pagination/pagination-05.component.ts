@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute } from '@angular/core';
+import { Component, computed, inject, numberAttribute } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { buttonVariants } from '@spartan-ng/helm/button';
@@ -9,7 +9,6 @@ import { map } from 'rxjs';
 @Component({
 	selector: 'sim-pagination-05',
 	imports: [HlmPaginationImports],
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full' },
 	template: `
 		<div class="flex items-center justify-between gap-3">

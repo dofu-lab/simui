@@ -3,7 +3,7 @@ import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
 
 @Directive({
-	selector: '[dfCardBody]',
+	selector: '[simCardBody]',
 	host: {
 		'[class]': '_computedClass()',
 	},

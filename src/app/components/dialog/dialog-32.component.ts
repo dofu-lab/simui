@@ -2,23 +2,21 @@ import { afterNextRender, Component, computed, model, signal } from '@angular/co
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLockKeyhole } from '@ng-icons/lucide';
-import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-32',
 	imports: [
 		NgIcon,
 		FormsModule,
-		HlmIcon,
-		HlmButton,
-		HlmInputOtp,
-		HlmInputOtpGroup,
-		HlmInputOtpSlot,
-		BrnInputOtp,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmInputOtpImports,
+		BrnInputOtpImports,
 		HlmDialogImports,
 	],
 	providers: [provideIcons({ lucideLockKeyhole })],
@@ -26,7 +24,7 @@ import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">2FA</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-6 sm:max-h-[min(640px,80vh)] sm:max-w-128"
+				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-6 sm:max-h-[min(640px,80vh)] sm:max-w-lg"
 				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col gap-6">
 					<div class="flex flex-col gap-4">
@@ -44,15 +42,15 @@ import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm
 					<div class="bg-muted/50 relative flex h-48 items-center justify-center rounded-md">
 						<div class="flex size-38 flex-col justify-center">
 							<div class="flex flex-1 flex-row items-center justify-between">
-								<div class="border-primary size-3 rounded-tl-[3px] border-t-[2px] border-l-[2px]"></div>
-								<div class="border-primary size-3 rounded-tr-[3px] border-t-[2px] border-r-[2px]"></div>
+								<div class="border-primary size-3 rounded-tl-[3px] border-t-2 border-l-2"></div>
+								<div class="border-primary size-3 rounded-tr-[3px] border-t-2 border-r-2"></div>
 							</div>
 							<img src="assets/qr-code.jpg" alt="qr-code" class="mx-auto size-32 rounded-xs" />
 							<div
-								class="animate-scan-line via-primary/70 absolute left-0 h-1 w-full bg-gradient-to-r from-transparent to-transparent"></div>
+								class="animate-scan-line via-primary/70 absolute left-0 h-1 w-full bg-linear-to-r from-transparent to-transparent"></div>
 							<div class="flex h-3 flex-1 justify-between">
-								<div class="border-primary size-3 rounded-bl-[3px] border-b-[2px] border-l-[2px]"></div>
-								<div class="border-primary size-3 rounded-br-[3px] border-r-[2px] border-b-[2px]"></div>
+								<div class="border-primary size-3 rounded-bl-[3px] border-b-2 border-l-2"></div>
+								<div class="border-primary size-3 rounded-br-[3px] border-r-2 border-b-2"></div>
 							</div>
 						</div>
 					</div>
@@ -102,9 +100,9 @@ import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm
 	`,
 })
 export class Dialog32Component {
-	public otpValue = model<string>('');
-	public isResendDisabled = computed(() => this.countdown() > 0);
-	public countdown = signal(60);
+	protected readonly otpValue = model<string>('');
+	protected readonly isResendDisabled = computed(() => this.countdown() > 0);
+	protected readonly countdown = signal(60);
 
 	private _intervalId?: NodeJS.Timeout;
 
@@ -112,7 +110,7 @@ export class Dialog32Component {
 		afterNextRender(() => this.startCountdown());
 	}
 
-	resendCode(): void {
+	protected resendCode(): void {
 		this.resetCountdown();
 	}
 

@@ -4,31 +4,41 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronFirst, lucideChevronLast } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { map } from 'rxjs';
 
 @Component({
 	selector: 'sim-pagination-10',
-	imports: [HlmPaginationImports, HlmSelectImports, FormsModule, NgIcon, HlmIcon, HlmButton, HlmLabel],
+	imports: [
+		HlmPaginationImports,
+		HlmSelectImports,
+		FormsModule,
+		NgIcon,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmLabelImports,
+	],
 	providers: [provideIcons({ lucideChevronLast, lucideChevronFirst })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'block w-full' },
 	template: `
 		<div class="flex items-center justify-between gap-3">
 			<div class="flex items-center gap-3">
-				<label hlmLabel>Rows per page</label>
-				<hlm-select class="ml-auto" [(ngModel)]="itemsPerPage">
+				<label for="row-select" hlmLabel>Rows per page</label>
+				<hlm-select id="row-select" class="ml-auto" [(ngModel)]="itemsPerPage">
 					<hlm-select-trigger class="w-fit">
 						<hlm-select-value />
 					</hlm-select-trigger>
 					<hlm-select-content *hlmSelectPortal>
-						@for (pageSize of pageSizes; track pageSize) {
-							<hlm-select-item [value]="pageSize">{{ pageSize }}</hlm-select-item>
-						}
+						<hlm-select-group>
+							@for (pageSize of pageSizes; track pageSize) {
+								<hlm-select-item [value]="pageSize">{{ pageSize }}</hlm-select-item>
+							}
+						</hlm-select-group>
 					</hlm-select-content>
 				</hlm-select>
 			</div>

@@ -1,10 +1,15 @@
 import { Component, signal } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
+
+interface PopoverStep {
+	title: string;
+	description: string;
+}
 
 @Component({
 	selector: 'sim-popover-06',
-	imports: [HlmButton, HlmPopoverImports],
+	imports: [HlmButtonImports, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">Tooltip-like with steps</button>
@@ -32,7 +37,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover06Component {
-	public readonly steps = [
+	protected readonly steps: PopoverStep[] = [
 		{
 			title: 'Welcome',
 			description: 'Get started with a quick overview of the interface.',
@@ -46,9 +51,9 @@ export class Popover06Component {
 			description: 'Need assistance? Visit our Help Center anytime.',
 		},
 	];
-	currentStep = signal(0);
+	protected readonly currentStep = signal(0);
 
-	nextStep() {
+	protected nextStep(): void {
 		this.currentStep.update((value: number) => (value + 1) % this.steps.length);
 	}
 }

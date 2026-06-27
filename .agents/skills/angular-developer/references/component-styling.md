@@ -8,15 +8,15 @@ Styles can be defined inline or in separate files.
 
 ```ts
 @Component({
-  selector: 'app-photo',
-  // Inline styles
-  styles: `
-    img {
-      border-radius: 50%;
-    }
-  `,
-  // OR external file
-  styleUrl: 'photo.component.css',
+	selector: 'app-photo',
+	// Inline styles
+	styles: `
+		img {
+			border-radius: 50%;
+		}
+	`,
+	// OR external file
+	styleUrl: 'photo.component.css',
 })
 export class Photo {}
 ```
@@ -52,8 +52,8 @@ Targets the component's host element (the element matching the component's selec
 
 ```css
 :host {
-  display: block;
-  border: 1px solid black;
+	display: block;
+	border: 1px solid black;
 }
 ```
 
@@ -64,7 +64,7 @@ Targets the host element based on some condition in its ancestry.
 ```css
 /* Apply styles if any ancestor has the 'theme-dark' class */
 :host-context(.theme-dark) {
-  background-color: #333;
+	background-color: #333;
 }
 ```
 
@@ -79,9 +79,9 @@ You can use `<style>` elements directly in a component's template. View encapsul
 
 ```html
 <style>
-  .dynamic-class {
-    color: red;
-  }
+	.dynamic-class {
+		color: red;
+	}
 </style>
 <div class="dynamic-class">Hello</div>
 ```

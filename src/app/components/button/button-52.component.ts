@@ -2,11 +2,12 @@ import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircle, lucideCircleDot, lucideSquare, lucideTriangle, lucideX } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-52',
+	imports: [NgClass, NgIcon, HlmButtonImports, HlmIconImports],
 	providers: [
 		provideIcons({
 			lucideCircle,
@@ -16,7 +17,6 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 			lucideCircleDot,
 		}),
 	],
-	imports: [HlmButton, HlmIcon, NgClass, NgIcon],
 	template: `
 		<div class="inline-grid w-fit grid-cols-3 gap-1">
 			<button
@@ -42,7 +42,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 					hlm
 					name="lucideCircleDot"
 					size="sm"
-					class="opacity-100 transition-all motion-reduce:transition-none duration-200"
+					class="opacity-100 transition-all duration-200 motion-reduce:transition-none"
 					[ngClass]="{
 						'translate-x-3': direction() === 'right',
 						'-translate-x-3': direction() === 'left',
@@ -72,9 +72,9 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Button52Component {
-	direction = signal<'up' | 'down' | 'right' | 'left' | 'center'>('center');
+	protected readonly direction = signal<'up' | 'down' | 'right' | 'left' | 'center'>('center');
 
-	onMoveCircle(newDirection: 'up' | 'down' | 'right' | 'left' | 'center') {
+	protected onMoveCircle(newDirection: 'up' | 'down' | 'right' | 'left' | 'center'): void {
 		this.direction.set(newDirection);
 	}
 }

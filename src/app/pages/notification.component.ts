@@ -6,8 +6,8 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-notification',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header name="Notification" description="A component to display notification messages" />
-		<page-grid [components]="components" />
+		<sim-component-header name="Notification" description="A component to display notification messages" />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class NotificationComponent {

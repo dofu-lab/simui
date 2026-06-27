@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerBrowserPlus, tablerEdit, tablerMessageCheck, tablerRotate } from '@ng-icons/tabler-icons';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSeparator } from '@spartan-ng/helm/separator';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
-import { HlmTextarea } from '@spartan-ng/helm/textarea';
+import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 import {
 	CodeViewer,
 	MaxLengthSelector,
@@ -29,17 +29,17 @@ import { PRESETS_DATA } from './data/presets';
 		PresetSelector,
 		PresetActions,
 		CodeViewer,
-		HlmSeparator,
-		HlmTabsImports,
-		HlmIcon,
 		NgIcon,
-		HlmTextarea,
-		HlmButton,
-		HlmLabel,
 		ModelSelector,
 		TemperatureSelector,
 		TopPSelector,
 		MaxLengthSelector,
+		HlmSeparatorImports,
+		HlmTabsImports,
+		HlmIconImports,
+		HlmTextareaImports,
+		HlmButtonImports,
+		HlmLabelImports,
 	],
 	providers: [provideIcons({ tablerMessageCheck, tablerBrowserPlus, tablerEdit, tablerRotate })],
 	host: {

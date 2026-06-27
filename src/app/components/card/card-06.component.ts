@@ -8,6 +8,11 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
+interface FrameworkOption {
+	label: string;
+	value: string;
+}
+
 @Component({
 	selector: 'sim-card-06',
 	imports: [HlmIconImports, HlmCardImports, HlmButtonImports, HlmInputImports, HlmFieldImports, HlmSelectImports],
@@ -60,12 +65,13 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 	`,
 })
 export class Card06Component {
-	protected readonly frameworkOptions = [
+	protected readonly frameworkOptions: FrameworkOption[] = [
 		{ label: 'Next.js', value: 'next' },
 		{ label: 'Vite', value: 'vite' },
 		{ label: 'Remix', value: 'remix' },
 		{ label: 'Astro', value: 'astro' },
 	];
 
-	public readonly itemToString = (value: string) => this.frameworkOptions.find((d) => d.value === value)?.label ?? '';
+	protected readonly itemToString = (value: string) =>
+		this.frameworkOptions.find((d) => d.value === value)?.label ?? '';
 }

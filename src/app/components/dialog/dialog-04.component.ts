@@ -1,12 +1,12 @@
 import { Component, viewChild } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
+import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'sim-dialog-04',
-	imports: [HlmButton, HlmScrollArea, NgScrollbarModule, HlmDialogImports],
+	imports: [NgScrollbarModule, HlmButtonImports, HlmScrollAreaImports, HlmDialogImports],
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Scrollable (scroll area)</button>

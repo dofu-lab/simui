@@ -4,7 +4,7 @@ import { type AbstractControl } from '@angular/forms';
 import { form, FormField, required, submit } from '@angular/forms/signals';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
-import { maskitoTimeOptionsGenerator } from '@maskito/kit';
+import { maskitoTime } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight, lucidePlus, lucideX } from '@ng-icons/lucide';
 import { ErrorStateMatcher } from '@spartan-ng/brain/forms';
@@ -15,7 +15,7 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
-import { HlmSeparator } from '@spartan-ng/helm/separator';
+import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { hlm } from '@spartan-ng/helm/utils';
 
 @Injectable()
@@ -32,6 +32,15 @@ interface CalendarEvent {
 	time: string;
 	date: Date;
 	category: { value: string; label: string; bgClass: string; textClass: string; dotClass: string; badgeClass: string };
+}
+
+interface ColorOption {
+	value: string;
+	label: string;
+	textClass: string;
+	dotClass: string;
+	badgeClass: string;
+	bgClass: string;
 }
 
 interface EventFormModel {
@@ -85,6 +94,25 @@ export const DefaultEventStyle = [
 
 @Component({
 	selector: 'sim-card-15',
+	imports: [
+		NgIcon,
+		DatePipe,
+		MaskitoDirective,
+		FormField,
+		HlmIconImports,
+		HlmCardImports,
+		HlmButtonImports,
+		HlmInputImports,
+		HlmCalendarImports,
+		HlmBadgeImports,
+		HlmRadioGroupImports,
+		HlmSeparatorImports,
+	],
+	providers: [
+		provideIcons({ lucideChevronLeft, lucideChevronRight, lucidePlus, lucideX }),
+		ShowOnSubmitErrorStateMatcher,
+		{ provide: ErrorStateMatcher, useExisting: ShowOnSubmitErrorStateMatcher },
+	],
 	styles: [
 		`
 			@keyframes event-enter {
@@ -101,25 +129,6 @@ export const DefaultEventStyle = [
 				animation: event-enter 220ms cubic-bezier(0.215, 0.61, 0.355, 1) both;
 			}
 		`,
-	],
-	imports: [
-		NgIcon,
-		DatePipe,
-		MaskitoDirective,
-		FormField,
-		HlmIconImports,
-		HlmCardImports,
-		HlmButtonImports,
-		HlmInputImports,
-		HlmCalendarImports,
-		HlmBadgeImports,
-		HlmRadioGroupImports,
-		HlmSeparator,
-	],
-	providers: [
-		provideIcons({ lucideChevronLeft, lucideChevronRight, lucidePlus, lucideX }),
-		ShowOnSubmitErrorStateMatcher,
-		{ provide: ErrorStateMatcher, useExisting: ShowOnSubmitErrorStateMatcher },
 	],
 	template: `
 		<section class="bg-muted flex flex-col gap-4 rounded-2xl p-1.5 pt-0 shadow-none">
@@ -198,12 +207,16 @@ export const DefaultEventStyle = [
 										<div class="flex items-center gap-2">
 											<hlm-radio-group [formField]="eventForm.category" class="flex gap-1 rounded-md">
 												@for (item of colorOptions; track item) {
-													<label hlmLabel>
-														<hlm-radio class="[&_brn-radio]:gap-x-0" [value]="item">
+													<label [for]="item.value" hlmLabel (click)="selectCategory(item)">
+														<hlm-radio class="[&_brn-radio]:gap-x-0" [inputId]="item.value" [value]="item">
 															<div class="relative inline-flex size-6">
 																<div
 																	class="bg-primary-foreground absolute inset-0 scale-0 rounded-full transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[30%]"></div>
-																<div [class]="tagColor(item.bgClass)"></div>
+																<div
+																	[class]="tagColor(item.bgClass)"
+																	[attr.data-state]="
+																		_eventModel().category?.value === item.value ? 'checked' : null
+																	"></div>
 															</div>
 														</hlm-radio>
 													</label>
@@ -233,8 +246,8 @@ export class Card15Component {
 	protected readonly minDate = new Date(2023, 0, 1);
 	protected readonly maxDate = new Date(2030, 11, 31);
 	protected readonly mode = signal<'edit' | 'view'>('view');
-	protected readonly timeMask: MaskitoOptions = maskitoTimeOptionsGenerator({ mode: 'HH:MM' });
-	protected readonly colorOptions = [
+	protected readonly timeMask: MaskitoOptions = maskitoTime({ mode: 'HH:MM' });
+	protected readonly colorOptions: ColorOption[] = [
 		{
 			value: 'meeting',
 			label: 'Meeting',
@@ -331,19 +344,23 @@ export class Card15Component {
 		);
 	}
 
+	protected selectCategory(category: ColorOption): void {
+		this._eventModel.update((model) => ({ ...model, category }));
+	}
+
 	protected setCurrentMonth(): void {
 		const newDate = new Date();
 		this.selectedDate.set(newDate);
 		this.focusedDate.set(newDate);
 	}
 
-	protected jumpToPreviousMonth() {
+	protected jumpToPreviousMonth(): void {
 		const newDate = new Date(this.focusedDate());
 		newDate.setMonth(newDate.getMonth() - 2);
 		this.focusedDate.set(newDate);
 	}
 
-	protected jumpToNextMonth() {
+	protected jumpToNextMonth(): void {
 		const newDate = new Date(this.focusedDate());
 		newDate.setMonth(newDate.getMonth() + 2);
 		this.focusedDate.set(newDate);

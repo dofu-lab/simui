@@ -18,7 +18,7 @@ export class ThemeHttpService {
 	private readonly http = inject(HttpClient);
 	private readonly authService = inject(AuthService);
 
-	public getThemes(page: number = 1, pageSize: number = 50): Observable<ThemePreset[]> {
+	public getThemes(page = 1, pageSize = 50): Observable<ThemePreset[]> {
 		// Only fetch user themes if authenticated
 		if (!this.authService.isAuthenticated()) {
 			return of([]);
@@ -61,11 +61,7 @@ export class ThemeHttpService {
 		return this.http.delete<void>(`${this.apiUrl}/${themeId}`);
 	}
 
-	public getThemeHistory(
-		themeId: string,
-		page: number = 1,
-		pageSize: number = 20,
-	): Observable<ThemeVersionHistoryEntry[]> {
+	public getThemeHistory(themeId: string, page = 1, pageSize = 20): Observable<ThemeVersionHistoryEntry[]> {
 		if (!this.authService.isAuthenticated()) {
 			return of([]);
 		}

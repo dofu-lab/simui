@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
+interface AccordionItem {
+	id: string;
+	title: string;
+	content: string;
+}
+
 @Component({
 	selector: 'sim-accordion-01',
 	imports: [HlmAccordionImports],
@@ -21,7 +27,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 	`,
 })
 export class Accordion01Component {
-	protected readonly items = [
+	protected readonly items: AccordionItem[] = [
 		{
 			id: 'acc-01-1',
 			title: 'Why choose SimUI?',

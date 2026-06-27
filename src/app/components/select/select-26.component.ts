@@ -32,6 +32,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 })
 export class Select26Component {
 	private readonly timezones = Intl.supportedValuesOf('timeZone');
+
 	protected readonly formattedTimezones = computed(() => {
 		return this.timezones
 			.map((timezone) => {

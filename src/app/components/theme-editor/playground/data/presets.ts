@@ -1,7 +1,7 @@
-export type Preset = {
+export interface Preset {
 	id: string;
 	name: string;
-};
+}
 
 export const PRESETS_DATA: Preset[] = [
 	{

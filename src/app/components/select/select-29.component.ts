@@ -3,10 +3,16 @@ import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
-type Option = {
+interface CountryItem {
+	flag: string;
 	label: string;
-	description: string;
-};
+	value: string;
+}
+
+interface CountryGroup {
+	continent: string;
+	items: CountryItem[];
+}
 
 @Component({
 	selector: 'sim-select-29',
@@ -53,7 +59,7 @@ type Option = {
 	`,
 })
 export class Select29Component {
-	protected readonly countries = [
+	protected readonly countries: CountryGroup[] = [
 		{
 			continent: 'America',
 			items: [

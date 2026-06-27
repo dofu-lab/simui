@@ -1,16 +1,16 @@
 import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-05',
-	imports: [FormsModule, HlmRadioGroup, HlmRadio, HlmLabel, HlmInput],
+	imports: [FormsModule, HlmRadioGroupImports, HlmLabelImports, HlmInputImports],
 	template: `
 		<hlm-radio-group class="flex flex-col gap-6 text-sm font-medium" [(ngModel)]="value">
-			<label class="flex items-start gap-2" hlmLabel>
-				<hlm-radio value="1" class="gap-x-0">
+			<label for="radio-05-1" class="flex items-start gap-2" hlmLabel>
+				<hlm-radio inputId="radio-05-1" value="1" class="gap-x-0">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
@@ -38,8 +38,8 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 					</div>
 				</div>
 			</label>
-			<label class="flex items-start gap-2" hlmLabel>
-				<hlm-radio value="2" class="gap-x-0">
+			<label for="radio-05-2" class="flex items-start gap-2" hlmLabel>
+				<hlm-radio inputId="radio-05-2" value="2" class="gap-x-0">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div

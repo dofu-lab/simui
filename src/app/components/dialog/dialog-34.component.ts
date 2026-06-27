@@ -7,12 +7,19 @@ import { lucideMail, lucideSave } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmAspectRatioImports } from '@spartan-ng/helm/aspect-ratio';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
+
+interface Country {
+	id: number;
+	label: string;
+	icon: string;
+	timezone: string;
+}
 
 @Component({
 	selector: 'sim-dialog-34',
@@ -20,13 +27,13 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		NgIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmIcon,
-		HlmButton,
-		HlmInput,
-		HlmLabel,
 		NgOptimizedImage,
-		HlmAvatarImports,
 		BrnSelectImports,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmInputImports,
+		HlmLabelImports,
+		HlmAvatarImports,
 		HlmSelectImports,
 		HlmDialogImports,
 		HlmAspectRatioImports,
@@ -42,7 +49,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				<div class="flex-1 overflow-y-auto">
 					<div class="relative p-2">
 						<div class="shadow-xs" [hlmAspectRatio]="39 / 8">
-							<img ngSrc="assets/backgrounds/bg-02.jpg" fill class="rounded-lg" />
+							<img alt="dialog-24-background" ngSrc="assets/backgrounds/bg-02.jpg" fill class="rounded-lg" />
 						</div>
 						<hlm-avatar class="border-background peer -mt-10 ml-6 size-20 border-4">
 							<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
@@ -104,16 +111,18 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 					<form [formGroup]="formGroup">
 						<div class="mt-6 flex w-full flex-col gap-4 px-6">
 							<div class="flex flex-col gap-2 border-t-2 border-dotted pt-4 sm:flex-row sm:justify-between">
-								<label hlmLabel class="text-secondary-foreground text-sm">Name</label>
-								<div class="grid grid-cols-2 items-center gap-4">
+								<span id="name-label" hlmLabel class="text-secondary-foreground text-sm">Name</span>
+								<div role="group" aria-labelledby="name-label" class="grid grid-cols-2 items-center gap-4">
 									<input
 										hlmInput
+										aria-label="First name"
 										formControlName="firstName"
 										type="text"
 										placeholder="First name"
 										class="flex-1 sm:max-w-43" />
 									<input
 										hlmInput
+										aria-label="Last name"
 										formControlName="lastName"
 										type="text"
 										placeholder="Last name"
@@ -121,10 +130,15 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 								</div>
 							</div>
 							<div class="flex flex-col gap-2 border-t-2 border-dotted pt-4 sm:flex-row sm:justify-between">
-								<label hlmLabel class="text-secondary-foreground text-sm font-semibold">Email</label>
+								<label for="email" hlmLabel class="text-secondary-foreground text-sm font-semibold">Email</label>
 								<div class="flex w-full flex-1 flex-col gap-2 sm:max-w-90">
 									<hlm-input-group>
-										<input hlmInputGroupInput type="email" placeholder="Enter your email" formControlName="email" />
+										<input
+											hlmInputGroupInput
+											id="email"
+											type="email"
+											placeholder="Enter your email"
+											formControlName="email" />
 										<hlm-input-group-addon>
 											<ng-icon name="lucideMail" />
 										</hlm-input-group-addon>
@@ -181,12 +195,12 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 							</div>
 
 							<div class="flex flex-col gap-2 border-t-2 border-dotted py-4 sm:flex-row sm:justify-between">
-								<label hlmLabel class="text-secondary-foreground text-sm font-semibold">Country</label>
+								<label for="country" hlmLabel class="text-secondary-foreground text-sm font-semibold">Country</label>
 								<div class="flex flex-1 flex-col items-start gap-1 sm:max-w-90">
-									<hlm-select class="inline-block w-full" formControlName="country">
+									<hlm-select id="country" class="inline-block w-full" formControlName="country">
 										<hlm-select-trigger class="h-9 w-full">
 											<div class="flex items-center gap-x-2" *hlmSelectValueTemplate="let value">
-												<img [src]="'assets/flags/' + value.icon" />
+												<img alt="flag-icon" [src]="'assets/flags/' + value.icon" />
 												<span class="text-secondary-foreground text-sm font-medium">
 													{{ value.label }}
 												</span>
@@ -197,17 +211,19 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 										</hlm-select-trigger>
 
 										<hlm-select-content *hlmSelectPortal>
-											@for (country of countries; track country.label) {
-												<hlm-select-item [value]="country" class="gap-2">
-													<img [src]="'assets/flags/' + country.icon" />
-													<span class="text-secondary-foreground text-sm font-medium">
-														{{ country.label }}
-													</span>
-													<span class="text-muted-foreground text-sm">
-														{{ country.timezone }}
-													</span>
-												</hlm-select-item>
-											}
+											<hlm-select-group>
+												@for (country of countries; track country.label) {
+													<hlm-select-item [value]="country" class="gap-2">
+														<img alt="flag-icon" [src]="'assets/flags/' + country.icon" />
+														<span class="text-secondary-foreground text-sm font-medium">
+															{{ country.label }}
+														</span>
+														<span class="text-muted-foreground text-sm">
+															{{ country.timezone }}
+														</span>
+													</hlm-select-item>
+												}
+											</hlm-select-group>
 										</hlm-select-content>
 									</hlm-select>
 									<span class="text-muted-foreground mt-1 w-full text-sm">Estimates based on recent IP address.</span>
@@ -229,8 +245,8 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 	`,
 })
 export class Dialog34Component {
-	isEmailVerified = signal(true);
-	countries = [
+	protected readonly isEmailVerified = signal(true);
+	protected readonly countries: Country[] = [
 		{
 			id: 1,
 			label: 'Australia',
@@ -275,7 +291,7 @@ export class Dialog34Component {
 		},
 	];
 
-	formGroup = new FormGroup({
+	protected readonly formGroup = new FormGroup({
 		firstName: new FormControl('Mathilde'),
 		lastName: new FormControl('Lewis'),
 		email: new FormControl('mathilde@simui.dev'),

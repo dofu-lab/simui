@@ -1,14 +1,15 @@
 import type { Locator } from '@playwright/test';
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 async function getCheckedValue(card: Locator): Promise<string | null> {
 	const checkedRadio = card.locator('.brn-radio-checked').first();
 	if ((await checkedRadio.count()) === 0) return null;
-	const id = await checkedRadio.getAttribute('id');
-	if (id) return id;
-	return checkedRadio.getAttribute('data-value');
+	return checkedRadio.evaluate((element) => {
+		const radio = element.closest('hlm-radio') ?? element;
+		return radio.getAttribute('id') ?? radio.getAttribute('data-value');
+	});
 }
 
 async function ensureCheckedState(card: Locator): Promise<void> {
@@ -91,7 +92,7 @@ test.describe('Radio', () => {
 
 	test('visual regression — checked state for all variants', async ({ page }) => {
 		for (const id of COMPONENT_IDS.radio) {
-			const card = page.locator(`component-card#${id}`);
+			const card = componentCard(page, id);
 			const isPresent = await card
 				.waitFor({ state: 'visible', timeout: 5000 })
 				.then(() => true)
@@ -110,28 +111,32 @@ test.describe('Radio', () => {
 	test.describe('Behavior', () => {
 		test('selects a radio option on label click', async ({ page }) => {
 			// BRN radio uses CDK radio, not role="radio"; click via the <label> wrapper
-			const labels = page.locator('component-card#radio-01 label');
+			const card = componentCard(page, 'radio-01');
+			await card.scrollIntoViewIfNeeded();
+			const labels = card.locator('label');
 			const count = await labels.count();
 			expect(count).toBeGreaterThan(0);
-			await labels.nth(1).click();
+			await labels.nth(1).click({ force: true });
 			// After clicking, the radio group has a selected item (brn-radio-checked class)
-			const checkedRadio = page.locator('component-card#radio-01 .brn-radio-checked');
+			const checkedRadio = card.locator('.brn-radio-checked');
 			await expect(checkedRadio).toBeVisible();
 		});
 
 		test('only one radio is checked at a time', async ({ page }) => {
-			const labels = page.locator('component-card#radio-01 label');
-			await labels.first().click();
-			await labels.nth(1).click();
+			const card = componentCard(page, 'radio-01');
+			await card.scrollIntoViewIfNeeded();
+			const labels = card.locator('label');
+			await labels.first().click({ force: true });
+			await labels.nth(1).click({ force: true });
 			// Only one element should have the checked class
-			const checkedRadios = page.locator('component-card#radio-01 .brn-radio-checked');
+			const checkedRadios = card.locator('.brn-radio-checked');
 			await expect(checkedRadios).toHaveCount(1);
 		});
 
 		test.describe('Checked state', () => {
 			for (const id of COMPONENT_IDS.radio) {
 				test(`verifies checked state in ${id}`, async ({ page }) => {
-					const card = page.locator(`component-card#${id}`);
+					const card = componentCard(page, id);
 					const isPresent = await card
 						.waitFor({ state: 'visible', timeout: 5000 })
 						.then(() => true)

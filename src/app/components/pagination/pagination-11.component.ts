@@ -1,20 +1,19 @@
-import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute } from '@angular/core';
+import { Component, computed, inject, numberAttribute } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronFirst, lucideChevronLast } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { map } from 'rxjs';
 
 @Component({
 	selector: 'sim-pagination-11',
-	imports: [HlmPaginationImports, HlmSelectImports, FormsModule, NgIcon, HlmIcon, HlmButton, RouterLink],
+	imports: [FormsModule, NgIcon, RouterLink, HlmPaginationImports, HlmSelectImports, HlmIconImports, HlmButtonImports],
 	providers: [provideIcons({ lucideChevronLast, lucideChevronFirst })],
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'block w-full' },
 	template: `
 		<div class="flex items-center justify-between gap-3">
@@ -46,17 +45,19 @@ import { map } from 'rxjs';
 								<hlm-select-value />
 							</hlm-select-trigger>
 							<hlm-select-content *hlmSelectPortal>
-								@for (pageSize of pages; track pageSize) {
-									<hlm-select-item routerLink="" [value]="pageSize">
-										<a
-											routerLink="."
-											[queryParams]="{ page: pageSize }"
-											queryParamsHandling="merge"
-											class="h-fit w-full">
-											Page {{ pageSize }}
-										</a>
-									</hlm-select-item>
-								}
+								<hlm-select-group>
+									@for (pageSize of pages; track pageSize) {
+										<hlm-select-item routerLink="" [value]="pageSize">
+											<a
+												routerLink="."
+												[queryParams]="{ page: pageSize }"
+												queryParamsHandling="merge"
+												class="h-fit w-full">
+												Page {{ pageSize }}
+											</a>
+										</hlm-select-item>
+									}
+								</hlm-select-group>
 							</hlm-select-content>
 						</hlm-select>
 					</div>

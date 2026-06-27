@@ -2,18 +2,21 @@ import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { provideIcons } from '@ng-icons/core';
 import { lucideRotateCcw } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSliderImports } from '@spartan-ng/helm/slider';
+
+interface PriceItem {
+	id: number;
+	price: number;
+}
 
 @Component({
 	selector: 'sim-slider-17',
-	imports: [HlmSlider, HlmLabel, FormsModule, HlmInput, HlmButton],
+	imports: [FormsModule, HlmSliderImports, HlmLabelImports, HlmInputImports, HlmButtonImports],
 	providers: [provideIcons({ lucideRotateCcw })],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<span hlmLabel class="mb-4">Price slider</span>
 		<div>
@@ -65,7 +68,7 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider17Component {
-	public readonly items = [
+	protected readonly items: PriceItem[] = [
 		{ id: 1, price: 80 },
 		{ id: 2, price: 95 },
 		{ id: 3, price: 110 },
@@ -187,25 +190,25 @@ export class Slider17Component {
 		{ id: 119, price: 898 },
 		{ id: 120, price: 900 },
 	];
-	public readonly tick_count = 40;
-	public readonly minValue = Math.min(...this.items.map((item) => item.price));
-	public readonly maxValue = Math.max(...this.items.map((item) => item.price));
-	public readonly priceStep = (this.maxValue - this.minValue) / this.tick_count;
-	public readonly minPrice = signal([0]);
-	public readonly maxPrice = signal([300]);
-	public readonly itemCounts = Array(this.tick_count)
+	protected readonly tick_count = 40;
+	protected readonly minValue = Math.min(...this.items.map((item) => item.price));
+	protected readonly maxValue = Math.max(...this.items.map((item) => item.price));
+	protected readonly priceStep = (this.maxValue - this.minValue) / this.tick_count;
+	protected readonly minPrice = signal([0]);
+	protected readonly maxPrice = signal([300]);
+	protected readonly itemCounts = Array(this.tick_count)
 		.fill(0)
 		.map((_, tick) => {
 			const rangeMin = this.minValue + tick * this.priceStep;
 			const rangeMax = this.minValue + (tick + 1) * this.priceStep;
 			return this.items.filter((item) => item.price >= rangeMin && item.price < rangeMax).length;
 		});
-	public readonly maxCount = Math.max(...this.itemCounts);
-	public computedFilteredItems = computed(() =>
+	protected readonly maxCount = Math.max(...this.itemCounts);
+	protected readonly computedFilteredItems = computed(() =>
 		this.items.filter((item) => item.price >= this.minPrice()[0] && item.price <= this.maxPrice()[0]),
 	);
 
-	public generateRandomId(): string {
+	protected generateRandomId(): string {
 		return Math.random().toString(36).substring(2, 9);
 	}
 }

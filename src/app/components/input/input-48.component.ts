@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, computed, model, signal } from '@an
 import { FormsModule } from '@angular/forms';
 import { IconType, NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideEye, lucideEyeOff, lucideX } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-48',
-	imports: [HlmLabel, NgIcon, HlmIcon, FormsModule, HlmInputGroupImports],
+	imports: [NgIcon, FormsModule, HlmIconImports, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideEye, lucideEyeOff, lucideCheck, lucideX })],
 	host: { class: 'w-full' },
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -61,12 +61,12 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input48Component {
-	readonly visibility = signal(false);
-	readonly passwordValue = model('');
+	protected readonly visibility = signal(false);
+	protected readonly passwordValue = model('');
 
-	readonly computedIcon = computed<IconType>(() => (this.visibility() ? 'lucideEyeOff' : 'lucideEye'));
-	readonly inputType = computed<string>(() => (this.visibility() ? 'text' : 'password'));
-	readonly strength = computed(() => {
+	protected readonly computedIcon = computed<IconType>(() => (this.visibility() ? 'lucideEyeOff' : 'lucideEye'));
+	protected readonly inputType = computed<string>(() => (this.visibility() ? 'text' : 'password'));
+	protected readonly strength = computed(() => {
 		const requirements = [
 			{ regex: /.{8,}/, text: 'At least 8 characters' },
 			{ regex: /[0-9]/, text: 'At least 1 number' },
@@ -78,8 +78,8 @@ export class Input48Component {
 			text: req.text,
 		}));
 	});
-	readonly score = computed(() => this.strength().filter((req) => req.met).length);
-	readonly strengthText = computed(() => {
+	protected readonly score = computed(() => this.strength().filter((req) => req.met).length);
+	protected readonly strengthText = computed(() => {
 		if (this.score() === 0) {
 			return 'Enter a password';
 		}
@@ -91,7 +91,7 @@ export class Input48Component {
 		}
 		return 'Strong password';
 	});
-	readonly strengthColor = computed(() => {
+	protected readonly strengthColor = computed(() => {
 		if (this.score() === 0) {
 			return 'bg-border';
 		}
@@ -107,7 +107,7 @@ export class Input48Component {
 		return 'bg-emerald-500';
 	});
 
-	handleUpdateVisibility(): void {
+	protected handleUpdateVisibility(): void {
 		this.visibility.update((v) => !v);
 	}
 }

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { AuthenticationForm } from './components/form';
 
 @Component({
 	selector: 'app-authentication-example',
-	imports: [AuthenticationForm, HlmButton],
+	imports: [AuthenticationForm, HlmButtonImports],
 	host: {
 		class: 'block size-full',
 	},

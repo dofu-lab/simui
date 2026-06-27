@@ -5,8 +5,8 @@ import { ThemeHistory, ThemePreset } from '@/app/types';
 import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideClipboardClock } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSheetImports } from '@spartan-ng/helm/sheet';
 import { ColorTypeSelector } from './color-type-selector';
 import { ThemeVersionHistoryComponent } from './theme-version-history';
@@ -16,8 +16,8 @@ import { UnsavedHistory } from './unsaved-history';
 	selector: 'sim-editor-history',
 	imports: [
 		NgIcon,
-		HlmIcon,
-		HlmButton,
+		HlmIconImports,
+		HlmButtonImports,
 		ColorTypeSelector,
 		ThemeVersionHistoryComponent,
 		HlmSheetImports,

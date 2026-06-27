@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'sim-avatar-06',
-	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
+	imports: [HlmAvatarImports],
 	template: `
 		<div class="relative">
 			<hlm-avatar class="border-border/50 size-10 border">
 				<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 				<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 			</hlm-avatar>
-			<div
-				class="border-background bg-muted-foreground absolute top-7.5 right-0 size-3 rounded-full border-[2px]"></div>
+			<div class="border-background bg-muted-foreground absolute top-7.5 right-0 size-3 rounded-full border-2"></div>
 		</div>
 	`,
 })

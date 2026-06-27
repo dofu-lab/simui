@@ -4,11 +4,11 @@ import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideLoader, lucideX, lucideZap } from '@ng-icons/lucide';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 import { AuthService } from '../services/auth.service';
 import { PaymentHttpService } from '../services/payment-http.service';
 
@@ -37,7 +37,7 @@ const PRO_FEATURES: PlanFeature[] = [
 
 @Component({
 	selector: 'sim-pricing',
-	imports: [HlmButton, HlmCardImports, HlmBadge, HlmIcon, HlmSpinner, NgIcon, RouterLink],
+	imports: [HlmButtonImports, HlmCardImports, HlmBadgeImports, HlmIconImports, HlmSpinnerImports, NgIcon, RouterLink],
 	providers: [provideIcons({ lucideCheck, lucideX, lucideZap, lucideLoader })],
 	host: { class: 'flex flex-1 size-full' },
 	template: `

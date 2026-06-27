@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { previewComponents } from '../constants/home.constant';
 import { NavigationService } from './services/navigation.service';
 
 @Component({
 	selector: 'app-component-badges',
-	imports: [HlmButton],
+	imports: [HlmButtonImports],
 	template: `
 		<div class="mx-auto mt-4 mb-[50px] w-full max-w-4xl">
 			<div class="flex flex-wrap justify-center gap-2">

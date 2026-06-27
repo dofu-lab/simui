@@ -1,8 +1,8 @@
 import { Type } from '@angular/core';
 
-export type ComponentCardItem = {
+export interface ComponentCardItem {
 	id: string;
 	component: Type<unknown>;
 	colNumber: number;
 	itemStyle: number;
-};
+}

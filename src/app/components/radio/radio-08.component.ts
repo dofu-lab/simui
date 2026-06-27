@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'sim-radio-08',
-	imports: [HlmRadioGroup, HlmRadio, HlmLabel],
+	imports: [HlmRadioGroupImports, HlmLabelImports],
 	template: `
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="1">
 			<div
 				class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs outline-none">
 				<label
+					for="radio-08-1"
 					class="flex items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
 					<div class="flex flex-col gap-2">
@@ -19,7 +20,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 						</span>
 						<p class="text-muted-foreground text-xs font-normal">This is a small radio button with a sublabel.</p>
 					</div>
-					<hlm-radio class="gap-x-0" value="1">
+					<hlm-radio class="gap-x-0" value="1" inputId="radio-08-1">
 						<div
 							class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 							<div
@@ -33,6 +34,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 			<div
 				class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs outline-none">
 				<label
+					for="radio-08-2"
 					class="flex items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
 					<div class="flex flex-col gap-2">
@@ -42,7 +44,7 @@ import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
 						</span>
 						<p class="text-muted-foreground text-xs font-normal">This is a small radio button with a sublabel.</p>
 					</div>
-					<hlm-radio class="gap-x-0" value="2">
+					<hlm-radio class="gap-x-0" value="2" inputId="radio-08-2">
 						<div
 							class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 							<div

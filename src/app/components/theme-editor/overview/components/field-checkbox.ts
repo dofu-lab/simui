@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { Component } from '@angular/core';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 
 @Component({
 	selector: 'app-field-checkbox',
-	imports: [HlmFieldImports, HlmCheckbox],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [HlmFieldImports, HlmCheckboxImports],
 	template: `
 		<fieldset hlmFieldSet>
 			<label hlmFieldLabel for="exp-checkbox">

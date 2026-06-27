@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFrame, lucideHand, lucideMousePointer2, lucidePenTool } from '@ng-icons/lucide';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+
+interface CheckboxItem {
+	id: number;
+	value: string;
+	label: string;
+	icon: string;
+}
 
 @Component({
 	selector: 'sim-checkbox-17',
-	imports: [HlmCheckbox, HlmLabel, HlmIcon, NgIcon],
+	imports: [NgIcon, HlmCheckboxImports, HlmLabelImports, HlmIconImports],
 	providers: [
 		provideIcons({
 			lucideMousePointer2,
@@ -37,7 +44,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Checkbox17Component {
-	items: { id: number; value: string; label: string; icon: string }[] = [
+	protected readonly items: CheckboxItem[] = [
 		{ id: 1, value: 'frame', label: 'Frame', icon: 'lucideFrame' },
 		{ id: 2, value: 'pointer', label: 'Pointer', icon: 'lucideMousePointer2' },
 		{ id: 3, value: 'pen', label: 'Pen', icon: 'lucidePenTool' },

@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendarMinus2 } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { addDays, isToday } from 'date-fns';
 import { AgendaDaysToShow } from './constants';
 import { EventItemComponent } from './event-item.component';
@@ -11,7 +11,7 @@ import { getAgendaEventsForDay } from './utils';
 
 @Component({
 	selector: 'sim-agenda-view',
-	imports: [NgIcon, HlmIcon, DatePipe, EventItemComponent],
+	imports: [NgIcon, DatePipe, EventItemComponent, HlmIconImports],
 	providers: [provideIcons({ lucideCalendarMinus2 })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `

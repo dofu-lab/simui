@@ -1,18 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus, lucidePlus } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'sim-slider-15',
-	imports: [HlmSlider, HlmLabel, HlmButton, HlmIcon, NgIcon],
+	imports: [NgIcon, HlmSliderImports, HlmLabelImports, HlmButtonImports, HlmIconImports],
 	providers: [provideIcons({ lucideMinus, lucidePlus })],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<div class="mb-4 flex items-center justify-between">
 			<span hlmLabel>{{ value() }} credits/month</span>
@@ -41,21 +39,19 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider15Component {
-	public readonly value = signal([50]);
+	protected readonly value = signal([50]);
 
-	public onDecreaseCredits(): void {
+	protected onDecreaseCredits(): void {
 		if (this.value()[0] === 0) {
 			return;
 		}
-
 		this.value.update((value) => [value[0] - 5]);
 	}
 
-	public onIncreaseCredits(): void {
+	protected onIncreaseCredits(): void {
 		if (this.value()[0] === 200) {
 			return;
 		}
-
 		this.value.update((value) => [value[0] + 5]);
 	}
 }

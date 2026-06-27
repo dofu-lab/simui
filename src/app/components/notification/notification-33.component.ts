@@ -2,20 +2,20 @@ import { Component, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideX } from '@ng-icons/lucide';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-33',
-	imports: [HlmButton],
+	imports: [HlmButtonImports],
 	template: `
 		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">macOS notification</button>
 	`,
 })
 export class Notification33Component {
-	notificationId = 0;
+	private notificationId = 0;
 
-	showNotification() {
+	protected showNotification(): void {
 		toast(MacOsNotificationComponent, {
 			unstyled: true,
 			position: 'top-right',
@@ -28,11 +28,11 @@ export class Notification33Component {
 
 @Component({
 	selector: 'sim-macos-notification',
+	imports: [NgIcon, HlmIconImports],
 	providers: [provideIcons({ lucideX })],
-	imports: [NgIcon, HlmIcon],
 	template: `
 		<div
-			class="backdrop-blur-4xl relative flex w-[356px] gap-3 rounded-[16px] border-[1px] border-[#78797A] bg-[#424242]/93 p-3">
+			class="backdrop-blur-4xl relative flex w-[356px] gap-3 rounded-[16px] border border-[#78797A] bg-[#424242]/93 p-3">
 			<div class="flex size-8 items-center justify-center rounded-md bg-white">
 				<svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
@@ -154,9 +154,9 @@ export class Notification33Component {
 	`,
 })
 export class MacOsNotificationComponent {
-	notificationId = input.required<number>();
+	public readonly notificationId = input.required<number>();
 
-	onDismiss() {
+	protected onDismiss(): void {
 		toast.dismiss(this.notificationId());
 	}
 }

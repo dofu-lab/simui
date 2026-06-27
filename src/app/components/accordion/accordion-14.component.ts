@@ -4,6 +4,12 @@ import { lucideMinus, lucidePlus } from '@ng-icons/lucide';
 import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
+interface AccordionItem {
+	id: string;
+	title: string;
+	content: string;
+}
+
 @Component({
 	selector: 'sim-accordion-14',
 	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon],
@@ -19,7 +25,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 							<button
 								brnAccordionTrigger
 								data-slot="accordion-trigger"
-								class="**:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-3 text-start text-sm font-medium transition-all motion-reduce:transition-none outline-none hover:underline aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)] **:data-[slot=accordion-trigger-label]:me-auto">
+								class="**:data-[slot=accordion-trigger-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-3 text-start text-sm font-medium transition-all outline-none hover:underline aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)] **:data-[slot=accordion-trigger-label]:me-auto motion-reduce:transition-none">
 								<ng-icon
 									name="lucidePlus"
 									data-slot="accordion-trigger-icon"
@@ -41,7 +47,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 	`,
 })
 export class Accordion14Component {
-	protected readonly items = [
+	protected readonly items: AccordionItem[] = [
 		{
 			id: 'acc-14-1',
 			title: 'Why choose SimUI?',

@@ -2,13 +2,18 @@ import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowLeft, lucideArrowRight } from '@ng-icons/lucide';
 import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
+
+interface PopoverStep {
+	title: string;
+	description: string;
+}
 
 @Component({
 	selector: 'sim-popover-11',
-	imports: [NgIcon, HlmIcon, HlmButton, HlmPopoverImports, BrnAccordionImports],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmPopoverImports, BrnAccordionImports],
 	providers: [provideIcons({ lucideArrowLeft, lucideArrowRight })],
 	template: `
 		<hlm-popover sideOffset="5">
@@ -17,11 +22,9 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 				<div class="text-sm font-medium">
 					{{ steps[currentStep()].title }}
 				</div>
-
 				<p class="text-muted-foreground text-xs">
 					{{ steps[currentStep()].description }}
 				</p>
-
 				<div class="mt-1 flex items-center justify-between gap-2">
 					<span class="text-muted-foreground text-xs">{{ currentStep() + 1 }}/{{ steps.length }}</span>
 					<div>
@@ -50,7 +53,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover11Component {
-	public readonly steps = [
+	protected readonly steps: PopoverStep[] = [
 		{
 			title: 'Welcome',
 			description:
@@ -77,15 +80,15 @@ export class Popover11Component {
 				'Discover advanced features and hidden gems throughout the application to unlock its full potential and capabilities.',
 		},
 	];
-	currentStep = signal(0);
+	protected readonly currentStep = signal(0);
 
-	nextStep() {
+	protected nextStep(): void {
 		if (this.currentStep() < this.steps.length - 1) {
 			this.currentStep.update((value: number) => value + 1);
 		}
 	}
 
-	public previousStep() {
+	protected previousStep(): void {
 		if (this.currentStep() > 0) {
 			this.currentStep.update((value: number) => value - 1);
 		}

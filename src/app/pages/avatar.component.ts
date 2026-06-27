@@ -6,8 +6,8 @@ import { avatarComponents } from '../constants';
 	selector: 'app-avatar',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header name="Avatar" description="A component to show user profile pictures" />
-		<page-grid [components]="components" />
+		<sim-component-header name="Avatar" description="A component to show user profile pictures" />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class AvatarComponent {

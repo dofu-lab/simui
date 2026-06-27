@@ -4,11 +4,11 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { ClassValue } from 'clsx';
 
-type Option = {
+interface Option {
 	value: string;
 	label: string;
 	dotColor: string;
-};
+}
 
 @Component({
 	selector: 'sim-status-dot',
@@ -66,10 +66,10 @@ export class StatusDot {
 })
 export class Select27Component {
 	protected readonly options: Option[] = [
-		{ value: 'completed', label: 'Completed', dotColor: 'text-emerald-500' },
-		{ value: 'in-progress', label: 'In Progress', dotColor: 'text-yellow-500' },
-		{ value: 'on-hold', label: 'On Hold', dotColor: 'text-blue-500' },
-		{ value: 'cancelled', label: 'Cancelled', dotColor: 'text-gray-500' },
-		{ value: 'failed', label: 'Failed', dotColor: 'text-red-500' },
+		{ value: 'completed', label: 'Completed', dotColor: 'fill-emerald-500' },
+		{ value: 'in-progress', label: 'In Progress', dotColor: 'fill-yellow-500' },
+		{ value: 'on-hold', label: 'On Hold', dotColor: 'fill-blue-500' },
+		{ value: 'cancelled', label: 'Cancelled', dotColor: 'fill-gray-500' },
+		{ value: 'failed', label: 'Failed', dotColor: 'fill-red-500' },
 	];
 }

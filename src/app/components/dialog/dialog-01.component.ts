@@ -1,10 +1,10 @@
 import { Component, viewChild } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogDescription, HlmDialogImports } from '@spartan-ng/helm/dialog';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 
 @Component({
 	selector: 'sim-dialog-01',
-	imports: [HlmButton, HlmDialogDescription, HlmDialogImports],
+	imports: [HlmButtonImports, HlmDialogImports],
 	template: `
 		<hlm-dialog>
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Confirm dialog</button>

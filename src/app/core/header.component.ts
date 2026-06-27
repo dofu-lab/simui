@@ -3,9 +3,9 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub, lucideMoon, lucideSquareMenu, lucideSun } from '@ng-icons/lucide';
 import { remixTwitterXFill } from '@ng-icons/remixicon';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { isFreeUser } from '../models/user-role';
 import { AuthService } from '../services/auth.service';
 import { AuthenticationComponent } from './authentication';
@@ -15,7 +15,15 @@ import { AppearanceService } from './services';
 @Component({
 	selector: 'app-header',
 	providers: [provideIcons({ lucideSun, lucideMoon, lucideGithub, lucideSquareMenu, remixTwitterXFill })],
-	imports: [HlmButton, NgIcon, HlmIcon, HlmDropdownMenuImports, RouterLink, RouterLinkActive, AuthenticationComponent],
+	imports: [
+		HlmButtonImports,
+		NgIcon,
+		HlmIconImports,
+		HlmDropdownMenuImports,
+		RouterLink,
+		RouterLinkActive,
+		AuthenticationComponent,
+	],
 	template: `
 		<header class="mx-auto flex justify-center pt-3">
 			<div
@@ -24,10 +32,6 @@ import { AppearanceService } from './services';
 					<a class="relative mr-6 flex items-center space-x-2" href="/">
 						<img src="/assets/logos/logo-base.svg" alt="Magic UI" class="h-10 w-10" />
 						<span class="text-foreground hidden font-bold md:inline-block">Sim UI</span>
-						<div
-							class="bg-secondary text-secondary-foreground hover:bg-secondary/80 focus:ring-ring inline-flex items-center rounded-md border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none">
-							Beta
-						</div>
 					</a>
 				</div>
 				<div class="mr-4 flex gap-1">

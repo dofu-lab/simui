@@ -2,8 +2,8 @@ import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideZap } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { isFreeUser } from '../../models/user-role';
 import { AuthService } from '../../services/auth.service';
 import { EditThemeButton } from './edit-theme-button';
@@ -12,7 +12,7 @@ import { ThemeSelector } from './theme-selector';
 
 @Component({
 	selector: 'app-editor-header',
-	imports: [ThemeSelector, ThemeAction, EditThemeButton, HlmButton, HlmIcon, NgIcon, RouterLink],
+	imports: [ThemeSelector, ThemeAction, EditThemeButton, HlmButtonImports, HlmIconImports, NgIcon, RouterLink],
 	providers: [provideIcons({ lucideZap })],
 	host: {
 		class: 'border-b',

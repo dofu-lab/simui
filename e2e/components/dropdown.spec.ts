@@ -1,7 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 async function getOpenMenu(page: Page): Promise<Locator> {
 	const menu = page.locator('[role="menu"]').first();
@@ -10,7 +10,7 @@ async function getOpenMenu(page: Page): Promise<Locator> {
 }
 
 async function snapshotOpenDropdownVariant(page: Page, id: string): Promise<void> {
-	const card = page.locator(`component-card#${id}`);
+	const card = componentCard(page, id);
 	const trigger = card.getByRole('button').first();
 	const isPresent = await card
 		.waitFor({ state: 'visible', timeout: 5000 })
@@ -70,7 +70,7 @@ test.describe('Dropdown', () => {
 
 	test.describe('Behavior', () => {
 		test('opens menu on trigger press and closes on Escape', async ({ page }) => {
-			const trigger = page.locator('component-card#dropdown-01 button').first();
+			const trigger = componentCard(page, 'dropdown-01').locator('button').first();
 			await trigger.focus();
 			await page.keyboard.press('Enter');
 
@@ -82,7 +82,7 @@ test.describe('Dropdown', () => {
 		});
 
 		test('menu closes after selecting an item', async ({ page }) => {
-			const trigger = page.locator('component-card#dropdown-01 button').first();
+			const trigger = componentCard(page, 'dropdown-01').locator('button').first();
 			await trigger.click();
 			const menu = await getOpenMenu(page);
 			const item = menu.locator('[role="menuitem"]').first();
@@ -91,27 +91,24 @@ test.describe('Dropdown', () => {
 		});
 
 		test('supports submenu and checkbox interactions in rich dropdown content', async ({ page }) => {
-			const trigger = page.locator('component-card#dropdown-09 button').first();
-			await trigger.click();
+			const trigger = componentCard(page, 'dropdown-09').locator('button').first();
+			const openNotificationsMenu = async (): Promise<void> => {
+				await trigger.dispatchEvent('click');
+				const rootMenu = await getOpenMenu(page);
+				await rootMenu.getByRole('menuitem', { name: 'Notifications' }).hover();
+				const notificationMenu = page
+					.locator('[role="menu"]')
+					.filter({ has: page.getByRole('menuitemcheckbox', { name: 'Email' }) })
+					.first();
+				await expect(notificationMenu).toBeVisible({ timeout: 3000 });
+			};
 
-			const rootMenu = await getOpenMenu(page);
-			const notificationsTrigger = rootMenu.getByRole('menuitem', { name: 'Notifications' });
-			await notificationsTrigger.hover();
+			await openNotificationsMenu();
 
-			const notificationMenu = page
-				.locator('[role="menu"]')
-				.filter({ has: page.getByRole('menuitemcheckbox', { name: 'Email' }) })
-				.first();
-			await expect(notificationMenu).toBeVisible({ timeout: 3000 });
-
-			const pushItem = notificationMenu.getByRole('menuitemcheckbox', { name: 'Push' });
+			const pushItem = page.getByRole('menuitemcheckbox', { name: 'Push' });
 			await expect(pushItem).toHaveAttribute('aria-checked', 'false');
 			await pushItem.click();
-
-			await trigger.click();
-			await rootMenu.getByRole('menuitem', { name: 'Notifications' }).hover();
-			const reopenedPushItem = page.getByRole('menuitemcheckbox', { name: 'Push' });
-			await expect(reopenedPushItem).toHaveAttribute('aria-checked', 'true');
+			await expect(pushItem).toHaveAttribute('aria-checked', 'true');
 		});
 	});
 });

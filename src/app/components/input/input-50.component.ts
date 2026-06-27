@@ -4,11 +4,11 @@ import { Component, inject, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy } from '@ng-icons/lucide';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-50',
-	imports: [HlmLabel, NgIcon, NgClass, HlmInputGroupImports],
+	imports: [NgIcon, NgClass, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideCopy, lucideCheck })],
 	host: { class: 'w-full' },
 	template: `
@@ -50,11 +50,11 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input50Component {
-	public readonly shareUrl = 'https://simui.dev/JGGH0N';
-	public readonly copied = signal<boolean>(false);
+	protected readonly shareUrl = 'https://simui.dev/JGGH0N';
+	protected readonly copied = signal<boolean>(false);
 	private readonly _clipboard = inject(Clipboard);
 
-	public onCopy(): void {
+	protected onCopy(): void {
 		this.copied.set(true);
 		this._clipboard.copy(this.shareUrl);
 

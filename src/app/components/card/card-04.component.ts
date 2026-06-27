@@ -8,6 +8,11 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
+interface FrameworkOption {
+	label: string;
+	value: string;
+}
+
 @Component({
 	selector: 'sim-card-04',
 	imports: [
@@ -27,7 +32,6 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 					<h3 hlmCardTitle>Create project</h3>
 					<p hlmCardDescription>Deploy your new project in one-click.</p>
 				</div>
-
 				<div hlmCardContent>
 					<fieldset hlmFieldSet>
 						<div hlmFieldGroup class="gap-4">
@@ -53,7 +57,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 								</hlm-select>
 							</div>
 							<div hlmField>
-							<button hlmBtn type="submit" class="w-full">Deploy</button>
+								<button hlmBtn type="submit" class="w-full">Deploy</button>
 							</div>
 						</div>
 					</fieldset>
@@ -69,12 +73,13 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 	`,
 })
 export class Card04Component {
-	protected readonly frameworkOptions = [
+	protected readonly frameworkOptions: FrameworkOption[] = [
 		{ label: 'Next.js', value: 'next' },
 		{ label: 'Vite', value: 'vite' },
 		{ label: 'Remix', value: 'remix' },
 		{ label: 'Astro', value: 'astro' },
 	];
 
-	public readonly itemToString = (value: string) => this.frameworkOptions.find((d) => d.value === value)?.label ?? '';
+	protected readonly itemToString = (value: string) =>
+		this.frameworkOptions.find((d) => d.value === value)?.label ?? '';
 }

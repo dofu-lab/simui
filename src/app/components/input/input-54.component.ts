@@ -2,18 +2,18 @@ import { Component, model, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideX } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
-type TagItem = {
+interface TagItem {
 	id: number;
 	value: string;
-};
+}
 
 @Component({
 	selector: 'sim-input-54',
-	imports: [HlmLabel, HlmInput, FormsModule, NgIcon, HlmIcon],
+	imports: [FormsModule, NgIcon, HlmIconImports, HlmLabelImports, HlmInputImports],
 	providers: [provideIcons({ lucideX })],
 	host: { class: 'w-full' },
 	template: `
@@ -42,17 +42,14 @@ type TagItem = {
 	`,
 })
 export class Input54Component {
-	readonly value = model('');
-	readonly tags = signal<TagItem[]>([
-		{
-			id: 1,
-			value: 'Sport',
-		},
+	protected readonly value = model('');
+	protected readonly tags = signal<TagItem[]>([
+		{ id: 1, value: 'Sport' },
 		{ id: 2, value: 'Music' },
 		{ id: 3, value: 'Movies' },
 	]);
 
-	addTag(): void {
+	protected addTag(): void {
 		const currentTags = this.tags();
 		const isValueExist = currentTags.some((tag) => tag.value.toLowerCase() === this.value().toLowerCase());
 		if (!isValueExist) {
@@ -62,7 +59,7 @@ export class Input54Component {
 		this.value.set('');
 	}
 
-	removeTag(id: number): void {
+	protected removeTag(id: number): void {
 		this.tags.set(this.tags().filter((tag) => tag.id !== id));
 	}
 }

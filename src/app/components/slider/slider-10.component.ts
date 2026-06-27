@@ -1,17 +1,15 @@
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideVolume2, lucideVolumeX } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'sim-slider-10',
-	imports: [HlmSlider, HlmLabel, NgIcon, HlmIcon],
+	imports: [NgIcon, HlmSliderImports, HlmLabelImports, HlmIconImports],
 	providers: [provideIcons({ lucideVolumeX, lucideVolume2 })],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<div class="mb-4 flex items-center justify-between">
 			<span hlmLabel>Volume</span>
@@ -25,5 +23,5 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider10Component {
-	public readonly value = signal([45]);
+	protected readonly value = signal([45]);
 }

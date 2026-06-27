@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
+import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-14',
-	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
-	host: {
-		class: 'w-full',
-	},
+	imports: [HlmTabsImports],
+	host: { class: 'w-full' },
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
 			<hlm-tabs-list
@@ -14,21 +12,21 @@ import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-n
 				aria-label="tabs example">
 				<button hlmTabsTrigger="tab01" class="flex-1 flex-col gap-1.5 p-3">
 					<span
-						class="bg-primary text-primary-foreground flex size-5 items-center justify-center rounded-full text-xs transition-opacity motion-reduce:transition-none group-data-[state=inactive]:opacity-50">
+						class="bg-primary text-primary-foreground flex size-5 items-center justify-center rounded-full text-xs transition-opacity group-data-[state=inactive]:opacity-50 motion-reduce:transition-none">
 						3
 					</span>
 					Overview
 				</button>
 				<button hlmTabsTrigger="tab02" class="flex-1 flex-col gap-1.5 p-3">
 					<span
-						class="bg-primary text-primary-foreground flex size-5 items-center justify-center rounded-full text-xs transition-opacity motion-reduce:transition-none group-data-[state=inactive]:opacity-50">
+						class="bg-primary text-primary-foreground flex size-5 items-center justify-center rounded-full text-xs transition-opacity group-data-[state=inactive]:opacity-50 motion-reduce:transition-none">
 						0
 					</span>
 					Projects
 				</button>
 				<button hlmTabsTrigger="tab03" class="flex-1 flex-col gap-1.5 p-3">
 					<span
-						class="bg-primary text-primary-foreground flex size-5 items-center justify-center rounded-full text-xs transition-opacity motion-reduce:transition-none group-data-[state=inactive]:opacity-50">
+						class="bg-primary text-primary-foreground flex size-5 items-center justify-center rounded-full text-xs transition-opacity group-data-[state=inactive]:opacity-50 motion-reduce:transition-none">
 						8
 					</span>
 					Packages

@@ -28,10 +28,10 @@ Use the `::view-transition-old()` and `::view-transition-new()` pseudo-elements.
 ```css
 /* Example: Cross-fade + Slide */
 ::view-transition-old(root) {
-  animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
+	animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
 }
 ::view-transition-new(root) {
-  animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in;
+	animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in;
 }
 ```
 
@@ -41,12 +41,12 @@ Use `onViewTransitionCreated` to skip transitions or customize behavior based on
 
 ```ts
 withViewTransitions({
-  onViewTransitionCreated: ({transition, from, to}) => {
-    // Skip animation for specific routes
-    if (to.url === '/no-animation') {
-      transition.skipTransition();
-    }
-  },
+	onViewTransitionCreated: ({ transition, from, to }) => {
+		// Skip animation for specific routes
+		if (to.url === '/no-animation') {
+			transition.skipTransition();
+		}
+	},
 });
 ```
 

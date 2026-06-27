@@ -3,6 +3,12 @@ import { provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
+interface AccordionItem {
+	id: string;
+	title: string;
+	content: string;
+}
+
 @Component({
 	selector: 'sim-accordion-11',
 	imports: [HlmAccordionImports],
@@ -27,7 +33,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 	`,
 })
 export class Accordion11Component {
-	protected readonly items = [
+	protected readonly items: AccordionItem[] = [
 		{
 			id: 'acc-11-1',
 			title: 'Why choose SimUI?',

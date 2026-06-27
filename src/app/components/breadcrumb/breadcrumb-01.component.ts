@@ -1,27 +1,10 @@
 import { Component } from '@angular/core';
-import {
-	HlmBreadcrumb,
-	HlmBreadcrumbEllipsis,
-	HlmBreadcrumbItem,
-	HlmBreadcrumbLink,
-	HlmBreadcrumbList,
-	HlmBreadcrumbPage,
-	HlmBreadcrumbSeparator,
-} from '@spartan-ng/helm/breadcrumb';
+import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'sim-breadcrumb-01',
-	imports: [
-		HlmBreadcrumb,
-		HlmBreadcrumbSeparator,
-		HlmBreadcrumbEllipsis,
-		HlmBreadcrumbList,
-		HlmBreadcrumbItem,
-		HlmBreadcrumbPage,
-		HlmBreadcrumbLink,
-		HlmDropdownMenuImports,
-	],
+	imports: [HlmBreadcrumbImports, HlmDropdownMenuImports],
 	template: `
 		<nav hlmBreadcrumb>
 			<ol hlmBreadcrumbList>
@@ -30,9 +13,9 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
-					<hlm-breadcrumb-ellipsis class="h-4 w-4" [hlmDropdownMenuTrigger]="breadcrumbDropdown" />
+					<hlm-breadcrumb-ellipsis class="size-4" [hlmDropdownMenuTrigger]="breadcrumbDropdown" />
 					<ng-template #breadcrumbDropdown>
-						<hlm-dropdown-menu class="w">
+						<hlm-dropdown-menu>
 							<button hlmDropdownMenuItem id="document">
 								<span>Documentation</span>
 							</button>

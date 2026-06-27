@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBot, lucideChevronDown } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
-import { HlmTextarea } from '@spartan-ng/helm/textarea';
+import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 
 @Component({
 	selector: 'app-button-group-popover',
-	imports: [HlmButtonGroupImports, HlmPopoverImports, HlmTextarea, HlmButton, NgIcon, HlmIcon],
+	imports: [HlmButtonGroupImports, HlmPopoverImports, HlmTextareaImports, HlmButtonImports, NgIcon, HlmIconImports],
 	providers: [provideIcons({ lucideBot, lucideChevronDown })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `

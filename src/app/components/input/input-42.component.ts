@@ -2,19 +2,25 @@ import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus } from '@ng-icons/lucide';
-import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-42',
-	imports: [NgIcon, HlmIcon, HlmLabel, HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot, BrnInputOtp, FormsModule],
+	imports: [NgIcon, FormsModule, HlmIconImports, HlmLabelImports, HlmInputOtpImports, BrnInputOtpImports],
 	providers: [provideIcons({ lucideMinus })],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-42" class="mb-2 text-sm">OTP input double group</label>
-		<brn-input-otp hlm maxLength="6" inputClass="disabled:cursor-not-allowed" class="mt-2" [ngModel]="otpValue()">
+		<brn-input-otp
+			id="input-42"
+			hlm
+			maxLength="6"
+			inputClass="disabled:cursor-not-allowed"
+			class="mt-2"
+			[ngModel]="otpValue()">
 			<div
 				hlmInputOtpGroup
 				class="flex items-center justify-center -space-x-px [&>hlm-input-otp-slot]:first:rounded-l-md [&>hlm-input-otp-slot]:last:rounded-r-md">
@@ -36,5 +42,5 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input42Component {
-	readonly otpValue = model<string>('');
+	protected readonly otpValue = model<string>('');
 }

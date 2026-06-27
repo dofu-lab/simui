@@ -24,26 +24,26 @@ export type FileUploadState = {
 };
 
 @Directive({
-	selector: '[fileDragDrop]',
+	selector: '[simFileDragDrop]',
 	host: {
 		'[class]': '_computedClass()',
 	},
 })
 export class FileDragDropDirective implements OnInit {
-	sanitizer = inject(DomSanitizer);
-	maxFiles = input<number>(Infinity);
-	maxSize = input<number>(Infinity);
-	maxTotalSize = input<number>(Infinity);
-	accept = input<string>('*');
-	multiple = input<boolean>(false);
-	initialFiles = input<FileMetadata[]>([]);
-	disabled = input<boolean>(false);
-	dragClass = input<ClassValue>('');
-	isDragging = signal<boolean>(false);
+	private readonly sanitizer = inject(DomSanitizer);
+	public readonly maxFiles = input<number>(Infinity);
+	public readonly maxSize = input<number>(Infinity);
+	public readonly maxTotalSize = input<number>(Infinity);
+	public readonly accept = input<string>('*');
+	public readonly multiple = input<boolean>(false);
+	public readonly initialFiles = input<FileMetadata[]>([]);
+	public readonly disabled = input<boolean>(false);
+	public readonly dragClass = input<ClassValue>('');
+	protected readonly isDragging = signal<boolean>(false);
 
-	onFilesChange = output<FileWithPreview[]>();
-	onFileAdded = output<FileWithPreview[]>();
-	files = model<FileUploadState>({
+	public onFilesChange = output<FileWithPreview[]>();
+	public onFileAdded = output<FileWithPreview[]>();
+	protected files = model<FileUploadState>({
 		files: [],
 		isDragging: false,
 		errors: [],
@@ -101,11 +101,11 @@ export class FileDragDropDirective implements OnInit {
 
 		if (evt.dataTransfer?.files && evt.dataTransfer.files.length > 0) {
 			// In single file mode, only use the first file
-			if (!this.multiple()) {
+			if (this.multiple()) {
+				this.addFiles(evt.dataTransfer.files);
+			} else {
 				const file = evt.dataTransfer.files[0];
 				this.addFiles([file]);
-			} else {
-				this.addFiles(evt.dataTransfer.files);
 			}
 		}
 	}
@@ -238,7 +238,7 @@ export class FileDragDropDirective implements OnInit {
 		return null;
 	};
 
-	clearFiles() {
+	public clearFiles(): void {
 		this.files.update((prev) => {
 			// Clean up object URLs
 			prev.files.forEach((file) => {
@@ -258,15 +258,10 @@ export class FileDragDropDirective implements OnInit {
 		});
 	}
 
-	removeFile(id: string) {
+	public removeFile(id: string): void {
 		this.files.update((prev) => {
 			const fileToRemove = prev.files.find((file) => file.id === id);
-			if (
-				fileToRemove &&
-				fileToRemove.preview &&
-				fileToRemove.file instanceof File &&
-				fileToRemove.file.type.startsWith('image/')
-			) {
+			if (fileToRemove?.preview && fileToRemove.file instanceof File && fileToRemove.file.type.startsWith('image/')) {
 				URL.revokeObjectURL(fileToRemove.preview);
 			}
 
@@ -283,12 +278,13 @@ export class FileDragDropDirective implements OnInit {
 }
 
 export const formatBytes = (bytes: number, decimals = 2): string => {
-	if (bytes === 0) return '0 Bytes';
+	if (bytes === 0) {
+		return '0 Bytes';
+	}
 
 	const k = 1024;
-	const dm = decimals < 0 ? 0 : decimals;
+	const dm = Math.max(decimals, 0);
 	const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
 	const i = Math.floor(Math.log(bytes) / Math.log(k));
 
 	return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + sizes[i];
