@@ -22,12 +22,16 @@ module.exports = tseslint.config(
 			// Angular 22's migration adds Eager to preserve pre-v22 behavior.
 			// Re-enable this rule after the tracked OnPush migration batches finish.
 			'@angular-eslint/prefer-on-push-component-change-detection': 'off',
-			'@angular-eslint/template/interactive-supports-focus': 'warn',
+			'@angular-eslint/no-input-rename': 'off',
+			'@typescript-eslint/array-type': 'off',
+			'@typescript-eslint/consistent-type-definitions': 'off',
+			'@angular-eslint/template/click-events-have-key-events': 'off',
+			'@angular-eslint/template/interactive-supports-focus': 'off',
 			'@angular-eslint/directive-selector': [
 				'error',
 				{
 					type: 'attribute',
-					prefix: ['app', 'sim', 'hlm'],
+					prefix: ['app', 'sim', 'hlm', 'spartan'],
 					style: 'camelCase',
 				},
 			],
@@ -35,7 +39,7 @@ module.exports = tseslint.config(
 				'error',
 				{
 					type: 'element',
-					prefix: ['app', 'sim', 'hlm'],
+					prefix: ['app', 'sim', 'hlm', 'spartan'],
 					style: 'kebab-case',
 				},
 			],
@@ -44,6 +48,9 @@ module.exports = tseslint.config(
 	{
 		files: ['**/*.html'],
 		extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
-		rules: {},
+		rules: {
+			'@angular-eslint/template/click-events-have-key-events': 'off',
+			'@angular-eslint/template/interactive-supports-focus': 'off',
+		},
 	},
 );

@@ -12,7 +12,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-33" class="mb-2 text-sm">Date input</label>
-		<input hlmInput id="input-03" type="text" placeholder="mm/dd/yyyy" [maskito]="mask" />
+		<input hlmInput id="input-33" type="text" placeholder="mm/dd/yyyy" [maskito]="mask" />
 	`,
 })
 export class Input33Component {

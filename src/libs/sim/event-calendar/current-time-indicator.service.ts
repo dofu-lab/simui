@@ -14,13 +14,11 @@ export class CurrentTimeIndicatorService {
 	private readonly currentDateSubject = new BehaviorSubject<Date>(new Date());
 	private readonly viewSubject = new BehaviorSubject<'day' | 'week'>('week');
 
-	constructor() {}
-
 	/**
 	 * Get the current time indicator state as an observable
 	 * Updates every minute
 	 */
-	getCurrentTimeIndicator(): Observable<CurrentTimeIndicatorState> {
+	public getCurrentTimeIndicator(): Observable<CurrentTimeIndicatorState> {
 		// Create an observable that emits every minute
 		const minuteTimer$ = interval(60000).pipe(startWith(0));
 

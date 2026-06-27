@@ -5,16 +5,16 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-notification-27',
-	providers: [DatePipe],
 	imports: [HlmButtonImports],
+	providers: [DatePipe],
 	template: `
 		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">Basic</button>
 	`,
 })
 export class Notification27Component {
-	datePipe = inject(DatePipe);
+	private readonly datePipe = inject(DatePipe);
 
-	showNotification() {
+	protected showNotification(): void {
 		toast('Your request is created!', {
 			description: this.datePipe.transform(new Date(), "EEEE, MMMM dd 'at' hh:mm:ss a") ?? '',
 		});

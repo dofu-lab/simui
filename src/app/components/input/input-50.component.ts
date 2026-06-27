@@ -50,11 +50,11 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input50Component {
-	public readonly shareUrl = 'https://simui.dev/JGGH0N';
-	public readonly copied = signal<boolean>(false);
+	protected readonly shareUrl = 'https://simui.dev/JGGH0N';
+	protected readonly copied = signal<boolean>(false);
 	private readonly _clipboard = inject(Clipboard);
 
-	public onCopy(): void {
+	protected onCopy(): void {
 		this.copied.set(true);
 		this._clipboard.copy(this.shareUrl);
 

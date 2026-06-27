@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
+interface RadioItem {
+	id: number;
+	value: string;
+	label: string;
+}
+
 @Component({
 	selector: 'sim-radio-14',
 	imports: [HlmRadioGroupImports, HlmLabelImports],
@@ -16,9 +22,10 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 					<div
 						class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full rounded-md border shadow-xs outline-none">
 						<label
+							[for]="'radio-14-' + item.value"
 							class="flex w-full items-center justify-start gap-2 p-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 							hlmLabel>
-							<hlm-radio [value]="item.value" class="gap-x-0">
+							<hlm-radio [value]="item.value" [inputId]="'radio-14-' + item.value" class="gap-x-0">
 								<div
 									class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 									<div
@@ -38,7 +45,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 	`,
 })
 export class Radio14Component {
-	items: { id: number; value: string; label: string }[] = [
+	protected readonly items: RadioItem[] = [
 		{ id: 1, value: 'usa', label: 'USA' },
 		{ id: 2, value: 'uk', label: 'UK' },
 		{ id: 3, value: 'sea', label: 'SEA' },

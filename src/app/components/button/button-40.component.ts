@@ -6,8 +6,8 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-40',
+	imports: [NgClass, NgIcon, HlmButtonImports],
 	providers: [provideIcons({ lucideThumbsUp })],
-	imports: [HlmButtonImports, NgClass, NgIcon],
 	template: `
 		<button
 			hlmBtn
@@ -37,13 +37,13 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	`,
 })
 export class Button40Component {
-	liked = signal<boolean>(false);
-	animate = signal<boolean>(false);
+	protected readonly liked = signal<boolean>(false);
+	protected readonly animate = signal<boolean>(false);
 
-	likeCount = computed<number>(() => (this.liked() ? 86 : 85));
-	likeLabel = computed<string>(() => (this.liked() ? 'Liked' : 'Like'));
+	protected readonly likeCount = computed<number>(() => (this.liked() ? 86 : 85));
+	protected readonly likeLabel = computed<string>(() => (this.liked() ? 'Liked' : 'Like'));
 
-	onPressLike() {
+	protected onPressLike(): void {
 		this.liked.set(!this.liked());
 
 		this.animate.set(true);

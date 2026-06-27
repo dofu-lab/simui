@@ -3,6 +3,11 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 
+interface HearOption {
+	label: string;
+	value: string;
+}
+
 @Component({
 	selector: 'app-field-hear',
 	imports: [HlmCardImports, HlmFieldImports, HlmCheckboxImports],
@@ -18,7 +23,7 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 							</p>
 							<div hlmFieldGroup class="flex flex-row flex-wrap gap-2 [--radius:9999rem]">
 								@for (option of _options; track option.value) {
-									<label hlmFieldLabel class="w-fit!">
+									<label hlmFieldLabel [for]="uniqueId(option.value)" class="w-fit!">
 										<div
 											hlmField
 											orientation="horizontal"
@@ -40,13 +45,13 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 	`,
 })
 export class FieldHear {
-	private instanceId = Math.random().toString(36).substring(2, 9);
+	private readonly instanceId = Math.random().toString(36).substring(2, 9);
 
 	protected uniqueId(suffix: string): string {
 		return `${suffix}-${this.instanceId}`;
 	}
 
-	protected _options = [
+	protected readonly _options: HearOption[] = [
 		{
 			label: 'Social Media',
 			value: 'social-media',

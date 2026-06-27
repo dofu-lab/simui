@@ -12,6 +12,14 @@ import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 
+interface AccordionItem {
+	id: string;
+	title: string;
+	subTitle: string;
+	icon: string;
+	content: string;
+}
+
 @Component({
 	selector: 'sim-accordion-21',
 	imports: [HlmAccordionImports, BrnAccordionImports, HlmIconImports, NgIcon],
@@ -56,7 +64,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Accordion21Component {
-	protected readonly items = [
+	protected readonly items: AccordionItem[] = [
 		{
 			id: 'acc-09-1',
 			title: 'Connected accounts',

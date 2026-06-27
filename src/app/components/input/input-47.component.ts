@@ -11,13 +11,18 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	imports: [FormsModule, MaskitoDirective, ReactiveFormsModule, HlmInputImports, HlmLabelImports],
 	host: { class: 'w-full' },
 	template: `
-		<label hlmLabel class="mb-2 text-sm">Card details</label>
-		<div class="flex flex-col -space-y-px rounded-md shadow-xs" [formGroup]="form">
+		<span id="card-47-label" hlmLabel class="mb-2 text-sm">Card details</span>
+		<div
+			role="group"
+			aria-labelledby="card-47-label"
+			class="flex flex-col -space-y-px rounded-md shadow-xs"
+			[formGroup]="form">
 			<div class="w-full text-sm">
 				<div class="relative">
 					<input
 						id="card-number-input"
 						hlmInput
+						aria-label="Card number"
 						formControlName="cardNumber"
 						class="peer mt-0 mb-0 w-full rounded-none rounded-t-md pe-12 text-sm shadow-none focus-visible:z-10"
 						type="text"
@@ -45,6 +50,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 			<div class="flex w-full flex-row -space-x-px">
 				<input
 					hlmInput
+					aria-label="Expiry date"
 					formControlName="expiryDate"
 					class="w-full flex-1 rounded-none rounded-bl-md text-sm shadow-none focus-visible:z-10"
 					type="text"
@@ -53,6 +59,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 					[maskito]="expiryDateMask" />
 				<input
 					hlmInput
+					aria-label="CVC"
 					formControlName="cvc"
 					class="w-full flex-1 rounded-none rounded-br-md text-sm shadow-none focus-visible:z-10"
 					type="text"

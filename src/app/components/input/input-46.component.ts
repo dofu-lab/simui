@@ -15,7 +15,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input46Component {
-	readonly cvcMask: MaskitoOptions = {
+	protected readonly cvcMask: MaskitoOptions = {
 		mask: [...new Array(3).fill(/\d/)],
 	};
 }

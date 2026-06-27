@@ -13,11 +13,11 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	},
 	template: `
 		@if (isVisible()) {
-			<div class="bg-background z-50 rounded-md border px-4 py-3 shadow-lg">
+			<div class="bg-background rounded-md border px-4 py-3 shadow-lg">
 				<div class="relative flex gap-2 md:items-center">
 					<div class="flex grow flex-col justify-between gap-3 md:flex-row md:items-center">
 						<div class="flex items-start gap-2 md:items-center">
-							<div class="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-lg border shadow-xs">
+							<div class="flex size-8 shrink-0 items-center justify-center rounded-lg border shadow-xs">
 								<ng-icon hlm name="lucideSparkles" size="sm" />
 							</div>
 							<div class="flex gap-1.5">
@@ -50,9 +50,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Banner02Component {
-	isVisible = signal<boolean>(true);
+	protected readonly isVisible = signal<boolean>(true);
 
-	onHideBanner() {
+	protected onHideBanner(): void {
 		this.isVisible.set(false);
 	}
 }

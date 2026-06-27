@@ -30,9 +30,9 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 						</hlm-select-trigger>
 						<hlm-select-content *hlmSelectPortal>
 							<hlm-select-group>
-								<hlm-select-item [value]="'Accounts'">Accounts</hlm-select-item>
-								<hlm-select-item [value]="'Appointments'">Appointments</hlm-select-item>
-								<hlm-select-item [value]="'Schedule'">Schedule</hlm-select-item>
+								<hlm-select-item value="Accounts">Accounts</hlm-select-item>
+								<hlm-select-item value="Appointments">Appointments</hlm-select-item>
+								<hlm-select-item value="Schedule">Schedule</hlm-select-item>
 							</hlm-select-group>
 						</hlm-select-content>
 					</hlm-select>

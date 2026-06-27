@@ -5,6 +5,13 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
+interface RadioItem {
+	id: number;
+	value: string;
+	label: string;
+	icon: string;
+}
+
 @Component({
 	selector: 'sim-radio-11',
 	imports: [NgIcon, HlmIconImports, HlmRadioGroupImports, HlmLabelImports],
@@ -22,13 +29,18 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 				<div
 					class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border shadow-xs outline-none">
 					<label
+						[for]="'radio-11-' + item.value"
 						class="flex w-full items-start justify-between gap-2 p-4 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 						hlmLabel>
 						<div class="flex flex-col gap-2">
 							<ng-icon hlm class="opacity-60" size="sm" [name]="item.icon" />
 							<p class="text-muted-foreground text-xs font-normal">{{ item.label }}</p>
 						</div>
-						<hlm-radio class="gap-x-0" [value]="item.value" [disabled]="item.value === 'handTool'">
+						<hlm-radio
+							class="gap-x-0"
+							[value]="item.value"
+							[inputId]="'radio-11-' + item.value"
+							[disabled]="item.value === 'handTool'">
 							<div
 								class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 								<div
@@ -44,7 +56,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 	`,
 })
 export class Radio11Component {
-	items: { id: number; value: string; label: string; icon: string }[] = [
+	protected readonly items: RadioItem[] = [
 		{ id: 1, value: 'frame', label: 'Frame', icon: 'lucideFrame' },
 		{ id: 2, value: 'pointer', label: 'Pointer', icon: 'lucideMousePointer2' },
 		{ id: 3, value: 'pen', label: 'Pen', icon: 'lucidePenTool' },

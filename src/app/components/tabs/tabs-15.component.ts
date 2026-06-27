@@ -8,9 +8,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 @Component({
 	selector: 'sim-tabs-15',
 	imports: [NgIcon, HlmIconImports, HlmTabsImports, HlmTooltipImports],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
 	template: `
 		<hlm-tabs tab="tab01" class="flex w-full flex-col items-center">

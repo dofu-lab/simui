@@ -5,7 +5,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	selector: 'sim-button-23',
 	imports: [HlmButtonImports],
 	template: `
-		<button hlmBtn variant="outline" size="icon" class="group" (click)="onOpen()" [ariaExpanded]="open()">
+		<button hlmBtn variant="outline" size="icon" class="group" [ariaExpanded]="open()" (click)="onOpen()">
 			<svg
 				class="pointer-events-none"
 				width="16"
@@ -31,9 +31,9 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	`,
 })
 export class Button23Component {
-	open = signal<boolean>(false);
+	protected readonly open = signal<boolean>(false);
 
-	onOpen() {
+	protected onOpen(): void {
 		this.open.set(!this.open());
 	}
 }

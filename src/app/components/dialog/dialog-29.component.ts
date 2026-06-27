@@ -13,9 +13,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	imports: [
 		NgIcon,
 		NgClass,
+		NgOptimizedImage,
 		HlmIconImports,
 		HlmButtonImports,
-		NgOptimizedImage,
 		HlmAspectRatioImports,
 		HlmDialogImports,
 	],
@@ -70,10 +70,10 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Dialog29Component {
-	clipboard = inject(Clipboard);
-	copied = signal<boolean>(false);
+	private readonly clipboard = inject(Clipboard);
+	protected readonly copied = signal<boolean>(false);
 
-	public onSelect(): void {
+	protected onSelect(): void {
 		this.copied.set(true);
 		this.clipboard.copy('I love Angular!');
 

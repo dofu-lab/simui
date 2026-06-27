@@ -12,6 +12,7 @@ const DISABLE_ANIMATIONS_CSS = `
 async function goToComponent(page: Page, type: string): Promise<void> {
 	await page.goto(`/components/${type}`);
 	await page.waitForLoadState('networkidle');
+	await page.locator('sim-component-card').first().waitFor({ state: 'visible', timeout: 10_000 });
 	// Wait for all images to be loaded
 	await page.waitForFunction(() =>
 		Array.from(document.querySelectorAll('img')).every((img) => (img as HTMLImageElement).complete),

@@ -17,12 +17,13 @@ import { debounceTime, distinctUntilChanged, merge } from 'rxjs';
 	},
 	template: `
 		<div class="flex w-full flex-col items-start gap-2 p-1.5">
-			<label hlmLabel class="text-xs font-medium">{{ label() }}</label>
+			<label hlmLabel class="text-xs font-medium" [for]="inputId">{{ label() }}</label>
 			<div class="flex w-full items-center gap-2">
 				<div
 					[style.backgroundColor]="colorPicker.value"
 					class="relative flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded border">
 					<input
+						[id]="inputId"
 						type="color"
 						class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
 						[formControl]="colorPicker" />
@@ -34,6 +35,7 @@ import { debounceTime, distinctUntilChanged, merge } from 'rxjs';
 })
 export class EditorColorPicker implements OnInit {
 	private readonly destroyRef = inject(DestroyRef);
+	protected readonly inputId = `editor-color-picker-${Math.random().toString(36).substring(2, 9)}`;
 
 	readonly colorChange = output<string>();
 

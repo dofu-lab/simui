@@ -8,15 +8,10 @@ import { HlmProgressImports } from '@spartan-ng/helm/progress';
 
 @Component({
 	selector: 'sim-notification-26',
-	providers: [
-		provideIcons({
-			lucideX,
-			lucideCloudUpload,
-		}),
-	],
 	imports: [NgIcon, HlmIconImports, HlmButtonImports, BrnProgressImports, HlmProgressImports],
+	providers: [provideIcons({ lucideX, lucideCloudUpload })],
 	template: `
-		<div class="bg-background z-50 flex max-w-[400px] gap-3 rounded-md border p-4 shadow-lg">
+		<div class="bg-background flex max-w-[400px] gap-3 rounded-md border p-4 shadow-lg">
 			<div class="flex flex-col gap-3">
 				<div class="flex size-9 shrink-0 items-center justify-center rounded-md border">
 					<ng-icon hlm name="lucideCloudUpload" size="sm" class="shadow-xs" />

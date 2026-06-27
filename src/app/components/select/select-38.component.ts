@@ -17,10 +17,10 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
-type Option = {
+interface Option {
 	value: string;
 	label: string;
-};
+}
 
 @Component({
 	selector: 'sim-select-38',
@@ -95,79 +95,31 @@ export class Select38Component {
 	private readonly destroyRef = inject(DestroyRef);
 
 	protected readonly frameworks: Option[] = [
-		{
-			label: 'Angular',
-			value: 'angular',
-		},
-		{
-			label: 'Next.js',
-			value: 'next.js',
-		},
-		{
-			label: 'SvelteKit',
-			value: 'sveltekit',
-		},
-		{
-			label: 'Nuxt.js',
-			value: 'nuxt.js',
-		},
-		{
-			label: 'Remix',
-			value: 'remix',
-		},
-		{
-			label: 'Astro',
-			value: 'astro',
-		},
-		{
-			label: 'Vue.js',
-			value: 'vue',
-		},
-		{
-			label: 'React',
-			value: 'react',
-		},
-		{
-			label: 'Ember.js',
-			value: 'ember',
-		},
-		{
-			label: 'Gatsby',
-			value: 'gatsby',
-		},
-		{
-			label: 'Eleventy',
-			value: 'eleventy',
-		},
-		{
-			label: 'SolidJS',
-			value: 'solid',
-		},
-		{
-			label: 'Preact',
-			value: 'preact',
-		},
-		{
-			label: 'Qwik',
-			value: 'qwik',
-		},
-		{
-			label: 'Alpine.js',
-			value: 'alpine',
-		},
-		{
-			label: 'Lit',
-			value: 'lit',
-		},
+		{ label: 'Angular', value: 'angular' },
+		{ label: 'Next.js', value: 'next.js' },
+		{ label: 'SvelteKit', value: 'sveltekit' },
+		{ label: 'Nuxt.js', value: 'nuxt.js' },
+		{ label: 'Remix', value: 'remix' },
+		{ label: 'Astro', value: 'astro' },
+		{ label: 'Vue.js', value: 'vue' },
+		{ label: 'React', value: 'react' },
+		{ label: 'Ember.js', value: 'ember' },
+		{ label: 'Gatsby', value: 'gatsby' },
+		{ label: 'Eleventy', value: 'eleventy' },
+		{ label: 'SolidJS', value: 'solid' },
+		{ label: 'Preact', value: 'preact' },
+		{ label: 'Qwik', value: 'qwik' },
+		{ label: 'Alpine.js', value: 'alpine' },
+		{ label: 'Lit', value: 'lit' },
 	];
+	protected readonly triggerWidth = signal(0);
+	protected readonly currentFramework = signal<Option[] | undefined>([this.frameworks[0]]);
+	protected readonly state = signal<'closed' | 'open'>('closed');
+
 	protected readonly filterValue = model<string>('');
 	protected readonly displayedFrameworks = computed(() =>
 		this.frameworks.filter((framework) => framework.label.toLowerCase().includes(this.filterValue().toLowerCase())),
 	);
-
-	public readonly triggerWidth = signal(0);
-	public readonly currentFramework = signal<Option[] | undefined>([this.frameworks[0]]);
-	public readonly state = signal<'closed' | 'open'>('closed');
 
 	constructor() {
 		afterNextRender(() => {

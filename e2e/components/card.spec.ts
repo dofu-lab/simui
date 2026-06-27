@@ -1,6 +1,6 @@
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -11,6 +11,12 @@ async function isCardPresent(card: ReturnType<import('@playwright/test').Page['l
 		.waitFor({ state: 'visible', timeout: 5000 })
 		.then(() => true)
 		.catch(() => false);
+}
+
+async function selectMeetingCategory(card: ReturnType<import('@playwright/test').Page['locator']>): Promise<void> {
+	const meetingSwatch = card.locator('label[for="meeting"] div').last();
+	await meetingSwatch.click({ force: true });
+	await expect(card.getByText('Meeting')).toBeVisible({ timeout: 3000 });
 }
 
 // Fixed date so card-15 (calendar) always renders the same month/day regardless of when the test runs.
@@ -64,7 +70,7 @@ test.describe('Card', () => {
 
 	test.describe('card-01 — Create project form', () => {
 		test('name input accepts text', async ({ page }) => {
-			const card = page.locator('component-card#card-01');
+			const card = componentCard(page, 'card-01');
 			await card.scrollIntoViewIfNeeded();
 			const input = card.locator('input[type="text"]').first();
 			await expect(input).toBeVisible();
@@ -73,7 +79,7 @@ test.describe('Card', () => {
 		});
 
 		test('select trigger opens framework dropdown', async ({ page }) => {
-			const card = page.locator('component-card#card-01');
+			const card = componentCard(page, 'card-01');
 			await card.scrollIntoViewIfNeeded();
 			const trigger = card.locator('hlm-select-trigger button').first();
 			await expect(trigger).toBeVisible();
@@ -87,7 +93,7 @@ test.describe('Card', () => {
 		});
 
 		test('deploy button is clickable', async ({ page }) => {
-			const card = page.locator('component-card#card-01');
+			const card = componentCard(page, 'card-01');
 			await card.scrollIntoViewIfNeeded();
 			const btn = card.locator('button[type="submit"]').first();
 			await expect(btn).toBeVisible();
@@ -96,7 +102,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — filled form', async ({ page }) => {
-			const card = page.locator('component-card#card-01');
+			const card = componentCard(page, 'card-01');
 			await card.scrollIntoViewIfNeeded();
 			await card.locator('input[type="text"]').first().fill('My Project');
 			await expect.soft(card).toHaveScreenshot('card/card-01-filled.png');
@@ -109,7 +115,7 @@ test.describe('Card', () => {
 
 	test.describe('card-02 — Login form', () => {
 		test('email and password inputs accept values', async ({ page }) => {
-			const card = page.locator('component-card#card-02');
+			const card = componentCard(page, 'card-02');
 			await card.scrollIntoViewIfNeeded();
 			const email = card.locator('input[type="email"]').first();
 			const password = card.locator('input[type="password"]').first();
@@ -120,13 +126,13 @@ test.describe('Card', () => {
 		});
 
 		test('sign-up link button is visible', async ({ page }) => {
-			const card = page.locator('component-card#card-02');
+			const card = componentCard(page, 'card-02');
 			await card.scrollIntoViewIfNeeded();
 			await expect(card.getByRole('button', { name: 'Sign up' })).toBeVisible();
 		});
 
 		test('login button is enabled', async ({ page }) => {
-			const card = page.locator('component-card#card-02');
+			const card = componentCard(page, 'card-02');
 			await card.scrollIntoViewIfNeeded();
 			const btn = card.locator('button[type="submit"]').first();
 			await expect(btn).toBeVisible();
@@ -134,7 +140,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — filled login form', async ({ page }) => {
-			const card = page.locator('component-card#card-02');
+			const card = componentCard(page, 'card-02');
 			await card.scrollIntoViewIfNeeded();
 			await card.locator('input[type="email"]').first().fill('user@example.com');
 			await card.locator('input[type="password"]').first().fill('s3cr3t!');
@@ -148,14 +154,14 @@ test.describe('Card', () => {
 
 	test.describe('card-03 — Login with security footer', () => {
 		test('email and password inputs are present', async ({ page }) => {
-			const card = page.locator('component-card#card-03');
+			const card = componentCard(page, 'card-03');
 			await card.scrollIntoViewIfNeeded();
 			await expect(card.locator('input[type="email"]').first()).toBeVisible();
 			await expect(card.locator('input[type="password"]').first()).toBeVisible();
 		});
 
 		test('login button is enabled', async ({ page }) => {
-			const card = page.locator('component-card#card-03');
+			const card = componentCard(page, 'card-03');
 			await card.scrollIntoViewIfNeeded();
 			const btn = card.locator('button[type="submit"]').first();
 			await expect(btn).toBeVisible();
@@ -163,7 +169,7 @@ test.describe('Card', () => {
 		});
 
 		test('security footer text is visible', async ({ page }) => {
-			const card = page.locator('component-card#card-03');
+			const card = componentCard(page, 'card-03');
 			await card.scrollIntoViewIfNeeded();
 			await expect(card.getByText(/encrypted/i)).toBeVisible();
 		});
@@ -176,7 +182,7 @@ test.describe('Card', () => {
 
 	test.describe('card-04 — Nested card with muted footer', () => {
 		test('name input and deploy button are present', async ({ page }) => {
-			const card = page.locator('component-card#card-04');
+			const card = componentCard(page, 'card-04');
 			await card.scrollIntoViewIfNeeded();
 			const input = card.locator('input[type="text"]').first();
 			await expect(input).toBeVisible();
@@ -191,7 +197,7 @@ test.describe('Card', () => {
 
 	for (const id of ['card-05', 'card-06', 'card-07', 'card-08', 'card-09', 'card-10']) {
 		test(`${id} — submit button is visible and enabled`, async ({ page }) => {
-			const card = page.locator(`component-card#${id}`);
+			const card = componentCard(page, id);
 			const present = await isCardPresent(card);
 			test.skip(!present, `${id} is not rendered`);
 			await card.scrollIntoViewIfNeeded();
@@ -207,7 +213,7 @@ test.describe('Card', () => {
 
 	test.describe('card-11 — Empty project state', () => {
 		test('Add button is visible and clickable', async ({ page }) => {
-			const card = page.locator('component-card#card-11');
+			const card = componentCard(page, 'card-11');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-11 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -218,7 +224,7 @@ test.describe('Card', () => {
 		});
 
 		test('empty-state title is visible', async ({ page }) => {
-			const card = page.locator('component-card#card-11');
+			const card = componentCard(page, 'card-11');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-11 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -232,7 +238,7 @@ test.describe('Card', () => {
 
 	test.describe('card-12 — Currency converter', () => {
 		test('swap button is visible and enabled', async ({ page }) => {
-			const card = page.locator('component-card#card-12');
+			const card = componentCard(page, 'card-12');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-12 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -242,7 +248,7 @@ test.describe('Card', () => {
 		});
 
 		test('cycle send currency changes the rate badge', async ({ page }) => {
-			const card = page.locator('component-card#card-12');
+			const card = componentCard(page, 'card-12');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-12 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -262,7 +268,7 @@ test.describe('Card', () => {
 		});
 
 		test('cycle receive currency changes the rate badge', async ({ page }) => {
-			const card = page.locator('component-card#card-12');
+			const card = componentCard(page, 'card-12');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-12 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -280,7 +286,7 @@ test.describe('Card', () => {
 		});
 
 		test('swap exchanges send and receive currency codes in the rate badge', async ({ page }) => {
-			const card = page.locator('component-card#card-12');
+			const card = componentCard(page, 'card-12');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-12 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -308,7 +314,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — after currency swap', async ({ page }) => {
-			const card = page.locator('component-card#card-12');
+			const card = componentCard(page, 'card-12');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-12 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -323,7 +329,7 @@ test.describe('Card', () => {
 
 	test.describe('card-13 — Onboarding steps (accordion)', () => {
 		test('step counter badge is visible', async ({ page }) => {
-			const card = page.locator('component-card#card-13');
+			const card = componentCard(page, 'card-13');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-13 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -332,7 +338,7 @@ test.describe('Card', () => {
 		});
 
 		test('first step accordion is open by default', async ({ page }) => {
-			const card = page.locator('component-card#card-13');
+			const card = componentCard(page, 'card-13');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-13 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -341,7 +347,7 @@ test.describe('Card', () => {
 		});
 
 		test('"Got it" button marks a step as done and advances to next', async ({ page }) => {
-			const card = page.locator('component-card#card-13');
+			const card = componentCard(page, 'card-13');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-13 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -369,7 +375,7 @@ test.describe('Card', () => {
 		});
 
 		test('completing all steps shows "All done" and Start over button', async ({ page }) => {
-			const card = page.locator('component-card#card-13');
+			const card = componentCard(page, 'card-13');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-13 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -390,7 +396,7 @@ test.describe('Card', () => {
 		});
 
 		test('"Start over" resets all steps', async ({ page }) => {
-			const card = page.locator('component-card#card-13');
+			const card = componentCard(page, 'card-13');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-13 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -412,7 +418,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — after first step completed', async ({ page }) => {
-			const card = page.locator('component-card#card-13');
+			const card = componentCard(page, 'card-13');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-13 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -425,7 +431,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — all steps completed', async ({ page }) => {
-			const card = page.locator('component-card#card-13');
+			const card = componentCard(page, 'card-13');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-13 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -438,6 +444,7 @@ test.describe('Card', () => {
 				await gotItBtn.click();
 			}
 			// Wait for the completion state to fully render (accordion animations settle)
+			await expect(card.getByText("You're all set")).toBeVisible({ timeout: 5000 });
 			await expect(card.getByRole('button', { name: 'Start over' })).toBeVisible({ timeout: 5000 });
 			// Wait for layout to stabilize — animate.enter schedules class addition via
 			// afterNextRender which can cause brief height variance across frames.
@@ -446,17 +453,19 @@ test.describe('Card', () => {
 					new Promise<void>((resolve) => {
 						let prevHeight = el.getBoundingClientRect().height;
 						let stable = 0;
+						let frames = 0;
 						const check = () => {
 							const h = el.getBoundingClientRect().height;
 							stable = h === prevHeight ? stable + 1 : 0;
 							prevHeight = h;
-							if (stable >= 5) resolve();
+							frames++;
+							if (stable >= 12 && frames >= 15) resolve();
 							else requestAnimationFrame(check);
 						};
 						requestAnimationFrame(check);
 					}),
 			);
-			await expect.soft(card).toHaveScreenshot('card/card-13-done.png');
+			await expect.soft(card.locator('sim-card-13')).toHaveScreenshot('card/card-13-done.png');
 		});
 	});
 
@@ -466,7 +475,7 @@ test.describe('Card', () => {
 
 	test.describe('card-14 — Sandbox pipeline', () => {
 		test('task list is rendered with task names', async ({ page }) => {
-			const card = page.locator('component-card#card-14');
+			const card = componentCard(page, 'card-14');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-14 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -475,7 +484,7 @@ test.describe('Card', () => {
 		});
 
 		test('progress bar is present', async ({ page }) => {
-			const card = page.locator('component-card#card-14');
+			const card = componentCard(page, 'card-14');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-14 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -484,7 +493,7 @@ test.describe('Card', () => {
 
 		test('"Re-run" button appears after pipeline completes and restarts it', async ({ page }) => {
 			test.setTimeout(30_000);
-			const card = page.locator('component-card#card-14');
+			const card = componentCard(page, 'card-14');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-14 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -501,7 +510,7 @@ test.describe('Card', () => {
 
 		test('snapshot — pipeline completed state', async ({ page }) => {
 			test.setTimeout(30_000);
-			const card = page.locator('component-card#card-14');
+			const card = componentCard(page, 'card-14');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-14 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -517,7 +526,7 @@ test.describe('Card', () => {
 
 	test.describe('card-15 — Calendar event card', () => {
 		test('calendar is visible with month/year heading', async ({ page }) => {
-			const card = page.locator('component-card#card-15');
+			const card = componentCard(page, 'card-15');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-15 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -526,7 +535,7 @@ test.describe('Card', () => {
 		});
 
 		test('"Today" button navigates calendar back to current month', async ({ page }) => {
-			const card = page.locator('component-card#card-15');
+			const card = componentCard(page, 'card-15');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-15 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -545,7 +554,7 @@ test.describe('Card', () => {
 		});
 
 		test('previous/next month buttons navigate the calendar', async ({ page }) => {
-			const card = page.locator('component-card#card-15');
+			const card = componentCard(page, 'card-15');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-15 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -569,7 +578,7 @@ test.describe('Card', () => {
 		});
 
 		test('"Add event" button opens the event form', async ({ page }) => {
-			const card = page.locator('component-card#card-15');
+			const card = componentCard(page, 'card-15');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-15 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -582,7 +591,7 @@ test.describe('Card', () => {
 		});
 
 		test('cancel button hides the event form', async ({ page }) => {
-			const card = page.locator('component-card#card-15');
+			const card = componentCard(page, 'card-15');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-15 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -600,7 +609,7 @@ test.describe('Card', () => {
 		});
 
 		test('submitting event form without required fields does not close form', async ({ page }) => {
-			const card = page.locator('component-card#card-15');
+			const card = componentCard(page, 'card-15');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-15 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -614,7 +623,7 @@ test.describe('Card', () => {
 		});
 
 		test('submitting a valid event adds it to the day list', async ({ page }) => {
-			const card = page.locator('component-card#card-15');
+			const card = componentCard(page, 'card-15');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-15 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -624,7 +633,7 @@ test.describe('Card', () => {
 			await card.locator('input[placeholder="--:--"]').fill('09:00');
 
 			// Select the first color radio (meeting / sky)
-			await card.locator('label hlm-radio').first().click();
+			await selectMeetingCategory(card);
 
 			await card.getByRole('button', { name: /^Add$/ }).click();
 
@@ -633,7 +642,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — event form open', async ({ page }) => {
-			const card = page.locator('component-card#card-15');
+			const card = componentCard(page, 'card-15');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-15 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -643,14 +652,14 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — after adding an event', async ({ page }) => {
-			const card = page.locator('component-card#card-15');
+			const card = componentCard(page, 'card-15');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-15 is not rendered');
 			await card.scrollIntoViewIfNeeded();
 			await card.getByRole('button', { name: /add event/i }).click();
 			await card.locator('input[placeholder="What\'s on?"]').fill('Team standup');
 			await card.locator('input[placeholder="--:--"]').fill('09:00');
-			await card.locator('label hlm-radio').first().click();
+			await selectMeetingCategory(card);
 			await card.getByRole('button', { name: /^Add$/ }).click();
 			await expect(card.getByText('Team standup')).toBeVisible({ timeout: 3000 });
 			await expect.soft(card).toHaveScreenshot('card/card-15-event-added.png');
@@ -663,7 +672,7 @@ test.describe('Card', () => {
 
 	test.describe('card-16 — Tools list', () => {
 		test('ENABLED and AVAILABLE section labels are visible', async ({ page }) => {
-			const card = page.locator('component-card#card-16');
+			const card = componentCard(page, 'card-16');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-16 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -672,7 +681,7 @@ test.describe('Card', () => {
 		});
 
 		test('tool count badge reflects enabled tools', async ({ page }) => {
-			const card = page.locator('component-card#card-16');
+			const card = componentCard(page, 'card-16');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-16 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -681,7 +690,7 @@ test.describe('Card', () => {
 		});
 
 		test('"Disable all" moves all tools to AVAILABLE', async ({ page }) => {
-			const card = page.locator('component-card#card-16');
+			const card = componentCard(page, 'card-16');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-16 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -697,7 +706,7 @@ test.describe('Card', () => {
 		});
 
 		test('"Enable all" moves all tools to ENABLED', async ({ page }) => {
-			const card = page.locator('component-card#card-16');
+			const card = componentCard(page, 'card-16');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-16 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -713,7 +722,7 @@ test.describe('Card', () => {
 		});
 
 		test('clicking an enabled tool row moves it to AVAILABLE', async ({ page }) => {
-			const card = page.locator('component-card#card-16');
+			const card = componentCard(page, 'card-16');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-16 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -739,7 +748,7 @@ test.describe('Card', () => {
 		});
 
 		test('clicking an available tool row moves it to ENABLED', async ({ page }) => {
-			const card = page.locator('component-card#card-16');
+			const card = componentCard(page, 'card-16');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-16 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -762,7 +771,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — all tools disabled', async ({ page }) => {
-			const card = page.locator('component-card#card-16');
+			const card = componentCard(page, 'card-16');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-16 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -774,7 +783,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — all tools enabled', async ({ page }) => {
-			const card = page.locator('component-card#card-16');
+			const card = componentCard(page, 'card-16');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-16 is not rendered');
 			await card.scrollIntoViewIfNeeded();

@@ -7,8 +7,8 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-21',
-	providers: [provideIcons({ lucideCircleAlert, lucideArrowRight, lucideX })],
 	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmAspectRatioImports],
+	providers: [provideIcons({ lucideCircleAlert, lucideArrowRight, lucideX })],
 	template: `
 		<div class="flex">
 			<div [hlmAspectRatio]="16 / 3">
@@ -17,7 +17,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 					src="assets/backgrounds/bg-01.jpg"
 					class="rounded-r-0 h-[134px] w-50 overflow-hidden rounded-l-md border border-r-0" />
 			</div>
-			<div class="bg-background rounded-l-0 z-50 flex max-w-[400px] flex-col gap-4 rounded-r-md border p-4">
+			<div class="bg-background rounded-l-0 z-15 flex max-w-[400px] flex-col gap-4 rounded-r-md border p-4">
 				<div class="flex gap-2">
 					<div class="flex grow flex-col gap-3">
 						<div class="space-y-1">

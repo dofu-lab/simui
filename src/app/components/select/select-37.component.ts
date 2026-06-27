@@ -19,16 +19,16 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
-type Option = {
+interface Option {
 	value: string;
 	label: string;
 	icon: IconName;
 	number: number;
-};
+}
 
 @Component({
 	selector: 'sim-select-37',
-	imports: [HlmFieldImports, HlmPopoverImports, HlmButtonImports, NgIcon, HlmIconImports, HlmCommandImports],
+	imports: [NgIcon, HlmFieldImports, HlmPopoverImports, HlmButtonImports, HlmIconImports, HlmCommandImports],
 	providers: [
 		provideIcons({
 			lucideChartLine,
@@ -104,7 +104,21 @@ export class Select37Component {
 	private readonly triggerBtn37 = viewChild.required<ElementRef<HTMLButtonElement>>('triggerBtn37');
 	private readonly destroyRef = inject(DestroyRef);
 
-	public readonly triggerWidth = signal(0);
+	protected readonly items: Option[] = [
+		{ icon: 'lucideChartLine', label: 'Analytics Platform', number: 2451, value: 'analytics platform' },
+		{ icon: 'lucideBrain', label: 'AI Services', number: 1832, value: 'ai services' },
+		{ icon: 'lucideDatabase', label: 'Database Systems', number: 1654, value: 'database systems' },
+		{ icon: 'lucideCpu', label: 'Compute Resources', number: 943, value: 'compute resources' },
+		{ icon: 'lucideNetwork', label: 'Network Services', number: 832, value: 'network services' },
+		{ icon: 'lucideGlobe', label: 'Web Services', number: 654, value: 'web services' },
+		{ icon: 'lucideSearch', label: 'Monitoring Tools', number: 432, value: 'monitoring tools' },
+		{ icon: 'lucideServer', label: 'Server Management', number: 321, value: 'server management' },
+		{ icon: 'lucideBlocks', label: 'Infrastructure', number: 234, value: 'infrastructure' },
+		{ icon: 'lucideLayout', label: 'Frontend Services', number: 123, value: 'frontend services' },
+	];
+	protected readonly triggerWidth = signal(0);
+	protected readonly currentItem = signal<Option | undefined>(undefined);
+	protected readonly state = signal<'closed' | 'open'>('closed');
 
 	constructor() {
 		afterNextRender(() => {
@@ -115,72 +129,6 @@ export class Select37Component {
 			this.destroyRef.onDestroy(() => observer.disconnect());
 		});
 	}
-
-	protected readonly items: Option[] = [
-		{
-			icon: 'lucideChartLine',
-			label: 'Analytics Platform',
-			number: 2451,
-			value: 'analytics platform',
-		},
-		{
-			icon: 'lucideBrain',
-			label: 'AI Services',
-			number: 1832,
-			value: 'ai services',
-		},
-		{
-			icon: 'lucideDatabase',
-			label: 'Database Systems',
-			number: 1654,
-			value: 'database systems',
-		},
-		{
-			icon: 'lucideCpu',
-			label: 'Compute Resources',
-			number: 943,
-			value: 'compute resources',
-		},
-		{
-			icon: 'lucideNetwork',
-			label: 'Network Services',
-			number: 832,
-			value: 'network services',
-		},
-		{
-			icon: 'lucideGlobe',
-			label: 'Web Services',
-			number: 654,
-			value: 'web services',
-		},
-		{
-			icon: 'lucideSearch',
-			label: 'Monitoring Tools',
-			number: 432,
-			value: 'monitoring tools',
-		},
-		{
-			icon: 'lucideServer',
-			label: 'Server Management',
-			number: 321,
-			value: 'server management',
-		},
-		{
-			icon: 'lucideBlocks',
-			label: 'Infrastructure',
-			number: 234,
-			value: 'infrastructure',
-		},
-		{
-			icon: 'lucideLayout',
-			label: 'Frontend Services',
-			number: 123,
-			value: 'frontend services',
-		},
-	];
-
-	public readonly currentItem = signal<Option | undefined>(undefined);
-	public readonly state = signal<'closed' | 'open'>('closed');
 
 	protected stateChanged(state: 'open' | 'closed'): void {
 		this.state.set(state);

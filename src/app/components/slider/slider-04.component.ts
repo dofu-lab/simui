@@ -5,14 +5,12 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 @Component({
 	selector: 'sim-slider-04',
 	imports: [HlmSliderImports, HlmLabelImports],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<span hlmLabel class="mb-4">Slider with solid thumb</span>
 		<hlm-slider class="[&>span]:bg-primary [&>div>div]:opacity-70" [(value)]="value" />
 	`,
 })
 export class Slider04Component {
-	public readonly value = signal([25]);
+	protected readonly value = signal([25]);
 }

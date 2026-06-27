@@ -21,7 +21,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover05Component {
-	public close(ctx: { close: () => void }): void {
+	protected close(ctx: { close: () => void }): void {
 		ctx.close();
 	}
 }

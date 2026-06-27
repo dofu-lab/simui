@@ -18,7 +18,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 		<ng-template #menu>
 			<hlm-dropdown-menu class="w-40">
 				<hlm-dropdown-menu-group>
-					<div class="text-muted-foreground flex flex-col px-2 py-1.5 text-xs font-medium data-[inset]:pl-8">
+					<div class="text-muted-foreground flex flex-col px-2 py-1.5 text-xs font-medium data-inset:pl-8">
 						<span>Signed in as</span>
 						<span class="text-foreground font-normal">tdphuong&#64;simui.dev</span>
 					</div>

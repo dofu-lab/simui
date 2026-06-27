@@ -12,7 +12,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	template: `
 		<label hlmLabel for="input-23" class="mb-2 text-sm">Input input with icon and button</label>
 		<hlm-input-group>
-			<input hlmInputGroupInput placeholder="Search..." />
+			<input hlmInputGroupInput id="input-23" placeholder="Search..." />
 			<hlm-input-group-addon>
 				<ng-icon name="lucideSearch" />
 			</hlm-input-group-addon>

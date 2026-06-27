@@ -7,10 +7,10 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-20',
-	providers: [provideIcons({ lucideX })],
 	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmAspectRatioImports],
+	providers: [provideIcons({ lucideX })],
 	template: `
-		<div class="bg-background z-50 flex max-w-[400px] flex-col gap-4 rounded-md border p-4 shadow-lg">
+		<div class="bg-background flex max-w-[400px] flex-col gap-4 rounded-md border p-4 shadow-lg">
 			<div class="flex gap-2">
 				<div class="flex grow flex-col gap-3">
 					<div class="space-y-1">

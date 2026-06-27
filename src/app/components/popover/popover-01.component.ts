@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideListFilter } from '@ng-icons/lucide';
@@ -8,18 +8,27 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
+interface FilterState {
+	realTime: boolean;
+	topChannels: boolean;
+	lastOrders: boolean;
+	totalSpent: boolean;
+}
+
+type FilterKey = keyof FilterState;
+
 @Component({
 	selector: 'sim-popover-01',
-	providers: [provideIcons({ lucideListFilter })],
 	imports: [
+		NgIcon,
 		FormsModule,
 		HlmButtonImports,
 		HlmCheckboxImports,
 		HlmIconImports,
 		HlmLabelImports,
-		NgIcon,
 		HlmPopoverImports,
 	],
+	providers: [provideIcons({ lucideListFilter })],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button variant="outline" size="icon" class="relative size-9" hlmPopoverTrigger hlmBtn>
@@ -27,28 +36,37 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 			</button>
 			<div hlmPopoverContent class="grid w-36 gap-3 p-3" *hlmPopoverPortal="let ctx">
 				<div class="text-muted-foreground text-xs font-semibold">Filters</div>
-
 				<div class="space-y-2">
-					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox [(ngModel)]="filters.realTime" />
+					<label for="real-time" class="text-foreground flex items-center font-normal" hlmLabel>
+						<hlm-checkbox
+							inputId="real-time"
+							[ngModel]="filters().realTime"
+							(ngModelChange)="updateFilter('realTime', $event)" />
 						Real Time
 					</label>
-					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox [(ngModel)]="filters.topChannels" />
+					<label for="top-channels" class="text-foreground flex items-center font-normal" hlmLabel>
+						<hlm-checkbox
+							inputId="top-channels"
+							[ngModel]="filters().topChannels"
+							(ngModelChange)="updateFilter('topChannels', $event)" />
 						Top Channels
 					</label>
-					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox [(ngModel)]="filters.lastOrders" />
+					<label for="last-orders" class="text-foreground flex items-center font-normal" hlmLabel>
+						<hlm-checkbox
+							inputId="last-orders"
+							[ngModel]="filters().lastOrders"
+							(ngModelChange)="updateFilter('lastOrders', $event)" />
 						Last Orders
 					</label>
-					<label class="text-foreground flex items-center font-normal" hlmLabel>
-						<hlm-checkbox [(ngModel)]="filters.totalSpent" />
+					<label for="total-spent" class="text-foreground flex items-center font-normal" hlmLabel>
+						<hlm-checkbox
+							inputId="total-spent"
+							[ngModel]="filters().totalSpent"
+							(ngModelChange)="updateFilter('totalSpent', $event)" />
 						Total Spent
 					</label>
 				</div>
-
 				<hr class="border-muted -mx-4" />
-
 				<div class="flex justify-between gap-3">
 					<button hlmBtn variant="outline" size="sm" class="h-7 w-fit px-2 text-xs" (click)="clearFilters(ctx)">
 						Clear
@@ -62,25 +80,28 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover01Component {
-	filters = {
+	protected readonly filters = signal<FilterState>({
 		realTime: false,
 		topChannels: false,
 		lastOrders: false,
 		totalSpent: false,
-	};
+	});
+
+	protected updateFilter(key: FilterKey, checked: boolean): void {
+		this.filters.update((filters) => ({ ...filters, [key]: checked }));
+	}
 
 	public clearFilters(ctx: { close: () => void }): void {
-		this.filters = {
+		this.filters.set({
 			realTime: false,
 			topChannels: false,
 			lastOrders: false,
 			totalSpent: false,
-		};
+		});
 		ctx.close();
 	}
 
 	public applyFilters(ctx: { close: () => void }): void {
-		console.log('Applied filters:', this.filters);
 		ctx.close();
 	}
 }

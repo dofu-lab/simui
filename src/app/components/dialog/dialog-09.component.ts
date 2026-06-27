@@ -59,9 +59,9 @@ import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 	`,
 })
 export class Dialog09Component {
-	public dialogRef = viewChild(HlmDialog);
+	protected readonly dialogRef = viewChild(HlmDialog);
 
-	closeDialog() {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 }

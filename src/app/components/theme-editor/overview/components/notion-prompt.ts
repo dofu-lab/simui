@@ -24,22 +24,23 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 import { MentionableItem } from './mentionable-item';
 
-export type MentionItem = {
+export interface MentionItem {
 	type: string;
 	title: string;
 	image: string;
 	workspace?: string;
-};
+}
 
-type ModelItem = {
+interface ModelItem {
 	name: string;
 	badge?: string;
-};
+}
 
-type GroupedItems = {
+interface GroupedItems {
 	mentionable: MentionItem[];
 	models: ModelItem[];
-};
+}
+
 @Component({
 	selector: 'app-notion-prompt',
 	imports: [

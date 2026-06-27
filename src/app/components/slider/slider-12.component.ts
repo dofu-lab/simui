@@ -8,7 +8,7 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'sim-slider-12',
-	imports: [HlmSliderImports, HlmLabelImports, HlmInputImports, FormsModule],
+	imports: [FormsModule, HlmSliderImports, HlmLabelImports, HlmInputImports],
 	providers: [provideIcons({ lucideRotateCcw })],
 	host: {
 		class: 'w-full',
@@ -22,5 +22,5 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider12Component {
-	public readonly value = signal([45]);
+	protected readonly value = signal([45]);
 }

@@ -9,7 +9,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	providers: [provideIcons({ lucideCircleAlert, lucideArrowRight, lucideX })],
 	imports: [NgIcon, HlmIconImports, HlmButtonImports],
 	template: `
-		<div class="bg-background z-50 max-w-[400px] rounded-md border p-4 shadow-lg">
+		<div class="bg-background max-w-[400px] rounded-md border p-4 shadow-lg">
 			<div class="flex gap-2">
 				<div class="flex grow flex-col gap-3">
 					<div class="space-y-1">

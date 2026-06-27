@@ -19,7 +19,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 				<li hlmBreadcrumbItem>
 					<ng-icon hlm name="lucideAlignJustify" size="sm" [hlmDropdownMenuTrigger]="breadcrumbDropdown" />
 					<ng-template #breadcrumbDropdown>
-						<hlm-dropdown-menu class="w">
+						<hlm-dropdown-menu>
 							<button hlmDropdownMenuItem id="document">
 								<span>Documentation</span>
 							</button>

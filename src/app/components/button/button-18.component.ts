@@ -6,8 +6,8 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-18',
-	providers: [provideIcons({ lucideChevronDown })],
 	imports: [NgIcon, HlmButtonImports, HlmAvatarImports],
+	providers: [provideIcons({ lucideChevronDown })],
 	template: `
 		<button hlmBtn variant="ghost" size="sm" class="rounded-full pl-1!">
 			<hlm-avatar class="size-6">

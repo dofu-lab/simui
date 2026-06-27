@@ -1,6 +1,6 @@
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 async function getSliderValue(thumb: import('@playwright/test').Locator): Promise<number | null> {
 	const valueNow = await thumb.getAttribute('aria-valuenow');
@@ -169,7 +169,7 @@ test.describe('Slider', () => {
 	test.describe('Behavior', () => {
 		test('all slider variants render visible slider thumbs', async ({ page }) => {
 			for (const id of COMPONENT_IDS.slider) {
-				const card = page.locator(`component-card#${id}`);
+				const card = componentCard(page, id);
 				const isPresent = await card
 					.waitFor({ state: 'visible', timeout: 5000 })
 					.then(() => true)
@@ -184,7 +184,7 @@ test.describe('Slider', () => {
 
 		test('slide-state snapshots — all slider variants', async ({ page }) => {
 			for (const id of COMPONENT_IDS.slider) {
-				const card = page.locator(`component-card#${id}`);
+				const card = componentCard(page, id);
 				const isPresent = await card
 					.waitFor({ state: 'visible', timeout: 5000 })
 					.then(() => true)
@@ -214,7 +214,7 @@ test.describe('Slider', () => {
 
 		test('all enabled slider variants respond to slide behavior', async ({ page }) => {
 			for (const id of COMPONENT_IDS.slider) {
-				const card = page.locator(`component-card#${id}`);
+				const card = componentCard(page, id);
 				const isPresent = await card
 					.waitFor({ state: 'visible', timeout: 5000 })
 					.then(() => true)

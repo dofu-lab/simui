@@ -1,11 +1,11 @@
 export type ModelType = 'GPT-3' | 'Codex';
-export type Model = {
+export interface Model {
 	id: string;
 	name: string;
 	description: string;
 	strengths?: string;
 	type: ModelType;
-};
+}
 
 export const TYPES: ModelType[] = ['GPT-3', 'Codex'];
 export const MODELS: Model[] = [

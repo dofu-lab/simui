@@ -1,6 +1,6 @@
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 // Fixed date so the calendar always renders the same month/day regardless of when the test runs.
 const FIXED_DATE = new Date('2025-01-15T12:00:00.000Z');
@@ -42,12 +42,12 @@ test.describe('Calendar', () => {
 
 	test.describe('Behavior', () => {
 		test('renders calendar grid', async ({ page }) => {
-			const calendar = page.locator('component-card#calendar-01 hlm-calendar');
+			const calendar = componentCard(page, 'calendar-01').locator('hlm-calendar');
 			await expect(calendar).toBeVisible();
 		});
 
 		test('navigation buttons are present', async ({ page }) => {
-			const card = page.locator('component-card#calendar-01');
+			const card = componentCard(page, 'calendar-01');
 			// Spartan calendar renders prev/next navigation buttons
 			const buttons = card.locator('button');
 			await expect(buttons.first()).toBeVisible();

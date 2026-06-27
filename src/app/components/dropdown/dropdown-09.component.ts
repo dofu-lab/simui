@@ -138,7 +138,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Dropdown09Component {
-	value = signal('angular');
-	email = signal(true);
-	push = signal(false);
+	protected readonly value = signal('angular');
+	protected readonly email = signal(true);
+	protected readonly push = signal(false);
 }

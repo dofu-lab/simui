@@ -2,12 +2,18 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDialog, HlmDialogContent, HlmDialogImports } from '@spartan-ng/helm/dialog';
+import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
+
+interface DialogStep {
+	id: number;
+	title: string;
+	description: string;
+}
 
 @Component({
 	selector: 'sim-dialog-24',
-	imports: [NgIcon, HlmIconImports, HlmDialog, HlmDialogContent, HlmButtonImports, HlmDialogImports],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmDialogImports],
 	providers: [provideIcons({ lucideArrowRight })],
 	template: `
 		<hlm-dialog>
@@ -33,7 +39,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 							}
 						</div>
 						<div class="flex gap-2">
-							<button hlmBtn variant="outline" (click)="closeDialog()">Skip</button>
+							<button hlmBtn size="sm" variant="outline" (click)="closeDialog()">Skip</button>
 							<button hlmBtn size="sm" class="group" (click)="onNextStep()">
 								@if (currentStepIndex() === steps.length) {
 									Okay
@@ -54,11 +60,11 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Dialog24Component {
-	public dialogRef = viewChild(HlmDialog);
-	public currentStepIndex = signal(1);
-	public currentStep = computed(() => this.steps.find((step) => step.id === this.currentStepIndex()));
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly currentStepIndex = signal(1);
+	protected readonly currentStep = computed(() => this.steps.find((step) => step.id === this.currentStepIndex()));
 
-	public steps = [
+	protected readonly steps: DialogStep[] = [
 		{
 			id: 1,
 			title: 'Welcome to SimUI',
@@ -81,7 +87,7 @@ export class Dialog24Component {
 		},
 	];
 
-	onNextStep(): void {
+	protected onNextStep(): void {
 		if (this.currentStepIndex() < this.steps.length) {
 			this.currentStepIndex.update((index) => index + 1);
 		} else {
@@ -89,7 +95,7 @@ export class Dialog24Component {
 		}
 	}
 
-	closeDialog(): void {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 }

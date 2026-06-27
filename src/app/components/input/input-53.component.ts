@@ -7,10 +7,10 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	imports: [HlmLabelImports, HlmInputImports],
 	host: { class: 'w-full' },
 	template: `
-		<label hlmLabel class="mb-2 text-sm">Simple input</label>
-		<div class="flex -space-x-px">
-			<input hlmInput type="text" placeholder="From" class="rounded-r-none focus-visible:z-20" />
-			<input hlmInput type="text" placeholder="To" class="rounded-l-none focus-visible:z-20" />
+		<span id="input-53-label" hlmLabel class="mb-2 text-sm">Simple input</span>
+		<div role="group" aria-labelledby="input-53-label" class="flex -space-x-px">
+			<input hlmInput type="text" placeholder="From" aria-label="From" class="rounded-r-none focus-visible:z-20" />
+			<input hlmInput type="text" placeholder="To" aria-label="To" class="rounded-l-none focus-visible:z-20" />
 		</div>
 	`,
 })

@@ -15,7 +15,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input51Component {
-	readonly mask: MaskitoOptions = {
+	protected readonly mask: MaskitoOptions = {
 		mask: [/[A-Za-z]/, /[A-Za-z]/, /[0-9]/, /[0-9]/, ' ', /[A-Za-z]/, /[A-Za-z]/, /[A-Za-z]/],
 	};
 }

@@ -10,7 +10,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	providers: [provideIcons({ lucideCircleAlert, lucideX })],
 	imports: [NgIcon, HlmIconImports, HlmAlertImports, HlmButtonImports],
 	template: `
-		<div hlmAlert class="bg-background z-50 flex gap-3 py-3 shadow-lg">
+		<div hlmAlert class="bg-background flex gap-3 py-3 shadow-lg">
 			<span class="flex items-center">
 				<ng-icon hlm size="sm" name="lucideCircleAlert" class="text-blue-500" />
 			</span>

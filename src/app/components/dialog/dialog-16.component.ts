@@ -117,14 +117,14 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 	`,
 })
 export class Dialog16Component {
-	public dialogRef = viewChild(HlmDialog);
-	private _formBuilder = inject(FormBuilder);
+	protected readonly dialogRef = viewChild(HlmDialog);
+	private readonly formBuilder = inject(FormBuilder);
 
-	public form = this._formBuilder.group({
+	protected readonly form = this.formBuilder.group({
 		email: ['', Validators.compose([Validators.required, Validators.email])],
 	});
 
-	closeDialog() {
+	protected closeDialog(): void {
 		this.form.updateValueAndValidity();
 		if (this.form.valid) {
 			this.dialogRef()?.close({});

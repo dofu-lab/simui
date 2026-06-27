@@ -10,8 +10,8 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-04',
-	providers: [provideIcons({ lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail, lucideCheck })],
 	imports: [NgClass, NgIcon, HlmButtonImports, HlmIconImports, HlmInputImports, HlmPopoverImports],
+	providers: [provideIcons({ lucideCode, lucideCopy, lucideFacebook, lucideLinkedin, lucideMail, lucideCheck })],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">Share</button>
@@ -71,13 +71,13 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover04Component {
-	public readonly shareUrl = 'https://simui.dev/JGGH0N';
-	public copied = signal<boolean>(false);
-	private _clipboard = inject(Clipboard);
+	protected readonly copied = signal<boolean>(false);
+	protected readonly shareUrl = 'https://simui.dev/JGGH0N';
+	private readonly clipboard = inject(Clipboard);
 
 	public onCopy(): void {
 		this.copied.set(true);
-		this._clipboard.copy(this.shareUrl);
+		this.clipboard.copy(this.shareUrl);
 
 		setTimeout(() => {
 			this.copied.set(false);

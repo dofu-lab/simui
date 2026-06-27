@@ -14,21 +14,21 @@ import { CodePreviewComponent } from './code-preview.component';
 import { CodeLoaderService } from './services/code-loader.service';
 
 @Component({
-	selector: 'component-card',
+	selector: 'sim-component-card',
 	providers: [provideIcons({ lucideCode, lucideLink, lucideCheck })],
 	imports: [
-		NgComponentOutlet,
-		HlmButtonImports,
 		NgIcon,
-		HlmIconImports,
+		NgComponentOutlet,
 		CodePreviewComponent,
+		HlmButtonImports,
+		HlmIconImports,
 		HlmSheetImports,
 		HlmTooltipImports,
 	],
 	template: `
 		<ng-container *ngComponentOutlet="component()"></ng-container>
 		<hlm-sheet #sheet side="right">
-			<div class="absolute -top-2 -right-2 flex w-full items-center justify-between p-4">
+			<div class="absolute -top-2 right-0 flex w-full items-center justify-between px-2 pt-2">
 				<span class="text-muted-foreground/80 me-1 text-xs">
 					@if (showComponentName) {
 						{{ componentName() }}
@@ -69,7 +69,7 @@ import { CodeLoaderService } from './services/code-loader.service';
 					<div class="mb-4">
 						<h4 class="mb-2 text-lg font-semibold">Installation</h4>
 						<div class="mt-3">
-							<code-preview language="sh" [code]="installCommand()" [fileName]="'Install ' + componentName()" />
+							<sim-code-preview language="sh" [code]="installCommand()" [fileName]="'Install ' + componentName()" />
 						</div>
 						<ng-template #installTooltip><span class="flex items-center">Copy install command</span></ng-template>
 					</div>
@@ -80,7 +80,7 @@ import { CodeLoaderService } from './services/code-loader.service';
 						@if (codeLoading()) {
 							<div class="text-muted-foreground flex h-full items-center justify-center text-sm">Loading...</div>
 						} @else {
-							<code-preview [code]="displayCode()" [fileName]="componentName()" />
+							<sim-code-preview [code]="displayCode()" [fileName]="componentName()" />
 						}
 					</div>
 					<ng-template #codeTooltip><span class="flex items-center">Copy code to clipboard</span></ng-template>

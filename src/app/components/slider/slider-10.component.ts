@@ -7,11 +7,9 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'sim-slider-10',
-	imports: [HlmSliderImports, HlmLabelImports, NgIcon, HlmIconImports],
+	imports: [NgIcon, HlmSliderImports, HlmLabelImports, HlmIconImports],
 	providers: [provideIcons({ lucideVolumeX, lucideVolume2 })],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<div class="mb-4 flex items-center justify-between">
 			<span hlmLabel>Volume</span>
@@ -25,5 +23,5 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider10Component {
-	public readonly value = signal([45]);
+	protected readonly value = signal([45]);
 }

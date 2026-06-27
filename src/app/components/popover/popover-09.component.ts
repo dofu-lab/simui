@@ -38,10 +38,10 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover09Component {
-	public readonly emojis = ['😀', '😂', '😍', '😎', '🤔', '👍', '🎉', '😢', '🔥', '🙏', '🙌', '🚀'];
-	currentEmoji = signal(this.emojis[0]);
+	protected readonly emojis = ['😀', '😂', '😍', '😎', '🤔', '👍', '🎉', '😢', '🔥', '🙏', '🙌', '🚀'];
+	protected readonly currentEmoji = signal(this.emojis[0]);
 
-	public selectEmoji(emoji: string, ctx: { close: () => void }): void {
+	protected selectEmoji(emoji: string, ctx: { close: () => void }): void {
 		this.currentEmoji.set(emoji);
 		ctx.close();
 	}

@@ -29,7 +29,7 @@ import { ColorTypeSelector } from './color-type-selector';
 					<sim-color-type />
 				</hlm-sheet-header>
 				<div class="mb-4 min-h-0 flex-1 px-4">
-					<code-preview [code]="cssCode()" />
+					<sim-code-preview [code]="cssCode()" />
 				</div>
 			</hlm-sheet-content>
 		</hlm-sheet>

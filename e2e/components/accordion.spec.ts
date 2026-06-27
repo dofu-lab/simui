@@ -1,6 +1,6 @@
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 test.describe('Accordion', () => {
 	test.beforeEach(async ({ navigateToComponent }) => {
@@ -14,7 +14,7 @@ test.describe('Accordion', () => {
 	test.describe('Expanded snapshots', () => {
 		for (const id of COMPONENT_IDS.accordion) {
 			test(`captures expanded states in ${id}`, async ({ page }) => {
-				const card = page.locator(`component-card#${id}`);
+				const card = componentCard(page, id);
 				const isPresent = await card
 					.waitFor({ state: 'visible', timeout: 5000 })
 					.then(() => true)
@@ -47,7 +47,7 @@ test.describe('Accordion', () => {
 	test.describe('Behavior', () => {
 		for (const id of COMPONENT_IDS.accordion) {
 			test(`expands an item in ${id}`, async ({ page }) => {
-				const card = page.locator(`component-card#${id}`);
+				const card = componentCard(page, id);
 				const isPresent = await card
 					.waitFor({ state: 'visible', timeout: 5000 })
 					.then(() => true)

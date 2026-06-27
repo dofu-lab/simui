@@ -10,7 +10,7 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'sim-slider-11',
-	imports: [HlmSliderImports, HlmLabelImports, NgIcon, HlmIconImports, HlmInputImports, HlmButtonImports, FormsModule],
+	imports: [NgIcon, FormsModule, HlmSliderImports, HlmLabelImports, HlmIconImports, HlmInputImports, HlmButtonImports],
 	providers: [provideIcons({ lucideRotateCcw })],
 	host: {
 		class: 'w-full',
@@ -37,13 +37,13 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider11Component {
-	public readonly defaultTemperature = 1;
-	public readonly initialTemperature = 1.25;
-	public readonly min = 0;
-	public readonly max = 2;
-	public readonly value = signal([this.initialTemperature]);
+	protected readonly defaultTemperature = 1;
+	protected readonly initialTemperature = 1.25;
+	protected readonly min = 0;
+	protected readonly max = 2;
+	protected readonly value = signal([this.initialTemperature]);
 
-	public onReset(): void {
+	protected onReset(): void {
 		this.value.set([this.defaultTemperature]);
 	}
 }

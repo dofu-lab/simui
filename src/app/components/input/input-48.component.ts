@@ -61,12 +61,12 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input48Component {
-	readonly visibility = signal(false);
-	readonly passwordValue = model('');
+	protected readonly visibility = signal(false);
+	protected readonly passwordValue = model('');
 
-	readonly computedIcon = computed<IconType>(() => (this.visibility() ? 'lucideEyeOff' : 'lucideEye'));
-	readonly inputType = computed<string>(() => (this.visibility() ? 'text' : 'password'));
-	readonly strength = computed(() => {
+	protected readonly computedIcon = computed<IconType>(() => (this.visibility() ? 'lucideEyeOff' : 'lucideEye'));
+	protected readonly inputType = computed<string>(() => (this.visibility() ? 'text' : 'password'));
+	protected readonly strength = computed(() => {
 		const requirements = [
 			{ regex: /.{8,}/, text: 'At least 8 characters' },
 			{ regex: /[0-9]/, text: 'At least 1 number' },
@@ -78,8 +78,8 @@ export class Input48Component {
 			text: req.text,
 		}));
 	});
-	readonly score = computed(() => this.strength().filter((req) => req.met).length);
-	readonly strengthText = computed(() => {
+	protected readonly score = computed(() => this.strength().filter((req) => req.met).length);
+	protected readonly strengthText = computed(() => {
 		if (this.score() === 0) {
 			return 'Enter a password';
 		}
@@ -91,7 +91,7 @@ export class Input48Component {
 		}
 		return 'Strong password';
 	});
-	readonly strengthColor = computed(() => {
+	protected readonly strengthColor = computed(() => {
 		if (this.score() === 0) {
 			return 'bg-border';
 		}
@@ -107,7 +107,7 @@ export class Input48Component {
 		return 'bg-emerald-500';
 	});
 
-	handleUpdateVisibility(): void {
+	protected handleUpdateVisibility(): void {
 		this.visibility.update((v) => !v);
 	}
 }

@@ -5,9 +5,16 @@ import { lucideZap } from '@ng-icons/lucide';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 
+interface CheckboxItem {
+	value: string;
+	label: string;
+	defaultChecked: boolean;
+	disabled: boolean;
+}
+
 @Component({
 	selector: 'sim-checkbox-21',
-	imports: [HlmCheckboxImports, HlmLabelImports, NgClass],
+	imports: [NgClass, HlmCheckboxImports, HlmLabelImports],
 	providers: [provideIcons({ lucideZap })],
 	host: {
 		class: 'w-full',
@@ -37,12 +44,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Checkbox21Component {
-	items: {
-		value: string;
-		label: string;
-		defaultChecked: boolean;
-		disabled: boolean;
-	}[] = [
+	protected readonly items: CheckboxItem[] = [
 		{ value: '0', label: 'Sunday', defaultChecked: false, disabled: false },
 		{ value: '1', label: 'Monday', defaultChecked: true, disabled: false },
 		{ value: '2', label: 'Tuesday', defaultChecked: false, disabled: true },

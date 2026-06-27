@@ -6,6 +6,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-29',
+	imports: [NgIcon, HlmIconImports, HlmButtonImports],
 	providers: [
 		provideIcons({
 			lucideMinus,
@@ -16,7 +17,6 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 			lucideVolume2,
 		}),
 	],
-	imports: [HlmIconImports, HlmButtonImports, NgIcon],
 	template: `
 		<div class="inline-flex items-center">
 			<button
@@ -48,20 +48,6 @@ export class Button29Component {
 	protected readonly volume = signal<number>(4);
 	protected readonly volumeIcon = computed(() => this.getVolumeIcon());
 
-	private getVolumeIcon(): string {
-		const vol = this.volume();
-		if (vol === 0) {
-			return 'lucideVolumeX';
-		}
-		if (vol < 3) {
-			return 'lucideVolume';
-		}
-		if (vol < 5) {
-			return 'lucideVolume1';
-		}
-		return 'lucideVolume2';
-	}
-
 	protected decreaseVolume(): void {
 		if (this.volume() === 0) {
 			return;
@@ -74,5 +60,19 @@ export class Button29Component {
 			return;
 		}
 		this.volume.set(this.volume() + 1);
+	}
+
+	private getVolumeIcon(): string {
+		const vol = this.volume();
+		if (vol === 0) {
+			return 'lucideVolumeX';
+		}
+		if (vol < 3) {
+			return 'lucideVolume';
+		}
+		if (vol < 5) {
+			return 'lucideVolume1';
+		}
+		return 'lucideVolume2';
 	}
 }

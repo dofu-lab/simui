@@ -7,8 +7,8 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-22',
+	imports: [NgIcon, HlmCheckboxImports, HlmLabelImports, HlmIconImports],
 	providers: [provideIcons({ lucideSun, lucideMoon })],
-	imports: [HlmCheckboxImports, HlmLabelImports, HlmIconImports, NgIcon],
 	host: {
 		class: 'w-full',
 	},

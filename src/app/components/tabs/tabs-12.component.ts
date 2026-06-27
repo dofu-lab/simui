@@ -16,13 +16,11 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'sim-tabs-12',
-	imports: [NgIcon, HlmIconImports, HlmTabsImports, HlmScrollAreaImports, HlmBadgeImports, NgScrollbarModule],
+	imports: [NgIcon, NgScrollbarModule, HlmIconImports, HlmTabsImports, HlmScrollAreaImports, HlmBadgeImports],
 	providers: [
 		provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage, lucideUsers, lucideChartLine, lucideSettings }),
 	],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
 			<ng-scrollbar hlm>

@@ -13,9 +13,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Notification33Component {
-	notificationId = 0;
+	private notificationId = 0;
 
-	showNotification() {
+	protected showNotification(): void {
 		toast(MacOsNotificationComponent, {
 			unstyled: true,
 			position: 'top-right',
@@ -28,11 +28,11 @@ export class Notification33Component {
 
 @Component({
 	selector: 'sim-macos-notification',
-	providers: [provideIcons({ lucideX })],
 	imports: [NgIcon, HlmIconImports],
+	providers: [provideIcons({ lucideX })],
 	template: `
 		<div
-			class="backdrop-blur-4xl relative flex w-[356px] gap-3 rounded-[16px] border-[1px] border-[#78797A] bg-[#424242]/93 p-3">
+			class="backdrop-blur-4xl relative flex w-[356px] gap-3 rounded-[16px] border border-[#78797A] bg-[#424242]/93 p-3">
 			<div class="flex size-8 items-center justify-center rounded-md bg-white">
 				<svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
@@ -154,9 +154,9 @@ export class Notification33Component {
 	`,
 })
 export class MacOsNotificationComponent {
-	notificationId = input.required<number>();
+	public readonly notificationId = input.required<number>();
 
-	onDismiss() {
+	protected onDismiss(): void {
 		toast.dismiss(this.notificationId());
 	}
 }

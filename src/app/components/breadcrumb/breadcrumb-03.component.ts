@@ -6,8 +6,8 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-breadcrumb-03',
-	providers: [provideIcons({ lucideHouse })],
 	imports: [NgIcon, HlmBreadcrumbImports, HlmIconImports],
+	providers: [provideIcons({ lucideHouse })],
 	template: `
 		<nav hlmBreadcrumb>
 			<ol hlmBreadcrumbList>

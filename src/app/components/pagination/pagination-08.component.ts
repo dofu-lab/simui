@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, numberAttribute } from '@angular/core';
+import { Component, computed, inject, numberAttribute } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -9,17 +9,16 @@ import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { hlm } from '@spartan-ng/helm/utils';
 import { map } from 'rxjs';
 
-type PaginationReturn = {
+interface PaginationReturn {
 	pages: number[];
 	showLeftEllipsis: boolean;
 	showRightEllipsis: boolean;
-};
+}
 
 @Component({
 	selector: 'sim-pagination-08',
 	imports: [HlmPaginationImports, NgIcon, HlmIconImports, HlmButtonImports],
 	providers: [provideIcons({ lucideChevronRight, lucideChevronLeft })],
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full' },
 	template: `
 		<nav hlmPagination>

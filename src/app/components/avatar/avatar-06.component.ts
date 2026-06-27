@@ -10,8 +10,7 @@ import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 				<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 				<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 			</hlm-avatar>
-			<div
-				class="border-background bg-muted-foreground absolute top-7.5 right-0 size-3 rounded-full border-[2px]"></div>
+			<div class="border-background bg-muted-foreground absolute top-7.5 right-0 size-3 rounded-full border-2"></div>
 		</div>
 	`,
 })

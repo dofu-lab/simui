@@ -10,11 +10,9 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'sim-slider-16',
-	imports: [HlmSliderImports, HlmLabelImports, FormsModule, HlmInputImports, NgIcon, HlmIconImports, HlmButtonImports],
+	imports: [NgIcon, FormsModule, HlmSliderImports, HlmLabelImports, HlmInputImports, HlmIconImports, HlmButtonImports],
 	providers: [provideIcons({ lucideRotateCcw })],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<span hlmLabel class="mb-4">Object position</span>
 		<div class="flex flex-col gap-3">

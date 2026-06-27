@@ -8,9 +8,7 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 	selector: 'sim-slider-14',
 	imports: [HlmSliderImports, HlmLabelImports],
 	providers: [provideIcons({ lucideVolumeX, lucideVolume2 })],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<div class="mb-4 flex items-center justify-between">
 			<span hlmLabel>Rate your experience</span>

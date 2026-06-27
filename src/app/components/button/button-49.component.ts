@@ -5,8 +5,8 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-49',
+	imports: [NgIcon, HlmButtonImports],
 	providers: [provideIcons({ lucideChevronDown, lucideChevronUp })],
-	imports: [HlmButtonImports, NgIcon],
 	template: `
 		<button hlmBtn variant="ghost" (click)="toggle()">
 			{{ buttonLabel() }}

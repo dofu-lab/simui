@@ -25,13 +25,13 @@ import { NavigationService } from '../core/services';
 					class="grid grid-cols-1 items-center justify-center gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 					@for (component of components; track component.path) {
 						<div
-							dfCard
+							simCard
 							class="border-input hover:bg-input/20 hover:border-muted-foreground/30 group mx-auto h-fit w-full max-w-[300px] cursor-pointer rounded-[18px] border px-1 pt-1 transition-transform duration-150 ease-out will-change-transform hover:scale-[1.02]"
 							(click)="onNavigate(component.path)">
 							<div class="bg-muted/50 relative h-[170px] overflow-hidden rounded-xl border px-6 group-hover:shadow-xs">
 								<ng-container *ngComponentOutlet="component.thumbnail" />
 							</div>
-							<div dfCardBody>
+							<div simCardBody>
 								<div class="text-foreground flex items-center gap-2 text-sm font-medium">
 									{{ component.name }}
 									@if (component.isNew) {

@@ -3,7 +3,7 @@ import { Buffer } from 'node:buffer';
 import { join } from 'node:path';
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 const TEST_IMAGE_NAME = 'bg-01.jpg';
 const TEST_IMAGE_PATH = join(process.cwd(), 'src/assets/backgrounds', TEST_IMAGE_NAME);
@@ -120,7 +120,7 @@ const uploadedStateConfigs: Record<string, UploadedStateConfig> = {
 };
 
 async function uploadFilesInCard(page: Page, cardId: string, files: string | string[] | FilePayload | FilePayload[]) {
-	const card = page.locator(`component-card#${cardId}`);
+	const card = componentCard(page, cardId);
 	const input = card.locator('input[type="file"]');
 	await expect(card).toBeVisible();
 	await input.setInputFiles(files);
@@ -128,7 +128,7 @@ async function uploadFilesInCard(page: Page, cardId: string, files: string | str
 }
 
 async function prepareUploadedState(page: Page, cardId: string): Promise<Locator> {
-	const card = page.locator(`component-card#${cardId}`);
+	const card = componentCard(page, cardId);
 	const config = uploadedStateConfigs[cardId];
 
 	await expect(card).toBeVisible();
@@ -164,7 +164,7 @@ test.describe('File Upload', () => {
 
 	test.describe('Behavior', () => {
 		test('pressing upload opens file chooser and selecting a file shows it', async ({ page }) => {
-			const card = page.locator('component-card#file-upload-01');
+			const card = componentCard(page, 'file-upload-01');
 			const button = card.getByRole('button', { name: 'Upload image' });
 
 			await expect(button).toBeVisible();
@@ -192,7 +192,7 @@ test.describe('File Upload', () => {
 		});
 
 		test('supports picking multiple files and removing them from the list', async ({ page }) => {
-			const card = page.locator('component-card#file-upload-10');
+			const card = componentCard(page, 'file-upload-10');
 			const input = card.locator('input[type="file"]');
 			const removeAllButton = card.locator('button', { hasText: 'Remove all' });
 

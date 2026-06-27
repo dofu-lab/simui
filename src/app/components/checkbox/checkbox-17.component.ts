@@ -5,9 +5,16 @@ import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 
+interface CheckboxItem {
+	id: number;
+	value: string;
+	label: string;
+	icon: string;
+}
+
 @Component({
 	selector: 'sim-checkbox-17',
-	imports: [HlmCheckboxImports, HlmLabelImports, HlmIconImports, NgIcon],
+	imports: [NgIcon, HlmCheckboxImports, HlmLabelImports, HlmIconImports],
 	providers: [
 		provideIcons({
 			lucideMousePointer2,
@@ -37,7 +44,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Checkbox17Component {
-	items: { id: number; value: string; label: string; icon: string }[] = [
+	protected readonly items: CheckboxItem[] = [
 		{ id: 1, value: 'frame', label: 'Frame', icon: 'lucideFrame' },
 		{ id: 2, value: 'pointer', label: 'Pointer', icon: 'lucideMousePointer2' },
 		{ id: 3, value: 'pen', label: 'Pen', icon: 'lucidePenTool' },

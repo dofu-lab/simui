@@ -8,7 +8,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 @Component({
 	selector: 'sim-dialog-02',
 	providers: [provideIcons({ lucideCircleAlert })],
-	imports: [HlmButtonImports, NgIcon, HlmIconImports, HlmDialogImports],
+	imports: [NgIcon, HlmButtonImports, HlmIconImports, HlmDialogImports],
 	template: `
 		<hlm-dialog>
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Confirm dialog with icon</button>

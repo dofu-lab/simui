@@ -15,7 +15,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Meeting invitation</button>
 			<hlm-dialog-content
-				class="[&>button>ng-icon]:text-primary-foreground top-1/2 left-1/2 max-h-[calc(100vh-2rem)] !w-100 max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
+				class="[&>button>ng-icon]:text-primary-foreground top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-100! max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
 				*hlmDialogPortal="let ctx">
 				<div class="flex items-center justify-center pt-6">
 					<div class="flex h-14 w-16 flex-col rounded-lg border text-center">
@@ -64,23 +64,23 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 						<span class="text-sm font-semibold">Attendees</span>
 						<div class="flex gap-2">
 							<div class="flex -space-x-3.5">
-								<hlm-avatar class="border-background size-10 border-[2px]">
+								<hlm-avatar class="border-background size-10 border-2">
 									<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar class="border-background size-10 border-[2px]">
+								<hlm-avatar class="border-background size-10 border-2">
 									<img hlmAvatarImage src="assets/avatars/alan-cooper.png" alt="Alan Cooper" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar class="border-background size-10 border-[2px]">
+								<hlm-avatar class="border-background size-10 border-2">
 									<img hlmAvatarImage src="assets/avatars/skylar-dias.png" alt="Skylar Dias" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar class="border-background size-10 border-[2px]">
+								<hlm-avatar class="border-background size-10 border-2">
 									<img hlmAvatarImage src="assets/avatars/alexis-sears.png" alt="Alexis Sears" />
 									<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 								</hlm-avatar>
-								<hlm-avatar class="border-background size-10 border-[2px]">
+								<hlm-avatar class="border-background size-10 border-2">
 									<span hlmAvatarFallback class="bg-muted text-muted-foreground text-sm">+3</span>
 								</hlm-avatar>
 							</div>
@@ -94,9 +94,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 						</div>
 						<div class="flex gap-2 text-sm">
 							<span class="font-semibold">7 guests</span>
-							<div class="bg-border h-6 w-[1px]"></div>
+							<div class="bg-border h-6 w-px"></div>
 							<span class="text-muted-foreground">5 accept</span>
-							<div class="bg-border h-6 w-[1px]"></div>
+							<div class="bg-border h-6 w-px"></div>
 							<span class="text-muted-foreground">2 pending</span>
 						</div>
 					</div>
@@ -110,9 +110,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Dialog25Component {
-	public dialogRef = viewChild(HlmDialog);
+	protected readonly dialogRef = viewChild(HlmDialog);
 
-	public acceptInvitation(): void {
+	protected acceptInvitation(): void {
 		toast.success('Accepted!', {
 			description: 'Your response has been sent to the organizer.',
 		});

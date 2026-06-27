@@ -61,7 +61,6 @@ export class Input26Component {
 	protected descreaseValue(): void {
 		const currentValue = this.form.get('control')?.value ?? '';
 		const value = maskitoParseNumber(currentValue);
-		console.log(value);
 
 		if (!Number.isNaN(value) && value > 0) {
 			const newValue = value - 1;

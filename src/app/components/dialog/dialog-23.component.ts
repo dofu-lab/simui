@@ -22,14 +22,14 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 				<div class="absolute inset-0 flex items-center justify-center gap-2">
 					<button
 						hlmBtn
-						class="focus-visible:border-ring focus-visible:ring-ring/50 ease z-50 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] duration-150 outline-none hover:bg-black/80 focus-visible:ring-[3px] motion-reduce:transition-none"
+						class="focus-visible:border-ring focus-visible:ring-ring/50 ease z-5 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] duration-150 outline-none hover:bg-black/80 focus-visible:ring-[3px] motion-reduce:transition-none"
 						size="icon"
 						(click)="fileInput.click()">
 						<ng-icon hlm name="lucideImagePlus" size="sm" />
 					</button>
 					<button
 						hlmBtn
-						class="focus-visible:border-ring focus-visible:ring-ring/50 ease z-50 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] duration-150 outline-none hover:bg-black/80 focus-visible:ring-[3px] motion-reduce:transition-none"
+						class="focus-visible:border-ring focus-visible:ring-ring/50 ease z-5 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] duration-150 outline-none hover:bg-black/80 focus-visible:ring-[3px] motion-reduce:transition-none"
 						size="icon"
 						(click)="removeBackground()">
 						<ng-icon hlm name="lucideX" size="sm" />
@@ -41,13 +41,13 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class ProfileBackgroundComponent {
-	backgroundUrl = signal<string | null>('assets/backgrounds/bg-01.jpg');
+	protected readonly backgroundUrl = signal<string | null>('assets/backgrounds/bg-01.jpg');
 
-	public removeBackground(): void {
+	protected removeBackground(): void {
 		this.backgroundUrl.set(null);
 	}
 
-	public onFileSelected(event: Event): void {
+	protected onFileSelected(event: Event): void {
 		const input = event.target as HTMLInputElement;
 		if (input.files && input.files.length > 0) {
 			const file = input.files[0];
@@ -79,9 +79,9 @@ export class ProfileBackgroundComponent {
 	`,
 })
 export class ProfileAvatarComponent {
-	avatarUrl = signal<string>('assets/avatars/mathilde-lewis.png');
+	protected readonly avatarUrl = signal<string>('assets/avatars/mathilde-lewis.png');
 
-	public onFileSelected(event: Event): void {
+	protected onFileSelected(event: Event): void {
 		const input = event.target as HTMLInputElement;
 		if (input.files && input.files.length > 0) {
 			const file = input.files[0];
@@ -212,12 +212,13 @@ export class ProfileAvatarComponent {
 	`,
 })
 export class Dialog23Component {
-	private readonly _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(HlmDialog);
-	public maxLength = 180;
-	public lengthCount = signal<number>(0);
-	public isValidUserName = signal<boolean>(true);
-	public form: FormGroup = this._formBuilder.group({
+	private readonly formBuilder = inject(FormBuilder);
+
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly maxLength = 180;
+	protected readonly lengthCount = signal<number>(0);
+	protected readonly isValidUserName = signal<boolean>(true);
+	protected readonly form: FormGroup = this.formBuilder.group({
 		firstName: ['Alan'],
 		lastName: ['Cooper'],
 		userName: ['alan-cooper-dev-12'],
@@ -226,7 +227,7 @@ export class Dialog23Component {
 			'Hi, I am Alan Cooper. I am a software engineer and designer. I love to create beautiful and functional user interfaces.',
 		],
 	});
-	public leftCharacters = computed(() => this.maxLength - this.lengthCount());
+	protected readonly leftCharacters = computed(() => this.maxLength - this.lengthCount());
 
 	constructor() {
 		this.lengthCount.set(this.form.get('biography')?.value.length);
@@ -240,7 +241,7 @@ export class Dialog23Component {
 		});
 	}
 
-	public closeDialog(): void {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 }

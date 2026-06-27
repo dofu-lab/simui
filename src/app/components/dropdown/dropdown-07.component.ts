@@ -41,5 +41,5 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Dropdown07Component {
-	value = signal('angular');
+	protected readonly value = signal('angular');
 }

@@ -19,6 +19,12 @@ import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 
+interface SupportReason {
+	id: number;
+	text: string;
+	icon: string;
+}
+
 @Component({
 	selector: 'sim-dialog-26',
 	imports: [
@@ -81,7 +87,7 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 										hlmInput
 										type="text"
 										placeholder="Ask me anything..."
-										class="bg-background min-h-[80px] w-full"></textarea>
+										class="bg-background min-h-20 w-full"></textarea>
 									<div
 										class="text-muted-foreground/80 pointer-events-none absolute inset-y-0 end-0 flex cursor-pointer items-start justify-center pe-3 pt-2.5 peer-disabled:opacity-50">
 										<ng-icon hlm name="lucideMic" size="sm" />
@@ -125,9 +131,9 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 	`,
 })
 export class Dialog26Component {
-	public dialogRef = viewChild(HlmDialog);
+	protected readonly dialogRef = viewChild(HlmDialog);
 
-	reasons = [
+	protected readonly reasons: SupportReason[] = [
 		{
 			id: 1,
 			text: 'Create image',
@@ -160,7 +166,7 @@ export class Dialog26Component {
 		},
 	];
 
-	closeDialog() {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 }

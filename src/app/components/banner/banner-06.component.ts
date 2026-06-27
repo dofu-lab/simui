@@ -12,7 +12,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 		class: 'w-full',
 	},
 	template: `
-		<div class="bg-background z-50 border-t border-b-0 px-4 py-3 md:border-t-0 md:border-b">
+		<div class="bg-background border-t border-b-0 px-4 py-3 md:border-t-0 md:border-b">
 			<div class="relative flex max-w-[1000px] gap-2 md:mx-auto md:items-center">
 				<div class="flex grow flex-col justify-between gap-2 md:flex-row md:items-center">
 					<div class="flex items-start gap-2 md:items-center">
@@ -46,9 +46,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Banner06Component {
-	isVisible = signal<boolean>(true);
+	protected readonly isVisible = signal<boolean>(true);
 
-	onHideBanner() {
+	protected onHideBanner(): void {
 		this.isVisible.set(false);
 	}
 }

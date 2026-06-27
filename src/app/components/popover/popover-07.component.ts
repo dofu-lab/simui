@@ -13,10 +13,8 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 					Pick a color
 				</div>
 			</button>
-
 			<div hlmPopoverContent class="grid w-fit gap-4 p-2" *hlmPopoverPortal="let ctx">
 				<div class="text-sm font-semibold">Choose a color</div>
-
 				<div class="grid w-fit grid-cols-5 gap-2">
 					@for (color of colors; track $index) {
 						<button
@@ -26,7 +24,6 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 							(click)="selectColor(color, ctx)"></button>
 					}
 				</div>
-
 				@if (selectedColor) {
 					<div class="text-muted-foreground text-center text-xs">Selected: {{ selectedColor }}</div>
 				}
@@ -35,7 +32,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover07Component {
-	public readonly colors = [
+	protected readonly colors: string[] = [
 		'#F87171',
 		'#33BF24',
 		'#60A5FA',
@@ -47,7 +44,7 @@ export class Popover07Component {
 		'#ADDCF6',
 		'#000000',
 	];
-	selectedColor = '#60A5FA';
+	protected selectedColor = '#60A5FA';
 
 	public selectColor(color: string, ctx: { close: () => void }): void {
 		this.selectedColor = color;

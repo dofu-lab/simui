@@ -6,8 +6,8 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-50',
+	imports: [NgIcon, HlmButtonImports, HlmIconImports],
 	providers: [provideIcons({ lucideCircleUserRound })],
-	imports: [HlmButtonImports, HlmIconImports, NgIcon],
 	template: `
 		<div class="grid grid-cols-1 items-center justify-center gap-2">
 			<div class="flex items-center justify-center gap-2">

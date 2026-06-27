@@ -28,22 +28,22 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 						</span>
 					</div>
 					<div class="flex flex-col gap-3">
-						<label class="flex items-start" hlmLabel>
-							<hlm-switch class="mr-2" [checked]="true" />
+						<label for="x" class="flex items-start" hlmLabel>
+							<hlm-switch inputId="x" class="mr-2" [checked]="true" />
 							<div class="flex flex-col text-sm">
 								<span class="font-medium">Share on X</span>
 								<span class="text-muted-foreground font-normal">&#64;trandongphuong</span>
 							</div>
 						</label>
-						<label class="flex items-start" hlmLabel>
-							<hlm-switch class="mr-2" [checked]="true" />
+						<label for="instagram" class="flex items-start" hlmLabel>
+							<hlm-switch inputId="instagram" class="mr-2" [checked]="true" />
 							<div class="flex flex-col text-sm">
 								<span class="font-medium">Share on Instagram</span>
 								<span class="text-muted-foreground font-normal">&#64;phuonginsta</span>
 							</div>
 						</label>
-						<label class="flex items-start" hlmLabel>
-							<hlm-switch class="mr-2" />
+						<label for="facebook" class="flex items-start" hlmLabel>
+							<hlm-switch inputId="facebook" class="mr-2" />
 							<div class="flex flex-col text-sm">
 								<span class="font-medium">Share on Facebook</span>
 								<span class="text-muted-foreground font-normal">&#64;dongphuong</span>

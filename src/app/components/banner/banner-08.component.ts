@@ -12,7 +12,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 		class: 'w-full',
 	},
 	template: `
-		<div class="bg-secondary-foreground z-50 px-4 py-2">
+		<div class="bg-secondary-foreground px-4 py-2">
 			<div class="relative flex gap-2 md:items-center">
 				<div class="flex grow flex-col justify-between gap-0.5 md:flex-row md:items-center md:gap-3">
 					<div class="flex items-center justify-start gap-3 truncate">

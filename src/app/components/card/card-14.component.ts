@@ -165,21 +165,17 @@ export class Card14Component implements OnDestroy {
 	protected readonly pipelineCompleted = signal(false);
 
 	protected readonly currentRunningTask = computed(() => this.taskItems().find((t) => t.status === 'running'));
-
 	protected readonly currentState = computed(() => this.currentRunningTask()?.state ?? 'Booting');
-
 	protected readonly progress = computed(() => {
 		const items = this.taskItems();
 		const completed = items.filter((t) => t.status === 'completed').length;
 		const hasRunning = items.some((t) => t.status === 'running');
 		return Math.round(((completed + (hasRunning ? 0.5 : 0)) / items.length) * 100);
 	});
-
 	protected readonly elapsedDisplay = computed(() => {
 		const ms = this.elapsedMs();
 		return (ms / 1000).toFixed(2) + 's';
 	});
-
 	protected readonly footerLabel = computed(() => {
 		if (this.pipelineCompleted()) return 'Completed';
 		const state = this.currentState();

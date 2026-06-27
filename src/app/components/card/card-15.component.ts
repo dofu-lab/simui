@@ -34,6 +34,15 @@ interface CalendarEvent {
 	category: { value: string; label: string; bgClass: string; textClass: string; dotClass: string; badgeClass: string };
 }
 
+interface ColorOption {
+	value: string;
+	label: string;
+	textClass: string;
+	dotClass: string;
+	badgeClass: string;
+	bgClass: string;
+}
+
 interface EventFormModel {
 	eventName: string;
 	time: string;
@@ -85,23 +94,6 @@ export const DefaultEventStyle = [
 
 @Component({
 	selector: 'sim-card-15',
-	styles: [
-		`
-			@keyframes event-enter {
-				from {
-					opacity: 0;
-					transform: translateY(-6px);
-				}
-				to {
-					opacity: 1;
-					transform: translateY(0);
-				}
-			}
-			.event-enter {
-				animation: event-enter 220ms cubic-bezier(0.215, 0.61, 0.355, 1) both;
-			}
-		`,
-	],
 	imports: [
 		NgIcon,
 		DatePipe,
@@ -120,6 +112,23 @@ export const DefaultEventStyle = [
 		provideIcons({ lucideChevronLeft, lucideChevronRight, lucidePlus, lucideX }),
 		ShowOnSubmitErrorStateMatcher,
 		{ provide: ErrorStateMatcher, useExisting: ShowOnSubmitErrorStateMatcher },
+	],
+	styles: [
+		`
+			@keyframes event-enter {
+				from {
+					opacity: 0;
+					transform: translateY(-6px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			.event-enter {
+				animation: event-enter 220ms cubic-bezier(0.215, 0.61, 0.355, 1) both;
+			}
+		`,
 	],
 	template: `
 		<section class="bg-muted flex flex-col gap-4 rounded-2xl p-1.5 pt-0 shadow-none">
@@ -198,12 +207,16 @@ export const DefaultEventStyle = [
 										<div class="flex items-center gap-2">
 											<hlm-radio-group [formField]="eventForm.category" class="flex gap-1 rounded-md">
 												@for (item of colorOptions; track item) {
-													<label hlmLabel>
-														<hlm-radio class="[&_brn-radio]:gap-x-0" [value]="item">
+													<label [for]="item.value" hlmLabel (click)="selectCategory(item)">
+														<hlm-radio class="[&_brn-radio]:gap-x-0" [inputId]="item.value" [value]="item">
 															<div class="relative inline-flex size-6">
 																<div
 																	class="bg-primary-foreground absolute inset-0 scale-0 rounded-full transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[30%]"></div>
-																<div [class]="tagColor(item.bgClass)"></div>
+																<div
+																	[class]="tagColor(item.bgClass)"
+																	[attr.data-state]="
+																		_eventModel().category?.value === item.value ? 'checked' : null
+																	"></div>
 															</div>
 														</hlm-radio>
 													</label>
@@ -234,7 +247,7 @@ export class Card15Component {
 	protected readonly maxDate = new Date(2030, 11, 31);
 	protected readonly mode = signal<'edit' | 'view'>('view');
 	protected readonly timeMask: MaskitoOptions = maskitoTime({ mode: 'HH:MM' });
-	protected readonly colorOptions = [
+	protected readonly colorOptions: ColorOption[] = [
 		{
 			value: 'meeting',
 			label: 'Meeting',
@@ -331,19 +344,23 @@ export class Card15Component {
 		);
 	}
 
+	protected selectCategory(category: ColorOption): void {
+		this._eventModel.update((model) => ({ ...model, category }));
+	}
+
 	protected setCurrentMonth(): void {
 		const newDate = new Date();
 		this.selectedDate.set(newDate);
 		this.focusedDate.set(newDate);
 	}
 
-	protected jumpToPreviousMonth() {
+	protected jumpToPreviousMonth(): void {
 		const newDate = new Date(this.focusedDate());
 		newDate.setMonth(newDate.getMonth() - 2);
 		this.focusedDate.set(newDate);
 	}
 
-	protected jumpToNextMonth() {
+	protected jumpToNextMonth(): void {
 		const newDate = new Date(this.focusedDate());
 		newDate.setMonth(newDate.getMonth() + 2);
 		this.focusedDate.set(newDate);

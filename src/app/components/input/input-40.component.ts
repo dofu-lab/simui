@@ -11,7 +11,10 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { addDays, format, isValid, parse } from 'date-fns';
 
-type ParsedDate = { startDate: Date | null; endDate: Date | null };
+interface ParsedDate {
+	startDate: Date | null;
+	endDate: Date | null;
+}
 
 @Component({
 	selector: 'sim-input-40',
@@ -56,19 +59,19 @@ type ParsedDate = { startDate: Date | null; endDate: Date | null };
 	`,
 })
 export class Input40Component {
-	readonly selectedStartDate = model<Date | null>(null);
-	readonly selectedEndDate = model<Date | null>(null);
-	readonly mask: MaskitoOptions = maskitoDateRange({
+	protected readonly selectedStartDate = model<Date | null>(null);
+	protected readonly selectedEndDate = model<Date | null>(null);
+	protected readonly mask: MaskitoOptions = maskitoDateRange({
 		mode: 'mm/dd/yyyy',
 		dateSeparator: '/',
 		rangeSeparator: ' - ',
 	});
-	readonly minDate = new Date();
-	readonly maxDate = addDays(new Date(), 5);
+	protected readonly minDate: Date = new Date();
+	protected readonly maxDate: Date = addDays(new Date(), 5);
 
-	inputValue = this.formatDateRange(this.selectedStartDate(), this.selectedEndDate());
+	protected inputValue: string = this.formatDateRange(this.selectedStartDate(), this.selectedEndDate());
 
-	onInputChange(value: string): void {
+	protected onInputChange(value: string): void {
 		const { startDate, endDate } = this.parseDateRange(value);
 		if (startDate && isValid(startDate)) {
 			this.selectedStartDate.set(startDate);
@@ -78,7 +81,7 @@ export class Input40Component {
 		}
 	}
 
-	onDateRangeChange(ctx: any): void {
+	protected onDateRangeChange(ctx: any): void {
 		this.inputValue = this.formatDateRange(this.selectedStartDate(), this.selectedEndDate());
 		// Close popover when both dates are selected
 		if (this.selectedStartDate() && this.selectedEndDate()) {

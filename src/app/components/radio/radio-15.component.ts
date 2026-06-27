@@ -3,6 +3,14 @@ import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
+interface RadioItem {
+	id: number;
+	value: string;
+	label: string;
+	isPopular: boolean;
+	price: string;
+}
+
 @Component({
 	selector: 'sim-radio-15',
 	imports: [HlmRadioGroupImports, HlmLabelImports, HlmBadgeImports],
@@ -17,9 +25,10 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 					<div
 						class="border-input has-data-[checked=true]:border-primary/50 has-data-[checked=true]:bg-accent relative flex w-full border shadow-xs outline-none first:rounded-t-md last:rounded-b-md has-data-[checked=true]:z-10">
 						<label
+							[for]="'radio-15-' + item.value"
 							class="flex w-full items-center justify-start gap-2 p-4 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 							hlmLabel>
-							<hlm-radio [value]="item.value" class="gap-x-0">
+							<hlm-radio [value]="item.value" [inputId]="'radio-15-' + item.value" class="gap-x-0">
 								<div
 									class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 									<div
@@ -49,7 +58,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 	`,
 })
 export class Radio15Component {
-	items: { id: number; value: string; label: string; isPopular: boolean; price: string }[] = [
+	protected readonly items: RadioItem[] = [
 		{ id: 1, value: 'hobby', label: 'Hobby', isPopular: false, price: '$9/month' },
 		{ id: 2, value: 'plus', label: 'Plus', isPopular: true, price: '$29/month' },
 		{ id: 3, value: 'team', label: 'Team', isPopular: false, price: '$49/month' },

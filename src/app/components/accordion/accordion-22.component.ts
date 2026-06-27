@@ -8,6 +8,19 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 
+interface AccordionOption {
+	id: string;
+	label: string;
+}
+
+interface AccordionItem {
+	id: string;
+	title: string;
+	subTitle: string;
+	content: string;
+	options: AccordionOption[];
+}
+
 @Component({
 	selector: 'sim-accordion-21',
 	imports: [
@@ -128,7 +141,7 @@ export class Accordion22Component {
 		return Object.keys(group.controls).every((key) => group.get(key)?.value === true);
 	}
 
-	protected readonly items = [
+	protected readonly items: AccordionItem[] = [
 		{
 			id: 'project-setup',
 			title: 'Project Setup',

@@ -16,5 +16,5 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input45Component {
-	mask: MaskitoOptions = maskitoDate({ mode: 'mm/dd', separator: ' / ' });
+	protected readonly mask: MaskitoOptions = maskitoDate({ mode: 'mm/dd', separator: ' / ' });
 }

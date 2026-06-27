@@ -6,10 +6,10 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-14',
-	providers: [provideIcons({ lucideCircleAlert, lucideArrowRight, lucideX })],
 	imports: [NgIcon, HlmIconImports, HlmButtonImports],
+	providers: [provideIcons({ lucideCircleAlert, lucideArrowRight, lucideX })],
 	template: `
-		<div class="bg-background z-50 max-w-[400px] rounded-md border p-4 shadow-lg">
+		<div class="bg-background max-w-[400px] rounded-md border p-4 shadow-lg">
 			<div class="flex gap-2">
 				<div class="flex grow gap-3">
 					<ng-icon hlm size="sm" name="lucideCircleAlert" class="mt-0.5 shrink-0 text-blue-500" />

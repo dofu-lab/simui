@@ -6,12 +6,12 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
-type Option = {
+interface Option {
 	value: string;
 	label: string;
 	icon: IconType;
 	iconColor: string;
-};
+}
 
 @Component({
 	selector: 'sim-select-28',

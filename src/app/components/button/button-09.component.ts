@@ -5,8 +5,8 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-09',
+	imports: [NgIcon, HlmButtonImports],
 	providers: [provideIcons({ lucideArrowRight })],
-	imports: [HlmButtonImports, NgIcon],
 	template: `
 		<button hlmBtn size="sm" class="group/btn09">
 			Next page

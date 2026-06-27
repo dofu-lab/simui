@@ -6,10 +6,18 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
+interface NotificationItem {
+	user: string;
+	action: string;
+	subject: string;
+	time: string;
+	unread: boolean;
+}
+
 @Component({
 	selector: 'sim-popover-02',
+	imports: [NgIcon, HlmBadgeImports, HlmButtonImports, HlmIconImports, HlmPopoverImports],
 	providers: [provideIcons({ lucideBell })],
-	imports: [HlmBadgeImports, HlmButtonImports, HlmIconImports, NgIcon, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button variant="outline" size="icon" class="relative size-9" hlmPopoverTrigger hlmBtn>
@@ -17,7 +25,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 				@if (unreadCount() > 0) {
 					<span
 						hlmBadge
-						class="absolute -top-2 left-full flex min-w-5 -translate-x-1/2 items-center justify-center px-1 py-[1px]">
+						class="absolute -top-2 left-full flex min-w-5 -translate-x-1/2 items-center justify-center px-1 py-px">
 						{{ unreadCount() }}
 					</span>
 				}
@@ -60,7 +68,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover02Component {
-	notifications = signal([
+	protected readonly notifications = signal<NotificationItem[]>([
 		{
 			user: 'Chris Tompson',
 			action: 'requested review on',
@@ -68,7 +76,13 @@ export class Popover02Component {
 			time: '15 minutes ago',
 			unread: true,
 		},
-		{ user: 'Emma Davis', action: 'shared', subject: 'New component library', time: '45 minutes ago', unread: true },
+		{
+			user: 'Emma Davis',
+			action: 'shared',
+			subject: 'New component library',
+			time: '45 minutes ago',
+			unread: true,
+		},
 		{
 			user: 'James Wilson',
 			action: 'assigned you to',
@@ -84,7 +98,10 @@ export class Popover02Component {
 			unread: false,
 		},
 	]);
-	unreadCount = computed(() => this.notifications().filter((notification) => notification.unread).length);
+
+	protected readonly unreadCount = computed(
+		() => this.notifications().filter((notification) => notification.unread).length,
+	);
 
 	public markAsRead(index: number): void {
 		this.notifications.update((notifications) =>

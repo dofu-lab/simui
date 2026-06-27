@@ -11,7 +11,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 	template: `
 		<button
 			hlmToggle
-			class="h-8.5 w-8.5 px-2 hover:bg-sky-200 hover:text-sky-600 data-[state=on]:bg-sky-200 data-[state=on]:text-sky-600"
+			class="size-8.5 px-2 hover:bg-sky-200 hover:text-sky-600 data-[state=on]:bg-sky-200 data-[state=on]:text-sky-600"
 			[hideDelay]="1"
 			[showDelay]="1"
 			[hlmTooltip]="tooltipContent"
@@ -24,10 +24,10 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 	`,
 })
 export class Button24Component {
-	state = signal<'on' | 'off'>('off');
-	tooltipLabel = computed(() => (this.state() === 'on' ? 'Remove bookmark' : 'Add bookmark'));
+	private readonly state = signal<'on' | 'off'>('off');
+	protected readonly tooltipLabel = computed(() => (this.state() === 'on' ? 'Remove bookmark' : 'Add bookmark'));
 
-	public onSelect(): void {
+	protected onSelect(): void {
 		this.state.set(this.state() === 'on' ? 'off' : 'on');
 	}
 }

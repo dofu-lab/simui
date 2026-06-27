@@ -14,7 +14,13 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-42" class="mb-2 text-sm">OTP input double group</label>
-		<brn-input-otp hlm maxLength="6" inputClass="disabled:cursor-not-allowed" class="mt-2" [ngModel]="otpValue()">
+		<brn-input-otp
+			id="input-42"
+			hlm
+			maxLength="6"
+			inputClass="disabled:cursor-not-allowed"
+			class="mt-2"
+			[ngModel]="otpValue()">
 			<div
 				hlmInputOtpGroup
 				class="flex items-center justify-center -space-x-px [&>hlm-input-otp-slot]:first:rounded-l-md [&>hlm-input-otp-slot]:last:rounded-r-md">
@@ -36,5 +42,5 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input42Component {
-	readonly otpValue = model<string>('');
+	protected readonly otpValue = model<string>('');
 }

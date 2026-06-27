@@ -7,7 +7,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-calendar-13',
-	imports: [HlmCalendarImports, HlmInputGroupImports, HlmLabelImports, NgIcon],
+	imports: [NgIcon, HlmCalendarImports, HlmInputGroupImports, HlmLabelImports],
 	providers: [provideIcons({ lucideClock })],
 	template: `
 		<div class="relative flex flex-col items-center overflow-hidden rounded-2xl border">

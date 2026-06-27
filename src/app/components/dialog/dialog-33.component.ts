@@ -61,7 +61,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 									<span>Visa ending in</span>
 									<span class="text-muted-foreground truncate text-xs">Expiry 06/2024</span>
 								</div>
-								<hlm-checkbox id="checkbox-visa" formControlName="visa" />
+								<hlm-checkbox inputId="checkbox-visa" formControlName="visa" />
 							</div>
 						</label>
 						<label
@@ -96,7 +96,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 									<span>Mastercard ending in 1234</span>
 									<span class="text-muted-foreground truncate text-xs">Expiry 06/2024</span>
 								</div>
-								<hlm-checkbox id="checkbox-mtcard" formControlName="mastercard" />
+								<hlm-checkbox inputId="checkbox-mtcard" formControlName="mastercard" />
 							</div>
 						</label>
 						<label
@@ -119,7 +119,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 									<span>Apple Pay ending in 2299</span>
 									<span class="text-muted-foreground truncate text-xs">Expiry 11/2026</span>
 								</div>
-								<hlm-checkbox id="checkbox-apple" formControlName="applepay" />
+								<hlm-checkbox inputId="checkbox-apple" formControlName="applepay" />
 							</div>
 						</label>
 					</div>
@@ -133,7 +133,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Dialog33Component {
-	formGroup = new FormGroup({
+	protected readonly formGroup = new FormGroup({
 		visa: new FormControl(true),
 		mastercard: new FormControl(false),
 		applepay: new FormControl(false),

@@ -9,7 +9,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	providers: [provideIcons({ lucideTriangleAlert, lucideArrowRight, lucideX })],
 	imports: [NgIcon, HlmIconImports, HlmButtonImports],
 	template: `
-		<div class="bg-background z-50 max-w-[400px] rounded-md border px-4 py-3 shadow-lg">
+		<div class="bg-background max-w-[400px] rounded-md border px-4 py-3 shadow-lg">
 			<div class="flex gap-2">
 				<div class="flex grow gap-3">
 					<ng-icon hlm size="sm" name="lucideTriangleAlert" class="mt-0.5 shrink-0 text-amber-500" />

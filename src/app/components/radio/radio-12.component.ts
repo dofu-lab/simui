@@ -6,6 +6,13 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
+interface RadioItem {
+	id: number;
+	value: string;
+	label: string;
+	icon: string;
+}
+
 @Component({
 	selector: 'sim-radio-12',
 	imports: [NgIcon, HlmIconImports, HlmRadioGroupImports, HlmLabelImports],
@@ -25,6 +32,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 				<div
 					class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full rounded-md border shadow-xs outline-none">
 					<label
+						[for]="'radio-12-' + item.value"
 						class="flex w-full cursor-pointer flex-col items-start justify-between px-2 py-3 has-data-[disabled=true]:cursor-not-allowed! has-data-[disabled=true]:opacity-70"
 						hlmLabel>
 						<div class="flex w-full flex-1 flex-col items-center justify-center gap-2">
@@ -33,7 +41,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 								{{ item.label }}
 							</div>
 						</div>
-						<hlm-radio [value]="item.value" />
+						<hlm-radio [value]="item.value" [inputId]="'radio-12-' + item.value" />
 					</label>
 				</div>
 			}
@@ -41,7 +49,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 	`,
 })
 export class Radio12Component {
-	items: { id: number; value: string; label: string; icon: string }[] = [
+	protected readonly items: RadioItem[] = [
 		{ id: 1, value: 'card', label: 'Card', icon: 'lucideWalletCards' },
 		{ id: 2, value: 'paypal', label: 'PayPal', icon: 'remixPaypalFill' },
 		{ id: 3, value: 'applePay', label: 'Apple Pay', icon: 'remixAppleFill' },

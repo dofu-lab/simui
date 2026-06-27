@@ -6,8 +6,8 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-button-22',
+	imports: [NgIcon, HlmButtonImports, HlmTooltipImports],
 	providers: [provideIcons({ lucidePlus })],
-	imports: [HlmButtonImports, HlmTooltipImports, NgIcon],
 	template: `
 		<button hlmBtn variant="outline" size="icon" [showDelay]="10" [hideDelay]="10" [hlmTooltip]="tooltipContent">
 			<ng-icon name="lucidePlus" />

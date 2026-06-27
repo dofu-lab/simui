@@ -12,9 +12,9 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	`,
 })
 export class Notification28Component {
-	datePipe = inject(DatePipe);
+	private readonly datePipe = inject(DatePipe);
 
-	showNotification() {
+	protected showNotification(): void {
 		toast.success('Request is approved', {
 			description: 'Your manager has approved your request.',
 		});

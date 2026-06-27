@@ -51,13 +51,12 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Dialog08Component {
-	projectName = signal<string>('Sim UI');
-	inputValue = model<string>('');
-	isDisabled = computed(() => this.inputValue() !== this.projectName());
+	protected readonly projectName = signal<string>('Sim UI');
+	protected readonly inputValue = model<string>('');
+	protected readonly isDisabled = computed(() => this.inputValue() !== this.projectName());
+	protected readonly dialogRef = viewChild(HlmDialog);
 
-	public dialogRef = viewChild(HlmDialog);
-
-	closeDialog() {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 }

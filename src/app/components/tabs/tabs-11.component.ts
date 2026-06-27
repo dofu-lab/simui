@@ -8,9 +8,7 @@ import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 	selector: 'sim-tabs-11',
 	imports: [NgIcon, HlmIconImports, HlmTabsImports],
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<hlm-tabs tab="tab01" class="">
 			<hlm-tabs-list

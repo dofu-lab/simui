@@ -3,6 +3,10 @@ import { expect } from '@playwright/test';
 
 type SnapshotOptions = NonNullable<Parameters<ReturnType<typeof expect<Locator>>['toHaveScreenshot']>[0]>;
 
+export function componentCard(page: Page, id: string): Locator {
+	return page.locator(`sim-component-card#${id}`);
+}
+
 /**
  * Takes a visual snapshot of each component variant card by its host element ID.
  * Uses soft assertions so a single failing snapshot does not block the rest.
@@ -20,9 +24,9 @@ export async function snapshotVariants(
 	options?: SnapshotOptions,
 ): Promise<void> {
 	for (const id of ids) {
-		// Use component-card#<id> to avoid strict-mode violations when inner elements
+		// Use the card host to avoid strict-mode violations when inner elements
 		// (e.g. hlm-select, hlm-switch, input) share the same id as the card host.
-		const card = page.locator(`component-card#${id}`);
+		const card = componentCard(page, id);
 		// Skip variants that exist in the registry but are not rendered on the page
 		// (e.g. commented out in the component constants file).
 		const isPresent = await card

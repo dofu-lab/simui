@@ -65,11 +65,11 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 			<hlm-field-separator />
 			<div hlmField orientation="horizontal">
 				<div hlmFieldContent>
-					<label hlmFieldLabel for="field-input-preview-firstname">Number of GPUs</label>
+					<label hlmFieldLabel for="field-input-preview-gpus">Number of GPUs</label>
 					<p hlmFieldDescription>You can add more later.</p>
 				</div>
 				<div hlmButtonGroup>
-					<input hlmInput class="h-8 !w-14 font-mono" [value]="_gpuCount()" />
+					<input hlmInput id="field-input-preview-gpus" class="h-8 w-14! font-mono" [value]="_gpuCount()" />
 					<button hlmBtn variant="outline" size="icon-sm" (click)="_gpuCountDecrease()">
 						<ng-icon hlm name="lucideMinus" size="sm" />
 					</button>

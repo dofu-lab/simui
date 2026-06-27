@@ -4,6 +4,13 @@ import { lucideGroup, lucideLaptop, lucideMinus, lucidePlus, lucideServerCog, lu
 import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
+interface AccordionItem {
+	id: string;
+	icon: string;
+	title: string;
+	content: string;
+}
+
 @Component({
 	selector: 'sim-accordion-06',
 	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon],
@@ -44,7 +51,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 	`,
 })
 export class Accordion06Component {
-	protected readonly items = [
+	protected readonly items: AccordionItem[] = [
 		{
 			id: 'acc-06-1',
 			icon: 'lucideGroup',

@@ -8,13 +8,13 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 @Component({
 	selector: 'sim-file-upload-03',
 	providers: [provideIcons({ lucideCircleUserRound, lucideX })],
-	imports: [HlmButtonImports, HlmIconImports, NgIcon, FileDragDropDirective],
+	imports: [NgIcon, FileDragDropDirective, HlmButtonImports, HlmIconImports],
 	template: `
 		<div class="flex flex-col items-center justify-center gap-2">
 			<div class="relative inline-flex">
 				<button
 					hlmBtn
-					fileDragDrop
+					simFileDragDrop
 					variant="outline"
 					class="border-input relative size-16 overflow-hidden rounded-full border-dashed p-0"
 					dragClass="border-[2px] bg-accent/50"
@@ -54,27 +54,27 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class FileUpload03Component {
-	fileUploadDirective = viewChild(FileDragDropDirective);
-	filesState = signal<FileUploadState | null>(null);
-	files = computed(() => this.filesState()?.files ?? []);
-	maxSize = 5 * 1024 * 1024; // 5MB
+	protected readonly fileUploadDirective = viewChild(FileDragDropDirective);
+	protected readonly filesState = signal<FileUploadState | null>(null);
+	protected readonly files = computed(() => this.filesState()?.files ?? []);
+	protected readonly maxSize = 5 * 1024 * 1024; // 5MB
 
-	onFileSelected(event: Event): void {
+	protected onFileSelected(event: Event): void {
 		const input = event.target as HTMLInputElement;
 		if (input.files && input.files.length > 0) {
 			this.fileUploadDirective()?.addFiles(input.files);
 		}
 	}
 
-	onFileStateChange(event: FileUploadState) {
+	protected onFileStateChange(event: FileUploadState): void {
 		this.filesState.set(event);
 	}
 
-	removeAllFiles() {
+	protected removeAllFiles(): void {
 		this.fileUploadDirective()?.clearFiles();
 	}
 
-	onRemoveImage(id: string): void {
+	protected onRemoveImage(id: string): void {
 		this.fileUploadDirective()?.removeFile(id);
 	}
 }

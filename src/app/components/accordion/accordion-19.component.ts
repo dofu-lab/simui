@@ -4,6 +4,19 @@ import { lucideChevronDown, lucideChevronUp } from '@ng-icons/lucide';
 import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
+interface AccordionSubItem {
+	id: string;
+	title: string;
+	content: string;
+}
+
+interface AccordionItem {
+	id: string;
+	title: string;
+	subItem: AccordionSubItem[];
+	content: string;
+}
+
 @Component({
 	selector: 'sim-accordion-19',
 	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon],
@@ -65,7 +78,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 	`,
 })
 export class Accordion19Component {
-	items = [
+	protected readonly items: AccordionItem[] = [
 		{
 			id: 'acc-19-1',
 			title: 'Why choose SimUI?',

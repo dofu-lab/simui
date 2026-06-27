@@ -31,11 +31,11 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input21Component {
-	public readonly form = new FormGroup({
+	protected readonly form = new FormGroup({
 		something: new FormControl('You can clear me!'),
 	});
 
-	public clearInput(): void {
+	protected clearInput(): void {
 		this.form.get('something')?.setValue('');
 	}
 }

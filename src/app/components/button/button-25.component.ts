@@ -7,7 +7,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 @Component({
 	selector: 'sim-button-25',
 	providers: [provideIcons({ lucideBell })],
-	imports: [HlmButtonImports, NgIcon, HlmBadgeImports],
+	imports: [NgIcon, HlmButtonImports, HlmBadgeImports],
 	template: `
 		<button hlmBtn variant="outline" size="icon" class="relative" (click)="markAsRead()">
 			<ng-icon name="lucideBell" />

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 import { HlmCardImports } from '@spartan-ng/helm/card';
@@ -16,9 +16,10 @@ import { addDays } from 'date-fns';
 	`,
 })
 export class Calendar11Component {
-	protected selectedDate = addDays(new Date(), -38);
+	protected readonly selectedDate = signal(addDays(new Date(), -38));
 
 	protected setCurrentMonth(): void {
-		this.selectedDate = new Date();
+		const newDate = new Date();
+		this.selectedDate.set(newDate);
 	}
 }

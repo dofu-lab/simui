@@ -218,11 +218,13 @@ import { type Task, TASK_DATA } from './services/tasks.models';
 								<hlm-select-value />
 							</hlm-select-trigger>
 							<hlm-select-content *hlmSelectPortal>
-								@for (size of _availablePageSizes; track size) {
-									<hlm-select-item [value]="size">
-										{{ size === 10000 ? 'All' : size }}
-									</hlm-select-item>
-								}
+								<hlm-select-group>
+									@for (size of _availablePageSizes; track size) {
+										<hlm-select-item [value]="size">
+											{{ size === 10000 ? 'All' : size }}
+										</hlm-select-item>
+									}
+								</hlm-select-group>
 							</hlm-select-content>
 						</hlm-select>
 					</div>

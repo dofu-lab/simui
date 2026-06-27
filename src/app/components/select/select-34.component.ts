@@ -7,10 +7,10 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
-type Option = {
+interface Option {
 	value: string;
 	label: string;
-};
+}
 
 @Component({
 	selector: 'sim-select-34',
@@ -73,9 +73,15 @@ type Option = {
 })
 export class Select34Component {
 	private readonly triggerBtn34 = viewChild.required<ElementRef<HTMLButtonElement>>('triggerBtn34');
-
 	private readonly destroyRef = inject(DestroyRef);
-	public readonly triggerWidth = signal(0);
+
+	protected readonly frameworks: Option[] = [
+		{ label: 'SimUI', value: 'simui' },
+		{ label: 'Spartan UI', value: 'spartanui' },
+	];
+	protected readonly triggerWidth = signal(0);
+	protected readonly currentFramework = signal<Option | undefined>(this.frameworks[0]);
+	protected readonly state = signal<'closed' | 'open'>('closed');
 
 	constructor() {
 		afterNextRender(() => {
@@ -86,20 +92,6 @@ export class Select34Component {
 			this.destroyRef.onDestroy(() => observer.disconnect());
 		});
 	}
-
-	protected readonly frameworks: Option[] = [
-		{
-			label: 'SimUI',
-			value: 'simui',
-		},
-		{
-			label: 'Spartan UI',
-			value: 'spartanui',
-		},
-	];
-
-	public readonly currentFramework = signal<Option | undefined>(this.frameworks[0]);
-	public readonly state = signal<'closed' | 'open'>('closed');
 
 	protected stateChanged(state: 'open' | 'closed'): void {
 		this.state.set(state);

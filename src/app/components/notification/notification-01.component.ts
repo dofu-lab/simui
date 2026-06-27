@@ -7,10 +7,10 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-01',
-	providers: [provideIcons({ lucideTriangleAlert, lucideX })],
 	imports: [NgIcon, HlmIconImports, HlmAlertImports, HlmButtonImports],
+	providers: [provideIcons({ lucideTriangleAlert, lucideX })],
 	template: `
-		<div hlmAlert class="bg-background z-50 flex gap-3 py-3 shadow-lg">
+		<div hlmAlert class="bg-background z-15 flex gap-3 py-3 shadow-lg">
 			<span class="flex items-center">
 				<ng-icon hlm size="sm" name="lucideTriangleAlert" class="text-amber-500" />
 			</span>

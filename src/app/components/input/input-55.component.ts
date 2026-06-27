@@ -5,10 +5,10 @@ import { lucideX } from '@ng-icons/lucide';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 
-type TagItem = {
+interface TagItem {
 	id: number;
 	value: string;
-};
+}
 
 @Component({
 	selector: 'sim-input-55',
@@ -16,7 +16,7 @@ type TagItem = {
 	providers: [provideIcons({ lucideX })],
 	host: { class: 'w-full' },
 	template: `
-		<label hlmLabel for="input-14" class="mb-2 text-sm">Input with inner tags</label>
+		<label hlmLabel for="input-55" class="mb-2 text-sm">Input with inner tags</label>
 		<div
 			class="border-input bg-background focus-within:border-ring focus-within:ring-ring/50 has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 has-aria-invalid:border-destructive ease relative rounded-md border shadow-xs transition-[color,box-shadow] duration-150 outline-none focus-within:ring-[3px] has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50 has-[input:is(:disabled)]:*:pointer-events-none motion-reduce:transition-none">
 			<div class="flex flex-row flex-wrap gap-1 p-1">
@@ -35,7 +35,7 @@ type TagItem = {
 					id="input-55"
 					type="text"
 					placeholder="Add a tag"
-					class="border-input placeholder:text-muted-foreground flex h-7 w-full min-w-[80px] flex-1 rounded-md border-0 bg-transparent px-2 py-1 text-sm shadow-none transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none"
+					class="border-input placeholder:text-muted-foreground flex h-7 w-full min-w-20 flex-1 rounded-md border-0 bg-transparent px-2 py-1 text-sm shadow-none transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none"
 					[ngModel]="value()"
 					(keydown.enter)="addTag()"
 					(ngModelChange)="value.set($event)" />
@@ -44,15 +44,10 @@ type TagItem = {
 	`,
 })
 export class Input55Component {
-	readonly value = model('');
-	readonly tags = signal<TagItem[]>([
-		{
-			id: 1,
-			value: 'Angular',
-		},
-	]);
+	protected readonly value = model('');
+	protected readonly tags = signal<TagItem[]>([{ id: 1, value: 'Angular' }]);
 
-	addTag(): void {
+	protected addTag(): void {
 		const currentTags = this.tags();
 		const isValueExist = currentTags.some((tag) => tag.value.toLowerCase() === this.value().toLowerCase());
 		if (!isValueExist) {
@@ -62,7 +57,7 @@ export class Input55Component {
 		this.value.set('');
 	}
 
-	removeTag(id: number): void {
+	protected removeTag(id: number): void {
 		this.tags.set(this.tags().filter((tag) => tag.id !== id));
 	}
 }

@@ -1,15 +1,6 @@
 import type { BooleanInput, NumberInput } from '@angular/cdk/coercion';
 import { CurrencyPipe, NgClass, NgTemplateOutlet } from '@angular/common';
-import {
-	booleanAttribute,
-	ChangeDetectionStrategy,
-	Component,
-	computed,
-	input,
-	model,
-	numberAttribute,
-	viewChild,
-} from '@angular/core';
+import { booleanAttribute, Component, computed, input, model, numberAttribute, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import { BrnCalendar, BrnCalendarImports, injectBrnCalendarI18n, type Weekday } from '@spartan-ng/brain/calendar';
@@ -23,9 +14,8 @@ import { addMonths, format } from 'date-fns';
 
 @Component({
 	selector: 'sim-calendar-19',
-	imports: [BrnCalendarImports, NgIcon, HlmIconImports, HlmSelectImports, NgTemplateOutlet, NgClass, CurrencyPipe],
+	imports: [NgIcon, NgTemplateOutlet, NgClass, CurrencyPipe, BrnCalendarImports, HlmIconImports, HlmSelectImports],
 	viewProviders: [provideIcons({ lucideChevronLeft, lucideChevronRight })],
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div
 			brnCalendar

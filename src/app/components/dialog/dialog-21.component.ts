@@ -11,7 +11,6 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-dialog-21',
-	providers: [provideIcons({ lucideWalletCards, lucideCreditCard, lucideBadgeCheck, lucideMessagesSquare })],
 	imports: [
 		NgIcon,
 		FormsModule,
@@ -23,6 +22,7 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 		HlmRadioGroupImports,
 		HlmDialogImports,
 	],
+	providers: [provideIcons({ lucideWalletCards, lucideCreditCard, lucideBadgeCheck, lucideMessagesSquare })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Select plan</button>
@@ -43,12 +43,13 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 						<form [formGroup]="form" (submit)="onSubmit()">
 							<hlm-radio-group class="flex flex-col gap-3 rounded-md sm:flex-row" formControlName="plan">
 								<label
+									for="basic-plan-21"
 									hlmLabel
 									class="border-input has-data-[checked=true]:border-primary has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-[17px] py-[13px] text-center text-sm shadow-xs transition-[color,box-shadow] duration-150 outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[checked=true]:border-[2px] has-data-[checked=true]:p-0 has-data-[checked=true]:px-4 has-data-[checked=true]:py-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none">
 									<div class="flex w-full flex-col text-left font-normal select-none">
 										<div class="mb-1 flex flex-row justify-between">
 											<span class="text-lg font-semibold">10$ per month</span>
-											<hlm-radio value="basic">
+											<hlm-radio inputId="basic-plan-21" value="basic">
 												<div
 													class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 													<div
@@ -81,12 +82,13 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 									</div>
 								</label>
 								<label
+									for="business-plan-21"
 									hlmLabel
 									class="border-input has-data-[checked=true]:border-primary has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-[17px] py-[13px] text-center text-sm shadow-xs transition-[color,box-shadow] duration-150 outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[checked=true]:border-[2px] has-data-[checked=true]:px-4 has-data-[checked=true]:py-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none">
 									<div class="flex w-full flex-col text-left font-normal select-none">
 										<div class="mb-1 flex flex-row justify-between">
 											<span class="text-lg font-semibold">25$ per month</span>
-											<hlm-radio value="business">
+											<hlm-radio inputId="business-plan-21" value="business">
 												<div
 													class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 													<div
@@ -151,14 +153,14 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 	`,
 })
 export class Dialog21Component {
-	private readonly _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(HlmDialog);
-	public form: FormGroup = this._formBuilder.group({
+	private readonly formBuilder = inject(FormBuilder);
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly form: FormGroup = this.formBuilder.group({
 		plan: ['basic'],
 	});
-	public isProcessing = signal(false);
+	protected readonly isProcessing = signal(false);
 
-	public onSubmit(): void {
+	protected onSubmit(): void {
 		if (this.form.valid) {
 			this.isProcessing.set(true);
 			setTimeout(() => {

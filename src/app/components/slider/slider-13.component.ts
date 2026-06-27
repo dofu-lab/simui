@@ -8,9 +8,7 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 	selector: 'sim-slider-13',
 	imports: [HlmSliderImports, HlmLabelImports],
 	providers: [provideIcons({ lucideVolumeX, lucideVolume2 })],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<div class="mb-4 flex items-center justify-between">
 			<span hlmLabel>Rate your experience</span>
@@ -24,7 +22,7 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider13Component {
-	public readonly ratingLabels = ['Awful', 'Poor', 'Okay', 'Good', 'Amazing'];
-	public readonly value = signal([3]);
-	public computedLabel = computed(() => this.ratingLabels[this.value()[0] - 1]);
+	protected readonly ratingLabels = ['Awful', 'Poor', 'Okay', 'Good', 'Amazing'];
+	protected readonly value = signal([3]);
+	protected readonly computedLabel = computed(() => this.ratingLabels[this.value()[0] - 1]);
 }

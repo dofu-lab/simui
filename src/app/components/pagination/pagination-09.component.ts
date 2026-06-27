@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, model, numberAttribute } from '@angular/core';
+import { Component, computed, inject, model, numberAttribute } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -6,17 +6,16 @@ import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { map } from 'rxjs';
 
-type PaginationReturn = {
+interface PaginationReturn {
 	pages: number[];
 	showLeftEllipsis: boolean;
 	showRightEllipsis: boolean;
-};
+}
 
 @Component({
 	selector: 'sim-pagination-09',
-	imports: [HlmPaginationImports, HlmSelectImports, FormsModule],
+	imports: [FormsModule, HlmPaginationImports, HlmSelectImports],
 	host: { class: 'block w-full' },
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex items-center justify-between gap-3">
 			<p aria-live="polite" class="text-muted-foreground flex-1 text-sm whitespace-nowrap">
@@ -75,9 +74,11 @@ type PaginationReturn = {
 						<hlm-select-value />
 					</hlm-select-trigger>
 					<hlm-select-content *hlmSelectPortal>
-						@for (pageSize of pageSizes; track pageSize) {
-							<hlm-select-item [value]="pageSize">{{ pageSize }} / page</hlm-select-item>
-						}
+						<hlm-select-group>
+							@for (pageSize of pageSizes; track pageSize) {
+								<hlm-select-item [value]="pageSize">{{ pageSize }} / page</hlm-select-item>
+							}
+						</hlm-select-group>
 					</hlm-select-content>
 				</hlm-select>
 			</div>

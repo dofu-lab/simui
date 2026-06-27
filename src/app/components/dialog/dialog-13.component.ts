@@ -82,20 +82,20 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 	`,
 })
 export class Dialog13Component implements OnDestroy {
-	public dialogRef = viewChild(HlmDialog);
-	public defaultOtpValue = '1234';
-	public otpValue = model<string>('');
-	public countdown = signal(60);
-	public isVerified = signal(false);
-	public isInvalidCode = signal(false);
-	public isResendDisabled = computed(() => this.countdown() > 0);
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly defaultOtpValue = '1234';
+	protected readonly otpValue = model<string>('');
+	protected readonly countdown = signal(60);
+	protected readonly isVerified = signal(false);
+	protected readonly isInvalidCode = signal(false);
+	protected readonly isResendDisabled = computed(() => this.countdown() > 0);
 	private _intervalId?: NodeJS.Timeout;
 
 	constructor() {
 		afterNextRender(() => this.startCountdown());
 	}
 
-	otpChanged(event: string) {
+	protected otpChanged(event: string) {
 		this.otpValue.set(event);
 
 		if (this.otpValue().length === 0) {
@@ -109,11 +109,11 @@ export class Dialog13Component implements OnDestroy {
 		}
 	}
 
-	closeDialog() {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 
-	submit() {
+	protected submit() {
 		if (this.otpValue() === this.defaultOtpValue) {
 			this.isVerified.set(true);
 			this.isInvalidCode.set(false);
@@ -124,11 +124,11 @@ export class Dialog13Component implements OnDestroy {
 		}
 	}
 
-	resendCode() {
+	protected resendCode(): void {
 		this.resetCountdown();
 	}
 
-	resendOtp() {
+	protected resendOtp(): void {
 		this.resetCountdown();
 	}
 
@@ -137,12 +137,12 @@ export class Dialog13Component implements OnDestroy {
 		this.stopCountdown();
 	}
 
-	private resetCountdown() {
+	private resetCountdown(): void {
 		this.countdown.set(60);
 		this.startCountdown();
 	}
 
-	private startCountdown() {
+	private startCountdown(): void {
 		this.stopCountdown();
 		this._intervalId = setInterval(() => {
 			this.countdown.update((countdown) => Math.max(0, countdown - 1));
@@ -152,7 +152,7 @@ export class Dialog13Component implements OnDestroy {
 		}, 1000);
 	}
 
-	private stopCountdown() {
+	private stopCountdown(): void {
 		if (this._intervalId) {
 			clearInterval(this._intervalId);
 			this._intervalId = undefined;

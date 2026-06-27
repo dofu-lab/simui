@@ -1,5 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { IconName, NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCircleAlert,
 	lucideCloudUpload,
@@ -119,7 +119,7 @@ import { HlmTableImports } from '@spartan-ng/helm/table';
 					</div>
 				}
 				<div
-					fileDragDrop
+					simFileDragDrop
 					[hidden]="files().length > 0"
 					role="button"
 					class="border-input has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:items-start! has-[input:focus]:ring-[3px] motion-reduce:transition-none"
@@ -162,14 +162,16 @@ import { HlmTableImports } from '@spartan-ng/helm/table';
 	`,
 })
 export class FileUpload11Component {
-	fileUploadDirective = viewChild(FileDragDropDirective);
-	maxTotalSize = 200 * 1024 * 1024;
-	maxFiles = 10;
-	filesState = signal<FileUploadState | null>(null);
-	files = computed(() => this.filesState()?.files ?? []);
-	errors = computed(() => this.filesState()?.errors ?? []);
-	totalSize = computed(() => formatBytes(this.files().reduce((acc, file) => acc + file.file.size, 0)));
-	initialFiles = signal<FileMetadata[]>([
+	protected readonly fileUploadDirective = viewChild(FileDragDropDirective);
+	protected readonly maxTotalSize = 200 * 1024 * 1024;
+	protected readonly maxFiles = 10;
+	protected readonly filesState = signal<FileUploadState | null>(null);
+	protected readonly files = computed(() => this.filesState()?.files ?? []);
+	protected readonly errors = computed(() => this.filesState()?.errors ?? []);
+	protected readonly totalSize = computed(() =>
+		formatBytes(this.files().reduce((acc, file) => acc + file.file.size, 0)),
+	);
+	protected readonly initialFiles = signal<FileMetadata[]>([
 		{
 			name: 'certificate.pdf',
 			size: 312412,
@@ -192,28 +194,28 @@ export class FileUpload11Component {
 			id: 'conclusion.xlsx-10',
 		},
 	]);
-	formatBytes = formatBytes;
+	protected formatBytes = formatBytes;
 
-	onFileSelected(event: Event): void {
+	protected onFileSelected(event: Event): void {
 		const input = event.target as HTMLInputElement;
 		if (input.files && input.files.length > 0) {
 			this.fileUploadDirective()?.addFiles(input.files);
 		}
 	}
 
-	onFileStateChange(event: FileUploadState) {
+	protected onFileStateChange(event: FileUploadState) {
 		this.filesState.set(event);
 	}
 
-	removeAllFiles() {
+	protected removeAllFiles() {
 		this.fileUploadDirective()?.clearFiles();
 	}
 
-	onRemoveImage(id: string): void {
+	protected onRemoveImage(id: string): void {
 		this.fileUploadDirective()?.removeFile(id);
 	}
 
-	getFileIcon = (file: { file: File | { type: string; name: string } }) => {
+	protected getFileIcon(file: { file: File | { type: string; name: string } }): IconName {
 		const fileType = file.file instanceof File ? file.file.type : file.file.type;
 		const fileName = file.file instanceof File ? file.file.name : file.file.name;
 
@@ -242,5 +244,5 @@ export class FileUpload11Component {
 			return 'lucideImage';
 		}
 		return 'lucideFile';
-	};
+	}
 }

@@ -6,9 +6,7 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 @Component({
 	selector: 'sim-slider-07',
 	imports: [NgClass, HlmSliderImports, HlmLabelImports],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<span hlmLabel class="mb-4">Slider with ticks</span>
 		<hlm-slider [(value)]="value" [max]="max" />
@@ -25,8 +23,8 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider07Component {
-	public readonly max = 12;
-	public readonly skipInterval = 2;
-	public readonly ticks = [...Array(this.max + 1)].map((_, i) => i);
-	public readonly value = signal([4]);
+	protected readonly max = 12;
+	protected readonly skipInterval = 2;
+	protected readonly ticks = [...Array(this.max + 1)].map((_, i) => i);
+	protected readonly value = signal([4]);
 }

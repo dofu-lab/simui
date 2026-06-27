@@ -110,10 +110,10 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 	`,
 })
 export class Dialog17Component {
-	public dialogRef = viewChild(HlmDialog);
-	public copied = signal<boolean>(false);
-	public clipboard = inject(Clipboard);
-	public form: FormGroup;
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly copied = signal<boolean>(false);
+	protected readonly clipboard = inject(Clipboard);
+	protected readonly form: FormGroup;
 	private readonly _formBuilder = inject(FormBuilder);
 
 	constructor() {
@@ -126,19 +126,19 @@ export class Dialog17Component {
 		return this.form.get('members') as FormArray;
 	}
 
-	addMember(): void {
+	protected addMember(): void {
 		this.members.push(this._formBuilder.control('', Validators.email));
 	}
 
-	removeMember(index: number): void {
+	protected removeMember(index: number): void {
 		this.members.removeAt(index, { emitEvent: true });
 	}
 
-	closeDialog(): void {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 
-	onSelect(): void {
+	protected onSelect(): void {
 		this.copied.set(true);
 		this.clipboard.copy('https://simui.dev/reference/12374');
 

@@ -13,7 +13,7 @@ interface DateModel {
 
 @Component({
 	selector: 'sim-calendar-12',
-	imports: [HlmCalendarImports, HlmInputGroupImports, HlmLabelImports, NgIcon, FormField],
+	imports: [NgIcon, FormField, HlmCalendarImports, HlmInputGroupImports, HlmLabelImports],
 	providers: [provideIcons({ lucideCalendar })],
 	template: `
 		<div class="relative flex flex-col items-center overflow-hidden rounded-2xl border">

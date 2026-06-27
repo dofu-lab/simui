@@ -10,7 +10,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	`,
 })
 export class Notification32Component {
-	showNotification() {
+	protected showNotification(): void {
 		toast.success('Saved your changes', {
 			closeButton: true,
 		});

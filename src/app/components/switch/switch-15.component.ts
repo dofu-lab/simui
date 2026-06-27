@@ -10,6 +10,7 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 			class="border-input data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border shadow-xs outline-none"
 			[attr.data-checked]="value() ? 'true' : 'false'">
 			<label
+				for="switch-15"
 				class="flex items-start gap-2 p-4 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 				hlmLabel>
 				<div class="flex flex-col gap-2">
@@ -19,11 +20,11 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 					</span>
 					<p class="text-muted-foreground text-xs font-normal">A short description goes here.</p>
 				</div>
-				<hlm-switch [(checked)]="value" />
+				<hlm-switch inputId="switch-15" [(checked)]="value" />
 			</label>
 		</div>
 	`,
 })
 export class Switch15Component {
-	readonly value = model(false);
+	protected readonly value = model(false);
 }

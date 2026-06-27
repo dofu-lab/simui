@@ -1,6 +1,6 @@
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 test.describe('Checkbox', () => {
 	test.beforeEach(async ({ navigateToComponent }) => {
@@ -13,7 +13,7 @@ test.describe('Checkbox', () => {
 
 	test.describe('Behavior', () => {
 		test('toggles checked state with the keyboard', async ({ page }) => {
-			const card = page.locator('component-card#checkbox-01');
+			const card = componentCard(page, 'checkbox-01');
 			const checkbox = card.locator('[role="checkbox"]:visible').first();
 			await expect(checkbox).toBeVisible();
 
@@ -28,7 +28,7 @@ test.describe('Checkbox', () => {
 		});
 
 		test('disabled checkbox does not change state on click', async ({ page }) => {
-			const disabled = page.locator('component-card#checkbox-01 [role="checkbox"][aria-disabled="true"]').first();
+			const disabled = componentCard(page, 'checkbox-01').locator('[role="checkbox"][aria-disabled="true"]').first();
 			if ((await disabled.count()) > 0) {
 				const before = await disabled.getAttribute('aria-checked');
 				await disabled.click({ force: true });
@@ -45,13 +45,13 @@ test.describe('Checkbox', () => {
 			await expect.poll(() => root.evaluate((element) => element.classList.contains('dark'))).toBe(!wasDark);
 
 			await page.goto('/components/checkbox#checkbox-01');
-			const card = page.locator('component-card#checkbox-01');
+			const card = componentCard(page, 'checkbox-01');
 			await expect(card).toHaveClass(/ring-2/);
 
 			await card.locator('button:has(ng-icon[name="lucideCode"])').click();
 			const sheet = page.getByRole('dialog');
 			await expect(sheet.getByRole('heading', { name: 'Code', level: 3 })).toBeVisible();
-			await expect(sheet.locator('code-preview').last().locator('pre')).toBeVisible();
+			await expect(sheet.locator('sim-code-preview').last().locator('pre')).toBeVisible();
 		});
 
 		test.describe('Checked snapshots', () => {
@@ -62,7 +62,7 @@ test.describe('Checkbox', () => {
 						'checkbox-13 includes interactive label content and is covered by behavior tests',
 					);
 
-					const card = page.locator(`component-card#${id}`);
+					const card = componentCard(page, id);
 					const isPresent = await card
 						.waitFor({ state: 'visible', timeout: 5000 })
 						.then(() => true)

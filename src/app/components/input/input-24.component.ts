@@ -14,7 +14,7 @@ import { debounceTime } from 'rxjs';
 	template: `
 		<label hlmLabel for="input-24" class="mb-2 text-sm">Input with inline add-ons</label>
 		<hlm-input-group>
-			<input hlmInputGroupInput placeholder="Search..." />
+			<input hlmInputGroupInput id="input-24" placeholder="Search..." />
 			<hlm-input-group-addon>
 				<ng-icon name="lucideSearch" />
 			</hlm-input-group-addon>
@@ -27,16 +27,16 @@ import { debounceTime } from 'rxjs';
 	`,
 })
 export class Input24Component implements OnInit {
-	public readonly form = new FormGroup({
+	protected readonly form = new FormGroup({
 		searchField: new FormControl(''),
 	});
-	public isSearching = signal(false);
+	protected readonly isSearching = signal(false);
 
-	public ngOnInit(): void {
+	ngOnInit(): void {
 		this.form
 			.get('searchField')
 			?.valueChanges.pipe(debounceTime(300))
-			.subscribe((value) => {
+			.subscribe(() => {
 				this.isSearching.set(true);
 				setTimeout(() => this.isSearching.set(false), 1500);
 			});

@@ -48,7 +48,7 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 							<div hlmField>
 								<label hlmFieldLabel [for]="uniqueId('exp-month--trigger')">Month</label>
 								<hlm-select [id]="uniqueId('exp-month')" class="inline-block">
-									<hlm-select-trigger class="w-full" value="01">
+									<hlm-select-trigger class="w-full" value="01" [buttonId]="uniqueId('exp-month--trigger')">
 										<hlm-select-value placeholder="MM" />
 									</hlm-select-trigger>
 									<hlm-select-content *hlmSelectPortal>
@@ -72,7 +72,7 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 							<div hlmField>
 								<label hlmFieldLabel [for]="uniqueId('exp-year--trigger')">Year</label>
 								<hlm-select [id]="uniqueId('exp-year')" class="inline-block">
-									<hlm-select-trigger class="w-full">
+									<hlm-select-trigger class="w-full" [buttonId]="uniqueId('exp-year--trigger')">
 										<hlm-select-value placeholder="YYYY" />
 									</hlm-select-trigger>
 									<hlm-select-content *hlmSelectPortal>
@@ -111,7 +111,7 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 				</fieldset>
 				<hlm-field-separator />
 				<fieldset hlmFieldSet>
-					<label hlmFieldLabel>Subscription Plan</label>
+					<legend hlmFieldLegend>Subscription Plan</legend>
 					<p hlmFieldDescription>Yearly and lifetime plans offer significant savings.</p>
 					<hlm-radio-group value="monthly">
 						<div hlmField orientation="horizontal">
@@ -138,7 +138,7 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 				</fieldset>
 				<hlm-field-separator />
 				<fieldset hlmFieldSet>
-					<label hlmFieldLabel>Save your payment method</label>
+					<legend hlmFieldLegend>Save your payment method</legend>
 					<p hlmFieldDescription>Save your payment method for faster checkout and easier management.</p>
 					<div hlmFieldGroup data-slot="checkbox-group">
 						<div hlmField orientation="horizontal">

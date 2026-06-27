@@ -5,8 +5,8 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-54',
+	imports: [NgIcon, HlmButtonImports],
 	providers: [provideIcons({ lucideChevronRight })],
-	imports: [HlmButtonImports, NgIcon],
 	template: `
 		<button hlmBtn class="group/btn54 h-auto gap-4 py-3 text-left" variant="outline">
 			<div class="space-y-1">

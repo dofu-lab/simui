@@ -13,7 +13,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	},
 	template: `
 		@if (isVisible()) {
-			<div class="bg-background z-50 border-b px-4 py-3">
+			<div class="bg-background border-b px-4 py-3">
 				<div class="relative flex gap-2 md:items-center">
 					<div class="flex grow flex-col justify-center gap-0.5 md:flex-row md:items-center md:gap-3">
 						<span class="text-primary font-semibold">New feature was launched!</span>
@@ -40,9 +40,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Banner05Component {
-	isVisible = signal<boolean>(true);
+	protected readonly isVisible = signal<boolean>(true);
 
-	onHideBanner() {
+	protected onHideBanner(): void {
 		this.isVisible.set(false);
 	}
 }

@@ -14,7 +14,7 @@ import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 				<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 			</hlm-avatar>
 			<div
-				class="border-background absolute top-7 right-0 flex size-3 items-center justify-center rounded-full border-[1px] bg-red-500">
+				class="border-background absolute top-7 right-0 flex size-3 items-center justify-center rounded-full border bg-red-500">
 				<ng-icon name="lucideMinus" class="text-[10px] text-white" />
 			</div>
 		</div>

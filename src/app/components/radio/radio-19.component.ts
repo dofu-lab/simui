@@ -6,6 +6,13 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
+interface RadioItem {
+	id: number;
+	value: string;
+	label: string;
+	thumbnailPath: string;
+}
+
 @Component({
 	selector: 'sim-radio-19',
 	imports: [HlmRadioGroupImports, HlmLabelImports, FormsModule, NgIcon, HlmIconImports],
@@ -23,6 +30,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 				(ngModelChange)="theme.set($event)">
 				@for (item of items; track item.id) {
 					<label
+						[for]="'radio-19-' + item.value"
 						class="group flex w-full flex-col items-start justify-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 						hlmLabel>
 						<img
@@ -32,13 +40,13 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 							height="70"
 							[src]="item.thumbnailPath"
 							[alt]="item.label" />
-						<hlm-radio [value]="item.value" class="hidden" />
+						<hlm-radio [value]="item.value" [inputId]="'radio-19-' + item.value" class="hidden" />
 						<div
 							class="group text-foreground data-[state=unchecked]:text-muted-foreground/70 flex items-center justify-start gap-1 text-xs leading-none font-medium select-none"
 							[attr.data-state]="theme() === item.value ? 'checked' : 'unchecked'">
 							<label
 								hlmLabel
-								for="theme-checkbox"
+								[for]="'radio-19-' + item.value"
 								class="group-data-[state=unchecked]:text-muted-foreground/70 bg-background text-foreground ease relative inline-flex items-center justify-center transition-all duration-150 outline-none select-none motion-reduce:transition-none">
 								<ng-icon
 									hlm
@@ -60,8 +68,8 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 	`,
 })
 export class Radio19Component {
-	theme = signal('light');
-	items: { id: number; value: string; label: string; thumbnailPath: string }[] = [
+	protected readonly theme = signal('light');
+	protected readonly items: RadioItem[] = [
 		{ id: 1, value: 'light', label: 'Light', thumbnailPath: '/assets/thumbnails/light-theme.png' },
 		{ id: 2, value: 'dark', label: 'Dark', thumbnailPath: '/assets/thumbnails/dark-theme.png' },
 		{ id: 3, value: 'system', label: 'System', thumbnailPath: '/assets/thumbnails/system-theme.png' },

@@ -12,9 +12,9 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	`,
 })
 export class Notification29Component {
-	datePipe = inject(DatePipe);
+	private readonly datePipe = inject(DatePipe);
 
-	showNotification() {
+	protected showNotification(): void {
 		toast('Event has been created', {
 			action: {
 				label: 'Undo',

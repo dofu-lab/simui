@@ -36,8 +36,8 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Dropdown15Component {
-	themeValue = signal<'light' | 'dark' | 'system'>('light');
-	computedIcon = computed<IconType>(() => {
+	protected readonly themeValue = signal<'light' | 'dark' | 'system'>('light');
+	protected readonly computedIcon = computed<IconType>(() => {
 		switch (this.themeValue()) {
 			case 'light':
 				return 'lucideSun';

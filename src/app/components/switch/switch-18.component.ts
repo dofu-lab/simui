@@ -6,7 +6,7 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-switch-18',
-	imports: [HlmSwitchImports, NgIcon, HlmIconImports],
+	imports: [NgIcon, HlmSwitchImports, HlmIconImports],
 	providers: [provideIcons({ lucideSun, lucideMoon })],
 	template: `
 		<div
@@ -30,5 +30,5 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 	`,
 })
 export class Switch18Component {
-	readonly value = model(false);
+	protected readonly value = model(false);
 }

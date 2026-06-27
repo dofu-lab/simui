@@ -27,19 +27,21 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 					<h2 class="mb-0 border-b px-6 py-4 text-lg font-semibold">Help us improve</h2>
 				</hlm-dialog-header>
 				<div class="flex flex-1 flex-col px-6 py-4">
-					<label hlmLabel class="flex-1">How hard was it to set up your account?</label>
+					<label for="rating-group-11" hlmLabel class="flex-1">How hard was it to set up your account?</label>
 					<div class="flex-1">
 						<hlm-radio-group
+							id="rating-group-11"
 							class="mt-2 flex gap-0 -space-x-px rounded-md shadow-xs"
 							[ngModel]="ratingNumber()"
 							(ngModelChange)="ratingNumber.set($event)">
 							@for (item of [0, 1, 2, 3, 4, 5, 6, 7, 8]; track item) {
 								<label
 									hlmLabel
-									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex size-9 flex-1 cursor-pointer flex-col items-center justify-center border text-center text-sm transition-[color,box-shadow] duration-150 outline-none first:rounded-s-md last:rounded-e-md has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none">
+									class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex size-9 flex-1 cursor-pointer flex-col items-center justify-center border text-center text-sm transition-[color,box-shadow] duration-150 outline-none first:rounded-s-md last:rounded-e-md has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none"
+									[for]="item + 'radio'">
 									<div>
 										{{ item }}
-										<hlm-radio [value]="item"></hlm-radio>
+										<hlm-radio [value]="item" [inputId]="item + 'radio'" />
 									</div>
 								</label>
 							}
@@ -51,14 +53,15 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 						<span>Very difficult</span>
 					</div>
 
-					<label hlmLabel>Why did you give this rating?</label>
+					<label for="reason-textarea" hlmLabel>Why did you give this rating?</label>
 					<textarea
 						hlmInput
+						id="reason-textarea"
 						type="text"
 						placeholder="How can we improve Sim UI?"
-						class="mt-2 min-h-[80px] w-full"></textarea>
+						class="mt-2 min-h-20 w-full"></textarea>
 				</div>
-				<hlm-dialog-footer class="mt-2 flex-row space-x-0 px-6 pb-4">
+				<hlm-dialog-footer class="flex-row space-x-0 px-6 pb-4">
 					<button hlmBtn type="submit" (click)="closeDialog()" class="h-9 flex-1">Send feedback</button>
 				</hlm-dialog-footer>
 			</hlm-dialog-content>
@@ -66,10 +69,10 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 	`,
 })
 export class Dialog11Component {
-	public dialogRef = viewChild(HlmDialog);
-	public ratingNumber = model<number>();
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly ratingNumber = model<number>();
 
-	closeDialog() {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 }

@@ -6,8 +6,8 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-breadcrumb-05',
-	providers: [provideIcons({ lucideHouse, lucideSlash })],
 	imports: [NgIcon, HlmBreadcrumbImports, HlmIconImports],
+	providers: [provideIcons({ lucideHouse, lucideSlash })],
 	template: `
 		<nav hlmBreadcrumb>
 			<ol hlmBreadcrumbList>
@@ -19,7 +19,6 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 				<li hlmBreadcrumbSeparator class="flex items-center">
 					<ng-icon hlm hlm size="sm" name="lucideSlash" />
 				</li>
-
 				<li hlmBreadcrumbItem>
 					<a hlmBreadcrumbLink hlmL link="/components">Components</a>
 				</li>

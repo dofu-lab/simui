@@ -12,12 +12,11 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 		class: 'w-full',
 	},
 	template: `
-		<div class="bg-secondary-foreground z-50 px-4 py-3">
+		<div class="bg-secondary-foreground px-4 py-3">
 			<div class="relative flex gap-2 md:items-center">
 				<div class="flex grow flex-col justify-between gap-2 md:flex-row md:items-center md:gap-3">
 					<div class="flex items-start gap-3 md:items-center">
-						<div
-							class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border shadow-xs md:h-12 md:w-12">
+						<div class="flex size-10 shrink-0 items-center justify-center rounded-lg border shadow-xs md:size-12">
 							<ng-icon hlm name="lucideMail" class="text-primary-foreground" />
 						</div>
 						<div class="flex flex-col max-md:pr-4">

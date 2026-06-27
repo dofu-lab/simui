@@ -6,7 +6,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-16',
-	imports: [HlmLabelImports, NgIcon, HlmInputGroupImports],
+	imports: [NgIcon, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideSend })],
 	host: { class: 'w-full' },
 	template: `

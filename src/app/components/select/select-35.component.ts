@@ -7,10 +7,10 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
-type Option = {
+interface Option {
 	value: string;
 	label: string;
-};
+}
 
 @Component({
 	selector: 'sim-select-35',
@@ -65,11 +65,11 @@ type Option = {
 })
 export class Select35Component {
 	private readonly triggerBtn35 = viewChild.required<ElementRef<HTMLButtonElement>>('triggerBtn35');
+	private readonly destroyRef = inject(DestroyRef);
 	private readonly timezones = Intl.supportedValuesOf('timeZone');
 
-	private readonly destroyRef = inject(DestroyRef);
-	public readonly triggerWidth = signal(0);
-
+	protected readonly triggerWidth = signal(0);
+	protected readonly state = signal<'closed' | 'open'>('closed');
 	protected readonly formattedTimezones = computed(() => {
 		return this.timezones
 			.map((timezone) => {
@@ -89,11 +89,9 @@ export class Select35Component {
 			})
 			.sort((a, b) => a.numericOffset - b.numericOffset);
 	});
-
-	public readonly currentTimezone = signal<Option | undefined>(
+	protected readonly currentTimezone = signal<Option | undefined>(
 		this.formattedTimezones().find((tz) => tz.value.includes('Saigon')),
 	);
-	public readonly state = signal<'closed' | 'open'>('closed');
 
 	constructor() {
 		afterNextRender(() => {

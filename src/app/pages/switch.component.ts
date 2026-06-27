@@ -6,8 +6,8 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-switch',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header name="Switch" description="A switch is a toggle that can be either on or off." />
-		<page-grid [components]="components" />
+		<sim-component-header name="Switch" description="A switch is a toggle that can be either on or off." />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class SwitchComponent {

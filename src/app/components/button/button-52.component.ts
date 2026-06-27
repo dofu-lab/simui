@@ -7,6 +7,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-button-52',
+	imports: [NgClass, NgIcon, HlmButtonImports, HlmIconImports],
 	providers: [
 		provideIcons({
 			lucideCircle,
@@ -16,7 +17,6 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 			lucideCircleDot,
 		}),
 	],
-	imports: [HlmButtonImports, HlmIconImports, NgClass, NgIcon],
 	template: `
 		<div class="inline-grid w-fit grid-cols-3 gap-1">
 			<button
@@ -72,9 +72,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Button52Component {
-	direction = signal<'up' | 'down' | 'right' | 'left' | 'center'>('center');
+	protected readonly direction = signal<'up' | 'down' | 'right' | 'left' | 'center'>('center');
 
-	onMoveCircle(newDirection: 'up' | 'down' | 'right' | 'left' | 'center') {
+	protected onMoveCircle(newDirection: 'up' | 'down' | 'right' | 'left' | 'center'): void {
 		this.direction.set(newDirection);
 	}
 }

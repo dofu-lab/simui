@@ -31,5 +31,5 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Alert17Component {
-	isDismissed = signal<boolean>(false);
+	protected readonly isDismissed = signal<boolean>(false);
 }

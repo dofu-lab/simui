@@ -59,15 +59,15 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	`,
 })
 export class Dialog35Component {
-	purchaseSeats = signal(28);
-	pricePerSeat = signal(10);
-	totalPrice = computed(() => this.purchaseSeats() * this.pricePerSeat());
+	protected readonly purchaseSeats = signal(28);
+	protected readonly pricePerSeat = signal(10);
+	protected readonly totalPrice = computed(() => this.purchaseSeats() * this.pricePerSeat());
 
-	increaseSeats(): void {
+	protected increaseSeats(): void {
 		this.purchaseSeats.set(this.purchaseSeats() + 1);
 	}
 
-	decreaseSeats(): void {
+	protected decreaseSeats(): void {
 		if (this.purchaseSeats() > 1) {
 			this.purchaseSeats.set(this.purchaseSeats() - 1);
 		}

@@ -13,9 +13,9 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 				</li>
 				<li hlmBreadcrumbSeparator class="flex items-center"></li>
 				<li hlmBreadcrumbItem>
-					<hlm-breadcrumb-ellipsis class="h-4 w-4" [hlmDropdownMenuTrigger]="breadcrumbDropdown" />
+					<hlm-breadcrumb-ellipsis class="size-4" [hlmDropdownMenuTrigger]="breadcrumbDropdown" />
 					<ng-template #breadcrumbDropdown>
-						<hlm-dropdown-menu class="w">
+						<hlm-dropdown-menu>
 							<button hlmDropdownMenuItem id="document">
 								<span>Documentation</span>
 							</button>

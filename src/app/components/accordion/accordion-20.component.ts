@@ -19,6 +19,20 @@ import {
 import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
+interface AccordionSubItem {
+	id: string;
+	icon: string;
+	title: string;
+	content: string;
+}
+
+interface AccordionItem {
+	id: string;
+	title: string;
+	icon: string;
+	subItem: AccordionSubItem[];
+}
+
 @Component({
 	selector: 'sim-accordion-20',
 	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon],
@@ -106,7 +120,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 	`,
 })
 export class Accordion20Component {
-	protected readonly items = [
+	protected readonly items: AccordionItem[] = [
 		{
 			id: 'acc-20-item1',
 			title: 'Why choose SimUI?',

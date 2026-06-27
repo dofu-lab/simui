@@ -8,13 +8,13 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-button-30',
+	imports: [NgClass, NgIcon, HlmButtonImports, HlmTooltipImports],
 	providers: [provideIcons({ lucideCheck, lucideCopy })],
-	imports: [NgClass, HlmButtonImports, HlmTooltipImports, NgIcon],
 	template: `
 		<button
 			hlmBtn
-			variant="outline"
 			size="icon"
+			variant="outline"
 			[hlmTooltip]="tooltipContent"
 			[disabled]="copied()"
 			(click)="onSelect()">

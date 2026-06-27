@@ -6,15 +6,10 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-notification-16',
-	providers: [
-		provideIcons({
-			lucideX,
-			lucideRefreshCw,
-		}),
-	],
 	imports: [NgIcon, HlmIconImports, HlmButtonImports],
+	providers: [provideIcons({ lucideX, lucideRefreshCw })],
 	template: `
-		<div class="bg-background z-50 max-w-[400px] rounded-md border p-4 shadow-lg">
+		<div class="bg-background max-w-[400px] rounded-md border p-4 shadow-lg">
 			<div class="flex gap-3">
 				<div class="flex size-9 shrink-0 items-center justify-center rounded-full border">
 					<ng-icon hlm name="lucideRefreshCw" size="sm" class="opacity-60" />

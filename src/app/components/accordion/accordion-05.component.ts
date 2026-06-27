@@ -11,6 +11,13 @@ import {
 import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
+interface AccordionItem {
+	id: string;
+	icon: string;
+	title: string;
+	content: string;
+}
+
 @Component({
 	selector: 'sim-accordion-05',
 	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon],
@@ -53,7 +60,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 	`,
 })
 export class Accordion05Component {
-	protected readonly items = [
+	protected readonly items: AccordionItem[] = [
 		{
 			id: 'acc-05-1',
 			icon: 'lucideGroup',

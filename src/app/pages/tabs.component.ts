@@ -6,10 +6,10 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-tabs',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header
+		<sim-component-header
 			name="Tabs"
 			description="Tabs organize content into multiple sections and allow users to navigate between them. They help display related information in a compact space without overwhelming the user." />
-		<page-grid [components]="components" />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class TabsComponent {

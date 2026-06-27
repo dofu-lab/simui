@@ -79,7 +79,7 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 								<label hlmFieldLabel for="theme-name">Theme name</label>
 								<input
 									hlmInput
-									id="themeName"
+									id="theme-name"
 									placeholder="Your theme name"
 									[formControl]="name"
 									(input)="capitalizeFirstChar(name)" />
@@ -97,7 +97,7 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 									<label hlmFieldLabel for="change-note">Change note</label>
 									<input
 										hlmInput
-										id="changeNote"
+										id="change-note"
 										placeholder="Describe what changed..."
 										[formControl]="changeNote"
 										(input)="capitalizeFirstChar(changeNote)" />

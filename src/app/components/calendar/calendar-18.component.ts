@@ -47,33 +47,25 @@ import { addDays } from 'date-fns';
 export class Calendar18Component {
 	protected start = signal(new Date());
 	protected end = signal(addDays(new Date(), 5));
-
-	// Separate signal for which month to display
 	protected focusedDate = signal(new Date());
 
-	// First calendar shows the focused month
 	protected firstMonthDate = computed(() => this.focusedDate());
-
-	// Second calendar shows the next month
 	protected secondMonthDate = computed(() => {
 		const date = new Date(this.focusedDate());
 		date.setMonth(date.getMonth() + 1);
 		return date;
 	});
-
-	// Third calendar shows two months ahead
 	protected thirdMonthDate = computed(() => {
 		const date = new Date(this.focusedDate());
 		date.setMonth(date.getMonth() + 2);
 		return date;
 	});
-
-	private readonly baseCalendarClass =
-		'[&_button[brncalendarnextbutton]]:opacity-0! [&_button[brncalendarpreviousbutton]]:opacity-0! border-none [&_[data-outside]]:hidden bg-transparent';
-
 	protected firstMonthClass = computed(() => this.getMonthClass(this.firstMonthDate()));
 	protected secondMonthClass = computed(() => this.getMonthClass(this.secondMonthDate()));
 	protected thirdMonthClass = computed(() => this.getMonthClass(this.thirdMonthDate()));
+
+	private readonly baseCalendarClass =
+		'[&_button[brncalendarnextbutton]]:opacity-0! [&_button[brncalendarpreviousbutton]]:opacity-0! border-none [&_[data-outside]]:hidden bg-transparent';
 
 	private getMonthClass(monthDate: Date): string {
 		const hideRangeEnd =
@@ -87,13 +79,13 @@ export class Calendar18Component {
 		return hlm(this.baseCalendarClass, hideRangeEnd, hideRangeStart);
 	}
 
-	jumpToPreviousMonth() {
+	protected jumpToPreviousMonth(): void {
 		const newDate = new Date(this.focusedDate());
 		newDate.setMonth(newDate.getMonth() - 3);
 		this.focusedDate.set(newDate);
 	}
 
-	jumpToNextMonth() {
+	protected jumpToNextMonth(): void {
 		const newDate = new Date(this.focusedDate());
 		newDate.setMonth(newDate.getMonth() + 3);
 		this.focusedDate.set(newDate);

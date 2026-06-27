@@ -225,8 +225,9 @@ import { ThemePreset } from '../types';
 						</p>
 					</hlm-dialog-header>
 
-					<label hlmLabel class="mt-2 w-full">Theme name</label>
+					<label for="detele-input" hlmLabel class="mt-2 w-full">Theme name</label>
 					<input
+						id="delete-input"
 						hlmInput
 						class="h-9 w-full"
 						type="text"

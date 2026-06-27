@@ -30,5 +30,5 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 	`,
 })
 export class Switch12Component {
-	readonly value = model(false);
+	protected readonly value = model(false);
 }

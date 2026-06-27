@@ -7,10 +7,20 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
+interface NotificationItem {
+	user: string;
+	action: string;
+	subject: string;
+	time: string;
+	unread: boolean;
+	avatar: string;
+	initials: string;
+}
+
 @Component({
 	selector: 'sim-popover-03',
-	providers: [provideIcons({ lucideBell })],
 	imports: [NgIcon, HlmAvatarImports, HlmBadgeImports, HlmButtonImports, HlmIconImports, HlmPopoverImports],
+	providers: [provideIcons({ lucideBell })],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button variant="outline" size="icon" class="relative size-9" hlmPopoverTrigger hlmBtn>
@@ -68,7 +78,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover03Component {
-	notifications = signal([
+	protected readonly notifications = signal<NotificationItem[]>([
 		{
 			user: 'Alan Cooper',
 			action: 'requested review on',
@@ -107,7 +117,9 @@ export class Popover03Component {
 		},
 	]);
 
-	unreadCount = computed(() => this.notifications().filter((notification) => notification.unread).length);
+	protected readonly unreadCount = computed(
+		() => this.notifications().filter((notification) => notification.unread).length,
+	);
 
 	public markAsRead(index: number): void {
 		this.notifications.update((notifications) =>

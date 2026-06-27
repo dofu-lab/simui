@@ -7,20 +7,20 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
-type Country = {
+interface Country {
 	continent: string;
 	items: CountryItem[];
-};
+}
 
-type CountryItem = {
+interface CountryItem {
 	value: string;
 	label: string;
 	flag: string;
-};
+}
 
 @Component({
 	selector: 'sim-select-36',
-	imports: [HlmFieldImports, HlmPopoverImports, HlmButtonImports, NgIcon, HlmIconImports, HlmCommandImports],
+	imports: [NgIcon, HlmFieldImports, HlmPopoverImports, HlmButtonImports, HlmIconImports, HlmCommandImports],
 	providers: [provideIcons({ lucideChevronDown })],
 	host: { class: 'block w-full' },
 	template: `
@@ -86,9 +86,8 @@ export class Select36Component {
 	private readonly triggerBtn36 = viewChild.required<ElementRef<HTMLButtonElement>>('triggerBtn36');
 	private readonly destroyRef = inject(DestroyRef);
 
-	public readonly currentCountry = signal<CountryItem | undefined>(undefined);
-	public readonly state = signal<'closed' | 'open'>('closed');
-
+	protected readonly currentCountry = signal<CountryItem | undefined>(undefined);
+	protected readonly state = signal<'closed' | 'open'>('closed');
 	protected readonly triggerWidth = signal(0);
 	protected readonly countries: Country[] = [
 		{

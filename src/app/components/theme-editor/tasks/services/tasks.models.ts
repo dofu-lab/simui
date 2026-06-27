@@ -3,13 +3,13 @@ export type TaskType = 'Bug' | 'Feature' | 'Documentation';
 export type TaskStatus = 'Todo' | 'In Progress' | 'Backlog' | 'Canceled' | 'Done';
 export type TaskPriority = 'Critical' | 'High' | 'Medium' | 'Low';
 
-export type Task = {
+export interface Task {
 	id: string;
 	title: string;
 	type: TaskType;
 	status: TaskStatus;
 	priority: TaskPriority;
-};
+}
 
 export const TASK_DATA: Task[] = [
 	{

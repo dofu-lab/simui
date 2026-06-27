@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
+interface RadioItem {
+	id: number;
+	value: string;
+	label: string;
+}
+
 @Component({
 	selector: 'sim-radio-13',
 	imports: [HlmRadioGroupImports, HlmLabelImports],
@@ -16,13 +22,14 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 					<div
 						class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full rounded-md border shadow-xs outline-none">
 						<label
+							[for]="'radio-13-' + item.value"
 							class="flex w-full flex-col items-center justify-between px-2 py-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 							hlmLabel>
 							<div>
 								<p class="text-foreground text-sm leading-none font-medium select-none">
 									{{ item.label }}
 								</p>
-								<hlm-radio [value]="item.value" />
+								<hlm-radio [value]="item.value" [inputId]="'radio-13-' + item.value" />
 							</div>
 						</label>
 					</div>
@@ -32,7 +39,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 	`,
 })
 export class Radio13Component {
-	items: { id: number; value: string; label: string }[] = [
+	protected readonly items: RadioItem[] = [
 		{ id: 1, value: '2cpu', label: '2 CPU' },
 		{ id: 2, value: '4cpu', label: '4 CPU' },
 		{ id: 3, value: '6cpu', label: '6 CPU' },

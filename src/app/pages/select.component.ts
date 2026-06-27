@@ -6,8 +6,8 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-select',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header name="Select" description="Select component." />
-		<page-grid [components]="components" />
+		<sim-component-header name="Select" description="Select component." />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class SelectComponent {

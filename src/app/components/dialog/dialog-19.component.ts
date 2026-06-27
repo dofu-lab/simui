@@ -135,9 +135,10 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 	`,
 })
 export class Dialog19Component {
-	private _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(HlmDialog);
-	public form: FormGroup = this._formBuilder.group(
+	private readonly formBuilder = inject(FormBuilder);
+	protected readonly isProcessing = signal(false);
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly form: FormGroup = this.formBuilder.group(
 		{
 			fullName: ['', Validators.required],
 			cardNumber: ['', Validators.required],
@@ -147,7 +148,7 @@ export class Dialog19Component {
 		},
 		{ updateOn: 'submit' },
 	);
-	public readonly cvcMask: MaskitoOptions = {
+	protected readonly cvcMask: MaskitoOptions = {
 		mask: [/\d/, /\d/, /\d/],
 		overwriteMode: 'replace',
 		preprocessors: [
@@ -157,16 +158,16 @@ export class Dialog19Component {
 			}),
 		],
 	};
-	public readonly expiryDateMask: MaskitoOptions = {
+	protected readonly expiryDateMask: MaskitoOptions = {
 		mask: [/\d/, /[0-9]/, '/', /\d/, /\d/],
 		overwriteMode: 'replace',
 	};
-	public readonly nameMask: MaskitoOptions = {
+	protected readonly nameMask: MaskitoOptions = {
 		mask: /.+/,
 		overwriteMode: 'replace',
 		postprocessors: [({ value, selection }) => ({ value: value.toUpperCase(), selection })],
 	};
-	public readonly creditCardMask: MaskitoOptions = {
+	protected readonly creditCardMask: MaskitoOptions = {
 		mask: [
 			/[0-9]/,
 			/[0-9]/,
@@ -192,9 +193,7 @@ export class Dialog19Component {
 		preprocessors: [({ elementState, data }) => ({ elementState, data: data.replace(/\D/g, '') })],
 	};
 
-	public isProcessing = signal(false);
-
-	public onSubmit() {
+	protected onSubmit(): void {
 		if (this.form.valid) {
 			this.isProcessing.set(true);
 			setTimeout(() => {

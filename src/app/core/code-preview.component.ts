@@ -17,11 +17,10 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-typescript';
 import { AnalyticsService } from '../services/analytics.service';
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 declare const Prism: typeof import('prismjs');
 
 @Component({
-	selector: 'code-preview',
+	selector: 'sim-code-preview',
 	imports: [HlmButtonImports, NgIcon, HlmIconImports],
 	providers: [provideIcons({ lucideClipboard, lucideCheck })],
 	host: {

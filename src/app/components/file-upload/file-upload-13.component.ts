@@ -6,7 +6,7 @@ import {
 	formatBytes,
 } from '@/libs/sim/file/file-drag-drop.directive';
 import { Component, computed, input, signal, viewChild } from '@angular/core';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { IconName, NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCircleAlert,
 	lucideFile,
@@ -24,11 +24,11 @@ import {
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 
-type UploadProgress = {
+interface UploadProgress {
 	fileId: string;
 	progress: number;
 	completed: boolean;
-};
+}
 
 @Component({
 	selector: 'sim-progress-bar',
@@ -46,16 +46,16 @@ type UploadProgress = {
 	`,
 })
 export class ProgressBarComponent {
-	fileId = input<string>();
-	uploadProgress = input<UploadProgress[]>([]);
+	public readonly fileId = input<string>();
+	public readonly uploadProgress = input<UploadProgress[]>([]);
 
-	fileProgress = computed(() => {
+	protected readonly fileProgress = computed(() => {
 		return this.uploadProgress().find((item) => item.fileId === this.fileId());
 	});
-	progress = computed(() => {
+	protected readonly progress = computed(() => {
 		return this.uploadProgress().find((item) => item.fileId === this.fileId())?.progress ?? 0;
 	});
-	completed = computed(() => {
+	protected readonly completed = computed(() => {
 		return this.fileProgress() ? this.fileProgress()?.completed : false;
 	});
 }
@@ -86,7 +86,7 @@ export class ProgressBarComponent {
 		<div class="flex w-full flex-col items-center justify-center">
 			<div class="relative w-full">
 				<div
-					fileDragDrop
+					simFileDragDrop
 					role="button"
 					class="border-input has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:items-start! has-[input:focus]:ring-[3px] motion-reduce:transition-none"
 					dragClass="bg-accent/50"
@@ -183,13 +183,14 @@ export class ProgressBarComponent {
 	`,
 })
 export class FileUpload13Component {
-	fileUploadDirective = viewChild(FileDragDropDirective);
-	maxTotalSize = 200 * 1024 * 1024;
-	maxFiles = 10;
-	filesState = signal<FileUploadState | null>(null);
-	files = computed(() => this.filesState()?.files ?? []);
-	errors = computed(() => this.filesState()?.errors ?? []);
-	initialFiles = signal<FileMetadata[]>([
+	protected readonly uploadProgress = signal<UploadProgress[]>([]);
+	protected readonly fileUploadDirective = viewChild(FileDragDropDirective);
+	protected readonly maxTotalSize = 200 * 1024 * 1024;
+	protected readonly maxFiles = 10;
+	protected readonly filesState = signal<FileUploadState | null>(null);
+	protected readonly files = computed(() => this.filesState()?.files ?? []);
+	protected readonly errors = computed(() => this.filesState()?.errors ?? []);
+	protected readonly initialFiles = signal<FileMetadata[]>([
 		{
 			name: 'certificate.pdf',
 			size: 312412,
@@ -212,30 +213,28 @@ export class FileUpload13Component {
 			id: 'conclusion.xlsx-11',
 		},
 	]);
-	formatBytes = formatBytes;
+	protected formatBytes = formatBytes;
 
-	uploadProgress = signal<UploadProgress[]>([]);
-
-	onFileSelected(event: Event): void {
+	protected onFileSelected(event: Event): void {
 		const input = event.target as HTMLInputElement;
 		if (input.files && input.files.length > 0) {
 			this.fileUploadDirective()?.addFiles(input.files);
 		}
 	}
 
-	onFileStateChange(event: FileUploadState) {
+	protected onFileStateChange(event: FileUploadState) {
 		this.filesState.set(event);
 	}
 
-	removeAllFiles() {
+	protected removeAllFiles() {
 		this.fileUploadDirective()?.clearFiles();
 	}
 
-	onRemoveImage(id: string): void {
+	protected onRemoveImage(id: string): void {
 		this.fileUploadDirective()?.removeFile(id);
 	}
 
-	getFileIcon = (file: { file: File | { type: string; name: string } }) => {
+	protected getFileIcon(file: { file: File | { type: string; name: string } }): IconName {
 		const fileType = file.file instanceof File ? file.file.type : file.file.type;
 		const fileName = file.file instanceof File ? file.file.name : file.file.name;
 
@@ -264,9 +263,9 @@ export class FileUpload13Component {
 			return 'lucideImage';
 		}
 		return 'lucideFile';
-	};
+	}
 
-	simulateUpload = (totalBytes: number, onProgress: (progress: number) => void, onComplete: () => void) => {
+	protected simulateUpload = (totalBytes: number, onProgress: (progress: number) => void, onComplete: () => void) => {
 		let timeoutId: NodeJS.Timeout;
 		let uploadedBytes = 0;
 		let lastProgressReport = 0;
@@ -311,7 +310,7 @@ export class FileUpload13Component {
 		};
 	};
 
-	handleFilesAdded = (addedFiles: FileWithPreview[]) => {
+	protected handleFilesAdded = (addedFiles: FileWithPreview[]) => {
 		// Initialize progress tracking for each new file
 		const newProgressItems = addedFiles.map((file) => ({
 			fileId: file.id,
@@ -323,7 +322,7 @@ export class FileUpload13Component {
 		this.uploadProgress.update((prev) => [...prev, ...newProgressItems]);
 
 		// Store cleanup functions
-		const cleanupFunctions: Array<() => void> = [];
+		const cleanupFunctions: (() => void)[] = [];
 
 		// Start simulated upload for each file
 		addedFiles.forEach((file) => {

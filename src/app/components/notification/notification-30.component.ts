@@ -10,7 +10,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	`,
 })
 export class Notification30Component {
-	showNotification() {
+	protected showNotification() {
 		const promise = new Promise<{ name: string }>((resolve, reject) =>
 			setTimeout(() => {
 				if (Math.random() > 0.5) {

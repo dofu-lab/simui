@@ -12,7 +12,10 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { addDays, format, isValid, parse } from 'date-fns';
 
-type ParsedDate = { startDate: Date | null; endDate: Date | null };
+interface ParsedDate {
+	startDate: Date | null;
+	endDate: Date | null;
+}
 
 @Component({
 	selector: 'sim-input-39',
