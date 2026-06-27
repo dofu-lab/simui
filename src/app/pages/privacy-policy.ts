@@ -116,12 +116,13 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 							<p class="mb-3 text-base leading-relaxed">
 								We collect anonymous usage data to improve SimUI. This analytics data is collected via
 								<a href="https://posthog.com/" target="_blank" class="font-semibold underline">PostHog</a>
-								, a privacy-focused analytics platform. We use cookieless tracking (in-memory only), which means:
+								, a privacy-focused analytics platform. We store a random anonymous analytics ID in your browser's local
+								storage, which means:
 							</p>
 							<ul class="mb-3 ml-6 list-disc text-base leading-relaxed">
 								<li>No tracking cookies are stored in your browser</li>
 								<li>No analytics data is sold to or shared with advertisers</li>
-								<li>Tracking sessions are not linked across visits unless you are signed in</li>
+								<li>Repeat visits from the same browser can be linked to help us understand usage trends</li>
 							</ul>
 							<p class="text-base leading-relaxed">The data collected includes:</p>
 							<ul class="ml-6 list-disc text-base leading-relaxed">
