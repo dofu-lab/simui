@@ -3,31 +3,14 @@ import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideDatabase } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
-import {
-	HlmBreadcrumb,
-	HlmBreadcrumbItem,
-	HlmBreadcrumbLink,
-	HlmBreadcrumbList,
-	HlmBreadcrumbSeparator,
-} from '@spartan-ng/helm/breadcrumb';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'sim-breadcrumb-09',
 	providers: [provideIcons({ lucideDatabase })],
-	imports: [
-		NgIcon,
-		FormsModule,
-		HlmBreadcrumb,
-		HlmBreadcrumbSeparator,
-		HlmBreadcrumbList,
-		HlmBreadcrumbItem,
-		HlmBreadcrumbLink,
-		HlmIcon,
-		BrnSelectImports,
-		HlmSelectImports,
-	],
+	imports: [NgIcon, FormsModule, HlmBreadcrumbImports, HlmIconImports, BrnSelectImports, HlmSelectImports],
 	template: `
 		<nav hlmBreadcrumb>
 			<ol hlmBreadcrumbList>
@@ -47,9 +30,9 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 						</hlm-select-trigger>
 						<hlm-select-content *hlmSelectPortal>
 							<hlm-select-group>
-								<hlm-select-item [value]="'Accounts'">Accounts</hlm-select-item>
-								<hlm-select-item [value]="'Appointments'">Appointments</hlm-select-item>
-								<hlm-select-item [value]="'Schedule'">Schedule</hlm-select-item>
+								<hlm-select-item value="Accounts">Accounts</hlm-select-item>
+								<hlm-select-item value="Appointments">Appointments</hlm-select-item>
+								<hlm-select-item value="Schedule">Schedule</hlm-select-item>
 							</hlm-select-group>
 						</hlm-select-content>
 					</hlm-select>

@@ -9,13 +9,13 @@ import {
 } from '@ng-icons/lucide';
 import type { Task } from '../services/tasks.models';
 
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { type CellContext, injectFlexRenderContext } from '@tanstack/angular-table';
 import { PriorityIconPipe } from '../pipes/priority-icon.pipe';
 
 @Component({
 	selector: 'spartan-priority-icon-cell',
-	imports: [PriorityIconPipe, NgIcon, HlmIcon],
+	imports: [PriorityIconPipe, NgIcon, HlmIconImports],
 	providers: [
 		provideIcons({
 			lucideChevronDown,

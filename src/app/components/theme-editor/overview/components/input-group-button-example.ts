@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerInfoCircle, tablerStar } from '@ng-icons/tabler-icons';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 
 @Component({
 	selector: 'app-input-group-button-example',
-	imports: [HlmInputGroupImports, NgIcon, HlmIcon],
+	imports: [HlmInputGroupImports, NgIcon, HlmIconImports],
 	providers: [
 		provideIcons({
 			tablerInfoCircle,

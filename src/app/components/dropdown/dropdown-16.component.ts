@@ -14,13 +14,13 @@ import {
 	lucideWarehouse,
 	lucideZap,
 } from '@ng-icons/lucide';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 @Component({
 	selector: 'sim-dropdown-16',
-	imports: [NgIcon, HlmIcon, HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmDropdownMenuImports],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmAvatarImports, HlmDropdownMenuImports],
 	providers: [
 		provideIcons({
 			lucideChevronDown,

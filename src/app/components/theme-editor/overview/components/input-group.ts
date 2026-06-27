@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideCheck, lucideInfo, lucidePlus, lucideSearch } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmSeparator } from '@spartan-ng/helm/separator';
+import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'app-input-group',
-	imports: [HlmInputGroupImports, NgIcon, HlmIcon, HlmTooltipImports, HlmSeparator],
+	imports: [HlmInputGroupImports, NgIcon, HlmIconImports, HlmTooltipImports, HlmSeparatorImports],
 	providers: [
 		provideIcons({
 			lucideSearch,

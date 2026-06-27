@@ -3,11 +3,11 @@ import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
-type Option = {
+interface Option {
 	label: string;
 	description: string;
 	value?: string;
-};
+}
 
 @Component({
 	selector: 'sim-select-41',

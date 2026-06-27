@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight, lucideSparkle, lucideX } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-banner-08',
-	imports: [NgIcon, HlmIcon, HlmButton],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports],
 	providers: [provideIcons({ lucideX, lucideArrowRight, lucideSparkle })],
 	host: {
 		class: 'w-full',
 	},
 	template: `
-		<div class="bg-secondary-foreground z-50 px-4 py-2">
+		<div class="bg-secondary-foreground px-4 py-2">
 			<div class="relative flex gap-2 md:items-center">
 				<div class="flex grow flex-col justify-between gap-0.5 md:flex-row md:items-center md:gap-3">
 					<div class="flex items-center justify-start gap-3 truncate">
@@ -22,7 +22,11 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 
 					<div class="text-primary-foreground group flex cursor-pointer items-center gap-1 pl-7 md:pl-0">
 						<span>Learn more</span>
-						<ng-icon hlm name="lucideArrowRight" size="sm" class="[@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5" />
+						<ng-icon
+							hlm
+							name="lucideArrowRight"
+							size="sm"
+							class="[@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5" />
 					</div>
 				</div>
 				<button

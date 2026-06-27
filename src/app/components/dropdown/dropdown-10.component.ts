@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleUser } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-dropdown-10',
-	imports: [NgIcon, HlmIcon, HlmButton, HlmDropdownMenuImports],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmDropdownMenuImports],
 	providers: [provideIcons({ lucideCircleUser })],
 	template: `
 		<div class="flex w-full items-center justify-center">
@@ -18,7 +18,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 		<ng-template #menu>
 			<hlm-dropdown-menu class="w-40">
 				<hlm-dropdown-menu-group>
-					<div class="text-muted-foreground flex flex-col px-2 py-1.5 text-xs font-medium data-[inset]:pl-8">
+					<div class="text-muted-foreground flex flex-col px-2 py-1.5 text-xs font-medium data-inset:pl-8">
 						<span>Signed in as</span>
 						<span class="text-foreground font-normal">tdphuong&#64;simui.dev</span>
 					</div>

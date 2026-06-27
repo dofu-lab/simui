@@ -1,16 +1,23 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { Component } from '@angular/core';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { HlmTextarea } from '@spartan-ng/helm/textarea';
+import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 
 @Component({
 	selector: 'app-field-demo',
-	imports: [HlmFieldImports, HlmSelectImports, HlmRadioGroupImports, HlmInput, HlmTextarea, HlmButton, HlmCheckbox],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [
+		HlmFieldImports,
+		HlmSelectImports,
+		HlmRadioGroupImports,
+		HlmInputImports,
+		HlmTextareaImports,
+		HlmButtonImports,
+		HlmCheckboxImports,
+	],
 	host: {
 		class: 'w-full rounded-lg border p-6 h-fit',
 	},
@@ -41,7 +48,7 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 							<div hlmField>
 								<label hlmFieldLabel [for]="uniqueId('exp-month--trigger')">Month</label>
 								<hlm-select [id]="uniqueId('exp-month')" class="inline-block">
-									<hlm-select-trigger class="w-full" value="01">
+									<hlm-select-trigger class="w-full" value="01" [buttonId]="uniqueId('exp-month--trigger')">
 										<hlm-select-value placeholder="MM" />
 									</hlm-select-trigger>
 									<hlm-select-content *hlmSelectPortal>
@@ -65,7 +72,7 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 							<div hlmField>
 								<label hlmFieldLabel [for]="uniqueId('exp-year--trigger')">Year</label>
 								<hlm-select [id]="uniqueId('exp-year')" class="inline-block">
-									<hlm-select-trigger class="w-full">
+									<hlm-select-trigger class="w-full" [buttonId]="uniqueId('exp-year--trigger')">
 										<hlm-select-value placeholder="YYYY" />
 									</hlm-select-trigger>
 									<hlm-select-content *hlmSelectPortal>
@@ -104,7 +111,7 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 				</fieldset>
 				<hlm-field-separator />
 				<fieldset hlmFieldSet>
-					<label hlmFieldLabel>Subscription Plan</label>
+					<legend hlmFieldLegend>Subscription Plan</legend>
 					<p hlmFieldDescription>Yearly and lifetime plans offer significant savings.</p>
 					<hlm-radio-group value="monthly">
 						<div hlmField orientation="horizontal">
@@ -131,7 +138,7 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 				</fieldset>
 				<hlm-field-separator />
 				<fieldset hlmFieldSet>
-					<label hlmFieldLabel>Save your payment method</label>
+					<legend hlmFieldLegend>Save your payment method</legend>
 					<p hlmFieldDescription>Save your payment method for faster checkout and easier management.</p>
 					<div hlmFieldGroup data-slot="checkbox-group">
 						<div hlmField orientation="horizontal">

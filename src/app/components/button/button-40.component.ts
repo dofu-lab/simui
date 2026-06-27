@@ -2,12 +2,12 @@ import { NgClass } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideThumbsUp } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-40',
+	imports: [NgClass, NgIcon, HlmButtonImports],
 	providers: [provideIcons({ lucideThumbsUp })],
-	imports: [HlmButton, NgClass, NgIcon],
 	template: `
 		<button
 			hlmBtn
@@ -19,7 +19,7 @@ import { HlmButton } from '@spartan-ng/helm/button';
 			<div class="flex items-center">
 				<ng-icon
 					name="lucideThumbsUp"
-					class="mr-2 transition-transform motion-reduce:transition-none duration-150"
+					class="mr-2 transition-transform duration-150 motion-reduce:transition-none"
 					[ngClass]="{
 						'text-sky-800 dark:text-sky-600': liked(),
 						'scale-115': animate(),
@@ -37,13 +37,13 @@ import { HlmButton } from '@spartan-ng/helm/button';
 	`,
 })
 export class Button40Component {
-	liked = signal<boolean>(false);
-	animate = signal<boolean>(false);
+	protected readonly liked = signal<boolean>(false);
+	protected readonly animate = signal<boolean>(false);
 
-	likeCount = computed<number>(() => (this.liked() ? 86 : 85));
-	likeLabel = computed<string>(() => (this.liked() ? 'Liked' : 'Like'));
+	protected readonly likeCount = computed<number>(() => (this.liked() ? 86 : 85));
+	protected readonly likeLabel = computed<string>(() => (this.liked() ? 'Liked' : 'Like'));
 
-	onPressLike() {
+	protected onPressLike(): void {
 		this.liked.set(!this.liked());
 
 		this.animate.set(true);

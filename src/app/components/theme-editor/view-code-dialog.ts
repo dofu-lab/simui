@@ -6,14 +6,14 @@ import { ThemePreset, ThemeStyleProps } from '@/app/types';
 import { Component, computed, inject, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBraces } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSheetImports } from '@spartan-ng/helm/sheet';
 import { ColorTypeSelector } from './color-type-selector';
 
 @Component({
 	selector: 'sim-theme-code-sheet',
-	imports: [HlmSheetImports, CodePreviewComponent, NgIcon, HlmIcon, HlmButton, ColorTypeSelector],
+	imports: [HlmSheetImports, CodePreviewComponent, NgIcon, HlmIconImports, HlmButtonImports, ColorTypeSelector],
 	providers: [ColorService, provideIcons({ lucideBraces })],
 	template: `
 		<hlm-sheet side="right">
@@ -29,7 +29,7 @@ import { ColorTypeSelector } from './color-type-selector';
 					<sim-color-type />
 				</hlm-sheet-header>
 				<div class="mb-4 min-h-0 flex-1 px-4">
-					<code-preview [code]="cssCode()" />
+					<sim-code-preview [code]="cssCode()" />
 				</div>
 			</hlm-sheet-content>
 		</hlm-sheet>

@@ -2,7 +2,7 @@ import { Component, computed, input } from '@angular/core';
 import { ComponentBadgesComponent } from './component-badges.component';
 
 @Component({
-	selector: 'component-header',
+	selector: 'sim-component-header',
 	imports: [ComponentBadgesComponent],
 	template: `
 		<div class="mt-[50px] mb-[25px] flex flex-col items-center justify-center">

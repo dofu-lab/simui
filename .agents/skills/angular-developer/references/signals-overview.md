@@ -7,7 +7,7 @@ Signals are the foundation of reactivity in modern Angular applications. A **sig
 Use `signal()` to create state that can be directly updated.
 
 ```ts
-import {signal} from '@angular/core';
+import { signal } from '@angular/core';
 
 // Create a writable signal
 const count = signal(0);
@@ -41,7 +41,7 @@ Use `computed()` to create read-only signals that derive their value from other 
 - **Dynamic Dependencies**: Only the signals _actually read_ during the derivation are tracked.
 
 ```ts
-import {signal, computed} from '@angular/core';
+import { signal, computed } from '@angular/core';
 
 const count = signal(0);
 const doubleCount = computed(() => count() * 2);
@@ -65,12 +65,12 @@ Angular automatically enters a reactive context when evaluating:
 If you need to read a signal inside a reactive context _without_ creating a dependency (so that the context doesn't re-run when the signal changes), use `untracked()`.
 
 ```ts
-import {effect, untracked} from '@angular/core';
+import { effect, untracked } from '@angular/core';
 
 effect(() => {
-  // This effect only runs when currentUser changes.
-  // It does NOT run when counter changes, even though counter is read here.
-  console.log(`User: ${currentUser()}, Count: ${untracked(counter)}`);
+	// This effect only runs when currentUser changes.
+	// It does NOT run when counter changes, even though counter is read here.
+	console.log(`User: ${currentUser()}, Count: ${untracked(counter)}`);
 });
 ```
 
@@ -81,14 +81,14 @@ The reactive context is only active for **synchronous** code. Signal reads after
 ```ts
 // ❌ INCORRECT: theme() is not tracked because it is read after await
 effect(async () => {
-  const data = await fetchUserData();
-  console.log(theme());
+	const data = await fetchUserData();
+	console.log(theme());
 });
 
 // ✅ CORRECT: Read the signal before the await
 effect(async () => {
-  const currentTheme = theme();
-  const data = await fetchUserData();
-  console.log(currentTheme);
+	const currentTheme = theme();
+	const data = await fetchUserData();
+	console.log(currentTheme);
 });
 ```

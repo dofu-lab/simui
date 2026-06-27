@@ -1,6 +1,6 @@
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 const HOVER_BADGE_IDS = ['badge-20', 'badge-21', 'badge-22', 'badge-23'] as const;
 
@@ -16,7 +16,7 @@ test.describe('Badge', () => {
 	test.describe('Hover badges', () => {
 		for (const id of HOVER_BADGE_IDS) {
 			test(`hover state snapshot for ${id}`, async ({ page }) => {
-				const card = page.locator(`component-card#${id}`);
+				const card = componentCard(page, id);
 				await card.waitFor({ state: 'visible', timeout: 5000 });
 
 				const badge = card.locator(`sim-${id} > span`).first();
@@ -26,7 +26,7 @@ test.describe('Badge', () => {
 			});
 
 			test(`changes visual style on hover for ${id}`, async ({ page }) => {
-				const card = page.locator(`component-card#${id}`);
+				const card = componentCard(page, id);
 				await card.waitFor({ state: 'visible', timeout: 5000 });
 
 				const badge = card.locator(`sim-${id} > span`).first();

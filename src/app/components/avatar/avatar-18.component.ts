@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'sim-avatar-18',
-	imports: [HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
+	imports: [HlmAvatarImports],
 	template: `
 		<div class="bg-background flex rounded-full border p-1 shadow-sm">
 			<div class="flex -space-x-2">

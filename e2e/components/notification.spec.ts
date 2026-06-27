@@ -1,6 +1,6 @@
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 // Fixed date so notification-27 toast description always renders the same timestamp.
 const FIXED_DATE = new Date('2025-01-15T12:00:00.000Z');
@@ -49,7 +49,7 @@ test.describe('Notification', () => {
 
 	test('visual regression — toast trigger variants', async ({ page }) => {
 		for (const variantId of TOAST_TRIGGER_VARIANTS) {
-			const trigger = page.locator(`component-card#${variantId} button`).first();
+			const trigger = componentCard(page, variantId).locator('button').first();
 			await expect(trigger).toBeVisible();
 			await trigger.click();
 
@@ -66,13 +66,13 @@ test.describe('Notification', () => {
 	test.describe('Behavior', () => {
 		test('static notification renders with expected structure', async ({ page }) => {
 			// notification-01 is a static alert card; verify it renders
-			const card = page.locator('component-card#notification-01');
+			const card = componentCard(page, 'notification-01');
 			await expect(card).toBeVisible();
 		});
 
 		for (const variantId of TOAST_TRIGGER_VARIANTS) {
 			test(`${variantId} toast trigger button fires a toast`, async ({ page }) => {
-				const trigger = page.locator(`component-card#${variantId} button`).first();
+				const trigger = componentCard(page, variantId).locator('button').first();
 				await expect(trigger).toBeVisible();
 				await trigger.click();
 				await expect(page.locator('[data-sonner-toast]').first()).toBeVisible({ timeout: 5000 });

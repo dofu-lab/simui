@@ -10,13 +10,13 @@ import {
 } from '@ng-icons/lucide';
 import type { Task } from '../services/tasks.models';
 
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { type CellContext, injectFlexRenderContext } from '@tanstack/angular-table';
 import { StatusIconPipe } from '../pipes/status-icon.pipe';
 
 @Component({
 	selector: 'spartan-status-icon-cell',
-	imports: [StatusIconPipe, NgIcon, HlmIcon],
+	imports: [StatusIconPipe, NgIcon, HlmIconImports],
 	providers: [
 		provideIcons({
 			lucideCircle,

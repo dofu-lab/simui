@@ -1,12 +1,12 @@
 import { Component, model } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMoon, lucideSun } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-switch-13',
-	imports: [HlmSwitch, NgIcon, HlmIcon],
+	imports: [NgIcon, HlmSwitchImports, HlmIconImports],
 	providers: [provideIcons({ lucideSun, lucideMoon })],
 	template: `
 		<div
@@ -14,15 +14,15 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 			[attr.data-state]="value() ? 'checked' : 'unchecked'">
 			<hlm-switch
 				id="switch-13"
-				class="data-[state=unchecked]:bg-input/50 absolute inset-0 h-[inherit]! w-auto! border-2 [&_span]:h-full [&_span]:w-1/2 [&_span]:transition-transform [&_span]:motion-reduce:transition-none [&_span]:duration-300 [&_span]:ease-[cubic-bezier(0.16,1,0.3,1)] [&_span]:data-[state=checked]:translate-x-full [&_span]:data-[state=checked]:rtl:-translate-x-full [&>brn-switch-thumb]:size-8! [&>brn-switch-thumb[data-state=checked]]:translate-x-[calc(100%)]!"
+				class="data-[state=unchecked]:bg-input/50 absolute inset-0 h-[inherit]! w-auto! border-2 [&_span]:h-full [&_span]:w-1/2 [&_span]:transition-transform [&_span]:duration-300 [&_span]:ease-[cubic-bezier(0.16,1,0.3,1)] [&_span]:data-[state=checked]:translate-x-full [&_span]:motion-reduce:transition-none [&_span]:data-[state=checked]:rtl:-translate-x-full [&>brn-switch-thumb]:size-8! [&>brn-switch-thumb[data-state=checked]]:translate-x-[calc(100%)]!"
 				[(checked)]="value" />
 			<span
-				class="pointer-events-none relative ms-0.5 flex min-w-8 items-center justify-center text-center transition-transform motion-reduce:transition-none duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-[state=checked]:invisible group-data-[state=unchecked]:translate-x-full group-data-[state=unchecked]:rtl:-translate-x-full"
+				class="pointer-events-none relative ms-0.5 flex min-w-8 items-center justify-center text-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-[state=checked]:invisible group-data-[state=unchecked]:translate-x-full motion-reduce:transition-none group-data-[state=unchecked]:rtl:-translate-x-full"
 				(click)="value.set(false)">
 				<ng-icon hlm size="sm" name="lucideMoon" />
 			</span>
 			<span
-				class="group-data-[state=checked]:text-background pointer-events-none relative me-0.5 flex min-w-8 items-center justify-center text-center transition-transform motion-reduce:transition-none duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-[state=checked]:-translate-x-full group-data-[state=unchecked]:invisible group-data-[state=checked]:rtl:translate-x-full"
+				class="group-data-[state=checked]:text-background pointer-events-none relative me-0.5 flex min-w-8 items-center justify-center text-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-[state=checked]:-translate-x-full group-data-[state=unchecked]:invisible motion-reduce:transition-none group-data-[state=checked]:rtl:translate-x-full"
 				(click)="value.set(true)">
 				<ng-icon hlm size="sm" name="lucideSun" />
 			</span>
@@ -30,5 +30,5 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 	`,
 })
 export class Switch13Component {
-	readonly value = model(false);
+	protected readonly value = model(false);
 }

@@ -1,13 +1,13 @@
 import { Component, computed, ElementRef, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleUserRound } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-01',
 	providers: [provideIcons({ lucideCircleUserRound })],
-	imports: [HlmButton, HlmIcon, NgIcon],
+	imports: [NgIcon, HlmButtonImports, HlmIconImports],
 	template: `
 		<div class="grid grid-cols-1 items-center justify-center gap-2">
 			<div class="flex items-center justify-center gap-2">
@@ -42,12 +42,12 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	`,
 })
 export class FileUpload01Component {
-	previewUrl = signal<string | null>(null);
-	fileName = signal<string | null>(null);
-	fileInput = viewChild<ElementRef>('fileInput');
-	buttonLabel = computed(() => (this.previewUrl() ? 'Change image' : 'Upload image'));
+	protected readonly previewUrl = signal<string | null>(null);
+	protected readonly fileName = signal<string | null>(null);
+	protected readonly fileInput = viewChild<ElementRef>('fileInput');
+	protected readonly buttonLabel = computed(() => (this.previewUrl() ? 'Change image' : 'Upload image'));
 
-	onFileSelected(event: Event): void {
+	protected onFileSelected(event: Event): void {
 		const input = event.target as HTMLInputElement;
 		if (input.files && input.files.length > 0) {
 			const file = input.files[0];
@@ -57,7 +57,7 @@ export class FileUpload01Component {
 		}
 	}
 
-	onRemoveImage(): void {
+	protected onRemoveImage(): void {
 		this.previewUrl.set(null);
 		this.fileName.set(null);
 		const fileInputElement = this.fileInput()?.nativeElement;

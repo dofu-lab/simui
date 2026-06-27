@@ -11,15 +11,15 @@ The most common way to provide a service is using `providedIn: 'root'` on an `@I
 Use `InjectionToken` for non-class dependencies (configuration objects, functions, primitives). An `InjectionToken` can also be automatically provided.
 
 ```ts
-import {InjectionToken} from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
 export interface AppConfig {
-  apiUrl: string;
+	apiUrl: string;
 }
 
 export const APP_CONFIG = new InjectionToken<AppConfig>('app.config', {
-  providedIn: 'root',
-  factory: () => ({apiUrl: 'https://api.example.com'}),
+	providedIn: 'root',
+	factory: () => ({ apiUrl: 'https://api.example.com' }),
 });
 ```
 
@@ -29,28 +29,28 @@ You use the `providers` array when a service lacks `providedIn`, when you want a
 
 ```ts
 @Component({
-  providers: [
-    // Shorthand for { provide: LocalService, useClass: LocalService }
-    LocalService,
+	providers: [
+		// Shorthand for { provide: LocalService, useClass: LocalService }
+		LocalService,
 
-    // useClass: Swap implementations
-    {provide: Logger, useClass: BetterLogger},
+		// useClass: Swap implementations
+		{ provide: Logger, useClass: BetterLogger },
 
-    // useValue: Provide static values
-    {provide: API_URL_TOKEN, useValue: 'https://api.example.com'},
+		// useValue: Provide static values
+		{ provide: API_URL_TOKEN, useValue: 'https://api.example.com' },
 
-    // useFactory: Generate value dynamically
-    {
-      provide: ApiClient,
-      useFactory: (http = inject(HttpClient)) => new ApiClient(http),
-    },
+		// useFactory: Generate value dynamically
+		{
+			provide: ApiClient,
+			useFactory: (http = inject(HttpClient)) => new ApiClient(http),
+		},
 
-    // useExisting: Create an alias
-    {provide: OldLogger, useExisting: NewLogger},
+		// useExisting: Create an alias
+		{ provide: OldLogger, useExisting: NewLogger },
 
-    // multi: Provide multiple values for the same token as an array
-    {provide: INTERCEPTOR_TOKEN, useClass: AuthInterceptor, multi: true},
-  ],
+		// multi: Provide multiple values for the same token as an array
+		{ provide: INTERCEPTOR_TOKEN, useClass: AuthInterceptor, multi: true },
+	],
 })
 export class Example {}
 ```
@@ -67,6 +67,6 @@ Library authors should export functions that return provider arrays to encapsula
 
 ```ts
 export function provideAnalytics(config: AnalyticsConfig): Provider[] {
-  return [{provide: ANALYTICS_CONFIG, useValue: config}, AnalyticsService];
+	return [{ provide: ANALYTICS_CONFIG, useValue: config }, AnalyticsService];
 }
 ```

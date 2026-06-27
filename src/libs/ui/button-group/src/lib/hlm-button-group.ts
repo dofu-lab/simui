@@ -8,9 +8,9 @@ const buttonGroupVariants = cva(
 		variants: {
 			orientation: {
 				horizontal:
-					'[&>[data-slot]:not(:has(~[data-slot]))]:rounded-e-md! [&>*:not(:first-child)]:rounded-s-none [&>*:not(:first-child)]:border-s-0 [&>*:not(:last-child)]:rounded-e-none',
+					'[&>[data-slot]:not(:has(~[data-slot]))]:rounded-e-md [&>*:not(:first-child)]:rounded-s-none [&>*:not(:first-child)]:border-s-0 [&>*:not(:last-child)]:rounded-e-none',
 				vertical:
-					'[&>[data-slot]:not(:has(~[data-slot]))]:rounded-b-md! flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none',
+					'[&>[data-slot]:not(:has(~[data-slot]))]:rounded-b-md flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none',
 			},
 		},
 		defaultVariants: {

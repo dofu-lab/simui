@@ -6,10 +6,10 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-button',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header
+		<sim-component-header
 			name="Popover"
 			description="A popover is a transient UI element that displays contextual information or actions when triggered by user interaction." />
-		<page-grid [components]="components" />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class PopoverComponent {

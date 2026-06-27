@@ -5,9 +5,14 @@ import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
+interface TimeSlot {
+	available: boolean;
+	time: string;
+}
+
 @Component({
 	selector: 'sim-calendar-14',
-	imports: [HlmCalendarImports, HlmScrollAreaImports, HlmButtonImports, DatePipe, NgScrollbarModule],
+	imports: [DatePipe, NgScrollbarModule, HlmCalendarImports, HlmScrollAreaImports, HlmButtonImports],
 	template: `
 		<div class="relative flex flex-col items-start overflow-hidden rounded-2xl border sm:flex-row">
 			<hlm-calendar class="border-none" [(date)]="selectedDate" />
@@ -36,7 +41,7 @@ export class Calendar14Component {
 	protected readonly selectedDate = signal(new Date());
 	protected readonly selectedTime = signal('');
 
-	protected readonly timeSlots = [
+	protected readonly timeSlots: TimeSlot[] = [
 		{ available: false, time: '09:00' },
 		{ available: false, time: '09:30' },
 		{ available: true, time: '10:00' },

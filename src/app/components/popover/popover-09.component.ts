@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-09',
-	imports: [HlmButton, HlmPopoverImports],
+	imports: [HlmButtonImports, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button
@@ -38,10 +38,10 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover09Component {
-	public readonly emojis = ['😀', '😂', '😍', '😎', '🤔', '👍', '🎉', '😢', '🔥', '🙏', '🙌', '🚀'];
-	currentEmoji = signal(this.emojis[0]);
+	protected readonly emojis = ['😀', '😂', '😍', '😎', '🤔', '👍', '🎉', '😢', '🔥', '🙏', '🙌', '🚀'];
+	protected readonly currentEmoji = signal(this.emojis[0]);
 
-	public selectEmoji(emoji: string, ctx: { close: () => void }): void {
+	protected selectEmoji(emoji: string, ctx: { close: () => void }): void {
 		this.currentEmoji.set(emoji);
 		ctx.close();
 	}

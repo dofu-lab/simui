@@ -2,12 +2,18 @@ import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideRefreshCw } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
+
+interface PlanOption {
+	title: string;
+	subtitle: string;
+	value: string;
+}
 
 @Component({
 	selector: 'sim-dialog-22',
@@ -16,12 +22,11 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 		NgIcon,
 		FormsModule,
 		ReactiveFormsModule,
-		HlmIcon,
-		HlmButton,
-		HlmLabel,
-		HlmSpinner,
-		HlmRadio,
-		HlmRadioGroup,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmLabelImports,
+		HlmSpinnerImports,
+		HlmRadioGroupImports,
 		HlmDialogImports,
 	],
 	template: `
@@ -46,19 +51,23 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 								@for (option of options; track option.value) {
 									<label
 										hlmLabel
-										class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50">
+										class="border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex flex-1 cursor-pointer flex-col items-start justify-center rounded-md border px-4 py-3 text-center text-sm transition-[color,box-shadow] duration-150 outline-none has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none"
+										[for]="option.value">
 										<div class="flex w-full flex-row justify-center gap-1 text-left font-normal select-none">
 											<div class="flex flex-1 flex-col">
 												<span class="text-sm">{{ option.title }}</span>
 												<span class="text-muted-foreground text-xs">{{ option.subtitle }}</span>
 											</div>
-											<hlm-radio [value]="option.value" class="flex items-center justify-center">
+											<hlm-radio
+												class="flex items-center justify-center"
+												[inputId]="option.value"
+												[value]="option.value">
 												<div
 													class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 													<div
-														class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform motion-reduce:transition-none duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375]"></div>
+														class="border-input bg-background absolute inset-0 scale-100 rounded-full border transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[0.375] motion-reduce:transition-none"></div>
 													<div
-														class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all motion-reduce:transition-none duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2"></div>
+														class="border-input ring-offset-background group-[.brn-radio-checked]:border-primary group-[.brn-radio-checked]:bg-primary group-[.cdk-keyboard-focused]:ring-ring hover:border-primary/60 aspect-square rounded-full border bg-transparent transition-all duration-100 ease-out group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2 motion-reduce:transition-none"></div>
 												</div>
 											</hlm-radio>
 										</div>
@@ -113,14 +122,14 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	`,
 })
 export class Dialog22Component {
-	private _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(HlmDialog);
-	public form: FormGroup = this._formBuilder.group({
+	private readonly formBuilder = inject(FormBuilder);
+
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly form: FormGroup = this.formBuilder.group({
 		plan: ['standard'],
 	});
-	public isProcessing = signal(false);
-
-	public options = [
+	protected readonly isProcessing = signal(false);
+	protected readonly options: PlanOption[] = [
 		{
 			title: 'Essential',
 			subtitle: '$4 per member/month',
@@ -138,7 +147,7 @@ export class Dialog22Component {
 		},
 	];
 
-	public onSubmit() {
+	protected onSubmit(): void {
 		if (this.form.valid) {
 			this.isProcessing.set(true);
 			setTimeout(() => {

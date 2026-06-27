@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmResizableImports } from '@spartan-ng/helm/resizable';
 import {
 	EditorHeader,
@@ -18,7 +18,7 @@ import {
 		EditorPreview,
 		EditorHeader,
 		ThemeConfigComponent,
-		HlmButton,
+		HlmButtonImports,
 		ThemeSelector,
 		ThemeAction,
 		EditThemeButton,

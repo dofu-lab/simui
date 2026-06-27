@@ -1,14 +1,4 @@
-import {
-	ChangeDetectionStrategy,
-	Component,
-	DestroyRef,
-	inject,
-	input,
-	OnInit,
-	output,
-	signal,
-	viewChild,
-} from '@angular/core';
+import { Component, DestroyRef, inject, input, OnInit, output, signal, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
 	AbstractControl,
@@ -22,15 +12,15 @@ import {
 } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendarPlus, lucidePlus } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmDatePicker } from '@spartan-ng/helm/date-picker';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmRadio, HlmRadioGroup } from '@spartan-ng/helm/radio-group';
-import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { hlm } from '@spartan-ng/helm/utils';
 import { NgScrollbar } from 'ngx-scrollbar';
@@ -45,21 +35,19 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 	imports: [
 		NgIcon,
 		FormsModule,
-		ReactiveFormsModule,
-		HlmIcon,
-		HlmButton,
-		HlmInput,
-		HlmLabel,
-		HlmCheckbox,
-		HlmDatePicker,
 		NgScrollbar,
-		HlmScrollArea,
-		HlmRadioGroup,
-		HlmRadio,
+		ReactiveFormsModule,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmInputImports,
+		HlmLabelImports,
+		HlmCheckboxImports,
+		HlmScrollAreaImports,
+		HlmRadioGroupImports,
+		HlmDatePickerImports,
 		HlmDialogImports,
 		HlmSelectImports,
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<hlm-dialog autoFocus="first-tabbable">
 			<button hlmDialogTrigger hlmBtn size="sm" class="flex items-center gap-2">
@@ -101,14 +89,18 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 									<div class="flex flex-1 flex-col gap-4">
 										<div class="flex w-full flex-col gap-2 text-sm">
 											<label hlmLabel for="start-date" class="text-sm">Start date</label>
-											<hlm-date-picker class="h-9 w-full" formControlName="startDate" [autoCloseOnSelect]="true">
-												<span>Pick start date</span>
+											<hlm-date-picker formControlName="startDate" [autoCloseOnSelect]="true">
+												<hlm-date-picker-trigger buttonId="start-date" class="h-9 w-full">
+													Pick start date
+												</hlm-date-picker-trigger>
 											</hlm-date-picker>
 										</div>
 										<div class="flex w-full flex-col gap-2 text-sm">
 											<label hlmLabel for="end-date" class="text-sm">End date</label>
-											<hlm-date-picker class="h-9 w-full" formControlName="endDate" [autoCloseOnSelect]="true">
-												<span>Pick end date</span>
+											<hlm-date-picker formControlName="endDate" [autoCloseOnSelect]="true">
+												<hlm-date-picker-trigger buttonId="end-date" class="h-9 w-full">
+													Pick end date
+												</hlm-date-picker-trigger>
 											</hlm-date-picker>
 										</div>
 									</div>
@@ -116,7 +108,7 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 									@if (!isAllDay()) {
 										<div class="flex flex-col gap-4">
 											<div class="flex w-full flex-col gap-2 text-sm">
-												<label hlmLabel for="start-time" class="flex flex-col gap-2 text-sm">Start time</label>
+												<label hlmLabel for="start-time" class="text-sm">Start time</label>
 												<hlm-select class="inline-block w-full" formControlName="startTime">
 													<hlm-select-trigger class="h-9 w-full">
 														<div class="flex items-center gap-x-2" *hlmSelectValueTemplate="let value">
@@ -142,7 +134,7 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 												</hlm-select>
 											</div>
 											<div class="flex w-full flex-col gap-2 text-sm">
-												<label hlmLabel for="end-time" class="flex flex-col gap-2 text-sm">End time</label>
+												<label hlmLabel for="end-time" class="text-sm">End time</label>
 												<hlm-select class="inline-block w-full" formControlName="endTime">
 													<hlm-select-trigger class="h-9 w-full">
 														<div class="flex items-center gap-x-2" *hlmSelectValueTemplate="let value">
@@ -184,20 +176,21 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 									All day
 								</label>
 
-								<label hlmLabel class="flex flex-col gap-2 text-sm">
+								<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 									Location
 									<input hlmInput formControlName="location" class="h-9 w-full" type="text" />
 								</label>
 								<div class="flex flex-1 flex-col">
-									<label hlmLabel class="flex-1">Tags</label>
+									<span hlmLabel class="flex-1">Tags</span>
 									<div class="flex-1">
-										<hlm-radio-group formControlName="color" class="mt-2 flex gap-1 rounded-md">
+										<hlm-radio-group formControlName="color" class="mt-2 flex gap-2 rounded-md">
 											@for (item of colorOptions; track item) {
-												<label hlmLabel>
-													<hlm-radio [value]="item">
-														<div class="relative inline-flex size-6">
+												<label [for]="'event-color-' + item.value">
+													<hlm-radio class="gap-x-0" [inputId]="'event-color-' + item.value" [value]="item">
+														<div
+															class="relative inline-flex size-6 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 															<div
-																class="bg-primary-foreground absolute inset-0 scale-0 rounded-full transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[30%]"></div>
+																class="bg-primary-foreground absolute inset-0 scale-0 rounded-full transition-transform duration-100 ease-out group-[.brn-radio-checked]:scale-[30%] motion-reduce:transition-none"></div>
 															<div [class]="tagColor(item.bgClass)"></div>
 														</div>
 													</hlm-radio>
@@ -396,7 +389,7 @@ export class EventDialogComponent implements OnInit {
 	/**
 	 * Opens the dialog programmatically. Can be called from parent component.
 	 */
-	public openDialog(duration: EventDuration, shouldSetDefaultTime: boolean = true): void {
+	public openDialog(duration: EventDuration, shouldSetDefaultTime = true): void {
 		this.form.reset();
 		this.formMode.set('create');
 		// Pre-fill dates if provided

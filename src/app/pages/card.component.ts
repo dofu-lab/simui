@@ -6,10 +6,10 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-card',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header
+		<sim-component-header
 			name="Card"
 			description="Cards are a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options." />
-		<page-grid [components]="components" />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class CardComponent {

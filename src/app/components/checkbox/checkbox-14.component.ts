@@ -1,13 +1,13 @@
 import { Component, model } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRocket } from '@ng-icons/lucide';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-checkbox-14',
-	imports: [HlmCheckbox, HlmLabel, HlmIcon, NgIcon],
+	imports: [NgIcon, HlmCheckboxImports, HlmLabelImports, HlmIconImports],
 	providers: [provideIcons({ lucideRocket })],
 	host: {
 		class: 'w-full',

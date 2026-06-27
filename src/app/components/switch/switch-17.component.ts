@@ -1,16 +1,17 @@
 import { Component, model } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-switch-17',
-	imports: [HlmSwitch, HlmLabel, HlmAvatar, HlmAvatarImage, HlmAvatarFallback],
+	imports: [HlmSwitchImports, HlmLabelImports, HlmAvatarImports],
 	template: `
 		<div
 			class="border-input data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border shadow-xs outline-none"
 			[attr.data-checked]="value() ? 'true' : 'false'">
 			<label
+				for="switch-17"
 				class="flex items-start gap-2 p-4 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 				hlmLabel>
 				<hlm-avatar class="size-8 self-center">
@@ -24,11 +25,11 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 					</span>
 					<p class="text-muted-foreground text-xs font-normal">A short description here.</p>
 				</div>
-				<hlm-switch [(checked)]="value" />
+				<hlm-switch inputId="switch-17" [(checked)]="value" />
 			</label>
 		</div>
 	`,
 })
 export class Switch17Component {
-	readonly value = model(false);
+	protected readonly value = model(false);
 }

@@ -1,16 +1,20 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
+
+interface CommandAction {
+	label: string;
+	shortcut: string;
+}
 
 @Component({
 	selector: 'sim-popover-10',
-	imports: [HlmButton, HlmInput, FormsModule, HlmPopoverImports],
+	imports: [HlmButtonImports, HlmInputImports, FormsModule, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5" autoFocus="dialog">
 			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">Command Palette</button>
-
 			<div hlmPopoverContent class="grid w-80 gap-3 p-3" *hlmPopoverPortal="let ctx">
 				<input hlmInput type="text" placeholder="Type a command..." [(ngModel)]="query" class="w-full" />
 
@@ -35,7 +39,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover10Component {
-	public readonly actions = [
+	protected readonly actions: CommandAction[] = [
 		{ label: 'Open Settings', shortcut: '⌘ + ,' },
 		{ label: 'New File', shortcut: '⌘ + N' },
 		{ label: 'Save Project', shortcut: '⌘ + S' },
@@ -43,13 +47,13 @@ export class Popover10Component {
 		{ label: 'Toggle Sidebar', shortcut: '⌘ + B' },
 	];
 
-	query = signal('');
-	filteredActions = computed(() => {
+	protected readonly query = signal('');
+	protected readonly filteredActions = computed(() => {
 		const q = this.query().toLowerCase();
 		return this.actions.filter((a) => a.label.toLowerCase().includes(q));
 	});
 
-	public execute(action: { label: string }, ctx: { close: () => void }): void {
+	public execute(action: CommandAction, ctx: { close: () => void }): void {
 		ctx.close();
 	}
 }

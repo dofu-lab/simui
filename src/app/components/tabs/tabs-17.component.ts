@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideHouse, lucidePackage, lucidePanelsTopLeft } from '@ng-icons/lucide';
-import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
+import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-17',
-	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
-	host: {
-		class: 'w-full',
-	},
+	imports: [HlmTabsImports],
+	host: { class: 'w-full' },
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
 	template: `
 		<hlm-tabs tab="tab01" orientation="vertical" class="flex w-full flex-row gap-2">

@@ -1,10 +1,10 @@
 import { Component, model } from '@angular/core';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-switch-08',
-	imports: [HlmSwitch, HlmLabel],
+	imports: [HlmSwitchImports, HlmLabelImports],
 	template: `
 		<div class="flex items-center gap-2">
 			<hlm-switch
@@ -22,5 +22,5 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 	`,
 })
 export class Switch08Component {
-	readonly value = model(true);
+	protected readonly value = model(true);
 }

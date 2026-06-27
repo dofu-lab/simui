@@ -2,15 +2,15 @@ import { ThemeStorageService } from '@/app/core/services';
 import { Component, computed, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBraces, lucideImport, lucideRotateCcw, lucideSave, lucideUndo } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { EditorHistory } from './editor-history';
 import { SaveTheme } from './save-theme';
 import { ThemeCodeSheet } from './view-code-dialog';
 
 @Component({
 	selector: 'sim-theme-action',
-	imports: [NgIcon, HlmIcon, HlmButton, EditorHistory, SaveTheme, ThemeCodeSheet],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, EditorHistory, SaveTheme, ThemeCodeSheet],
 	providers: [
 		provideIcons({
 			lucideBraces,

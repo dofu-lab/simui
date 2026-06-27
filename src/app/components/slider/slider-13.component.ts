@@ -1,16 +1,14 @@
 import { Component, computed, signal } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { lucideVolume2, lucideVolumeX } from '@ng-icons/lucide';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'sim-slider-13',
-	imports: [HlmSlider, HlmLabel],
+	imports: [HlmSliderImports, HlmLabelImports],
 	providers: [provideIcons({ lucideVolumeX, lucideVolume2 })],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'w-full' },
 	template: `
 		<div class="mb-4 flex items-center justify-between">
 			<span hlmLabel>Rate your experience</span>
@@ -24,7 +22,7 @@ import { HlmSlider } from '@spartan-ng/helm/slider';
 	`,
 })
 export class Slider13Component {
-	public readonly ratingLabels = ['Awful', 'Poor', 'Okay', 'Good', 'Amazing'];
-	public readonly value = signal([3]);
-	public computedLabel = computed(() => this.ratingLabels[this.value()[0] - 1]);
+	protected readonly ratingLabels = ['Awful', 'Poor', 'Okay', 'Good', 'Amazing'];
+	protected readonly value = signal([3]);
+	protected readonly computedLabel = computed(() => this.ratingLabels[this.value()[0] - 1]);
 }

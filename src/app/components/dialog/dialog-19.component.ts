@@ -4,29 +4,28 @@ import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard, lucideWalletCards } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-dialog-19',
 	providers: [provideIcons({ lucideWalletCards, lucideCreditCard })],
 	imports: [
 		NgIcon,
-		ReactiveFormsModule,
-		HlmIcon,
-		HlmButton,
-		HlmButton,
-		HlmInput,
-		HlmLabel,
-		HlmSpinner,
-		HlmCheckbox,
 		MaskitoDirective,
+		ReactiveFormsModule,
+		HlmIconImports,
+		HlmInputImports,
+		HlmLabelImports,
+		HlmButtonImports,
 		HlmDialogImports,
+		HlmSpinnerImports,
+		HlmCheckboxImports,
 	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
@@ -136,9 +135,10 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 	`,
 })
 export class Dialog19Component {
-	private _formBuilder = inject(FormBuilder);
-	public dialogRef = viewChild(HlmDialog);
-	public form: FormGroup = this._formBuilder.group(
+	private readonly formBuilder = inject(FormBuilder);
+	protected readonly isProcessing = signal(false);
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly form: FormGroup = this.formBuilder.group(
 		{
 			fullName: ['', Validators.required],
 			cardNumber: ['', Validators.required],
@@ -148,7 +148,7 @@ export class Dialog19Component {
 		},
 		{ updateOn: 'submit' },
 	);
-	public readonly cvcMask: MaskitoOptions = {
+	protected readonly cvcMask: MaskitoOptions = {
 		mask: [/\d/, /\d/, /\d/],
 		overwriteMode: 'replace',
 		preprocessors: [
@@ -158,16 +158,16 @@ export class Dialog19Component {
 			}),
 		],
 	};
-	public readonly expiryDateMask: MaskitoOptions = {
+	protected readonly expiryDateMask: MaskitoOptions = {
 		mask: [/\d/, /[0-9]/, '/', /\d/, /\d/],
 		overwriteMode: 'replace',
 	};
-	public readonly nameMask: MaskitoOptions = {
+	protected readonly nameMask: MaskitoOptions = {
 		mask: /.+/,
 		overwriteMode: 'replace',
 		postprocessors: [({ value, selection }) => ({ value: value.toUpperCase(), selection })],
 	};
-	public readonly creditCardMask: MaskitoOptions = {
+	protected readonly creditCardMask: MaskitoOptions = {
 		mask: [
 			/[0-9]/,
 			/[0-9]/,
@@ -193,9 +193,7 @@ export class Dialog19Component {
 		preprocessors: [({ elementState, data }) => ({ elementState, data: data.replace(/\D/g, '') })],
 	};
 
-	public isProcessing = signal(false);
-
-	public onSubmit() {
+	protected onSubmit(): void {
 		if (this.form.valid) {
 			this.isProcessing.set(true);
 			setTimeout(() => {

@@ -36,8 +36,6 @@ import {
 	Select35Component,
 	Select36Component,
 	Select37Component,
-	Select38Component,
-	Select39Component,
 	Select40Component,
 	Select41Component,
 } from '../components/select';

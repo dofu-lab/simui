@@ -1,20 +1,10 @@
 import { Clipboard } from '@angular/cdk/clipboard';
 import { DOCUMENT, NgComponentOutlet } from '@angular/common';
-import {
-	ChangeDetectionStrategy,
-	Component,
-	computed,
-	inject,
-	input,
-	isDevMode,
-	signal,
-	Type,
-	viewChild,
-} from '@angular/core';
+import { Component, computed, inject, input, isDevMode, signal, Type, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideLink } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSheet, HlmSheetImports } from '@spartan-ng/helm/sheet';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import { hlm } from '@spartan-ng/helm/utils';
@@ -24,16 +14,26 @@ import { CodePreviewComponent } from './code-preview.component';
 import { CodeLoaderService } from './services/code-loader.service';
 
 @Component({
-	selector: 'component-card',
+	selector: 'sim-component-card',
 	providers: [provideIcons({ lucideCode, lucideLink, lucideCheck })],
-	imports: [NgComponentOutlet, HlmButton, NgIcon, HlmIcon, CodePreviewComponent, HlmSheetImports, HlmTooltipImports],
+	imports: [
+		NgIcon,
+		NgComponentOutlet,
+		CodePreviewComponent,
+		HlmButtonImports,
+		HlmIconImports,
+		HlmSheetImports,
+		HlmTooltipImports,
+	],
 	template: `
 		<ng-container *ngComponentOutlet="component()"></ng-container>
 		<hlm-sheet #sheet side="right">
-			<div class="absolute -top-2 -right-2 flex w-full items-center justify-between p-4">
-				@if (showComponentName) {
-					<span class="text-muted-foreground/80 me-1 text-xs">{{ componentName() }}</span>
-				}
+			<div class="absolute -top-2 right-0 flex w-full items-center justify-between px-2 pt-2">
+				<span class="text-muted-foreground/80 me-1 text-xs">
+					@if (showComponentName) {
+						{{ componentName() }}
+					}
+				</span>
 				<div
 					class="flex items-center lg:opacity-0 lg:group-focus-within/item:opacity-100 lg:group-hover/item:opacity-100">
 					<button
@@ -69,7 +69,7 @@ import { CodeLoaderService } from './services/code-loader.service';
 					<div class="mb-4">
 						<h4 class="mb-2 text-lg font-semibold">Installation</h4>
 						<div class="mt-3">
-							<code-preview language="sh" [code]="installCommand()" [fileName]="'Install ' + componentName()" />
+							<sim-code-preview language="sh" [code]="installCommand()" [fileName]="'Install ' + componentName()" />
 						</div>
 						<ng-template #installTooltip><span class="flex items-center">Copy install command</span></ng-template>
 					</div>
@@ -80,7 +80,7 @@ import { CodeLoaderService } from './services/code-loader.service';
 						@if (codeLoading()) {
 							<div class="text-muted-foreground flex h-full items-center justify-center text-sm">Loading...</div>
 						} @else {
-							<code-preview [code]="displayCode()" [fileName]="componentName()" />
+							<sim-code-preview [code]="displayCode()" [fileName]="componentName()" />
 						}
 					</div>
 					<ng-template #codeTooltip><span class="flex items-center">Copy code to clipboard</span></ng-template>

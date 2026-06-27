@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'sim-popover-07',
-	imports: [HlmButton, HlmPopoverImports],
+	imports: [HlmButtonImports, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">
@@ -13,20 +13,17 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 					Pick a color
 				</div>
 			</button>
-
 			<div hlmPopoverContent class="grid w-fit gap-4 p-2" *hlmPopoverPortal="let ctx">
 				<div class="text-sm font-semibold">Choose a color</div>
-
 				<div class="grid w-fit grid-cols-5 gap-2">
 					@for (color of colors; track $index) {
 						<button
-							class="border-muted hover:ring-ring h-8 w-8 rounded-full border transition-colors motion-reduce:transition-none hover:ring-2 focus:outline-none"
+							class="border-muted hover:ring-ring h-8 w-8 rounded-full border transition-colors hover:ring-2 focus:outline-none motion-reduce:transition-none"
 							[style.background]="color"
 							[attr.aria-label]="color"
 							(click)="selectColor(color, ctx)"></button>
 					}
 				</div>
-
 				@if (selectedColor) {
 					<div class="text-muted-foreground text-center text-xs">Selected: {{ selectedColor }}</div>
 				}
@@ -35,7 +32,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover07Component {
-	public readonly colors = [
+	protected readonly colors: string[] = [
 		'#F87171',
 		'#33BF24',
 		'#60A5FA',
@@ -47,7 +44,7 @@ export class Popover07Component {
 		'#ADDCF6',
 		'#000000',
 	];
-	selectedColor = '#60A5FA';
+	protected selectedColor = '#60A5FA';
 
 	public selectColor(color: string, ctx: { close: () => void }): void {
 		this.selectedColor = color;

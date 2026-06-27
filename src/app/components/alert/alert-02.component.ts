@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideTriangleAlert } from '@ng-icons/lucide';
 import { HlmAlertImports } from '@spartan-ng/helm/alert';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-alert-02',
 	providers: [provideIcons({ lucideTriangleAlert })],
-	imports: [NgIcon, HlmIcon, HlmAlertImports],
+	imports: [NgIcon, HlmIconImports, HlmAlertImports],
 	host: {
 		class: 'w-full',
 	},

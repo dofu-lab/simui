@@ -40,14 +40,9 @@ import { addDays } from 'date-fns';
 export class Calendar17Component {
 	protected start = signal(new Date());
 	protected end = signal(addDays(new Date(), 5));
-
-	// Separate signal for which month to display
 	protected focusedDate = signal(new Date());
 
-	// First calendar shows the focused month
 	protected firstMonthDate = computed(() => this.focusedDate());
-
-	// Second calendar shows the next month
 	protected secondMonthDate = computed(() => {
 		const date = new Date(this.focusedDate());
 		date.setMonth(date.getMonth() + 1);
@@ -72,13 +67,13 @@ export class Calendar17Component {
 		return hlm(this.baseCalendarClass, hideRangeEnd, hideRangeStart);
 	}
 
-	jumpToPreviousMonth() {
+	protected jumpToPreviousMonth(): void {
 		const newDate = new Date(this.focusedDate());
 		newDate.setMonth(newDate.getMonth() - 2);
 		this.focusedDate.set(newDate);
 	}
 
-	jumpToNextMonth() {
+	protected jumpToNextMonth(): void {
 		const newDate = new Date(this.focusedDate());
 		newDate.setMonth(newDate.getMonth() + 2);
 		this.focusedDate.set(newDate);

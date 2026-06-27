@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-notification-30',
-	imports: [HlmButton],
+	imports: [HlmButtonImports],
 	template: `
 		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">Upload images</button>
 	`,
 })
 export class Notification30Component {
-	showNotification() {
+	protected showNotification() {
 		const promise = new Promise<{ name: string }>((resolve, reject) =>
 			setTimeout(() => {
 				if (Math.random() > 0.5) {

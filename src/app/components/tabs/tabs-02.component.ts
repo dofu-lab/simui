@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { HlmTabs, HlmTabsContent, HlmTabsList, HlmTabsTrigger } from '@spartan-ng/helm/tabs';
+import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'sim-tabs-02',
-	imports: [HlmTabs, HlmTabsList, HlmTabsTrigger, HlmTabsContent],
+	imports: [HlmTabsImports],
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
 			<hlm-tabs-list

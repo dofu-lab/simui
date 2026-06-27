@@ -37,12 +37,12 @@ Create a file named `.antigravity/mcp.json` in your project's root:
 
 ```json
 {
-  "mcpServers": {
-    "angular-cli": {
-      "command": "npx",
-      "args": ["-y", "@angular/cli", "mcp"]
-    }
-  }
+	"mcpServers": {
+		"angular-cli": {
+			"command": "npx",
+			"args": ["-y", "@angular/cli", "mcp"]
+		}
+	}
 }
 ```
 
@@ -52,12 +52,12 @@ Create `.gemini/settings.json` in the project root:
 
 ```json
 {
-  "mcpServers": {
-    "angular-cli": {
-      "command": "npx",
-      "args": ["-y", "@angular/cli", "mcp"]
-    }
-  }
+	"mcpServers": {
+		"angular-cli": {
+			"command": "npx",
+			"args": ["-y", "@angular/cli", "mcp"]
+		}
+	}
 }
 ```
 
@@ -67,12 +67,12 @@ Create `.cursor/mcp.json` in the project root (or globally at `~/.cursor/mcp.jso
 
 ```json
 {
-  "mcpServers": {
-    "angular-cli": {
-      "command": "npx",
-      "args": ["-y", "@angular/cli", "mcp"]
-    }
-  }
+	"mcpServers": {
+		"angular-cli": {
+			"command": "npx",
+			"args": ["-y", "@angular/cli", "mcp"]
+		}
+	}
 }
 ```
 
@@ -82,12 +82,12 @@ Create `.vscode/mcp.json`:
 
 ```json
 {
-  "servers": {
-    "angular-cli": {
-      "command": "npx",
-      "args": ["-y", "@angular/cli", "mcp"]
-    }
-  }
+	"servers": {
+		"angular-cli": {
+			"command": "npx",
+			"args": ["-y", "@angular/cli", "mcp"]
+		}
+	}
 }
 ```
 

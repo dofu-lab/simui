@@ -2,13 +2,13 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideImageUp, lucideX } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileUploadState } from '@sim/file';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-04',
+	imports: [NgIcon, FileDragDropDirective, HlmButtonImports, HlmIconImports],
 	providers: [provideIcons({ lucideX, lucideImageUp, lucideCircleAlert })],
-	imports: [HlmButton, HlmIcon, NgIcon, FileDragDropDirective],
 	host: {
 		class: 'w-full',
 	},
@@ -16,9 +16,9 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 		<div class="flex w-full flex-col items-center justify-center">
 			<div class="relative w-full">
 				<div
-					fileDragDrop
+					simFileDragDrop
 					role="button"
-					class="border-input hover:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors motion-reduce:transition-none has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:border-none has-[input:focus]:ring-[3px]"
+					class="border-input hover:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:border-none has-[input:focus]:ring-[3px] motion-reduce:transition-none"
 					dragClass="border-[2px] bg-accent/50"
 					[maxSize]="maxSize"
 					accept="image/*"
@@ -62,24 +62,24 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	`,
 })
 export class FileUpload04Component {
-	fileUploadDirective = viewChild(FileDragDropDirective);
-	filesState = signal<FileUploadState | null>(null);
-	files = computed(() => this.filesState()?.files ?? []);
-	errors = computed(() => this.filesState()?.errors ?? []);
-	maxSize = 5 * 1024 * 1024; // 5MB
+	protected readonly fileUploadDirective = viewChild(FileDragDropDirective);
+	protected readonly filesState = signal<FileUploadState | null>(null);
+	protected readonly files = computed(() => this.filesState()?.files ?? []);
+	protected readonly errors = computed(() => this.filesState()?.errors ?? []);
+	protected readonly maxSize = 5 * 1024 * 1024; // 5MB
 
-	onFileSelected(event: Event): void {
+	protected onFileSelected(event: Event): void {
 		const input = event.target as HTMLInputElement;
 		if (input.files && input.files.length > 0) {
 			this.fileUploadDirective()?.addFiles(input.files);
 		}
 	}
 
-	onFileStateChange(event: FileUploadState) {
+	protected onFileStateChange(event: FileUploadState): void {
 		this.filesState.set(event);
 	}
 
-	onRemoveImage(id: string): void {
+	protected onRemoveImage(id: string): void {
 		this.fileUploadDirective()?.removeFile(id);
 	}
 }

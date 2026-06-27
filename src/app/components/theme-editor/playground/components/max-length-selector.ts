@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'app-max-length-selector',
-	imports: [HlmSliderImports, HlmLabel],
+	imports: [HlmSliderImports, HlmLabelImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'grid gap-3',

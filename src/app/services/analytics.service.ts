@@ -3,9 +3,7 @@ import { inject, NgZone, PLATFORM_ID, Service } from '@angular/core';
 import posthog from 'posthog-js';
 import { environment } from '../../environments/environment';
 
-export interface EventProperties {
-	[key: string]: string | number | boolean | null | undefined;
-}
+export type EventProperties = Record<string, string | number | boolean | null | undefined>;
 
 @Service()
 export class AnalyticsService {

@@ -5,8 +5,8 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 @Component({
 	selector: 'app-input',
 	template: `
-		<component-header name="Input" description="Component for text input with various styles and validation options" />
-		<page-grid [components]="components" />
+		<sim-component-header name="Input" description="Component for text input with various styles and validation options" />
+		<sim-page-grid [components]="components" />
 	`,
 	imports: [ComponentHeaderComponent, PageGridComponent],
 })

@@ -6,10 +6,10 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-dropdown',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header
+		<sim-component-header
 			name="Dropdown"
 			description="A dropdown menu that displays a list of options for the user to choose from." />
-		<page-grid [components]="components" />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class DropdownComponent {

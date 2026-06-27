@@ -6,10 +6,10 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-dialog',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header
+		<sim-component-header
 			name="Dialog"
 			description="A modal window that communicates information or provides actions without leaving the page. Used for additional information, user input, or directing user flow." />
-		<page-grid [components]="components" />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class DialogComponent {

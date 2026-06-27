@@ -3,10 +3,10 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 import { endOfMonth, endOfYear, startOfMonth, startOfYear, subDays, subMonths, subYears } from 'date-fns';
 
-type DateRange = {
+interface DateRange {
 	from: Date;
 	to: Date;
-};
+}
 
 @Component({
 	selector: 'sim-calendar-16',

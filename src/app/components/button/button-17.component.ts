@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-17',
-	imports: [HlmButton, HlmAvatarImports],
+	imports: [HlmButtonImports, HlmAvatarImports],
 	template: `
 		<button hlmBtn size="sm" class="rounded-full pl-1">
 			<hlm-avatar class="size-6">

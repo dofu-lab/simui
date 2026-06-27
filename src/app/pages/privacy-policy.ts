@@ -9,7 +9,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 	},
 	template: `
 		<div class="flex flex-1 flex-col justify-between">
-			<component-header name="Privacy Policy" description="Last Updated: February 8, 2026" />
+			<sim-component-header name="Privacy Policy" description="Last Updated: February 8, 2026" />
 			<div class="mt-[50px] mb-auto flex flex-col items-center justify-center px-4">
 				<div class="text-muted-foreground flex max-w-[900px] flex-col items-start justify-start gap-8">
 					<!-- Section 1: Introduction -->

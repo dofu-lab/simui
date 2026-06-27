@@ -16,9 +16,9 @@ import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 	`,
 })
 export class Button35Component {
-	theme = signal<'light' | 'dark'>('light');
+	protected readonly theme = signal<'light' | 'dark'>('light');
 
-	changeTheme() {
+	protected changeTheme(): void {
 		this.theme.set(this.theme() === 'light' ? 'dark' : 'light');
 	}
 }

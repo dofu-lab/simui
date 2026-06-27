@@ -21,6 +21,7 @@ import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
 })
 export class Select11Component {
 	private readonly timezones = Intl.supportedValuesOf('timeZone');
+
 	protected readonly formattedTimezones = computed(() => {
 		return this.timezones
 			.map((timezone) => {

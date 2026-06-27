@@ -2,16 +2,16 @@ import { Component, computed, model, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-08',
 	providers: [provideIcons({ lucideCircleAlert })],
-	imports: [HlmButton, NgIcon, HlmIcon, HlmInput, FormsModule, HlmLabel, HlmDialogImports],
+	imports: [FormsModule, NgIcon, HlmButtonImports, HlmIconImports, HlmInputImports, HlmLabelImports, HlmDialogImports],
 	template: `
 		<hlm-dialog>
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Delete project</button>
@@ -30,12 +30,13 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 						</p>
 					</hlm-dialog-header>
 
-					<label hlmLabel class="mt-2 w-full">Project name</label>
+					<label hlmLabel class="mt-2 w-full" for="dialog08Input">Project name</label>
 					<input
 						hlmInput
 						class="h-9 w-full"
 						type="text"
 						placeholder="Type Sim UI to confirm"
+						id="dialog08Input"
 						[ngModel]="inputValue()"
 						(ngModelChange)="inputValue.set($event)" />
 				</div>
@@ -50,13 +51,12 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Dialog08Component {
-	projectName = signal<string>('Sim UI');
-	inputValue = model<string>('');
-	isDisabled = computed(() => this.inputValue() !== this.projectName());
+	protected readonly projectName = signal<string>('Sim UI');
+	protected readonly inputValue = model<string>('');
+	protected readonly isDisabled = computed(() => this.inputValue() !== this.projectName());
+	protected readonly dialogRef = viewChild(HlmDialog);
 
-	public dialogRef = viewChild(HlmDialog);
-
-	closeDialog() {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 }

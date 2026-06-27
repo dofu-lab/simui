@@ -2,15 +2,24 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleDollarSign } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-dialog-33',
-	imports: [NgIcon, FormsModule, ReactiveFormsModule, HlmIcon, HlmButton, HlmCheckbox, HlmLabel, HlmDialogImports],
+	imports: [
+		NgIcon,
+		FormsModule,
+		ReactiveFormsModule,
+		HlmIconImports,
+		HlmButtonImports,
+		HlmCheckboxImports,
+		HlmLabelImports,
+		HlmDialogImports,
+	],
 	providers: [provideIcons({ lucideCircleDollarSign })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
@@ -31,7 +40,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 					<div class="flex flex-col gap-4" [formGroup]="formGroup">
 						<label
 							hlmLabel
-							class="border-input has-data-[state=checked]:border-ring relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors motion-reduce:transition-none duration-200 ease"
+							class="border-input has-data-[state=checked]:border-ring ease relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors duration-200 motion-reduce:transition-none"
 							for="checkbox-visa">
 							<div class="peer flex flex-1 items-start gap-2">
 								<svg width="46" height="32" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,12 +61,12 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 									<span>Visa ending in</span>
 									<span class="text-muted-foreground truncate text-xs">Expiry 06/2024</span>
 								</div>
-								<hlm-checkbox id="checkbox-visa" formControlName="visa" />
+								<hlm-checkbox inputId="checkbox-visa" formControlName="visa" />
 							</div>
 						</label>
 						<label
 							hlmLabel
-							class="border-input has-data-[state=checked]:border-ring relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors motion-reduce:transition-none duration-200 ease"
+							class="border-input has-data-[state=checked]:border-ring ease relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors duration-200 motion-reduce:transition-none"
 							for="checkbox-mtcard">
 							<div class="peer flex flex-1 items-start gap-2">
 								<svg width="46" height="32" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,12 +96,12 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 									<span>Mastercard ending in 1234</span>
 									<span class="text-muted-foreground truncate text-xs">Expiry 06/2024</span>
 								</div>
-								<hlm-checkbox id="checkbox-mtcard" formControlName="mastercard" />
+								<hlm-checkbox inputId="checkbox-mtcard" formControlName="mastercard" />
 							</div>
 						</label>
 						<label
 							hlmLabel
-							class="border-input has-data-[state=checked]:border-ring relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors motion-reduce:transition-none duration-200 ease"
+							class="border-input has-data-[state=checked]:border-ring ease relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors duration-200 motion-reduce:transition-none"
 							for="checkbox-apple">
 							<div class="peer flex flex-1 items-start gap-2">
 								<svg width="46" height="32" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -110,7 +119,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 									<span>Apple Pay ending in 2299</span>
 									<span class="text-muted-foreground truncate text-xs">Expiry 11/2026</span>
 								</div>
-								<hlm-checkbox id="checkbox-apple" formControlName="applepay" />
+								<hlm-checkbox inputId="checkbox-apple" formControlName="applepay" />
 							</div>
 						</label>
 					</div>
@@ -124,7 +133,7 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Dialog33Component {
-	formGroup = new FormGroup({
+	protected readonly formGroup = new FormGroup({
 		visa: new FormControl(true),
 		mastercard: new FormControl(false),
 		applepay: new FormControl(false),

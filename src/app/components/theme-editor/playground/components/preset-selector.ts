@@ -3,15 +3,15 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideChevronsUpDown, lucideSearch } from '@ng-icons/lucide';
 import { BrnCommandEmpty } from '@spartan-ng/brain/command';
 
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { Preset } from '../data/presets';
 
 @Component({
 	selector: 'app-preset-selector',
-	imports: [HlmPopoverImports, HlmCommandImports, NgIcon, HlmIcon, HlmButton, BrnCommandEmpty],
+	imports: [HlmPopoverImports, HlmCommandImports, NgIcon, HlmIconImports, HlmButtonImports, BrnCommandEmpty],
 	providers: [provideIcons({ lucideSearch, lucideCheck, lucideChevronsUpDown })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `

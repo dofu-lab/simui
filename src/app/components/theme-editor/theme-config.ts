@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { EditorColorConfig } from './editor-color-config';
 import { ThemeLayoutComponent } from './layout';
 
 @Component({
 	selector: 'sim-theme-config',
-	imports: [EditorColorConfig, ThemeLayoutComponent, HlmButton],
+	imports: [EditorColorConfig, ThemeLayoutComponent, HlmButtonImports],
 	template: `
 		<div class="flex size-full flex-col gap-0">
 			<div

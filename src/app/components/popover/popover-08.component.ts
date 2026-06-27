@@ -1,11 +1,17 @@
 import { Component, signal } from '@angular/core';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
+
+interface User {
+	name: string;
+	initials: string;
+	avatar: string;
+}
 
 @Component({
 	selector: 'sim-popover-08',
-	imports: [HlmButton, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmPopoverImports],
+	imports: [HlmButtonImports, HlmAvatarImports, HlmPopoverImports],
 	template: `
 		<hlm-popover sideOffset="5">
 			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm" class="pl-3">
@@ -17,7 +23,6 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 					<span class="text-sm font-medium">{{ currentAccount().name }}</span>
 				</div>
 			</button>
-
 			<div hlmPopoverContent class="grid w-64 gap-2 p-0" *hlmPopoverPortal="let ctx">
 				<div class="px-2 pt-2">
 					<div class="px-2 pt-2 text-sm font-semibold">Switch account</div>
@@ -35,9 +40,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 						}
 					</ul>
 				</div>
-
 				<hr class="border-muted" />
-
 				<div class="grid gap-2 p-2 pt-0">
 					<button hlmBtn variant="outline" size="sm">Manage account</button>
 					<button hlmBtn variant="ghost" size="sm">Sign out</button>
@@ -47,15 +50,15 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	`,
 })
 export class Popover08Component {
-	public readonly users = [
+	protected readonly users: User[] = [
 		{ name: 'Alan Cooper', initials: 'AC', avatar: 'assets/avatars/alan-cooper.png' },
 		{ name: 'Skylar Dias', initials: 'JW', avatar: 'assets/avatars/skylar-dias.png' },
 		{ name: 'Alexis Sears', initials: 'AS', avatar: 'assets/avatars/alexis-sears.png' },
 	];
 
-	currentAccount = signal(this.users[0]);
+	protected readonly currentAccount = signal(this.users[0]);
 
-	public switchUser(user: any, ctx: { close: () => void }): void {
+	public switchUser(user: User, ctx: { close: () => void }): void {
 		this.currentAccount.set(user);
 		ctx.close();
 	}

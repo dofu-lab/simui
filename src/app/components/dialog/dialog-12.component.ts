@@ -1,18 +1,18 @@
 import { afterNextRender, Component, computed, model, OnDestroy, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
+import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'sim-dialog-12',
-	imports: [FormsModule, HlmButton, HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot, BrnInputOtp, HlmDialogImports],
+	imports: [FormsModule, HlmButtonImports, HlmInputOtpImports, BrnInputOtpImports, HlmDialogImports],
 	template: `
 		<hlm-dialog>
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">OTP</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[400px] max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
+				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[400px] max-w-[calc(100%-2rem)] -translate-x-1/2 gap-3 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
 				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col items-center gap-1">
 					<div class="flex size-9 shrink-0 items-center justify-center">
@@ -82,20 +82,25 @@ import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm
 	`,
 })
 export class Dialog12Component implements OnDestroy {
-	public dialogRef = viewChild(HlmDialog);
-	public defaultOtpValue = '1234';
-	public otpValue = model<string>('');
-	public countdown = signal(60);
-	public isVerified = signal(false);
-	public isInvalidCode = signal(false);
-	public isResendDisabled = computed(() => this.countdown() > 0);
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly defaultOtpValue = '1234';
+	protected readonly otpValue = model<string>('');
+	protected readonly countdown = signal(60);
+	protected readonly isVerified = signal(false);
+	protected readonly isInvalidCode = signal(false);
+	protected readonly isResendDisabled = computed(() => this.countdown() > 0);
 	private _intervalId?: NodeJS.Timeout;
 
 	constructor() {
 		afterNextRender(() => this.startCountdown());
 	}
 
-	otpChanged(event: string) {
+	ngOnDestroy() {
+		this.otpValue.set('');
+		this.stopCountdown();
+	}
+
+	protected otpChanged(event: string): void {
 		this.otpValue.set(event);
 
 		// Reset validation state when input is empty
@@ -121,29 +126,23 @@ export class Dialog12Component implements OnDestroy {
 		}
 	}
 
-	closeDialog() {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 
-	resendCode() {
+	protected resendCode(): void {
 		this.resetCountdown();
 	}
 
-	resendOtp() {
+	protected resendOtp(): void {
 		this.resetCountdown();
 	}
-
-	ngOnDestroy() {
-		this.otpValue.set('');
-		this.stopCountdown();
-	}
-
-	private resetCountdown() {
+	private resetCountdown(): void {
 		this.countdown.set(60);
 		this.startCountdown();
 	}
 
-	private startCountdown() {
+	private startCountdown(): void {
 		this.stopCountdown();
 		this._intervalId = setInterval(() => {
 			this.countdown.update((countdown) => Math.max(0, countdown - 1));
@@ -153,7 +152,7 @@ export class Dialog12Component implements OnDestroy {
 		}, 1000);
 	}
 
-	private stopCountdown() {
+	private stopCountdown(): void {
 		if (this._intervalId) {
 			clearInterval(this._intervalId);
 			this._intervalId = undefined;

@@ -2,12 +2,12 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucidePaperclip, lucideUpload, lucideX } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState } from '@sim/file';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 @Component({
 	selector: 'sim-file-upload-08',
+	imports: [NgIcon, FileDragDropDirective, HlmButtonImports, HlmIconImports],
 	providers: [provideIcons({ lucideX, lucideCircleAlert, lucideUpload, lucidePaperclip })],
-	imports: [HlmButton, HlmIcon, NgIcon, FileDragDropDirective],
 	host: {
 		class: 'w-full',
 	},
@@ -15,9 +15,9 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 		<div class="flex w-full flex-col items-center justify-center">
 			<div class="relative flex w-full flex-col gap-2">
 				<div
-					fileDragDrop
+					simFileDragDrop
 					role="button"
-					class="border-input hover:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-40 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors motion-reduce:transition-none has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:items-start! has-[input:focus]:ring-[3px]"
+					class="border-input hover:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-40 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:items-start! has-[input:focus]:ring-[3px] motion-reduce:transition-none"
 					dragClass="bg-accent/50"
 					[maxSize]="maxSize"
 					[initialFiles]="initialFiles()"
@@ -43,7 +43,7 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 										hlmBtn
 										size="icon"
 										variant="ghost"
-										class="focus-visible:border-ring focus-visible:ring-ring/50 text-muted-foreground/80 hover:text-foreground -me-2 inline-flex size-8 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none hover:bg-transparent focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+										class="focus-visible:border-ring focus-visible:ring-ring/50 text-muted-foreground/80 hover:text-foreground ease -me-2 inline-flex size-8 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-[color,box-shadow] duration-150 outline-none hover:bg-transparent focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 motion-reduce:transition-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
 										(click)="onRemoveImage(file.id)">
 										<ng-icon hlm name="lucideX" size="sm" />
 									</button>
@@ -67,13 +67,13 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 	`,
 })
 export class FileUpload08Component {
-	fileUploadDirective = viewChild(FileDragDropDirective);
-	maxSize = 10 * 1024 * 1024; // 10MB
-	filesState = signal<FileUploadState | null>(null);
-	files = computed(() => this.filesState()?.files ?? []);
-	errors = computed(() => this.filesState()?.errors ?? []);
-	disabled = computed(() => this.files().length >= 1);
-	initialFiles = signal<FileMetadata[]>([
+	protected readonly fileUploadDirective = viewChild(FileDragDropDirective);
+	protected readonly maxSize = 10 * 1024 * 1024; // 10MB
+	protected readonly filesState = signal<FileUploadState | null>(null);
+	protected readonly files = computed(() => this.filesState()?.files ?? []);
+	protected readonly errors = computed(() => this.filesState()?.errors ?? []);
+	protected readonly disabled = computed(() => this.files().length >= 1);
+	protected readonly initialFiles = signal<FileMetadata[]>([
 		{
 			url: 'assets/backgrounds/bg-03.jpg',
 			name: 'background-01.jpg',
@@ -83,22 +83,22 @@ export class FileUpload08Component {
 		},
 	]);
 
-	onFileSelected(event: Event): void {
+	protected onFileSelected(event: Event): void {
 		const input = event.target as HTMLInputElement;
 		if (input.files && input.files.length > 0) {
 			this.fileUploadDirective()?.addFiles(input.files);
 		}
 	}
 
-	onFileStateChange(event: FileUploadState) {
+	protected onFileStateChange(event: FileUploadState): void {
 		this.filesState.set(event);
 	}
 
-	removeAllFiles() {
+	protected removeAllFiles(): void {
 		this.fileUploadDirective()?.clearFiles();
 	}
 
-	onRemoveImage(id: string): void {
+	protected onRemoveImage(id: string): void {
 		this.fileUploadDirective()?.removeFile(id);
 	}
 }

@@ -1,25 +1,24 @@
 import { Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMail, lucideX } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'sim-banner-03',
-	imports: [NgIcon, HlmIcon, HlmButton, HlmInput],
+	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmInputImports],
 	providers: [provideIcons({ lucideMail, lucideX })],
 	host: {
 		class: 'w-full',
 	},
 	template: `
 		@if (isVisible()) {
-			<div class="bg-background z-50 rounded-md border px-4 py-3 shadow-lg">
+			<div class="bg-background rounded-md border px-4 py-3 shadow-lg">
 				<div class="relative flex gap-2 md:items-center">
 					<div class="flex grow flex-col justify-between gap-3 md:flex-row md:items-center">
 						<div class="flex items-start gap-3 md:items-center">
-							<div
-								class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border shadow-xs md:h-12 md:w-12">
+							<div class="flex size-10 shrink-0 items-center justify-center rounded-lg border shadow-xs md:size-12">
 								<ng-icon hlm name="lucideMail" />
 							</div>
 							<div class="flex flex-col">
@@ -42,7 +41,7 @@ import { HlmInput } from '@spartan-ng/helm/input';
 							hlm
 							name="lucideX"
 							size="sm"
-							class="text-primary opacity-60 transition-opacity motion-reduce:transition-none group-hover:opacity-100" />
+							class="text-primary opacity-60 transition-opacity group-hover:opacity-100 motion-reduce:transition-none" />
 					</button>
 				</div>
 			</div>
@@ -50,9 +49,9 @@ import { HlmInput } from '@spartan-ng/helm/input';
 	`,
 })
 export class Banner03Component {
-	isVisible = signal<boolean>(true);
+	protected readonly isVisible = signal<boolean>(true);
 
-	onHideBanner() {
+	protected onHideBanner(): void {
 		this.isVisible.set(false);
 	}
 }

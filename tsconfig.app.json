@@ -5,7 +5,7 @@
 		"types": ["node"]
 	},
 	"files": ["src/main.ts", "src/main.server.ts", "src/server.ts"],
-	"include": ["src/**/*.d.ts", "src/libs/ui/**/src/**/*.ts"],
+	"include": ["src/**/*.d.ts", "src/libs/ui/**/*.ts"],
 	"angularCompilerOptions": {
 		"extendedDiagnostics": {
 			"checks": {

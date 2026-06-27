@@ -5,8 +5,8 @@ import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'sim-badge-17',
+	imports: [NgIcon, HlmBadgeImports],
 	providers: [provideIcons({ lucideArrowRight })],
-	imports: [HlmBadgeImports, NgIcon],
 	template: `
 		<span hlmBadge variant="outline" class="h-fit gap-1.5 rounded-md py-[3px] pl-[3px]">
 			<span hlmBadge variant="outline" class="gap-1.5 rounded-sm">

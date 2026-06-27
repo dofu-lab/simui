@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { type CellContext, injectFlexRenderContext } from '@tanstack/angular-table';
 import type { Task } from '../services/tasks.models';
 
 @Component({
 	selector: 'spartan-action-dropdown-tasks',
-	imports: [HlmButton, NgIcon, HlmIcon, HlmDropdownMenuImports],
+	imports: [HlmButtonImports, NgIcon, HlmIconImports, HlmDropdownMenuImports],
 	providers: [provideIcons({ lucideEllipsis })],
 	template: `
 		<button hlmBtn variant="ghost" class="h-6 w-6 p-0.5" align="end" [hlmDropdownMenuTrigger]="menu">

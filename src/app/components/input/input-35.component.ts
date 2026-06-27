@@ -2,15 +2,15 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
-import { maskitoTimeOptionsGenerator } from '@maskito/kit';
+import { maskitoTime } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideClock } from '@ng-icons/lucide';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-35',
-	imports: [HlmLabel, FormsModule, MaskitoDirective, NgIcon, HlmInputGroupImports],
+	imports: [FormsModule, MaskitoDirective, NgIcon, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideClock })],
 	host: { class: 'w-full' },
 	template: `
@@ -24,5 +24,5 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input35Component {
-	protected readonly mask: MaskitoOptions = maskitoTimeOptionsGenerator({ mode: 'HH:MM AA' });
+	protected readonly mask: MaskitoOptions = maskitoTime({ mode: 'HH:MM AA' });
 }

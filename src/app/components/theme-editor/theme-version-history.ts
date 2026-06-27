@@ -6,12 +6,12 @@ import { Component, computed, inject, input, resource } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideHistory, lucideLoaderCircle, lucideUndo2, lucideZap } from '@ng-icons/lucide';
-import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSheetImports } from '@spartan-ng/helm/sheet';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import { firstValueFrom } from 'rxjs';
 import { HistoryDatePipe } from '../../pipes/history-date.pipe';
@@ -20,11 +20,11 @@ import { HistoryDatePipe } from '../../pipes/history-date.pipe';
 	selector: 'sim-theme-version-history',
 	imports: [
 		NgIcon,
-		HlmIcon,
-		HlmBadge,
-		HlmButton,
+		HlmIconImports,
+		HlmBadgeImports,
+		HlmButtonImports,
 		HistoryDatePipe,
-		HlmSpinner,
+		HlmSpinnerImports,
 		RouterLink,
 		HlmSheetImports,
 		HlmEmptyImports,

@@ -11,6 +11,13 @@ import {
 import { BrnAccordionImports } from '@spartan-ng/brain/accordion';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
+interface AccordionItem {
+	id: string;
+	icon: string;
+	title: string;
+	content: string;
+}
+
 @Component({
 	selector: 'sim-accordion-05',
 	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon],
@@ -27,7 +34,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 							<button
 								brnAccordionTrigger
 								data-slot="accordion-trigger"
-								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! **:data-[slot=accordion-support-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-4 text-start text-sm font-medium transition-all motion-reduce:transition-none outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-support-icon]:text-[calc(var(--spacing)*4)] **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)]">
+								class="focus-visible:ring-ring/50 focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground! **:data-[slot=accordion-support-icon]:text-muted-foreground! group/accordion-trigger relative flex flex-1 items-start justify-between rounded-md border border-transparent py-4 text-start text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-support-icon]:text-[calc(var(--spacing)*4)] **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:text-[calc(var(--spacing)*4)] motion-reduce:transition-none">
 								<ng-icon
 									data-slot="accordion-support-icon"
 									[name]="item.icon"
@@ -53,7 +60,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 	`,
 })
 export class Accordion05Component {
-	protected readonly items = [
+	protected readonly items: AccordionItem[] = [
 		{
 			id: 'acc-05-1',
 			icon: 'lucideGroup',

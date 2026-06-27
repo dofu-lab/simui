@@ -1,20 +1,20 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-notification-28',
 	providers: [DatePipe],
-	imports: [HlmButton],
+	imports: [HlmButtonImports],
 	template: `
 		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">Success</button>
 	`,
 })
 export class Notification28Component {
-	datePipe = inject(DatePipe);
+	private readonly datePipe = inject(DatePipe);
 
-	showNotification() {
+	protected showNotification(): void {
 		toast.success('Request is approved', {
 			description: 'Your manager has approved your request.',
 		});

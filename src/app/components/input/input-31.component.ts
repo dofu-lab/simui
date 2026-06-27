@@ -1,11 +1,11 @@
 import { Component, computed, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-31',
-	imports: [HlmLabel, FormsModule, HlmInputGroupImports],
+	imports: [FormsModule, HlmLabelImports, HlmInputGroupImports],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-31" class="mb-2 text-sm">Input with character limit</label>

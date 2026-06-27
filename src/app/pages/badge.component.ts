@@ -6,11 +6,11 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-badge',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header
+		<sim-component-header
 			name="Badge"
 			description="Badges help highlight important information, such as notifications or
         new and unread messages." />
-		<page-grid [components]="components" />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class BadgeComponent {

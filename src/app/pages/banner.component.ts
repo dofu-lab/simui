@@ -6,11 +6,11 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-banner',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header
+		<sim-component-header
 			name="Banner"
 			description="A banner is a graphic image that typically spans the width of a website
         and is a prime location to communicate a message" />
-		<page-grid [components]="components" />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class BannerComponent {

@@ -287,7 +287,7 @@ export class AuthService implements OnDestroy {
 	signOut(): void {
 		this.clearRefreshTimer();
 		// Revoke refresh token server-side (fire-and-forget)
-		this.http.post(`${this.apiUrl}/signout`, {}, { withCredentials: true }).subscribe({ error: () => {} });
+		this.http.post(`${this.apiUrl}/signout`, {}, { withCredentials: true }).subscribe();
 		this.analyticsService.resetUser();
 		this.clearAuthState();
 		window.location.reload();

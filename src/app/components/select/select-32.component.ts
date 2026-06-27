@@ -3,12 +3,12 @@ import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
-type Option = {
+interface Option {
 	value: string;
 	label: string;
 	avatarUrl: string;
 	username: string;
-};
+}
 
 @Component({
 	selector: 'sim-select-32',

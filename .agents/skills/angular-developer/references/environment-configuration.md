@@ -31,21 +31,21 @@ This creates environment-specific files such as:
 ```ts
 // environment.ts
 export const environment = {
-  apiUrl: 'https://api.example.com',
+	apiUrl: 'https://api.example.com',
 };
 ```
 
 ```ts
 // environment.development.ts
 export const environment = {
-  apiUrl: 'http://localhost:3000',
+	apiUrl: 'http://localhost:3000',
 };
 ```
 
 Import the environment where needed:
 
 ```ts
-import {environment} from '../environments/environment';
+import { environment } from '../environments/environment';
 
 const apiUrl = environment.apiUrl;
 ```
@@ -72,44 +72,44 @@ initialization.
 ```json
 // src/assets/config.json
 {
-  "apiUrl": "https://api.example.com"
+	"apiUrl": "https://api.example.com"
 }
 ```
 
 Load the configuration before the application starts:
 
 ```ts
-import {Service, inject} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Service, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Service()
 export class AppConfigService {
-  private config!: {apiUrl: string};
+	private config!: { apiUrl: string };
 
-  private readonly http = inject(HttpClient);
+	private readonly http = inject(HttpClient);
 
-  loadConfig() {
-    return this.http.get<AppConfig>('/assets/config.json').pipe(
-      tap((data) => {
-        this.config = data;
-      }),
-    );
-  }
+	loadConfig() {
+		return this.http.get<AppConfig>('/assets/config.json').pipe(
+			tap((data) => {
+				this.config = data;
+			}),
+		);
+	}
 
-  get apiUrl(): string {
-    return this.config.apiUrl;
-  }
+	get apiUrl(): string {
+		return this.config.apiUrl;
+	}
 }
 ```
 
 Register the loader during application bootstrap:
 
 ```ts
-import {provideAppInitializer, inject} from '@angular/core';
+import { provideAppInitializer, inject } from '@angular/core';
 
 provideAppInitializer(() => {
-  const config = inject(AppConfigService);
-  return config.loadConfig();
+	const config = inject(AppConfigService);
+	return config.loadConfig();
 });
 ```
 

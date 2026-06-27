@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 
 @Component({
 	selector: 'app-empty-avatar-group',
-	imports: [HlmEmptyImports, HlmAvatarImports, HlmButton, NgIcon],
+	imports: [HlmEmptyImports, HlmAvatarImports, HlmButtonImports, NgIcon],
 	providers: [provideIcons({ lucidePlus })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `

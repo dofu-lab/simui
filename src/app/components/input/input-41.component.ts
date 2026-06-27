@@ -1,16 +1,22 @@
 import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
-import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
+import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-41',
-	imports: [HlmLabel, HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSlot, BrnInputOtp, FormsModule],
+	imports: [FormsModule, HlmLabelImports, HlmInputOtpImports, BrnInputOtpImports],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-41" class="mb-2 text-sm">OTP input single</label>
-		<brn-input-otp hlm maxLength="4" inputClass="disabled:cursor-not-allowed" class="mt-2" [ngModel]="otpValue()">
+		<brn-input-otp
+			id="input-41"
+			hlm
+			maxLength="4"
+			inputClass="disabled:cursor-not-allowed"
+			class="mt-2"
+			[ngModel]="otpValue()">
 			<div
 				hlmInputOtpGroup
 				class="flex items-center justify-center -space-x-px [&>hlm-input-otp-slot]:first:rounded-l-md [&>hlm-input-otp-slot]:last:rounded-r-md">
@@ -23,5 +29,5 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input41Component {
-	readonly otpValue = model<string>('');
+	protected readonly otpValue = model<string>('');
 }

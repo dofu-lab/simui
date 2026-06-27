@@ -6,11 +6,11 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	selector: 'app-breadcrumb',
 	imports: [PageGridComponent, ComponentHeaderComponent],
 	template: `
-		<component-header
+		<sim-component-header
 			name="Breadcrumb"
 			description="A breadcrumb is a navigation aid that helps users keep track of their
         location within a website." />
-		<page-grid [components]="components" />
+		<sim-page-grid [components]="components" />
 	`,
 })
 export class BreadcrumbComponent {

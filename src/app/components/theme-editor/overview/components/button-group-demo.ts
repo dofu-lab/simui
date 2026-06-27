@@ -12,14 +12,14 @@ import {
 	lucideTag,
 	lucideTrash,
 } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'app-button-group-demo',
-	imports: [HlmButtonGroupImports, HlmDropdownMenuImports, HlmButton, NgIcon, HlmIcon],
+	imports: [HlmButtonGroupImports, HlmDropdownMenuImports, HlmButtonImports, NgIcon, HlmIconImports],
 	providers: [
 		provideIcons({
 			lucideArrowLeft,

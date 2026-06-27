@@ -37,7 +37,7 @@ import { TasksExample } from './tasks/tasks';
 						@defer (when tab() === 'examples') {
 							<app-overview-example />
 						} @placeholder {
-							<div class="flex h-40 items-center justify-center text-sm text-muted-foreground">Loading...</div>
+							<div class="text-muted-foreground flex h-40 items-center justify-center text-sm">Loading...</div>
 						}
 					</div>
 				</div>
@@ -45,14 +45,14 @@ import { TasksExample } from './tasks/tasks';
 					@defer (when tab() === 'tasks') {
 						<app-tasks-example />
 					} @placeholder {
-						<div class="flex h-40 items-center justify-center text-sm text-muted-foreground">Loading...</div>
+						<div class="text-muted-foreground flex h-40 items-center justify-center text-sm">Loading...</div>
 					}
 				</div>
 				<div hlmTabsContent="playground" class="mt-0 size-full p-4">
 					@defer (when tab() === 'playground') {
 						<app-playground-example />
 					} @placeholder {
-						<div class="flex h-40 items-center justify-center text-sm text-muted-foreground">Loading...</div>
+						<div class="text-muted-foreground flex h-40 items-center justify-center text-sm">Loading...</div>
 					}
 				</div>
 				<div hlmTabsContent="authentication" class="mt-0 size-full p-4">

@@ -8,6 +8,11 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
+interface FrameworkOption {
+	label: string;
+	value: string;
+}
+
 @Component({
 	selector: 'sim-card-01',
 	imports: [
@@ -66,7 +71,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 	`,
 })
 export class Card01Component {
-	protected readonly frameworkOptions = [
+	protected readonly frameworkOptions: FrameworkOption[] = [
 		{ label: 'Next.js', value: 'next' },
 		{ label: 'Vite', value: 'vite' },
 		{ label: 'Remix', value: 'remix' },

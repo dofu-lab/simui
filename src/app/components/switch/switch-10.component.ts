@@ -1,12 +1,12 @@
 import { Component, computed, model } from '@angular/core';
 import { IconType, NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMoon, lucideSun } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'sim-switch-10',
-	imports: [HlmSwitch, NgIcon, HlmIcon],
+	imports: [NgIcon, HlmSwitchImports, HlmIconImports],
 	providers: [provideIcons({ lucideSun, lucideMoon })],
 	template: `
 		<div class="flex items-center gap-2">
@@ -19,6 +19,6 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 	`,
 })
 export class Switch10Component {
-	readonly value = model(true);
-	readonly computedIcon = computed<IconType>(() => (this.value() ? 'lucideSun' : 'lucideMoon'));
+	protected readonly value = model(true);
+	protected readonly computedIcon = computed<IconType>(() => (this.value() ? 'lucideSun' : 'lucideMoon'));
 }

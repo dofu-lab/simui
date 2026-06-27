@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-19',
-	imports: [HlmLabel, HlmInput, HlmButton],
+	imports: [HlmLabelImports, HlmInputImports, HlmButtonImports],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-19" class="mb-2 text-sm">Input with end button</label>

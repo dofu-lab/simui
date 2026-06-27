@@ -2,12 +2,12 @@ import { NgClass } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideStar } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-44',
+	imports: [NgClass, NgIcon, HlmButtonImports],
 	providers: [provideIcons({ lucideStar })],
-	imports: [HlmButton, NgClass, NgIcon],
 	template: `
 		<button hlmBtn size="sm" class="shadow-none focus-visible:z-10" (click)="toggleStart()">
 			<ng-icon
@@ -25,17 +25,17 @@ import { HlmButton } from '@spartan-ng/helm/button';
 	`,
 })
 export class Button44Component {
+	protected readonly defaultStars = 699;
 	protected readonly stared = signal<boolean>(false);
 	protected readonly animated = signal<boolean>(false);
-	protected readonly defaultStars = 699;
 	protected readonly starCount = computed(() => (this.stared() ? this.defaultStars + 1 : this.defaultStars));
 	protected readonly starLabel = computed(() => (this.stared() ? 'Unstar' : 'Star'));
 
-	protected readonly toggleStart = (): void => {
+	protected toggleStart(): void {
 		this.stared.set(!this.stared());
 		this.animated.set(true);
 		setTimeout(() => {
 			this.animated.set(false);
 		}, 300);
-	};
+	}
 }

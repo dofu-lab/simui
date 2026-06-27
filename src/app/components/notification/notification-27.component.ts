@@ -1,20 +1,20 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-notification-27',
+	imports: [HlmButtonImports],
 	providers: [DatePipe],
-	imports: [HlmButton],
 	template: `
 		<button hlmBtn variant="outline" size="sm" class="h-8" (click)="showNotification()">Basic</button>
 	`,
 })
 export class Notification27Component {
-	datePipe = inject(DatePipe);
+	private readonly datePipe = inject(DatePipe);
 
-	showNotification() {
+	protected showNotification(): void {
 		toast('Your request is created!', {
 			description: this.datePipe.transform(new Date(), "EEEE, MMMM dd 'at' hh:mm:ss a") ?? '',
 		});

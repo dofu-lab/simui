@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
-import { maskitoTimeOptionsGenerator } from '@maskito/kit';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { maskitoTime } from '@maskito/kit';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-52',
-	imports: [HlmLabel, FormsModule, MaskitoDirective, HlmInput],
+	imports: [FormsModule, MaskitoDirective, HlmLabelImports, HlmInputImports],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-52" class="mb-2 text-sm">Timestamp</label>
@@ -16,5 +16,5 @@ import { HlmLabel } from '@spartan-ng/helm/label';
 	`,
 })
 export class Input52Component {
-	mask: MaskitoOptions = maskitoTimeOptionsGenerator({ mode: 'HH:MM:SS' });
+	protected readonly mask: MaskitoOptions = maskitoTime({ mode: 'HH:MM:SS' });
 }

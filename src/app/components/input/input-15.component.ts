@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-15',
-	imports: [HlmLabel, HlmInputGroupImports, HlmButtonGroupImports],
+	imports: [HlmLabelImports, HlmInputGroupImports, HlmButtonGroupImports],
 	host: { class: 'w-full' },
 	template: `
 		<label hlmLabel for="input-15" class="mb-2 text-sm">Input with end inline add-on</label>

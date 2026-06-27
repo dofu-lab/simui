@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'sim-button-12',
-	imports: [HlmButton],
+	imports: [HlmButtonImports],
 	template: `
 		<div class="flex gap-2">
 			<button hlmBtn variant="ghost" size="sm">Cancel</button>

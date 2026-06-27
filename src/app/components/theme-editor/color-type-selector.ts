@@ -5,7 +5,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 const COLOR_TYPES: ColorTypeItem[] = [
 	{ label: 'HEX', value: 'hex' },
@@ -16,7 +16,7 @@ const COLOR_TYPES: ColorTypeItem[] = [
 
 @Component({
 	selector: 'sim-color-type',
-	imports: [HlmDropdownMenuImports, HlmButtonImports, NgIcon, HlmIcon],
+	imports: [HlmDropdownMenuImports, HlmButtonImports, NgIcon, HlmIconImports],
 	providers: [provideIcons({ lucideChevronDown })],
 	template: `
 		<button hlmBtn variant="outline" [hlmDropdownMenuTrigger]="menu">

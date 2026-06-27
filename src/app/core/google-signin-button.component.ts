@@ -1,10 +1,10 @@
 import { Component, inject, input } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: 'app-google-signin-button',
-	imports: [HlmButton],
+	imports: [HlmButtonImports],
 	host: {
 		class: 'w-full',
 	},

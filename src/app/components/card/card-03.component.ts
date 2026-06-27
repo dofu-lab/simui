@@ -17,7 +17,6 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 				<h3 hlmCardTitle>Login to your account</h3>
 				<p hlmCardDescription>Enter email and password to login</p>
 			</div>
-
 			<div hlmCardContent>
 				<fieldset hlmFieldSet>
 					<div hlmFieldGroup class="gap-4">
@@ -35,7 +34,6 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 					</div>
 				</fieldset>
 			</div>
-
 			<div hlmCardFooter class="flex-col items-start gap-4 border-t pt-4!">
 				<div class="text-muted-foreground flex gap-1 text-xs">
 					<ng-icon hlm size="xs" name="lucideShieldAlert" class="mt-0.5 h-lh shrink-0" />

@@ -1,34 +1,34 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-avatar-19',
 	providers: [provideIcons({ lucidePlus })],
-	imports: [NgIcon, HlmAvatar, HlmAvatarImage, HlmAvatarFallback, HlmIcon, HlmButton],
+	imports: [NgIcon, HlmAvatarImports, HlmIconImports, HlmButtonImports],
 	template: `
 		<div class="flex gap-2">
 			<div class="flex -space-x-3.5">
-				<hlm-avatar class="border-background size-10 border-[2px]">
+				<hlm-avatar class="border-background size-10 border-2">
 					<img hlmAvatarImage src="assets/avatars/mathilde-lewis.png" alt="Mathilde Lewis" />
 					<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 				</hlm-avatar>
-				<hlm-avatar class="border-background size-10 border-[2px]">
+				<hlm-avatar class="border-background size-10 border-2">
 					<img hlmAvatarImage src="assets/avatars/alan-cooper.png" alt="Alan Cooper" />
 					<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 				</hlm-avatar>
-				<hlm-avatar class="border-background size-10 border-[2px]">
+				<hlm-avatar class="border-background size-10 border-2">
 					<img hlmAvatarImage src="assets/avatars/skylar-dias.png" alt="Skylar Dias" />
 					<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 				</hlm-avatar>
-				<hlm-avatar class="border-background size-10 border-[2px]">
+				<hlm-avatar class="border-background size-10 border-2">
 					<img hlmAvatarImage src="assets/avatars/alexis-sears.png" alt="Alexis Sears" />
 					<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 				</hlm-avatar>
-				<hlm-avatar class="border-background size-10 border-[2px]">
+				<hlm-avatar class="border-background size-10 border-2">
 					<span hlmAvatarFallback class="bg-muted text-muted-foreground text-sm">+3</span>
 				</hlm-avatar>
 			</div>

@@ -2,21 +2,21 @@ import { Component, computed } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MaskitoDirective } from '@maskito/angular';
-import { maskitoNumberOptionsGenerator, maskitoParseNumber } from '@maskito/kit';
+import { maskitoNumber, maskitoParseNumber } from '@maskito/kit';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus, lucidePlus } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'sim-input-25',
 	imports: [
-		HlmLabel,
 		MaskitoDirective,
 		NgIcon,
 		ReactiveFormsModule,
+		HlmLabelImports,
 		HlmButtonGroupImports,
 		HlmButtonImports,
 		HlmInputGroupImports,
@@ -49,7 +49,7 @@ export class Input25Component {
 		control: new FormControl('2048'),
 	});
 	protected readonly isDecreaseDisabled = computed(() => this.formValueChange()?.control === '0');
-	protected readonly numberMaskedInput = maskitoNumberOptionsGenerator({
+	protected readonly numberMaskedInput = maskitoNumber({
 		maximumFractionDigits: 2,
 		thousandSeparator: ',',
 		decimalSeparator: '.',

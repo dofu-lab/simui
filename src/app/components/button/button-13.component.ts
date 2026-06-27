@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'sim-button-13',
-	imports: [HlmButton, HlmSpinner],
+	imports: [HlmButtonImports, HlmSpinnerImports],
 	template: `
 		<button hlmBtn disabled size="sm">
 			<hlm-spinner class="size-4" />

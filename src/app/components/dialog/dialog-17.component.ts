@@ -4,16 +4,25 @@ import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCopy, lucidePlus, lucideTrash2, lucideUserPlus } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmInput } from '@spartan-ng/helm/input';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
+import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'sim-dialog-17',
 	providers: [provideIcons({ lucideUserPlus, lucidePlus, lucideTrash2, lucideCheck, lucideCopy })],
-	imports: [NgIcon, NgClass, ReactiveFormsModule, HlmIcon, HlmInput, HlmButton, HlmDialogImports, HlmTooltipImports],
+	imports: [
+		NgIcon,
+		NgClass,
+		ReactiveFormsModule,
+		HlmIconImports,
+		HlmInputImports,
+		HlmButtonImports,
+		HlmDialogImports,
+		HlmTooltipImports,
+	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Invite members</button>
@@ -68,7 +77,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 								hlmBtn
 								variant="link"
 								size="icon"
-								class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] motion-reduce:transition-none duration-150 ease outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
+								class="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 ease absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] duration-150 outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed motion-reduce:transition-none"
 								hlmTooltip="Copy to clipboard"
 								[showDelay]="200"
 								[hideDelay]="200"
@@ -101,10 +110,10 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 	`,
 })
 export class Dialog17Component {
-	public dialogRef = viewChild(HlmDialog);
-	public copied = signal<boolean>(false);
-	public clipboard = inject(Clipboard);
-	public form: FormGroup;
+	protected readonly dialogRef = viewChild(HlmDialog);
+	protected readonly copied = signal<boolean>(false);
+	protected readonly clipboard = inject(Clipboard);
+	protected readonly form: FormGroup;
 	private readonly _formBuilder = inject(FormBuilder);
 
 	constructor() {
@@ -117,19 +126,19 @@ export class Dialog17Component {
 		return this.form.get('members') as FormArray;
 	}
 
-	addMember(): void {
+	protected addMember(): void {
 		this.members.push(this._formBuilder.control('', Validators.email));
 	}
 
-	removeMember(index: number): void {
+	protected removeMember(index: number): void {
 		this.members.removeAt(index, { emitEvent: true });
 	}
 
-	closeDialog(): void {
+	protected closeDialog(): void {
 		this.dialogRef()?.close({});
 	}
 
-	onSelect(): void {
+	protected onSelect(): void {
 		this.copied.set(true);
 		this.clipboard.copy('https://simui.dev/reference/12374');
 
