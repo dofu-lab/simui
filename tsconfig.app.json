@@ -2,10 +2,12 @@
 	"extends": "./tsconfig.json",
 	"compilerOptions": {
 		"outDir": "./out-tsc/app",
+		"rootDir": "./src",
 		"types": ["node"]
 	},
 	"files": ["src/main.ts", "src/main.server.ts", "src/server.ts"],
-	"include": ["src/**/*.d.ts", "src/libs/ui/**/*.ts"],
+	"include": ["src/**/*.d.ts", "src/app/**/*.ts", "src/libs/**/*.ts"],
+	"exclude": ["src/**/*.spec.ts", "src/tools/**/*"],
 	"angularCompilerOptions": {
 		"extendedDiagnostics": {
 			"checks": {

@@ -1,6 +1,20 @@
 import { Clipboard } from '@angular/cdk/clipboard';
-import { DOCUMENT, NgComponentOutlet } from '@angular/common';
-import { Component, computed, inject, input, isDevMode, signal, Type, viewChild } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser, NgComponentOutlet } from '@angular/common';
+import {
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	Component,
+	computed,
+	ElementRef,
+	inject,
+	input,
+	isDevMode,
+	OnDestroy,
+	PLATFORM_ID,
+	signal,
+	Type,
+	viewChild,
+} from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideLink } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
@@ -9,12 +23,14 @@ import { HlmSheet, HlmSheetImports } from '@spartan-ng/helm/sheet';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
+import type { ComponentInteractionType } from '../services/analytics.service';
 import { AnalyticsService } from '../services/analytics.service';
 import { CodePreviewComponent } from './code-preview.component';
 import { CodeLoaderService } from './services/code-loader.service';
 
 @Component({
 	selector: 'sim-component-card',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [provideIcons({ lucideCode, lucideLink, lucideCheck })],
 	imports: [
 		NgIcon,
@@ -26,7 +42,14 @@ import { CodeLoaderService } from './services/code-loader.service';
 		HlmTooltipImports,
 	],
 	template: `
-		<ng-container *ngComponentOutlet="component()"></ng-container>
+		<div
+			class="contents"
+			(click)="trackDemoInteraction('click')"
+			(input)="trackDemoInteraction('input')"
+			(change)="trackDemoInteraction('change')"
+			(keydown)="trackDemoInteraction('keyboard')">
+			<ng-container *ngComponentOutlet="component()"></ng-container>
+		</div>
 		<hlm-sheet #sheet side="right">
 			<div class="absolute -top-2 right-0 flex w-full items-center justify-between px-2 pt-2">
 				<span class="text-muted-foreground/80 me-1 text-xs">
@@ -69,7 +92,12 @@ import { CodeLoaderService } from './services/code-loader.service';
 					<div class="mb-4">
 						<h4 class="mb-2 text-lg font-semibold">Installation</h4>
 						<div class="mt-3">
-							<sim-code-preview language="sh" [code]="installCommand()" [fileName]="'Install ' + componentName()" />
+							<sim-code-preview
+								language="sh"
+								analyticsCopyKind="install_cli"
+								[analyticsComponentId]="componentName()"
+								[code]="installCommand()"
+								[fileName]="'Install ' + componentName()" />
 						</div>
 						<ng-template #installTooltip><span class="flex items-center">Copy install command</span></ng-template>
 					</div>
@@ -80,7 +108,11 @@ import { CodeLoaderService } from './services/code-loader.service';
 						@if (codeLoading()) {
 							<div class="text-muted-foreground flex h-full items-center justify-center text-sm">Loading...</div>
 						} @else {
-							<sim-code-preview [code]="displayCode()" [fileName]="componentName()" />
+							<sim-code-preview
+								analyticsCopyKind="component_code"
+								[analyticsComponentId]="componentName()"
+								[code]="displayCode()"
+								[fileName]="componentName()" />
 						}
 					</div>
 					<ng-template #codeTooltip><span class="flex items-center">Copy code to clipboard</span></ng-template>
@@ -93,14 +125,18 @@ import { CodeLoaderService } from './services/code-loader.service';
 		'[id]': 'componentName()',
 	},
 })
-export class ComponentCardComponent {
+export class ComponentCardComponent implements AfterViewInit, OnDestroy {
 	protected readonly showComponentName = isDevMode();
 
 	private readonly codeLoaderService = inject(CodeLoaderService);
 	private readonly analyticsService = inject(AnalyticsService);
 	private readonly clipboard = inject(Clipboard);
 	private readonly document = inject(DOCUMENT);
+	private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+	private readonly platformId = inject(PLATFORM_ID);
 	private readonly sheetRef = viewChild<HlmSheet>('sheet');
+	private intersectionObserver?: IntersectionObserver;
+	private demoInteractionTracked = false;
 
 	public readonly component = input.required<Type<any> | null>();
 	public readonly componentName = input.required<string>();
@@ -115,12 +151,27 @@ export class ComponentCardComponent {
 	protected readonly displayCode = signal<string>('');
 	protected readonly codeLoading = signal<boolean>(false);
 	protected readonly linkCopied = signal<boolean>(false);
-	protected readonly cliCopied = signal<boolean>(false);
-	protected readonly installCopied = signal<boolean>(false);
-	protected readonly selectedManager = signal<string>('pnpm');
-	protected readonly codeCopied = signal<boolean>(false);
 	protected readonly installCommand = computed(() => `npx ${this.cliScope()} add ${this.componentName()}`);
-	protected readonly cliCommand = computed(() => `npx ${this.cliScope()} add ${this.componentName()}`);
+
+	ngAfterViewInit(): void {
+		if (!isPlatformBrowser(this.platformId) || typeof IntersectionObserver === 'undefined') return;
+
+		this.intersectionObserver = new IntersectionObserver(
+			(entries) => {
+				if (!entries.some((entry) => entry.isIntersecting)) return;
+
+				this.analyticsService.trackComponentViewed(this.componentName());
+				this.intersectionObserver?.disconnect();
+				this.intersectionObserver = undefined;
+			},
+			{ threshold: 0.5 },
+		);
+		this.intersectionObserver.observe(this.elementRef.nativeElement);
+	}
+
+	ngOnDestroy(): void {
+		this.intersectionObserver?.disconnect();
+	}
 
 	protected styleClasses = computed(() => {
 		return this.itemStyle() === 1
@@ -169,41 +220,12 @@ export class ComponentCardComponent {
 		this.clipboard.copy(url);
 		this.linkCopied.set(true);
 		setTimeout(() => this.linkCopied.set(false), 3000);
-		this.analyticsService.trackEvent('component_shared', { component: this.componentName() });
-	}
-
-	protected copyCliCommand(): void {
-		const cmd = this.cliCommand();
-		this.clipboard.copy(cmd);
-		this.cliCopied.set(true);
-		setTimeout(() => this.cliCopied.set(false), 3000);
-		this.analyticsService.trackEvent('cli_copied', { component: this.componentName(), command: cmd });
-	}
-
-	protected copyInstallCommand(): void {
-		const cmd = this.installCommand();
-		this.clipboard.copy(cmd);
-		this.installCopied.set(true);
-		setTimeout(() => this.installCopied.set(false), 3000);
-		this.analyticsService.trackEvent('install_cmd_copied', {
-			component: this.componentName(),
-			manager: this.selectedManager(),
-			command: cmd,
-		});
-	}
-
-	protected copyCode(): void {
-		const txt = this.displayCode();
-		if (!txt) return;
-		this.clipboard.copy(txt);
-		this.codeCopied.set(true);
-		setTimeout(() => this.codeCopied.set(false), 3000);
-		this.analyticsService.trackEvent('code_copied', { component: this.componentName() });
+		this.analyticsService.trackComponentShared(this.componentName());
 	}
 
 	protected trackCodeClick(): void {
 		this.sheetRef()?.open();
-		this.analyticsService.trackEvent('code_view', { component: this.componentName() });
+		this.analyticsService.trackComponentCodeSheetOpened(this.componentName());
 		if (!this.displayCode()) {
 			this.codeLoading.set(true);
 			this.codeLoaderService.loadComponentCode(this.componentName()).subscribe({
@@ -214,5 +236,12 @@ export class ComponentCardComponent {
 				error: () => this.codeLoading.set(false),
 			});
 		}
+	}
+
+	protected trackDemoInteraction(interactionType: ComponentInteractionType): void {
+		if (this.demoInteractionTracked) return;
+
+		this.demoInteractionTracked = true;
+		this.analyticsService.trackComponentDemoInteracted(this.componentName(), interactionType);
 	}
 }

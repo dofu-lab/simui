@@ -15,6 +15,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-typescript';
+import type { AnalyticsCopyKind } from '../services/analytics.service';
 import { AnalyticsService } from '../services/analytics.service';
 
 declare const Prism: typeof import('prismjs');
@@ -276,6 +277,8 @@ export class CodePreviewComponent {
 	protected readonly _copied = signal(false);
 
 	public readonly fileName = input('');
+	public readonly analyticsComponentId = input<string | undefined>();
+	public readonly analyticsCopyKind = input<AnalyticsCopyKind>('generic_code');
 
 	protected readonly _disableCopy = signal(false);
 	@Input({ transform: booleanAttribute })
@@ -351,6 +354,24 @@ export class CodePreviewComponent {
 		this._clipboard.copy(this._code);
 		this._copied.set(true);
 		setTimeout(() => this._copied.set(false), 3000);
+
+		const componentId = this.analyticsComponentId();
+		const copyKind = this.analyticsCopyKind();
+
+		if (componentId && copyKind === 'install_cli') {
+			this._analyticsService.trackInstallCliCopied(componentId, this._code);
+			return;
+		}
+
+		if (componentId && copyKind === 'component_code') {
+			this._analyticsService.trackComponentCodeCopied(componentId, {
+				copyKind,
+				fileName: this.fileName() || undefined,
+				language: this._language(),
+			});
+			return;
+		}
+
 		this._analyticsService.trackEvent('code_copied', {
 			language: this._language(),
 			file_name: this.fileName() || undefined,
