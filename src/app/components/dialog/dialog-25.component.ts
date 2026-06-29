@@ -14,7 +14,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Meeting invitation</button>
-			<hlm-dialog-content class="w-[calc(100vw-2rem)] gap-0 p-0 sm:max-w-[400px]" *hlmDialogPortal="let ctx">
+			<hlm-dialog-content
+				class="max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] overflow-y-auto p-0 sm:max-w-[400px]"
+				*hlmDialogPortal="let ctx">
 				<div class="flex items-center justify-center pt-6">
 					<div class="flex h-14 w-16 flex-col rounded-lg border text-center">
 						<div class="bg-muted flex h-6 items-center justify-center text-xs">JAN</div>

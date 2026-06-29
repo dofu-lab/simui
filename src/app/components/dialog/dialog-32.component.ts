@@ -23,7 +23,9 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">2FA</button>
-			<hlm-dialog-content class="w-[calc(100vw-2rem)] gap-0 sm:max-w-lg" *hlmDialogPortal="let ctx">
+			<hlm-dialog-content
+				class="max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] gap-0 overflow-y-auto sm:max-w-lg"
+				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col gap-6">
 					<div class="flex flex-col gap-4">
 						<div class="flex size-11 items-center justify-center rounded-lg border">

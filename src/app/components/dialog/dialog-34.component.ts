@@ -45,7 +45,9 @@ interface Country {
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Edit profile</button>
-			<hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[calc(100vw-2rem)] gap-0 p-0 sm:max-w-[600px]">
+			<hlm-dialog-content
+				*hlmDialogPortal="let ctx"
+				class="max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] gap-0 overflow-y-auto p-0 sm:max-w-[600px]">
 				<div class="flex-1 overflow-y-auto">
 					<div class="relative p-2">
 						<div class="shadow-xs" [hlmAspectRatio]="39 / 8">

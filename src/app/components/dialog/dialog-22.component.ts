@@ -32,7 +32,9 @@ interface PlanOption {
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button id="dialog-22-button" hlmDialogTrigger hlmBtn variant="outline">Change plan</button>
-			<hlm-dialog-content class="w-[calc(100vw-2rem)] p-0 sm:max-w-[400px]" *hlmDialogPortal="let ctx">
+			<hlm-dialog-content
+				class="max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] overflow-y-auto p-0 sm:max-w-[400px]"
+				*hlmDialogPortal="let ctx">
 				<div class="flex-1 overflow-y-auto p-6">
 					<div class="flex flex-col gap-2">
 						<div class="flex size-11 items-center justify-center rounded-full border">

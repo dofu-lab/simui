@@ -113,7 +113,9 @@ export class ProfileAvatarComponent {
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button id="dialog-23-button" hlmDialogTrigger hlmBtn variant="outline">Edit profile (2)</button>
-			<hlm-dialog-content class="w-[calc(100vw-2rem)] gap-0 p-0 sm:max-w-[500px]" *hlmDialogPortal="let ctx">
+			<hlm-dialog-content
+				class="max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] overflow-y-auto p-0 sm:max-w-[500px]"
+				*hlmDialogPortal="let ctx">
 				<hlm-dialog-header class="contents space-y-0 text-left">
 					<h2 class="mb-0 px-6 py-4 text-lg font-semibold">Edit profile</h2>
 					<div class="overflow-y-auto border-t">
