@@ -10,10 +10,8 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 	imports: [FormsModule, HlmButtonImports, HlmInputOtpImports, BrnInputOtpImports, HlmDialogImports],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">OTP</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[400px] max-w-[calc(100%-2rem)] -translate-x-1/2 gap-3 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
-				*hlmDialogPortal="let ctx">
+			<button id="dialog-12-button" hlmDialogTrigger hlmBtn variant="outline">OTP</button>
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] gap-3 sm:max-w-[400px]" *hlmDialogPortal="let ctx">
 				<div class="flex flex-col items-center gap-1">
 					<div class="flex size-9 shrink-0 items-center justify-center">
 						<svg width="36" height="36" viewBox="0 0 36 36" class="fill-primary" xmlns="http://www.w3.org/2000/svg">
@@ -31,37 +29,37 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 							</defs>
 						</svg>
 					</div>
-					@if (isVerified()) {
-						<hlm-dialog-header>
-							<h2 class="mb-0 text-center text-lg font-semibold">Code verified!</h2>
-							<p hlmDialogDescription class="text-center">Your code has been successfully verified.</p>
-						</hlm-dialog-header>
-					} @else {
-						<hlm-dialog-header>
-							<h2 class="mb-0 text-center text-lg font-semibold">Enter confirmation code</h2>
-							<p hlmDialogDescription class="text-center">
-								Check your email and enter the code - Try {{ defaultOtpValue }}
-							</p>
-						</hlm-dialog-header>
-						<brn-input-otp
-							hlm
-							maxLength="4"
-							inputClass="disabled:cursor-not-allowed"
-							class="mt-2"
-							[ngModel]="otpValue()"
-							(ngModelChange)="otpChanged($event)">
-							<div hlmInputOtpGroup class="flex items-center justify-center gap-2">
-								<hlm-input-otp-slot index="0" class="size-9 rounded-md border" />
-								<hlm-input-otp-slot index="1" class="size-9 rounded-md border" />
-								<hlm-input-otp-slot index="2" class="size-9 rounded-md border" />
-								<hlm-input-otp-slot index="3" class="size-9 rounded-md border" />
-							</div>
-						</brn-input-otp>
-						@if (isInvalidCode()) {
-							<p class="text-muted-foreground mt-4 text-center text-xs">Invalid code. Please try again.</p>
-						}
-					}
 				</div>
+				@if (isVerified()) {
+					<hlm-dialog-header>
+						<h2 class="mb-0 text-center text-lg font-semibold">Code verified!</h2>
+						<p hlmDialogDescription class="text-center">Your code has been successfully verified.</p>
+					</hlm-dialog-header>
+				} @else {
+					<hlm-dialog-header>
+						<h2 class="mb-0 text-center text-lg font-semibold">Enter confirmation code</h2>
+						<p hlmDialogDescription class="text-center">
+							Check your email and enter the code - Try {{ defaultOtpValue }}
+						</p>
+					</hlm-dialog-header>
+					<brn-input-otp
+						hlm
+						maxLength="4"
+						inputClass="disabled:cursor-not-allowed"
+						class="mt-2"
+						[ngModel]="otpValue()"
+						(ngModelChange)="otpChanged($event)">
+						<div hlmInputOtpGroup class="mx-auto flex items-center justify-center gap-2">
+							<hlm-input-otp-slot index="0" class="size-9 rounded-md border" />
+							<hlm-input-otp-slot index="1" class="size-9 rounded-md border" />
+							<hlm-input-otp-slot index="2" class="size-9 rounded-md border" />
+							<hlm-input-otp-slot index="3" class="size-9 rounded-md border" />
+						</div>
+					</brn-input-otp>
+					@if (isInvalidCode()) {
+						<p class="text-muted-foreground mt-4 text-center text-xs">Invalid code. Please try again.</p>
+					}
+				}
 				<hlm-dialog-footer class="gap-3 sm:items-center sm:justify-center sm:space-x-0">
 					@if (isVerified()) {
 						<button hlmBtn class="h-9" (click)="closeDialog()">Close</button>

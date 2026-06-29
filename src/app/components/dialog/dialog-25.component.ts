@@ -15,7 +15,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Meeting invitation</button>
 			<hlm-dialog-content
-				class="[&>button>ng-icon]:text-primary-foreground top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-100! max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
+				class="max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] overflow-y-auto p-0 sm:max-w-[400px]"
 				*hlmDialogPortal="let ctx">
 				<div class="flex items-center justify-center pt-6">
 					<div class="flex h-14 w-16 flex-col rounded-lg border text-center">
@@ -32,15 +32,15 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 						<span class="text-sm font-semibold">Details</span>
 						<div class="flex flex-col gap-2">
 							<div class="flex items-center gap-2">
-								<ng-icon name="lucideCalendar" class="text-muted-foreground h-4 w-4" />
+								<ng-icon name="lucideCalendar" class="text-muted-foreground size-4" />
 								<span class="text-muted-foreground text-sm">Friday, Jan 10, 2025</span>
 							</div>
 							<div class="flex items-center gap-2">
-								<ng-icon name="lucideClock" class="text-muted-foreground h-4 w-4" />
+								<ng-icon name="lucideClock" class="text-muted-foreground size-4" />
 								<span class="text-muted-foreground text-sm">1:30 PM - 3:30 PM</span>
 							</div>
 							<div class="flex items-center gap-2">
-								<ng-icon name="lucideBellRing" class="text-muted-foreground h-4 w-4" />
+								<ng-icon name="lucideBellRing" class="text-muted-foreground size-4" />
 								<span class="text-muted-foreground text-sm">10 min before</span>
 							</div>
 						</div>

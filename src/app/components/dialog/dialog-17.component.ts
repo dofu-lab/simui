@@ -25,10 +25,8 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 	],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Invite members</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*hlmDialogPortal="let ctx">
+			<button id="dialog-17-button" hlmDialogTrigger hlmBtn variant="outline">Invite members</button>
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] p-0 sm:max-w-[400px]" *hlmDialogPortal="let ctx">
 				<div class="flex flex-1 flex-col gap-4 overflow-y-auto p-6">
 					<div class="flex flex-col gap-2">
 						<div class="flex size-11 items-center justify-center rounded-full border">

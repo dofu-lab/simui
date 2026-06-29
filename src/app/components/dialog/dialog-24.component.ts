@@ -18,9 +18,7 @@ interface DialogStep {
 	template: `
 		<hlm-dialog>
 			<button hlmDialogTrigger hlmBtn variant="outline">Onboarding</button>
-			<hlm-dialog-content
-				class="[&>button>ng-icon]:text-primary-foreground top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*hlmDialogPortal="let ctx">
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] gap-0 p-0 sm:max-w-[400px]" *hlmDialogPortal="let ctx">
 				<div class="p-2">
 					<img src="assets/logos/logo-with-bg.png" alt="Logo" class="w-full rounded-md" width="382" height="216" />
 				</div>

@@ -4,9 +4,11 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideImagePlus, lucideX } from '@ng-icons/lucide';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
@@ -14,12 +16,12 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	imports: [NgIcon, HlmButtonImports, HlmIconImports],
 	providers: [provideIcons({ lucideImagePlus, lucideX })],
 	template: `
-		<div class="h-32">
+		<div class="group h-32">
 			<div class="bg-muted relative flex size-full items-center justify-center overflow-hidden">
 				@if (backgroundUrl()) {
 					<img class="h-full w-full object-cover object-center" alt="Background image" [src]="backgroundUrl()" />
 				}
-				<div class="absolute inset-0 flex items-center justify-center gap-2">
+				<div class="absolute inset-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
 					<button
 						hlmBtn
 						class="focus-visible:border-ring focus-visible:ring-ring/50 ease z-5 flex size-10 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] duration-150 outline-none hover:bg-black/80 focus-visible:ring-[3px] motion-reduce:transition-none"
@@ -62,14 +64,14 @@ export class ProfileBackgroundComponent {
 	imports: [NgIcon, HlmAvatarImports, HlmButtonImports, HlmIconImports],
 	providers: [provideIcons({ lucideImagePlus })],
 	template: `
-		<div class="relative -mt-10 ml-6 w-fit">
+		<div class="group relative -mt-10 ml-6 w-fit">
 			<hlm-avatar class="border-background peer size-20 border-4">
 				<img hlmAvatarImage [src]="avatarUrl()" alt="Mathilde Lewis" />
 				<span hlmAvatarFallback class="bg-primary text-primary-foreground">ML</span>
 			</hlm-avatar>
 			<button
 				hlmBtn
-				class="focus-visible:border-ring focus-visible:ring-ring/50 ease absolute top-6 left-6 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] duration-150 outline-none hover:bg-black/80 focus-visible:ring-[3px] motion-reduce:transition-none"
+				class="focus-visible:border-ring focus-visible:ring-ring/50 ease absolute top-6 left-6 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition-[color,box-shadow] duration-150 outline-none group-hover:opacity-100 hover:bg-black/80 focus-visible:ring-[3px] motion-reduce:transition-none"
 				size="icon"
 				(click)="fileInput.click()">
 				<ng-icon hlm name="lucideImagePlus" size="sm" />
@@ -104,13 +106,15 @@ export class ProfileAvatarComponent {
 		HlmInputImports,
 		HlmLabelImports,
 		HlmButtonImports,
+		HlmInputGroupImports,
+		HlmButtonGroupImports,
 	],
 	providers: [provideIcons({ lucideCheck })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Edit profile (2)</button>
+			<button id="dialog-23-button" hlmDialogTrigger hlmBtn variant="outline">Edit profile (2)</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-y-auto rounded-lg p-0 sm:max-h-[min(1000px,90vh)]"
+				class="max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] overflow-y-auto p-0 sm:max-w-[500px]"
 				*hlmDialogPortal="let ctx">
 				<hlm-dialog-header class="contents space-y-0 text-left">
 					<h2 class="mb-0 px-6 py-4 text-lg font-semibold">Edit profile</h2>
@@ -121,8 +125,8 @@ export class ProfileAvatarComponent {
 						<sim-profile-background />
 						<sim-profile-avatar />
 						<div class="flex flex-col gap-4 px-6 pt-4 pb-6" [formGroup]="form">
-							<div class="flex flex-row gap-4">
-								<label hlmLabel for="firstName" class="flex flex-col items-start gap-1">
+							<div class="flex w-full flex-row gap-2">
+								<label hlmLabel for="firstName" class="flex flex-1 flex-col items-start gap-1">
 									First name
 									<input
 										hlmInput
@@ -133,7 +137,7 @@ export class ProfileAvatarComponent {
 										formControlName="firstName"
 										placeholder="First name" />
 								</label>
-								<label hlmLabel for="lastName" class="flex flex-col items-start gap-1">
+								<label hlmLabel for="lastName" class="flex flex-1 flex-col items-start gap-1">
 									Last name
 									<input
 										hlmInput
@@ -170,20 +174,17 @@ export class ProfileAvatarComponent {
 
 							<label hlmLabel for="website" class="flex flex-col items-start gap-1">
 								Website
-								<div class="flex flex-row -space-x-px">
-									<span
-										class="text-muted-foreground border-input bg-background -z-10 inline-flex w-fit items-center rounded-s-md border px-3 text-sm font-normal">
-										https://
-									</span>
-									<input
-										hlmInput
-										size="sm"
-										class="flex-1 rounded-s-none text-sm"
-										id="website"
-										type="text"
-										formControlName="website"
-										placeholder="Website" />
-								</div>
+								<hlm-button-group class="w-full">
+									<hlm-button-group-text>
+										<label hlmLabel for="website">https://</label>
+									</hlm-button-group-text>
+									<hlm-input-group>
+										<input hlmInputGroupInput id="website" formControlName="userName" />
+										<hlm-input-group-addon align="inline-end">
+											<ng-icon name="lucideLink2" />
+										</hlm-input-group-addon>
+									</hlm-input-group>
+								</hlm-button-group>
 							</label>
 							<label hlmLabel for="biography" class="flex flex-col items-start gap-1">
 								Biography
@@ -202,7 +203,7 @@ export class ProfileAvatarComponent {
 							</label>
 						</div>
 					</div>
-					<hlm-dialog-footer class="gap-3 border-t px-6 py-4 sm:space-x-0">
+					<hlm-dialog-footer class="bg-muted/50 gap-3 border-t px-6 py-4 sm:space-x-0">
 						<button hlmBtn variant="outline" (click)="closeDialog()">Cancel</button>
 						<button hlmBtn (click)="closeDialog()">Save changes</button>
 					</hlm-dialog-footer>

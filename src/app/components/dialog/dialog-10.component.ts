@@ -9,9 +9,7 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 	template: `
 		<hlm-dialog>
 			<button hlmDialogTrigger hlmBtn variant="outline">Feedback</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-3 overflow-y-auto rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*hlmDialogPortal="let ctx">
+			<hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[calc(100vw-2rem)] sm:max-w-[400px]">
 				<hlm-dialog-header>
 					<h2 class="mb-0 text-lg font-semibold">Send us feedback</h2>
 					<span hlmDialogDescription>
@@ -23,10 +21,10 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 						<a class="text-primary hover:underline" href="#">Discord</a>
 						for community help.
 					</span>
-					<textarea hlmInput type="text" placeholder="How can we improve Sim UI?" class="min-h-20"></textarea>
 				</hlm-dialog-header>
+				<textarea hlmInput type="text" placeholder="How can we improve Sim UI?" class="min-h-20"></textarea>
 				<hlm-dialog-footer>
-					<button hlmBtn type="submit" (click)="closeDialog()">Send feedback</button>
+					<button hlmBtn size="sm" type="submit" (click)="closeDialog()">Send feedback</button>
 				</hlm-dialog-footer>
 			</hlm-dialog-content>
 		</hlm-dialog>

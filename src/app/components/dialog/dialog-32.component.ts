@@ -24,7 +24,7 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">2FA</button>
 			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-6 sm:max-h-[min(640px,80vh)] sm:max-w-lg"
+				class="max-h-[calc(100vh-2rem)] w-[calc(100vw-2rem)] gap-0 overflow-y-auto sm:max-w-lg"
 				*hlmDialogPortal="let ctx">
 				<div class="flex flex-col gap-6">
 					<div class="flex flex-col gap-4">
@@ -65,13 +65,13 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 							class="mt-2"
 							[ngModel]="otpValue()">
 							<div hlmInputOtpGroup class="flex flex-1 items-center justify-center gap-2 text-lg">
-								<hlm-input-otp-slot index="0" class="h-16 rounded-md border text-5xl sm:w-16" />
-								<hlm-input-otp-slot index="1" class="h-16 rounded-md border text-5xl sm:w-16" />
-								<hlm-input-otp-slot index="2" class="h-16 rounded-md border text-5xl sm:w-16" />
-								<span class="text-5xl">-</span>
-								<hlm-input-otp-slot index="3" class="h-16 rounded-md border text-5xl sm:w-16" />
-								<hlm-input-otp-slot index="4" class="h-16 rounded-md border text-5xl sm:w-16" />
-								<hlm-input-otp-slot index="5" class="h-16 rounded-md border text-5xl sm:w-16" />
+								<hlm-input-otp-slot index="0" class="size-12 rounded-md border text-4xl sm:size-16 sm:text-5xl" />
+								<hlm-input-otp-slot index="1" class="size-12 rounded-md border text-4xl sm:size-16 sm:text-5xl" />
+								<hlm-input-otp-slot index="2" class="size-12 rounded-md border text-4xl sm:size-16 sm:text-5xl" />
+								<span class="text-4xl sm:text-5xl">-</span>
+								<hlm-input-otp-slot index="3" class="size-12 rounded-md border text-4xl sm:size-16 sm:text-5xl" />
+								<hlm-input-otp-slot index="4" class="size-12 rounded-md border text-4xl sm:size-16 sm:text-5xl" />
+								<hlm-input-otp-slot index="5" class="size-12 rounded-md border text-4xl sm:size-16 sm:text-5xl" />
 							</div>
 						</brn-input-otp>
 

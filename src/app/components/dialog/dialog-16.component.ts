@@ -9,10 +9,8 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 	imports: [FormsModule, ReactiveFormsModule, HlmButtonImports, HlmDialogImports, HlmInputImports, HlmButtonImports],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Create account</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
-				*hlmDialogPortal="let ctx">
+			<button id="dialog-16-button" hlmDialogTrigger hlmBtn variant="outline">Create account</button>
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] sm:max-w-[400px]" *hlmDialogPortal="let ctx">
 				<form [formGroup]="form" (submit)="closeDialog()">
 					<div class="flex flex-col items-center gap-1">
 						<div class="flex shrink-0 items-center justify-center rounded-full border p-2">

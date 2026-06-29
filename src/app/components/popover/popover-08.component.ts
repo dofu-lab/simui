@@ -16,7 +16,7 @@ interface User {
 		<hlm-popover sideOffset="5">
 			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm" class="pl-3">
 				<div class="flex items-center gap-2">
-					<hlm-avatar class="h-6 w-6 border">
+					<hlm-avatar class="size-6 border">
 						<img hlmAvatarImage [src]="currentAccount().avatar" [alt]="currentAccount().name" />
 						<span hlmAvatarFallback>{{ currentAccount().initials }}</span>
 					</hlm-avatar>
@@ -31,7 +31,7 @@ interface User {
 							<li
 								(click)="switchUser(user, ctx)"
 								class="hover:bg-muted flex cursor-pointer items-center gap-2 rounded-md p-2 transition-colors motion-reduce:transition-none">
-								<hlm-avatar class="h-6 w-6 border">
+								<hlm-avatar class="size-6 border">
 									<img hlmAvatarImage [src]="user.avatar" [alt]="user.name" />
 									<span hlmAvatarFallback>{{ user.initials }}</span>
 								</hlm-avatar>

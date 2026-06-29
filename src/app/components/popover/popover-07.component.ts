@@ -9,7 +9,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 		<hlm-popover sideOffset="5">
 			<button hlmBtn hlmPopoverTrigger variant="outline" size="sm">
 				<div class="flex items-center gap-2">
-					<span class="inline-block h-4 w-4 rounded-full" [style.background]="selectedColor"></span>
+					<span class="inline-block size-4 rounded-full" [style.background]="selectedColor"></span>
 					Pick a color
 				</div>
 			</button>
@@ -18,7 +18,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 				<div class="grid w-fit grid-cols-5 gap-2">
 					@for (color of colors; track $index) {
 						<button
-							class="border-muted hover:ring-ring h-8 w-8 rounded-full border transition-colors hover:ring-2 focus:outline-none motion-reduce:transition-none"
+							class="border-muted hover:ring-ring size-8 rounded-full border transition-colors hover:ring-2 focus:outline-none motion-reduce:transition-none"
 							[style.background]="color"
 							[attr.aria-label]="color"
 							(click)="selectColor(color, ctx)"></button>

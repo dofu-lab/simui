@@ -29,10 +29,8 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 	providers: [provideIcons({ lucideWallet, lucideCreditCard })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Card update</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-100 sm:min-w-100"
-				*hlmDialogPortal="let ctx">
+			<button id="dialog-18-button" hlmDialogTrigger hlmBtn variant="outline">Card update</button>
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] sm:max-w-[400px]" *hlmDialogPortal="let ctx">
 				<div class="flex flex-col gap-2">
 					<div class="flex size-11 items-center justify-center rounded-full border">
 						<ng-icon hlm name="lucideWallet" size="sm" />
