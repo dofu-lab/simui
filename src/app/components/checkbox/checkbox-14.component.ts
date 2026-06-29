@@ -18,7 +18,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 			class="border-input has-data-[state=checked]:border-ring ease relative flex w-full rounded-md border p-4 shadow-xs transition-colors duration-200 motion-reduce:transition-none"
 			for="checkbox14">
 			<div class="flex flex-1 items-start gap-2">
-				<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border">
+				<div class="flex size-10 shrink-0 items-center justify-center rounded-md border">
 					<ng-icon hlm name="lucideRocket" class="text-primary" size="sm" />
 				</div>
 				<div class="grid grow gap-2 pt-0.5 select-none">

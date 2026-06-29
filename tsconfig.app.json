@@ -6,7 +6,7 @@
 		"types": ["node"]
 	},
 	"files": ["src/main.ts", "src/main.server.ts", "src/server.ts"],
-	"include": ["src/**/*.d.ts", "src/app/**/*.ts", "src/libs/**/*.ts"],
+	"include": ["src/**/*.d.ts", "src/app/**/*.ts", "src/libs/**/*.ts", "src/libs/ui/**/src/**/*.ts"],
 	"exclude": ["src/**/*.spec.ts", "src/tools/**/*"],
 	"angularCompilerOptions": {
 		"extendedDiagnostics": {

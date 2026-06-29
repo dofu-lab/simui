@@ -20,10 +20,8 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Sign In</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[400px] max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
-				*hlmDialogPortal="let ctx">
+			<button id="dialog-15-button" hlmDialogTrigger hlmBtn variant="outline">Sign In</button>
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] sm:max-w-[400px]" *hlmDialogPortal="let ctx">
 				<form [formGroup]="form" (submit)="closeDialog()">
 					<div class="flex flex-col items-center gap-1">
 						<div class="flex shrink-0 items-center justify-center rounded-full border p-2">
@@ -70,7 +68,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 							</label>
 							<div class="flex items-center justify-between">
 								<label hlmLabel for="remember-me" class="flex items-center">
-									<hlm-checkbox id="remember-me" formControlName="rememberMe" />
+									<hlm-checkbox inputId="remember-me" formControlName="rememberMe" />
 									Remember me
 								</label>
 								<span

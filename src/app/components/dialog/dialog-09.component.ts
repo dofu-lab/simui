@@ -12,10 +12,8 @@ import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 	imports: [NgIcon, FormsModule, HlmButtonImports, HlmDialogImports, HlmInputGroupImports],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Newsletter</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[400px] max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
-				*hlmDialogPortal="let ctx">
+			<button id="dialog-09-button" hlmDialogTrigger hlmBtn variant="outline">Newsletter</button>
+			<hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[calc(100vw-2rem)] sm:max-w-[400px]">
 				<div class="flex flex-col items-center gap-2">
 					<div class="flex size-9 shrink-0 items-center justify-center">
 						<svg width="36" height="36" viewBox="0 0 36 36" class="fill-primary" xmlns="http://www.w3.org/2000/svg">
@@ -37,16 +35,14 @@ import { HlmDialog, HlmDialogImports } from '@spartan-ng/helm/dialog';
 						<h2 class="mb-0 text-center text-lg font-semibold">Never miss an update</h2>
 						<p hlmDialogDescription class="text-center">Subscribe to receive news and special offers.</p>
 					</hlm-dialog-header>
-					<div class="w-full *:not-first:mt-2">
-						<hlm-input-group>
-							<input hlmInputGroupInput type="email" placeholder="Enter your email" />
-							<hlm-input-group-addon>
-								<ng-icon name="lucideMail" />
-							</hlm-input-group-addon>
-						</hlm-input-group>
-					</div>
 				</div>
-				<hlm-dialog-footer class="flex-row gap-3 sm:space-x-0">
+				<hlm-input-group>
+					<input hlmInputGroupInput type="email" placeholder="Enter your email" />
+					<hlm-input-group-addon>
+						<ng-icon name="lucideMail" />
+					</hlm-input-group-addon>
+				</hlm-input-group>
+				<hlm-dialog-footer class="flex-row">
 					<button hlmBtn type="submit" class="h-9 flex-1" (click)="closeDialog()">Subscribe</button>
 				</hlm-dialog-footer>
 				<p class="text-muted-foreground text-center text-xs">

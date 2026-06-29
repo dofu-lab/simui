@@ -14,10 +14,8 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	imports: [FormsModule, NgIcon, HlmButtonImports, HlmIconImports, HlmInputImports, HlmLabelImports, HlmDialogImports],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Delete project</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*hlmDialogPortal="let ctx">
+			<button id="dialog-08-button" hlmDialogTrigger hlmBtn variant="outline">Delete project</button>
+			<hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[calc(100vw-2rem)] sm:max-w-[400px]">
 				<div class="flex flex-col items-center gap-2">
 					<div class="flex size-9 shrink-0 items-center justify-center rounded-full border">
 						<ng-icon hlm name="lucideCircleAlert" size="sm"></ng-icon>
@@ -29,8 +27,9 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 							<span class="text-primary font-semibold">{{ projectName() }}.</span>
 						</p>
 					</hlm-dialog-header>
-
-					<label hlmLabel class="mt-2 w-full" for="dialog08Input">Project name</label>
+				</div>
+				<div class="flex flex-col gap-2">
+					<label hlmLabel class="w-full" for="dialog08Input">Project name</label>
 					<input
 						hlmInput
 						class="h-9 w-full"
@@ -40,11 +39,9 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 						[ngModel]="inputValue()"
 						(ngModelChange)="inputValue.set($event)" />
 				</div>
-				<hlm-dialog-footer class="flex-row gap-3 sm:space-x-0">
-					<button hlmBtn variant="outline" class="h-9 flex-1" (click)="closeDialog()">Cancel</button>
-					<button hlmBtn type="submit" class="h-9 flex-1" [disabled]="isDisabled()" (click)="closeDialog()">
-						Delete
-					</button>
+				<hlm-dialog-footer class="flex-row">
+					<button hlmBtn variant="outline" class="flex-1" (click)="closeDialog()">Cancel</button>
+					<button hlmBtn type="submit" class="flex-1" [disabled]="isDisabled()" (click)="closeDialog()">Delete</button>
 				</hlm-dialog-footer>
 			</hlm-dialog-content>
 		</hlm-dialog>

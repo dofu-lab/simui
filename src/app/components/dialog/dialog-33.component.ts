@@ -24,9 +24,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Payment method</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-120! max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-6 sm:max-h-[min(640px,80vh)] sm:max-w-120"
-				*hlmDialogPortal="let ctx">
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] gap-0 sm:max-w-[500px]" *hlmDialogPortal="let ctx">
 				<div class="flex flex-col gap-6">
 					<div class="flex flex-col gap-4">
 						<div class="flex size-11 items-center justify-center rounded-lg border">

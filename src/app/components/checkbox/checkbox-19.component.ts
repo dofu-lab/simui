@@ -19,7 +19,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 			class="border-input has-data-[state=checked]:border-ring relative flex w-full flex-col gap-0 rounded-md border shadow-xs"
 			for="checkbox19">
 			<div class="peer flex w-full flex-1 items-start gap-2 p-3">
-				<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border">
+				<div class="flex size-8 shrink-0 items-center justify-center rounded-md border">
 					<ng-icon hlm name="lucideRocket" class="text-primary" size="sm" />
 				</div>
 				<span class="grid h-8 grow items-center gap-2 select-none">Basic plan</span>
@@ -35,7 +35,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 					<span hlmBadge variant="outline" class="h-5.5 rounded-sm">
 						<div class="flex items-center justify-center gap-1.5">
-							<div class="h-3 w-3 rounded-full border-[3px] border-emerald-100 bg-emerald-500"></div>
+							<div class="size-3 rounded-full border-[3px] border-emerald-100 bg-emerald-500"></div>
 							<span>Limited</span>
 						</div>
 					</span>

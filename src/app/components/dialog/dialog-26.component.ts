@@ -53,9 +53,7 @@ interface SupportReason {
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Request support</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-120! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)]"
-				*hlmDialogPortal="let ctx">
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] gap-0 p-0 sm:max-w-[450px]" *hlmDialogPortal="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<hlm-dialog-header class="flex flex-col items-center gap-5 p-6">
 						<img src="assets/logos/logo-square.svg" alt="Logo" class="size-14 w-full rounded-md" />

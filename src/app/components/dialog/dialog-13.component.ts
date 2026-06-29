@@ -22,11 +22,9 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 	],
 	template: `
 		<hlm-dialog>
-			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Email OTP</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-[400px] max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px] sm:min-w-[400px]"
-				*hlmDialogPortal="let ctx">
-				<div class="flex flex-col items-center gap-1">
+			<button id="dialog-13-button" hlmDialogTrigger hlmBtn variant="outline">Email OTP</button>
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] sm:max-w-[400px]" *hlmDialogPortal="let ctx">
+				<div class="flex flex-col items-center gap-4">
 					<div class="flex size-12 shrink-0 items-center justify-center rounded-full border">
 						<ng-icon hlm name="lucideMail" />
 					</div>
@@ -38,13 +36,12 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 					} @else {
 						<hlm-dialog-header>
 							<h2 class="mb-0 text-center text-lg font-semibold">Please check your email</h2>
-							<p hlmDialogDescription class="text-center">We've sent a code to alan&#64;siumui.com</p>
+							<p hlmDialogDescription class="text-center">We've sent a code to alan&#64;siumui.dev</p>
 						</hlm-dialog-header>
 						<brn-input-otp
 							hlm
 							maxLength="4"
 							inputClass="disabled:cursor-not-allowed"
-							class="mt-5"
 							[ngModel]="otpValue()"
 							(ngModelChange)="otpChanged($event)">
 							<div hlmInputOtpGroup class="flex items-center justify-center gap-2">
@@ -54,7 +51,7 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 								<hlm-input-otp-slot index="3" class="size-15 rounded-md border text-[40px]" />
 							</div>
 						</brn-input-otp>
-						<span class="text-muted-foreground mt-2 text-left text-xs">
+						<span class="text-muted-foreground text-left text-xs">
 							Didn't get a code?
 							@if (isResendDisabled()) {
 								<span class="text-muted-foreground cursor-not-allowed">Resend after {{ countdown() }}s</span>
@@ -65,16 +62,16 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 							}
 						</span>
 						@if (isInvalidCode()) {
-							<p class="text-muted-foreground mt-4 text-center text-xs">Invalid code. Please try again.</p>
+							<p class="text-muted-foreground mt-2 text-center text-xs">Invalid code. Please try again.</p>
 						}
 					}
 				</div>
-				<hlm-dialog-footer class="gap-3 sm:items-center sm:justify-center sm:space-x-0">
+				<hlm-dialog-footer class="gap-3 sm:items-center sm:justify-center">
 					@if (isVerified()) {
-						<button hlmBtn class="h-9" (click)="closeDialog()">Close</button>
+						<button hlmBtn (click)="closeDialog()">Close</button>
 					} @else {
-						<button hlmBtn class="h-9 flex-1" variant="outline" (click)="closeDialog()">Close</button>
-						<button hlmBtn class="h-9 flex-1" [disabled]="otpValue().length < 4" (click)="submit()">Verify</button>
+						<button hlmBtn class="sm:flex-1" variant="outline" (click)="closeDialog()">Close</button>
+						<button hlmBtn class="sm:flex-1" [disabled]="otpValue().length < 4" (click)="submit()">Verify</button>
 					}
 				</hlm-dialog-footer>
 			</hlm-dialog-content>

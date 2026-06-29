@@ -30,9 +30,7 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Card update (2)</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-100 sm:min-w-100"
-				*hlmDialogPortal="let ctx">
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] sm:max-w-[400px]" *hlmDialogPortal="let ctx">
 				<div class="flex flex-col gap-2">
 					<div class="flex size-11 items-center justify-center rounded-lg border">
 						<ng-icon hlm name="lucideWalletCards" />
@@ -43,7 +41,7 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 					</div>
 				</div>
 				<form [formGroup]="form" (submit)="onSubmit()">
-					<div class="flex flex-col gap-4 sm:flex-row">
+					<div class="flex flex-col gap-2 sm:flex-row">
 						<div class="flex flex-1 flex-col gap-4">
 							<label hlmLabel class="flex flex-col items-start gap-2 text-sm">
 								Name on card
@@ -118,7 +116,7 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 						hlmLabel
 						for="is-default"
 						class="text-muted-foreground mt-4 flex items-center gap-2 text-sm font-normal">
-						<hlm-checkbox id="is-default" formControlName="isDefault" class="border-input" />
+						<hlm-checkbox inputId="is-default" formControlName="isDefault" class="border-input" />
 						Set as default payment method
 					</label>
 					<button hlmBtn type="submit" class="mt-4 w-full" size="sm" [disabled]="isProcessing()">

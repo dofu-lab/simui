@@ -20,9 +20,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Rating</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-y-auto rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*hlmDialogPortal="let ctx">
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] gap-0 p-0 sm:max-w-[400px]" *hlmDialogPortal="let ctx">
 				<hlm-dialog-header class="contents space-y-0 border-b text-left">
 					<h2 class="mb-0 border-b px-6 py-4 text-lg font-semibold">Help us improve</h2>
 				</hlm-dialog-header>

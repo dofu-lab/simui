@@ -14,9 +14,7 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 	template: `
 		<hlm-dialog>
 			<button hlmDialogTrigger hlmBtn variant="outline">Post setting</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-6 sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*hlmDialogPortal="let ctx">
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] gap-0 p-6 sm:max-w-[400px]" *hlmDialogPortal="let ctx">
 				<div class="flex flex-col gap-6">
 					<div class="flex flex-col gap-1">
 						<div class="flex size-12 items-center justify-center rounded-full bg-emerald-100">

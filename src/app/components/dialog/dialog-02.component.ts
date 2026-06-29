@@ -12,10 +12,8 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	template: `
 		<hlm-dialog>
 			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Confirm dialog with icon</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg sm:max-h-[min(640px,80vh)] sm:max-w-[400px]"
-				*hlmDialogPortal="let ctx">
-				<div class="flex flex-col gap-2 max-sm:items-center sm:flex-row sm:gap-4">
+			<hlm-dialog-content *hlmDialogPortal="let ctx">
+				<div class="flex flex-col gap-2 max-sm:items-start sm:flex-row sm:gap-4">
 					<div class="flex size-9 shrink-0 items-center justify-center rounded-full border">
 						<ng-icon hlm name="lucideCircleAlert" size="sm"></ng-icon>
 					</div>
@@ -26,16 +24,16 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 						</p>
 					</hlm-dialog-header>
 				</div>
-				<hlm-dialog-footer class="gap-3 sm:space-x-0">
-					<button hlmBtn variant="outline" (click)="closeDialog()">Cancel</button>
-					<button hlmBtn type="submit" (click)="closeDialog()">Okay</button>
+				<hlm-dialog-footer>
+					<button hlmBtn size="sm" variant="outline" (click)="closeDialog()">Cancel</button>
+					<button hlmBtn size="sm" type="submit" (click)="closeDialog()">Okay</button>
 				</hlm-dialog-footer>
 			</hlm-dialog-content>
 		</hlm-dialog>
 	`,
 })
 export class Dialog02Component {
-	public dialogRef = viewChild(HlmDialog);
+	protected readonly dialogRef = viewChild(HlmDialog);
 
 	protected closeDialog(): void {
 		this.dialogRef()?.close({});

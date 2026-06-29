@@ -8,6 +8,7 @@ import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmAspectRatioImports } from '@spartan-ng/helm/aspect-ratio';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
@@ -38,14 +39,13 @@ interface Country {
 		HlmDialogImports,
 		HlmAspectRatioImports,
 		HlmInputGroupImports,
+		HlmButtonGroupImports,
 	],
 	providers: [provideIcons({ lucideSave, lucideMail })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Edit profile</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-150! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(1000px,85vh)] sm:max-w-150"
-				*hlmDialogPortal="let ctx">
+			<hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[calc(100vw-2rem)] gap-0 p-0 sm:max-w-[600px]">
 				<div class="flex-1 overflow-y-auto">
 					<div class="relative p-2">
 						<div class="shadow-xs" [hlmAspectRatio]="39 / 8">
@@ -112,7 +112,10 @@ interface Country {
 						<div class="mt-6 flex w-full flex-col gap-4 px-6">
 							<div class="flex flex-col gap-2 border-t-2 border-dotted pt-4 sm:flex-row sm:justify-between">
 								<span id="name-label" hlmLabel class="text-secondary-foreground text-sm">Name</span>
-								<div role="group" aria-labelledby="name-label" class="grid grid-cols-2 items-center gap-4">
+								<div
+									role="group"
+									aria-labelledby="name-label"
+									class="grid w-full grid-cols-2 items-center gap-2 sm:max-w-90">
 									<input
 										hlmInput
 										aria-label="First name"
@@ -175,23 +178,19 @@ interface Country {
 								</div>
 							</div>
 
-							<div class="border-t-2 border-dotted pt-4">
-								<label hlmLabel for="website" class="flex flex-col justify-between gap-2 sm:flex-row">
-									Website
-									<div class="mt-1 flex w-full flex-1 flex-row -space-x-px sm:max-w-90">
-										<span
-											class="text-muted-foreground border-input bg-background -z-10 inline-flex w-fit items-center rounded-s-md border px-3 text-sm font-normal">
-											simui.dev/&#64;
-										</span>
-										<input
-											hlmInput
-											size="sm"
-											class="flex-1 rounded-s-none text-sm"
-											id="website"
-											type="text"
-											formControlName="userName" />
-									</div>
-								</label>
+							<div class="flex flex-col justify-between gap-2 border-t-2 border-dotted pt-4 sm:flex-row">
+								<label hlmLabel for="website">Website</label>
+								<hlm-button-group class="w-full sm:max-w-90">
+									<hlm-button-group-text>
+										<label hlmLabel for="website">simui.dev/&#64;</label>
+									</hlm-button-group-text>
+									<hlm-input-group>
+										<input hlmInputGroupInput id="website" formControlName="userName" />
+										<hlm-input-group-addon align="inline-end">
+											<ng-icon name="lucideLink2" />
+										</hlm-input-group-addon>
+									</hlm-input-group>
+								</hlm-button-group>
 							</div>
 
 							<div class="flex flex-col gap-2 border-t-2 border-dotted py-4 sm:flex-row sm:justify-between">

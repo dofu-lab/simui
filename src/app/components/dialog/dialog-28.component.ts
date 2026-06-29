@@ -9,9 +9,7 @@ import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Member accepted</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-120! max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col gap-0 overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-120"
-				*hlmDialogPortal="let ctx">
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] gap-0 p-0 sm:max-w-[400px]" *hlmDialogPortal="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<div class="flex items-end justify-center -space-x-3.5 px-6 pt-6">
 						<hlm-avatar class="border-background size-[50px] border">
@@ -34,10 +32,10 @@ import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 							functionality of the app.
 						</p>
 					</div>
-					<div class="mt-6 flex gap-2 px-6 pb-6">
-						<button hlmBtn variant="outline" class="flex-1" (click)="ctx.close()">Cancel</button>
-						<button hlmBtn class="flex-1" (click)="ctx.close()">Get started</button>
-					</div>
+					<hlm-dialog-footer class="bg-muted/50 mt-6 flex gap-2 px-6 pb-6">
+						<button hlmBtn variant="outline" class="sm:flex-1" (click)="ctx.close()">Cancel</button>
+						<button hlmBtn class="sm:flex-1" (click)="ctx.close()">Get started</button>
+					</hlm-dialog-footer>
 				</div>
 			</hlm-dialog-content>
 		</hlm-dialog>

@@ -25,10 +25,8 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 	providers: [provideIcons({ lucideWalletCards, lucideCreditCard, lucideBadgeCheck, lucideMessagesSquare })],
 	template: `
 		<hlm-dialog autoFocus="dialog">
-			<button id="dialog-01-button" hlmDialogTrigger hlmBtn variant="outline">Select plan</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 flex max-h-[calc(100vh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 flex-col overflow-hidden rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-150 sm:min-w-150"
-				*hlmDialogPortal="let ctx">
+			<button id="dialog-21-button" hlmDialogTrigger hlmBtn variant="outline">Select plan</button>
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] p-0 sm:max-w-[600px]" *hlmDialogPortal="let ctx">
 				<div class="flex-1 overflow-y-auto">
 					<div class="flex flex-row gap-2 border-b px-6 py-5">
 						<div class="flex size-11 items-center justify-center rounded-lg border">
@@ -123,12 +121,12 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 							</hlm-radio-group>
 						</form>
 					</div>
-					<div class="flex flex-row justify-between border-t px-6 py-5">
+					<hlm-dialog-footer class="bg-muted/50 border-t px-6 py-5">
 						<button hlmBtn variant="outline" size="sm" class="hidden sm:inline-flex">
 							<ng-icon hlm name="lucideMessagesSquare" class="mr-2" size="sm" />
 							Chat to us
 						</button>
-						<div class="flex flex-row gap-2 max-sm:flex-1">
+						<div class="ml-auto flex flex-row gap-2 max-sm:flex-1">
 							<button hlmBtn variant="outline" size="sm" class="max-sm:flex-1">Cancel</button>
 							<button
 								hlmBtn
@@ -146,7 +144,7 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 								}
 							</button>
 						</div>
-					</div>
+					</hlm-dialog-footer>
 				</div>
 			</hlm-dialog-content>
 		</hlm-dialog>

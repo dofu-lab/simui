@@ -12,9 +12,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	template: `
 		<hlm-dialog autoFocus="dialog">
 			<button hlmDialogTrigger hlmBtn variant="outline">Purchase seats</button>
-			<hlm-dialog-content
-				class="top-1/2 left-1/2 max-h-[calc(100vh-2rem)] w-100! max-w-[calc(100%-2rem)] -translate-x-1/2 gap-0 rounded-lg p-0 sm:max-h-[min(640px,80vh)] sm:max-w-100"
-				*hlmDialogPortal="let ctx">
+			<hlm-dialog-content class="w-[calc(100vw-2rem)] gap-0 p-0 sm:max-w-[400px]" *hlmDialogPortal="let ctx">
 				<div class="border-input flex gap-4 border-b p-6">
 					<div class="flex size-11 items-center justify-center rounded-lg border shadow-xs">
 						<ng-icon hlm name="lucideUserRoundCheck" class="text-muted-foreground" />
@@ -50,7 +48,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 						</div>
 					</div>
 				</div>
-				<div class="border-input flex gap-4 border-t p-6">
+				<div class="border-input flex gap-2 border-t p-6">
 					<button hlmBtn variant="outline" size="sm" class="flex-1" (click)="ctx.close()">Cancel</button>
 					<button hlmBtn size="sm" class="flex-1" (click)="ctx.close()">Purchase seats</button>
 				</div>
