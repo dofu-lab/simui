@@ -15,7 +15,12 @@ import { NavigationService } from '../core/services';
 			<div class="flex-1 items-start">
 				<div class="max-w-4xl pt-10 max-sm:text-center">
 					<h1 class="font-heading text-foreground mb-4 text-4xl/[1.1] font-bold tracking-tight md:text-5xl/[1.1]">
-						Beautiful Angular UI components built with Spartan UI and Tailwind CSS.
+						Beautiful Angular UI components built with Spartan UI
+						<img
+							src="/assets/logos/spartan.svg"
+							alt="Spartan UI"
+							class="relative -top-1 mx-1 inline-block size-9 align-middle" />
+						and Tailwind CSS.
 					</h1>
 					<p class="text-muted-foreground mb-10 text-lg">
 						A curated collection of ready-to-use components to quickly build modern application UIs.
