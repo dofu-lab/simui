@@ -23,13 +23,13 @@ import { ColorTypeSelector } from './color-type-selector';
 			</button>
 			<hlm-sheet-content
 				*hlmSheetPortal="let ctx"
-				class="data-[side=right]:w-[calc(100%-(--spacing(12)))] data-[side=right]:max-w-sm data-[side=right]:sm:max-w-3xl">
+				class="flex max-h-dvh min-h-0 flex-col overflow-hidden data-[side=right]:w-[calc(100%-(--spacing(12)))] data-[side=right]:max-w-sm data-[side=right]:sm:max-w-3xl">
 				<hlm-sheet-header class="flex-row items-center justify-between pr-15">
 					<h3 hlmSheetTitle>Theme CSS code</h3>
 					<sim-color-type />
 				</hlm-sheet-header>
-				<div class="mb-4 min-h-0 flex-1 px-4">
-					<sim-code-preview [code]="cssCode()" />
+				<div class="spartan-scroll mb-4 flex min-h-0 flex-1 flex-col overflow-y-auto px-4 pb-4">
+					<sim-code-preview language="css" [code]="cssCode()" />
 				</div>
 			</hlm-sheet-content>
 		</hlm-sheet>

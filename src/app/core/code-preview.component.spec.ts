@@ -1,12 +1,15 @@
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import type { SafeHtml } from '@angular/platform-browser';
 import { AnalyticsService } from '../services/analytics.service';
 import { CodePreviewComponent } from './code-preview.component';
+import { ShikiHighlighterService } from './services/shiki-highlighter.service';
 
 describe('CodePreviewComponent analytics', () => {
 	let fixture: ComponentFixture<CodePreviewComponent>;
 	let analyticsService: jasmine.SpyObj<AnalyticsService>;
 	let clipboard: jasmine.SpyObj<Clipboard>;
+	let highlighter: jasmine.SpyObj<ShikiHighlighterService>;
 
 	beforeEach(async () => {
 		analyticsService = jasmine.createSpyObj<AnalyticsService>('AnalyticsService', [
@@ -15,12 +18,21 @@ describe('CodePreviewComponent analytics', () => {
 			'trackInstallCliCopied',
 		]);
 		clipboard = jasmine.createSpyObj<Clipboard>('Clipboard', ['copy']);
+		highlighter = jasmine.createSpyObj<ShikiHighlighterService>('ShikiHighlighterService', [
+			'highlight',
+			'normalizeLanguage',
+		]);
+		highlighter.highlight.and.returnValue(
+			Promise.resolve('<pre class="shiki"><code><span class="line">code</span></code></pre>' as unknown as SafeHtml),
+		);
+		highlighter.normalizeLanguage.and.callFake((language) => (language === 'sh' ? 'sh' : 'angular-ts'));
 
 		await TestBed.configureTestingModule({
 			imports: [CodePreviewComponent],
 			providers: [
 				{ provide: AnalyticsService, useValue: analyticsService },
 				{ provide: Clipboard, useValue: clipboard },
+				{ provide: ShikiHighlighterService, useValue: highlighter },
 			],
 		}).compileComponents();
 
@@ -56,12 +68,30 @@ describe('CodePreviewComponent analytics', () => {
 		expect(analyticsService.trackComponentCodeCopied).toHaveBeenCalledWith('button-01', {
 			copyKind: 'component_code',
 			fileName: 'button-01',
-			language: 'ts',
+			language: 'angular-ts',
 		});
 	});
 
+	it('hides the copy button when copy is disabled', () => {
+		fixture.componentRef.setInput('disableCopy', true);
+		fixture.componentRef.setInput('code', 'export class Button01Component {}');
+		fixture.detectChanges();
+
+		expect(fixture.nativeElement.querySelector('button[aria-label="Copy code"]')).toBeNull();
+	});
+
+	it('renders the line-number mode class by default', async () => {
+		fixture.componentRef.setInput('code', 'const one = 1;');
+		fixture.detectChanges();
+		await fixture.whenStable();
+		fixture.detectChanges();
+
+		expect(fixture.nativeElement.classList).toContain('sim-code-preview--line-numbers');
+		expect(fixture.nativeElement.querySelector('.line')).withContext('highlighted code line').not.toBeNull();
+	});
+
 	function clickCopyButton(): void {
-		const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement | null;
+		const button = fixture.nativeElement.querySelector('button[aria-label="Copy code"]') as HTMLButtonElement | null;
 		expect(button).withContext('copy button').not.toBeNull();
 		button?.click();
 	}

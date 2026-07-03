@@ -27,6 +27,20 @@ import type { ComponentInteractionType } from '../services/analytics.service';
 import { AnalyticsService } from '../services/analytics.service';
 import { CodePreviewComponent } from './code-preview.component';
 import { CodeLoaderService } from './services/code-loader.service';
+import type { ComponentCardAlignment, ComponentCardLayout } from './types';
+
+const CARD_ALIGNMENT_CLASSES: Record<ComponentCardAlignment, string> = {
+	center: 'flex justify-center items-center',
+	'text-center': 'text-center',
+	'column-center': 'flex flex-col items-center',
+	start: 'flex justify-start items-center',
+};
+
+const CARD_LAYOUT_CLASSES: Record<ComponentCardLayout, string> = {
+	third: 'col-span-12 sm:col-span-6 lg:col-span-4',
+	half: 'col-span-12 sm:col-span-6 lg:col-span-6',
+	full: 'col-span-12 sm:col-span-12 lg:col-span-12',
+};
 
 @Component({
 	selector: 'sim-component-card',
@@ -83,11 +97,8 @@ import { CodeLoaderService } from './services/code-loader.service';
 			</div>
 			<hlm-sheet-content
 				*hlmSheetPortal="let ctx"
-				class="data-[side=right]:w-[calc(100%-(--spacing(12)))] data-[side=right]:max-w-sm data-[side=right]:sm:max-w-3xl">
-				<hlm-sheet-header>
-					<h3 hlmSheetTitle>Code</h3>
-				</hlm-sheet-header>
-				<div class="mb-4 flex min-h-0 flex-col px-4 pb-4">
+				class="flex max-h-dvh min-h-0 flex-col overflow-hidden data-[side=right]:w-[calc(100%-(--spacing(12)))] data-[side=right]:max-w-sm data-[side=right]:sm:max-w-3xl">
+				<div class="spartan-scroll flex min-h-0 flex-1 flex-col overflow-y-auto p-4">
 					<!-- Installation -->
 					<div class="mb-4">
 						<h4 class="mb-2 text-lg font-semibold">Installation</h4>
@@ -103,7 +114,7 @@ import { CodeLoaderService } from './services/code-loader.service';
 					</div>
 
 					<!-- Code -->
-					<div class="mb-4 min-h-0 flex-1">
+					<div class="flex min-h-0 flex-1 flex-col">
 						<h4 class="mb-2 text-lg font-semibold">Code</h4>
 						@if (codeLoading()) {
 							<div class="text-muted-foreground flex h-full items-center justify-center text-sm">Loading...</div>
@@ -138,13 +149,13 @@ export class ComponentCardComponent implements AfterViewInit, OnDestroy {
 	private intersectionObserver?: IntersectionObserver;
 	private demoInteractionTracked = false;
 
-	public readonly component = input.required<Type<any> | null>();
+	public readonly component = input.required<Type<unknown> | null>();
 	public readonly componentName = input.required<string>();
 	public readonly highlighted = input<boolean>(false);
 	public readonly code = input<string | undefined>('');
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
-	public readonly colNumber = input<number>(3);
-	public readonly itemStyle = input<number>();
+	public readonly layout = input<ComponentCardLayout>('third');
+	public readonly alignment = input<ComponentCardAlignment>('center');
 	// CLI scope/package to display for copying. Configurable via input binding.
 	public readonly cliScope = input<string>('@dofu-lab/simui-cli');
 
@@ -173,36 +184,9 @@ export class ComponentCardComponent implements AfterViewInit, OnDestroy {
 		this.intersectionObserver?.disconnect();
 	}
 
-	protected styleClasses = computed(() => {
-		return this.itemStyle() === 1
-			? 'flex justify-center items-center'
-			: this.itemStyle() === 2
-				? 'text-center'
-				: this.itemStyle() === 3
-					? 'flex flex-col items-center'
-					: this.itemStyle() === 4
-						? 'flex justify-start items-center'
-						: '';
-	});
+	protected readonly styleClasses = computed(() => CARD_ALIGNMENT_CLASSES[this.alignment()]);
 
-	protected readonly colSpanClasses = computed(() => {
-		const includeStart = false;
-		const baseClasses =
-			this.colNumber() === 2
-				? 'col-span-12 sm:col-span-6 lg:col-span-6'
-				: this.colNumber() === 3
-					? 'col-span-12 sm:col-span-12 lg:col-span-12'
-					: 'col-span-12 sm:col-span-6 lg:col-span-4';
-
-		const startClasses =
-			includeStart && this.colNumber() !== 3
-				? this.colNumber() === 2
-					? 'sm:col-start-4 lg:col-start-4'
-					: 'sm:col-start-4 lg:col-start-5'
-				: '';
-
-		return `${baseClasses} ${startClasses}`;
-	});
+	protected readonly colSpanClasses = computed(() => CARD_LAYOUT_CLASSES[this.layout()]);
 
 	protected readonly _computedClass = computed(() =>
 		hlm(
