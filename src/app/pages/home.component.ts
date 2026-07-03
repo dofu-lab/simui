@@ -19,7 +19,7 @@ import { NavigationService } from '../core/services';
 						<img
 							src="/assets/logos/spartan.svg"
 							alt="Spartan UI"
-							class="relative -top-1 mx-1 inline-block size-9 align-middle" />
+							class="relative -top-1 mx-1 inline-block size-9 align-middle grayscale-50" />
 						and Tailwind CSS.
 					</h1>
 					<p class="text-muted-foreground mb-10 text-lg">

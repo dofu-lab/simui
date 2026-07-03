@@ -1,8 +1,11 @@
 import { Type } from '@angular/core';
 
+export type ComponentCardLayout = 'third' | 'half' | 'full';
+export type ComponentCardAlignment = 'center' | 'text-center' | 'column-center' | 'start';
+
 export interface ComponentCardItem {
 	id: string;
 	component: Type<unknown>;
-	colNumber: number;
-	itemStyle: number;
+	layout: ComponentCardLayout;
+	alignment: ComponentCardAlignment;
 }

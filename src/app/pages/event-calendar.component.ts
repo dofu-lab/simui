@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EventCalendar01Component } from '../components/event-calendar';
-import { ComponentHeaderComponent, PageGridComponent } from '../core';
+import { ComponentCardItem, ComponentHeaderComponent, PageGridComponent } from '../core';
 
 @Component({
 	selector: 'app-event-calendar',
@@ -11,12 +11,12 @@ import { ComponentHeaderComponent, PageGridComponent } from '../core';
 	`,
 })
 export class EventCalendarComponent {
-	components = [
+	protected readonly components: ComponentCardItem[] = [
 		{
 			id: 'event-calendar-01',
 			component: EventCalendar01Component,
-			colNumber: 3,
-			itemStyle: 1,
+			layout: 'full',
+			alignment: 'center',
 		},
 	];
 }

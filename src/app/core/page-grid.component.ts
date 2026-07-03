@@ -16,8 +16,8 @@ import { ComponentCardItem } from './types';
 					@for (component of components(); track component.id) {
 						<sim-component-card
 							[componentName]="component.id"
-							[colNumber]="component.colNumber"
-							[itemStyle]="component.itemStyle"
+							[layout]="component.layout"
+							[alignment]="component.alignment"
 							[component]="component.component"
 							[highlighted]="highlightedId() === component.id" />
 					}
