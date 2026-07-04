@@ -1,5 +1,5 @@
 [build]
-command = "node scripts/set-env.js && ng build"
+command = "node scripts/set-env.js && node scripts/generate-sitemap.js && ng build"
 publish = "dist/simui/browser"
 
 [build.environment]

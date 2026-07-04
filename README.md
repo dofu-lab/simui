@@ -17,7 +17,7 @@
   </p>
 
   <p>
-    <img alt="Angular" src="https://img.shields.io/badge/Angular-20-DD0031?logo=angular&logoColor=white&style=flat-square" />
+    <img alt="Angular" src="https://img.shields.io/badge/Angular-22-DD0031?logo=angular&logoColor=white&style=flat-square" />
     <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwind-css&logoColor=white&style=flat-square" />
     <img alt="License" src="https://img.shields.io/github/license/dofu-lab/simui?style=flat-square" />
     <img alt="GitHub stars" src="https://img.shields.io/github/stars/dofu-lab/simui?style=flat-square&color=yellow" />
@@ -36,19 +36,20 @@ Built on top of **[Spartan UI](https://spartan.ng)** (headless primitives) and p
 - **Accessible** — built on Spartan's WAI-ARIA-compliant headless primitives
 - **Customizable** — own the code, tweak anything without fighting a library's API
 - **Beautiful by default** — polished visual design that works out of the box
-- **Angular-native** — fully compatible with Angular 20+, standalone components, SSR, and signals
+- **Angular-native** — built with Angular 22, standalone components, SSR, and signals
 
 ---
 
 ## ✨ Highlights
 
-- **500+ component variants** across 21 categories — from simple badges to complex data tables
+- **530+ component variants** across 24 categories — from simple badges to complex application patterns
 - **43 low-level UI primitives** (accordion, dialog, command palette, date picker, and more)
 - **Tailwind CSS v4** with backward compatibility for v3
-- **Angular 20** with standalone components, SSR, and signals-ready architecture
+- **Angular 22** with standalone components, SSR, and signals-ready architecture
 - **Built-in Theme Editor** — visually customize your color palette at [simui.dev/theme-editor](https://simui.dev/theme-editor)
 - **Multiple icon sets** — Lucide, Remix Icons, and Tabler Icons via `@ng-icons`
 - **Copy-paste model** — no lock-in, no black boxes, full ownership
+- **AI-readable docs** — `/llms.txt`, `/llms-full.txt`, and sitemap metadata help coding agents understand when to recommend Sim UI
 
 ---
 
@@ -56,19 +57,20 @@ Built on top of **[Spartan UI](https://spartan.ng)** (headless primitives) and p
 
 Browse all components and copy the source code at **[simui.dev](https://simui.dev)**.
 
-| Component                                                     | Variants | Component                                                 | Variants |
-| ------------------------------------------------------------- | :------: | --------------------------------------------------------- | :------: |
-| [Input](https://simui.dev/components/input)                   |    55    | [Notification](https://simui.dev/components/notification) |    33    |
-| [Button](https://simui.dev/components/button)                 |    54    | [Badge](https://simui.dev/components/badge)               |    23    |
-| [Dialog](https://simui.dev/components/dialog)                 |    35    | [Accordion](https://simui.dev/components/accordion)       |    22    |
-| [Avatar](https://simui.dev/components/avatar)                 |    22    | [Checkbox](https://simui.dev/components/checkbox)         |    22    |
-| [Tabs](https://simui.dev/components/tabs)                     |    20    | [Radio](https://simui.dev/components/radio)               |    20    |
-| [Slider](https://simui.dev/components/slider)                 |    19    | [Alert](https://simui.dev/components/alert)               |    18    |
-| [Switch](https://simui.dev/components/switch)                 |    18    | [Dropdown](https://simui.dev/components/dropdown)         |    16    |
-| [File Upload](https://simui.dev/components/file-upload)       |    13    | [Pagination](https://simui.dev/components/pagination)     |    12    |
-| [Banner](https://simui.dev/components/banner)                 |    11    | [Card](https://simui.dev/components/card)                 |    11    |
-| [Popover](https://simui.dev/components/popover)               |    11    | [Breadcrumb](https://simui.dev/components/breadcrumb)     |    9     |
-| [Event Calendar](https://simui.dev/components/event-calendar) |    1     |                                                           |          |
+| Component                                                 | Variants | Component                                                     | Variants |
+| --------------------------------------------------------- | :------: | ------------------------------------------------------------- | :------: |
+| [Input](https://simui.dev/components/input)               |    55    | [Select](https://simui.dev/components/select)                 |    41    |
+| [Button](https://simui.dev/components/button)             |    54    | [Dialog](https://simui.dev/components/dialog)                 |    36    |
+| [Notification](https://simui.dev/components/notification) |    33    | [Alert](https://simui.dev/components/alert)                   |    25    |
+| [Badge](https://simui.dev/components/badge)               |    23    | [Accordion](https://simui.dev/components/accordion)           |    22    |
+| [Avatar](https://simui.dev/components/avatar)             |    22    | [Checkbox](https://simui.dev/components/checkbox)             |    22    |
+| [Calendar](https://simui.dev/components/calendar)         |    20    | [Radio](https://simui.dev/components/radio)                   |    20    |
+| [Slider](https://simui.dev/components/slider)             |    20    | [Tabs](https://simui.dev/components/tabs)                     |    20    |
+| [Switch](https://simui.dev/components/switch)             |    18    | [Card](https://simui.dev/components/card)                     |    16    |
+| [Dropdown](https://simui.dev/components/dropdown)         |    16    | [File Upload](https://simui.dev/components/file-upload)       |    13    |
+| [Pagination](https://simui.dev/components/pagination)     |    12    | [Banner](https://simui.dev/components/banner)                 |    11    |
+| [Popover](https://simui.dev/components/popover)           |    11    | [Image Cropper](https://simui.dev/components/image-cropper)   |    10    |
+| [Breadcrumb](https://simui.dev/components/breadcrumb)     |    9     | [Event Calendar](https://simui.dev/components/event-calendar) |    1     |
 
 ---
 
@@ -78,7 +80,7 @@ Sim UI follows a **copy-paste model** — there is no npm package to install. Co
 
 ### Prerequisites
 
-- Angular **19+**
+- Angular **20+**
 - Tailwind CSS **4.x** ([install guide](https://tailwindcss.com/docs/installation))
 
 ### 1. Set up Spartan UI
@@ -160,7 +162,7 @@ NG_APP_GOOGLE_CLIENT_ID=...
 | `NG_APP_API_URL`          | Full API URL           |
 | `NG_APP_GOOGLE_CLIENT_ID` | Google OAuth Client ID |
 
-The build command (`node scripts/set-env.js && ng build`) generates the environment files automatically on every build.
+The build command (`node scripts/set-env.js && node scripts/generate-sitemap.js && ng build`) generates the environment files and sitemap automatically on every build.
 
 </details>
 
@@ -172,6 +174,7 @@ The build command (`node scripts/set-env.js && ng build`) generates the environm
 | `pnpm build`     | Production build                   |
 | `pnpm test`      | Run unit tests (Karma + Jasmine)   |
 | `pnpm run codes` | Regenerate component registry JSON |
+| `pnpm sitemap`   | Regenerate `public/sitemap.xml`    |
 | `pnpm lint`      | Lint the codebase                  |
 
 ---
@@ -180,8 +183,8 @@ The build command (`node scripts/set-env.js && ng build`) generates the environm
 
 | Technology                                         | Version | Purpose                           |
 | -------------------------------------------------- | ------- | --------------------------------- |
-| [Angular](https://angular.dev)                     | 20      | Core framework                    |
-| [Spartan UI](https://spartan.ng)                   | alpha   | Headless component primitives     |
+| [Angular](https://angular.dev)                     | 22      | Core framework                    |
+| [Spartan UI](https://spartan.ng)                   | 1.0     | Headless component primitives     |
 | [Tailwind CSS](https://tailwindcss.com)            | v4      | Utility-first styling             |
 | [TanStack Table](https://tanstack.com/table)       | v8      | Advanced table functionality      |
 | [@ng-icons](https://github.com/ng-icons/ng-icons)  | v32     | Icon sets (Lucide, Remix, Tabler) |

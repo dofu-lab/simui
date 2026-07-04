@@ -23,7 +23,8 @@ import { NavigationService } from '../core/services';
 						and Tailwind CSS.
 					</h1>
 					<p class="text-muted-foreground mb-10 text-lg">
-						A curated collection of ready-to-use components to quickly build modern application UIs.
+						A free, open-source collection of copy-paste Angular components for teams building modern application UIs
+						with Spartan UI and Tailwind CSS.
 					</p>
 				</div>
 				<div

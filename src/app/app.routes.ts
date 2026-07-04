@@ -1,18 +1,60 @@
 import { Routes } from '@angular/router';
+import { SEO_SITE_ORIGIN } from './core/services/seo.constants';
+import { SeoRouteData } from './core/services/seo.types';
 import { authGuard } from './guards/auth.guard';
 import { unsavedChangesGuard } from './guards/unsaved-changes.guard';
 import { HomeComponent, IntroductionComponent, ProfileSettingsComponent, ThemeEditor } from './pages';
+
+const componentSeo = (name: string, path: string, description: string, keywords: string): SeoRouteData => ({
+	title: `${name} Angular Components`,
+	description: `${description} Explore copy-paste Angular ${name.toLowerCase()} examples built with Spartan UI primitives and Tailwind CSS.`,
+	keywords: `${keywords}, simui ${name.toLowerCase()}, angular ${name.toLowerCase()} component, spartan ui ${name.toLowerCase()}, angular component collection, tailwind css`,
+	canonicalPath: `/components/${path}`,
+	structuredData: [
+		{
+			'@type': 'CollectionPage',
+			'@id': `${SEO_SITE_ORIGIN}/components/${path}#collection`,
+			url: `${SEO_SITE_ORIGIN}/components/${path}`,
+			name: `${name} Angular Components - SimUI`,
+			description: `${description} These SimUI examples are designed for Angular projects using Spartan UI and Tailwind CSS.`,
+			isPartOf: { '@id': `${SEO_SITE_ORIGIN}/#website` },
+		},
+		{
+			'@type': 'BreadcrumbList',
+			'@id': `${SEO_SITE_ORIGIN}/components/${path}#breadcrumb`,
+			itemListElement: [
+				{ '@type': 'ListItem', position: 1, name: 'Home', item: SEO_SITE_ORIGIN },
+				{ '@type': 'ListItem', position: 2, name: 'Components', item: `${SEO_SITE_ORIGIN}/components` },
+				{ '@type': 'ListItem', position: 3, name, item: `${SEO_SITE_ORIGIN}/components/${path}` },
+			],
+		},
+	],
+});
 
 export const routes: Routes = [
 	{
 		path: '',
 		component: HomeComponent,
 		data: {
-			title: 'SimUI - Modern Angular UI Components',
+			title: 'SimUI - Angular UI Components Built With Spartan UI',
 			description:
-				'SimUI is a comprehensive Angular UI component library building with TailwindCSS, inspired by Shadcn UI and Spartan UI. Perfect for building modern web applications.',
+				'SimUI is a free, open-source collection of copy-paste Angular UI components built with Spartan UI primitives and Tailwind CSS.',
 			keywords:
-				'simui, angular, tailwind css, shadcn, spartan ui, ui components, angular ui collection, react ui collection, web development',
+				'simui, angular components, spartan ui, angular ui components, angular component collection, tailwind css, shadcn angular, copy paste components',
+			canonicalPath: '/',
+			structuredData: {
+				'@type': 'WebPage',
+				'@id': `${SEO_SITE_ORIGIN}/#homepage`,
+				url: SEO_SITE_ORIGIN,
+				name: 'SimUI - Angular UI Components Built With Spartan UI',
+				description:
+					'Free, open-source copy-paste Angular components for teams building with Spartan UI and Tailwind CSS.',
+				about: [
+					{ '@type': 'Thing', name: 'Angular UI components' },
+					{ '@type': 'Thing', name: 'Spartan UI' },
+					{ '@type': 'Thing', name: 'Tailwind CSS' },
+				],
+			},
 		},
 	},
 	{
@@ -30,8 +72,10 @@ export const routes: Routes = [
 		loadComponent: () => import('./pages/term-condition').then((m) => m.TermConditionComponent),
 		data: {
 			title: 'Terms and Conditions - SimUI',
-			description: 'Read the terms and conditions for using SimUI, the Angular UI component library.',
+			description:
+				'Read the terms and conditions for using SimUI, including free Angular components and optional paid theme features.',
 			keywords: 'terms and conditions, simui, angular, ui components, legal',
+			canonicalPath: '/terms-and-conditions',
 		},
 	},
 	{
@@ -41,22 +85,46 @@ export const routes: Routes = [
 			title: 'Privacy Policy - SimUI',
 			description: 'Learn how SimUI collects, uses, and protects your personal information.',
 			keywords: 'privacy policy, data protection, simui, gdpr, user privacy',
+			canonicalPath: '/privacy-policy',
 		},
 	},
 	{
 		path: 'introduction',
 		component: IntroductionComponent,
 		data: {
-			title: 'Introduction - SimUI',
+			title: 'SimUI Introduction',
 			description:
-				'Get started with SimUI. Learn how to install and use our Angular UI components, based on Spartan UI and Tailwind CSS.',
-			keywords: 'introduction, getting started, installation, angular, simui, spartan ui, shadcn, ui components',
+				'Learn how SimUI helps Angular teams copy, customize, and ship Spartan UI based components with Tailwind CSS.',
+			keywords:
+				'simui introduction, angular spartan ui, angular component collection, copy paste angular components, tailwind css',
+			canonicalPath: '/introduction',
+			structuredData: {
+				'@type': 'TechArticle',
+				'@id': `${SEO_SITE_ORIGIN}/introduction#article`,
+				headline: 'Get started with SimUI for Angular and Spartan UI',
+				proficiencyLevel: 'Beginner',
+				dependencies: ['Angular', 'Spartan UI', 'Tailwind CSS'],
+			},
 		},
 	},
 	{
 		path: 'theme-editor',
 		component: ThemeEditor,
 		canDeactivate: [unsavedChangesGuard],
+		data: {
+			title: 'Angular Theme Editor',
+			description:
+				'Customize SimUI and Spartan UI inspired Angular themes with a visual Tailwind CSS theme editor and exportable CSS tokens.',
+			keywords: 'angular theme editor, spartan ui theme, tailwind css theme editor, simui themes',
+			canonicalPath: '/theme-editor',
+			structuredData: {
+				'@type': 'SoftwareApplication',
+				'@id': `${SEO_SITE_ORIGIN}/theme-editor#application`,
+				applicationCategory: 'DeveloperApplication',
+				operatingSystem: 'Web',
+				offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+			},
+		},
 	},
 	{
 		path: 'auth/google/callback',
@@ -70,10 +138,11 @@ export const routes: Routes = [
 		path: 'pricing',
 		loadComponent: () => import('./pages/pricing').then((m) => m.PricingComponent),
 		data: {
-			title: 'Pricing - SimUI',
+			title: 'SimUI Pricing',
 			description:
-				'Simple, transparent pricing for SimUI. Get unlimited themes and full version history with the Pro plan.',
-			keywords: 'pricing, pro, subscription, simui, upgrade',
+				'Use SimUI Angular components for free, then upgrade only when you need unlimited saved themes, full history, and priority support.',
+			keywords: 'simui pricing, angular components free, spartan ui theme editor, simui pro, angular theme history',
+			canonicalPath: '/pricing',
 		},
 	},
 	{
@@ -92,210 +161,242 @@ export const routes: Routes = [
 			{
 				path: 'accordion',
 				loadComponent: () => import('./pages').then((m) => m.AccordionComponent),
-				data: {
-					title: 'Accordion',
-					description: 'Accordion component for toggling content visibility.',
-					keywords: 'accordion, angular component, collapse',
-				},
+				data: componentSeo(
+					'Accordion',
+					'accordion',
+					'Accordion components for toggling grouped content visibility.',
+					'accordion, angular component, collapse',
+				),
 			},
 			{
 				path: 'alert',
 				loadComponent: () => import('./pages').then((m) => m.AlertComponent),
-				data: {
-					title: 'Alert',
-					description: 'Alert component for displaying important messages.',
-					keywords: 'alert, notice, warning, angular',
-				},
+				data: componentSeo(
+					'Alert',
+					'alert',
+					'Alert components for displaying important messages, notices, and warnings.',
+					'alert, notice, warning, angular',
+				),
 			},
 			{
 				path: 'avatar',
 				loadComponent: () => import('./pages').then((m) => m.AvatarComponent),
-				data: {
-					title: 'Avatar',
-					description: 'Avatar component to represent users or entities.',
-					keywords: 'avatar, profile, image, angular',
-				},
+				data: componentSeo(
+					'Avatar',
+					'avatar',
+					'Avatar components for user photos, initials, groups, and profile identity.',
+					'avatar, profile, image, angular',
+				),
 			},
 			{
 				path: 'badge',
 				loadComponent: () => import('./pages').then((m) => m.BadgeComponent),
-				data: {
-					title: 'Badge',
-					description: 'Badge component for status and labeling.',
-					keywords: 'badge, label, status, angular',
-				},
+				data: componentSeo(
+					'Badge',
+					'badge',
+					'Badge components for labels, statuses, counters, and compact metadata.',
+					'badge, label, status, angular',
+				),
 			},
 			{
 				path: 'banner',
 				loadComponent: () => import('./pages').then((m) => m.BannerComponent),
-				data: {
-					title: 'Banner',
-					description: 'Banner component for prominent messages.',
-					keywords: 'banner, hero, notification, angular',
-				},
+				data: componentSeo(
+					'Banner',
+					'banner',
+					'Banner components for prominent messages, announcements, and page-level calls to action.',
+					'banner, hero, notification, angular',
+				),
 			},
 			{
 				path: 'breadcrumb',
 				loadComponent: () => import('./pages').then((m) => m.BreadcrumbComponent),
-				data: {
-					title: 'Breadcrumb',
-					description: 'Breadcrumb navigation component.',
-					keywords: 'breadcrumb, navigation, angular',
-				},
+				data: componentSeo(
+					'Breadcrumb',
+					'breadcrumb',
+					'Breadcrumb components for hierarchical navigation in Angular applications.',
+					'breadcrumb, navigation, angular',
+				),
 			},
 			{
 				path: 'button',
 				loadComponent: () => import('./pages').then((m) => m.ButtonComponent),
-				data: {
-					title: 'Button',
-					description: 'Button component with various styles and sizes.',
-					keywords: 'button, action, ui, angular',
-				},
+				data: componentSeo(
+					'Button',
+					'button',
+					'Button components with action states, variants, icon layouts, and loading patterns.',
+					'button, action, ui, angular',
+				),
 			},
 			{
 				path: 'calendar',
 				loadComponent: () => import('./pages').then((m) => m.CalendarComponent),
-				data: {
-					title: 'Calendar',
-					description: 'Calendar component.',
-					keywords: 'calendar, angular component',
-				},
+				data: componentSeo(
+					'Calendar',
+					'calendar',
+					'Calendar components for date selection, scheduling interfaces, and date-driven forms.',
+					'calendar, date picker, angular component',
+				),
 			},
 			{
 				path: 'card',
 				loadComponent: () => import('./pages').then((m) => m.CardComponent),
-				data: {
-					title: 'Card',
-					description: 'Card container for organizing content.',
-					keywords: 'card, container, angular',
-				},
+				data: componentSeo(
+					'Card',
+					'card',
+					'Card components for organizing content, dashboards, settings, and product UI sections.',
+					'card, container, angular',
+				),
 			},
 			{
 				path: 'checkbox',
 				loadComponent: () => import('./pages').then((m) => m.CheckboxComponent),
-				data: {
-					title: 'Checkbox',
-					description: 'Checkbox input for boolean selection.',
-					keywords: 'checkbox, input, form, angular',
-				},
+				data: componentSeo(
+					'Checkbox',
+					'checkbox',
+					'Checkbox components for boolean selection, settings, filters, and accessible forms.',
+					'checkbox, input, form, angular',
+				),
 			},
 			{
 				path: 'dialog',
 				loadComponent: () => import('./pages').then((m) => m.DialogComponent),
-				data: {
-					title: 'Dialog',
-					description: 'Modal dialog component for focused tasks.',
-					keywords: 'dialog, modal, popup, angular',
-				},
+				data: componentSeo(
+					'Dialog',
+					'dialog',
+					'Dialog components for modals, confirmations, forms, and focused user tasks.',
+					'dialog, modal, popup, angular',
+				),
 			},
 			{
 				path: 'dropdown',
 				loadComponent: () => import('./pages').then((m) => m.DropdownComponent),
-				data: {
-					title: 'Dropdown',
-					description: 'Dropdown menu for displaying lists of actions.',
-					keywords: 'dropdown, menu, angular',
-				},
+				data: componentSeo(
+					'Dropdown',
+					'dropdown',
+					'Dropdown components for menus, action lists, navigation controls, and compact choices.',
+					'dropdown, menu, angular',
+				),
 			},
 			{
 				path: 'event-calendar',
 				loadComponent: () => import('./pages').then((m) => m.EventCalendarComponent),
-				data: {
-					title: 'Event Calendar',
-					description: 'Calendar component for displaying events.',
-					keywords: 'calendar, events, date, angular',
-				},
+				data: componentSeo(
+					'Event Calendar',
+					'event-calendar',
+					'Event calendar components for schedules, timelines, and date-based planning UI.',
+					'calendar, events, date, angular',
+				),
 			},
 			{
 				path: 'file-upload',
 				loadComponent: () => import('./pages').then((m) => m.FileUploadComponent),
-				data: {
-					title: 'File Upload',
-					description: 'Component for uploading files.',
-					keywords: 'file upload, dropzone, angular',
-				},
+				data: componentSeo(
+					'File Upload',
+					'file-upload',
+					'File upload components for drag-and-drop uploads, file previews, and form attachments.',
+					'file upload, dropzone, angular',
+				),
 			},
 			{
 				path: 'input',
 				loadComponent: () => import('./pages').then((m) => m.InputComponent),
-				data: {
-					title: 'Input',
-					description: 'Input field for text data.',
-					keywords: 'input, form, text field, angular',
-				},
+				data: componentSeo(
+					'Input',
+					'input',
+					'Input components for forms, search fields, grouped controls, and text entry patterns.',
+					'input, form, text field, angular',
+				),
 			},
 			{
 				path: 'image-cropper',
 				loadComponent: () => import('./pages').then((m) => m.ImageCropperComponent),
-				data: {
-					title: 'Image Cropper',
-					description: 'Image Cropper component.',
-					keywords: 'image-cropper, angular component',
-				},
+				data: componentSeo(
+					'Image Cropper',
+					'image-cropper',
+					'Image cropper components for avatar editing, uploads, and media preparation.',
+					'image cropper, angular component, image upload',
+				),
 			},
 			{
 				path: 'notification',
 				loadComponent: () => import('./pages').then((m) => m.NotificationComponent),
-				data: {
-					title: 'Notification',
-					description: 'Toast notification component.',
-					keywords: 'notification, toast, snackbar, angular',
-				},
+				data: componentSeo(
+					'Notification',
+					'notification',
+					'Notification components for toast messages, alerts, activity updates, and transient feedback.',
+					'notification, toast, snackbar, angular',
+				),
 			},
 			{
 				path: 'popover',
 				loadComponent: () => import('./pages').then((m) => m.PopoverComponent),
-				data: {
-					title: 'Popover',
-					description: 'Popover component for contextual information.',
-					keywords: 'popover, tooltip, angular',
-				},
+				data: componentSeo(
+					'Popover',
+					'popover',
+					'Popover components for contextual information, inline controls, and lightweight overlays.',
+					'popover, tooltip, angular',
+				),
 			},
 			{
 				path: 'radio',
 				loadComponent: () => import('./pages').then((m) => m.RadioComponent),
-				data: {
-					title: 'Radio',
-					description: 'Radio button for single selection.',
-					keywords: 'radio, form, selection, angular',
-				},
+				data: componentSeo(
+					'Radio',
+					'radio',
+					'Radio components for single-choice selection, settings, filters, and accessible forms.',
+					'radio, form, selection, angular',
+				),
 			},
 			{
 				path: 'select',
 				loadComponent: () => import('./pages').then((m) => m.SelectComponent),
-				data: {
-					title: 'Select',
-					description: 'Select component.',
-					keywords: 'select, dropdown, form, angular',
-				},
+				data: componentSeo(
+					'Select',
+					'select',
+					'Select components for dropdown choices, command-style pickers, and form selection UI.',
+					'select, dropdown, form, angular',
+				),
 			},
 			{
 				path: 'slider',
 				loadComponent: () => import('./pages').then((m) => m.SliderComponent),
-				data: { title: 'Slider', description: 'Range slider component.', keywords: 'slider, range, input, angular' },
+				data: componentSeo(
+					'Slider',
+					'slider',
+					'Slider components for ranges, numeric controls, filters, and interactive settings.',
+					'slider, range, input, angular',
+				),
 			},
 			{
 				path: 'switch',
 				loadComponent: () => import('./pages').then((m) => m.SwitchComponent),
-				data: { title: 'Switch', description: 'Toggle switch component.', keywords: 'switch, toggle, angular' },
+				data: componentSeo(
+					'Switch',
+					'switch',
+					'Switch components for toggles, preferences, feature flags, and binary settings.',
+					'switch, toggle, angular',
+				),
 			},
 			{
 				path: 'tabs',
 				loadComponent: () => import('./pages').then((m) => m.TabsComponent),
-				data: {
-					title: 'Tabs',
-					description: 'Tabs component for navigation between views.',
-					keywords: 'tabs, navigation, angular',
-				},
+				data: componentSeo(
+					'Tabs',
+					'tabs',
+					'Tabs components for switching between related views, panels, and settings sections.',
+					'tabs, navigation, angular',
+				),
 			},
 			{
 				path: 'pagination',
 				loadComponent: () => import('./pages').then((m) => m.PaginationComponent),
-				data: {
-					title: 'Pagination',
-					description: 'Pagination for navigating lists.',
-					keywords: 'pagination, navigation, list, angular',
-				},
+				data: componentSeo(
+					'Pagination',
+					'pagination',
+					'Pagination components for navigating long lists, tables, and search results.',
+					'pagination, navigation, list, angular',
+				),
 			},
 			{ path: '', pathMatch: 'full', redirectTo: 'alert' },
 		],
