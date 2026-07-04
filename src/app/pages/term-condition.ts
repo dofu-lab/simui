@@ -29,12 +29,13 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 					<section>
 						<h2 class="text-primary mb-4 text-xl font-semibold">2. Service Description</h2>
 						<p class="mb-3 text-base leading-relaxed">
-							SimUI is a modern Angular UI component library and theme customization platform. We offer:
+							SimUI is a free, open-source Angular UI component collection with optional paid theme customization
+							features. We offer:
 						</p>
 						<div class="mb-3 ml-6 text-base leading-relaxed">
 							<p class="mb-2"><strong>Free Tier:</strong></p>
 							<ul class="mb-4 ml-6 list-disc">
-								<li>Browse and preview UI components</li>
+								<li>Browse, preview, and copy UI component source code</li>
 								<li>Basic theme customization</li>
 								<li>Access to documentation and examples</li>
 							</ul>
@@ -43,7 +44,7 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 								<li>Save custom themes to the cloud</li>
 								<li>Theme version history and management</li>
 								<li>Priority support</li>
-								<li>Access to premium components and features</li>
+								<li>Priority access to new theme tooling features</li>
 							</ul>
 						</div>
 						<p class="text-base leading-relaxed">
@@ -168,18 +169,18 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 					<section>
 						<h2 class="text-primary mb-4 text-xl font-semibold">8. Intellectual Property</h2>
 						<p class="mb-3 text-base leading-relaxed">
-							All components, code, design, documentation, and other materials provided by SimUI are proprietary and
-							protected by intellectual property laws. Subscribers receive a personal, non-transferable license to use
-							SimUI components in their projects.
+							SimUI's public component examples are released under the repository license and may be copied into your
+							projects according to that license. SimUI's brand, hosted service, paid theme workflows, private account
+							data, and non-public service code remain protected by intellectual property laws.
 						</p>
 						<p class="mb-3 text-base leading-relaxed">
 							<strong>You may not:</strong>
 						</p>
 						<ul class="mb-3 ml-6 list-disc text-base leading-relaxed">
-							<li>Redistribute or resell SimUI components or source code</li>
+							<li>Misrepresent SimUI components, branding, or hosted service assets as your own product</li>
 							<li>Share paid features with non-subscribers</li>
-							<li>Remove copyright notices or attributions</li>
-							<li>Create competing products using SimUI code</li>
+							<li>Remove required copyright notices or license attributions</li>
+							<li>Abuse the hosted service or paid theme features to create a confusingly similar hosted product</li>
 						</ul>
 						<p class="mb-3 text-base leading-relaxed">
 							<strong>Open Source Credits:</strong>

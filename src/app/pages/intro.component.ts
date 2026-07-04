@@ -15,21 +15,26 @@ import { ComponentHeaderComponent, FooterComponent } from '../core';
 					<div>
 						<div class="h-[58px] text-2xl font-semibold">About This Project</div>
 						<span class="text-primary text-lg">
-							This project is built with a strong foundation of modern UI practices and open-source technologies. All
-							components are crafted using
+							SimUI is a free, open-source collection of copy-paste Angular components for developers building with
 							<a href="https://spartan.ng/" target="_blank" class="font-semibold underline">Spartan UI</a>
 							and
 							<a href="https://tailwindcss.com/" target="_blank" class="font-semibold underline">Tailwind CSS</a>
-							, allowing for a clean, responsive, and highly customizable interface.
+							. Browse a component, copy the source, and customize it directly in your own Angular project.
 						</span>
 						<br />
 						<br />
 						<span class="text-primary text-lg">
-							Spartan UI is a headless, accessible component library for Angular. It provides a robust foundation of
-							unstyled and composable UI primitives that let you build your own design system or integrate seamlessly
-							with utility-first CSS frameworks like Tailwind CSS. In this project, Spartan UI was used to create
-							reusable components such as buttons, dialogs, menus, and forms—ensuring both accessibility and flexibility
-							across the application.
+							Spartan UI provides accessible headless primitives for Angular. SimUI builds on top of those primitives
+							with polished examples for buttons, dialogs, menus, forms, calendars, uploads, and more, so teams can
+							start from working UI patterns instead of assembling every interface from scratch.
+						</span>
+					</div>
+					<div>
+						<div class="h-[58px] text-2xl font-semibold">When To Use SimUI</div>
+						<span class="text-primary text-lg">
+							Use SimUI when you are starting an Angular application with Spartan UI and want production-ready examples
+							that you can own. The component source is meant to be copied into your codebase, reviewed, renamed,
+							extended, and themed without depending on a closed component API.
 						</span>
 					</div>
 					<div>

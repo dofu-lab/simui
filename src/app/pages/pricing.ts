@@ -18,9 +18,9 @@ interface PlanFeature {
 }
 
 const FREE_FEATURES: PlanFeature[] = [
+	{ label: 'All copy-paste UI components', included: true },
 	{ label: 'Up to 5 saved themes', included: true },
-	{ label: 'Last 3 days of history', included: true },
-	{ label: 'All UI components', included: true },
+	{ label: 'Last 3 days of theme history', included: true },
 	{ label: 'Unlimited saved themes', included: false },
 	{ label: 'Full version history', included: false },
 	{ label: 'Priority support', included: false },
@@ -29,7 +29,7 @@ const FREE_FEATURES: PlanFeature[] = [
 const PRO_FEATURES: PlanFeature[] = [
 	{ label: 'Unlimited saved themes', included: true },
 	{ label: 'Full version history', included: true },
-	{ label: 'All UI components', included: true },
+	{ label: 'All copy-paste UI components', included: true },
 	{ label: 'Priority support', included: true },
 	{ label: 'Early access to new features', included: true },
 	{ label: 'Cancel anytime', included: true },
@@ -49,7 +49,10 @@ const PRO_FEATURES: PlanFeature[] = [
 					Pricing
 				</span>
 				<h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Simple, transparent pricing</h1>
-				<p class="text-muted-foreground max-w-md text-base">Start for free. Upgrade when you need more power.</p>
+				<p class="text-muted-foreground max-w-md text-base">
+					All Angular components are free to browse and copy. Upgrade only when you need more theme history and
+					cloud-saved theme workflows.
+				</p>
 			</div>
 
 			<!-- Billing toggle -->

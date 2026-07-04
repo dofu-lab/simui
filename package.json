@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"build": "node scripts/set-env.js && ng build",
+		"build": "node scripts/set-env.js && node scripts/generate-sitemap.js && ng build",
 		"codes": "tsc --project tsconfig.tools.json && node dist/tools/generators.js",
 		"e2e": "playwright test",
 		"e2e:report": "playwright show-report",
@@ -14,6 +14,7 @@
 		"ng": "ng",
 		"serve:ssr:simui": "node dist/simui/server/server.mjs",
 		"set-env": "node scripts/set-env.js",
+		"sitemap": "node scripts/generate-sitemap.js",
 		"start": "node scripts/set-env.js && ng serve",
 		"test": "ng test",
 		"update-ui": "ng g @spartan-ng/cli:migrate-helm-libraries",
