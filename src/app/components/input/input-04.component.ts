@@ -5,7 +5,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-04',
 	imports: [HlmLabelImports, HlmInputImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<div class="mb-2 flex items-center justify-between text-sm">
 			<label hlmLabel for="input-04">Input with hint</label>

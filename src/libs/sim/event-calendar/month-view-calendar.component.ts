@@ -1,4 +1,4 @@
-import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { DatePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
@@ -10,15 +10,21 @@ import {
 	endOfMonth,
 	endOfWeek,
 	format,
-	isSameDay,
 	isSameMonth,
 	isToday,
 	startOfMonth,
 	startOfWeek,
 } from 'date-fns';
+import {
+	buildDayBuckets,
+	CalendarDayBucket,
+	getDayKey,
+	isInteractiveCalendarTarget,
+	normalizeCalendarEvents,
+} from './calendar-view-model';
 import { EventItemComponent } from './event-item.component';
 import { CalendarEvent, EventDuration } from './type';
-import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortEvents } from './utils';
+import { getDateFromContainerId } from './utils';
 
 @Component({
 	selector: 'sim-month-view-calendar',
@@ -34,70 +40,68 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 				}
 			</div>
 			<div class="grid flex-1 auto-rows-fr" cdkDropListGroup>
-				@for (week of weeks(); track week) {
+				@for (week of weeks(); track week[0].key) {
 					<div class="grid grid-cols-7 [&:last-child>*]:border-b-0">
-						@for (day of week; track day) {
+						@for (dayBucket of week; track dayBucket.key) {
 							<div
 								class="group border-border/70 data-outside-cell:bg-muted/25 data-outside-cell:text-muted-foreground/70 border-r border-b last:border-r-0"
-								[attr.data-today]="isToday(day) || undefined"
-								[attr.data-outside-cell]="!isSameMonth(day) || undefined">
+								[attr.data-today]="isToday(dayBucket.date) || undefined"
+								[attr.data-outside-cell]="!isSameMonth(dayBucket.date) || undefined">
 								<div
 									class="group-data-today:bg-primary group-data-today:text-primary-foreground mt-1 ml-1 inline-flex size-6 items-center justify-center rounded-full text-sm">
-									{{ day | date: 'd' }}
+									{{ dayBucket.date | date: 'd' }}
 								</div>
 								<!-- TODO: cofig constant -->
 								<div
 									cdkDropList
-									[id]="'day-' + (day | date: 'yyyy-MM-dd')"
-									[cdkDropListData]="getDayEvents(day)"
-									[cdkDropListConnectedTo]="getAllDropListIds()"
+									[id]="'day-' + dayBucket.key"
+									[cdkDropListData]="dayBucket.events"
+									[cdkDropListConnectedTo]="allDropListIds()"
 									(cdkDropListDropped)="drop($event)"
-									(click)="handleDayClick($event, day)"
+									(click)="handleDayClick($event, dayBucket.date)"
 									class="min-h-[calc((24+4)*2px)] sm:min-h-[calc((24+4)*3px)] lg:min-h-[calc((24+4)*4px)]">
-									@for (event of getDayEvents(day); track event.id; let index = $index) {
-										@if (index < visibleCount) {
-											<div
-												cdkDrag
-												[cdkDragData]="event"
-												[cdkDragDisabled]="!isFirstDay(event, day)"
-												class="pt-1"
-												[ngClass]="{
-													'pr-1': isLastDay(event, day),
-													'pl-1': isFirstDay(event, day),
-													'z-20': isFirstDay(event, day),
-													'opacity-75': !isFirstDay(event, day),
-												}"
-												(click)="$event.stopPropagation()"
-												[attr.aria-label]="
-													isFirstDay(event, day)
-														? 'Drag to move event: ' + event.title
-														: 'Event continuation: ' + event.title
-												"
-												role="button"
-												[attr.tabindex]="isFirstDay(event, day) ? 0 : -1">
-												@if (!isFirstDay(event, day)) {
-													<sim-event-item
-														[event]="event"
-														view="month"
-														[isFirstDay]="isFirstDay(event, day)"
-														[isLastDay]="isLastDay(event, day)"
-														(click)="editEvent(event)">
-														<div class="invisible truncate" aria-hidden="true">
-															{{ event.title }}
-														</div>
-													</sim-event-item>
-												} @else {
-													<sim-event-item
-														[event]="event"
-														view="month"
-														[isFirstDay]="isFirstDay(event, day)"
-														[isLastDay]="isLastDay(event, day)"
-														(click)="editEvent(event)"></sim-event-item>
-												}
-											</div>
-										}
+									@for (eventView of dayBucket.visibleEvents; track eventView.event.id) {
+										<div
+											cdkDrag
+											[cdkDragData]="eventView.event"
+											[cdkDragDisabled]="!eventView.isFirstDay"
+											class="pt-1"
+											[ngClass]="{
+												'pr-1': eventView.isLastDay,
+												'pl-1': eventView.isFirstDay,
+												'z-20': eventView.isFirstDay,
+												'opacity-75': !eventView.isFirstDay,
+											}"
+											(click)="$event.stopPropagation()"
+											[attr.aria-label]="
+												eventView.isFirstDay
+													? 'Drag to move event: ' + eventView.event.title
+													: 'Event continuation: ' + eventView.event.title
+											"
+											role="button"
+											[attr.tabindex]="eventView.isFirstDay ? 0 : -1">
+											@if (!eventView.isFirstDay) {
+												<sim-event-item
+													[event]="eventView.event"
+													view="month"
+													[isFirstDay]="eventView.isFirstDay"
+													[isLastDay]="eventView.isLastDay"
+													(click)="editEvent(eventView.event)">
+													<div class="invisible truncate" aria-hidden="true">
+														{{ eventView.event.title }}
+													</div>
+												</sim-event-item>
+											} @else {
+												<sim-event-item
+													[event]="eventView.event"
+													view="month"
+													[isFirstDay]="eventView.isFirstDay"
+													[isLastDay]="eventView.isLastDay"
+													(click)="editEvent(eventView.event)"></sim-event-item>
+											}
+										</div>
 									}
-									@if (hasMoreEvents(day)) {
+									@if (dayBucket.hasMoreEvents) {
 										<hlm-popover sideOffset="5">
 											<!-- Todo: Make this configurable -->
 											<!-- class="focus-visible:border-ring focus-visible:ring-ring/50 text-muted-foreground hover:text-foreground hover:bg-muted/50 mt-[var(--event-gap)] flex h-[var(--event-height)] w-full items-center overflow-hidden px-1 text-left text-[10px] backdrop-blur-md transition outline-none select-none focus-visible:ring-[3px] sm:px-2 sm:text-xs"> -->
@@ -107,19 +111,19 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 													variant="outline"
 													hlmPopoverTrigger
 													class="focus-visible:border-ring focus-visible:ring-ring/50 text-muted-foreground hover:text-foreground hover:bg-muted/50 mt-1 flex h-6 w-full items-center overflow-hidden rounded-sm px-1 text-left text-[10px] backdrop-blur-md transition outline-none select-none focus-visible:ring-[3px] sm:px-2 sm:text-xs">
-													+ {{ remainingCount(day) }} more
+													+ {{ dayBucket.remainingCount }} more
 												</button>
 											</div>
 											<div hlmPopoverContent class="grid w-48 gap-1 p-3" *hlmPopoverPortal="let ctx">
-												<span class="text-sm font-medium">{{ day | date: 'EEE dd' }}</span>
+												<span class="text-sm font-medium">{{ dayBucket.date | date: 'EEE dd' }}</span>
 												<div class="grid gap-1">
-													@for (event of getDayEvents(day); track event.id; let index = $index) {
+													@for (eventView of dayBucket.eventViews; track eventView.event.id) {
 														<sim-event-item
 															view="month"
 															class="rounded-sm"
-															[event]="event"
-															[isFirstDay]="isFirstDay(event, day)"
-															[isLastDay]="isLastDay(event, day)"></sim-event-item>
+															[event]="eventView.event"
+															[isFirstDay]="eventView.isFirstDay"
+															[isLastDay]="eventView.isLastDay"></sim-event-item>
 													}
 												</div>
 											</div>
@@ -135,52 +139,42 @@ import { getDateFromContainerId, getEventsForDay, getSpanningEventsForDay, sortE
 	`,
 })
 export class MonthViewCalendarComponent {
-	currentDate = input.required<Date>();
-	events = input.required<CalendarEvent[]>();
-	sortedEvents = computed(() => sortEvents(this.events()));
-	visibleCount = 3; // TODO: calculate based on height
+	public readonly currentDate = input.required<Date>();
+	public readonly events = input.required<CalendarEvent[]>();
+	private readonly visibleCount = 3; // TODO: calculate based on height
 
-	onEventUpdated = output<CalendarEvent>();
-	onEventSelect = output<CalendarEvent>();
-	onEventCreate = output<EventDuration>();
+	public readonly onEventUpdated = output<CalendarEvent>();
+	public readonly onEventSelect = output<CalendarEvent>();
+	public readonly onEventCreate = output<EventDuration>();
 
-	// TrackBy functions for better performance
-	trackByDate = (index: number, date: Date) => date.getTime();
-	trackByEventId = (index: number, event: CalendarEvent) => event.id;
-
-	// Memoized events by day for better performance
-	eventsByDay = computed(() => {
-		const eventMap = new Map<string, CalendarEvent[]>();
-
-		this.days().forEach((day) => {
-			const dayKey = format(day, 'yyyy-MM-dd');
-			const dayEvents = getEventsForDay(this.events(), day);
-			const spanningEvents = getSpanningEventsForDay(this.events(), day);
-			eventMap.set(dayKey, sortEvents([...spanningEvents, ...dayEvents]));
-		});
-
-		return eventMap;
-	});
-
-	days = computed(() => {
+	private readonly days = computed(() => {
 		const monthStart = startOfMonth(this.currentDate());
 		const monthEnd = endOfMonth(this.currentDate());
 		const calendarStart = startOfWeek(monthStart, { weekStartsOn: 0 });
 		const calendarEnd = endOfWeek(monthEnd, { weekStartsOn: 0 });
 		return eachDayOfInterval({ start: calendarStart, end: calendarEnd });
 	});
-	weekdays = computed(() => {
+	protected readonly weekdays = computed(() => {
 		return Array.from({ length: 7 }).map((_, i) => {
 			const date = addDays(startOfWeek(new Date()), i);
 			return format(date, 'EEE');
 		});
 	});
-	weeks = computed(() => {
-		const result = [];
-		let week = [];
+	private readonly normalizedEvents = computed(() => normalizeCalendarEvents(this.events()));
+	private readonly dayBuckets = computed(() =>
+		buildDayBuckets(this.days(), this.normalizedEvents(), this.visibleCount),
+	);
+	protected readonly allDropListIds = computed(() => this.days().map((day) => 'day-' + getDayKey(day)));
+	protected readonly weeks = computed(() => {
+		const result: CalendarDayBucket[][] = [];
+		let week: CalendarDayBucket[] = [];
 
 		for (let i = 0; i < this.days().length; i++) {
-			week.push(this.days()[i]);
+			const day = this.days()[i];
+			const bucket = this.dayBuckets().get(getDayKey(day));
+			if (bucket) {
+				week.push(bucket);
+			}
 			if (week.length === 7 || i === this.days().length - 1) {
 				result.push(week);
 				week = [];
@@ -193,80 +187,24 @@ export class MonthViewCalendarComponent {
 	/**
 	 * Handle click on day container, but prevent triggering when clicking on child elements
 	 */
-	handleDayClick(event: MouseEvent, day: Date): void {
-		// Check if the click target is the day container itself or just an empty area
-		const target = event.target as HTMLElement;
-		const currentTarget = event.currentTarget as HTMLElement;
-
-		// If the target is not the current target and it's not a direct child with no interactive content,
-		// then it's likely an event or other interactive element, so don't create a new event
-		if (target !== currentTarget) {
-			// Check if the clicked element or its parents have event-related classes or data attributes
-			let element = target;
-			while (element && element !== currentTarget) {
-				// If we find an event item, popover trigger, or other interactive element, don't create event
-				if (
-					element.tagName === 'BUTTON' ||
-					element.hasAttribute('cdkDrag') ||
-					element.hasAttribute('hlmPopoverTrigger') ||
-					element.closest('sim-event-item') ||
-					element.closest('hlm-popover')
-				) {
-					return;
-				}
-				element = element.parentElement as HTMLElement;
-			}
+	protected handleDayClick(event: MouseEvent, day: Date): void {
+		if (isInteractiveCalendarTarget(event)) {
+			return;
 		}
 
-		// Only emit the event creation if we clicked on empty space
 		this.onEventCreate.emit({
 			startDate: new Date(day),
 		});
 	}
 
-	isToday = isToday;
-	public isSameMonth(day: Date): boolean {
+	protected readonly isToday = isToday;
+	protected isSameMonth(day: Date): boolean {
 		return isSameMonth(day, this.currentDate());
 	}
 
-	public getDayEvents(day: Date): CalendarEvent[] {
-		const dayKey = format(day, 'yyyy-MM-dd');
-		return this.eventsByDay().get(dayKey) || [];
-	}
-
-	public getAllDropListIds(): string[] {
-		return this.days().map((day) => 'day-' + format(day, 'yyyy-MM-dd'));
-	}
-
-	public isFirstDay(event: CalendarEvent, day: Date): boolean {
-		return isSameDay(day, new Date(event.start));
-	}
-
-	public isLastDay(event: CalendarEvent, day: Date): boolean {
-		return isSameDay(day, new Date(event.end));
-	}
-
-	public hasMoreEvents(day: Date): boolean {
-		const allEvents = this.getDayEvents(day);
-		//TODO: Make this configurable
-		return allEvents.length > this.visibleCount;
-	}
-
-	public remainingCount(day: Date): number {
-		const allEvents = this.getDayEvents(day);
-		return Math.max(0, allEvents.length - this.visibleCount);
-	}
-
-	public drop(event: CdkDragDrop<CalendarEvent[]>) {
+	protected drop(event: CdkDragDrop<CalendarEvent[]>): void {
 		if (event.previousContainer === event.container) {
-			// Reordering within the same day - this should be rare for calendar events
-			// but we'll handle it for completeness
-			if (event.container.data && event.previousIndex !== event.currentIndex) {
-				moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-				// Note: For calendar events, reordering within a day typically doesn't change
-				// the event data, just the display order. You might want to emit an event
-				// here if your business logic requires tracking display order.
-			}
+			return;
 		} else {
 			// Moving between different days
 			const movedEvent = event.previousContainer.data?.[event.previousIndex];
@@ -300,14 +238,6 @@ export class MonthViewCalendarComponent {
 					start: newStartDate,
 					end: newEndDate,
 				};
-
-				// Update the data arrays to reflect the move
-				// Remove from previous container
-				event.previousContainer.data.splice(event.previousIndex, 1);
-
-				// Add to new container at the correct position
-				event.container.data.splice(event.currentIndex, 0, updatedEvent);
-
 				// Emit the updated event for external handling (like saving to backend)
 				this.onEventUpdated.emit(updatedEvent);
 			} catch (error) {
@@ -317,7 +247,7 @@ export class MonthViewCalendarComponent {
 		}
 	}
 
-	public editEvent(event: CalendarEvent): void {
+	protected editEvent(event: CalendarEvent): void {
 		this.onEventSelect.emit(event);
 	}
 }

@@ -5,7 +5,7 @@ import { HlmAlertImports } from '@spartan-ng/helm/alert';
 	selector: 'sim-alert-19',
 	imports: [HlmAlertImports],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[550px]',
 	},
 	template: `
 		<hlm-alert>

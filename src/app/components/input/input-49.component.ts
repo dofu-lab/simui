@@ -5,7 +5,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-49',
 	imports: [HlmLabelImports, HlmInputImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-49" class="mb-2 text-sm">Readonly input</label>
 		<input hlmInput readonly class="read-only:bg-muted" id="input-49" type="text" value="This is a readonly input" />

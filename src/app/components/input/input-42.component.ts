@@ -11,7 +11,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-input-42',
 	imports: [NgIcon, FormsModule, HlmIconImports, HlmLabelImports, HlmInputOtpImports, BrnInputOtpImports],
 	providers: [provideIcons({ lucideMinus })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-42" class="mb-2 text-sm">OTP input double group</label>
 		<brn-input-otp

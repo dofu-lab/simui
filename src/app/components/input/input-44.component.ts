@@ -10,7 +10,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-input-44',
 	imports: [NgIcon, MaskitoDirective, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideCreditCard })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-44" class="mb-2 text-sm">Card number</label>
 		<hlm-input-group>

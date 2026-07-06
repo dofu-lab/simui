@@ -24,7 +24,7 @@ interface CheckboxItem {
 		}),
 	],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[500px]',
 	},
 	template: `
 		<div class="grid grid-cols-2 gap-3">

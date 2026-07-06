@@ -7,7 +7,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-41',
 	imports: [FormsModule, HlmLabelImports, HlmInputOtpImports, BrnInputOtpImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-41" class="mb-2 text-sm">OTP input single</label>
 		<brn-input-otp

@@ -12,7 +12,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-input-36',
 	imports: [FormsModule, MaskitoDirective, NgIcon, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideClock })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-36" class="mb-2 text-sm">Time input with end icon</label>
 		<hlm-input-group>

@@ -1,16 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-	addHours,
-	areIntervalsOverlapping,
-	differenceInMinutes,
-	getHours,
-	getMinutes,
-	isSameDay,
-	startOfDay,
-} from 'date-fns';
+import { addHours, areIntervalsOverlapping, getHours, getMinutes, isSameDay, startOfDay } from 'date-fns';
+import { eventIntersectsDay, normalizeCalendarEvents, NormalizedCalendarEvent } from './calendar-view-model';
 import { StartHour, WeekCellsHeight } from './constants';
 import { CalendarEvent, PositionedEvent } from './type';
-import { isMultiDayEvent } from './utils';
 
 @Injectable()
 export class EventPositioningService {
@@ -21,56 +13,37 @@ export class EventPositioningService {
 		baseZIndex: 10,
 	} as const;
 
-	public processEventsForDay(events: CalendarEvent[], day: Date): PositionedEvent[] {
+	public processEventsForDay(events: CalendarEvent[] | NormalizedCalendarEvent[], day: Date): PositionedEvent[] {
 		const dayEvents = this.getEventsForDay(events, day);
 		const sortedEvents = this.sortEventsByStartTimeAndDuration(dayEvents);
-		const columns: { event: CalendarEvent; end: Date }[][] = [];
+		const columns: { event: NormalizedCalendarEvent; end: Date }[][] = [];
 
 		return sortedEvents.map((event) => this.processEvent(event, day, columns));
 	}
 
-	public processEventsForWeek(events: CalendarEvent[], days: Date[]): PositionedEvent[][] {
+	public processEventsForWeek(events: CalendarEvent[] | NormalizedCalendarEvent[], days: Date[]): PositionedEvent[][] {
 		return days.map((day) => this.processEventsForDay(events, day));
 	}
 
-	// Helper method to get events for a specific day
-	private getEventsForDay(events: CalendarEvent[], day: Date): CalendarEvent[] {
-		return events.filter((event) => {
-			if (event.allDay || isMultiDayEvent(event)) return false;
+	private getEventsForDay(events: CalendarEvent[] | NormalizedCalendarEvent[], day: Date): NormalizedCalendarEvent[] {
+		const normalizedEvents = this.isNormalizedEventArray(events) ? events : normalizeCalendarEvents(events);
 
-			const eventStart = new Date(event.start);
-			const eventEnd = new Date(event.end);
-
-			return isSameDay(day, eventStart) || isSameDay(day, eventEnd) || (eventStart < day && eventEnd > day);
-		});
+		return normalizedEvents.filter((event) => !event.isAllDay && !event.isMultiDay && eventIntersectsDay(event, day));
 	}
 
-	// Helper method to sort events
-	private sortEventsByStartTimeAndDuration(events: CalendarEvent[]): CalendarEvent[] {
+	private sortEventsByStartTimeAndDuration(events: NormalizedCalendarEvent[]): NormalizedCalendarEvent[] {
 		return [...events].sort((a, b) => {
-			const aStart = new Date(a.start);
-			const bStart = new Date(b.start);
-
-			// First sort by start time
-			const timeDiff = aStart.getTime() - bStart.getTime();
+			const timeDiff = a.startTime - b.startTime;
 			if (timeDiff !== 0) return timeDiff;
 
-			// If start times are equal, sort by duration (longer events first)
-			const aEnd = new Date(a.end);
-			const bEnd = new Date(b.end);
-			const aDuration = differenceInMinutes(aEnd, aStart);
-			const bDuration = differenceInMinutes(bEnd, bStart);
-
-			return bDuration - aDuration;
+			return b.durationMinutes - a.durationMinutes;
 		});
 	}
 
-	// Helper method to find column for overlapping events
 	private findEventColumn(
-		event: CalendarEvent,
 		adjustedStart: Date,
 		adjustedEnd: Date,
-		columns: { event: CalendarEvent; end: Date }[][],
+		columns: { event: NormalizedCalendarEvent; end: Date }[][],
 	): number {
 		let columnIndex = 0;
 
@@ -84,10 +57,7 @@ export class EventPositioningService {
 			}
 
 			const hasOverlap = col.some((c) =>
-				areIntervalsOverlapping(
-					{ start: adjustedStart, end: adjustedEnd },
-					{ start: new Date(c.event.start), end: new Date(c.event.end) },
-				),
+				areIntervalsOverlapping({ start: adjustedStart, end: adjustedEnd }, { start: c.event.start, end: c.event.end }),
 			);
 
 			if (!hasOverlap) {
@@ -98,7 +68,6 @@ export class EventPositioningService {
 		}
 	}
 
-	// Helper method to calculate event dimensions
 	private calculateEventDimensions(columnIndex: number): { width: number; left: number; zIndex: number } {
 		const { firstColumnWidth, otherColumnWidth, columnOffset, baseZIndex } = this.COLUMN_CONFIG;
 
@@ -109,42 +78,34 @@ export class EventPositioningService {
 		};
 	}
 
-	// Helper method to process a single event
 	private processEvent(
-		event: CalendarEvent,
+		event: NormalizedCalendarEvent,
 		day: Date,
-		columns: { event: CalendarEvent; end: Date }[][],
+		columns: { event: NormalizedCalendarEvent; end: Date }[][],
 	): PositionedEvent {
-		const eventStart = new Date(event.start);
-		const eventEnd = new Date(event.end);
 		const dayStart = startOfDay(day);
 
-		// Adjust start and end times if they're outside this day
-		const adjustedStart = isSameDay(day, eventStart) ? eventStart : dayStart;
-		const adjustedEnd = isSameDay(day, eventEnd) ? eventEnd : addHours(dayStart, 24);
+		const adjustedStart = isSameDay(day, event.start) ? event.start : dayStart;
+		const adjustedEnd = isSameDay(day, event.end) ? event.end : addHours(dayStart, 24);
 
-		// Calculate time positions
 		const startHour = getHours(adjustedStart) + getMinutes(adjustedStart) / 60;
 		const endHour = getHours(adjustedEnd) + getMinutes(adjustedEnd) / 60;
 
-		// Calculate layout properties
 		const top = (startHour - StartHour) * WeekCellsHeight;
 		const height = (endHour - startHour) * WeekCellsHeight;
 
-		// Find column and calculate dimensions
-		const columnIndex = this.findEventColumn(event, adjustedStart, adjustedEnd, columns);
+		const columnIndex = this.findEventColumn(adjustedStart, adjustedEnd, columns);
 		columns[columnIndex].push({ event, end: adjustedEnd });
 
 		const { width, left, zIndex } = this.calculateEventDimensions(columnIndex);
 
-		// Calculate quarter positions
 		const startHourFloor = Math.floor(startHour);
 		const startQuarter = Math.floor(getMinutes(adjustedStart) / 15);
 		const endHourFloor = Math.floor(endHour);
 		const endQuarter = Math.floor(getMinutes(adjustedEnd) / 15);
 
 		return {
-			event,
+			event: event.event,
 			top,
 			height,
 			left,
@@ -155,5 +116,11 @@ export class EventPositioningService {
 			endHour: endHourFloor,
 			endQuarter,
 		};
+	}
+
+	private isNormalizedEventArray(
+		events: CalendarEvent[] | NormalizedCalendarEvent[],
+	): events is NormalizedCalendarEvent[] {
+		return events.length === 0 || 'startTime' in events[0];
 	}
 }

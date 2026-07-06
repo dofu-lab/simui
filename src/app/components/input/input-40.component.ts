@@ -28,7 +28,7 @@ interface ParsedDate {
 		HlmInputGroupImports,
 	],
 	providers: [provideIcons({ lucideCalendar })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<hlm-popover sideOffset="5" align="end">
 			<label hlmLabel for="input-40" class="mb-2 text-sm">Date range picker (unavailable dates)</label>

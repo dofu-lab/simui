@@ -10,7 +10,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-input-17',
 	imports: [NgIcon, HlmLabelImports, HlmInputGroupImports, HlmButtonGroupImports, HlmButtonImports],
 	providers: [provideIcons({ lucideDownload })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-17" class="mb-2 text-sm">Input with end icon button</label>
 		<hlm-button-group class="w-full">

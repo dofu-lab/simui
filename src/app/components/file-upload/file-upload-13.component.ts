@@ -62,6 +62,7 @@ export class ProgressBarComponent {
 
 @Component({
 	selector: 'sim-file-upload-13',
+	imports: [NgIcon, FileDragDropDirective, ProgressBarComponent, HlmButtonImports, HlmIconImports],
 	providers: [
 		provideIcons({
 			lucideX,
@@ -78,9 +79,8 @@ export class ProgressBarComponent {
 			lucideFile,
 		}),
 	],
-	imports: [HlmButtonImports, HlmIconImports, NgIcon, FileDragDropDirective, ProgressBarComponent],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[600px]',
 	},
 	template: `
 		<div class="flex w-full flex-col items-center justify-center">
@@ -235,8 +235,8 @@ export class FileUpload13Component {
 	}
 
 	protected getFileIcon(file: { file: File | { type: string; name: string } }): IconName {
-		const fileType = file.file instanceof File ? file.file.type : file.file.type;
-		const fileName = file.file instanceof File ? file.file.name : file.file.name;
+		const fileType = file.file.type;
+		const fileName = file.file.name;
 
 		if (
 			fileType.includes('pdf') ||
@@ -326,7 +326,7 @@ export class FileUpload13Component {
 
 		// Start simulated upload for each file
 		addedFiles.forEach((file) => {
-			const fileSize = file.file instanceof File ? file.file.size : file.file.size;
+			const fileSize = file.file.size;
 
 			// Start the upload simulation and store the cleanup function
 			const cleanup = this.simulateUpload(

@@ -4,7 +4,7 @@ import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 @Component({
 	selector: 'sim-tabs-18',
 	imports: [HlmTabsImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[600px]' },
 	template: `
 		<hlm-tabs tab="tab01" class="flex w-full flex-row gap-2" orientation="vertical">
 			<hlm-tabs-list

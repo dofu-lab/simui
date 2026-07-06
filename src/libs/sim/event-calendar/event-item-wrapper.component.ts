@@ -26,11 +26,11 @@ export class EventItemWrapperComponent {
 	public readonly isLastDay = input<boolean>(false);
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 
-	readonly onClick = output();
-	readonly onMouseDown = output();
-	readonly onTouchStart = output();
+	public readonly onClick = output();
+	public readonly onMouseDown = output();
+	public readonly onTouchStart = output();
 
-	public readonly isEventInPast = computed(() => {
+	protected readonly isEventInPast = computed(() => {
 		const currentTime = this.currentTime();
 		const displayEnd = currentTime
 			? new Date(
@@ -42,7 +42,7 @@ export class EventItemWrapperComponent {
 		return isPast(displayEnd);
 	});
 
-	public readonly computedClass = computed(() =>
+	protected readonly computedClass = computed(() =>
 		hlm(
 			'focus-visible:border-ring focus-visible:ring-ring/50 flex size-full overflow-hidden px-1 text-left font-medium backdrop-blur-md transition outline-none select-none focus-visible:ring-[3px] data-dragging:cursor-grabbing data-dragging:shadow-lg data-past-event:line-through sm:px-2',
 			getEventColorClasses(this.event().color),

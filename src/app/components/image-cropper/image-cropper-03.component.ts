@@ -10,7 +10,7 @@ import {
 @Component({
 	selector: 'sim-image-cropper-03',
 	imports: [CropperComponent, CropperImageComponent, CropperCropAreaComponent, CropperDescriptionComponent],
-	host: { class: 'flex flex-col gap-2 size-full' },
+	host: { class: 'flex flex-col gap-2 size-full items-center' },
 	template: `
 		<sim-cropper
 			class="h-80 w-full max-w-[600px] cursor-move"

@@ -21,7 +21,9 @@ interface AccordionItem {
 	selector: 'sim-accordion-19',
 	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon],
 	providers: [provideIcons({ lucideChevronDown, lucideChevronUp })],
-	host: { ngSkipHydration: 'true' },
+	host: {
+		class: 'w-full max-w-[600px]',
+	},
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Multi-level</h2>

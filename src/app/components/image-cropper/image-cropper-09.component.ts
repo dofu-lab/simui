@@ -11,11 +11,11 @@ import {
 @Component({
 	selector: 'sim-image-cropper-09',
 	imports: [CropperComponent, CropperImageComponent, CropperCropAreaComponent, CropperDescriptionComponent, JsonPipe],
-	host: { class: 'flex flex-col gap-2 size-full' },
+	host: { class: 'flex flex-col gap-2 size-full items-center' },
 	template: `
-		<div class="flex flex-col gap-2">
+		<div class="flex w-full max-w-[600px] flex-col items-center gap-2">
 			<sim-cropper
-				class="h-80 w-full max-w-[600px] cursor-move"
+				class="h-80 w-full cursor-move"
 				image="assets/backgrounds/bg-11.webp"
 				(cropChange)="onCropChange($event)"
 				(zoomChange)="onZoomChange($event)">
@@ -26,7 +26,7 @@ import {
 			</sim-cropper>
 
 			@if (cropArea()) {
-				<div class="bg-muted text-foreground/80 overflow-auto border px-4 py-3 font-mono text-xs">
+				<div class="bg-muted text-foreground/80 w-full overflow-auto rounded-md border px-4 py-3 font-mono text-xs">
 					<code>
 						<pre>{{ cropArea() | json }}</pre>
 					</code>

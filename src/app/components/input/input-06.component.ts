@@ -6,7 +6,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-06',
 	imports: [HlmLabelImports, HlmInputImports, HlmFieldImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<hlm-field forceInvalid>
 			<label hlmFieldLabel for="input-06">Input with helper text</label>

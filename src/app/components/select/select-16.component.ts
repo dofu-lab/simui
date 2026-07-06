@@ -9,7 +9,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 	selector: 'sim-select-16',
 	imports: [NgIcon, BrnSelectImports, HlmSelectImports, HlmFieldImports],
 	providers: [provideIcons({ lucideClock })],
-	host: { class: 'block w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">

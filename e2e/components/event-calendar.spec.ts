@@ -51,4 +51,37 @@ test.describe('Event Calendar', () => {
 		await dialog.getByRole('button', { name: 'Cancel' }).click();
 		await expect(dialog).toBeHidden();
 	});
+
+	test('calendar views render from the same event data', async ({ page }) => {
+		await expect(page.getByText('Team Meeting').first()).toBeVisible();
+
+		await page.getByRole('button', { name: /Month/ }).click();
+		await page.getByRole('menuitem', { name: /Week/ }).click();
+		await expect(page.locator('[data-slot="week-view"]')).toBeVisible();
+		await expect(page.getByText('Team Meeting').first()).toBeVisible();
+
+		await page.getByRole('button', { name: /Week/ }).click();
+		await page.getByRole('menuitem', { name: /Day/ }).click();
+		await expect(page.locator('[data-slot="day-view"]')).toBeVisible();
+		await expect(page.getByText('Team Meeting').first()).toBeVisible();
+
+		await page.getByRole('button', { name: /Day/ }).click();
+		await page.getByRole('menuitem', { name: /Agenda/ }).click();
+		await expect(page.getByText('Team Meeting').first()).toBeVisible();
+	});
+
+	test('clicking an empty day slot opens event creation dialog', async ({ page }) => {
+		await page.getByRole('button', { name: /Month/ }).click();
+		await page.getByRole('menuitem', { name: /Day/ }).click();
+
+		await page
+			.locator('[id^="day-Wed Jan 15 2025 09:00"]')
+			.first()
+			.click({ position: { x: 8, y: 8 } });
+
+		const dialog = page.getByRole('dialog');
+		await expect(dialog).toBeVisible();
+		await expect(dialog.getByText('Start time')).toBeVisible();
+		await expect(dialog.getByText('End time')).toBeVisible();
+	});
 });

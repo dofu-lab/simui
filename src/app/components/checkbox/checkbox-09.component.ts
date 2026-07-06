@@ -7,7 +7,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-checkbox-09',
 	imports: [HlmCheckboxImports, HlmLabelImports, HlmInputImports],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[230px]',
 	},
 	template: `
 		<div class="flex items-start gap-3">

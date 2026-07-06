@@ -34,7 +34,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 		}),
 	],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[600px]',
 	},
 	template: `
 		<div class="flex w-full flex-col items-center justify-center">
@@ -95,7 +95,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 						</button>
 						<div class="flex items-center gap-2">
 							<span class="text-muted-foreground text-xs">Total files: {{ files().length }}</span>
-							<div class="bg-border h-6 w-[1px]"></div>
+							<div class="bg-border h-6 w-px"></div>
 							<span class="text-muted-foreground text-xs">Total size: {{ totalSize() }}</span>
 						</div>
 					</div>
@@ -156,8 +156,8 @@ export class FileUpload09Component {
 	}
 
 	protected getFileIcon(file: { file: File | { type: string; name: string } }): IconName {
-		const fileType = file.file instanceof File ? file.file.type : file.file.type;
-		const fileName = file.file instanceof File ? file.file.name : file.file.name;
+		const fileType = file.file.type;
+		const fileName = file.file.name;
 
 		if (
 			fileType.includes('pdf') ||

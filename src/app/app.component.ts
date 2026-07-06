@@ -18,18 +18,18 @@ import { AnalyticsService } from './services/analytics.service';
 	`,
 })
 export class AppComponent implements OnInit {
-	isNavbarOpen = signal<boolean>(true);
+	private readonly isNavbarOpen = signal<boolean>(true);
 	private readonly seoService = inject(SeoService);
 	private readonly themeInjectorService = inject(ThemeService);
 	private readonly analyticsService = inject(AnalyticsService);
 	private readonly platformId = inject(PLATFORM_ID);
 
-	ngOnInit() {
+	public ngOnInit() {
 		this.seoService.init();
 		this.observeWebVitals();
 	}
 
-	onNavbarChange(isOpen: boolean) {
+	protected onNavbarChange(isOpen: boolean) {
 		this.isNavbarOpen.set(isOpen);
 	}
 

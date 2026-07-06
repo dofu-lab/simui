@@ -7,7 +7,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-18',
 	imports: [HlmLabelImports, HlmInputGroupImports, HlmButtonGroupImports, HlmButtonImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-18" class="mb-2 text-sm">Input with end button</label>
 		<hlm-button-group class="w-full">

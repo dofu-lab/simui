@@ -10,7 +10,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-input-50',
 	imports: [NgIcon, NgClass, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideCopy, lucideCheck })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-50" class="mb-2 text-sm">Copy to clipboard</label>
 		<hlm-input-group>

@@ -16,7 +16,7 @@ interface Option {
 	selector: 'sim-select-34',
 	imports: [HlmFieldImports, HlmPopoverImports, HlmButtonImports, NgIcon, HlmIconImports, HlmCommandImports],
 	providers: [provideIcons({ lucideChevronDown, lucidePlus })],
-	host: { class: 'block w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">

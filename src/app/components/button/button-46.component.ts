@@ -5,7 +5,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	selector: 'sim-button-46',
 	imports: [HlmButtonImports],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[300px]',
 	},
 	template: `
 		<div class="flex items-center justify-center gap-1.5">

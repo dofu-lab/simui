@@ -9,7 +9,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-45',
 	imports: [FormsModule, MaskitoDirective, HlmLabelImports, HlmInputImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-45" class="mb-2 text-sm">Expiry date</label>
 		<input hlmInput id="input-45" type="text" placeholder="mm / dd" [maskito]="mask" />

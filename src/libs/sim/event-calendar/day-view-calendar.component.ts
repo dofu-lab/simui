@@ -1,32 +1,21 @@
-import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { DatePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { hlm } from '@spartan-ng/helm/utils';
-import {
-	addHours,
-	addMinutes,
-	differenceInMinutes,
-	eachDayOfInterval,
-	eachHourOfInterval,
-	endOfWeek,
-	isSameDay,
-	isToday,
-	startOfDay,
-	startOfWeek,
-} from 'date-fns';
-import { CalendarDateService } from './calendar-date.service';
+import { addHours, addMinutes, differenceInMinutes, eachHourOfInterval, isToday, startOfDay } from 'date-fns';
+import { buildAllDayEventViews, isInteractiveCalendarTarget, normalizeCalendarEvents } from './calendar-view-model';
 import { EndHour, StartHour } from './constants';
 import { CurrentTimeIndicatorService } from './current-time-indicator.service';
 import { EventItemComponent } from './event-item.component';
 import { EventPositioningService } from './event-positioning.service';
 import { CalendarEvent, EventDuration, PositionedEvent } from './type';
-import { getDateFromContainerId, isMultiDayEvent } from './utils';
+import { getDateFromContainerId } from './utils';
 
 @Component({
 	selector: 'sim-day-view-calendar',
 	imports: [NgClass, DatePipe, EventItemComponent, CdkDropListGroup, CdkDropList, CdkDrag],
-	providers: [CurrentTimeIndicatorService, EventPositioningService, CalendarDateService],
+	providers: [CurrentTimeIndicatorService, EventPositioningService],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div data-slot="day-view" class="border-border/70 flex h-full flex-col border-t">
@@ -39,16 +28,16 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 						</span>
 					</div>
 					<div class="grid auto-cols-fr grid-flow-row">
-						@for (event of allDayEvents(); track event.id + '-all-day-event-item'; let dayIndex = $index) {
+						@for (eventView of allDayEventViews(); track eventView.event.id + '-all-day-event-item') {
 							<div class="border-border/70 relative flex flex-col gap-1 border-r py-1 last:border-r-0">
-								<div [ngClass]="{ 'pl-1': isFirstDay(event), 'pr-1': isLastDay(event) }">
+								<div [ngClass]="{ 'pl-1': eventView.isFirstDay, 'pr-1': eventView.isLastDay }">
 									<sim-event-item
 										view="month"
-										[event]="event"
-										[isFirstDay]="isFirstDay(event)"
-										[isLastDay]="isLastDay(event)">
+										[event]="eventView.event"
+										[isFirstDay]="eventView.isFirstDay"
+										[isLastDay]="eventView.isLastDay">
 										<div class="truncate">
-											{{ event.title }}
+											{{ eventView.event.title }}
 										</div>
 									</sim-event-item>
 								</div>
@@ -88,18 +77,18 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 						</div>
 					}
 
-					@for (hour of hours(); track hour.toString()) {
+					@for (hourSlot of hourSlots(); track hourSlot.hour.toString()) {
 						<div class="border-border/70 relative h-16 border-b last:border-b-0">
-							@for (quarter of [0, 1, 2, 3]; track quarter) {
+							@for (quarterSlot of hourSlot.quarters; track quarterSlot.quarter) {
 								<div
 									cdkDropList
 									class="hover:bg-muted/60"
-									[id]="'day-' + getQuarterTime(hour, quarter)"
-									[class]="generateCellClass(quarter)"
-									[cdkDropListData]="getProcessedEventsForDay(hour, quarter)"
+									[id]="quarterSlot.id"
+									[class]="quarterSlot.className"
+									[cdkDropListData]="quarterSlot.events"
 									(cdkDropListDropped)="drop($event)"
-									(click)="handleDayClick($event, hour, quarter)">
-									@for (positionedEvent of getProcessedEventsForDay(hour, quarter); track positionedEvent.event.id) {
+									(click)="handleDayClick($event, quarterSlot.startDate)">
+									@for (positionedEvent of quarterSlot.events; track positionedEvent.event.id) {
 										<div
 											cdkDrag
 											[cdkDragData]="positionedEvent.event"
@@ -129,52 +118,53 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 	`,
 })
 export class DayViewCalendarComponent {
-	private readonly _calendarDateService = inject(CalendarDateService);
 	private readonly _eventPositioningService = inject(EventPositioningService);
 	private readonly _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
 
-	readonly currentDate = input.required<Date>();
-	readonly events = input.required<CalendarEvent[]>();
+	public readonly currentDate = input.required<Date>();
+	public readonly events = input.required<CalendarEvent[]>();
 
 	public readonly onEventSelect = output<CalendarEvent>();
 	public readonly onEventCreate = output<EventDuration>();
 	public readonly onEventUpdated = output<CalendarEvent>();
 
-	currentTimeIndicator = toSignal(this._currentTimeIndicatorService.getCurrentTimeIndicator());
+	protected readonly currentTimeIndicator = toSignal(
+		this._currentTimeIndicatorService.getCurrentTimeIndicator(toObservable(this.currentDate), 'day'),
+	);
 
-	isToday = computed(() => isToday(this.currentDate()));
-	days = computed(() => {
-		const weekStart = startOfWeek(this.currentDate());
-		const weekEnd = endOfWeek(this.currentDate());
-		return eachDayOfInterval({ start: weekStart, end: weekEnd });
-	});
-	hours = computed(() => {
+	protected readonly isToday = computed(() => isToday(this.currentDate()));
+	protected readonly hours = computed(() => {
 		const dayStart = startOfDay(this.currentDate());
 		return eachHourOfInterval({
 			start: addHours(dayStart, StartHour),
 			end: addHours(dayStart, EndHour - 1),
 		});
 	});
-	dayEvents = computed(() => {
-		return this.events()
-			.filter((event) => {
-				const eventStart = new Date(event.start);
-				const eventEnd = new Date(event.end);
-				return (
-					isSameDay(this.currentDate(), eventStart) ||
-					isSameDay(this.currentDate(), eventEnd) ||
-					(this.currentDate() > eventStart && this.currentDate() < eventEnd)
-				);
-			})
-			.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
-	});
-	allDayEvents = computed(() => {
-		return this.dayEvents().filter((event) => {
-			return event.allDay || isMultiDayEvent(event);
-		});
-	});
-	showAllDaySection = computed(() => this.allDayEvents().length > 0);
-	eventsByHourQuarter = computed(() => {
+	protected readonly showAllDaySection = computed(() => this.allDayEventViews().length > 0);
+	protected readonly hourSlots = computed(() =>
+		this.hours().map((hour) => ({
+			hour,
+			quarters: [0, 1, 2, 3].map((quarter) => {
+				const startDate = addMinutes(startOfDay(this.currentDate()), hour.getHours() * 60 + quarter * 15);
+				const key = `${hour.getHours()}-${quarter}`;
+
+				return {
+					quarter,
+					startDate,
+					id: `day-${startDate.toString()}`,
+					className: this.quarterCellClasses[quarter],
+					events: this.eventsByHourQuarter().get(key) || [],
+				};
+			}),
+		})),
+	);
+
+	private readonly normalizedEvents = computed(() => normalizeCalendarEvents(this.events()));
+	protected readonly allDayEventViews = computed(() =>
+		buildAllDayEventViews(this.currentDate(), this.normalizedEvents(), startOfDay(this.currentDate())),
+	);
+
+	private readonly eventsByHourQuarter = computed(() => {
 		const eventMap = new Map<string, PositionedEvent[]>();
 
 		this.processedDayEvents().forEach((event) => {
@@ -187,23 +177,12 @@ export class DayViewCalendarComponent {
 
 		return eventMap;
 	});
-	processedDayEvents = computed(() => {
-		return this._eventPositioningService.processEventsForDay(this.dayEvents(), this.currentDate());
+	private readonly processedDayEvents = computed(() => {
+		return this._eventPositioningService.processEventsForDay(this.normalizedEvents(), this.currentDate());
 	});
+	private readonly quarterCellClasses = [0, 1, 2, 3].map((quarter) => this.generateCellClass(quarter));
 
-	public getQuarterTime(hour: Date, quarter: number): string {
-		return this._calendarDateService.getQuarterTime(startOfDay(this.currentDate()), hour, quarter);
-	}
-
-	public formattedTime(time: number | undefined): string | null {
-		return time !== undefined
-			? `${Math.floor(time)}:${Math.round((time - Math.floor(time)) * 60)
-					.toString()
-					.padStart(2, '0')}`
-			: null;
-	}
-
-	public generateCellClass(quarter: number): string {
+	private generateCellClass(quarter: number): string {
 		// 64px
 		// need config
 		return hlm(
@@ -216,16 +195,11 @@ export class DayViewCalendarComponent {
 		);
 	}
 
-	public getProcessedEventsForDay(hour: Date, quarter: number): PositionedEvent[] {
-		const key = `${hour.getHours()}-${quarter}`;
-		return this.eventsByHourQuarter().get(key) || [];
-	}
-
-	public drop(event: CdkDragDrop<any>) {
+	protected drop(event: CdkDragDrop<PositionedEvent[]>): void {
 		if (event.previousContainer === event.container) {
-			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+			return;
 		} else {
-			const movedEvent = event.previousContainer.data[event.previousIndex].event as CalendarEvent;
+			const movedEvent = event.previousContainer.data[event.previousIndex].event;
 
 			const originalStartDate = new Date(movedEvent.start);
 			const originalEndDate = new Date(movedEvent.end);
@@ -241,44 +215,15 @@ export class DayViewCalendarComponent {
 		}
 	}
 
-	public isFirstDay(event: CalendarEvent): boolean {
-		return isSameDay(this.currentDate(), new Date(event.start));
-	}
-
-	public isLastDay(event: CalendarEvent): boolean {
-		return isSameDay(this.currentDate(), new Date(event.end));
-	}
-
 	/**
 	 * Handle click on day container, but prevent triggering when clicking on child elements
 	 */
-	public handleDayClick(event: MouseEvent, hour: Date, quarter: number): void {
-		// Check if the click target is the day container itself or just an empty area
-		const target = event.target as HTMLElement;
-		const currentTarget = event.currentTarget as HTMLElement;
-
-		// If the target is not the current target and it's not a direct child with no interactive content,
-		// then it's likely an event or other interactive element, so don't create a new event
-		if (target !== currentTarget) {
-			// Check if the clicked element or its parents have event-related classes or data attributes
-			let element = target;
-			while (element && element !== currentTarget) {
-				// If we find an event item, popover trigger, or other interactive element, don't create event
-				if (
-					element.tagName === 'BUTTON' ||
-					element.hasAttribute('cdkDrag') ||
-					element.hasAttribute('hlmPopoverTrigger') ||
-					element.closest('sim-event-item') ||
-					element.closest('hlm-popover')
-				) {
-					return;
-				}
-				element = element.parentElement as HTMLElement;
-			}
+	protected handleDayClick(event: MouseEvent, startDate: Date): void {
+		if (isInteractiveCalendarTarget(event)) {
+			return;
 		}
 
-		// Only emit the event creation if we clicked on empty space
-		const newStartDay = new Date(this.getQuarterTime(hour, quarter));
+		const newStartDay = new Date(startDate);
 		const newEndDay = addMinutes(newStartDay, 15);
 		this.onEventCreate.emit({
 			startDate: newStartDay,
@@ -286,7 +231,7 @@ export class DayViewCalendarComponent {
 		});
 	}
 
-	public editEvent(event: CalendarEvent): void {
+	protected editEvent(event: CalendarEvent): void {
 		this.onEventSelect.emit(event);
 	}
 }

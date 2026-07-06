@@ -5,7 +5,7 @@ export type ComponentCardAlignment = 'center' | 'text-center' | 'column-center' 
 
 export interface ComponentCardItem {
 	id: string;
-	component: Type<unknown>;
+	component: Type<unknown> | null;
 	layout: ComponentCardLayout;
 	alignment: ComponentCardAlignment;
 }

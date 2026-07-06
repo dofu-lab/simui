@@ -5,6 +5,9 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-checkbox-10',
 	imports: [HlmCheckboxImports, HlmLabelImports],
+	host: {
+		class: 'w-full max-w-[400px]',
+	},
 	template: `
 		<label
 			hlmLabel

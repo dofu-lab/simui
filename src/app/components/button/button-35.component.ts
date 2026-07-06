@@ -5,7 +5,7 @@ import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 	selector: 'sim-button-35',
 	imports: [HlmToggleGroupImports],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[300px]',
 	},
 	template: `
 		<hlm-toggle-group variant="outline" class="flex w-full">

@@ -8,7 +8,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-51',
 	imports: [FormsModule, MaskitoDirective, HlmLabelImports, HlmInputImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-51" class="mb-2 text-sm">Input with mask</label>
 		<input hlmInput id="input-51" type="text" placeholder="AA99 AAA" [maskito]="mask" />

@@ -1,5 +1,6 @@
 export * from './code-preview.component';
 export * from './component-card.component';
+export * from './component-full-view.component';
 export * from './component-header.component';
 export * from './footer.component';
 export * from './header.component';

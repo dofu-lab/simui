@@ -8,7 +8,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-input-09',
 	imports: [HlmLabelImports, NgIcon, HlmInputGroupImports],
 	providers: [provideIcons({ lucideAtSign })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-09" class="mb-2 text-sm">Input with start icon</label>
 		<hlm-input-group>

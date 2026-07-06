@@ -6,8 +6,8 @@ import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 @Component({
 	selector: 'sim-tabs-17',
 	imports: [HlmTabsImports],
-	host: { class: 'w-full' },
 	providers: [provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage })],
+	host: { class: 'w-full max-w-[600px]' },
 	template: `
 		<hlm-tabs tab="tab01" orientation="vertical" class="flex w-full flex-row gap-2">
 			<hlm-tabs-list class="mt-0 h-auto w-fit p-0.5" aria-label="tabs example">

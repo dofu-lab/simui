@@ -20,7 +20,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 	providers: [
 		provideIcons({ lucideHouse, lucidePanelsTopLeft, lucidePackage, lucideUsers, lucideChartLine, lucideSettings }),
 	],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[400px]' },
 	template: `
 		<hlm-tabs tab="tab01" class="w-full">
 			<ng-scrollbar hlm>

@@ -5,7 +5,7 @@ import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
 @Component({
 	selector: 'sim-select-08',
 	imports: [HlmNativeSelectImports, HlmFieldImports],
-	host: { class: 'block w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">

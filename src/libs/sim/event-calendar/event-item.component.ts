@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { hlm } from '@spartan-ng/helm/utils';
 import { ClassValue } from 'clsx';
-import { differenceInMinutes } from 'date-fns';
 import { EventHeight } from './constants';
 import { EventItemWrapperComponent } from './event-item-wrapper.component';
 import { CalendarEvent, CalendarView } from './type';
@@ -29,7 +28,7 @@ import { formatTimeWithOptionalMinutes } from './utils';
 					</span>
 				} @else if (view() === 'week' || view() === 'day') {
 					<div class="flex h-full flex-col items-start truncate py-1">
-						<span>{{ event().title }}sss</span>
+						<span>{{ event().title }}</span>
 						@if (!event().allDay) {
 							<span class="truncate font-normal opacity-70 sm:text-[11px]">
 								{{ displayTime() }}
@@ -73,11 +72,11 @@ export class EventItemComponent {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	public readonly height = input<number>(EventHeight);
 
-	computedMonthClass = computed(() => {
+	protected readonly computedMonthClass = computed(() => {
 		return hlm('items-center text-[10px] sm:text-xs', `h-${this.height() / 4}`, this.userClass());
 	});
-	displayStart = computed(() => this.currentTime() || new Date(this.event().start));
-	displayEnd = computed(() => {
+	private readonly displayStart = computed(() => this.currentTime() || new Date(this.event().start));
+	private readonly displayEnd = computed(() => {
 		const currentTime = this.currentTime();
 		return currentTime
 			? new Date(
@@ -86,26 +85,13 @@ export class EventItemComponent {
 				)
 			: new Date(this.event().end);
 	});
-	displayTime = computed(() => {
+
+	protected readonly displayTime = computed(() => {
 		if (this.view() === 'month') {
 			return formatTimeWithOptionalMinutes(this.displayStart());
 		}
 
 		return `${formatTimeWithOptionalMinutes(this.displayStart())} - ${formatTimeWithOptionalMinutes(this.displayEnd())}`;
 	});
-	durationInMinutes = computed(() => differenceInMinutes(this.displayEnd(), this.displayStart()));
-
-	formatTimeWithOptionalMinutes = formatTimeWithOptionalMinutes;
-
-	public getEventTime(): string {
-		if (this.event().allDay) return 'All day';
-
-		// For short events (less than 45 minutes), only show start time
-		if (this.durationInMinutes() < 45) {
-			return formatTimeWithOptionalMinutes(this.displayStart());
-		}
-
-		// For longer events, show both start and end time
-		return `${formatTimeWithOptionalMinutes(this.displayStart())} - ${formatTimeWithOptionalMinutes(this.displayEnd())}`;
-	}
+	protected readonly formatTimeWithOptionalMinutes = formatTimeWithOptionalMinutes;
 }

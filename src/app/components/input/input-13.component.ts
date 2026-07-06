@@ -8,7 +8,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-input-13',
 	imports: [NgIcon, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideEuro })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-13" class="mb-2 text-sm">Input with inline add-ons</label>
 		<hlm-input-group>

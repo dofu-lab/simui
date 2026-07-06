@@ -169,7 +169,6 @@ export class SaveTheme {
 
 	protected onSaveClick(event: Event) {
 		// Check if user is authenticated
-		console.log('Checking authentication status before saving theme...', this.authService.isAuthenticated());
 		if (!this.authService.isAuthenticated()) {
 			console.log('User not authenticated. Opening sign-in dialog.', this.signInDialog());
 			this.signInDialog()?.open();

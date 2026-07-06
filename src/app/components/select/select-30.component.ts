@@ -11,7 +11,7 @@ interface Option {
 
 @Component({
 	selector: 'sim-select-30',
-	host: { class: 'block w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	imports: [BrnSelectImports, HlmSelectImports, HlmFieldImports],
 	template: `
 		<div hlmFieldGroup>
