@@ -142,7 +142,6 @@ export class ThemeStorageService {
 
 		const lastEntry = newHistory.at(-1);
 		if (lastEntry?.preset) {
-			console.log('Reverting to theme from history:', lastEntry);
 			this.currentTheme.set(lastEntry.preset);
 		}
 

@@ -6,7 +6,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-14',
 	imports: [HlmLabelImports, HlmButtonGroupImports, HlmInputGroupImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-14" class="mb-2 text-sm">Input with start inline add-on</label>
 		<hlm-button-group class="w-full">

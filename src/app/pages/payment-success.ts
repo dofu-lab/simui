@@ -80,29 +80,28 @@ export class PaymentSuccessComponent implements OnInit {
 					const isPaid = response.user.role === UserRole.PaidUser || response.user.role === UserRole.Admin;
 					if (isPaid) {
 						this.isRefreshing.set(false);
-						this.scheduleRedirect('successful refresh');
+						this.scheduleRedirect();
 					}
 				},
 				error: () => {
 					// Refresh failed — still show the success UI
 					this.isRefreshing.set(false);
-					this.scheduleRedirect('failed refresh');
+					this.scheduleRedirect();
 				},
 				complete: () => {
 					// Max attempts reached without role update — show success anyway
 					this.isRefreshing.set(false);
-					this.scheduleRedirect('max attempts reached');
+					this.scheduleRedirect();
 				},
 			});
 	}
 
-	private scheduleRedirect(reason: string): void {
+	private scheduleRedirect(): void {
 		if (this.redirectScheduled) {
 			return;
 		}
 		this.redirectScheduled = true;
 		setTimeout(() => {
-			console.log(`Redirecting to theme editor after ${reason}`);
 			this.router.navigate(['/theme-editor']);
 		}, 3000);
 	}

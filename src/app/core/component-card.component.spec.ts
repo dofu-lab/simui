@@ -7,7 +7,7 @@ import { ComponentCardComponent } from './component-card.component';
 import { CodeLoaderService } from './services/code-loader.service';
 
 @Component({
-	selector: 'test-demo',
+	selector: 'sim-test-demo',
 	template: '<button type="button">Demo action</button>',
 })
 class TestDemoComponent {}
@@ -62,6 +62,15 @@ describe('ComponentCardComponent analytics', () => {
 		(fixture.componentInstance as unknown as { trackCodeClick: () => void }).trackCodeClick();
 
 		expect(analyticsService.trackComponentCodeSheetOpened).toHaveBeenCalledWith('button-01');
+	});
+
+	it('emits the full-view request for the current component', () => {
+		const fullViewSpy = jasmine.createSpy('fullViewRequested');
+		fixture.componentInstance.fullViewRequested.subscribe(fullViewSpy);
+
+		(fixture.componentInstance as unknown as { requestFullView: () => void }).requestFullView();
+
+		expect(fullViewSpy).toHaveBeenCalledOnceWith('button-01');
 	});
 
 	it('tracks only the first demo interaction per card instance', () => {

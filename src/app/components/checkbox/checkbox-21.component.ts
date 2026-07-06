@@ -17,7 +17,7 @@ interface CheckboxItem {
 	imports: [NgClass, HlmCheckboxImports, HlmLabelImports],
 	providers: [provideIcons({ lucideZap })],
 	host: {
-		class: 'w-full',
+		class: 'w-fit',
 	},
 	template: `
 		<fieldset class="space-y-4">

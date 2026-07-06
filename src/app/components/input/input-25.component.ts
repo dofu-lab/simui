@@ -22,7 +22,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 		HlmInputGroupImports,
 	],
 	providers: [provideIcons({ lucideMinus, lucidePlus })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-25" class="mb-2 text-sm">Number input with plus/minus buttons</label>
 		<hlm-button-group class="w-full" [formGroup]="form">

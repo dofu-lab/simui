@@ -18,7 +18,7 @@ interface RadioItem {
 	imports: [HlmRadioGroupImports, HlmLabelImports, FormsModule, NgIcon, HlmIconImports],
 	providers: [provideIcons({ lucideCheck, lucideMinus })],
 	host: {
-		class: 'w-full',
+		class: 'w-fit',
 	},
 	template: `
 		<div class="flex flex-col gap-4">

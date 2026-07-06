@@ -10,7 +10,7 @@ import { debounceTime } from 'rxjs';
 	selector: 'sim-input-24',
 	imports: [NgIcon, ReactiveFormsModule, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideSearch, lucideMic })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-24" class="mb-2 text-sm">Input with inline add-ons</label>
 		<hlm-input-group>

@@ -1,4 +1,5 @@
 import { format, getHours, getMinutes, isSameDay } from 'date-fns';
+import { sortCalendarEvents } from './calendar-view-model';
 import { EndHour, StartHour } from './constants';
 import { CalendarEvent, EventColor, TimeOption } from './type';
 
@@ -66,15 +67,7 @@ export function getEventsForDay(events: CalendarEvent[], day: Date): CalendarEve
  * Sort events with multi-day events first, then by start time
  */
 export function sortEvents(events: CalendarEvent[]): CalendarEvent[] {
-	return [...events].sort((a, b) => {
-		const aIsMultiDay = isMultiDayEvent(a);
-		const bIsMultiDay = isMultiDayEvent(b);
-
-		if (aIsMultiDay && !bIsMultiDay) return -1;
-		if (!aIsMultiDay && bIsMultiDay) return 1;
-
-		return new Date(a.start).getTime() - new Date(b.start).getTime();
-	});
+	return sortCalendarEvents(events);
 }
 
 /**
@@ -137,7 +130,10 @@ export function getDateFromContainerId(containerId: string): Date | null {
 	try {
 		// Extract date from container ID (format: 'day-YYYY-MM-DD')
 		const dateStr = containerId.replace('day-', '');
-		const date = new Date(dateStr);
+		const dateParts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateStr);
+		const date = dateParts
+			? new Date(Number(dateParts[1]), Number(dateParts[2]) - 1, Number(dateParts[3]))
+			: new Date(dateStr);
 
 		// Validate the date
 		if (isNaN(date.getTime())) {

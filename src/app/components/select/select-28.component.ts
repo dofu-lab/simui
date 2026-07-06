@@ -17,7 +17,7 @@ interface Option {
 	selector: 'sim-select-28',
 	imports: [NgIcon, HlmIconImports, BrnSelectImports, HlmSelectImports, HlmFieldImports],
 	providers: [provideIcons({ lucideSquareCheck, lucideClock, lucideCirclePause, lucideSquareX, lucideAlertCircle })],
-	host: { class: 'block w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">

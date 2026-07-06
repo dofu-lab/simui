@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { endOfWeek, isSameDay, isWithinInterval, startOfWeek } from 'date-fns';
-import { BehaviorSubject, Observable, combineLatest, interval } from 'rxjs';
+import { Observable, combineLatest, interval } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { EndHour, StartHour } from './constants';
 
@@ -11,25 +11,17 @@ export interface CurrentTimeIndicatorState {
 
 @Injectable()
 export class CurrentTimeIndicatorService {
-	private readonly currentDateSubject = new BehaviorSubject<Date>(new Date());
-	private readonly viewSubject = new BehaviorSubject<'day' | 'week'>('week');
-
-	/**
-	 * Get the current time indicator state as an observable
-	 * Updates every minute
-	 */
-	public getCurrentTimeIndicator(): Observable<CurrentTimeIndicatorState> {
-		// Create an observable that emits every minute
+	public getCurrentTimeIndicator(
+		currentDate$: Observable<Date>,
+		view: 'day' | 'week',
+	): Observable<CurrentTimeIndicatorState> {
 		const minuteTimer$ = interval(60000).pipe(startWith(0));
 
-		return combineLatest([this.currentDateSubject.asObservable(), this.viewSubject.asObservable(), minuteTimer$]).pipe(
-			map(([currentDate, view]) => this.calculateTimePosition(currentDate, view)),
+		return combineLatest([currentDate$, minuteTimer$]).pipe(
+			map(([currentDate]) => this.calculateTimePosition(currentDate, view)),
 		);
 	}
 
-	/**
-	 * Calculate the current time position and visibility
-	 */
 	private calculateTimePosition(currentDate: Date, view: 'day' | 'week'): CurrentTimeIndicatorState {
 		const now = new Date();
 		const hours = now.getHours();

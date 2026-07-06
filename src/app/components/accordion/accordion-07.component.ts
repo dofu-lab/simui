@@ -14,6 +14,9 @@ interface AccordionItem {
 	selector: 'sim-accordion-07',
 	imports: [HlmAccordionImports],
 	providers: [provideIcons({ lucideChevronDown })],
+	host: {
+		class: 'w-full max-w-[600px]',
+	},
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ sub-title and chevron</h2>

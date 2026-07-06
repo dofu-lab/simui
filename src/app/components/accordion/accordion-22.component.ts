@@ -33,8 +33,10 @@ interface AccordionItem {
 		HlmAccordionImports,
 		BrnAccordionImports,
 	],
-	host: { ngSkipHydration: 'true' },
 	providers: [provideIcons({ lucideChevronDown, lucideChevronUp, lucideCheck, lucideMinus })],
+	host: {
+		class: 'w-full max-w-[600px]',
+	},
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Connected W/ checkbox and state</h2>

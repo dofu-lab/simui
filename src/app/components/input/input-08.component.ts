@@ -5,7 +5,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-08',
 	imports: [HlmLabelImports, HlmInputImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-08" class="mb-2 text-sm">Disabled input</label>
 		<input hlmInput id="input-08" type="text" placeholder="Email" disabled />

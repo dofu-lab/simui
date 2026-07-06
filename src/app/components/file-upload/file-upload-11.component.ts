@@ -22,6 +22,7 @@ import { HlmTableImports } from '@spartan-ng/helm/table';
 
 @Component({
 	selector: 'sim-file-upload-11',
+	imports: [NgIcon, FileDragDropDirective, HlmButtonImports, HlmIconImports, HlmTableImports],
 	providers: [
 		provideIcons({
 			lucideX,
@@ -39,9 +40,8 @@ import { HlmTableImports } from '@spartan-ng/helm/table';
 			lucideDownload,
 		}),
 	],
-	imports: [HlmButtonImports, HlmIconImports, NgIcon, FileDragDropDirective, HlmTableImports],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[600px]',
 	},
 	template: `
 		<div class="flex w-full flex-col items-center justify-center">
@@ -216,8 +216,8 @@ export class FileUpload11Component {
 	}
 
 	protected getFileIcon(file: { file: File | { type: string; name: string } }): IconName {
-		const fileType = file.file instanceof File ? file.file.type : file.file.type;
-		const fileName = file.file instanceof File ? file.file.name : file.file.name;
+		const fileType = file.file.type;
+		const fileName = file.file.name;
 
 		if (
 			fileType.includes('pdf') ||

@@ -10,13 +10,14 @@ import {
 	input,
 	isDevMode,
 	OnDestroy,
+	output,
 	PLATFORM_ID,
 	signal,
 	Type,
 	viewChild,
 } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideCheck, lucideCode, lucideLink } from '@ng-icons/lucide';
+import { lucideCheck, lucideCode, lucideFullscreen, lucideLink } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSheet, HlmSheetImports } from '@spartan-ng/helm/sheet';
@@ -45,7 +46,7 @@ const CARD_LAYOUT_CLASSES: Record<ComponentCardLayout, string> = {
 @Component({
 	selector: 'sim-component-card',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	providers: [provideIcons({ lucideCode, lucideLink, lucideCheck })],
+	providers: [provideIcons({ lucideCode, lucideLink, lucideCheck, lucideFullscreen })],
 	imports: [
 		NgIcon,
 		NgComponentOutlet,
@@ -87,6 +88,18 @@ const CARD_LAYOUT_CLASSES: Record<ComponentCardLayout, string> = {
 						hlmBtn
 						size="icon"
 						variant="link"
+						aria-label="Open full view"
+						class="text-muted-foreground/80 hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100"
+						[hlmTooltip]="fullViewTooltip"
+						(click)="requestFullView()">
+						<ng-icon hlm name="lucideFullscreen" size="sm" />
+					</button>
+					<ng-template #fullViewTooltip><span class="flex items-center">Full view</span></ng-template>
+					<button
+						hlmBtn
+						size="icon"
+						variant="link"
+						aria-label="View code"
 						class="text-muted-foreground/80 hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100"
 						[hlmTooltip]="viewCodeTooltip"
 						(click)="trackCodeClick()">
@@ -156,6 +169,7 @@ export class ComponentCardComponent implements AfterViewInit, OnDestroy {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	public readonly layout = input<ComponentCardLayout>('third');
 	public readonly alignment = input<ComponentCardAlignment>('center');
+	public readonly fullViewRequested = output<string>();
 	// CLI scope/package to display for copying. Configurable via input binding.
 	public readonly cliScope = input<string>('@dofu-lab/simui-cli');
 
@@ -220,6 +234,10 @@ export class ComponentCardComponent implements AfterViewInit, OnDestroy {
 				error: () => this.codeLoading.set(false),
 			});
 		}
+	}
+
+	protected requestFullView(): void {
+		this.fullViewRequested.emit(this.componentName());
 	}
 
 	protected trackDemoInteraction(interactionType: ComponentInteractionType): void {

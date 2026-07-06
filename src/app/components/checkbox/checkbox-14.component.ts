@@ -10,7 +10,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	imports: [NgIcon, HlmCheckboxImports, HlmLabelImports, HlmIconImports],
 	providers: [provideIcons({ lucideRocket })],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[400px]',
 	},
 	template: `
 		<label

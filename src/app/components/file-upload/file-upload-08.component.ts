@@ -9,7 +9,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	imports: [NgIcon, FileDragDropDirective, HlmButtonImports, HlmIconImports],
 	providers: [provideIcons({ lucideX, lucideCircleAlert, lucideUpload, lucidePaperclip })],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[600px]',
 	},
 	template: `
 		<div class="flex w-full flex-col items-center justify-center">

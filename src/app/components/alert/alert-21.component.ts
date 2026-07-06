@@ -10,7 +10,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	imports: [NgIcon, HlmIconImports, HlmButtonImports, HlmAlertImports],
 	providers: [provideIcons({ lucideInfo })],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[550px]',
 	},
 	template: `
 		<hlm-alert>

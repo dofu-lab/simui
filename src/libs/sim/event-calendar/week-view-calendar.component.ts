@@ -1,7 +1,7 @@
-import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { DatePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { hlm } from '@spartan-ng/helm/utils';
 import {
 	addHours,
@@ -10,37 +10,35 @@ import {
 	eachDayOfInterval,
 	eachHourOfInterval,
 	endOfWeek,
-	isBefore,
-	isSameDay,
 	isToday,
 	startOfDay,
 	startOfWeek,
 } from 'date-fns';
-import { CalendarDateService } from './calendar-date.service';
+import { buildAllDayEventViews, isInteractiveCalendarTarget, normalizeCalendarEvents } from './calendar-view-model';
 import { EndHour, StartHour } from './constants';
 import { CurrentTimeIndicatorService } from './current-time-indicator.service';
 import { EventItemComponent } from './event-item.component';
 import { EventPositioningService } from './event-positioning.service';
 import { CalendarEvent, EventDuration, PositionedEvent } from './type';
-import { getDateFromContainerId, isMultiDayEvent } from './utils';
+import { getDateFromContainerId } from './utils';
 
 @Component({
 	selector: 'sim-week-view-calendar',
 	imports: [NgClass, DatePipe, EventItemComponent, CdkDropListGroup, CdkDropList, CdkDrag],
-	providers: [CurrentTimeIndicatorService, CalendarDateService, EventPositioningService],
+	providers: [CurrentTimeIndicatorService, EventPositioningService],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div data-slot="week-view" class="flex h-full flex-col">
-			<div class="bg-background/80 border-border/70 sticky top-0 z-30 grid grid-cols-8 border-b backdrop-blur-md">
+			<div class="bg-background/80 border-border/70 top-0 z-30 grid grid-cols-8 border-b backdrop-blur-md">
 				<div class="text-muted-foreground/70 py-2 text-center text-sm">
 					<span class="max-[479px]:sr-only">{{ today | date: 'O' }}</span>
 				</div>
-				@for (day of days(); track day.toString()) {
+				@for (dayColumn of dayColumns(); track dayColumn.key) {
 					<div
 						class="data-today:text-foreground text-muted-foreground/70 py-2 text-center text-sm data-today:font-medium"
-						[attr.data-today]="isToday(day) || undefined">
-						<span class="sm:hidden">{{ day | date: 'E' }} {{ day | date: 'd' }}</span>
-						<span class="max-sm:hidden">{{ day | date: 'EEE dd' }}</span>
+						[attr.data-today]="isToday(dayColumn.date) || undefined">
+						<span class="sm:hidden">{{ dayColumn.date | date: 'E' }} {{ dayColumn.date | date: 'd' }}</span>
+						<span class="max-sm:hidden">{{ dayColumn.date | date: 'EEE dd' }}</span>
 					</div>
 				}
 			</div>
@@ -54,20 +52,20 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 								All day
 							</span>
 						</div>
-						@for (day of days(); track day.toString() + '-all-day'; let dayIndex = $index) {
+						@for (dayColumn of dayColumns(); track dayColumn.key + '-all-day') {
 							<div
 								class="border-border/70 relative flex flex-col gap-1 border-r py-1 last:border-r-0"
-								[attr.data-today]="isToday(day) || undefined">
-								@for (event of getDayAllDayEvents(day); track event.id + '-all-day-event-item') {
-									<div [ngClass]="{ 'pl-1': isFirstDay(event, day), 'pr-1': isLastDay(event, day) }">
+								[attr.data-today]="isToday(dayColumn.date) || undefined">
+								@for (eventView of dayColumn.allDayEvents; track eventView.event.id + '-all-day-event-item') {
+									<div [ngClass]="{ 'pl-1': eventView.isFirstDay, 'pr-1': eventView.isLastDay }">
 										<sim-event-item
 											view="month"
-											[event]="event"
-											[isFirstDay]="isFirstDay(event, day)"
-											[isLastDay]="isLastDay(event, day)">
-											@if (shouldShowTitle(day, event, dayIndex)) {
+											[event]="eventView.event"
+											[isFirstDay]="eventView.isFirstDay"
+											[isLastDay]="eventView.isLastDay">
+											@if (eventView.shouldShowTitle) {
 												<div class="truncate">
-													{{ event.title }}
+													{{ eventView.event.title }}
 												</div>
 											}
 										</sim-event-item>
@@ -82,7 +80,7 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 			<div cdkDropListGroup class="grid flex-1 grid-cols-8 overflow-hidden">
 				<div class="border-border/70 grid auto-cols-fr border-r">
 					@for (hour of hours(); track hour.toString(); let index = $index) {
-						<div class="border-border/70 relative h-[64px] border-b last:border-b-0">
+						<div class="border-border/70 relative h-16 border-b last:border-b-0">
 							@if (index > 0) {
 								<span
 									class="bg-background text-muted-foreground/70 absolute -top-3 left-0 flex h-6 w-16 max-w-full items-center justify-end pe-2 text-[10px] sm:pe-4 sm:text-xs">
@@ -93,39 +91,36 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 					}
 				</div>
 
-				@for (day of days(); track day.toString(); let dayIndex = $index) {
+				@for (dayColumn of dayColumns(); track dayColumn.key) {
 					<div
 						class="border-border/70 relative grid auto-cols-fr border-r last:border-r-0"
-						[attr.data-today]="isToday(day) || undefined">
+						[attr.data-today]="isToday(dayColumn.date) || undefined">
 						@if (currentTimeIndicator()?.currentTimeVisible) {
 							<div
 								class="pointer-events-none absolute right-0 left-0 z-20"
 								[style]="{ top: currentTimeIndicator()?.currentTimePosition + '%' }">
 								<div class="relative flex items-center">
-									@if (isToday(day)) {
+									@if (isToday(dayColumn.date)) {
 										<div class="bg-primary absolute -left-1 h-2 w-2 rounded-full"></div>
-										<div class="bg-primary h-[2px] w-full"></div>
+										<div class="bg-primary h-0.5 w-full"></div>
 									} @else {
-										<div class="border-primary mx-[1px] w-full border-t-[2px] border-dashed"></div>
+										<div class="border-primary mx-px w-full border-t-2 border-dashed"></div>
 									}
 								</div>
 							</div>
 						}
 
-						@for (hour of hours(); track hour.toString()) {
-							<div class="border-border/70 relative h-[64px] border-b last:border-b-0">
-								@for (quarter of [0, 1, 2, 3]; track quarter) {
+						@for (hourSlot of dayColumn.hourSlots; track hourSlot.hour.toString()) {
+							<div class="border-border/70 relative h-16 border-b last:border-b-0">
+								@for (quarterSlot of hourSlot.quarters; track quarterSlot.quarter) {
 									<div
 										cdkDropList
-										[id]="'day-' + getQuarterTime(day, hour, quarter)"
-										[class]="generateCellClass(quarter)"
-										[cdkDropListData]="getProcessedEventsForDay(dayIndex, hour, quarter)"
+										[id]="quarterSlot.id"
+										[class]="quarterSlot.className"
+										[cdkDropListData]="quarterSlot.events"
 										(cdkDropListDropped)="drop($event)"
-										(click)="handleDayClick($event, day, hour, quarter)">
-										@for (
-											positionedEvent of getProcessedEventsForDay(dayIndex, hour, quarter);
-											track positionedEvent.event.id
-										) {
+										(click)="handleDayClick($event, quarterSlot.startDate)">
+										@for (positionedEvent of quarterSlot.events; track positionedEvent.event.id) {
 											<div
 												cdkDrag
 												[cdkDragData]="positionedEvent.event"
@@ -157,54 +152,24 @@ import { getDateFromContainerId, isMultiDayEvent } from './utils';
 })
 export class WeekViewCalendarComponent {
 	private readonly _currentTimeIndicatorService = inject(CurrentTimeIndicatorService);
-	protected _calendarDateService = inject(CalendarDateService);
-	protected _eventPositioningService = inject(EventPositioningService);
+	private readonly _eventPositioningService = inject(EventPositioningService);
 
-	currentDate = input.required<Date>();
-	events = input.required<CalendarEvent[]>();
+	public readonly currentDate = input.required<Date>();
+	public readonly events = input.required<CalendarEvent[]>();
 
-	onEventSelect = output<CalendarEvent>();
-	onEventCreate = output<EventDuration>();
-	onEventUpdated = output<CalendarEvent>();
+	public readonly onEventSelect = output<CalendarEvent>();
+	public readonly onEventCreate = output<EventDuration>();
+	public readonly onEventUpdated = output<CalendarEvent>();
 
-	shouldShowAllDaySection = computed(() => this.allDayEvents().length > 0);
-
-	currentTimeIndicator = toSignal(this._currentTimeIndicatorService.getCurrentTimeIndicator());
-
-	weekStart = computed(() => startOfWeek(this.currentDate(), { weekStartsOn: 0 }));
-
-	days = computed(() => {
+	private readonly weekStart = computed(() => startOfWeek(this.currentDate(), { weekStartsOn: 0 }));
+	private readonly days = computed(() => {
 		const weekStart = startOfWeek(this.currentDate());
 		const weekEnd = endOfWeek(this.currentDate());
 		return eachDayOfInterval({ start: weekStart, end: weekEnd });
 	});
-
-	hours = computed(() => {
-		const dayStart = startOfDay(this.currentDate());
-		return eachHourOfInterval({
-			start: addHours(dayStart, StartHour),
-			end: addHours(dayStart, EndHour - 1),
-		});
-	});
-
-	allDayEvents = computed(() => {
-		const result = this.events()
-			.filter((event) => event.allDay || isMultiDayEvent(event))
-			.filter((event) => {
-				const eventStart = new Date(event.start);
-				const eventEnd = new Date(event.end);
-				return this.days().some(
-					(day) => isSameDay(day, eventStart) || isSameDay(day, eventEnd) || (day > eventStart && day < eventEnd),
-				);
-			});
-		return result;
-	});
-
-	today = new Date();
-	isToday = isToday;
-
+	private readonly normalizedEvents = computed(() => normalizeCalendarEvents(this.events()));
 	// Add after processedDayEvents computed signal
-	eventsByDayHourQuarter = computed(() => {
+	private readonly eventsByDayHourQuarter = computed(() => {
 		const eventMap = new Map<string, PositionedEvent[]>();
 
 		this.processedDayEvents().forEach((dayEvents, dayIndex) => {
@@ -219,59 +184,61 @@ export class WeekViewCalendarComponent {
 
 		return eventMap;
 	});
-
-	processedDayEvents = computed(() => {
-		return this._eventPositioningService.processEventsForWeek(this.events(), this.days());
+	private readonly processedDayEvents = computed(() => {
+		return this._eventPositioningService.processEventsForWeek(this.normalizedEvents(), this.days());
 	});
+	private readonly quarterCellClasses = [0, 1, 2, 3].map((quarter) => this.generateCellClass(quarter));
+	private readonly allDayEvents = computed(() =>
+		this.days().flatMap((day, dayIndex) =>
+			buildAllDayEventViews(day, this.normalizedEvents(), this.weekStart(), dayIndex),
+		),
+	);
 
-	// Replace the existing getProcessedEventsForDay method
-	public getProcessedEventsForDay(dayIndex: number, hour: Date, quarter: number): PositionedEvent[] {
-		const key = `${dayIndex}-${hour.getHours()}-${quarter}`;
-		return this.eventsByDayHourQuarter().get(key) || [];
-	}
-
-	public getQuarterTime(day: Date, hour: Date, quarter: number): string {
-		return this._calendarDateService.getQuarterTime(day, hour, quarter);
-	}
-
-	public getDayAllDayEvents(day: Date): CalendarEvent[] {
-		const result = this.allDayEvents().filter((event) => {
-			const eventStart = new Date(event.start);
-			const eventEnd = new Date(event.end);
-			return isSameDay(day, eventStart) || (day > eventStart && day < eventEnd) || isSameDay(day, eventEnd);
+	protected readonly today = new Date();
+	protected readonly isToday = isToday;
+	protected readonly shouldShowAllDaySection = computed(() => this.allDayEvents().length > 0);
+	protected readonly currentTimeIndicator = toSignal(
+		this._currentTimeIndicatorService.getCurrentTimeIndicator(toObservable(this.currentDate), 'week'),
+	);
+	protected readonly hours = computed(() => {
+		const dayStart = startOfDay(this.currentDate());
+		return eachHourOfInterval({
+			start: addHours(dayStart, StartHour),
+			end: addHours(dayStart, EndHour - 1),
 		});
+	});
+	protected readonly dayColumns = computed(() =>
+		this.days().map((day, dayIndex) => {
+			const dayStart = startOfDay(day);
 
-		return result;
-	}
+			return {
+				date: day,
+				key: day.toString(),
+				allDayEvents: buildAllDayEventViews(day, this.normalizedEvents(), this.weekStart(), dayIndex),
+				hourSlots: this.hours().map((hour) => ({
+					hour,
+					quarters: [0, 1, 2, 3].map((quarter) => {
+						const startDate = addMinutes(dayStart, hour.getHours() * 60 + quarter * 15);
+						const key = `${dayIndex}-${hour.getHours()}-${quarter}`;
 
-	public generateCellClass(quarter: number): string {
-		// 64px
-		// need config
-		return hlm(
-			'data-dragging:bg-accent flex h-full flex-col overflow-hidden hover:bg-muted/60',
-			'"absolute h-[calc(64px/4)] w-full',
-			quarter === 0 && 'top-0',
-			quarter === 1 && 'top-[calc(64px/4)]',
-			quarter === 2 && 'top-[calc(64px/4*2)]',
-			quarter === 3 && 'top-[calc(64px/4*3)]',
-		);
-	}
+						return {
+							quarter,
+							startDate,
+							id: `day-${startDate.toString()}`,
+							className: this.quarterCellClasses[quarter],
+							events: this.eventsByDayHourQuarter().get(key) || [],
+						};
+					}),
+				})),
+			};
+		}),
+	);
 
-	public shouldShowTitle(day: Date, event: CalendarEvent, dayIndex: number): boolean {
-		const eventStart = new Date(event.start);
-		const isFirstDay = isSameDay(day, eventStart);
-
-		// Check if this is the first day in the current week view
-		const isFirstVisibleDay = dayIndex === 0 && isBefore(eventStart, this.weekStart());
-
-		return isFirstDay || isFirstVisibleDay;
-	}
-
-	public drop(event: CdkDragDrop<any>): void {
+	protected drop(event: CdkDragDrop<PositionedEvent[]>): void {
 		if (event.previousContainer === event.container) {
-			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+			return;
 		} else {
-			const movedEvent = event.previousContainer.data[event.previousIndex].event as CalendarEvent;
+			const movedEvent = event.previousContainer.data[event.previousIndex].event;
 
 			const originalStartDate = new Date(movedEvent.start);
 			const originalEndDate = new Date(movedEvent.end);
@@ -287,44 +254,15 @@ export class WeekViewCalendarComponent {
 		}
 	}
 
-	public isFirstDay(event: CalendarEvent, day: Date): boolean {
-		return isSameDay(day, new Date(event.start));
-	}
-
-	public isLastDay(event: CalendarEvent, day: Date): boolean {
-		return isSameDay(day, new Date(event.end));
-	}
-
 	/**
 	 * Handle click on day container, but prevent triggering when clicking on child elements
 	 */
-	public handleDayClick(event: MouseEvent, day: Date, hour: Date, quarter: number): void {
-		// Check if the click target is the day container itself or just an empty area
-		const target = event.target as HTMLElement;
-		const currentTarget = event.currentTarget as HTMLElement;
-
-		// If the target is not the current target and it's not a direct child with no interactive content,
-		// then it's likely an event or other interactive element, so don't create a new event
-		if (target !== currentTarget) {
-			// Check if the clicked element or its parents have event-related classes or data attributes
-			let element = target;
-			while (element && element !== currentTarget) {
-				// If we find an event item, popover trigger, or other interactive element, don't create event
-				if (
-					element.tagName === 'BUTTON' ||
-					element.hasAttribute('cdkDrag') ||
-					element.hasAttribute('hlmPopoverTrigger') ||
-					element.closest('sim-event-item') ||
-					element.closest('hlm-popover')
-				) {
-					return;
-				}
-				element = element.parentElement as HTMLElement;
-			}
+	protected handleDayClick(event: MouseEvent, startDate: Date): void {
+		if (isInteractiveCalendarTarget(event)) {
+			return;
 		}
 
-		// Only emit the event creation if we clicked on empty space
-		const newStartDay = new Date(this._calendarDateService.getQuarterTime(day, hour, quarter));
+		const newStartDay = new Date(startDate);
 		const newEndDay = addMinutes(newStartDay, 15);
 		this.onEventCreate.emit({
 			startDate: newStartDay,
@@ -332,7 +270,20 @@ export class WeekViewCalendarComponent {
 		});
 	}
 
-	public editEvent(event: CalendarEvent): void {
+	protected editEvent(event: CalendarEvent): void {
 		this.onEventSelect.emit(event);
+	}
+
+	private generateCellClass(quarter: number): string {
+		// 64px
+		// need config
+		return hlm(
+			'data-dragging:bg-accent flex h-full flex-col overflow-hidden hover:bg-muted/60',
+			'"absolute h-[calc(64px/4)] w-full',
+			quarter === 0 && 'top-0',
+			quarter === 1 && 'top-[calc(64px/4)]',
+			quarter === 2 && 'top-[calc(64px/4*2)]',
+			quarter === 3 && 'top-[calc(64px/4*3)]',
+		);
 	}
 }

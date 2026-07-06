@@ -15,7 +15,7 @@ interface TagItem {
 	selector: 'sim-input-54',
 	imports: [FormsModule, NgIcon, HlmIconImports, HlmLabelImports, HlmInputImports],
 	providers: [provideIcons({ lucideX })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-54" class="mb-2 text-sm">Simple input</label>
 		<input

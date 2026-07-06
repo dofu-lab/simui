@@ -54,7 +54,9 @@ interface AccordionItem {
 			lucidePackageCheck,
 		}),
 	],
-	host: { ngSkipHydration: 'true' },
+	host: {
+		class: 'w-full max-w-[600px]',
+	},
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Multi-level W/ icon</h2>

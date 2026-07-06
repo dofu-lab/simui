@@ -17,6 +17,9 @@ interface AccordionItem {
 	selector: 'sim-accordion-10',
 	imports: [NgIcon, HlmAccordionImports, BrnAccordionImports, HlmIconImports],
 	providers: [provideIcons({ lucidePlus, lucideMinus, lucideLink, lucideBell, lucideShieldCheck, lucideLifeBuoy })],
+	host: {
+		class: 'w-full max-w-[600px]',
+	},
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ icon, sub-header and plus-minus</h2>

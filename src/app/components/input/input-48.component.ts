@@ -10,7 +10,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-input-48',
 	imports: [NgIcon, FormsModule, HlmIconImports, HlmLabelImports, HlmInputGroupImports],
 	providers: [provideIcons({ lucideEye, lucideEyeOff, lucideCheck, lucideX })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<label hlmLabel for="input-48" class="mb-2 text-sm">Input with end inline button</label>

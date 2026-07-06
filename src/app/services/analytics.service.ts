@@ -6,6 +6,8 @@ import { environment } from '../../environments/environment';
 export type EventProperties = Record<string, string | number | boolean | null | undefined>;
 export type AnalyticsCopyKind = 'install_cli' | 'component_code' | 'generic_code';
 export type ComponentInteractionType = 'click' | 'change' | 'input' | 'keyboard';
+export type ComponentNavigationDirection = 'previous' | 'next';
+export type ComponentNavigationPosition = 'header' | 'left_panel';
 
 export const ANALYTICS_EVENTS = {
 	componentViewed: 'component_viewed',
@@ -14,6 +16,7 @@ export const ANALYTICS_EVENTS = {
 	componentInstallCliCopied: 'component_install_cli_copied',
 	componentCodeCopied: 'component_code_copied',
 	componentShared: 'component_shared',
+	componentNavigationClicked: 'component_navigation_clicked',
 } as const;
 
 export function getComponentAnalyticsProperties(componentId: string): EventProperties {
@@ -110,6 +113,27 @@ export class AnalyticsService {
 
 	trackComponentShared(componentId: string): void {
 		this.trackComponentEvent(ANALYTICS_EVENTS.componentShared, componentId);
+	}
+
+	trackComponentNavigationClicked(
+		componentId: string,
+		properties: {
+			direction: ComponentNavigationDirection;
+			position: ComponentNavigationPosition;
+			toComponentId?: string;
+			fromIndex?: number;
+			toIndex?: number;
+			totalComponents?: number;
+		},
+	): void {
+		this.trackComponentEvent(ANALYTICS_EVENTS.componentNavigationClicked, componentId, {
+			navigation_direction: properties.direction,
+			navigation_position: properties.position,
+			to_component_id: properties.toComponentId,
+			from_component_index: properties.fromIndex,
+			to_component_index: properties.toIndex,
+			total_components: properties.totalComponents,
+		});
 	}
 
 	/**

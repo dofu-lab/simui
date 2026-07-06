@@ -24,6 +24,9 @@ interface AccordionItem {
 	providers: [
 		provideIcons({ lucideChevronDown, lucideChevronUp, lucideGroup, lucideLaptop, lucideServerCog, lucideZap }),
 	],
+	host: {
+		class: 'w-full max-w-[600px]',
+	},
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ icon and chevron</h2>

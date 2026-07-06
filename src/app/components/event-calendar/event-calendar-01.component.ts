@@ -2,12 +2,11 @@ import { EventCalendarComponent } from '@/libs/sim/event-calendar';
 import { CalendarEvent } from '@/libs/sim/event-calendar/type';
 import { Component, signal } from '@angular/core';
 import { addDays, setHours, setMinutes, subDays } from 'date-fns';
+
 @Component({
 	selector: 'sim-event-calendar-01',
 	imports: [EventCalendarComponent],
-	host: {
-		class: 'w-full',
-	},
+	host: { class: 'size-full' },
 	template: `
 		<sim-event-calendar
 			[events]="events()"
@@ -17,13 +16,13 @@ import { addDays, setHours, setMinutes, subDays } from 'date-fns';
 	`,
 })
 export class EventCalendar01Component {
-	events = signal<CalendarEvent[]>(initialEvents);
+	protected readonly events = signal<CalendarEvent[]>(initialEvents);
 
-	handleEventAdd = (event: CalendarEvent) => {
+	protected handleEventAdd(event: CalendarEvent): void {
 		this.events.set([...this.events(), event]);
-	};
+	}
 
-	handleEventUpdate = (updatedEvent: CalendarEvent) => {
+	protected handleEventUpdate(updatedEvent: CalendarEvent): void {
 		const updatedEvents = this.events().map((event) => {
 			if (event.id === updatedEvent.id) {
 				return updatedEvent;
@@ -31,11 +30,11 @@ export class EventCalendar01Component {
 			return event;
 		});
 		this.events.set(updatedEvents);
-	};
+	}
 
-	handleEventDelete = (eventId: string) => {
+	protected handleEventDelete(eventId: string): void {
 		this.events.set(this.events().filter((event) => event.id !== eventId));
-	};
+	}
 }
 
 const initialEvents: CalendarEvent[] = [

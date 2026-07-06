@@ -108,7 +108,7 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 									@if (!isAllDay()) {
 										<div class="flex flex-col gap-4">
 											<div class="flex w-full flex-col gap-2 text-sm">
-												<label hlmLabel for="start-time" class="text-sm">Start time</label>
+												<label hlmLabel for="start-time" class="h-5 text-sm">Start time</label>
 												<hlm-select class="inline-block w-full" formControlName="startTime">
 													<hlm-select-trigger class="h-9 w-full">
 														<div class="flex items-center gap-x-2" *hlmSelectValueTemplate="let value">
@@ -134,7 +134,7 @@ import { getFormattedTimeValue, getTimeFromList } from './utils';
 												</hlm-select>
 											</div>
 											<div class="flex w-full flex-col gap-2 text-sm">
-												<label hlmLabel for="end-time" class="text-sm">End time</label>
+												<label hlmLabel for="end-time" class="h-5 text-sm">End time</label>
 												<hlm-select class="inline-block w-full" formControlName="endTime">
 													<hlm-select-trigger class="h-9 w-full">
 														<div class="flex items-center gap-x-2" *hlmSelectValueTemplate="let value">
@@ -230,7 +230,7 @@ export class EventDialogComponent implements OnInit {
 	public readonly onEventAdded = output<CalendarEvent>();
 	public readonly onEventUpdated = output<CalendarEvent>();
 
-	readonly colorOptions = DefaultEventStyle;
+	protected readonly colorOptions = DefaultEventStyle;
 
 	// Custom validator to check if start date is before end date
 	private readonly dateRangeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -248,10 +248,10 @@ export class EventDialogComponent implements OnInit {
 		const end = new Date(endDate);
 		// If not all day, include time in the comparison
 		if (!isAllDay && startTime && endTime) {
-			const startHours = parseInt(startTime.value.split(':')[0], 10);
-			const startMinutes = parseInt(startTime.value.split(':')[1], 10);
-			const endHours = parseInt(endTime.value.split(':')[0], 10);
-			const endMinutes = parseInt(endTime.value.split(':')[1], 10);
+			const startHours = Number.parseInt(startTime.value.split(':')[0], 10);
+			const startMinutes = Number.parseInt(startTime.value.split(':')[1], 10);
+			const endHours = Number.parseInt(endTime.value.split(':')[0], 10);
+			const endMinutes = Number.parseInt(endTime.value.split(':')[1], 10);
 
 			if (startHours < StartHour || startHours > EndHour || endHours < StartHour || endHours > EndHour) {
 				return { dateRange: { message: `Selected time must be between ${StartHour}:00 and ${EndHour}:00` } };
@@ -267,7 +267,7 @@ export class EventDialogComponent implements OnInit {
 		return null;
 	};
 
-	public form: FormGroup = this._formBuilder.group(
+	protected form: FormGroup = this._formBuilder.group(
 		{
 			id: [null],
 			title: [
@@ -288,7 +288,7 @@ export class EventDialogComponent implements OnInit {
 		{ validators: this.dateRangeValidator },
 	);
 
-	ngOnInit(): void {
+	public ngOnInit(): void {
 		// Set initial dates if provided
 		if (this.initialStartDate()) {
 			this.form.get('startDate')?.setValue(this.initialStartDate());
@@ -346,7 +346,7 @@ export class EventDialogComponent implements OnInit {
 		}
 	}
 
-	public onSubmit(): void {
+	protected onSubmit(): void {
 		if (this.form.valid) {
 			const formValue = this.form.value;
 			const event: CalendarEvent = {
@@ -361,10 +361,10 @@ export class EventDialogComponent implements OnInit {
 			};
 
 			if (!formValue.isAllDay) {
-				event.start.setHours(parseInt(formValue.startTime.value.split(':')[0], 10));
-				event.start.setMinutes(parseInt(formValue.startTime.value.split(':')[1], 10));
-				event.end.setHours(parseInt(formValue.endTime.value.split(':')[0], 10));
-				event.end.setMinutes(parseInt(formValue.endTime.value.split(':')[1], 10));
+				event.start.setHours(Number.parseInt(formValue.startTime.value.split(':')[0], 10));
+				event.start.setMinutes(Number.parseInt(formValue.startTime.value.split(':')[1], 10));
+				event.end.setHours(Number.parseInt(formValue.endTime.value.split(':')[0], 10));
+				event.end.setMinutes(Number.parseInt(formValue.endTime.value.split(':')[1], 10));
 			}
 
 			if (this.formMode() === 'edit') {
@@ -379,7 +379,7 @@ export class EventDialogComponent implements OnInit {
 		}
 	}
 
-	public tagColor(color: string): string {
+	protected tagColor(color: string): string {
 		return hlm(
 			'ring-offset-background group-[.cdk-keyboard-focused]:ring-ring aspect-square rounded-full border group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50 group-[.cdk-keyboard-focused]:ring-2 group-[.cdk-keyboard-focused]:ring-offset-2',
 			color,

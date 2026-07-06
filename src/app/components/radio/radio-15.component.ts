@@ -15,7 +15,7 @@ interface RadioItem {
 	selector: 'sim-radio-15',
 	imports: [HlmRadioGroupImports, HlmLabelImports, HlmBadgeImports],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[400px]',
 	},
 	template: `
 		<div class="flex flex-col gap-4">

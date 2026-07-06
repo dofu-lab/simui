@@ -11,7 +11,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	imports: [NgIcon, HlmCheckboxImports, HlmLabelImports, HlmIconImports, HlmBadgeImports],
 	providers: [provideIcons({ lucideZap })],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[400px]',
 	},
 	template: `
 		<label

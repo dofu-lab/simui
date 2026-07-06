@@ -9,7 +9,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-47',
 	imports: [FormsModule, MaskitoDirective, ReactiveFormsModule, HlmInputImports, HlmLabelImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<span id="card-47-label" hlmLabel class="mb-2 text-sm">Card details</span>
 		<div

@@ -12,8 +12,11 @@ interface AccordionItem {
 
 @Component({
 	selector: 'sim-accordion-03',
-	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon],
+	imports: [NgIcon, HlmAccordionImports, BrnAccordionImports],
 	providers: [provideIcons({ lucideChevronDown, lucideChevronUp })],
+	host: {
+		class: 'w-full max-w-[600px]',
+	},
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">W/ left chevron</h2>

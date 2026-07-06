@@ -5,7 +5,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-02',
 	imports: [HlmLabelImports, HlmInputImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-02" class="mb-2 text-sm">
 			Required input

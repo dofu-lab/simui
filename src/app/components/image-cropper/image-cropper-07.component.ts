@@ -19,9 +19,9 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 		DecimalPipe,
 		HlmSliderImports,
 	],
-	host: { class: 'flex flex-col gap-2 size-full' },
+	host: { class: 'flex flex-col gap-2 size-full items-center' },
 	template: `
-		<div class="flex w-full flex-col gap-4">
+		<div class="flex w-full flex-col items-center gap-4">
 			<sim-cropper
 				class="h-80 w-full max-w-[600px] cursor-move"
 				image="assets/backgrounds/bg-09.webp"

@@ -10,7 +10,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	imports: [NgIcon, HlmCheckboxImports, HlmLabelImports, HlmIconImports],
 	providers: [provideIcons({ lucideSun, lucideMoon })],
 	host: {
-		class: 'w-full',
+		class: 'w-fit',
 	},
 	template: `
 		<fieldset class="space-y-4">

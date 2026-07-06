@@ -7,7 +7,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 	selector: 'sim-radio-20',
 	imports: [HlmRadioGroupImports, HlmLabelImports, FormsModule],
 	host: {
-		class: 'w-full',
+		class: 'w-full max-w-[300px]',
 	},
 	template: `
 		<div class="bg-input/50 inline-flex h-9 w-full rounded-md p-0.5">

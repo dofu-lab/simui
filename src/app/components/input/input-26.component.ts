@@ -13,7 +13,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-input-26',
 	imports: [NgIcon, ReactiveFormsModule, MaskitoDirective, HlmLabelImports, HlmInputImports, HlmIconImports],
 	providers: [provideIcons({ lucideChevronDown, lucideChevronUp, lucideEuro })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-26" class="mb-2 text-sm">Number input with chevrons</label>
 		<div class="relative" [formGroup]="form">

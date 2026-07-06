@@ -9,7 +9,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 @Component({
 	selector: 'sim-input-52',
 	imports: [FormsModule, MaskitoDirective, HlmLabelImports, HlmInputImports],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-52" class="mb-2 text-sm">Timestamp</label>
 		<input hlmInput id="input-52" type="text" placeholder="00:00:00" [maskito]="mask" />

@@ -9,7 +9,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-input-22',
 	imports: [NgIcon, HlmLabelImports, HlmInputGroupImports, HlmKbdImports],
 	providers: [provideIcons({ lucideSearch })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-22" class="mb-2 text-sm">Search input with shortcut</label>
 		<hlm-input-group>

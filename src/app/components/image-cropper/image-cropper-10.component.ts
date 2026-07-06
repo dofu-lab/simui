@@ -17,7 +17,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 		CropperDescriptionComponent,
 		HlmButtonImports,
 	],
-	host: { class: 'flex flex-col gap-2 size-full' },
+	host: { class: 'flex flex-col gap-2 size-full items-center' },
 	template: `
 		<div class="flex w-full flex-col gap-4 md:flex-row">
 			<sim-cropper class="h-80 w-full max-w-[600px] cursor-move" [image]="imageUrl" (cropChange)="onCropChange($event)">

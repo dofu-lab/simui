@@ -33,7 +33,7 @@ export class StatusDot {
 @Component({
 	selector: 'sim-select-27',
 	imports: [StatusDot, BrnSelectImports, HlmSelectImports, HlmFieldImports],
-	host: { class: 'block w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">

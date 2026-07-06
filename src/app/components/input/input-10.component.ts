@@ -8,7 +8,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	selector: 'sim-input-10',
 	imports: [HlmLabelImports, NgIcon, HlmInputGroupImports],
 	providers: [provideIcons({ lucideMail })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<label hlmLabel for="input-10" class="mb-2 text-sm">Input with end icon</label>
 		<hlm-input-group>

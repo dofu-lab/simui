@@ -14,6 +14,9 @@ interface AccordionItem {
 	selector: 'sim-accordion-13',
 	imports: [HlmAccordionImports, BrnAccordionImports, NgIcon],
 	providers: [provideIcons({ lucideChevronDown, lucideChevronUp })],
+	host: {
+		class: 'w-full max-w-[600px]',
+	},
 	template: `
 		<div class="space-y-4">
 			<h2 class="text-xl font-bold">Tabs W/ left chevron</h2>

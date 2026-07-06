@@ -44,7 +44,7 @@ interface Option {
 			lucideChevronDown,
 		}),
 	],
-	host: { class: 'block w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2">

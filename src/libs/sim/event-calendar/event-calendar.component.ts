@@ -73,7 +73,7 @@ import { WeekViewCalendarComponent } from './week-view-calendar.component';
 							<span class="min-[480px]:hidden" aria-hidden="true">
 								{{ currentDate() | date: 'MMM d, yyyy' }}
 							</span>
-							<span class="max-[479px]:hidden min-md:hidden" aria-hidden="true">
+							<span class="max-[479px]:hidden md:hidden" aria-hidden="true">
 								{{ currentDate() | date: 'MMMM d, yyyy' }}
 							</span>
 							<span class="max-md:hidden">
@@ -152,21 +152,21 @@ import { WeekViewCalendarComponent } from './week-view-calendar.component';
 	`,
 })
 export class EventCalendarComponent {
-	eventDialog = viewChild(EventDialogComponent);
+	private readonly eventDialog = viewChild(EventDialogComponent);
 
-	initialView = input<CalendarView>('month');
-	events = input<CalendarEvent[]>([]);
+	public readonly initialView = input<CalendarView>('month');
+	public readonly events = input<CalendarEvent[]>([]);
 
-	onEventUpdate = output<CalendarEvent>();
-	onEventAdded = output<CalendarEvent>();
-	onEventDelete = output<string>();
+	public readonly onEventUpdate = output<CalendarEvent>();
+	public readonly onEventAdded = output<CalendarEvent>();
+	public readonly onEventDelete = output<string>();
 
-	currentDate = signal(new Date());
-	view = signal<CalendarView>(this.initialView());
-	isEventDialogOpen = signal(false);
-	selectedEvent = signal<CalendarEvent | null>(null);
+	protected readonly currentDate = signal(new Date());
+	protected readonly view = signal<CalendarView>(this.initialView());
+	private readonly isEventDialogOpen = signal(false);
+	private readonly selectedEvent = signal<CalendarEvent | null>(null);
 
-	viewTitle = computed(() => {
+	protected readonly viewTitle = computed(() => {
 		if (this.view() === 'month') {
 			return format(this.currentDate(), 'MMMM yyyy');
 		} else if (this.view() === 'week') {
@@ -193,7 +193,7 @@ export class EventCalendarComponent {
 	});
 
 	@HostListener('window:keydown', ['$event'])
-	public onKeyDown(event: KeyboardEvent): void {
+	protected onKeyDown(event: KeyboardEvent): void {
 		if (!event.ctrlKey) return;
 
 		switch (event.key.toLowerCase()) {
@@ -220,7 +220,7 @@ export class EventCalendarComponent {
 		}
 	}
 
-	public handlePrevious(): void {
+	protected handlePrevious(): void {
 		if (this.view() === 'month') {
 			this.currentDate.set(subMonths(this.currentDate(), 1));
 		} else if (this.view() === 'week') {
@@ -233,7 +233,7 @@ export class EventCalendarComponent {
 		}
 	}
 
-	public handleNext(): void {
+	protected handleNext(): void {
 		if (this.view() === 'month') {
 			this.currentDate.set(addMonths(this.currentDate(), 1));
 		} else if (this.view() === 'week') {
@@ -246,16 +246,16 @@ export class EventCalendarComponent {
 		}
 	}
 
-	public handleToday(): void {
+	protected handleToday(): void {
 		this.currentDate.set(new Date());
 	}
 
-	public handleEventSelect(event: CalendarEvent): void {
+	protected handleEventSelect(event: CalendarEvent): void {
 		this.selectedEvent.set(event);
 		this.eventDialog()?.editEvent(event);
 	}
 
-	public handleEventDelete(eventId: string): void {
+	protected handleEventDelete(eventId: string): void {
 		const deletedEvent = this.events().find((e) => e.id === eventId);
 		this.onEventDelete.emit(eventId);
 		this.isEventDialogOpen.set(false);
@@ -270,7 +270,7 @@ export class EventCalendarComponent {
 		}
 	}
 
-	public handleEventUpdate(updatedEvent: CalendarEvent): void {
+	protected handleEventUpdate(updatedEvent: CalendarEvent): void {
 		this.onEventUpdate.emit(updatedEvent);
 
 		// Show toast notification when an event is updated via drag and drop
@@ -280,7 +280,7 @@ export class EventCalendarComponent {
 		});
 	}
 
-	public handleEventCreate(startTime: Date): void {
+	protected handleEventCreate(startTime: Date): void {
 		// Snap to 15-minute intervals
 		const minutes = startTime.getMinutes();
 		const remainder = minutes % 15;
@@ -307,7 +307,7 @@ export class EventCalendarComponent {
 		this.isEventDialogOpen.set(true);
 	}
 
-	public handleEventAdded(event: CalendarEvent): void {
+	protected handleEventAdded(event: CalendarEvent): void {
 		this.onEventAdded.emit(event);
 	}
 
@@ -315,7 +315,7 @@ export class EventCalendarComponent {
 	 * Handle event creation from calendar views (when clicking on a day/time slot)
 	 * This will trigger the event dialog to open
 	 */
-	handleEventCreateFromCalendar = (duration: EventDuration) => {
+	protected readonly handleEventCreateFromCalendar = (duration: EventDuration) => {
 		// Open the dialog programmatically with the selected date
 		if (!duration.startDate) {
 			toast.error('Invalid start time for new event');

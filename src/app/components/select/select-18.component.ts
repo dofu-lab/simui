@@ -6,7 +6,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 @Component({
 	selector: 'sim-select-18',
 	imports: [BrnSelectImports, HlmSelectImports, HlmFieldImports],
-	host: { class: 'block w-full' },
+	host: { class: 'w-full max-w-[350px]' },
 	template: `
 		<div hlmFieldGroup>
 			<div hlmField class="gap-2 [--ring:var(--color-indigo-300)] in-[.dark]:[--ring:var(--color-indigo-900)]">
