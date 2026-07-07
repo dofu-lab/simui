@@ -7,7 +7,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	imports: [HlmCheckboxImports, HlmLabelImports],
 	template: `
 		<div class="flex items-start gap-3">
-			<label hlmLabel class="flex items-start gap-2" for="checkbox12">
+			<label hlmLabel class="flex items-start gap-2" [for]="uniqueId('checkbox12')">
 				<div class="grid grow gap-2 pt-0.5">
 					<div>
 						Checkbox label
@@ -16,8 +16,14 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 					<span class="text-muted-foreground text-xs">Save my login details for next time.</span>
 				</div>
 			</label>
-			<hlm-checkbox inputId="checkbox12" />
+			<hlm-checkbox [inputId]="uniqueId('checkbox12')" />
 		</div>
 	`,
 })
-export class Checkbox12Component {}
+export class Checkbox12Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `checkbox-12-${this.id}-${suffix}`;
+	}
+}

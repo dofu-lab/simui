@@ -32,7 +32,7 @@ interface RadioItem {
 				<div
 					class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full rounded-md border shadow-xs outline-none">
 					<label
-						[for]="'radio-12-' + item.value"
+						[for]="uniqueId('radio-12-' + item.value)"
 						class="flex w-full cursor-pointer flex-col items-start justify-between px-2 py-3 has-data-[disabled=true]:cursor-not-allowed! has-data-[disabled=true]:opacity-70"
 						hlmLabel>
 						<div class="flex w-full flex-1 flex-col items-center justify-center gap-2">
@@ -41,7 +41,7 @@ interface RadioItem {
 								{{ item.label }}
 							</div>
 						</div>
-						<hlm-radio [value]="item.value" [inputId]="'radio-12-' + item.value" />
+						<hlm-radio [value]="item.value" [inputId]="uniqueId('radio-12-' + item.value)" />
 					</label>
 				</div>
 			}
@@ -49,6 +49,12 @@ interface RadioItem {
 	`,
 })
 export class Radio12Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `radio-12-${this.id}-${suffix}`;
+	}
+
 	protected readonly items: RadioItem[] = [
 		{ id: 1, value: 'card', label: 'Card', icon: 'lucideWalletCards' },
 		{ id: 2, value: 'paypal', label: 'PayPal', icon: 'remixPaypalFill' },

@@ -16,7 +16,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 		<label
 			hlmLabel
 			class="border-input has-data-[state=checked]:border-ring ease relative flex w-full rounded-md border p-4 shadow-xs transition-colors duration-200 motion-reduce:transition-none"
-			for="checkbox14">
+			[for]="uniqueId('checkbox14')">
 			<div class="flex flex-1 items-start gap-2">
 				<div class="flex size-10 shrink-0 items-center justify-center rounded-md border">
 					<ng-icon hlm name="lucideRocket" class="text-primary" size="sm" />
@@ -25,11 +25,17 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 					<span>Basic plan</span>
 					<span class="text-muted-foreground truncate text-xs">Includes up to 10 users and 5 projects</span>
 				</div>
-				<hlm-checkbox inputId="checkbox14" [(checked)]="checked" />
+				<hlm-checkbox [inputId]="uniqueId('checkbox14')" [(checked)]="checked" />
 			</div>
 		</label>
 	`,
 })
 export class Checkbox14Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `checkbox-14-${this.id}-${suffix}`;
+	}
+
 	public readonly checked = model<boolean>(false);
 }

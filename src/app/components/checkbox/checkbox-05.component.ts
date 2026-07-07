@@ -7,9 +7,15 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	imports: [HlmCheckboxImports, HlmLabelImports],
 	template: `
 		<div class="flex items-center gap-3">
-			<hlm-checkbox disabled inputId="checkbox05" />
-			<label hlmLabel class="flex items-center" for="checkbox05">Disabled checkbox</label>
+			<hlm-checkbox disabled [inputId]="uniqueId('checkbox05')" />
+			<label hlmLabel class="flex items-center" [for]="uniqueId('checkbox05')">Disabled checkbox</label>
 		</div>
 	`,
 })
-export class Checkbox05Component {}
+export class Checkbox05Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `checkbox-05-${this.id}-${suffix}`;
+	}
+}

@@ -1,7 +1,8 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { BehaviorSubject, of } from 'rxjs';
 import { AnalyticsService } from '../services/analytics.service';
 import { PageGridComponent } from './page-grid.component';
 import { CodeLoaderService } from './services/code-loader.service';
@@ -16,6 +17,9 @@ class GridDemoComponent {}
 describe('PageGridComponent full view', () => {
 	let fixture: ComponentFixture<PageGridComponent>;
 	let analyticsService: jasmine.SpyObj<AnalyticsService>;
+	let location: jasmine.SpyObj<Location>;
+	let fragmentSubject: BehaviorSubject<string | null>;
+	let queryParamMapSubject: BehaviorSubject<ReturnType<typeof convertToParamMap>>;
 
 	const components: ComponentCardItem[] = [
 		{ id: 'button-01', component: GridDemoComponent, layout: 'third', alignment: 'center' },
@@ -24,13 +28,30 @@ describe('PageGridComponent full view', () => {
 
 	beforeEach(async () => {
 		analyticsService = jasmine.createSpyObj<AnalyticsService>('AnalyticsService', ['trackComponentNavigationClicked']);
+		location = jasmine.createSpyObj<Location>('Location', ['go', 'path']);
+		location.path.and.returnValue('/components/button');
+		fragmentSubject = new BehaviorSubject<string | null>(null);
+		queryParamMapSubject = new BehaviorSubject(convertToParamMap({}));
 
 		await TestBed.configureTestingModule({
 			imports: [PageGridComponent, GridDemoComponent],
 			providers: [
-				{ provide: ActivatedRoute, useValue: { fragment: of(null) } },
+				{
+					provide: ActivatedRoute,
+					useValue: {
+						fragment: fragmentSubject.asObservable(),
+						queryParamMap: queryParamMapSubject.asObservable(),
+					},
+				},
 				{ provide: AnalyticsService, useValue: analyticsService },
-				{ provide: CodeLoaderService, useValue: { preloadComponents: jasmine.createSpy('preloadComponents') } },
+				{
+					provide: CodeLoaderService,
+					useValue: {
+						loadComponentCode: () => of('component code'),
+						preloadComponents: jasmine.createSpy('preloadComponents'),
+					},
+				},
+				{ provide: Location, useValue: location },
 			],
 		}).compileComponents();
 
@@ -50,6 +71,7 @@ describe('PageGridComponent full view', () => {
 
 		expect(component.selectedFullViewIndex()).toBe(0);
 		expect(component.fullViewOpen()).toBeTrue();
+		expect(location.go).toHaveBeenCalledOnceWith('/components/button?full#button-01');
 	});
 
 	it('moves between components without closing full view', () => {
@@ -65,10 +87,40 @@ describe('PageGridComponent full view', () => {
 		component.goToNextFullView();
 		expect(component.selectedFullViewIndex()).toBe(1);
 		expect(component.fullViewOpen()).toBeTrue();
+		expect(location.go).toHaveBeenCalledWith('/components/button?full#button-02');
 
 		component.goToPreviousFullView();
 		expect(component.selectedFullViewIndex()).toBe(0);
 		expect(component.fullViewOpen()).toBeTrue();
+		expect(location.go).toHaveBeenCalledWith('/components/button?full#button-01');
+	});
+
+	it('opens full view from the URL full view query param and component fragment', () => {
+		const component = fixture.componentInstance as unknown as {
+			selectedFullViewIndex: () => number | null;
+			fullViewOpen: () => boolean;
+		};
+
+		fragmentSubject.next('button-02');
+		queryParamMapSubject.next(convertToParamMap({ full: '' }));
+		fixture.detectChanges();
+
+		expect(component.selectedFullViewIndex()).toBe(1);
+		expect(component.fullViewOpen()).toBeTrue();
+	});
+
+	it('removes URL params when full view closes', () => {
+		const component = fixture.componentInstance as unknown as {
+			openFullView: (id: string) => void;
+			closeFullView: () => void;
+			selectedFullViewIndex: () => number | null;
+		};
+
+		component.openFullView('button-01');
+		component.closeFullView();
+
+		expect(component.selectedFullViewIndex()).toBeNull();
+		expect(location.go).toHaveBeenCalledWith('/components/button');
 	});
 
 	it('tracks the full view navigation button position', () => {

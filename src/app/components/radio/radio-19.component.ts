@@ -30,7 +30,7 @@ interface RadioItem {
 				(ngModelChange)="theme.set($event)">
 				@for (item of items; track item.id) {
 					<label
-						[for]="'radio-19-' + item.value"
+						[for]="uniqueId('radio-19-' + item.value)"
 						class="group flex w-full flex-col items-start justify-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 						hlmLabel>
 						<img
@@ -40,13 +40,13 @@ interface RadioItem {
 							height="70"
 							[src]="item.thumbnailPath"
 							[alt]="item.label" />
-						<hlm-radio [value]="item.value" [inputId]="'radio-19-' + item.value" class="hidden" />
+						<hlm-radio [value]="item.value" [inputId]="uniqueId('radio-19-' + item.value)" class="hidden" />
 						<div
 							class="group text-foreground data-[state=unchecked]:text-muted-foreground/70 flex items-center justify-start gap-1 text-xs leading-none font-medium select-none"
 							[attr.data-state]="theme() === item.value ? 'checked' : 'unchecked'">
 							<label
 								hlmLabel
-								[for]="'radio-19-' + item.value"
+								[for]="uniqueId('radio-19-' + item.value)"
 								class="group-data-[state=unchecked]:text-muted-foreground/70 bg-background text-foreground ease relative inline-flex items-center justify-center transition-all duration-150 outline-none select-none motion-reduce:transition-none">
 								<ng-icon
 									hlm
@@ -68,6 +68,12 @@ interface RadioItem {
 	`,
 })
 export class Radio19Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `radio-19-${this.id}-${suffix}`;
+	}
+
 	protected readonly theme = signal('light');
 	protected readonly items: RadioItem[] = [
 		{ id: 1, value: 'light', label: 'Light', thumbnailPath: '/assets/thumbnails/light-theme.png' },

@@ -10,9 +10,15 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	},
 	template: `
 		<div class="flex flex-row items-center justify-between gap-2">
-			<label for="checkbox11" class="flex-1" hlmLabel>Right checkbox</label>
-			<hlm-checkbox inputId="checkbox11" />
+			<label [for]="uniqueId('checkbox11')" class="flex-1" hlmLabel>Right checkbox</label>
+			<hlm-checkbox [inputId]="uniqueId('checkbox11')" />
 		</div>
 	`,
 })
-export class Checkbox11Component {}
+export class Checkbox11Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `checkbox-11-${this.id}-${suffix}`;
+	}
+}

@@ -14,19 +14,19 @@ interface RadioItem {
 	imports: [HlmRadioGroupImports, HlmLabelImports, FormsModule],
 	template: `
 		<div class="flex flex-col gap-2">
-			<label hlmLabel for="radio18" class="flex-1">How likely are you to recommend us?</label>
+			<label hlmLabel [for]="uniqueId('radio18')" class="flex-1">How likely are you to recommend us?</label>
 			<hlm-radio-group
-				id="radio18"
+				[id]="uniqueId('radio18')"
 				class="mt-2 flex w-full gap-0 -space-x-px"
 				[ngModel]="rating()"
 				(ngModelChange)="rating.set($event)">
 				@for (item of items; track item) {
 					<label
-						[for]="'radio-18-' + item.value"
+						[for]="uniqueId('radio-18-' + item.value)"
 						class="hover:bg-accent/80 border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex h-9 flex-1 cursor-pointer flex-col items-center justify-center border text-center text-sm shadow-xs transition-[color,box-shadow] duration-150 outline-none first:rounded-l-md last:rounded-r-md has-focus-visible:ring-[3px] has-data-[checked=true]:z-10 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none"
 						hlmLabel>
 						{{ item.label }}
-						<hlm-radio class="hidden space-x-0" [value]="item.value" [inputId]="'radio-18-' + item.value" />
+						<hlm-radio class="hidden space-x-0" [value]="item.value" [inputId]="uniqueId('radio-18-' + item.value)" />
 					</label>
 				}
 			</hlm-radio-group>
@@ -44,6 +44,12 @@ interface RadioItem {
 	`,
 })
 export class Radio18Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `radio-18-${this.id}-${suffix}`;
+	}
+
 	protected readonly rating = signal(3);
 	protected readonly items: RadioItem[] = [
 		{ id: 1, value: 1, label: '1' },
