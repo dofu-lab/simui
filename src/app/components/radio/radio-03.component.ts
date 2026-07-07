@@ -7,8 +7,8 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 	imports: [HlmRadioGroupImports, HlmLabelImports],
 	template: `
 		<hlm-radio-group class="flex flex-col gap-3 text-sm font-medium" value="1" disabled>
-			<label for="radio-03-1" class="flex items-center gap-2" hlmLabel>
-				<hlm-radio inputId="radio-03-1" value="1" class="gap-x-0">
+			<label [for]="uniqueId('radio-03-1')" class="flex items-center gap-2" hlmLabel>
+				<hlm-radio [inputId]="uniqueId('radio-03-1')" value="1" class="gap-x-0">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
@@ -19,8 +19,8 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 				</hlm-radio>
 				Option 1
 			</label>
-			<label for="radio-03-2" class="flex items-center gap-2" hlmLabel>
-				<hlm-radio inputId="radio-03-2" value="2" class="gap-x-0">
+			<label [for]="uniqueId('radio-03-2')" class="flex items-center gap-2" hlmLabel>
+				<hlm-radio [inputId]="uniqueId('radio-03-2')" value="2" class="gap-x-0">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
@@ -31,8 +31,8 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 				</hlm-radio>
 				Option 2
 			</label>
-			<label for="radio-03-3" class="flex items-center gap-2" hlmLabel>
-				<hlm-radio inputId="radio-03-3" value="3" class="gap-x-0">
+			<label [for]="uniqueId('radio-03-3')" class="flex items-center gap-2" hlmLabel>
+				<hlm-radio [inputId]="uniqueId('radio-03-3')" value="3" class="gap-x-0">
 					<div
 						class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 						<div
@@ -46,4 +46,10 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 		</hlm-radio-group>
 	`,
 })
-export class Radio03Component {}
+export class Radio03Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `radio-03-${this.id}-${suffix}`;
+	}
+}

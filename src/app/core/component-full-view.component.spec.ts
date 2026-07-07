@@ -91,6 +91,91 @@ describe('ComponentFullViewComponent', () => {
 		expect(closeSpy).not.toHaveBeenCalled();
 	});
 
+	it('sets the next preview animation direction before emitting navigation', () => {
+		const nextSpy = jasmine.createSpy('nextRequested');
+		fixture.componentInstance.nextRequested.subscribe(nextSpy);
+
+		const component = fixture.componentInstance as unknown as {
+			previewNavigationDirection: () => 'previous' | 'next' | null;
+			previewEnterAnimationClass: () => string;
+			previewLeaveAnimationClass: () => string;
+			requestNavigation: (direction: 'previous' | 'next', position: 'header' | 'left_panel') => void;
+		};
+
+		component.requestNavigation('next', 'header');
+
+		expect(component.previewNavigationDirection()).toBe('next');
+		expect(component.previewEnterAnimationClass()).toBe('preview-swipe-next-enter');
+		expect(component.previewLeaveAnimationClass()).toBe('preview-swipe-next-leave');
+		expect(nextSpy).toHaveBeenCalledOnceWith({ direction: 'next', position: 'header' });
+	});
+
+	it('sets the previous preview animation direction before emitting navigation', () => {
+		fixture.componentRef.setInput('selectedIndex', 1);
+		fixture.detectChanges();
+		const previousSpy = jasmine.createSpy('previousRequested');
+		fixture.componentInstance.previousRequested.subscribe(previousSpy);
+
+		const component = fixture.componentInstance as unknown as {
+			previewNavigationDirection: () => 'previous' | 'next' | null;
+			previewEnterAnimationClass: () => string;
+			previewLeaveAnimationClass: () => string;
+			requestNavigation: (direction: 'previous' | 'next', position: 'header' | 'left_panel') => void;
+		};
+
+		component.requestNavigation('previous', 'left_panel');
+
+		expect(component.previewNavigationDirection()).toBe('previous');
+		expect(component.previewEnterAnimationClass()).toBe('preview-swipe-previous-enter');
+		expect(component.previewLeaveAnimationClass()).toBe('preview-swipe-previous-leave');
+		expect(previousSpy).toHaveBeenCalledOnceWith({ direction: 'previous', position: 'left_panel' });
+	});
+
+	it('does not set animation direction or emit when previous is disabled', () => {
+		const previousSpy = jasmine.createSpy('previousRequested');
+		fixture.componentInstance.previousRequested.subscribe(previousSpy);
+
+		const component = fixture.componentInstance as unknown as {
+			previewNavigationDirection: () => 'previous' | 'next' | null;
+			requestNavigation: (direction: 'previous' | 'next', position: 'header' | 'left_panel') => void;
+		};
+
+		component.requestNavigation('previous', 'header');
+
+		expect(component.previewNavigationDirection()).toBeNull();
+		expect(previousSpy).not.toHaveBeenCalled();
+	});
+
+	it('does not set animation direction or emit when next is disabled', () => {
+		fixture.componentRef.setInput('selectedIndex', 1);
+		fixture.detectChanges();
+		const nextSpy = jasmine.createSpy('nextRequested');
+		fixture.componentInstance.nextRequested.subscribe(nextSpy);
+
+		const component = fixture.componentInstance as unknown as {
+			previewNavigationDirection: () => 'previous' | 'next' | null;
+			requestNavigation: (direction: 'previous' | 'next', position: 'header' | 'left_panel') => void;
+		};
+
+		component.requestNavigation('next', 'left_panel');
+
+		expect(component.previewNavigationDirection()).toBeNull();
+		expect(nextSpy).not.toHaveBeenCalled();
+	});
+
+	it('renders the animation host around the selected preview component', async () => {
+		await fixture.whenStable();
+		await fixture.whenRenderingDone();
+		fixture.detectChanges();
+
+		const animationHost = fixture.nativeElement.ownerDocument.querySelector(
+			'[data-testid="component-preview-animation-host"]',
+		) as HTMLElement | null;
+
+		expect(animationHost).not.toBeNull();
+		expect(animationHost?.textContent).toContain('First demo');
+	});
+
 	it('emits close when the sheet closes while open', () => {
 		const closeSpy = jasmine.createSpy('closeRequested');
 		fixture.componentInstance.closeRequested.subscribe(closeSpy);

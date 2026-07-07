@@ -22,11 +22,11 @@ interface RadioItem {
 					(ngModelChange)="rating.set($event)">
 					@for (item of items; track item) {
 						<label
-							[for]="'radio-17-' + item.value"
+							[for]="uniqueId('radio-17-' + item.value)"
 							class="hover:bg-accent/80 border-input has-data-[checked=true]:border-primary/50 has-focus-visible:border-ring has-focus-visible:ring-ring/50 ease relative flex size-9 cursor-pointer flex-col items-center justify-center rounded-full border text-center text-xl shadow-xs transition-[color,box-shadow] duration-150 outline-none has-focus-visible:ring-[3px] has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none"
 							hlmLabel>
 							{{ item.label }}
-							<hlm-radio class="hidden space-x-0" [value]="item.value" [inputId]="'radio-17-' + item.value" />
+							<hlm-radio class="hidden space-x-0" [value]="item.value" [inputId]="uniqueId('radio-17-' + item.value)" />
 						</label>
 					}
 				</hlm-radio-group>
@@ -35,6 +35,12 @@ interface RadioItem {
 	`,
 })
 export class Radio17Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `radio-17-${this.id}-${suffix}`;
+	}
+
 	protected readonly rating = signal(3);
 	protected readonly items: RadioItem[] = [
 		{ id: 1, value: 1, label: '😠' },

@@ -17,16 +17,16 @@ interface ColorOption {
 	imports: [HlmRadioGroupImports, HlmLabelImports, FormsModule],
 	template: `
 		<div class="flex flex-1 flex-col gap-2">
-			<label for="radio-07-1" hlmLabel class="flex-1">Choose a color</label>
+			<label [for]="uniqueId('radio-07-1')" hlmLabel class="flex-1">Choose a color</label>
 			<div class="flex-1">
 				<hlm-radio-group
-					id="radio-07-1"
+					[id]="uniqueId('radio-07-1')"
 					class="mt-2 flex gap-2 rounded-md"
 					[ngModel]="color()"
 					(ngModelChange)="color.set($event)">
 					@for (item of colorOptions; track item) {
-						<label [for]="item.value + 'radio-07'" hlmLabel>
-							<hlm-radio class="gap-x-0" [inputId]="item.value + 'radio-07'" [value]="item">
+						<label [for]="uniqueId(item.value + 'radio-07')" hlmLabel>
+							<hlm-radio class="gap-x-0" [inputId]="uniqueId(item.value + 'radio-07')" [value]="item">
 								<div
 									class="relative inline-flex size-6 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 									<div
@@ -42,6 +42,12 @@ interface ColorOption {
 	`,
 })
 export class Radio07Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `radio-07-${this.id}-${suffix}`;
+	}
+
 	protected readonly colorOptions: ColorOption[] = [
 		{
 			value: 'sky',

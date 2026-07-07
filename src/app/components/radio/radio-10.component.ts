@@ -11,7 +11,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 			<div
 				class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs outline-none">
 				<label
-					for="radio-10-1"
+					[for]="uniqueId('radio-10-1')"
 					class="flex flex-1 items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
 					<hlm-avatar class="size-10">
@@ -25,7 +25,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 						</span>
 						<p class="text-muted-foreground text-xs font-normal">Working on the design system.</p>
 					</div>
-					<hlm-radio class="gap-x-0" value="1" inputId="radio-10-1">
+					<hlm-radio class="gap-x-0" value="1" [inputId]="uniqueId('radio-10-1')">
 						<div
 							class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 							<div
@@ -39,7 +39,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 			<div
 				class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs outline-none">
 				<label
-					for="radio-10-2"
+					[for]="uniqueId('radio-10-2')"
 					class="flex flex-1 items-start gap-2 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 					hlmLabel>
 					<hlm-avatar class="size-10">
@@ -53,7 +53,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 						</span>
 						<p class="text-muted-foreground text-xs font-normal">Working on Web and App at Acme Corp</p>
 					</div>
-					<hlm-radio class="gap-x-0" value="2" inputId="radio-10-2">
+					<hlm-radio class="gap-x-0" value="2" [inputId]="uniqueId('radio-10-2')">
 						<div
 							class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 							<div
@@ -67,4 +67,10 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 		</hlm-radio-group>
 	`,
 })
-export class Radio10Component {}
+export class Radio10Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `radio-10-${this.id}-${suffix}`;
+	}
+}

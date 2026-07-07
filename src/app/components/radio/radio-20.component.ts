@@ -17,26 +17,32 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 				[ngModel]="value()"
 				(ngModelChange)="value.set($event)">
 				<label
-					for="radio-20-month"
+					[for]="uniqueId('radio-20-month')"
 					class="has-data-[checked=false]:text-muted-foreground/70 z-10 flex items-center justify-center px-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 					hlmLabel>
 					Bill Monthly
-					<hlm-radio value="month" inputId="radio-20-month" class="hidden"></hlm-radio>
+					<hlm-radio value="month" [inputId]="uniqueId('radio-20-month')" class="hidden"></hlm-radio>
 				</label>
 				<label
-					for="radio-20-year"
+					[for]="uniqueId('radio-20-year')"
 					class="has-data-[checked=false]:text-muted-foreground/70 z-10 flex items-center justify-center px-3 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50"
 					hlmLabel>
 					<span>
 						Bill Yearly
 						<span class="group-has-data-[state=year]:text-emerald-600">-20%</span>
 					</span>
-					<hlm-radio value="year" inputId="radio-20-year" class="hidden" />
+					<hlm-radio value="year" [inputId]="uniqueId('radio-20-year')" class="hidden" />
 				</label>
 			</hlm-radio-group>
 		</div>
 	`,
 })
 export class Radio20Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `radio-20-${this.id}-${suffix}`;
+	}
+
 	value = signal<'month' | 'year'>('month');
 }

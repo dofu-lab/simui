@@ -13,7 +13,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 		<label
 			class="border-input has-data-[state=checked]:border-ring ease relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors duration-200 motion-reduce:transition-none"
 			hlmLabel
-			for="checkbox16">
+			[for]="uniqueId('checkbox16')">
 			<div class="flex flex-1 items-start gap-2">
 				<hlm-avatar class="size-10">
 					<img src="assets/avatars/alan-cooper.png" alt="Alan Cooper" hlmAvatarImage />
@@ -26,9 +26,15 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 					</span>
 					<span class="text-muted-foreground truncate text-xs">Frontend Developer, Payment</span>
 				</div>
-				<hlm-checkbox inputId="checkbox16" />
+				<hlm-checkbox [inputId]="uniqueId('checkbox16')" />
 			</div>
 		</label>
 	`,
 })
-export class Checkbox16Component {}
+export class Checkbox16Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `checkbox-16-${this.id}-${suffix}`;
+	}
+}

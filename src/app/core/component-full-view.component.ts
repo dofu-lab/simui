@@ -45,6 +45,67 @@ export type ComponentNavigationRequest = {
 		HlmTabsImports,
 	],
 	providers: [provideIcons({ lucideChevronLeft, lucideChevronRight, lucideX })],
+	styles: [
+		`
+			@keyframes previewNextEnter {
+				from {
+					transform: translate3d(100%, 0, 0);
+				}
+				to {
+					transform: translate3d(0, 0, 0);
+				}
+			}
+			@keyframes previewNextLeave {
+				from {
+					transform: translate3d(0, 0, 0);
+				}
+				to {
+					transform: translate3d(-100%, 0, 0);
+				}
+			}
+			@keyframes previewPreviousEnter {
+				from {
+					transform: translate3d(-100%, 0, 0);
+				}
+				to {
+					transform: translate3d(0, 0, 0);
+				}
+			}
+			@keyframes previewPreviousLeave {
+				from {
+					transform: translate3d(0, 0, 0);
+				}
+				to {
+					transform: translate3d(100%, 0, 0);
+				}
+			}
+			.preview-swipe-next-enter {
+				animation: previewNextEnter 220ms cubic-bezier(0.645, 0.045, 0.355, 1) both;
+				will-change: transform, opacity;
+			}
+			.preview-swipe-next-leave {
+				animation: previewNextLeave 220ms cubic-bezier(0.645, 0.045, 0.355, 1) both;
+				will-change: transform, opacity;
+			}
+			.preview-swipe-previous-enter {
+				animation: previewPreviousEnter 220ms cubic-bezier(0.645, 0.045, 0.355, 1) both;
+				will-change: transform, opacity;
+			}
+			.preview-swipe-previous-leave {
+				animation: previewPreviousLeave 220ms cubic-bezier(0.645, 0.045, 0.355, 1) both;
+				will-change: transform, opacity;
+			}
+			@media (prefers-reduced-motion: reduce) {
+				.preview-swipe-next-enter,
+				.preview-swipe-next-leave,
+				.preview-swipe-previous-enter,
+				.preview-swipe-previous-leave {
+					animation: none;
+					will-change: auto;
+				}
+			}
+		`,
+	],
 	template: `
 		<hlm-sheet
 			side="bottom"
@@ -54,9 +115,9 @@ export type ComponentNavigationRequest = {
 			<hlm-sheet-content
 				*hlmSheetPortal="let ctx"
 				showCloseButton="false"
-				class="bg-background text-foreground flex min-h-0 flex-col gap-0 overflow-hidden data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-dvh data-[side=bottom]:max-h-dvh data-[side=bottom]:w-dvw">
+				class="bg-background text-foreground flex min-h-0 flex-col gap-0 overflow-hidden p-2 data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-dvh data-[side=bottom]:max-h-dvh data-[side=bottom]:w-dvw">
 				<hlm-sheet-header
-					class="border-border bg-background sticky top-0 z-20 flex-row items-center justify-between gap-3 border-b px-3 py-2 sm:px-4">
+					class="border-border bg-background sticky top-0 z-20 flex-row items-center justify-between gap-3 p-0 pb-2">
 					<div class="min-w-0">
 						<p hlmSheetDescription class="sr-only">
 							Preview the selected component and inspect installation and source code.
@@ -101,7 +162,7 @@ export type ComponentNavigationRequest = {
 
 				@if (selectedItem(); as item) {
 					@if (isDesktop()) {
-						<div class="min-h-0 flex-1 overflow-hidden">
+						<div class="min-h-0 flex-1 overflow-hidden rounded-lg border">
 							<hlm-resizable-group>
 								<hlm-resizable-panel defaultSize="42" minSize="30">
 									<ng-container [ngTemplateOutlet]="previewPanel" [ngTemplateOutletContext]="{ $implicit: item }" />
@@ -133,9 +194,17 @@ export type ComponentNavigationRequest = {
 		</hlm-sheet>
 
 		<ng-template #previewPanel let-item>
-			<div class="bg-background relative flex size-full min-h-0 overflow-auto p-4 sm:p-8">
-				<div class="m-auto flex min-h-40 w-full min-w-0 items-center justify-center">
-					<ng-container *ngComponentOutlet="item.component"></ng-container>
+			<div class="bg-background relative flex size-full min-h-0 overflow-auto p-4">
+				<div class="m-auto grid min-h-40 w-full min-w-0 overflow-hidden py-2">
+					@for (previewItem of [item]; track previewItem.id) {
+						<div
+							data-testid="component-preview-animation-host"
+							[animate.enter]="previewEnterAnimationClass()"
+							[animate.leave]="previewLeaveAnimationClass()"
+							class="col-start-1 row-start-1 flex min-h-40 w-full min-w-0 items-center justify-center">
+							<ng-container *ngComponentOutlet="previewItem.component"></ng-container>
+						</div>
+					}
 				</div>
 				<div class="absolute bottom-0 left-1/2 flex shrink-0 -translate-x-1/2 -translate-y-1/2 items-center gap-1">
 					<button
@@ -211,6 +280,7 @@ export class ComponentFullViewComponent {
 
 	private readonly codeByComponentId = signal<Record<string, string>>({});
 	private readonly loadingComponentId = signal<string | null>(null);
+	protected readonly previewNavigationDirection = signal<ComponentNavigationDirection | null>(null);
 
 	protected readonly isDesktop = toSignal(
 		this.breakpointObserver.observe('(min-width: 768px)').pipe(map((state) => state.matches)),
@@ -227,6 +297,22 @@ export class ComponentFullViewComponent {
 		return id ? (this.codeByComponentId()[id] ?? '') : '';
 	});
 	protected readonly codeLoading = computed(() => this.loadingComponentId() === this.selectedItem()?.id);
+	protected readonly previewEnterAnimationClass = computed(() => {
+		const direction = this.previewNavigationDirection();
+		if (!direction) {
+			return '';
+		}
+
+		return direction === 'next' ? 'preview-swipe-next-enter' : 'preview-swipe-previous-enter';
+	});
+	protected readonly previewLeaveAnimationClass = computed(() => {
+		const direction = this.previewNavigationDirection();
+		if (!direction) {
+			return '';
+		}
+
+		return direction === 'next' ? 'preview-swipe-next-leave' : 'preview-swipe-previous-leave';
+	});
 
 	constructor() {
 		effect(() => {
@@ -265,6 +351,8 @@ export class ComponentFullViewComponent {
 		if ((direction === 'previous' && !this.canGoPrevious()) || (direction === 'next' && !this.canGoNext())) {
 			return;
 		}
+
+		this.previewNavigationDirection.set(direction);
 
 		const request: ComponentNavigationRequest = { direction, position };
 		if (direction === 'previous') {

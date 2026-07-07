@@ -10,7 +10,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 	selector: 'sim-card-11',
 	imports: [NgIcon, HlmCardImports, HlmButtonImports, HlmIconImports, HlmEmptyImports],
 	providers: [provideIcons({ lucidePlus, lucideFolderCode })],
-	host: { class: 'w-full' },
+	host: { class: 'w-full max-w-[500px]' },
 	template: `
 		<section class="bg-muted w-full gap-4 py-0" hlmCard>
 			<div hlmCardHeader class="bg-muted flex items-center justify-between px-6 pt-4">

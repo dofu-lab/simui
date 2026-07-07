@@ -1,7 +1,8 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser, Location } from '@angular/common';
 import { Component, computed, effect, inject, input, PLATFORM_ID, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
+import { combineLatest } from 'rxjs';
 import { AnalyticsService } from '../services/analytics.service';
 import { ComponentCardComponent } from './component-card.component';
 import type { ComponentNavigationRequest } from './component-full-view.component';
@@ -9,6 +10,8 @@ import { ComponentFullViewComponent } from './component-full-view.component';
 import { CodeLoaderService } from './services/code-loader.service';
 import { SuggestionComponent } from './suggestion.component';
 import { ComponentCardItem } from './types';
+
+const FULL_VIEW_QUERY_PARAM = 'full';
 
 @Component({
 	selector: 'sim-page-grid',
@@ -46,10 +49,12 @@ export class PageGridComponent {
 	private readonly codeLoaderService = inject(CodeLoaderService);
 	private readonly analyticsService = inject(AnalyticsService);
 	private readonly route = inject(ActivatedRoute);
+	private readonly location = inject(Location);
 	private readonly document = inject(DOCUMENT);
 	private readonly platformId = inject(PLATFORM_ID);
 	protected readonly highlightedId = signal<string | null>(null);
 	protected readonly selectedFullViewIndex = signal<number | null>(null);
+	private readonly routeFullViewComponentId = signal<string | null>(null);
 	protected readonly fullViewOpen = computed(() => this.selectedFullViewIndex() !== null);
 
 	constructor() {
@@ -69,12 +74,33 @@ export class PageGridComponent {
 			}
 		});
 
+		effect(() => {
+			const componentId = this.routeFullViewComponentId();
+			if (!componentId) return;
+
+			const index = this.components().findIndex((component) => component.id === componentId);
+			if (index === -1) return;
+
+			this.selectedFullViewIndex.set(index);
+		});
+
 		if (isPlatformBrowser(this.platformId)) {
-			this.route.fragment.pipe(takeUntilDestroyed()).subscribe((fragment) => {
-				if (fragment) {
-					setTimeout(() => this.scrollToAndHighlight(fragment), 150);
-				}
-			});
+			combineLatest([this.route.fragment, this.route.queryParamMap])
+				.pipe(takeUntilDestroyed())
+				.subscribe(([fragment, queryParamMap]) => {
+					if (queryParamMap.has(FULL_VIEW_QUERY_PARAM)) {
+						this.routeFullViewComponentId.set(fragment);
+						return;
+					}
+
+					this.routeFullViewComponentId.set(null);
+					if (this.fullViewOpen()) {
+						this.selectedFullViewIndex.set(null);
+					}
+					if (fragment) {
+						setTimeout(() => this.scrollToAndHighlight(fragment), 150);
+					}
+				});
 		}
 	}
 
@@ -94,10 +120,12 @@ export class PageGridComponent {
 		if (index === -1) return;
 
 		this.selectedFullViewIndex.set(index);
+		this.updateComponentFragment(componentId);
 	}
 
 	protected closeFullView(): void {
 		this.selectedFullViewIndex.set(null);
+		this.clearFullViewUrl();
 	}
 
 	protected goToPreviousFullView(request?: ComponentNavigationRequest): void {
@@ -106,6 +134,7 @@ export class PageGridComponent {
 
 		this.trackNavigationRequest(selectedIndex, selectedIndex - 1, request);
 		this.selectedFullViewIndex.set(selectedIndex - 1);
+		this.updateComponentFragment(this.components()[selectedIndex - 1].id);
 	}
 
 	protected goToNextFullView(request?: ComponentNavigationRequest): void {
@@ -114,6 +143,21 @@ export class PageGridComponent {
 
 		this.trackNavigationRequest(selectedIndex, selectedIndex + 1, request);
 		this.selectedFullViewIndex.set(selectedIndex + 1);
+		this.updateComponentFragment(this.components()[selectedIndex + 1].id);
+	}
+
+	private updateComponentFragment(componentId: string): void {
+		this.location.go(this.createFullViewUrl(componentId));
+	}
+
+	private createFullViewUrl(componentId: string): string {
+		const [path] = this.location.path(false).split(/[?#]/);
+		return `${path}?${FULL_VIEW_QUERY_PARAM}#${encodeURIComponent(componentId)}`;
+	}
+
+	private clearFullViewUrl(): void {
+		const [path] = this.location.path(false).split(/[?#]/);
+		this.location.go(path);
 	}
 
 	private trackNavigationRequest(fromIndex: number, toIndex: number, request?: ComponentNavigationRequest): void {

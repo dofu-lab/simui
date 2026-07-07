@@ -16,10 +16,10 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 		<fieldset class="space-y-4">
 			<legend class="text-foreground text-sm leading-none font-medium">Appearance mode toggle checkbox</legend>
 			<div class="flex flex-col justify-center">
-				<hlm-checkbox inputId="theme-checkbox" class="peer sr-only" [(checked)]="checked" />
+				<hlm-checkbox [inputId]="uniqueId('theme-checkbox')" class="peer sr-only" [(checked)]="checked" />
 				<label
 					hlmLabel
-					for="theme-checkbox"
+					[for]="uniqueId('theme-checkbox')"
 					[attr.data-state]="checked() ? 'dark' : 'light'"
 					class="group border-input bg-background text-foreground hover:bg-accent hover:text-accent-foreground peer-focus-visible:border-ring peer-focus-visible:ring-ring/50 ease relative inline-flex size-9 items-center justify-center rounded-md border shadow-xs transition-all duration-150 outline-none select-none peer-focus-visible:ring-[3px] motion-reduce:transition-none">
 					<ng-icon
@@ -38,5 +38,11 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Checkbox22Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `checkbox-22-${this.id}-${suffix}`;
+	}
+
 	public readonly checked = model<boolean>(false);
 }

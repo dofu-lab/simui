@@ -12,9 +12,9 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 		<label
 			hlmLabel
 			class="border-input has-data-[state=checked]:border-ring ease relative flex w-full items-start gap-2 rounded-md border p-4 shadow-xs transition-colors duration-200 motion-reduce:transition-none"
-			for="checkbox10">
+			[for]="uniqueId('checkbox10')">
 			<div class="flex items-start gap-2">
-				<hlm-checkbox inputId="checkbox10" [(checked)]="checked" />
+				<hlm-checkbox [inputId]="uniqueId('checkbox10')" [(checked)]="checked" />
 				<div class="grid grow gap-2 pt-0.5 select-none">
 					<span>
 						Checkbox label
@@ -27,5 +27,11 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	`,
 })
 export class Checkbox10Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `checkbox-10-${this.id}-${suffix}`;
+	}
+
 	public readonly checked = model<boolean>(false);
 }

@@ -32,10 +32,10 @@ interface CheckboxItem {
 				<label
 					hlmLabel
 					class="border-input has-data-[state=checked]:border-ring tran ease relative grid w-full items-start gap-3 rounded-md border p-4 shadow-xs transition-colors duration-200 motion-reduce:transition-none"
-					for="checkbox{{ item.value }}">
+					[for]="uniqueId('checkbox' + item.value)">
 					<div class="flex flex-1 items-center justify-between">
 						<ng-icon hlm class="opacity-60" size="sm" [name]="item.icon" />
-						<hlm-checkbox [inputId]="'checkbox' + item.value" />
+						<hlm-checkbox [inputId]="uniqueId('checkbox' + item.value)" />
 					</div>
 					<div class="text-md text-primary select-none">{{ item.label }}</div>
 				</label>
@@ -44,6 +44,12 @@ interface CheckboxItem {
 	`,
 })
 export class Checkbox17Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `checkbox-17-${this.id}-${suffix}`;
+	}
+
 	protected readonly items: CheckboxItem[] = [
 		{ id: 1, value: 'frame', label: 'Frame', icon: 'lucideFrame' },
 		{ id: 2, value: 'pointer', label: 'Pointer', icon: 'lucideMousePointer2' },

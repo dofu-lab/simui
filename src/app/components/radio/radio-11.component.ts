@@ -29,7 +29,7 @@ interface RadioItem {
 				<div
 					class="border-input has-data-[checked=true]:border-primary/50 relative flex w-full items-start gap-2 rounded-md border shadow-xs outline-none">
 					<label
-						[for]="'radio-11-' + item.value"
+						[for]="uniqueId('radio-11-' + item.value)"
 						class="flex w-full items-start justify-between gap-2 p-4 has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-70"
 						hlmLabel>
 						<div class="flex flex-col gap-2">
@@ -39,7 +39,7 @@ interface RadioItem {
 						<hlm-radio
 							class="gap-x-0"
 							[value]="item.value"
-							[inputId]="'radio-11-' + item.value"
+							[inputId]="uniqueId('radio-11-' + item.value)"
 							[disabled]="item.value === 'handTool'">
 							<div
 								class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
@@ -56,6 +56,12 @@ interface RadioItem {
 	`,
 })
 export class Radio11Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `radio-11-${this.id}-${suffix}`;
+	}
+
 	protected readonly items: RadioItem[] = [
 		{ id: 1, value: 'frame', label: 'Frame', icon: 'lucideFrame' },
 		{ id: 2, value: 'pointer', label: 'Pointer', icon: 'lucideMousePointer2' },

@@ -26,7 +26,7 @@ interface RadioItem {
 					(ngModelChange)="rating.set($event)">
 					@for (item of items; track item) {
 						<label
-							[for]="'radio-16-' + item.value"
+							[for]="uniqueId('radio-16-' + item.value)"
 							class="group has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative cursor-pointer rounded p-1 transition-all outline-none hover:scale-110 has-focus-visible:ring-[3px] has-data-[disabled=true]:cursor-not-allowed has-data-[disabled=true]:opacity-50 motion-reduce:transition-none"
 							hlmLabel
 							(mouseenter)="hoverRating.set(item.value)"
@@ -34,7 +34,7 @@ interface RadioItem {
 							<span [class]="computedStarClass(item.value)">
 								<ng-icon hlm name="remixStarFill" />
 							</span>
-							<hlm-radio class="space-x-0" [value]="item.value" [inputId]="'radio-16-' + item.value" />
+							<hlm-radio class="space-x-0" [value]="item.value" [inputId]="uniqueId('radio-16-' + item.value)" />
 						</label>
 					}
 				</hlm-radio-group>
@@ -43,6 +43,12 @@ interface RadioItem {
 	`,
 })
 export class Radio16Component {
+	private readonly id = crypto.randomUUID();
+
+	protected uniqueId(suffix: string): string {
+		return `radio-16-${this.id}-${suffix}`;
+	}
+
 	protected readonly rating = signal(3);
 	protected readonly hoverRating = signal<number | null>(null);
 	protected readonly items: RadioItem[] = [
