@@ -21,6 +21,7 @@ describe('ComponentCardComponent analytics', () => {
 		analyticsService = jasmine.createSpyObj<AnalyticsService>('AnalyticsService', [
 			'trackComponentCodeSheetOpened',
 			'trackComponentDemoInteracted',
+			'trackComponentFullViewRequested',
 			'trackComponentShared',
 			'trackComponentViewed',
 		]);
@@ -71,6 +72,7 @@ describe('ComponentCardComponent analytics', () => {
 		(fixture.componentInstance as unknown as { requestFullView: () => void }).requestFullView();
 
 		expect(fullViewSpy).toHaveBeenCalledOnceWith('button-01');
+		expect(analyticsService.trackComponentFullViewRequested).toHaveBeenCalledOnceWith('button-01');
 	});
 
 	it('tracks only the first demo interaction per card instance', () => {

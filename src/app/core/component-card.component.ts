@@ -237,6 +237,7 @@ export class ComponentCardComponent implements AfterViewInit, OnDestroy {
 	}
 
 	protected requestFullView(): void {
+		this.analyticsService.trackComponentFullViewRequested(this.componentName());
 		this.fullViewRequested.emit(this.componentName());
 	}
 

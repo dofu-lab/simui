@@ -13,6 +13,7 @@ export const ANALYTICS_EVENTS = {
 	componentViewed: 'component_viewed',
 	componentDemoInteracted: 'component_demo_interacted',
 	componentCodeSheetOpened: 'component_code_sheet_opened',
+	componentFullViewRequested: 'component_full_view_requested',
 	componentInstallCliCopied: 'component_install_cli_copied',
 	componentCodeCopied: 'component_code_copied',
 	componentShared: 'component_shared',
@@ -106,6 +107,10 @@ export class AnalyticsService {
 
 	trackComponentCodeSheetOpened(componentId: string): void {
 		this.trackComponentEvent(ANALYTICS_EVENTS.componentCodeSheetOpened, componentId);
+	}
+
+	trackComponentFullViewRequested(componentId: string): void {
+		this.trackComponentEvent(ANALYTICS_EVENTS.componentFullViewRequested, componentId);
 	}
 
 	trackInstallCliCopied(componentId: string, command: string): void {
