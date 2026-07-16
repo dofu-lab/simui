@@ -1,10 +1,10 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HeaderComponent, ThemeService } from '@core';
+import { AnalyticsService } from '@core/services/analytics.service';
+import { SeoService } from '@core/services/seo.service';
 import { BrnSonnerToaster } from '@spartan-ng/brain/sonner';
-import { HeaderComponent, ThemeService } from './core';
-import { SeoService } from './core/services/seo.service';
-import { AnalyticsService } from './services/analytics.service';
 
 @Component({
 	selector: 'app-root',

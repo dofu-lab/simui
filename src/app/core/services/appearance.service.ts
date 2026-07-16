@@ -1,7 +1,7 @@
-import { STORAGE_KEYS } from '@/app/constants/storage-keys';
-import { ColorScheme } from '@/app/types';
 import { isPlatformBrowser } from '@angular/common';
 import { inject, PLATFORM_ID, Service, signal } from '@angular/core';
+import { STORAGE_KEYS } from '@shared/constants/storage-keys';
+import { ColorScheme } from '@shared/types';
 import { LocalStorageService } from './local-storage.service';
 import { ThemeService } from './theme.service';
 

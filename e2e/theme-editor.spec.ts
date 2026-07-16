@@ -25,4 +25,25 @@ test.describe('Theme editor OnPush migration', () => {
 		await radiusInput.fill('2');
 		await expect(radiusInput).toHaveValue('2');
 	});
+
+	test('edits a theme color with the reusable picker and restores trigger focus', async ({ page }) => {
+		await page.goto('/theme-editor');
+		await page.waitForLoadState('networkidle');
+
+		const row = page.locator('sim-editor-color-picker#color-picker-primary').filter({ visible: true }).first();
+		await expect(row).toBeVisible({ timeout: 10_000 });
+		await expect(row.locator('input[type="color"]')).toHaveCount(0);
+
+		const trigger = row.getByRole('button', { name: 'Edit Primary color' });
+		await trigger.click();
+		const picker = page.locator('sim-color-picker');
+		await expect(picker).toBeVisible();
+
+		await picker.getByRole('button', { name: 'Select #f43f5e' }).click();
+		await expect(row.getByRole('textbox')).toHaveValue('#F43F5E');
+
+		await picker.getByRole('button', { name: 'Close color picker' }).click();
+		await expect(picker).toBeHidden();
+		await expect(trigger).toBeFocused();
+	});
 });

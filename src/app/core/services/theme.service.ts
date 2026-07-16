@@ -1,7 +1,7 @@
-import { ColorScheme, ThemePreset, ThemeStyleProps } from '@/app/types';
 import { DOCUMENT } from '@angular/common';
 import { inject, RendererFactory2, Service } from '@angular/core';
-import { applyShadowVariablesToElement } from '../utils/shadow.utils';
+import { ColorScheme, ThemePreset, ThemeStyleProps } from '@shared/types';
+import { applyShadowVariablesToElement } from '@shared/utils/shadow.utils';
 
 @Service()
 export class ThemeService {

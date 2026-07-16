@@ -1,0 +1,21 @@
+import { Component } from '@angular/core';
+import { ComponentHeaderComponent, PageGridComponent } from '@features/component-showcase/shared';
+import { buttonComponents } from './button.registry';
+
+@Component({
+	selector: 'app-button',
+	imports: [PageGridComponent, ComponentHeaderComponent],
+	template: `
+		<sim-component-header
+			name="Button"
+			description="A button is a graphic element that triggers an action when clicked" />
+		<div class="mt-[50px] mb-[50px] flex flex-col items-center justify-center">
+			<div class="text-display-lg font-bold">Button</div>
+			<div class="text-muted-foreground text-lg"></div>
+		</div>
+		<sim-page-grid [components]="components" />
+	`,
+})
+export class ButtonComponent {
+	components = buttonComponents;
+}

@@ -3,7 +3,7 @@ const path = require('node:path');
 
 const SITE_ORIGIN = 'https://simui.dev';
 const PUBLIC_DIR = path.join(process.cwd(), 'public');
-const HOME_CONSTANT = path.join(process.cwd(), 'src/app/constants/home.constant.ts');
+const HOME_CONSTANT = path.join(process.cwd(), 'src/app/features/component-showcase/home-catalog.ts');
 const OUTPUT_PATH = path.join(PUBLIC_DIR, 'sitemap.xml');
 
 const STATIC_ROUTES = [

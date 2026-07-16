@@ -2,8 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { AnalyticsService } from '@core/services/analytics.service';
 import { filter, map, mergeMap } from 'rxjs/operators';
-import { AnalyticsService } from '../../services/analytics.service';
 import {
 	SEO_DEFAULT_DESCRIPTION,
 	SEO_DEFAULT_IMAGE,

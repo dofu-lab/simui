@@ -61,7 +61,7 @@ function convertSourceFilesToJson(sourceDir: string, registryDir: string, option
 
 // Usage function
 export function generateComponentJsons(): void {
-	const componentsDir = path.join(process.cwd(), 'src/app/components');
+	const componentsDir = path.join(process.cwd(), 'src/app/features/component-showcase/categories');
 	const simDir = path.join(process.cwd(), 'src/libs/sim');
 	const publicDir = path.join(process.cwd(), 'public/registry');
 

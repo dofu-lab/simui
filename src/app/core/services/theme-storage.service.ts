@@ -1,15 +1,15 @@
-import { STORAGE_KEYS } from '@/app/constants/storage-keys';
+import { isPlatformBrowser } from '@angular/common';
+import { computed, effect, inject, PLATFORM_ID, resource, Service, signal } from '@angular/core';
+import { ThemeHttpService } from '@core/services';
+import { AuthService } from '@core/services/auth.service';
+import { STORAGE_KEYS } from '@shared/constants/storage-keys';
 import {
 	BUILT_IN_PRESETS,
 	DEFAULT_PRESET,
 	HISTORY_CLEANUP_THRESHOLD,
 	MAX_HISTORY_SIZE,
-} from '@/app/constants/theme-presets';
-import { ThemeHttpService } from '@/app/services';
-import { AuthService } from '@/app/services/auth.service';
-import { ColorType, HistoryAction, HistoryValue, ThemeHistory, ThemePreset, ThemeStyleProps } from '@/app/types';
-import { isPlatformBrowser } from '@angular/common';
-import { computed, effect, inject, PLATFORM_ID, resource, Service, signal } from '@angular/core';
+} from '@shared/constants/theme-presets';
+import { ColorType, HistoryAction, HistoryValue, ThemeHistory, ThemePreset, ThemeStyleProps } from '@shared/types';
 import { firstValueFrom } from 'rxjs';
 import { AppearanceService } from './appearance.service';
 import { LocalStorageService } from './local-storage.service';
