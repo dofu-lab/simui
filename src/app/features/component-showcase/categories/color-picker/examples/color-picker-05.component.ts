@@ -16,5 +16,5 @@ import { SimColorPickerImports } from '@sim/color-picker';
 	`,
 })
 export class ColorPicker05Component {
-	protected readonly value = signal('#7F56D9');
+	protected readonly value = signal('#404040');
 }

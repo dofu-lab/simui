@@ -1,6 +1,21 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { SimColorPickerImports } from '@sim/color-picker';
 
+const PRESETS = [
+	'#0A0A0A',
+	'#171717',
+	'#262626',
+	'#404040',
+	'#525252',
+	'#737373',
+	'#A3A3A3',
+	'#D4D4D4',
+	'#E5E5E5',
+	'#F5F5F5',
+	'#FAFAFA',
+	'#FFFFFF',
+] as const;
+
 @Component({
 	selector: 'sim-color-picker-06',
 	imports: [SimColorPickerImports],
@@ -9,7 +24,8 @@ import { SimColorPickerImports } from '@sim/color-picker';
 		<sim-color-picker
 			class="w-[380px] max-w-[calc(100vw-2rem)] gap-3 rounded-2xl p-3"
 			[(value)]="value"
-			[format]="'hex'">
+			[format]="'hex'"
+			[presets]="presets">
 			<sim-color-palette />
 
 			<div class="grid gap-2">
@@ -26,5 +42,6 @@ import { SimColorPickerImports } from '@sim/color-picker';
 	`,
 })
 export class ColorPicker06Component {
-	protected readonly value = signal('#4F46E5');
+	protected readonly value = signal('#404040');
+	protected readonly presets = PRESETS;
 }

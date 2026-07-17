@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { SimColorPickerImports } from '@sim/color-picker';
 
 const SAVED_COLORS = [
+	'#0A0A0A',
 	'#171717',
 	'#262626',
 	'#404040',
@@ -9,15 +10,10 @@ const SAVED_COLORS = [
 	'#737373',
 	'#A3A3A3',
 	'#D4D4D4',
+	'#E5E5E5',
+	'#F5F5F5',
+	'#FAFAFA',
 	'#FFFFFF',
-	'#16A34A',
-	'#2563EB',
-	'#4F46E5',
-	'#9333EA',
-	'#C026D3',
-	'#DB2777',
-	'#DC2626',
-	'#EA580C',
 ] as const;
 
 @Component({

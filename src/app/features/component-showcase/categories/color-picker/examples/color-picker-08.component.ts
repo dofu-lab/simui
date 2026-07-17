@@ -2,6 +2,21 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { type ColorPickerFormat, SimColorPickerImports } from '@sim/color-picker';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 
+const PRESETS = [
+	'#0A0A0A',
+	'#171717',
+	'#262626',
+	'#404040',
+	'#525252',
+	'#737373',
+	'#A3A3A3',
+	'#D4D4D4',
+	'#E5E5E5',
+	'#F5F5F5',
+	'#FAFAFA',
+	'#FFFFFF',
+] as const;
+
 @Component({
 	selector: 'sim-color-picker-08',
 	imports: [SimColorPickerImports, HlmButtonImports],
@@ -10,7 +25,8 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 		<sim-color-picker
 			class="w-[380px] max-w-[calc(100vw-2rem)] gap-3 rounded-2xl p-3"
 			[(value)]="value"
-			[format]="'hex'">
+			[format]="'hex'"
+			[presets]="presets">
 			<sim-color-area />
 
 			<div class="grid gap-2">
@@ -27,6 +43,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	`,
 })
 export class ColorPicker08Component {
-	protected readonly value = signal('#4F46E5');
+	protected readonly value = signal('#404040');
 	protected readonly format = signal<ColorPickerFormat>('hex');
+	protected readonly presets = PRESETS;
 }
