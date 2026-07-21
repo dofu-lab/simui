@@ -1,0 +1,118 @@
+import {
+	Card01Component,
+	Card02Component,
+	Card03Component,
+	Card04Component,
+	Card05Component,
+	Card06Component,
+	Card07Component,
+	Card08Component,
+	Card09Component,
+	Card10Component,
+	Card11Component,
+	Card12Component,
+	Card13Component,
+	Card14Component,
+	Card15Component,
+	Card16Component,
+} from '@features/component-showcase/categories/card/examples';
+import { ComponentCardItem } from '@features/component-showcase/shared';
+
+export const cardComponents: ComponentCardItem[] = [
+	{
+		component: Card01Component,
+		id: 'card-01',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card02Component,
+		id: 'card-02',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card03Component,
+		id: 'card-03',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card04Component,
+		id: 'card-04',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card05Component,
+		id: 'card-05',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card06Component,
+		id: 'card-06',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card07Component,
+		id: 'card-07',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card08Component,
+		id: 'card-08',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card09Component,
+		id: 'card-09',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card10Component,
+		id: 'card-10',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card11Component,
+		id: 'card-11',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card12Component,
+		id: 'card-12',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card13Component,
+		id: 'card-13',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card14Component,
+		id: 'card-14',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card15Component,
+		id: 'card-15',
+		layout: 'half',
+		alignment: 'center',
+	},
+	{
+		component: Card16Component,
+		id: 'card-16',
+		layout: 'half',
+		alignment: 'center',
+	},
+];

@@ -18,12 +18,18 @@
 
 ## SimUI structure
 
-- Showcase components live in `src/app/components/{category}/`.
-- Component registries live in `src/app/constants/`.
-- Showcase pages live in `src/app/pages/`.
-- Home preview thumbnails live in `src/app/core/thumbnails/`.
-- Register new component categories in the relevant barrels, `src/app/app.routes.ts`, and `src/app/constants/home.constant.ts`.
-- Use the `new-component-list` skill when scaffolding an entire component category.
+- Put app-wide singleton concerns, guards, interceptors, services, and shell UI in `src/app/core/`.
+- Put reusable, feature-independent constants, pipes, types, and utilities in `src/app/shared/`.
+- Put route-level and domain-specific code in `src/app/features/{feature}/`; do not add new flat `pages/`, `components/`, or `constants/` folders under `src/app/`.
+- Use `@core`, `@shared`, and `@features` aliases for app code. Keep existing SpartanNG and Sim library aliases working.
+
+### Component showcase categories
+
+- Keep each showcase category self-contained at `src/app/features/component-showcase/categories/{category}/`.
+- A complete category contains `{category}.page.ts`, `{category}.registry.ts`, `{category}.thumbnail.ts`, an `examples/` folder with its barrel, and a category `index.ts` barrel.
+- Keep example component names, registry IDs, and generated public/registry output names compatible when moving or extending a category.
+- Register a new category in `src/app/app.routes.ts`, `src/app/features/component-showcase/home-catalog.ts`, and the relevant barrels. Update generator paths when the category's generated output is affected.
+- Use the `new-component-list` skill when scaffolding an entire component category, and follow a nearby category as the source of truth for naming and registration.
 
 ## Verification
 

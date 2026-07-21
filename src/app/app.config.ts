@@ -8,10 +8,10 @@ import {
 } from '@angular/core';
 import { provideClientHydration, withEventReplay, withNoIncrementalHydration } from '@angular/platform-browser';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { authInterceptor } from '@core/interceptors/auth.interceptor';
+import { AnalyticsService } from '@core/services/analytics.service';
+import { AnalyticsErrorHandler } from '@core/shell/analytics-error-handler';
 import { routes } from './app.routes';
-import { AnalyticsErrorHandler } from './core/analytics-error-handler';
-import { authInterceptor } from './interceptors/auth.interceptor';
-import { AnalyticsService } from './services/analytics.service';
 
 export const appConfig: ApplicationConfig = {
 	providers: [

@@ -1,0 +1,118 @@
+import { ComponentCardItem } from '@features/component-showcase/shared';
+import {
+	Dropdown01Component,
+	Dropdown02Component,
+	Dropdown03Component,
+	Dropdown04Component,
+	Dropdown05Component,
+	Dropdown06Component,
+	Dropdown07Component,
+	Dropdown08Component,
+	Dropdown09Component,
+	Dropdown10Component,
+	Dropdown11Component,
+	Dropdown12Component,
+	Dropdown13Component,
+	Dropdown14Component,
+	Dropdown15Component,
+	Dropdown16Component,
+} from './examples';
+
+export const dropdownComponents: ComponentCardItem[] = [
+	{
+		component: Dropdown01Component,
+		id: 'dropdown-01',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown02Component,
+		id: 'dropdown-02',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown03Component,
+		id: 'dropdown-03',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown04Component,
+		id: 'dropdown-04',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown05Component,
+		id: 'dropdown-05',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown06Component,
+		id: 'dropdown-06',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown07Component,
+		id: 'dropdown-07',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown08Component,
+		id: 'dropdown-08',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown09Component,
+		id: 'dropdown-09',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown10Component,
+		id: 'dropdown-10',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown11Component,
+		id: 'dropdown-11',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown12Component,
+		id: 'dropdown-12',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown16Component,
+		id: 'dropdown-16',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown13Component,
+		id: 'dropdown-13',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown14Component,
+		id: 'dropdown-14',
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		component: Dropdown15Component,
+		id: 'dropdown-15',
+		layout: 'third',
+		alignment: 'center',
+	},
+];

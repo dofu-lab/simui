@@ -25,6 +25,7 @@ export const COMPONENT_IDS = {
 	calendar: getIds('calendar'),
 	card: getIds('card'),
 	checkbox: getIds('checkbox'),
+	'color-picker': getIds('color-picker'),
 	dialog: getIds('dialog'),
 	dropdown: getIds('dropdown'),
 	'event-calendar': getIds('event-calendar'),

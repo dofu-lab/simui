@@ -1,5 +1,5 @@
-import { ColorType } from '@/app/types';
 import { Injectable } from '@angular/core';
+import { ColorType } from '@shared/types';
 import { converter, formatHsl, formatRgb } from 'culori';
 
 @Injectable()

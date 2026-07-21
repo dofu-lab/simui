@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Generate Thumbnail'
+  short_description: 'Create consistent SimUI showcase thumbnails'
+  default_prompt: 'Use $generate-thumbnail to create a consistent thumbnail for a SimUI showcase category.'

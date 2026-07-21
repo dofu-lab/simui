@@ -1,8 +1,15 @@
 import { Routes } from '@angular/router';
-import { SEO_SITE_ORIGIN } from './core/services/seo.constants';
-import { SeoRouteData } from './core/services/seo.types';
-import { authGuard } from './guards/auth.guard';
-import { unsavedChangesGuard } from './guards/unsaved-changes.guard';
+import { authGuard } from '@core/guards/auth.guard';
+import { unsavedChangesGuard } from '@core/guards/unsaved-changes.guard';
+import { SEO_SITE_ORIGIN } from '@core/services/seo.constants';
+import { SeoRouteData } from '@core/services/seo.types';
+import { GoogleCallbackComponent } from '@features/auth/google-callback.page';
+import { HomeComponent } from '@features/home/home.page';
+import { IntroductionComponent } from '@features/introduction/introduction.page';
+import { PaymentSuccessComponent } from '@features/payment/payment-success.page';
+import { PricingComponent } from '@features/pricing/pricing.page';
+import { ProfileSettingsComponent } from '@features/profile/profile-settings.page';
+import { ThemeEditor } from '@features/theme-editor/theme-editor.page';
 
 const componentSeo = (name: string, path: string, description: string, keywords: string): SeoRouteData => ({
 	title: `${name} Angular Components`,
@@ -33,7 +40,7 @@ const componentSeo = (name: string, path: string, description: string, keywords:
 export const routes: Routes = [
 	{
 		path: '',
-		loadComponent: () => import('./pages/home.component').then((m) => m.HomeComponent),
+		component: HomeComponent,
 		data: {
 			title: 'SimUI - Angular UI Components Built With Spartan UI',
 			description:
@@ -58,7 +65,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'profile',
-		loadComponent: () => import('./pages/profile-settings').then((m) => m.ProfileSettingsComponent),
+		component: ProfileSettingsComponent,
 		canActivate: [authGuard],
 		data: {
 			title: 'Profile Settings - SimUI',
@@ -68,7 +75,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'terms-and-conditions',
-		loadComponent: () => import('./pages/term-condition').then((m) => m.TermConditionComponent),
+		loadComponent: () => import('@features/legal/term-condition.page').then((m) => m.TermConditionComponent),
 		data: {
 			title: 'Terms and Conditions - SimUI',
 			description:
@@ -79,7 +86,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'privacy-policy',
-		loadComponent: () => import('./pages/privacy-policy').then((m) => m.PrivacyPolicyComponent),
+		loadComponent: () => import('@features/legal/privacy-policy.page').then((m) => m.PrivacyPolicyComponent),
 		data: {
 			title: 'Privacy Policy - SimUI',
 			description: 'Learn how SimUI collects, uses, and protects your personal information.',
@@ -89,7 +96,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'introduction',
-		loadComponent: () => import('./pages/intro.component').then((m) => m.IntroductionComponent),
+		component: IntroductionComponent,
 		data: {
 			title: 'SimUI Introduction',
 			description:
@@ -108,7 +115,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'theme-editor',
-		loadComponent: () => import('./pages/theme-editor').then((m) => m.ThemeEditor),
+		component: ThemeEditor,
 		canDeactivate: [unsavedChangesGuard],
 		data: {
 			title: 'Angular Theme Editor',
@@ -127,7 +134,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'auth/google/callback',
-		loadComponent: () => import('./pages/google-callback.component').then((m) => m.GoogleCallbackComponent),
+		loadComponent: () => Promise.resolve(GoogleCallbackComponent),
 		data: {
 			title: 'Signing in...',
 			description: 'Google authentication callback',
@@ -135,7 +142,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'pricing',
-		loadComponent: () => import('./pages/pricing').then((m) => m.PricingComponent),
+		loadComponent: () => Promise.resolve(PricingComponent),
 		data: {
 			title: 'SimUI Pricing',
 			description:
@@ -146,7 +153,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'payment/success',
-		loadComponent: () => import('./pages/payment-success').then((m) => m.PaymentSuccessComponent),
+		loadComponent: () => Promise.resolve(PaymentSuccessComponent),
 		canActivate: [authGuard],
 		data: {
 			title: 'Subscription Activated - SimUI',
@@ -155,11 +162,12 @@ export const routes: Routes = [
 	},
 	{
 		path: 'components',
-		loadComponent: () => import('./pages/comp-layout.component').then((m) => m.CompLayoutComponent),
+		loadComponent: () => import('@features/component-showcase/layout').then((m) => m.CompLayoutComponent),
 		children: [
 			{
 				path: 'accordion',
-				loadComponent: () => import('./pages/accordion.component').then((m) => m.AccordionComponent),
+				loadComponent: () =>
+					import('@features/component-showcase/categories/accordion').then((m) => m.AccordionComponent),
 				data: componentSeo(
 					'Accordion',
 					'accordion',
@@ -169,7 +177,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'alert',
-				loadComponent: () => import('./pages/alert.component').then((m) => m.AlertComponent),
+				loadComponent: () => import('@features/component-showcase/categories/alert').then((m) => m.AlertComponent),
 				data: componentSeo(
 					'Alert',
 					'alert',
@@ -179,7 +187,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'avatar',
-				loadComponent: () => import('./pages/avatar.component').then((m) => m.AvatarComponent),
+				loadComponent: () => import('@features/component-showcase/categories/avatar').then((m) => m.AvatarComponent),
 				data: componentSeo(
 					'Avatar',
 					'avatar',
@@ -189,7 +197,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'badge',
-				loadComponent: () => import('./pages/badge.component').then((m) => m.BadgeComponent),
+				loadComponent: () => import('@features/component-showcase/categories/badge').then((m) => m.BadgeComponent),
 				data: componentSeo(
 					'Badge',
 					'badge',
@@ -199,7 +207,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'banner',
-				loadComponent: () => import('./pages/banner.component').then((m) => m.BannerComponent),
+				loadComponent: () => import('@features/component-showcase/categories/banner').then((m) => m.BannerComponent),
 				data: componentSeo(
 					'Banner',
 					'banner',
@@ -209,7 +217,8 @@ export const routes: Routes = [
 			},
 			{
 				path: 'breadcrumb',
-				loadComponent: () => import('./pages/breadcrumb.component').then((m) => m.BreadcrumbComponent),
+				loadComponent: () =>
+					import('@features/component-showcase/categories/breadcrumb').then((m) => m.BreadcrumbComponent),
 				data: componentSeo(
 					'Breadcrumb',
 					'breadcrumb',
@@ -219,7 +228,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'button',
-				loadComponent: () => import('./pages/button.component').then((m) => m.ButtonComponent),
+				loadComponent: () => import('@features/component-showcase/categories/button').then((m) => m.ButtonComponent),
 				data: componentSeo(
 					'Button',
 					'button',
@@ -229,7 +238,8 @@ export const routes: Routes = [
 			},
 			{
 				path: 'calendar',
-				loadComponent: () => import('./pages/calendar.component').then((m) => m.CalendarComponent),
+				loadComponent: () =>
+					import('@features/component-showcase/categories/calendar').then((m) => m.CalendarComponent),
 				data: componentSeo(
 					'Calendar',
 					'calendar',
@@ -239,7 +249,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'card',
-				loadComponent: () => import('./pages/card.component').then((m) => m.CardComponent),
+				loadComponent: () => import('@features/component-showcase/categories/card').then((m) => m.CardComponent),
 				data: componentSeo(
 					'Card',
 					'card',
@@ -249,7 +259,8 @@ export const routes: Routes = [
 			},
 			{
 				path: 'checkbox',
-				loadComponent: () => import('./pages/checkbox.component').then((m) => m.CheckboxComponent),
+				loadComponent: () =>
+					import('@features/component-showcase/categories/checkbox').then((m) => m.CheckboxComponent),
 				data: componentSeo(
 					'Checkbox',
 					'checkbox',
@@ -258,8 +269,19 @@ export const routes: Routes = [
 				),
 			},
 			{
+				path: 'color-picker',
+				loadComponent: () =>
+					import('@features/component-showcase/categories/color-picker').then((m) => m.ColorPickerPageComponent),
+				data: componentSeo(
+					'Color Picker',
+					'color-picker',
+					'Solid color picker components for accessible HEX, RGB, HSL, and OKLCH color selection.',
+					'color picker, color input, hex, rgb, hsl, oklch, angular',
+				),
+			},
+			{
 				path: 'dialog',
-				loadComponent: () => import('./pages/dialog.component').then((m) => m.DialogComponent),
+				loadComponent: () => import('@features/component-showcase/categories/dialog').then((m) => m.DialogComponent),
 				data: componentSeo(
 					'Dialog',
 					'dialog',
@@ -269,7 +291,8 @@ export const routes: Routes = [
 			},
 			{
 				path: 'dropdown',
-				loadComponent: () => import('./pages/dropdown.component').then((m) => m.DropdownComponent),
+				loadComponent: () =>
+					import('@features/component-showcase/categories/dropdown').then((m) => m.DropdownComponent),
 				data: componentSeo(
 					'Dropdown',
 					'dropdown',
@@ -279,7 +302,8 @@ export const routes: Routes = [
 			},
 			{
 				path: 'event-calendar',
-				loadComponent: () => import('./pages/event-calendar.component').then((m) => m.EventCalendarComponent),
+				loadComponent: () =>
+					import('@features/component-showcase/categories/event-calendar').then((m) => m.EventCalendarComponent),
 				data: componentSeo(
 					'Event Calendar',
 					'event-calendar',
@@ -289,7 +313,8 @@ export const routes: Routes = [
 			},
 			{
 				path: 'file-upload',
-				loadComponent: () => import('./pages/file-upload.component').then((m) => m.FileUploadComponent),
+				loadComponent: () =>
+					import('@features/component-showcase/categories/file-upload').then((m) => m.FileUploadComponent),
 				data: componentSeo(
 					'File Upload',
 					'file-upload',
@@ -299,7 +324,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'input',
-				loadComponent: () => import('./pages/input.component').then((m) => m.InputComponent),
+				loadComponent: () => import('@features/component-showcase/categories/input').then((m) => m.InputComponent),
 				data: componentSeo(
 					'Input',
 					'input',
@@ -309,7 +334,8 @@ export const routes: Routes = [
 			},
 			{
 				path: 'image-cropper',
-				loadComponent: () => import('./pages/image-cropper.component').then((m) => m.ImageCropperComponent),
+				loadComponent: () =>
+					import('@features/component-showcase/categories/image-cropper').then((m) => m.ImageCropperComponent),
 				data: componentSeo(
 					'Image Cropper',
 					'image-cropper',
@@ -319,7 +345,8 @@ export const routes: Routes = [
 			},
 			{
 				path: 'notification',
-				loadComponent: () => import('./pages/notification.component').then((m) => m.NotificationComponent),
+				loadComponent: () =>
+					import('@features/component-showcase/categories/notification').then((m) => m.NotificationComponent),
 				data: componentSeo(
 					'Notification',
 					'notification',
@@ -329,7 +356,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'popover',
-				loadComponent: () => import('./pages/popover.component').then((m) => m.PopoverComponent),
+				loadComponent: () => import('@features/component-showcase/categories/popover').then((m) => m.PopoverComponent),
 				data: componentSeo(
 					'Popover',
 					'popover',
@@ -339,7 +366,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'radio',
-				loadComponent: () => import('./pages/radio.component').then((m) => m.RadioComponent),
+				loadComponent: () => import('@features/component-showcase/categories/radio').then((m) => m.RadioComponent),
 				data: componentSeo(
 					'Radio',
 					'radio',
@@ -349,7 +376,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'select',
-				loadComponent: () => import('./pages/select.component').then((m) => m.SelectComponent),
+				loadComponent: () => import('@features/component-showcase/categories/select').then((m) => m.SelectComponent),
 				data: componentSeo(
 					'Select',
 					'select',
@@ -359,7 +386,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'slider',
-				loadComponent: () => import('./pages/slider.component').then((m) => m.SliderComponent),
+				loadComponent: () => import('@features/component-showcase/categories/slider').then((m) => m.SliderComponent),
 				data: componentSeo(
 					'Slider',
 					'slider',
@@ -369,7 +396,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'switch',
-				loadComponent: () => import('./pages/switch.component').then((m) => m.SwitchComponent),
+				loadComponent: () => import('@features/component-showcase/categories/switch').then((m) => m.SwitchComponent),
 				data: componentSeo(
 					'Switch',
 					'switch',
@@ -379,7 +406,7 @@ export const routes: Routes = [
 			},
 			{
 				path: 'tabs',
-				loadComponent: () => import('./pages/tabs.component').then((m) => m.TabsComponent),
+				loadComponent: () => import('@features/component-showcase/categories/tabs').then((m) => m.TabsComponent),
 				data: componentSeo(
 					'Tabs',
 					'tabs',
@@ -389,7 +416,8 @@ export const routes: Routes = [
 			},
 			{
 				path: 'pagination',
-				loadComponent: () => import('./pages/pagination.component').then((m) => m.PaginationComponent),
+				loadComponent: () =>
+					import('@features/component-showcase/categories/pagination').then((m) => m.PaginationComponent),
 				data: componentSeo(
 					'Pagination',
 					'pagination',

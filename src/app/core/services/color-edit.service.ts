@@ -1,5 +1,5 @@
-import { ThemeStyleProps } from '@/app/types';
 import { Service, signal } from '@angular/core';
+import { ThemeStyleProps } from '@shared/types';
 
 @Service()
 export class ColorEditService {

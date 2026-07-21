@@ -1,0 +1,15 @@
+import { Component } from '@angular/core';
+import { paginationComponents } from '@features/component-showcase/categories';
+import { ComponentHeaderComponent, PageGridComponent } from '@features/component-showcase/shared';
+
+@Component({
+	selector: 'app-pagination',
+	template: `
+		<sim-component-header name="Pagination" description="Component for pagination with various styles and options" />
+		<sim-page-grid [components]="components" />
+	`,
+	imports: [ComponentHeaderComponent, PageGridComponent],
+})
+export class PaginationComponent {
+	components = paginationComponents;
+}

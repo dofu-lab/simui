@@ -1,0 +1,239 @@
+import { environment } from '@/environments/environment';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, NgZone, PLATFORM_ID } from '@angular/core';
+
+export type EventProperties = Record<string, string | number | boolean | null | undefined>;
+export type AnalyticsCopyKind = 'install_cli' | 'component_code' | 'generic_code';
+export type ComponentInteractionType = 'click' | 'change' | 'input' | 'keyboard';
+export type ComponentNavigationDirection = 'previous' | 'next';
+export type ComponentNavigationPosition = 'header' | 'left_panel';
+type PostHogClient = typeof import('posthog-js').default;
+
+export const ANALYTICS_EVENTS = {
+	componentViewed: 'component_viewed',
+	componentDemoInteracted: 'component_demo_interacted',
+	componentCodeSheetOpened: 'component_code_sheet_opened',
+	componentFullViewRequested: 'component_full_view_requested',
+	componentInstallCliCopied: 'component_install_cli_copied',
+	componentCodeCopied: 'component_code_copied',
+	componentShared: 'component_shared',
+	componentNavigationClicked: 'component_navigation_clicked',
+} as const;
+
+export function getComponentAnalyticsProperties(componentId: string): EventProperties {
+	const match = /^(?<category>.+)-(?<number>\d+)$/.exec(componentId);
+
+	return {
+		component_id: componentId,
+		component_category: match?.groups?.['category'] ?? componentId,
+		component_number: match?.groups?.['number'],
+	};
+}
+
+@Injectable({ providedIn: 'root' })
+export class AnalyticsService {
+	private readonly platformId = inject(PLATFORM_ID);
+	private readonly ngZone = inject(NgZone);
+	private readonly isBrowser = isPlatformBrowser(this.platformId);
+	private posthog: PostHogClient | null = null;
+	private readonly pendingActions: Array<(posthog: PostHogClient) => void> = [];
+	private initializationStarted = false;
+	private initialized = false;
+
+	init(): void {
+		if (!this.isBrowser || !environment.posthogKey || this.initializationStarted) return;
+
+		this.initializationStarted = true;
+
+		// Run outside Angular zone to prevent PostHog listeners (session recording, etc.)
+		// from triggering unnecessary change detection cycles.
+		this.ngZone.runOutsideAngular(() => {
+			void import('posthog-js').then(({ default: posthog }) => {
+				posthog.init(environment.posthogKey, {
+					api_host: environment.posthogHost,
+					// Use PostHog's latest recommended defaults (2026-01-30 release)
+					defaults: '2026-01-30',
+					// Persist anonymous identity in localStorage so repeat visits map to one browser profile.
+					persistence: 'localStorage',
+					// Disable automatic pageview capture — we handle it via router events
+					capture_pageview: false,
+					// Disable automatic performance capture — we handle it manually
+					capture_performance: false,
+					// Only enable session recordings in production
+					disable_session_recording: !environment.production,
+					// Respect user's Do Not Track preference
+					respect_dnt: true,
+				});
+
+				this.posthog = posthog;
+				this.initialized = true;
+				for (const action of this.pendingActions.splice(0)) {
+					action(posthog);
+				}
+			});
+		});
+	}
+
+	/**
+	 * Track a page view. Called after each NavigationEnd.
+	 */
+	trackPageView(url: string, title?: string): void {
+		this.runWhenReady((posthog) => {
+			posthog.capture('$pageview', {
+				$current_url: `${globalThis.location.origin}${url}`,
+				page_title: title,
+			});
+		});
+	}
+
+	/**
+	 * Track a custom event with optional properties.
+	 */
+	trackEvent(event: string, properties?: EventProperties): void {
+		this.runWhenReady((posthog) => {
+			posthog.capture(event, properties);
+		});
+	}
+
+	trackComponentViewed(componentId: string): void {
+		this.trackComponentEvent(ANALYTICS_EVENTS.componentViewed, componentId);
+	}
+
+	trackComponentDemoInteracted(componentId: string, interactionType: ComponentInteractionType): void {
+		this.trackComponentEvent(ANALYTICS_EVENTS.componentDemoInteracted, componentId, {
+			interaction_type: interactionType,
+		});
+	}
+
+	trackComponentCodeSheetOpened(componentId: string): void {
+		this.trackComponentEvent(ANALYTICS_EVENTS.componentCodeSheetOpened, componentId);
+	}
+
+	trackComponentFullViewRequested(componentId: string): void {
+		this.trackComponentEvent(ANALYTICS_EVENTS.componentFullViewRequested, componentId);
+	}
+
+	trackInstallCliCopied(componentId: string, command: string): void {
+		this.trackComponentEvent(ANALYTICS_EVENTS.componentInstallCliCopied, componentId, { command });
+	}
+
+	trackComponentCodeCopied(
+		componentId: string,
+		properties?: { fileName?: string; language?: string; copyKind?: AnalyticsCopyKind },
+	): void {
+		this.trackComponentEvent(ANALYTICS_EVENTS.componentCodeCopied, componentId, {
+			file_name: properties?.fileName,
+			language: properties?.language,
+			copy_kind: properties?.copyKind,
+		});
+	}
+
+	trackComponentShared(componentId: string): void {
+		this.trackComponentEvent(ANALYTICS_EVENTS.componentShared, componentId);
+	}
+
+	trackComponentNavigationClicked(
+		componentId: string,
+		properties: {
+			direction: ComponentNavigationDirection;
+			position: ComponentNavigationPosition;
+			toComponentId?: string;
+			fromIndex?: number;
+			toIndex?: number;
+			totalComponents?: number;
+		},
+	): void {
+		this.trackComponentEvent(ANALYTICS_EVENTS.componentNavigationClicked, componentId, {
+			navigation_direction: properties.direction,
+			navigation_position: properties.position,
+			to_component_id: properties.toComponentId,
+			from_component_index: properties.fromIndex,
+			to_component_index: properties.toIndex,
+			total_components: properties.totalComponents,
+		});
+	}
+
+	/**
+	 * Identify an authenticated user so events are linked to their profile.
+	 */
+	identifyUser(userId: string, properties?: { email?: string; name?: string; role?: string }): void {
+		this.runWhenReady((posthog) => {
+			posthog.identify(userId, properties);
+		});
+	}
+
+	/**
+	 * Reset the current user identity (call on sign-out).
+	 */
+	resetUser(): void {
+		this.runWhenReady((posthog) => {
+			posthog.reset();
+		});
+	}
+
+	/**
+	 * Track an error with contextual metadata.
+	 */
+	captureException(error: unknown, properties?: EventProperties): void {
+		let message: string;
+		if (error instanceof Error) {
+			message = error.message;
+		} else {
+			try {
+				message = JSON.stringify(error) ?? 'Unknown error';
+			} catch {
+				message = 'Unknown error';
+			}
+		}
+		const err = error instanceof Error ? error : new Error(message);
+		this.runWhenReady((posthog) => {
+			posthog.capture('$exception', {
+				$exception_message: err.message,
+				$exception_type: err.name,
+				$exception_stack_trace_raw: err.stack,
+				...properties,
+			});
+		});
+	}
+
+	/**
+	 * Track a Core Web Vital metric.
+	 */
+	trackWebVital(name: string, value: number, rating: 'good' | 'needs-improvement' | 'poor'): void {
+		this.runWhenReady((posthog) => {
+			posthog.capture('web_vital', { metric: name, value, rating });
+		});
+	}
+
+	private runWhenReady(action: (posthog: PostHogClient) => void): void {
+		if (!this.isBrowser || !environment.posthogKey) {
+			return;
+		}
+
+		if (this.initialized && this.posthog) {
+			action(this.posthog);
+			return;
+		}
+
+		if (this.initializationStarted) {
+			this.pendingActions.push(action);
+		}
+	}
+
+	private trackComponentEvent(event: string, componentId: string, properties?: EventProperties): void {
+		this.trackEvent(event, {
+			...this.getRouteProperties(),
+			...getComponentAnalyticsProperties(componentId),
+			...properties,
+		});
+	}
+
+	private getRouteProperties(): EventProperties {
+		if (!this.isBrowser) return {};
+
+		return {
+			path: globalThis.location.pathname,
+			source_page: globalThis.location.pathname,
+		};
+	}
+}
