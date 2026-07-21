@@ -51,38 +51,10 @@ import { TabsThumbnailComponent } from './categories/tabs/tabs.thumbnail';
 
 export const previewComponents: ComponentInfo[] = [
 	{
-		name: 'Card',
-		compNumber: cardComponents.length,
-		thumbnail: CardThumbnailComponent,
-		path: 'components/card',
-		isNew: true,
-	},
-	{
-		name: 'Calendar',
-		compNumber: calendarComponents.length,
-		thumbnail: CalendarThumbnailComponent,
-		path: 'components/calendar',
-		isNew: true,
-	},
-	{
 		name: 'Color Picker',
 		compNumber: colorPickerComponents.length,
 		thumbnail: ColorPickerThumbnailComponent,
 		path: 'components/color-picker',
-		isNew: true,
-	},
-	{
-		name: 'Image Cropper',
-		compNumber: imageCropperComponents.length,
-		thumbnail: ImageCropperThumbnailComponent,
-		path: 'components/image-cropper',
-		isNew: true,
-	},
-	{
-		name: 'Select',
-		compNumber: selectComponents.length,
-		thumbnail: SelectThumbnailComponent,
-		path: 'components/select',
 		isNew: true,
 	},
 	{
@@ -128,6 +100,18 @@ export const previewComponents: ComponentInfo[] = [
 		path: 'components/button',
 	},
 	{
+		name: 'Calendar',
+		compNumber: calendarComponents.length,
+		thumbnail: CalendarThumbnailComponent,
+		path: 'components/calendar',
+	},
+	{
+		name: 'Card',
+		compNumber: cardComponents.length,
+		thumbnail: CardThumbnailComponent,
+		path: 'components/card',
+	},
+	{
 		name: 'Checkbox',
 		compNumber: checkBoxComponents.length,
 		thumbnail: CheckboxThumbnailComponent,
@@ -158,6 +142,12 @@ export const previewComponents: ComponentInfo[] = [
 		path: 'components/file-upload',
 	},
 	{
+		name: 'Image Cropper',
+		compNumber: imageCropperComponents.length,
+		thumbnail: ImageCropperThumbnailComponent,
+		path: 'components/image-cropper',
+	},
+	{
 		name: 'Input',
 		compNumber: inputComponents.length,
 		thumbnail: InputThumbnailComponent,
@@ -186,6 +176,12 @@ export const previewComponents: ComponentInfo[] = [
 		compNumber: radioComponents.length,
 		thumbnail: RadioThumbnailComponent,
 		path: 'components/radio',
+	},
+	{
+		name: 'Select',
+		compNumber: selectComponents.length,
+		thumbnail: SelectThumbnailComponent,
+		path: 'components/select',
 	},
 	{
 		name: 'Slider',
