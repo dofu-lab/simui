@@ -21,6 +21,7 @@ import { AnalyticsService } from '@core/services/analytics.service';
 import { CodeLoaderService } from '@core/services/code-loader.service';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCode, lucideFullscreen, lucideLink } from '@ng-icons/lucide';
+import { ResizableSheetHandle } from '@shared/components/resizable-sheet-handle';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmSheet, HlmSheetImports } from '@spartan-ng/helm/sheet';
@@ -51,6 +52,7 @@ const CARD_LAYOUT_CLASSES: Record<ComponentCardLayout, string> = {
 		NgIcon,
 		NgComponentOutlet,
 		CodePreviewComponent,
+		ResizableSheetHandle,
 		HlmButtonImports,
 		HlmIconImports,
 		HlmSheetImports,
@@ -110,7 +112,8 @@ const CARD_LAYOUT_CLASSES: Record<ComponentCardLayout, string> = {
 			</div>
 			<hlm-sheet-content
 				*hlmSheetPortal="let ctx"
-				class="flex max-h-dvh min-h-0 flex-col overflow-hidden data-[side=right]:w-[calc(100%-(--spacing(12)))] data-[side=right]:max-w-sm data-[side=right]:sm:max-w-3xl">
+				class="flex max-h-dvh min-h-0 flex-col overflow-visible data-[side=right]:w-[calc(100%-(--spacing(12)))] data-[side=right]:max-w-sm data-[side=right]:sm:max-w-3xl">
+				<sim-resizable-sheet-handle />
 				<div class="spartan-scroll flex min-h-0 flex-1 flex-col overflow-y-auto p-4">
 					<!-- Installation -->
 					<div class="mb-4">

@@ -4,6 +4,7 @@ import { ThemeStorageService } from '@core/services/theme-storage.service';
 import { CodePreviewComponent } from '@features/component-showcase/shared/code-preview.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBraces } from '@ng-icons/lucide';
+import { ResizableSheetHandle } from '@shared/components/resizable-sheet-handle';
 import { ThemePreset, ThemeStyleProps } from '@shared/types';
 import { getShadowMap } from '@shared/utils/shadow.utils';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
@@ -13,7 +14,15 @@ import { ColorTypeSelector } from './color-type-selector';
 
 @Component({
 	selector: 'sim-theme-code-sheet',
-	imports: [HlmSheetImports, CodePreviewComponent, NgIcon, HlmIconImports, HlmButtonImports, ColorTypeSelector],
+	imports: [
+		CodePreviewComponent,
+		NgIcon,
+		ColorTypeSelector,
+		ResizableSheetHandle,
+		HlmSheetImports,
+		HlmIconImports,
+		HlmButtonImports,
+	],
 	providers: [ColorService, provideIcons({ lucideBraces })],
 	template: `
 		<hlm-sheet side="right">
@@ -23,7 +32,8 @@ import { ColorTypeSelector } from './color-type-selector';
 			</button>
 			<hlm-sheet-content
 				*hlmSheetPortal="let ctx"
-				class="flex max-h-dvh min-h-0 flex-col overflow-hidden data-[side=right]:w-[calc(100%-(--spacing(12)))] data-[side=right]:max-w-sm data-[side=right]:sm:max-w-3xl">
+				class="flex max-h-dvh min-h-0 flex-col overflow-visible data-[side=right]:w-[calc(100%-(--spacing(12)))] data-[side=right]:max-w-sm data-[side=right]:sm:max-w-3xl">
+				<sim-resizable-sheet-handle />
 				<hlm-sheet-header class="flex-row items-center justify-between pr-15">
 					<h3 hlmSheetTitle>Theme CSS code</h3>
 					<sim-color-type />

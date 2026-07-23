@@ -42,8 +42,7 @@ export const DEFAULT_PRESET: ThemePreset = {
 			'sidebar-accent-foreground': '#171717',
 			'sidebar-border': '#e5e5e5',
 			'sidebar-ring': '#a1a1a1',
-			'font-sans':
-				"ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+			'font-sans': "'Figtree Variable', Figtree, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
 			'font-serif': 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
 			'font-mono': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
 			'shadow-color': 'oklch(0 0 0)',
@@ -89,8 +88,7 @@ export const DEFAULT_PRESET: ThemePreset = {
 			'sidebar-accent-foreground': '#fafafa',
 			'sidebar-border': '#282828',
 			'sidebar-ring': '#525252',
-			'font-sans':
-				"ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+			'font-sans': "'Figtree Variable', Figtree, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
 			'font-serif': 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
 			'font-mono': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
 			'shadow-color': 'oklch(0 0 0)',
