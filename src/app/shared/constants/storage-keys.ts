@@ -5,4 +5,5 @@ export const STORAGE_KEYS = {
 	HISTORY: 'simui-theme-history',
 	TASK_SETTINGS: 'spartan-examples',
 	APPEARANCE: 'simui-appearance',
+	CODE_SHEET_WIDTH_PERCENT: 'simui-code-sheet-width-percent',
 } as const;
