@@ -113,18 +113,27 @@ export class AnalyticsService {
 		this.trackComponentEvent(ANALYTICS_EVENTS.componentFullViewRequested, componentId);
 	}
 
-	trackInstallCliCopied(componentId: string, command: string): void {
-		this.trackComponentEvent(ANALYTICS_EVENTS.componentInstallCliCopied, componentId, { command });
+	trackInstallCliCopied(componentId: string, command: string, spartanVersion?: string): void {
+		this.trackComponentEvent(ANALYTICS_EVENTS.componentInstallCliCopied, componentId, {
+			command,
+			spartan_version: spartanVersion,
+		});
 	}
 
 	trackComponentCodeCopied(
 		componentId: string,
-		properties?: { fileName?: string; language?: string; copyKind?: AnalyticsCopyKind },
+		properties?: {
+			fileName?: string;
+			language?: string;
+			copyKind?: AnalyticsCopyKind;
+			spartanVersion?: string;
+		},
 	): void {
 		this.trackComponentEvent(ANALYTICS_EVENTS.componentCodeCopied, componentId, {
 			file_name: properties?.fileName,
 			language: properties?.language,
 			copy_kind: properties?.copyKind,
+			spartan_version: properties?.spartanVersion,
 		});
 	}
 

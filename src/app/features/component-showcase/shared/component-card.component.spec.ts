@@ -1,8 +1,10 @@
 import { Clipboard } from '@angular/cdk/clipboard';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DefaultUrlSerializer, Router } from '@angular/router';
 import { AnalyticsService } from '@core/services/analytics.service';
 import { CodeLoaderService } from '@core/services/code-loader.service';
+import { RegistryVersionService } from '@core/services/registry-version.service';
 import { of } from 'rxjs';
 import { ComponentCardComponent } from './component-card.component';
 
@@ -15,6 +17,8 @@ class TestDemoComponent {}
 describe('ComponentCardComponent analytics', () => {
 	let fixture: ComponentFixture<ComponentCardComponent>;
 	let analyticsService: jasmine.SpyObj<AnalyticsService>;
+	let clipboard: jasmine.SpyObj<Clipboard>;
+	let registryVersion: ReturnType<typeof signal<string | null>>;
 	let intersectionCallback: IntersectionObserverCallback;
 
 	beforeEach(async () => {
@@ -25,6 +29,8 @@ describe('ComponentCardComponent analytics', () => {
 			'trackComponentShared',
 			'trackComponentViewed',
 		]);
+		clipboard = jasmine.createSpyObj<Clipboard>('Clipboard', ['copy']);
+		registryVersion = signal('1.0.2');
 
 		class MockIntersectionObserver {
 			constructor(callback: IntersectionObserverCallback) {
@@ -48,8 +54,28 @@ describe('ComponentCardComponent analytics', () => {
 			imports: [ComponentCardComponent, TestDemoComponent],
 			providers: [
 				{ provide: AnalyticsService, useValue: analyticsService },
-				{ provide: Clipboard, useValue: jasmine.createSpyObj<Clipboard>('Clipboard', ['copy']) },
+				{ provide: Clipboard, useValue: clipboard },
 				{ provide: CodeLoaderService, useValue: { loadComponentCode: () => of('component code') } },
+				{
+					provide: RegistryVersionService,
+					useValue: {
+						status: signal('ready'),
+						selectedVersion: registryVersion,
+						isReady: () => true,
+						isLoading: () => false,
+						hasError: () => false,
+						isComponentAvailable: () => true,
+					},
+				},
+				{
+					provide: Router,
+					useValue: {
+						url: '/components/button?theme=dark',
+						parseUrl: (url: string) => new DefaultUrlSerializer().parse(url),
+						serializeUrl: (tree: Parameters<DefaultUrlSerializer['serialize']>[0]) =>
+							new DefaultUrlSerializer().serialize(tree),
+					},
+				},
 			],
 		}).compileComponents();
 
@@ -63,6 +89,22 @@ describe('ComponentCardComponent analytics', () => {
 		(fixture.componentInstance as unknown as { trackCodeClick: () => void }).trackCodeClick();
 
 		expect(analyticsService.trackComponentCodeSheetOpened).toHaveBeenCalledWith('button-01');
+	});
+
+	it('builds installation commands from the globally selected version', () => {
+		const component = fixture.componentInstance as unknown as { installCommand: () => string };
+		expect(component.installCommand()).toBe('npx @dofu-lab/simui-cli add button-01 --spartan-version 1.0.2');
+
+		registryVersion.set('0.9.0');
+		expect(component.installCommand()).toBe('npx @dofu-lab/simui-cli add button-01 --spartan-version 0.9.0');
+	});
+
+	it('adds the selected version only to the copied component link', () => {
+		(fixture.componentInstance as unknown as { shareComponent: () => void }).shareComponent();
+
+		expect(clipboard.copy).toHaveBeenCalledWith(
+			`${document.location.origin}/components/button?theme=dark&spartan=1.0.2#button-01`,
+		);
 	});
 
 	it('emits the full-view request for the current component', () => {

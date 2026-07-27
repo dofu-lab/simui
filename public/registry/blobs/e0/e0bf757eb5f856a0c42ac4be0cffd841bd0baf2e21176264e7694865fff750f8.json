@@ -1,0 +1,3 @@
+{
+	"content": "import { ChangeDetectionStrategy, Component, signal } from '@angular/core';\nimport { SimColorPickerImports } from '@sim/color-picker';\n\n@Component({\n\tselector: 'sim-color-picker-05',\n\timports: [SimColorPickerImports],\n\tchangeDetection: ChangeDetectionStrategy.OnPush,\n\ttemplate: `\n\t\t<sim-color-picker class=\"w-78 gap-3 rounded-xl p-[15px]\" [(value)]=\"value\" [format]=\"'hex'\">\n\t\t\t<sim-color-adjustment-controls\n\t\t\t\teyeDropperVariant=\"outline\"\n\t\t\t\tclass=\"items-start **:data-[slot=slider-thumb]:size-5\" />\n\n\t\t\t<sim-color-value-editor class=\"gap-0 [&>label]:sr-only\" [showFormat]=\"false\" />\n\t\t</sim-color-picker>\n\t`,\n})\nexport class ColorPicker05Component {\n\tprotected readonly value = signal('#404040');\n}"
+}

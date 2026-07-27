@@ -1,0 +1,100 @@
+{
+	"entries": [
+		{
+			"id": "2026-07-27-deduplicated-registry-storage",
+			"date": "2026-07-27",
+			"spartanVersion": "1.1.2",
+			"type": "improvement",
+			"title": "Deduplicated registry storage",
+			"description": "Registry releases now share identical source blobs, keeping future SpartanUI compatibility updates compact without removing historical versions."
+		},
+		{
+			"id": "2026-07-27-grouped-changelog-categories",
+			"date": "2026-07-27",
+			"spartanVersion": "1.1.2",
+			"type": "improvement",
+			"title": "Grouped changelog categories",
+			"description": "Updates on the same date are grouped by change type, reducing repeated badges and making the timeline more compact."
+		},
+		{
+			"id": "2026-07-27-grouped-compatibility-badges",
+			"date": "2026-07-27",
+			"spartanVersion": "1.1.2",
+			"type": "improvement",
+			"title": "Grouped compatibility badges",
+			"description": "Each changelog date now shows its compatible SpartanUI version once, keeping individual update rows easier to scan."
+		},
+		{
+			"id": "2026-07-27-unified-date-timeline",
+			"date": "2026-07-27",
+			"spartanVersion": "1.1.2",
+			"type": "improvement",
+			"title": "Unified date timeline",
+			"description": "Product updates and automatic component-source changes now appear together under their publication date."
+		},
+		{
+			"id": "2026-07-27-date-based-changelog",
+			"date": "2026-07-27",
+			"spartanVersion": "1.1.2",
+			"type": "improvement",
+			"title": "Date-based changelog",
+			"description": "SimUI changes are now tracked chronologically, independently from SpartanUI releases, while every entry still shows its compatible SpartanUI version."
+		},
+		{
+			"id": "2026-07-27-consistent-spartanui-branding",
+			"date": "2026-07-27",
+			"spartanVersion": "1.1.2",
+			"type": "fix",
+			"title": "Consistent SpartanUI branding",
+			"description": "User-facing labels, compatibility messages, release history, and documentation now consistently use the SpartanUI name."
+		},
+		{
+			"id": "2026-07-27-remembered-spartanui-version",
+			"date": "2026-07-27",
+			"spartanVersion": "1.1.2",
+			"type": "improvement",
+			"title": "Clean, remembered SpartanUI versions",
+			"description": "SimUI remembers your selected SpartanUI version without adding it to everyday browser URLs, while copied component links still include the version for accurate sharing."
+		},
+		{
+			"id": "2026-07-27-clearer-release-cards",
+			"date": "2026-07-27",
+			"spartanVersion": "1.1.2",
+			"type": "improvement",
+			"title": "Clearer release cards",
+			"description": "Each changelog release received a distinct, responsive layout that separates curated highlights from automatic component-source changes."
+		},
+		{
+			"id": "2026-07-26-repeatable-registry-publishing",
+			"date": "2026-07-26",
+			"spartanVersion": "1.1.2",
+			"type": "improvement",
+			"title": "Repeatable registry publishing",
+			"description": "Registry snapshots can be regenerated for an existing SpartanUI version while keeping the versioned source and latest alias in sync."
+		},
+		{
+			"id": "2026-07-26-registry-release-history",
+			"date": "2026-07-26",
+			"spartanVersion": "1.1.2",
+			"type": "feature",
+			"title": "Registry release history",
+			"description": "Browse human-readable highlights and the complete component-level changes for every published registry version."
+		},
+		{
+			"id": "2026-07-26-version-aware-component-source",
+			"date": "2026-07-26",
+			"spartanVersion": "1.1.2",
+			"type": "feature",
+			"title": "Version-aware component source",
+			"description": "Choose a supported SpartanUI version in the SimUI header and copy component source that matches that release."
+		},
+		{
+			"id": "2026-07-26-versioned-registry-baseline",
+			"date": "2026-07-26",
+			"spartanVersion": "1.0.2",
+			"type": "improvement",
+			"title": "Versioned registry baseline",
+			"description": "Established the first preserved SimUI component-source snapshot for a supported SpartanUI release."
+		}
+	]
+}

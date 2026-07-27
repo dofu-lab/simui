@@ -14,6 +14,7 @@ import {
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import type { ComponentNavigationDirection, ComponentNavigationPosition } from '@core/services/analytics.service';
 import { CodeLoaderService } from '@core/services/code-loader.service';
+import { RegistryVersionService } from '@core/services/registry-version.service';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight, lucideX } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
@@ -235,27 +236,63 @@ export type ComponentNavigationRequest = {
 			<div class="bg-card border-border flex size-full min-h-0 flex-col overflow-hidden">
 				<div class="spartan-scroll flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-4">
 					<section class="flex shrink-0 flex-col gap-2">
-						<h3 class="text-sm font-semibold">Installation</h3>
-						<sim-code-preview
-							language="sh"
-							analyticsCopyKind="install_cli"
-							[analyticsComponentId]="item.id"
-							[code]="installCommand()"
-							[fileName]="'Install ' + item.id"
-							[showLineNumbers]="false" />
+						<h3 class="text-sm font-semibold">
+							Installation
+							@if (registryVersions.selectedVersion(); as version) {
+								<span class="text-muted-foreground font-normal">for SpartanUI {{ version }}</span>
+							}
+						</h3>
+						@if (registryVersions.isLoading()) {
+							<p class="text-muted-foreground text-sm">Loading published registry versions…</p>
+						} @else if (registryVersions.hasError()) {
+							<p class="text-muted-foreground text-sm">
+								Installation is unavailable because the registry manifest could not be loaded.
+							</p>
+						} @else if (!componentAvailable()) {
+							<p class="text-muted-foreground text-sm">
+								{{ item.id }} is not available for SpartanUI {{ registryVersions.selectedVersion() }}.
+							</p>
+						} @else {
+							<sim-code-preview
+								language="sh"
+								analyticsCopyKind="install_cli"
+								[analyticsComponentId]="item.id"
+								[analyticsSpartanVersion]="registryVersions.selectedVersion() ?? undefined"
+								[code]="installCommand()"
+								[fileName]="'Install ' + item.id"
+								[showLineNumbers]="false" />
+						}
 					</section>
 
 					<section class="flex min-h-0 flex-1 flex-col gap-2">
-						<h3 class="text-sm font-semibold">Code</h3>
-						@if (codeLoading()) {
+						<h3 class="text-sm font-semibold">
+							Code
+							@if (registryVersions.selectedVersion(); as version) {
+								<span class="text-muted-foreground font-normal">for SpartanUI {{ version }}</span>
+							}
+						</h3>
+						@if (sourceStatus() === 'loading' || sourceStatus() === 'manifest-loading') {
 							<div class="text-muted-foreground flex min-h-72 flex-1 items-center justify-center text-sm">
-								Loading...
+								Loading registry source…
 							</div>
-						} @else {
+						} @else if (sourceStatus() === 'unavailable') {
+							<div class="text-muted-foreground flex min-h-72 flex-1 items-center justify-center text-sm">
+								This component is unavailable for the selected SpartanUI version.
+							</div>
+						} @else if (sourceStatus() === 'manifest-error') {
+							<div class="text-muted-foreground flex min-h-72 flex-1 items-center justify-center text-sm">
+								Registry source is unavailable because the manifest could not be loaded.
+							</div>
+						} @else if (sourceStatus() === 'error') {
+							<div class="text-muted-foreground flex min-h-72 flex-1 items-center justify-center text-sm">
+								Source could not be loaded for this version.
+							</div>
+						} @else if (sourceStatus() === 'ready') {
 							<sim-code-preview
 								class="min-h-72 flex-1"
 								analyticsCopyKind="component_code"
 								[analyticsComponentId]="item.id"
+								[analyticsSpartanVersion]="registryVersions.selectedVersion() ?? undefined"
 								[code]="displayCode()"
 								[fileName]="item.id" />
 						}
@@ -269,6 +306,7 @@ export class ComponentFullViewComponent {
 	private readonly destroyRef = inject(DestroyRef);
 	private readonly breakpointObserver = inject(BreakpointObserver);
 	private readonly codeLoaderService = inject(CodeLoaderService);
+	protected readonly registryVersions = inject(RegistryVersionService);
 
 	public readonly components = input.required<ComponentCardItem[]>();
 	public readonly selectedIndex = input.required<number>();
@@ -278,8 +316,11 @@ export class ComponentFullViewComponent {
 	public readonly nextRequested = output<ComponentNavigationRequest>();
 	public readonly closeRequested = output<void>();
 
-	private readonly codeByComponentId = signal<Record<string, string>>({});
-	private readonly loadingComponentId = signal<string | null>(null);
+	private readonly codeByRegistryKey = signal<Record<string, string>>({});
+	private activeRequestKey: string | null = null;
+	protected readonly sourceStatus = signal<
+		'manifest-loading' | 'manifest-error' | 'loading' | 'ready' | 'error' | 'unavailable'
+	>('manifest-loading');
 	protected readonly previewNavigationDirection = signal<ComponentNavigationDirection | null>(null);
 
 	protected readonly isDesktop = toSignal(
@@ -289,14 +330,16 @@ export class ComponentFullViewComponent {
 	protected readonly selectedItem = computed(() => this.components()[this.selectedIndex()] ?? null);
 	protected readonly canGoPrevious = computed(() => this.selectedIndex() > 0);
 	protected readonly canGoNext = computed(() => this.selectedIndex() < this.components().length - 1);
-	protected readonly installCommand = computed(() =>
-		`npx ${this.cliScope()} add ${this.selectedItem()?.id ?? ''}`.trim(),
-	);
-	protected readonly displayCode = computed(() => {
+	protected readonly componentAvailable = computed(() => {
 		const id = this.selectedItem()?.id;
-		return id ? (this.codeByComponentId()[id] ?? '') : '';
+		return !!id && this.registryVersions.isReady() && this.registryVersions.isComponentAvailable(id);
 	});
-	protected readonly codeLoading = computed(() => this.loadingComponentId() === this.selectedItem()?.id);
+	protected readonly installCommand = computed(() => {
+		const id = this.selectedItem()?.id;
+		const version = this.registryVersions.selectedVersion();
+		return id && version ? `npx ${this.cliScope()} add ${id} --spartan-version ${version}` : '';
+	});
+	protected readonly displayCode = signal('');
 	protected readonly previewEnterAnimationClass = computed(() => {
 		const direction = this.previewNavigationDirection();
 		if (!direction) {
@@ -317,24 +360,48 @@ export class ComponentFullViewComponent {
 	constructor() {
 		effect(() => {
 			const item = this.selectedItem();
-			if (!item || this.codeByComponentId()[item.id] !== undefined || this.loadingComponentId() === item.id) {
+			const manifestStatus = this.registryVersions.status();
+			const version = this.registryVersions.selectedVersion();
+			this.activeRequestKey = null;
+			this.displayCode.set('');
+
+			if (manifestStatus === 'loading') {
+				this.sourceStatus.set('manifest-loading');
+				return;
+			}
+			if (manifestStatus === 'error' || !version) {
+				this.sourceStatus.set('manifest-error');
+				return;
+			}
+			if (!item || !this.registryVersions.isComponentAvailable(item.id)) {
+				this.sourceStatus.set('unavailable');
 				return;
 			}
 
-			this.loadingComponentId.set(item.id);
+			const key = `${version}:${item.id}`;
+			const cachedCode = this.codeByRegistryKey()[key];
+			if (cachedCode !== undefined) {
+				this.displayCode.set(cachedCode);
+				this.sourceStatus.set('ready');
+				return;
+			}
+
+			this.activeRequestKey = key;
+			this.sourceStatus.set('loading');
 			this.codeLoaderService
-				.loadComponentCode(item.id)
+				.loadComponentCode(version, item.id)
 				.pipe(takeUntilDestroyed(this.destroyRef))
 				.subscribe({
 					next: (code) => {
-						this.codeByComponentId.update((value) => ({ ...value, [item.id]: code }));
-						if (this.loadingComponentId() === item.id) {
-							this.loadingComponentId.set(null);
+						this.codeByRegistryKey.update((value) => ({ ...value, [key]: code }));
+						if (this.activeRequestKey === key) {
+							this.displayCode.set(code);
+							this.sourceStatus.set('ready');
 						}
 					},
 					error: () => {
-						if (this.loadingComponentId() === item.id) {
-							this.loadingComponentId.set(null);
+						if (this.activeRequestKey === key) {
+							this.sourceStatus.set('error');
 						}
 					},
 				});

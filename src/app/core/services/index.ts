@@ -7,6 +7,7 @@ export * from './color.service';
 export * from './local-storage.service';
 export * from './navigation.service';
 export * from './payment-http.service';
+export * from './registry-version.service';
 export * from './seo.service';
 export * from './shiki-highlighter.service';
 export * from './theme-http.service';

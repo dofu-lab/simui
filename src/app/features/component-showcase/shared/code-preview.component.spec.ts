@@ -52,6 +52,24 @@ describe('CodePreviewComponent analytics', () => {
 		expect(analyticsService.trackInstallCliCopied).toHaveBeenCalledWith(
 			'button-01',
 			'npx @dofu-lab/simui-cli add button-01',
+			undefined,
+		);
+	});
+
+	it('passes the selected SpartanUI version as structured copy analytics', () => {
+		fixture.componentRef.setInput('language', 'sh');
+		fixture.componentRef.setInput('analyticsComponentId', 'button-01');
+		fixture.componentRef.setInput('analyticsCopyKind', 'install_cli');
+		fixture.componentRef.setInput('analyticsSpartanVersion', '1.0.2');
+		fixture.componentRef.setInput('code', 'npx simui add button-01 --spartan-version 1.0.2');
+		fixture.detectChanges();
+
+		clickCopyButton();
+
+		expect(analyticsService.trackInstallCliCopied).toHaveBeenCalledWith(
+			'button-01',
+			'npx simui add button-01 --spartan-version 1.0.2',
+			'1.0.2',
 		);
 	});
 
@@ -69,6 +87,7 @@ describe('CodePreviewComponent analytics', () => {
 			copyKind: 'component_code',
 			fileName: 'button-01',
 			language: 'angular-ts',
+			spartanVersion: undefined,
 		});
 	});
 

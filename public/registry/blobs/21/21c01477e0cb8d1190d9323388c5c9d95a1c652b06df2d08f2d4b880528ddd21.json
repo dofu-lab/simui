@@ -1,0 +1,3 @@
+{
+	"content": "import { getDateFromContainerId } from './utils';\n\ndescribe('event calendar utils', () => {\n\tit('parses month drop-list ids as local dates', () => {\n\t\tconst date = getDateFromContainerId('day-2025-01-15');\n\n\t\texpect(date).not.toBeNull();\n\t\texpect(date?.getFullYear()).toBe(2025);\n\t\texpect(date?.getMonth()).toBe(0);\n\t\texpect(date?.getDate()).toBe(15);\n\t});\n\n\tit('parses timed drop-list ids from Date string values', () => {\n\t\tconst source = new Date(2025, 0, 15, 9, 15);\n\t\tconst date = getDateFromContainerId(`day-${source.toString()}`);\n\n\t\texpect(date?.getTime()).toBe(source.getTime());\n\t});\n});"
+}

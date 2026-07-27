@@ -165,6 +165,7 @@ export class CodePreviewComponent {
 	public readonly fileName = input('');
 	public readonly analyticsComponentId = input<string | undefined>();
 	public readonly analyticsCopyKind = input<AnalyticsCopyKind>('generic_code');
+	public readonly analyticsSpartanVersion = input<string | undefined>();
 	public readonly disableCopy = input(false, { transform: booleanAttribute });
 	public readonly showLineNumbers = input(true, { transform: booleanAttribute });
 	public readonly collapsed = input(false, { transform: booleanAttribute });
@@ -209,7 +210,7 @@ export class CodePreviewComponent {
 		const copyKind = this.analyticsCopyKind();
 
 		if (componentId && copyKind === 'install_cli') {
-			this.analyticsService.trackInstallCliCopied(componentId, code);
+			this.analyticsService.trackInstallCliCopied(componentId, code, this.analyticsSpartanVersion());
 			return;
 		}
 
@@ -218,6 +219,7 @@ export class CodePreviewComponent {
 				copyKind,
 				fileName: this.fileName() || undefined,
 				language: this.normalizedLanguage(),
+				spartanVersion: this.analyticsSpartanVersion(),
 			});
 			return;
 		}

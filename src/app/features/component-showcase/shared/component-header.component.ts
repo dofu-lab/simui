@@ -5,7 +5,7 @@ import { ComponentBadgesComponent } from './component-badges.component';
 	selector: 'sim-component-header',
 	imports: [ComponentBadgesComponent],
 	template: `
-		<div class="mt-[50px] mb-[25px] flex flex-col items-center justify-center">
+		<div class="mt-[50px] mb-[25px] flex flex-col items-center justify-center gap-1">
 			<div class="text-4xl font-bold">{{ name() }}</div>
 			<div class="text-muted-foreground max-w-[800px] text-center text-lg">
 				{{ description() }}

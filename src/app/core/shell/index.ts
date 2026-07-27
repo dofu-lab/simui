@@ -4,6 +4,7 @@ export * from './constants';
 export * from './footer.component';
 export * from './google-signin-button.component';
 export * from './header.component';
+export * from './registry-version-menu.component';
 export * from './sign-in-dialog';
 export * from './sign-out-dialog';
 export * from './user-menu';

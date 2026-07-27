@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CodeLoaderService } from '@core/services/code-loader.service';
+import { RegistryVersionService } from '@core/services/registry-version.service';
 import { of, Subject } from 'rxjs';
 import { ComponentFullViewComponent } from './component-full-view.component';
 import type { ComponentCardItem } from './types';
@@ -20,6 +21,8 @@ class SecondDemoComponent {}
 describe('ComponentFullViewComponent', () => {
 	let fixture: ComponentFixture<ComponentFullViewComponent>;
 	let codeLoaderService: jasmine.SpyObj<CodeLoaderService>;
+	let registryVersion: ReturnType<typeof signal<string | null>>;
+	let componentAvailable: ReturnType<typeof signal<boolean>>;
 
 	const components: ComponentCardItem[] = [
 		{ id: 'button-01', component: FirstDemoComponent, layout: 'third', alignment: 'center' },
@@ -29,10 +32,25 @@ describe('ComponentFullViewComponent', () => {
 	beforeEach(async () => {
 		codeLoaderService = jasmine.createSpyObj<CodeLoaderService>('CodeLoaderService', ['loadComponentCode']);
 		codeLoaderService.loadComponentCode.and.returnValue(of('component code'));
+		registryVersion = signal('1.0.2');
+		componentAvailable = signal(true);
 
 		await TestBed.configureTestingModule({
 			imports: [ComponentFullViewComponent, FirstDemoComponent, SecondDemoComponent],
-			providers: [{ provide: CodeLoaderService, useValue: codeLoaderService }],
+			providers: [
+				{ provide: CodeLoaderService, useValue: codeLoaderService },
+				{
+					provide: RegistryVersionService,
+					useValue: {
+						status: signal('ready'),
+						selectedVersion: registryVersion,
+						isReady: () => true,
+						isLoading: () => false,
+						hasError: () => false,
+						isComponentAvailable: () => componentAvailable(),
+					},
+				},
+			],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(ComponentFullViewComponent);
@@ -43,7 +61,12 @@ describe('ComponentFullViewComponent', () => {
 	});
 
 	it('loads code for the selected component', () => {
-		expect(codeLoaderService.loadComponentCode).toHaveBeenCalledOnceWith('button-01');
+		expect(codeLoaderService.loadComponentCode).toHaveBeenCalledOnceWith('1.0.2', 'button-01');
+	});
+
+	it('builds a versioned installation command', () => {
+		const component = fixture.componentInstance as unknown as { installCommand: () => string };
+		expect(component.installCommand()).toBe('npx @dofu-lab/simui-cli add button-01 --spartan-version 1.0.2');
 	});
 
 	it('disables previous at the first component and enables next', () => {
@@ -196,12 +219,55 @@ describe('ComponentFullViewComponent', () => {
 		fixture.componentRef.setInput('open', true);
 		fixture.detectChanges();
 
-		const component = fixture.componentInstance as unknown as { codeLoading: () => boolean };
-		expect(component.codeLoading()).toBeTrue();
+		const component = fixture.componentInstance as unknown as { sourceStatus: () => string };
+		expect(component.sourceStatus()).toBe('loading');
 
 		pendingCode.next('loaded code');
 		pendingCode.complete();
 
-		expect(component.codeLoading()).toBeFalse();
+		expect(component.sourceStatus()).toBe('ready');
+	});
+
+	it('does not display a response from the previously selected version', () => {
+		const currentRequest = new Subject<string>();
+		const historicalRequest = new Subject<string>();
+		codeLoaderService.loadComponentCode.calls.reset();
+		codeLoaderService.loadComponentCode.and.callFake((version) =>
+			version === '1.0.2' ? currentRequest : historicalRequest,
+		);
+		fixture = TestBed.createComponent(ComponentFullViewComponent);
+		fixture.componentRef.setInput('components', components);
+		fixture.componentRef.setInput('selectedIndex', 0);
+		fixture.componentRef.setInput('open', true);
+		fixture.detectChanges();
+
+		registryVersion.set('0.9.0');
+		fixture.detectChanges();
+		currentRequest.next('current source');
+
+		const component = fixture.componentInstance as unknown as {
+			displayCode: () => string;
+			sourceStatus: () => string;
+		};
+		expect(component.displayCode()).toBe('');
+		expect(component.sourceStatus()).toBe('loading');
+
+		historicalRequest.next('historical source');
+		expect(component.displayCode()).toBe('historical source');
+		expect(component.sourceStatus()).toBe('ready');
+	});
+
+	it('skips source loading and reports unavailable when the manifest omits the component', () => {
+		componentAvailable.set(false);
+		codeLoaderService.loadComponentCode.calls.reset();
+		fixture = TestBed.createComponent(ComponentFullViewComponent);
+		fixture.componentRef.setInput('components', components);
+		fixture.componentRef.setInput('selectedIndex', 0);
+		fixture.componentRef.setInput('open', true);
+		fixture.detectChanges();
+
+		const component = fixture.componentInstance as unknown as { sourceStatus: () => string };
+		expect(component.sourceStatus()).toBe('unavailable');
+		expect(codeLoaderService.loadComponentCode).not.toHaveBeenCalled();
 	});
 });

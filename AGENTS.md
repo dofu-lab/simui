@@ -3,7 +3,7 @@
 ## Project
 
 - Use `pnpm`; do not create npm or Yarn lockfiles.
-- This is an Angular 21 standalone-component application using strict TypeScript, Tailwind CSS v4, and SpartanNG.
+- This is an Angular 21 standalone-component application using strict TypeScript, Tailwind CSS v4, and SpartanUI.
 - Inspect nearby code before editing and preserve local naming, import, formatting, and registration patterns.
 
 ## Angular
@@ -12,7 +12,7 @@
 - Prefer `ChangeDetectionStrategy.OnPush` for new stateful components when it fits the surrounding code.
 - Use inline templates and Tailwind utilities; avoid adding component styles unless utilities cannot express the design.
 - Use semantic theme utilities such as `bg-background`, `text-foreground`, and `border-border` instead of hardcoded theme colors.
-- Import SpartanNG packages from specific entry points such as `@spartan-ng/helm/button`, never from the package root.
+- Import SpartanUI packages from specific entry points such as `@spartan-ng/helm/button`, never from the package root.
 - Keep browser-only APIs SSR-safe.
 - Preserve accessibility semantics, labels, keyboard behavior, and visible focus states.
 
@@ -21,7 +21,7 @@
 - Put app-wide singleton concerns, guards, interceptors, services, and shell UI in `src/app/core/`.
 - Put reusable, feature-independent constants, pipes, types, and utilities in `src/app/shared/`.
 - Put route-level and domain-specific code in `src/app/features/{feature}/`; do not add new flat `pages/`, `components/`, or `constants/` folders under `src/app/`.
-- Use `@core`, `@shared`, and `@features` aliases for app code. Keep existing SpartanNG and Sim library aliases working.
+- Use `@core`, `@shared`, and `@features` aliases for app code. Keep existing SpartanUI and Sim library aliases working.
 
 ### Component showcase categories
 
@@ -37,6 +37,14 @@
 - Run `pnpm build` after Angular source changes.
 - Run `pnpm lint` when changes affect application code broadly or when requested.
 - Do not overwrite or discard unrelated working-tree changes.
+
+## Changelog
+
+- After completing a notable user-facing feature, improvement, fix, breaking change, compatibility change, or workflow change, add a chronological entry to `src/tools/registry-changelog.json`.
+- Give each entry a unique date-prefixed ID, its calendar date, the compatible SpartanUI version, and one of `feature`, `improvement`, `fix`, or `breaking`.
+- Write entries for SimUI users: explain what changed and why it matters. Do not include routine refactors, tests, formatting, or other internal-only work.
+- Keep entries ordered newest date first. Multiple entries may share a date and SpartanUI version.
+- Run `pnpm codes` after editing the changelog so the validated entries are published into `public/registry/manifest.json`.
 
 ## Angular 22 migration
 

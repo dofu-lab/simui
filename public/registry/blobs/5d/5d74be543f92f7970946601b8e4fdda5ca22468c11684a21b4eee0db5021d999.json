@@ -1,0 +1,3 @@
+{
+	"content": "import type { ColorPickerPreset } from './type';\n\nexport const COLOR_PICKER_DEFAULT_PRESETS: readonly ColorPickerPreset[] = [\n\t'#ffffff',\n\t'#f43f5e',\n\t'#f97316',\n\t'#facc15',\n\t'#22c55e',\n\t'#06b6d4',\n\t'#3b82f6',\n\t'#7f56d9',\n\t'#d946ef',\n\t'#111827',\n] as const;\n\nexport const COLOR_PICKER_KEYBOARD_STEP = 1;\nexport const COLOR_PICKER_KEYBOARD_LARGE_STEP = 10;"
+}
