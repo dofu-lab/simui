@@ -114,6 +114,26 @@ export const routes: Routes = [
 		},
 	},
 	{
+		path: 'changelog',
+		loadComponent: () => import('@features/changelog/changelog.page').then((m) => m.ChangelogComponent),
+		data: {
+			title: 'SimUI SpartanUI Changelog',
+			description:
+				'Compare SimUI component source changes across supported SpartanUI registry releases, including added, updated, and removed components.',
+			keywords:
+				'simui changelog, spartan ui versions, angular component changelog, simui registry history, component source changes',
+			canonicalPath: '/changelog',
+			structuredData: {
+				'@type': 'CollectionPage',
+				'@id': `${SEO_SITE_ORIGIN}/changelog#collection`,
+				url: `${SEO_SITE_ORIGIN}/changelog`,
+				name: 'SimUI SpartanUI Changelog',
+				description: 'Version-by-version SimUI component source changes for supported SpartanUI releases.',
+				isPartOf: { '@id': `${SEO_SITE_ORIGIN}/#website` },
+			},
+		},
+	},
+	{
 		path: 'theme-editor',
 		component: ThemeEditor,
 		canDeactivate: [unsavedChangesGuard],

@@ -1,0 +1,3 @@
+{
+	"content": "export type ColorPickerFormat = 'hex' | 'rgb' | 'hsl' | 'oklch';\n\nexport interface ColorPickerHsva {\n\treadonly h: number;\n\treadonly s: number;\n\treadonly v: number;\n\treadonly a: number;\n}\n\nexport type ColorPickerPreset = string;"
+}

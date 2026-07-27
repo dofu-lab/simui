@@ -6,4 +6,5 @@ export const STORAGE_KEYS = {
 	TASK_SETTINGS: 'spartan-examples',
 	APPEARANCE: 'simui-appearance',
 	CODE_SHEET_WIDTH_PERCENT: 'simui-code-sheet-width-percent',
+	SPARTAN_REGISTRY_VERSION: 'simui-spartan-registry-version',
 } as const;

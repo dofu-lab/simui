@@ -11,6 +11,7 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { AuthenticationComponent } from './authentication';
 import { REPO_LINK, X_LINK } from './constants';
+import { RegistryVersionMenuComponent } from './registry-version-menu.component';
 
 @Component({
 	selector: 'app-header',
@@ -23,16 +24,18 @@ import { REPO_LINK, X_LINK } from './constants';
 		RouterLink,
 		RouterLinkActive,
 		AuthenticationComponent,
+		RegistryVersionMenuComponent,
 	],
 	template: `
 		<header class="mx-auto flex justify-center pt-3">
 			<div
 				class="supports-backdrop-blur:bg-background/90 bg-background/40 z-40 flex h-14 w-full max-w-7xl items-center justify-between rounded-2xl border px-2 shadow-xs backdrop-blur-lg sm:px-8">
-				<div class="mr-4 flex">
-					<a class="relative mr-6 flex items-center space-x-2" href="/">
+				<div class="mr-4 flex items-center gap-2">
+					<a class="relative flex items-center gap-2" href="/">
 						<img src="/assets/logos/logo-base.svg" alt="Magic UI" class="h-10 w-10" />
 						<span class="text-foreground hidden font-bold md:inline-block">Sim UI</span>
 					</a>
+					<sim-registry-version-menu />
 				</div>
 				<div class="mr-4 flex gap-1">
 					<a

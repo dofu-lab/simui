@@ -1,9 +1,10 @@
-import { DOCUMENT, isPlatformBrowser, Location } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, computed, effect, inject, input, PLATFORM_ID, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AnalyticsService } from '@core/services/analytics.service';
 import { CodeLoaderService } from '@core/services/code-loader.service';
+import { RegistryVersionService } from '@core/services/registry-version.service';
 import { combineLatest } from 'rxjs';
 import { ComponentCardComponent } from './component-card.component';
 import type { ComponentNavigationRequest } from './component-full-view.component';
@@ -47,9 +48,10 @@ const FULL_VIEW_QUERY_PARAM = 'full';
 export class PageGridComponent {
 	public readonly components = input<ComponentCardItem[]>([]);
 	private readonly codeLoaderService = inject(CodeLoaderService);
+	private readonly registryVersions = inject(RegistryVersionService);
 	private readonly analyticsService = inject(AnalyticsService);
 	private readonly route = inject(ActivatedRoute);
-	private readonly location = inject(Location);
+	private readonly router = inject(Router);
 	private readonly document = inject(DOCUMENT);
 	private readonly platformId = inject(PLATFORM_ID);
 	protected readonly highlightedId = signal<string | null>(null);
@@ -60,8 +62,9 @@ export class PageGridComponent {
 	constructor() {
 		effect(() => {
 			const ids = this.components().map((c) => c.id);
-			if (ids.length) {
-				this.codeLoaderService.preloadComponents(ids);
+			const version = this.registryVersions.selectedVersion();
+			if (ids.length && version && this.registryVersions.isReady()) {
+				this.codeLoaderService.preloadComponents(version, ids, (id) => this.registryVersions.isComponentAvailable(id));
 			}
 		});
 
@@ -147,17 +150,19 @@ export class PageGridComponent {
 	}
 
 	private updateComponentFragment(componentId: string): void {
-		this.location.go(this.createFullViewUrl(componentId));
-	}
-
-	private createFullViewUrl(componentId: string): string {
-		const [path] = this.location.path(false).split(/[?#]/);
-		return `${path}?${FULL_VIEW_QUERY_PARAM}#${encodeURIComponent(componentId)}`;
+		const tree = this.router.parseUrl(this.router.url);
+		tree.queryParams = { ...tree.queryParams, [FULL_VIEW_QUERY_PARAM]: '' };
+		tree.fragment = componentId;
+		void this.router.navigateByUrl(tree);
 	}
 
 	private clearFullViewUrl(): void {
-		const [path] = this.location.path(false).split(/[?#]/);
-		this.location.go(path);
+		const tree = this.router.parseUrl(this.router.url);
+		const queryParams = { ...tree.queryParams };
+		delete queryParams[FULL_VIEW_QUERY_PARAM];
+		tree.queryParams = queryParams;
+		tree.fragment = null;
+		void this.router.navigateByUrl(tree);
 	}
 
 	private trackNavigationRequest(fromIndex: number, toIndex: number, request?: ComponentNavigationRequest): void {

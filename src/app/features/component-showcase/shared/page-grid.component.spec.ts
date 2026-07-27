@@ -1,9 +1,9 @@
-import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, DefaultUrlSerializer, Router, UrlTree } from '@angular/router';
 import { AnalyticsService } from '@core/services/analytics.service';
 import { CodeLoaderService } from '@core/services/code-loader.service';
+import { RegistryVersionService } from '@core/services/registry-version.service';
 import { BehaviorSubject, of } from 'rxjs';
 import { PageGridComponent } from './page-grid.component';
 import type { ComponentCardItem } from './types';
@@ -17,7 +17,13 @@ class GridDemoComponent {}
 describe('PageGridComponent full view', () => {
 	let fixture: ComponentFixture<PageGridComponent>;
 	let analyticsService: jasmine.SpyObj<AnalyticsService>;
-	let location: jasmine.SpyObj<Location>;
+	let codeLoaderService: jasmine.SpyObj<CodeLoaderService>;
+	let router: {
+		url: string;
+		parseUrl: (url: string) => UrlTree;
+		serializeUrl: (tree: UrlTree) => string;
+		navigateByUrl: jasmine.Spy;
+	};
 	let fragmentSubject: BehaviorSubject<string | null>;
 	let queryParamMapSubject: BehaviorSubject<ReturnType<typeof convertToParamMap>>;
 
@@ -28,8 +34,21 @@ describe('PageGridComponent full view', () => {
 
 	beforeEach(async () => {
 		analyticsService = jasmine.createSpyObj<AnalyticsService>('AnalyticsService', ['trackComponentNavigationClicked']);
-		location = jasmine.createSpyObj<Location>('Location', ['go', 'path']);
-		location.path.and.returnValue('/components/button');
+		codeLoaderService = jasmine.createSpyObj<CodeLoaderService>('CodeLoaderService', [
+			'loadComponentCode',
+			'preloadComponents',
+		]);
+		codeLoaderService.loadComponentCode.and.returnValue(of('component code'));
+		const serializer = new DefaultUrlSerializer();
+		router = {
+			url: '/components/button?spartan=1.0.2&theme=dark#existing',
+			parseUrl: (url) => serializer.parse(url),
+			serializeUrl: (tree) => serializer.serialize(tree),
+			navigateByUrl: jasmine.createSpy('navigateByUrl').and.callFake((tree: UrlTree) => {
+				router.url = serializer.serialize(tree);
+				return Promise.resolve(true);
+			}),
+		};
 		fragmentSubject = new BehaviorSubject<string | null>(null);
 		queryParamMapSubject = new BehaviorSubject(convertToParamMap({}));
 
@@ -46,12 +65,20 @@ describe('PageGridComponent full view', () => {
 				{ provide: AnalyticsService, useValue: analyticsService },
 				{
 					provide: CodeLoaderService,
+					useValue: codeLoaderService,
+				},
+				{
+					provide: RegistryVersionService,
 					useValue: {
-						loadComponentCode: () => of('component code'),
-						preloadComponents: jasmine.createSpy('preloadComponents'),
+						status: signal('ready'),
+						selectedVersion: signal('1.0.2'),
+						isReady: () => true,
+						isLoading: () => false,
+						hasError: () => false,
+						isComponentAvailable: () => true,
 					},
 				},
-				{ provide: Location, useValue: location },
+				{ provide: Router, useValue: router },
 			],
 		}).compileComponents();
 
@@ -71,7 +98,16 @@ describe('PageGridComponent full view', () => {
 
 		expect(component.selectedFullViewIndex()).toBe(0);
 		expect(component.fullViewOpen()).toBeTrue();
-		expect(location.go).toHaveBeenCalledOnceWith('/components/button?full#button-01');
+		expect(router.navigateByUrl).toHaveBeenCalled();
+		expect(router.url).toBe('/components/button?spartan=1.0.2&theme=dark&full=#button-01');
+	});
+
+	it('preloads manifest-available components for the selected version', () => {
+		expect(codeLoaderService.preloadComponents).toHaveBeenCalled();
+		const [version, ids, isAvailable] = codeLoaderService.preloadComponents.calls.mostRecent().args;
+		expect(version).toBe('1.0.2');
+		expect(ids).toEqual(['button-01', 'button-02']);
+		expect(isAvailable?.('button-01')).toBeTrue();
 	});
 
 	it('moves between components without closing full view', () => {
@@ -87,12 +123,12 @@ describe('PageGridComponent full view', () => {
 		component.goToNextFullView();
 		expect(component.selectedFullViewIndex()).toBe(1);
 		expect(component.fullViewOpen()).toBeTrue();
-		expect(location.go).toHaveBeenCalledWith('/components/button?full#button-02');
+		expect(router.url).toBe('/components/button?spartan=1.0.2&theme=dark&full=#button-02');
 
 		component.goToPreviousFullView();
 		expect(component.selectedFullViewIndex()).toBe(0);
 		expect(component.fullViewOpen()).toBeTrue();
-		expect(location.go).toHaveBeenCalledWith('/components/button?full#button-01');
+		expect(router.url).toBe('/components/button?spartan=1.0.2&theme=dark&full=#button-01');
 	});
 
 	it('opens full view from the URL full view query param and component fragment', () => {
@@ -120,7 +156,7 @@ describe('PageGridComponent full view', () => {
 		component.closeFullView();
 
 		expect(component.selectedFullViewIndex()).toBeNull();
-		expect(location.go).toHaveBeenCalledWith('/components/button');
+		expect(router.url).toBe('/components/button?spartan=1.0.2&theme=dark');
 	});
 
 	it('tracks the full view navigation button position', () => {
