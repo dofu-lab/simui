@@ -37,6 +37,7 @@ export const COMPONENT_IDS = {
 	popover: getIds('popover'),
 	radio: getIds('radio'),
 	select: getIds('select'),
+	sidebar: getIds('sidebar'),
 	slider: getIds('slider'),
 	switch: getIds('switch'),
 	tabs: getIds('tabs'),

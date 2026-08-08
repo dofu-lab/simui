@@ -20,6 +20,7 @@ export * from './pagination';
 export * from './popover';
 export * from './radio';
 export * from './select';
+export * from './sidebar';
 export * from './slider';
 export * from './switch';
 export * from './tabs';

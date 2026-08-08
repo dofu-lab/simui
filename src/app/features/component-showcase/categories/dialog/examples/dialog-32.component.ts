@@ -60,7 +60,7 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 						</div>
 						<brn-input-otp
 							hlm
-							maxLength="6"
+							length="6"
 							inputClass="disabled:cursor-not-allowed flex w-100"
 							class="mt-2"
 							[ngModel]="otpValue()">

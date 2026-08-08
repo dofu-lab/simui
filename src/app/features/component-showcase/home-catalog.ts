@@ -42,6 +42,8 @@ import { radioComponents } from './categories/radio/radio.registry';
 import { RadioThumbnailComponent } from './categories/radio/radio.thumbnail';
 import { selectComponents } from './categories/select/select.registry';
 import { SelectThumbnailComponent } from './categories/select/select.thumbnail';
+import { sidebarComponents } from './categories/sidebar/sidebar.registry';
+import { SidebarThumbnailComponent } from './categories/sidebar/sidebar.thumbnail';
 import { sliderComponents } from './categories/slider/slider.registry';
 import { SliderThumbnailComponent } from './categories/slider/slider.thumbnail';
 import { switchComponents } from './categories/switch/switch.registry';
@@ -50,6 +52,13 @@ import { tabsComponents } from './categories/tabs/tabs.registry';
 import { TabsThumbnailComponent } from './categories/tabs/tabs.thumbnail';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Sidebar',
+		compNumber: sidebarComponents.length,
+		thumbnail: SidebarThumbnailComponent,
+		path: 'components/sidebar',
+		isNew: true,
+	},
 	{
 		name: 'Color Picker',
 		compNumber: colorPickerComponents.length,
