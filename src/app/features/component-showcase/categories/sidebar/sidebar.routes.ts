@@ -94,4 +94,20 @@ export const SIDEBAR_ROUTES: Routes = [
 			description: 'Full-screen preview of the Sidebar 11 dashboard component.',
 		},
 	},
+	{
+		path: 'view/sidebar-12',
+		loadComponent: () => import('./previews/sidebar-12-preview.page').then((m) => m.Sidebar12PreviewPage),
+		data: {
+			title: 'Dashboard Sidebar Preview - SimUI',
+			description: 'Full-screen preview of the Sidebar 12 dashboard component.',
+		},
+	},
+	{
+		path: 'view/sidebar-13',
+		loadComponent: () => import('./previews/sidebar-13-preview.page').then((m) => m.Sidebar13PreviewPage),
+		data: {
+			title: 'Dashboard Sidebar Preview - SimUI',
+			description: 'Full-screen preview of the Sidebar 13 dashboard component.',
+		},
+	},
 ];

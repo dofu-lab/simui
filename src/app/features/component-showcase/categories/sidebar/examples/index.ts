@@ -9,3 +9,5 @@ export * from './sidebar-08.component';
 export * from './sidebar-09.component';
 export * from './sidebar-10.component';
 export * from './sidebar-11.component';
+export * from './sidebar-12.component';
+export * from './sidebar-13.component';

@@ -11,6 +11,8 @@ import {
 	Sidebar09Component,
 	Sidebar10Component,
 	Sidebar11Component,
+	Sidebar12Component,
+	Sidebar13Component,
 } from './examples';
 
 export const sidebarComponents: ComponentCardItem[] = [
@@ -77,6 +79,18 @@ export const sidebarComponents: ComponentCardItem[] = [
 	{
 		id: 'sidebar-11',
 		component: Sidebar11Component,
+		layout: 'full',
+		alignment: 'center',
+	},
+	{
+		id: 'sidebar-12',
+		component: Sidebar12Component,
+		layout: 'full',
+		alignment: 'center',
+	},
+	{
+		id: 'sidebar-13',
+		component: Sidebar13Component,
 		layout: 'full',
 		alignment: 'center',
 	},
