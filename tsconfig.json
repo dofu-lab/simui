@@ -71,6 +71,9 @@
 			"@spartan-ng/helm/tooltip": ["./src/libs/ui/tooltip/src/index.ts"],
 			"@spartan-ng/helm/utils": ["./src/libs/ui/utils/src/index.ts"],
 			"@spartan-ng/helm/kbd": ["./src/libs/ui/kbd/src/index.ts"],
+			"@spartan-ng/helm/sidebar": ["./src/libs/ui/sidebar/src/index.ts"],
+			"@spartan-ng/helm/skeleton": ["./src/libs/ui/skeleton/src/index.ts"],
+			"@spartan-ng/helm/collapsible": ["./src/libs/ui/collapsible/src/index.ts"],
 			"@/*": ["./src/*"]
 		}
 	},
@@ -83,8 +86,14 @@
 	"exclude": ["node_modules", ".angular", "dist", "out-tsc"],
 	"files": [],
 	"references": [
-		{ "path": "./tsconfig.app.json" },
-		{ "path": "./tsconfig.spec.json" },
-		{ "path": "./tsconfig.tools.json" }
+		{
+			"path": "./tsconfig.app.json"
+		},
+		{
+			"path": "./tsconfig.spec.json"
+		},
+		{
+			"path": "./tsconfig.tools.json"
+		}
 	]
 }

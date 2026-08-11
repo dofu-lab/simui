@@ -405,6 +405,17 @@ export const routes: Routes = [
 				),
 			},
 			{
+				path: 'sidebar',
+				loadChildren: () =>
+					import('@features/component-showcase/categories/sidebar/sidebar.routes').then((m) => m.SIDEBAR_ROUTES),
+				data: componentSeo(
+					'Sidebar',
+					'sidebar',
+					'Sidebar components for application navigation, workspaces, and collapsible layouts.',
+					'sidebar, navigation, application shell, angular',
+				),
+			},
+			{
 				path: 'slider',
 				loadComponent: () => import('@features/component-showcase/categories/slider').then((m) => m.SliderComponent),
 				data: componentSeo(

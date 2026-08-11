@@ -102,7 +102,8 @@ Run the checks appropriate to the touched files:
 2. Run `pnpm build` after Angular source changes.
 3. Run `pnpm lint` when changes affect application code broadly or when requested.
 4. Run `pnpm test` or targeted specs when tests were added/changed or logic risk warrants it.
-5. Run `pnpm run codes` if registry/generated component metadata must be refreshed.
+5. Do not update the changelog or regenerate registry metadata during implementation. Run
+   `/review-changelog` as a separate, explicit workflow after the implementation is ready.
 6. Run Playwright/e2e or screenshot checks when the plan requires visual/user-flow verification.
 
 If a verification command cannot be run, state why and leave the plan status honest.

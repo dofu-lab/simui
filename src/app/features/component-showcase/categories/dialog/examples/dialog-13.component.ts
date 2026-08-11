@@ -40,7 +40,7 @@ import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 						</hlm-dialog-header>
 						<brn-input-otp
 							hlm
-							maxLength="4"
+							length="4"
 							inputClass="disabled:cursor-not-allowed"
 							[ngModel]="otpValue()"
 							(ngModelChange)="otpChanged($event)">

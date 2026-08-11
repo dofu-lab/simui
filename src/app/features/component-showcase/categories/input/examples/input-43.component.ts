@@ -13,7 +13,7 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 		<brn-input-otp
 			id="input-43"
 			hlm
-			maxLength="4"
+			length="4"
 			inputClass="disabled:cursor-not-allowed"
 			class="mt-2"
 			[ngModel]="otpValue()">

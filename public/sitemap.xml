@@ -146,6 +146,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://simui.dev/components/sidebar</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://simui.dev/components/slider</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

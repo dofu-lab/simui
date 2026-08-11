@@ -73,7 +73,8 @@ Do targeted local research before writing the plan:
 
 1. Find similar implementations with `rg`/file reads.
 2. Inspect naming, import, formatting, and registration patterns near the target files.
-3. Identify generated/registry follow-up commands such as `pnpm run codes` or sitemap generation.
+3. Identify registry/changelog follow-up for `/review-changelog`; do not schedule `pnpm codes` as
+   ordinary implementation work. Identify other generated follow-up such as sitemap generation.
 4. Identify verification needs: formatting, build, lint, unit tests, Playwright/e2e, visual checks.
 5. Note SSR/browser-only API risks.
 
@@ -153,7 +154,8 @@ Suggested phase order:
 1. Research and registration map.
 2. Data/model/service changes, if any.
 3. Component/library implementation.
-4. Registry, routing, barrels, thumbnails, and generated metadata.
+4. Registration, routing, barrels, and thumbnails; defer changelog and generated registry metadata
+   to `/review-changelog`.
 5. Accessibility, responsive, SSR, and state/error handling.
 6. Tests and visual/e2e coverage.
 7. Formatting and verification.
@@ -182,7 +184,7 @@ Ground details in the approved spec and researched files. Include:
 - Signal/service/routing patterns.
 - Accessibility and keyboard behavior.
 - SSR-safe handling for browser APIs.
-- Generated metadata commands such as `pnpm run codes`, when needed.
+- Explicitly defer changelog writing and generated registry metadata to `/review-changelog`.
 - Verification commands.
 
 ## Step 6: Validate the Plan
