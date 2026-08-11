@@ -1,7 +1,7 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { provideIcons } from '@ng-icons/core';
 import {
 	lucideActivity,
 	lucideArchive,
@@ -32,13 +32,13 @@ import {
 	lucideUserRoundCheck,
 	lucideX,
 } from '@ng-icons/lucide';
-import { BrnRadioGroupImports } from '@spartan-ng/brain/radio-group';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmKbdImports } from '@spartan-ng/helm/kbd';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmProgressImports } from '@spartan-ng/helm/progress';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@spartan-ng/helm/sidebar';
@@ -46,7 +46,6 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 @Component({
 	selector: 'sim-sidebar-03',
 	imports: [
-		NgIcon,
 		RouterLink,
 		FormsModule,
 		HlmIconImports,
@@ -57,12 +56,13 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 		HlmSidebarImports,
 		HlmProgressImports,
 		HlmRadioGroupImports,
-		BrnRadioGroupImports,
+		HlmLabelImports,
 		HlmDropdownMenuImports,
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [
 		HlmSidebarService,
-		provideHlmSidebarConfig({ sidebarCookieName: 'sidebar_03_state', sidebarWidthIcon: '64' }),
+		provideHlmSidebarConfig({ defaultOpen: false, sidebarCookieName: 'sidebar_03_state', sidebarWidthIcon: '64' }),
 		provideIcons({
 			lucideActivity,
 			lucideArchive,
@@ -227,7 +227,7 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 													<label
 														hlmLabel
 														class="hover:bg-muted/70 flex items-start gap-2 rounded-lg p-2"
-														[for]="account.email"
+														[for]="'sidebar-03-' + account.email"
 														(click)="$event.stopPropagation()">
 														<div class="flex flex-1 gap-2">
 															<div class="relative">
@@ -247,7 +247,10 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 															</div>
 														</div>
 
-														<hlm-radio [inputId]="account.email" [value]="account.email" class="gap-x-0">
+														<hlm-radio
+															[inputId]="'sidebar-03-' + account.email"
+															[value]="account.email"
+															class="gap-x-0">
 															<div
 																class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 																<div
@@ -259,7 +262,7 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 														</hlm-radio>
 													</label>
 												}
-												<button hlmBtn variant="outline" size="sm" class="mt-2">
+												<button hlmBtn type="button" variant="outline" size="sm" class="mt-2">
 													<ng-icon name="lucidePlus" class="text-muted-foreground" />
 													Add account
 												</button>
@@ -336,7 +339,7 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 													<p class="text-muted-foreground text-xs">
 														Your team has used 80% of your available space. Need more?
 													</p>
-													<hlm-progress class="bg-muted-foreground/30 w-full" value="80">
+													<hlm-progress class="bg-muted-foreground/30 w-full" value="80" aria-label="Storage used">
 														<hlm-progress-indicator />
 													</hlm-progress>
 													<div class="flex justify-end">
@@ -354,7 +357,7 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 											<span class="truncate font-medium">{{ selectedAccount().name }}</span>
 											<span class="text-muted-foreground truncate text-xs">{{ selectedAccount().email }}</span>
 										</div>
-										<button hlmBtn size="icon-sm" variant="ghost">
+										<button hlmBtn type="button" size="icon-sm" variant="ghost" aria-label="Open account actions">
 											<ng-icon name="lucideEllipsisVertical" class="text-muted-foreground" />
 										</button>
 									</div>

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { provideIcons } from '@ng-icons/core';
 import {
 	lucideBriefcaseBusiness,
 	lucideBrushCleaning,
@@ -147,7 +147,6 @@ const APPLICANT_COLUMNS = [
 @Component({
 	selector: 'sim-sidebar-10',
 	imports: [
-		NgIcon,
 		FormsModule,
 		NgScrollbar,
 		RouterLink,
@@ -216,23 +215,26 @@ const APPLICANT_COLUMNS = [
 	template: `
 		<header class="absolute z-11 flex w-full items-center gap-2 px-6 py-4">
 			<img src="assets/logos/logo-square.svg" alt="SimUI" class="size-10 rounded-md" />
-			<button hlmBtn type="button" variant="secondary" size="lg" class="bg-sidebar">
-				<ng-icon name="lucideSearch" />
-				Search
+			<button hlmSidebarTrigger type="button" variant="secondary" size="icon" class="bg-sidebar md:hidden">
+				<span class="sr-only">Toggle sidebar</span>
 			</button>
-			<button hlmBtn type="button" variant="secondary" size="lg" class="bg-sidebar">
+			<button hlmBtn type="button" variant="secondary" size="lg" class="bg-sidebar" aria-label="Search">
+				<ng-icon name="lucideSearch" />
+				<span class="max-md:hidden">Search</span>
+			</button>
+			<button hlmBtn type="button" variant="secondary" size="lg" class="bg-sidebar" aria-label="Create job">
 				<ng-icon name="lucidePlus" />
-				Create Job
+				<span class="max-md:hidden">Create Job</span>
 			</button>
 			<div class="flex h-10 w-4 items-center justify-center py-2">
 				<hlm-separator orientation="vertical" />
 			</div>
-			<button hlmBtn type="button" variant="secondary" size="lg" class="bg-sidebar">
+			<button hlmBtn type="button" variant="secondary" size="lg" class="bg-sidebar max-md:hidden">
 				<ng-icon name="lucideBrushCleaning" />
 				Job Postings
 				<ng-icon name="lucideX" class="ml-2" />
 			</button>
-			<button hlmBtn type="button" variant="secondary" size="lg" class="bg-sidebar">
+			<button hlmBtn type="button" variant="secondary" size="lg" class="bg-sidebar max-md:hidden">
 				<ng-icon name="lucideBrushCleaning" />
 				Product Designer
 				<ng-icon name="lucideX" class="ml-2" />
@@ -255,7 +257,7 @@ const APPLICANT_COLUMNS = [
 				</a>
 			}
 		</header>
-		<div hlmSidebarWrapper class="h-[calc(100svh)] min-h-0 overflow-hidden bg-(--custom-background)">
+		<div hlmSidebarWrapper class="bg-(--custom-background)">
 			<hlm-sidebar
 				collapsible="icon"
 				class="*:data-[slot='sidebar-container']:border-none *:data-[slot='sidebar-container']:pt-18 *:data-[slot='sidebar-container']:pb-4 *:data-[slot='sidebar-container']:pl-4 **:data-[slot='sidebar-inner']:rounded-s-4xl">
@@ -353,11 +355,11 @@ const APPLICANT_COLUMNS = [
 					</ul>
 				</hlm-sidebar-footer>
 			</hlm-sidebar>
-			<main hlmSidebarInset class="bg-(--custom-background) pt-18 pr-4 pb-4">
-				<div class="bg-sidebar flex min-h-0 flex-1 overflow-hidden rounded-e-4xl py-2 pr-2 pl-2">
+			<main hlmSidebarInset class="max-h-svh bg-(--custom-background) pt-18 pr-4 pb-4 max-md:pl-4">
+				<div class="bg-sidebar flex min-h-0 flex-1 overflow-hidden rounded-e-4xl py-2 pr-2 pl-2 max-md:rounded-s-4xl">
 					<div class="bg-background flex min-h-0 w-full flex-col overflow-hidden rounded-4xl shadow-sm">
 						<span class="px-6 py-4 text-lg">Applicants</span>
-						<div class="grid min-h-0 flex-1 grid-cols-3 gap-4 overflow-hidden px-4 pb-4">
+						<div class="grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-hidden px-4 pb-4 lg:grid-cols-2 xl:grid-cols-3">
 							@for (column of applicantColumns; track column.id) {
 								<section class="bg-sidebar flex min-h-0 flex-col gap-4 overflow-hidden rounded-2xl border shadow-xs">
 									<div class="flex items-center gap-2 px-6 pt-4">

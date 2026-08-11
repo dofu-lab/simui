@@ -1,114 +1,103 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { provideIcons } from '@ng-icons/core';
 import {
-	lucideArchive,
-	lucideBadgeDollarSign,
-	lucideBanknoteArrowDown,
+	lucideActivity,
+	lucideCable,
 	lucideChartNoAxesColumnIncreasing,
-	lucideChartSpline,
-	lucideChevronDown,
 	lucideChevronsUpDown,
-	lucideContact,
-	lucideCreditCard,
 	lucideExternalLink,
 	lucideHouse,
-	lucideLayers,
+	lucideKeyRound,
+	lucideLayoutTemplate,
 	lucideMessageCircleQuestionMark,
-	lucideSearch,
+	lucideMousePointerClick,
+	lucidePlusCircle,
 	lucideSettings,
+	lucideUserStar,
 } from '@ng-icons/lucide';
+import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
+import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmKbdImports } from '@spartan-ng/helm/kbd';
 import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
 import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@spartan-ng/helm/sidebar';
 import { NgScrollbar } from 'ngx-scrollbar';
 
 const WORKSPACES = [
-	{ id: 1, name: 'Design', initials: 'OM', email: 'olivia.martin@example.com' },
-	{ id: 2, name: 'Marketing', initials: 'JL', email: 'jackson.lee@example.com' },
-	{ id: 3, name: 'Development', initials: 'IN', email: 'isabella.nguyen@example.com' },
+	{ id: 1, name: 'Design', color: 'bg-indigo-500' },
+	{ id: 2, name: 'Marketing', color: 'bg-amber-500' },
+	{ id: 3, name: 'Development', color: 'bg-sky-500' },
 ] as const;
 
 const SIDEBAR_ITEMS = [
 	{
-		id: 'dashboard',
-		title: 'Dashboard',
-		icon: 'lucideHouse',
+		id: 'automation',
+		title: 'Automation',
+		icon: 'lucideMousePointerClick',
 	},
 	{
-		id: 'accounts',
-		title: 'Accounts',
+		id: 'connections',
+		title: 'Connections',
+		icon: 'lucideCable',
+	},
+	{
+		id: 'activity',
+		title: 'Activity',
+		icon: 'lucideActivity',
+	},
+	{
+		id: 'templates',
+		title: 'Templates',
+		icon: 'lucideLayoutTemplate',
+	},
+	{
+		id: 'credentials',
+		title: 'Credentials',
+		icon: 'lucideKeyRound',
+	},
+	{
+		id: 'usage',
+		title: 'Usage',
 		icon: 'lucideChartNoAxesColumnIncreasing',
 	},
-	{
-		id: 'cards',
-		title: 'Cards',
-		icon: 'lucideCreditCard',
-	},
-	{
-		id: 'transaction',
-		title: 'Transaction',
-		icon: 'lucideBadgeDollarSign',
-	},
-	{
-		id: 'spend-groups',
-		title: 'Spend Groups',
-		icon: 'lucideLayers',
-	},
-	{
-		id: 'integrations',
-		title: 'Integrations',
-		icon: 'lucideChartSpline',
-	},
-	{
-		id: 'payees',
-		title: 'Payees',
-		icon: 'lucideContact',
-	},
-	{
-		id: 'invoices',
-		title: 'Invoices',
-		icon: 'lucideArchive',
-	},
 ] as const;
+
+type WorkspaceId = (typeof WORKSPACES)[number]['id'];
 
 @Component({
 	selector: 'sim-sidebar-13',
 	imports: [
-		NgIcon,
 		NgScrollbar,
 		RouterLink,
 		HlmScrollAreaImports,
 		HlmButtonImports,
 		HlmSidebarImports,
 		HlmDropdownMenuImports,
-		HlmInputGroupImports,
 		HlmKbdImports,
 		HlmCardImports,
+		HlmBreadcrumbImports,
+		HlmIconImports,
 	],
 	providers: [
 		HlmSidebarService,
 		provideHlmSidebarConfig({ sidebarCookieName: 'sidebar_13_state' }),
 		provideIcons({
-			lucideSearch,
-			lucideArchive,
-			lucideBadgeDollarSign,
+			lucideActivity,
+			lucideCable,
 			lucideChartNoAxesColumnIncreasing,
-			lucideChartSpline,
-			lucideContact,
-			lucideCreditCard,
 			lucideHouse,
-			lucideLayers,
+			lucideKeyRound,
+			lucideLayoutTemplate,
+			lucideMousePointerClick,
 			lucideExternalLink,
 			lucideChevronsUpDown,
-			lucideChevronDown,
-			lucideBanknoteArrowDown,
 			lucideMessageCircleQuestionMark,
 			lucideSettings,
+			lucidePlusCircle,
+			lucideUserStar,
 		}),
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -143,14 +132,19 @@ const SIDEBAR_ITEMS = [
 			<hlm-sidebar collapsible="icon" class="*:data-[slot='sidebar-container']:border-none">
 				<hlm-sidebar-header>
 					<section class="bg-muted w-full gap-0 rounded-2xl py-0" hlmCard>
-						<div hlmCardHeader class="bg-muted flex items-center justify-between gap-3 py-2 pr-4 pl-2">
+						<div hlmCardHeader class="bg-muted flex items-center justify-between gap-3 px-1 py-1 shadow-none ring-0">
 							<button
 								hlmSidebarMenuButton
 								size="lg"
 								type="button"
 								tooltip="Switch workspace"
-								[attr.aria-label]="'Switch workspace, current workspace ' + currentWorkspace.name">
-								<img src="assets/logos/logo-square.svg" alt="SimUI" class="size-8 rounded-md" />
+								class="hover:bg-muted-foreground/10 active:bg-muted-foreground/10 rounded-xl"
+								[attr.aria-label]="'Switch workspace, current workspace ' + currentWorkspace.name"
+								[hlmDropdownMenuTrigger]="workspaceMenu"
+								[side]="menuSide()">
+								<span class="size-8 overflow-hidden rounded-md {{ currentWorkspace.color }}">
+									<img src="assets/logos/logo-square.svg" alt="SimUI" class="size-full mix-blend-screen" />
+								</span>
 								@if (isOpen()) {
 									<span class="grid min-w-0 flex-1 text-left text-sm leading-tight">
 										<span class="text-muted-foreground truncate text-xs">Team</span>
@@ -158,44 +152,64 @@ const SIDEBAR_ITEMS = [
 									</span>
 									<ng-icon name="lucideChevronsUpDown" class="ml-auto" />
 								}
+								<ng-template #workspaceMenu>
+									<hlm-dropdown-menu class="min-w-56">
+										<hlm-dropdown-menu-label>Workspaces</hlm-dropdown-menu-label>
+										@for (workspace of workspaces; track workspace.id) {
+											<button hlmDropdownMenuItem type="button" (click)="selectWorkspace(workspace.id)">
+												<span class="size-6 overflow-hidden rounded-md {{ workspace.color }}">
+													<img src="assets/logos/logo-square.svg" alt="SimUI" class="size-full mix-blend-screen" />
+												</span>
+												<span class="grid min-w-0 flex-1 text-left">
+													<span class="truncate">{{ workspace.name }} Team</span>
+												</span>
+											</button>
+										}
+									</hlm-dropdown-menu>
+								</ng-template>
 							</button>
 						</div>
-
-						<section class="w-full rounded-2xl shadow-none" hlmCard class="p-4">
-							<div hlmCardContent class="flex flex-col gap-3 px-0">
+						<section hlmCard class="w-full gap-2 rounded-2xl p-2 shadow-none">
+							<div hlmCardContent class="flex flex-col gap-3 border-b px-2 pt-2 pb-5">
 								@for (workspace of workspaces; track workspace.id) {
-									<div class="flex items-center justify-between">
+									<div
+										class="data-active:text-primary text-muted-foreground flex items-center justify-between data-active:font-medium"
+										[attr.data-active]="currentWorkspace.id === workspace.id">
 										<div class="flex items-center gap-2">
-											<div class="size-4 rounded-full bg-amber-500"></div>
-											<div class="">{{ workspace.name }} Team</div>
+											<div class="size-4 rounded-full {{ workspace.color }}"></div>
+											<div>{{ workspace.name }} Team</div>
 										</div>
 										<kbd hlmKbd>⌘+{{ workspace.id }}</kbd>
 									</div>
 								}
 							</div>
+							<div hlmCardFooter class="px-0">
+								<button hlmBtn type="button" variant="ghost" class="w-full justify-start">
+									<ng-icon name="lucidePlusCircle" />
+									Create a team
+								</button>
+							</div>
 						</section>
 					</section>
+
+					<ul hlmSidebarMenu class="px-2">
+						<li hlmSidebarMenuItem>
+							<button hlmSidebarMenuButton type="button" class="hover:bg-background active:bg-background">
+								<ng-icon name="lucideUserStar" />
+								Customers
+							</button>
+						</li>
+					</ul>
 				</hlm-sidebar-header>
 				<hlm-sidebar-content>
-					<hlm-sidebar-group class="pl-4">
-						<ul hlmSidebarMenu class="border-t pt-6">
-							<li class="mb-2 group-data-[collapsible=icon]:hidden">
-								<hlm-input-group>
-									<input hlmInputGroupInput type="search" aria-label="Search navigation" placeholder="Search..." />
-									<hlm-input-group-addon>
-										<ng-icon name="lucideSearch" />
-									</hlm-input-group-addon>
-									<hlm-input-group-addon align="inline-end">
-										<kbd hlmKbd>⌘K</kbd>
-									</hlm-input-group-addon>
-								</hlm-input-group>
-							</li>
+					<hlm-sidebar-group class="pt-0 pl-4">
+						<ul hlmSidebarMenu class="border-t pt-4">
 							@for (item of sidebarItems; track item.id) {
 								<li hlmSidebarMenuItem>
 									<button
 										hlmSidebarMenuButton
 										type="button"
-										class="hover:bg-background active:bg-background data-active:bg-background opacity-60 data-active:opacity-100 data-active:shadow-xs"
+										class="hover:bg-background active:bg-background data-active:bg-background opacity-80 data-active:opacity-100 data-active:shadow-xs"
 										[isActive]="activeItem() === item.id"
 										[attr.aria-pressed]="activeItem() === item.id"
 										(click)="activeItem.set(item.id)">
@@ -232,45 +246,53 @@ const SIDEBAR_ITEMS = [
 				</hlm-sidebar-footer>
 			</hlm-sidebar>
 			<main hlmSidebarInset>
-				<div class="bg-sidebar flex max-h-svh flex-1 py-2 pr-2 pl-2">
+				<div class="bg-sidebar flex max-h-svh flex-1 p-2">
 					<div class="bg-background flex w-full flex-col overflow-hidden rounded-4xl shadow-sm">
 						<ng-scrollbar hlm class="flex min-h-0 flex-1 flex-col rounded-none">
 							<div class="bg-background sticky top-0 flex items-center justify-between border-b px-6 py-3.5">
-								<div class="flex flex-col">
-									<span>Hey, {{ currentWorkspace.name.split(' ')[0] }}!</span>
-									<span class="text-muted-foreground text-sm">Monday, 10 August, 2026</span>
+								<div class="flex flex-col gap-4">
+									<nav hlmBreadcrumb class="max-md:hidden">
+										<ol hlmBreadcrumbList>
+											<li hlmBreadcrumbItem>
+												<a hlmBreadcrumbLink link="/home" class="flex items-center">
+													<ng-icon hlm name="lucideHouse" size="sm" />
+												</a>
+											</li>
+											<li hlmBreadcrumbSeparator class="flex items-center">/</li>
+
+											<li hlmBreadcrumbItem>
+												<a hlmBreadcrumbLink link="/components">Payments</a>
+											</li>
+											<li hlmBreadcrumbSeparator class="flex items-center">/</li>
+
+											<li hlmBreadcrumbItem>
+												<span hlmBreadcrumbPage>Overview</span>
+											</li>
+										</ol>
+									</nav>
+
+									<div class="flex items-center gap-2">
+										<button hlmSidebarTrigger type="button" variant="outline" size="icon" class="md:hidden">
+											<span class="sr-only">Toggle sidebar</span>
+										</button>
+										<h1 class="text-2xl font-medium">Payments</h1>
+									</div>
 								</div>
-								<div class="flex gap-2">
-									@if (showFullscreenButton()) {
-										<a
-											hlmBtn
-											variant="outline"
-											class="ml-auto gap-2"
-											[routerLink]="['/components/sidebar/view/sidebar-13']"
-											target="_blank"
-											rel="noopener noreferrer">
-											View fullscreen
-											<ng-icon name="lucideExternalLink" class="size-4" />
-										</a>
-									}
-									<button hlmBtn type="button" variant="outline">
-										This month
-										<ng-icon name="lucideChevronDown" />
-									</button>
-									<button hlmBtn type="button">
-										Move money
-										<ng-icon name="lucideBanknoteArrowDown" />
-									</button>
-								</div>
+
+								@if (showFullscreenButton()) {
+									<a
+										hlmBtn
+										variant="outline"
+										class="ml-auto gap-2"
+										[routerLink]="['/components/sidebar/view/sidebar-13']"
+										target="_blank"
+										rel="noopener noreferrer">
+										View fullscreen
+										<ng-icon name="lucideExternalLink" class="size-4" />
+									</a>
+								}
 							</div>
-							<div class="flex flex-col gap-4 p-4">
-								<div class="flex gap-4">
-									<div class="h-60 flex-1 rounded-3xl border"></div>
-									<div class="h-60 flex-1 rounded-3xl border"></div>
-								</div>
-								<div class="h-50 rounded-3xl border"></div>
-								<div class="h-100 rounded-3xl border"></div>
-							</div>
+							<div class="flex flex-col gap-4 p-4"></div>
 						</ng-scrollbar>
 					</div>
 				</div>
@@ -282,7 +304,7 @@ export class Sidebar13Component {
 	private readonly sidebarService = inject(HlmSidebarService);
 
 	public readonly showFullscreenButton = input(true);
-	protected readonly activeItem = signal<(typeof SIDEBAR_ITEMS)[number]['id']>('dashboard');
+	protected readonly activeItem = signal<(typeof SIDEBAR_ITEMS)[number]['id']>('automation');
 	protected readonly selectedWorkspaceId = signal<(typeof WORKSPACES)[number]['id']>(WORKSPACES[0].id);
 	protected readonly selectedWorkspace = computed(
 		() => WORKSPACES.find((workspace) => workspace.id === this.selectedWorkspaceId()) ?? WORKSPACES[0],
@@ -293,4 +315,8 @@ export class Sidebar13Component {
 	protected readonly menuSide = computed(() => (this.sidebarService.isMobile() ? 'top' : 'right'));
 	protected readonly sidebarItems = SIDEBAR_ITEMS;
 	protected readonly workspaces = WORKSPACES;
+
+	protected selectWorkspace(workspaceId: WorkspaceId): void {
+		this.selectedWorkspaceId.set(workspaceId);
+	}
 }

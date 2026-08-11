@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -19,13 +19,13 @@ import {
 	lucideUser,
 	lucideX,
 } from '@ng-icons/lucide';
-import { BrnRadioGroupImports } from '@spartan-ng/brain/radio-group';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmKbdImports } from '@spartan-ng/helm/kbd';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmProgressImports } from '@spartan-ng/helm/progress';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@spartan-ng/helm/sidebar';
@@ -44,9 +44,10 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 		HlmProgressImports,
 		HlmInputGroupImports,
 		HlmRadioGroupImports,
-		BrnRadioGroupImports,
+		HlmLabelImports,
 		HlmDropdownMenuImports,
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [
 		HlmSidebarService,
 		provideHlmSidebarConfig({ sidebarCookieName: 'sidebar_01_state' }),
@@ -152,7 +153,7 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 								<ng-icon name="lucideMessageCircleQuestionMark" class="text-muted-foreground!" />
 								Support
 								<span hlmBadge variant="outline" class="ml-auto gap-1.5 rounded-sm">
-									<span class="size-1.5 rounded-full bg-emerald-500"></span>
+									<span class="size-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
 									<span>Online</span>
 								</span>
 							</button>
@@ -186,12 +187,12 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 										<p class="text-muted-foreground text-xs">
 											Your team has used 80% of your available space. Need more?
 										</p>
-										<hlm-progress class="bg-muted-foreground/30 w-full" value="80">
+										<hlm-progress class="bg-muted-foreground/30 w-full" value="80" aria-label="Storage used">
 											<hlm-progress-indicator />
 										</hlm-progress>
 										<div class="flex justify-end">
-											<button hlmBtn size="xs" variant="ghost" (click)="closeCta()">Dimiss</button>
-											<button hlmBtn size="xs" variant="outline">Upgrade plan</button>
+											<button hlmBtn type="button" size="xs" variant="ghost" (click)="closeCta()">Dismiss</button>
+											<button hlmBtn type="button" size="xs" variant="outline">Upgrade plan</button>
 										</div>
 									</div>
 								</div>
@@ -254,7 +255,7 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 												<label
 													hlmLabel
 													class="hover:bg-muted/70 flex items-start gap-2 rounded-lg p-2"
-													[for]="account.email"
+													[for]="'sidebar-01-' + account.email"
 													(click)="$event.stopPropagation()">
 													<div class="flex flex-1 gap-2">
 														<div class="relative">
@@ -273,7 +274,7 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 														</div>
 													</div>
 
-													<hlm-radio [inputId]="account.email" [value]="account.email" class="gap-x-0">
+													<hlm-radio [inputId]="'sidebar-01-' + account.email" [value]="account.email" class="gap-x-0">
 														<div
 															class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 															<div
@@ -285,7 +286,7 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 													</hlm-radio>
 												</label>
 											}
-											<button hlmBtn variant="outline" size="sm" class="mt-2">
+											<button hlmBtn type="button" variant="outline" size="sm" class="mt-2">
 												<ng-icon name="lucidePlus" class="text-muted-foreground" />
 												Add account
 											</button>
@@ -310,7 +311,7 @@ import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@
 			</hlm-sidebar>
 			<main hlmSidebarInset>
 				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger>
+					<button hlmSidebarTrigger type="button">
 						<span class="sr-only">Toggle sidebar</span>
 					</button>
 					@if (showFullscreenButton()) {
@@ -343,7 +344,9 @@ export class Sidebar01Component {
 	private readonly sidebarService = inject(HlmSidebarService);
 	public readonly showFullscreenButton = input(true);
 	protected readonly menuSide = computed(() => (this.sidebarService.isMobile() ? 'top' : 'right'));
-	protected readonly isOpen = computed(() => this.sidebarService.open());
+	protected readonly isOpen = computed(() =>
+		this.sidebarService.isMobile() ? this.sidebarService.openMobile() : this.sidebarService.open(),
+	);
 	protected readonly sidebarItems = [
 		{
 			title: 'Home',
@@ -365,7 +368,7 @@ export class Sidebar01Component {
 			url: '.',
 			icon: 'lucideLayoutList',
 		},
-	];
+	] as const;
 	protected readonly value = signal('mathilde.lewis@simui.com');
 	protected readonly selectedAccount = computed(
 		() => this.accounts.find((account) => account.email === this.value()) ?? this.accounts[0],
@@ -385,7 +388,7 @@ export class Sidebar01Component {
 			email: 'olivia.rhye@simui.com',
 			avatar: 'assets/avatars/olivia-rhye.jpg',
 		},
-	];
+	] as const;
 
 	protected closeCta(): void {
 		this.showCta.set(false);

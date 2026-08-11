@@ -22,7 +22,6 @@ import {
 	lucideUser,
 	lucideUsers,
 } from '@ng-icons/lucide';
-import { BrnRadioGroupImports } from '@spartan-ng/brain/radio-group';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
@@ -40,7 +39,6 @@ const SIDEBAR_ITEMS = [
 		id: 'dashboard',
 		title: 'Dashboard',
 		icon: 'lucideChartColumnBig',
-		isActive: true,
 		items: [
 			{ id: 'dashboard-overview', title: 'Overview' },
 			{ id: 'dashboard-analytics', title: 'Analytics' },
@@ -51,7 +49,6 @@ const SIDEBAR_ITEMS = [
 		id: 'product',
 		title: 'Product',
 		icon: 'lucidePackage',
-		isActive: false,
 		items: [
 			{ id: 'product-all', title: 'All products' },
 			{ id: 'product-categories', title: 'Categories' },
@@ -62,7 +59,6 @@ const SIDEBAR_ITEMS = [
 		id: 'customer',
 		title: 'Customer',
 		icon: 'lucideUsers',
-		isActive: false,
 		items: [
 			{ id: 'customer-all', title: 'All customers' },
 			{ id: 'customer-segments', title: 'Segments' },
@@ -73,7 +69,6 @@ const SIDEBAR_ITEMS = [
 		id: 'shop',
 		title: 'Shop',
 		icon: 'lucideStore',
-		isActive: false,
 		items: [
 			{ id: 'shop-orders', title: 'Orders' },
 			{ id: 'shop-storefront', title: 'Storefront' },
@@ -84,7 +79,6 @@ const SIDEBAR_ITEMS = [
 		id: 'income',
 		title: 'Income',
 		icon: 'lucideCircleDollarSign',
-		isActive: false,
 		items: [
 			{ id: 'income-revenue', title: 'Revenue' },
 			{ id: 'income-transactions', title: 'Transactions' },
@@ -95,7 +89,6 @@ const SIDEBAR_ITEMS = [
 		id: 'promote',
 		title: 'Promote',
 		icon: 'lucideMegaphone',
-		isActive: false,
 		items: [
 			{ id: 'promote-campaigns', title: 'Campaigns' },
 			{ id: 'promote-discounts', title: 'Discounts' },
@@ -134,7 +127,6 @@ const ACCOUNTS = [
 		HlmInputGroupImports,
 		HlmLabelImports,
 		HlmRadioGroupImports,
-		BrnRadioGroupImports,
 		HlmDropdownMenuImports,
 		HlmScrollAreaImports,
 	],
@@ -197,7 +189,7 @@ const ACCOUNTS = [
 			<hlm-sidebar
 				collapsible="icon"
 				variant="floating"
-				class="bg-(--custom-background) *:data-[slot='sidebar-container']:border-none *:data-[slot='sidebar-container']:py-3 *:data-[slot='sidebar-container']:pl-3 **:data-[slot=sidebar-inner]:rounded-4xl!">
+				class="bg-(--custom-background) *:data-[slot='sidebar-container']:border-none *:data-[slot='sidebar-container']:py-3 *:data-[slot='sidebar-container']:pr-0 *:data-[slot='sidebar-container']:pl-3 **:data-[slot=sidebar-inner]:rounded-4xl!">
 				<hlm-sidebar-header>
 					<ul hlmSidebarMenu>
 						<li hlmSidebarMenuItem>
@@ -211,7 +203,12 @@ const ACCOUNTS = [
 					<hlm-sidebar-group class="pl-5">
 						<ul hlmSidebarMenu>
 							@for (item of sidebarItems; track item.id) {
-								<li hlmSidebarMenuItem hlmCollapsible class="group/collapsible" [expanded]="item.isActive">
+								<li
+									hlmSidebarMenuItem
+									hlmCollapsible
+									class="group/collapsible"
+									[expanded]="expandedItem() === item.id"
+									(expandedChange)="setExpandedItem(item.id, $event)">
 									<button
 										hlmSidebarMenuButton
 										hlmCollapsibleTrigger
@@ -294,11 +291,27 @@ const ACCOUNTS = [
 					</ul>
 				</hlm-sidebar-footer>
 			</hlm-sidebar>
-			<main hlmSidebarInset class="grid h-full min-h-0 grid-cols-[7fr_3fr] overflow-hidden bg-(--custom-background)">
+			<main
+				hlmSidebarInset
+				class="grid h-full min-h-0 grid-cols-1 overflow-hidden bg-(--custom-background) pl-3 md:grid-cols-[7fr_3fr]">
 				<div class="grid max-h-svh min-h-0 grid-rows-1">
 					<ng-scrollbar hlm class="rounded-none">
 						<header class="bg-sidebar sticky top-3 mt-3 flex justify-between rounded-full border p-2 shadow-sm">
-							<hlm-input-group class="bg-background max-w-60 rounded-full">
+							<div class="flex gap-2 md:hidden">
+								<button hlmSidebarTrigger type="button" variant="outline" size="icon" class="rounded-full">
+									<span class="sr-only">Toggle sidebar</span>
+								</button>
+								<button
+									hlmBtn
+									type="button"
+									variant="outline"
+									size="icon"
+									class="rounded-full"
+									aria-label="Search">
+									<ng-icon name="lucideSearch" />
+								</button>
+							</div>
+							<hlm-input-group class="bg-background max-w-60 rounded-full max-md:hidden">
 								<input hlmInputGroupInput type="search" aria-label="Search navigation" placeholder="Search..." />
 								<hlm-input-group-addon>
 									<ng-icon name="lucideSearch" />
@@ -433,7 +446,7 @@ const ACCOUNTS = [
 								</ng-template>
 							</div>
 						</header>
-						<div class="mt-3 grid gap-3 px-1 pb-3">
+						<div class="mt-3 grid gap-3 pb-3">
 							<div class="bg-background h-100 w-full rounded-4xl px-6 py-4 shadow-sm">
 								<h3 class="text-xl font-semibold">Dashboard</h3>
 							</div>
@@ -445,7 +458,7 @@ const ACCOUNTS = [
 						</div>
 					</ng-scrollbar>
 				</div>
-				<div class="grid h-full grid-rows-[7fr_3fr] gap-3 py-3 pr-3">
+				<div class="grid h-full grid-rows-[7fr_3fr] gap-3 py-3 pr-3 max-md:hidden">
 					<div class="bg-background size-full rounded-4xl shadow-sm"></div>
 					<div class="bg-background size-full rounded-4xl shadow-sm"></div>
 				</div>
@@ -457,10 +470,15 @@ export class Sidebar08Component {
 	public readonly showFullscreenButton = input(true);
 	protected readonly theme = signal<'light' | 'dark'>('light');
 	protected readonly activeItem = signal('dashboard-overview');
+	protected readonly expandedItem = signal<(typeof SIDEBAR_ITEMS)[number]['id'] | null>('dashboard');
 	protected readonly sidebarItems = SIDEBAR_ITEMS;
 	protected readonly accounts = ACCOUNTS;
 	protected readonly selectedAccountEmail = signal<string>(ACCOUNTS[0].email);
 	protected readonly selectedAccount = computed(
 		() => ACCOUNTS.find((account) => account.email === this.selectedAccountEmail()) ?? ACCOUNTS[0],
 	);
+
+	protected setExpandedItem(itemId: (typeof SIDEBAR_ITEMS)[number]['id'], expanded: boolean): void {
+		this.expandedItem.set(expanded ? itemId : null);
+	}
 }

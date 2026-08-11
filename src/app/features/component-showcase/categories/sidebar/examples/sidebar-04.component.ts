@@ -22,12 +22,12 @@ import {
 	lucideUser,
 	lucideUsers,
 } from '@ng-icons/lucide';
-import { BrnRadioGroupImports } from '@spartan-ng/brain/radio-group';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmKbdImports } from '@spartan-ng/helm/kbd';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@spartan-ng/helm/sidebar';
 
@@ -100,7 +100,7 @@ type DestinationId =
 		HlmInputGroupImports,
 		HlmKbdImports,
 		HlmRadioGroupImports,
-		BrnRadioGroupImports,
+		HlmLabelImports,
 		HlmSidebarImports,
 	],
 	providers: [
@@ -426,7 +426,7 @@ type DestinationId =
 												<label
 													hlmLabel
 													class="hover:bg-muted/70 flex items-start gap-2 rounded-lg p-2"
-													[for]="account.email"
+													[for]="'sidebar-04-' + account.email"
 													(click)="$event.stopPropagation()">
 													<div class="flex flex-1 gap-2">
 														<div class="relative">
@@ -446,7 +446,7 @@ type DestinationId =
 														</div>
 													</div>
 
-													<hlm-radio [inputId]="account.email" [value]="account.email" class="gap-x-0">
+													<hlm-radio [inputId]="'sidebar-04-' + account.email" [value]="account.email" class="gap-x-0">
 														<div
 															class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 															<div
@@ -484,7 +484,9 @@ type DestinationId =
 
 			<main hlmSidebarInset>
 				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only">Toggle sidebar</span></button>
+					<button hlmSidebarTrigger type="button">
+						<span class="sr-only">Toggle sidebar</span>
+					</button>
 					@if (showFullscreenButton()) {
 						<a
 							hlmBtn

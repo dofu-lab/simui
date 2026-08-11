@@ -2,9 +2,24 @@ import type { Locator, Page } from '@playwright/test';
 import { expect, test } from '../fixtures/base.fixture';
 import { componentCard } from '../utils/visual.helpers';
 
-const variants = ['sidebar-04', 'sidebar-05', 'sidebar-06'] as const;
+const sidebarVariants = [
+	'sidebar-01',
+	'sidebar-02',
+	'sidebar-03',
+	'sidebar-04',
+	'sidebar-05',
+	'sidebar-06',
+	'sidebar-07',
+	'sidebar-08',
+	'sidebar-09',
+	'sidebar-10',
+	'sidebar-11',
+	'sidebar-12',
+	'sidebar-13',
+] as const;
+const advancedVariants = ['sidebar-04', 'sidebar-05', 'sidebar-06'] as const;
 
-async function openFullscreen(page: Page, variant: (typeof variants)[number]): Promise<Locator> {
+async function openFullscreen(page: Page, variant: (typeof sidebarVariants)[number]): Promise<Locator> {
 	await page.goto(`/components/sidebar/view/${variant}`);
 	await page.waitForLoadState('networkidle');
 	const host = page.locator(`sim-${variant}`);
@@ -23,20 +38,30 @@ async function expectNoViewportOverflow(page: Page): Promise<void> {
 	expect(fitsViewport).toBe(true);
 }
 
-test.describe('Sidebar advanced variants', () => {
-	test('registers 04-06 in numeric order', async ({ navigateToComponent, page }) => {
+test.describe('Sidebar', () => {
+	test('registers all variants in numeric order', async ({ navigateToComponent, page }) => {
 		await navigateToComponent('sidebar');
 
-		for (const variant of variants) {
+		for (const variant of sidebarVariants) {
 			await expect(componentCard(page, variant)).toBeVisible();
 		}
 
 		const renderedIds = await page
 			.locator('sim-component-card[id^="sidebar-"]')
 			.evaluateAll((cards) => cards.map((card) => card.id));
-		expect(renderedIds.slice(-3)).toEqual([...variants]);
+		expect(renderedIds).toEqual([...sidebarVariants]);
 	});
 
+	test('visual regression — each fullscreen route', async ({ page }) => {
+		for (const variant of sidebarVariants) {
+			await openFullscreen(page, variant);
+			await expectNoViewportOverflow(page);
+			await expect.soft(page).toHaveScreenshot(`sidebar/${variant}-fullscreen.png`, { fullPage: true });
+		}
+	});
+});
+
+test.describe('Sidebar advanced variants', () => {
 	test('workspace switching, filtering, create menu, and account switching are functional', async ({ page }) => {
 		const host = await openFullscreen(page, 'sidebar-04');
 		await expect(host.getByRole('link', { name: 'View fullscreen' })).toHaveCount(0);
@@ -121,7 +146,7 @@ test.describe('Sidebar advanced variants', () => {
 		await expect(host.getByText('All shortcuts are in Favorites.')).toBeVisible();
 	});
 
-	for (const variant of variants) {
+	for (const variant of advancedVariants) {
 		test(`${variant} account menu supports keyboard switching and focus return`, async ({ page }) => {
 			const host = await openFullscreen(page, variant);
 			const trigger = host.getByRole('button', { name: /Open account menu/ });
@@ -142,7 +167,7 @@ test.describe('Sidebar advanced variants', () => {
 		});
 	}
 
-	for (const variant of variants) {
+	for (const variant of advancedVariants) {
 		test(`${variant} keeps its account image mounted and its collapsed rail contained`, async ({ page }) => {
 			const host = await openFullscreen(page, variant);
 			const accountImage = host.getByRole('button', { name: /Open account menu/ }).locator('img');
@@ -171,7 +196,7 @@ test.describe('Sidebar advanced variants', () => {
 		});
 	}
 
-	for (const variant of variants) {
+	for (const variant of advancedVariants) {
 		test(`${variant} supports desktop light/dark and mobile visual states`, async ({ page }) => {
 			const consoleErrors: string[] = [];
 			page.on('console', (message) => {

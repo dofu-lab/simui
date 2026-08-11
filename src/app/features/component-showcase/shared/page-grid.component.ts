@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AnalyticsService } from '@core/services/analytics.service';
 import { CodeLoaderService } from '@core/services/code-loader.service';
 import { RegistryVersionService } from '@core/services/registry-version.service';
+import type { ClassValue } from 'clsx';
 import { combineLatest } from 'rxjs';
 import { ComponentCardComponent } from './component-card.component';
 import type { ComponentNavigationRequest } from './component-full-view.component';
@@ -36,6 +37,7 @@ const FULL_VIEW_QUERY_PARAM = 'full';
 					[components]="components()"
 					[selectedIndex]="selectedFullViewIndex() ?? 0"
 					[open]="fullViewOpen()"
+					[previewClass]="fullViewPreviewClass()"
 					(previousRequested)="goToPreviousFullView($event)"
 					(nextRequested)="goToNextFullView($event)"
 					(closeRequested)="closeFullView()" />
@@ -47,6 +49,7 @@ const FULL_VIEW_QUERY_PARAM = 'full';
 })
 export class PageGridComponent {
 	public readonly components = input<ComponentCardItem[]>([]);
+	public readonly fullViewPreviewClass = input<ClassValue>('');
 	private readonly codeLoaderService = inject(CodeLoaderService);
 	private readonly registryVersions = inject(RegistryVersionService);
 	private readonly analyticsService = inject(AnalyticsService);

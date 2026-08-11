@@ -270,9 +270,14 @@ type SidebarItemId = (typeof SIDEBAR_ITEMS)[number]['id'];
 					<div class="flex w-full flex-col overflow-hidden">
 						<ng-scrollbar hlm class="flex min-h-0 flex-1 flex-col rounded-none">
 							<div class="bg-sidebar sticky top-0 flex items-center justify-between px-6 py-2">
-								<div class="flex flex-col">
-									<span>Hey, {{ currentWorkspace.name.split(' ')[0] }}!</span>
-									<span class="text-muted-foreground text-sm">Monday, 10 August, 2026</span>
+								<div class="flex items-center gap-2">
+									<button hlmSidebarTrigger type="button" variant="outline" size="icon" class="bg-sidebar md:hidden">
+										<span class="sr-only">Toggle sidebar</span>
+									</button>
+									<div class="flex flex-col">
+										<span>Hey, {{ currentWorkspace.name.split(' ')[0] }}!</span>
+										<span class="text-muted-foreground text-sm">Monday, 10 August, 2026</span>
+									</div>
 								</div>
 								<div class="flex gap-2">
 									@if (showFullscreenButton()) {
@@ -286,12 +291,12 @@ type SidebarItemId = (typeof SIDEBAR_ITEMS)[number]['id'];
 											<ng-icon name="lucideExternalLink" />
 										</a>
 									}
-									<button hlmBtn type="button" variant="outline">
-										This month
+									<button hlmBtn type="button" variant="outline" aria-label="Select reporting period">
+										<span class="max-md:hidden">This month</span>
 										<ng-icon name="lucideChevronDown" />
 									</button>
-									<button hlmBtn type="button">
-										Move money
+									<button hlmBtn type="button" aria-label="Move money">
+										<span class="max-md:hidden">Move money</span>
 										<ng-icon name="lucideBanknoteArrowDown" />
 									</button>
 								</div>

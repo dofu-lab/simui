@@ -22,6 +22,8 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmResizableImports } from '@spartan-ng/helm/resizable';
 import { HlmSheetImports } from '@spartan-ng/helm/sheet';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
+import { hlm } from '@spartan-ng/helm/utils';
+import type { ClassValue } from 'clsx';
 import { map } from 'rxjs';
 import { CodePreviewComponent } from './code-preview.component';
 import type { ComponentCardItem } from './types';
@@ -195,7 +197,7 @@ export type ComponentNavigationRequest = {
 		</hlm-sheet>
 
 		<ng-template #previewPanel let-item>
-			<div class="bg-background relative flex size-full min-h-0 overflow-auto p-4">
+			<div data-testid="component-full-view-preview" [class]="previewPanelClass()">
 				<div class="m-auto grid min-h-40 w-full min-w-0 overflow-hidden py-2">
 					@for (previewItem of [item]; track previewItem.id) {
 						<div
@@ -312,6 +314,7 @@ export class ComponentFullViewComponent {
 	public readonly selectedIndex = input.required<number>();
 	public readonly open = input(false);
 	public readonly cliScope = input('@dofu-lab/simui-cli');
+	public readonly previewClass = input<ClassValue>('');
 	public readonly previousRequested = output<ComponentNavigationRequest>();
 	public readonly nextRequested = output<ComponentNavigationRequest>();
 	public readonly closeRequested = output<void>();
@@ -328,6 +331,9 @@ export class ComponentFullViewComponent {
 		{ initialValue: true },
 	);
 	protected readonly selectedItem = computed(() => this.components()[this.selectedIndex()] ?? null);
+	protected readonly previewPanelClass = computed(() =>
+		hlm('bg-background relative flex size-full min-h-0 overflow-auto p-4', this.previewClass()),
+	);
 	protected readonly canGoPrevious = computed(() => this.selectedIndex() > 0);
 	protected readonly canGoNext = computed(() => this.selectedIndex() < this.components().length - 1);
 	protected readonly componentAvailable = computed(() => {

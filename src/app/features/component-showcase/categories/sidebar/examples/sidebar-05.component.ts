@@ -20,12 +20,12 @@ import {
 	lucideUser,
 	lucideUsers,
 } from '@ng-icons/lucide';
-import { BrnRadioGroupImports } from '@spartan-ng/brain/radio-group';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmKbdImports } from '@spartan-ng/helm/kbd';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmProgressImports } from '@spartan-ng/helm/progress';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@spartan-ng/helm/sidebar';
@@ -116,7 +116,7 @@ const ACCOUNTS = [
 		HlmDropdownMenuImports,
 		HlmProgressImports,
 		HlmRadioGroupImports,
-		BrnRadioGroupImports,
+		HlmLabelImports,
 		HlmSidebarImports,
 		HlmKbdImports,
 	],
@@ -272,7 +272,10 @@ const ACCOUNTS = [
 									{{ selectedProject().completedTasks }}/{{ selectedProject().totalTasks }} tasks
 								</span>
 							</div>
-							<hlm-progress class="bg-muted-foreground/20 w-full" [value]="selectedProject().progress">
+							<hlm-progress
+								class="bg-muted-foreground/20 w-full"
+								[value]="selectedProject().progress"
+								[attr.aria-label]="selectedProject().name + ' progress'">
 								<hlm-progress-indicator
 									class="transition-transform duration-150 ease-out motion-reduce:transition-none" />
 							</hlm-progress>
@@ -398,7 +401,7 @@ const ACCOUNTS = [
 												<label
 													hlmLabel
 													class="hover:bg-muted/70 flex items-start gap-2 rounded-lg p-2"
-													[for]="account.email"
+													[for]="'sidebar-05-' + account.email"
 													(click)="$event.stopPropagation()">
 													<div class="flex flex-1 gap-2">
 														<div class="relative">
@@ -418,7 +421,7 @@ const ACCOUNTS = [
 														</div>
 													</div>
 
-													<hlm-radio [inputId]="account.email" [value]="account.email" class="gap-x-0">
+													<hlm-radio [inputId]="'sidebar-05-' + account.email" [value]="account.email" class="gap-x-0">
 														<div
 															class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 															<div
@@ -456,7 +459,9 @@ const ACCOUNTS = [
 
 			<main hlmSidebarInset>
 				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only">Toggle sidebar</span></button>
+					<button hlmSidebarTrigger type="button">
+						<span class="sr-only">Toggle sidebar</span>
+					</button>
 					@if (showFullscreenButton()) {
 						<a
 							hlmBtn

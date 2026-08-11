@@ -199,6 +199,19 @@ describe('ComponentFullViewComponent', () => {
 		expect(animationHost?.textContent).toContain('First demo');
 	});
 
+	it('applies category-specific classes to the portaled preview frame', async () => {
+		fixture.componentRef.setInput('previewClass', 'sidebar-preview-frame');
+		fixture.detectChanges();
+		await fixture.whenRenderingDone();
+
+		const previewFrame = fixture.nativeElement.ownerDocument.querySelector(
+			'[data-testid="component-full-view-preview"]',
+		) as HTMLElement | null;
+
+		expect(previewFrame).not.toBeNull();
+		expect(previewFrame?.classList.contains('sidebar-preview-frame')).toBeTrue();
+	});
+
 	it('emits close when the sheet closes while open', () => {
 		const closeSpy = jasmine.createSpy('closeRequested');
 		fixture.componentInstance.closeRequested.subscribe(closeSpy);

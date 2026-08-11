@@ -10,6 +10,7 @@ import {
 	lucideCalendarSync,
 	lucideChartColumnBig,
 	lucideChevronsUpDown,
+	lucideEllipsis,
 	lucideEllipsisVertical,
 	lucideExternalLink,
 	lucideFolderSearch,
@@ -27,7 +28,6 @@ import {
 	lucideX,
 	lucideZap,
 } from '@ng-icons/lucide';
-import { BrnRadioGroupImports } from '@spartan-ng/brain/radio-group';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
@@ -35,6 +35,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmKbdImports } from '@spartan-ng/helm/kbd';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmProgressImports } from '@spartan-ng/helm/progress';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 import { HlmSidebarImports, HlmSidebarService, provideHlmSidebarConfig } from '@spartan-ng/helm/sidebar';
@@ -90,13 +91,17 @@ const ACCOUNTS = [
 		HlmSidebarImports,
 		HlmProgressImports,
 		HlmRadioGroupImports,
-		BrnRadioGroupImports,
+		HlmLabelImports,
 		HlmDropdownMenuImports,
 		HlmBreadcrumbImports,
 	],
 	providers: [
 		HlmSidebarService,
-		provideHlmSidebarConfig({ defaultOpen: false, sidebarCookieName: 'sidebar_09_state' }),
+		provideHlmSidebarConfig({
+			defaultOpen: false,
+			mobileBreakpoint: '0px',
+			sidebarCookieName: 'sidebar_09_state',
+		}),
 		provideIcons({
 			lucideSearch,
 			lucideHouse,
@@ -120,6 +125,7 @@ const ACCOUNTS = [
 			lucideCalendarSync,
 			lucideBell,
 			lucideEllipsisVertical,
+			lucideEllipsis,
 		}),
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -150,7 +156,7 @@ const ACCOUNTS = [
 	],
 	template: `
 		<div hlmSidebarWrapper>
-			<hlm-sidebar collapsible="icon">
+			<hlm-sidebar collapsible="icon" class="block" sidebarContainerClass="flex">
 				<hlm-sidebar-header>
 					<ul hlmSidebarMenu>
 						<li hlmSidebarMenuItem>
@@ -228,7 +234,7 @@ const ACCOUNTS = [
 										<p class="text-muted-foreground text-xs">
 											Your team has used 80% of your available space. Need more?
 										</p>
-										<hlm-progress class="bg-muted-foreground/30 w-full" value="80">
+										<hlm-progress class="bg-muted-foreground/30 w-full" value="80" aria-label="Storage used">
 											<hlm-progress-indicator />
 										</hlm-progress>
 										<div class="flex justify-end">
@@ -297,7 +303,7 @@ const ACCOUNTS = [
 												<label
 													hlmLabel
 													class="hover:bg-muted/70 flex items-start gap-2 rounded-lg p-2"
-													[for]="account.email"
+													[for]="'sidebar-09-' + account.email"
 													(click)="$event.stopPropagation()">
 													<div class="flex flex-1 gap-2">
 														<div class="relative">
@@ -308,7 +314,8 @@ const ACCOUNTS = [
 																</span>
 															</hlm-avatar>
 															<div
-																class="border-background absolute top-7.5 right-0 size-3 rounded-full border-2 bg-emerald-500"></div>
+																class="border-background absolute top-7.5 right-0 size-3 rounded-full border-2 bg-emerald-500"
+																aria-hidden="true"></div>
 														</div>
 														<div class="grid flex-1 text-left text-sm leading-tight">
 															<span class="truncate font-medium">{{ account.name }}</span>
@@ -316,7 +323,7 @@ const ACCOUNTS = [
 														</div>
 													</div>
 
-													<hlm-radio [inputId]="account.email" [value]="account.email" class="gap-x-0">
+													<hlm-radio [inputId]="'sidebar-09-' + account.email" [value]="account.email" class="gap-x-0">
 														<div
 															class="relative inline-flex size-4 group-[.brn-radio-disabled]:cursor-not-allowed group-[.brn-radio-disabled]:opacity-50">
 															<div
@@ -328,7 +335,7 @@ const ACCOUNTS = [
 													</hlm-radio>
 												</label>
 											}
-											<button hlmBtn variant="outline" size="sm" class="mt-2">
+											<button hlmBtn type="button" variant="outline" size="sm" class="mt-2">
 												<ng-icon name="lucidePlus" class="text-muted-foreground" />
 												Add account
 											</button>
@@ -358,12 +365,16 @@ const ACCOUNTS = [
 							<li hlmBreadcrumbItem>
 								<a hlmBreadcrumbLink link="/home" class="flex items-center gap-2">
 									<ng-icon hlm name="lucideSettings" size="sm" />
-									Settings
+									<span class="max-md:hidden">Settings</span>
 								</a>
 							</li>
 							<li hlmBreadcrumbSeparator class="flex items-center"></li>
 							<li hlmBreadcrumbItem>
-								<a hlmBreadcrumbLink link="/components">Notification Center</a>
+								<a hlmBreadcrumbLink link="/components" class="max-md:hidden">Notification Center</a>
+								<span class="flex items-center md:hidden">
+									<ng-icon hlm name="lucideEllipsis" size="sm" />
+									<span class="sr-only">Notification Center</span>
+								</span>
 							</li>
 							<li hlmBreadcrumbSeparator class="flex items-center"></li>
 							<li hlmBreadcrumbItem>
@@ -385,7 +396,13 @@ const ACCOUNTS = [
 								<ng-icon name="lucideExternalLink" class="size-4" />
 							</a>
 						}
-						<button hlmBtn type="button" size="icon-sm" variant="ghost" aria-label="Open messages">
+						<button
+							hlmBtn
+							class="max-md:hidden"
+							type="button"
+							size="icon-sm"
+							variant="ghost"
+							aria-label="Open messages">
 							<div class="relative flex items-center">
 								<ng-icon name="lucideMail" />
 								<span
@@ -393,7 +410,13 @@ const ACCOUNTS = [
 									class="absolute -top-0.5 -right-0.5 size-2 rounded-full bg-red-600 dark:bg-red-500"></span>
 							</div>
 						</button>
-						<button hlmBtn type="button" size="icon-sm" variant="ghost" aria-label="Open notifications">
+						<button
+							hlmBtn
+							class="max-md:hidden"
+							type="button"
+							size="icon-sm"
+							variant="ghost"
+							aria-label="Open notifications">
 							<div class="relative flex items-center">
 								<ng-icon name="lucideBell" />
 								<span
