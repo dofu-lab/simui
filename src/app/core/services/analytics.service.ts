@@ -7,9 +7,12 @@ export type AnalyticsCopyKind = 'install_cli' | 'component_code' | 'generic_code
 export type ComponentInteractionType = 'click' | 'change' | 'input' | 'keyboard';
 export type ComponentNavigationDirection = 'previous' | 'next';
 export type ComponentNavigationPosition = 'header' | 'left_panel';
+export type AuthorSocialPlatform = 'github' | 'linkedin' | 'x';
 type PostHogClient = typeof import('posthog-js').default;
 
 export const ANALYTICS_EVENTS = {
+	authorProfileViewed: 'author_profile_viewed',
+	authorSocialLinkClicked: 'author_social_link_clicked',
 	componentViewed: 'component_viewed',
 	componentDemoInteracted: 'component_demo_interacted',
 	componentCodeSheetOpened: 'component_code_sheet_opened',
@@ -92,6 +95,22 @@ export class AnalyticsService {
 	trackEvent(event: string, properties?: EventProperties): void {
 		this.runWhenReady((posthog) => {
 			posthog.capture(event, properties);
+		});
+	}
+
+	trackAuthorProfileViewed(): void {
+		this.trackEvent(ANALYTICS_EVENTS.authorProfileViewed, {
+			...this.getRouteProperties(),
+			profile_id: 'phuong_tran',
+		});
+	}
+
+	trackAuthorSocialLinkClicked(platform: AuthorSocialPlatform, destination: string): void {
+		this.trackEvent(ANALYTICS_EVENTS.authorSocialLinkClicked, {
+			...this.getRouteProperties(),
+			profile_id: 'phuong_tran',
+			platform,
+			destination,
 		});
 	}
 

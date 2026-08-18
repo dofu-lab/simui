@@ -64,6 +64,41 @@ export const routes: Routes = [
 		},
 	},
 	{
+		path: 'author',
+		loadComponent: () => import('@features/author').then((m) => m.AuthorPage),
+		data: {
+			title: 'Phuong Tran - Product Engineer and Team Lead',
+			description:
+				'Meet Phuong Tran, a product engineer working across Angular, React, React Native, backend systems, AI integrations, and agent workflows, alongside Scrum Master and Squad Lead responsibilities.',
+			keywords:
+				'Phuong Tran, product engineer, Angular, React, React Native, backend engineer, AI integration, AI agents, Scrum Master, Squad Lead',
+			canonicalPath: '/author',
+			structuredData: {
+				'@type': 'Person',
+				'@id': `${SEO_SITE_ORIGIN}/author#person`,
+				name: 'Phuong Tran',
+				url: `${SEO_SITE_ORIGIN}/author`,
+				jobTitle: 'Product Engineer, Scrum Master, and Squad Lead',
+				knowsAbout: [
+					'Angular',
+					'React',
+					'React Native',
+					'Backend engineering',
+					'AI integration',
+					'AI agents',
+					'Product ownership',
+					'Team collaboration',
+				],
+				email: 'trandongphuongtdp@gmail.com',
+				sameAs: [
+					'https://github.com/dongphuong0905',
+					'https://www.linkedin.com/in/dongphuongtran/',
+					'https://x.com/PhuongTranDong',
+				],
+			},
+		},
+	},
+	{
 		path: 'profile',
 		component: ProfileSettingsComponent,
 		canActivate: [authGuard],

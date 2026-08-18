@@ -9,6 +9,7 @@ const OUTPUT_PATH = path.join(PUBLIC_DIR, 'sitemap.xml');
 const STATIC_ROUTES = [
 	{ path: '/', changefreq: 'weekly', priority: '1.0' },
 	{ path: '/introduction', changefreq: 'monthly', priority: '0.9' },
+	{ path: '/author', changefreq: 'monthly', priority: '0.4' },
 	{ path: '/changelog', changefreq: 'monthly', priority: '0.8' },
 	{ path: '/theme-editor', changefreq: 'weekly', priority: '0.8' },
 	{ path: '/pricing', changefreq: 'monthly', priority: '0.5' },

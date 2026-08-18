@@ -31,9 +31,7 @@ import { RouterLink } from '@angular/router';
 				A project by
 				<a
 					class="text-foreground decoration-border font-medium underline underline-offset-4 hover:no-underline"
-					href="https://x.com/PhuongTranDong"
-					target="_blank"
-					rel="noopener noreferrer">
+					routerLink="/author">
 					Phuong Tran
 				</a>
 			</div>
