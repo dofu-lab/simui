@@ -20,7 +20,6 @@
 						"outputPath": "dist/simui",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
-						"polyfills": ["zone.js"],
 						"tsConfig": "tsconfig.app.json",
 						"inlineStyleLanguage": "css",
 						"assets": [
@@ -73,6 +72,28 @@
 									"with": "src/environments/environment.development.ts"
 								}
 							]
+						},
+						"e2e-mcp-enabled": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.e2e-mcp-enabled.ts"
+								}
+							]
+						},
+						"e2e-mcp-disabled": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.e2e-mcp-disabled.ts"
+								}
+							]
 						}
 					},
 					"defaultConfiguration": "production"
@@ -85,6 +106,12 @@
 						},
 						"development": {
 							"buildTarget": "simui:build:development"
+						},
+						"e2e-mcp-enabled": {
+							"buildTarget": "simui:build:e2e-mcp-enabled"
+						},
+						"e2e-mcp-disabled": {
+							"buildTarget": "simui:build:e2e-mcp-disabled"
 						}
 					},
 					"defaultConfiguration": "development"
@@ -95,7 +122,6 @@
 				"test": {
 					"builder": "@angular/build:karma",
 					"options": {
-						"polyfills": ["zone.js", "zone.js/testing"],
 						"tsConfig": "tsconfig.spec.json",
 						"inlineStyleLanguage": "css",
 						"assets": [

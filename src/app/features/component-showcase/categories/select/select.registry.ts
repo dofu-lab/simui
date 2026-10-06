@@ -39,6 +39,7 @@ import {
 	Select37Component,
 	Select40Component,
 	Select41Component,
+	Select42Component,
 } from './examples';
 
 export const selectComponents: ComponentCardItem[] = [
@@ -249,6 +250,12 @@ export const selectComponents: ComponentCardItem[] = [
 	{
 		id: 'select-33',
 		component: Select33Component,
+		layout: 'third',
+		alignment: 'center',
+	},
+	{
+		id: 'select-42',
+		component: Select42Component,
 		layout: 'third',
 		alignment: 'center',
 	},

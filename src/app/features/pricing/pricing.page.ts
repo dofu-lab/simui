@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '@core/services/auth.service';
 import { PaymentHttpService } from '@core/services/payment-http.service';
+import { MCP_ADVERTISEMENT_ENABLED } from '@core/tokens/mcp-advertisement';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideLoader, lucideX, lucideZap } from '@ng-icons/lucide';
 import { toast } from '@spartan-ng/brain/sonner';
@@ -15,12 +16,14 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 interface PlanFeature {
 	label: string;
 	included: boolean;
+	mcp?: boolean;
 }
 
 const FREE_FEATURES: PlanFeature[] = [
 	{ label: 'All copy-paste UI components', included: true },
 	{ label: 'Up to 5 saved themes', included: true },
 	{ label: 'Last 3 days of theme history', included: true },
+	{ label: '100 successful MCP component calls / UTC month', included: true, mcp: true },
 	{ label: 'Unlimited saved themes', included: false },
 	{ label: 'Full version history', included: false },
 	{ label: 'Priority support', included: false },
@@ -30,6 +33,7 @@ const PRO_FEATURES: PlanFeature[] = [
 	{ label: 'Unlimited saved themes', included: true },
 	{ label: 'Full version history', included: true },
 	{ label: 'All copy-paste UI components', included: true },
+	{ label: 'Unlimited monthly MCP calls (60/min fair use)', included: true, mcp: true },
 	{ label: 'Priority support', included: true },
 	{ label: 'Early access to new features', included: true },
 	{ label: 'Cancel anytime', included: true },
@@ -49,10 +53,16 @@ const PRO_FEATURES: PlanFeature[] = [
 					Pricing
 				</span>
 				<h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Simple, transparent pricing</h1>
-				<p class="text-muted-foreground max-w-md text-base">
-					All Angular components are free to browse and copy. Upgrade only when you need more theme history and
-					cloud-saved theme workflows.
-				</p>
+				@if (mcpAdvertised) {
+					<p class="text-muted-foreground max-w-md text-base">
+						All Angular components are free to browse and copy. Free accounts also include MCP access; upgrade for
+						unlimited monthly MCP calls and expanded theme workflows.
+					</p>
+				} @else {
+					<p class="text-muted-foreground max-w-md text-base">
+						All Angular components are free to browse and copy. Upgrade for expanded theme workflows.
+					</p>
+				}
 			</div>
 
 			<!-- Billing toggle -->
@@ -158,9 +168,10 @@ export class PricingComponent {
 	private readonly authService = inject(AuthService);
 	private readonly paymentService = inject(PaymentHttpService);
 	private readonly destroyRef = inject(DestroyRef);
+	protected readonly mcpAdvertised = inject(MCP_ADVERTISEMENT_ENABLED);
 
-	protected readonly freeFeatures = FREE_FEATURES;
-	protected readonly proFeatures = PRO_FEATURES;
+	protected readonly freeFeatures = FREE_FEATURES.filter((feature) => this.mcpAdvertised || !feature.mcp);
+	protected readonly proFeatures = PRO_FEATURES.filter((feature) => this.mcpAdvertised || !feature.mcp);
 	protected readonly isRedirecting = signal(false);
 	protected readonly billingCycle = signal<'monthly' | 'yearly'>('monthly');
 

@@ -45,10 +45,19 @@ import { SignOutDialogComponent } from './sign-out-dialog';
 				</hlm-dropdown-menu-group>
 				<hlm-dropdown-menu-separator />
 				<hlm-dropdown-menu-group>
-					<sim-sign-out-dialog />
+					<button
+						id="sign-out-button"
+						variant="destructive"
+						class="hover:bg-destructive/10 dark:hover:bg-destructive/40"
+						hlmDropdownMenuItem
+						(click)="signOutDialog.open()">
+						<ng-icon hlm name="lucideLogOut" size="sm" />
+						<span>Logout</span>
+					</button>
 				</hlm-dropdown-menu-group>
 			</hlm-dropdown-menu>
 		</ng-template>
+		<sim-sign-out-dialog #signOutDialog />
 	`,
 })
 export class UserMenuComponent {
@@ -56,10 +65,6 @@ export class UserMenuComponent {
 	private readonly navigation = inject(NavigationService);
 
 	protected readonly currentUser = this.authService.currentUser;
-
-	protected signOut(): void {
-		this.authService.signOut();
-	}
 
 	protected navigateToProfile(): void {
 		this.navigation.navigateTo('/profile');

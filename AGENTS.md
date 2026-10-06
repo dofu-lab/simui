@@ -3,7 +3,7 @@
 ## Project
 
 - Use `pnpm`; do not create npm or Yarn lockfiles.
-- This is an Angular 21 standalone-component application using strict TypeScript, Tailwind CSS v4, and SpartanUI.
+- This is an Angular 22 standalone-component application using strict TypeScript, Tailwind CSS v4, and SpartanUI.
 - Inspect nearby code before editing and preserve local naming, import, formatting, and registration patterns.
 
 ## Angular

@@ -19,15 +19,36 @@ export default defineConfig({
 	projects: [
 		{
 			name: 'chromium',
-			use: { ...devices['Desktop Chrome'] },
+			testIgnore: '**/mcp-*.spec.ts',
+			use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:4200' },
+		},
+		{
+			name: 'mcp-enabled',
+			testMatch: /mcp-(consent|settings)\.spec\.ts/,
+			use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:4200', timezoneId: 'Asia/Ho_Chi_Minh' },
+		},
+		{
+			name: 'mcp-disabled',
+			testMatch: '**/mcp-disabled.spec.ts',
+			use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:4201' },
 		},
 	],
-	webServer: {
-		command: 'node scripts/set-env.js && ng serve',
-		url: 'http://localhost:4200',
-		reuseExistingServer: !process.env['CI'],
-		timeout: 120_000,
-		stdout: 'ignore',
-		stderr: 'pipe',
-	},
+	webServer: [
+		{
+			command: 'ng serve --configuration e2e-mcp-enabled --port 4200',
+			url: 'http://localhost:4200',
+			reuseExistingServer: false,
+			timeout: 120_000,
+			stdout: 'ignore',
+			stderr: 'pipe',
+		},
+		{
+			command: 'ng serve --configuration e2e-mcp-disabled --port 4201',
+			url: 'http://localhost:4201',
+			reuseExistingServer: false,
+			timeout: 120_000,
+			stdout: 'ignore',
+			stderr: 'pipe',
+		},
+	],
 });

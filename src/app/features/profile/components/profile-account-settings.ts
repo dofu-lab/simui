@@ -2,6 +2,7 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { PaymentHttpService, SubscriptionStatus } from '@core/services/payment-http.service';
+import { MCP_ADVERTISEMENT_ENABLED } from '@core/tokens/mcp-advertisement';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideExternalLink, lucideZap } from '@ng-icons/lucide';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
@@ -34,7 +35,13 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 						</span>
 						<span class="text-muted-foreground text-sm">{{ subscription()?.status }}</span>
 					</div>
-					<p class="text-muted-foreground text-sm">You have access to unlimited themes and full version history.</p>
+					@if (mcpAdvertised) {
+						<p class="text-muted-foreground text-sm">
+							You have access to unlimited themes, full version history, and unlimited monthly MCP calls.
+						</p>
+					} @else {
+						<p class="text-muted-foreground text-sm">You have access to unlimited themes and full version history.</p>
+					}
 					@if (subscription()?.customerPortalUrl) {
 						<a
 							hlmBtn
@@ -55,6 +62,9 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 					<ul class="text-muted-foreground flex flex-col gap-1 text-sm">
 						<li>• Up to 5 saved themes</li>
 						<li>• Last 3 days of version history</li>
+						@if (mcpAdvertised) {
+							<li>• 100 successful MCP component calls per UTC month</li>
+						}
 					</ul>
 					<button hlmBtn class="w-fit gap-2" routerLink="/pricing">
 						<ng-icon hlm name="lucideZap" size="sm" />
@@ -62,12 +72,22 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 					</button>
 				}
 			</div>
+			@if (mcpAdvertised) {
+				<div hlmCard class="flex flex-col gap-3 rounded-md border p-4 shadow-none">
+					<h2 class="text-base font-semibold">MCP for coding tools</h2>
+					<p class="text-muted-foreground text-sm">
+						Connect supported assistants and IDEs to SimUI’s public component catalog. Setup, quota, and authorized
+						connections are managed in the MCP tab when the feature is available.
+					</p>
+				</div>
+			}
 		</div>
 	`,
 })
 export class ProfileAccountSettings implements OnInit {
 	private readonly paymentService = inject(PaymentHttpService);
 	private readonly destroyRef = inject(DestroyRef);
+	protected readonly mcpAdvertised = inject(MCP_ADVERTISEMENT_ENABLED);
 
 	protected readonly subscription = signal<SubscriptionStatus | null>(null);
 	protected readonly subscriptionLoading = signal(false);

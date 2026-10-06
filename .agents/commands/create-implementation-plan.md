@@ -53,13 +53,14 @@ Always read:
 
 Read only relevant nearby files after that:
 
-- Showcase examples: `src/app/components/{category}/`
-- Registries: `src/app/constants/`
-- Showcase pages: `src/app/pages/`
-- Home thumbnails: `src/app/core/thumbnails/`
+- Showcase categories: `src/app/features/component-showcase/categories/{category}/`
+- Showcase examples: `src/app/features/component-showcase/categories/{category}/examples/`
+- Category registries/pages/thumbnails: `src/app/features/component-showcase/categories/{category}/`
 - Routes: `src/app/app.routes.ts`
-- Home catalog: `src/app/constants/home.constant.ts`
-- Services/models/guards: `src/app/services/`, `src/app/models/`, `src/app/guards/`
+- Home catalog: `src/app/features/component-showcase/home-catalog.ts`
+- App-wide services/models/guards/interceptors: `src/app/core/`
+- Feature-specific code: `src/app/features/{feature}/`
+- Reusable constants/types/utilities/pipes: `src/app/shared/`
 - Sim libraries: `src/libs/sim/`
 - Spartan wrappers/primitives: `src/libs/ui/`
 - Environment and SSR files when relevant: `src/environments/`, `src/server.ts`, `src/main.server.ts`
@@ -120,16 +121,18 @@ Statuses: `Unanswered`, `Answered`, `Deferred`.
 List exact files to add/modify. Use current SimUI paths, for example:
 
 ```markdown
-src/app/components/<category>/
-├── <category>-01.component.ts
+src/app/features/component-showcase/categories/<category>/
+├── <category>.page.ts
+├── <category>.registry.ts
+├── <category>.thumbnail.ts
+├── examples/
+│ ├── <category>-01.component.ts
+│ └── index.ts
 └── index.ts
 
-src/app/constants/<category>.constant.ts
-src/app/pages/<category>.component.ts
-src/app/core/thumbnails/<category>-thumbnail.component.ts
 src/app/app.routes.ts
-src/app/constants/home.constant.ts
-src/app/constants/index.ts
+src/app/features/component-showcase/home-catalog.ts
+src/app/features/component-showcase/categories/index.ts
 ```
 
 For non-category work, list the relevant service, model, guard, library, docs, script, or config
@@ -167,9 +170,9 @@ registration checklist.
 ### Reference Files
 
 ```markdown
-| File                                                             | Purpose          |
-| ---------------------------------------------------------------- | ---------------- |
-| [button.constant.ts](../../src/app/constants/button.constant.ts) | Registry pattern |
+| File                                                                                                 | Purpose          |
+| ---------------------------------------------------------------------------------------------------- | ---------------- |
+| [button.registry.ts](../../src/app/features/component-showcase/categories/button/button.registry.ts) | Registry pattern |
 ```
 
 ### Implementation Details
@@ -192,8 +195,9 @@ Ground details in the approved spec and researched files. Include:
 Before presenting, check:
 
 - Every task traces back to the approved spec.
-- Paths match this repo; no `frontend/`, `service/`, `.NET`, `CLAUDE.md`, `Agent`, or `TodoWrite`
-  leftovers.
+- Paths match this repo; no old flat `src/app/components`, `src/app/constants`, or
+  `src/app/pages` paths, and no `frontend/`, `service/`, `.NET`, `CLAUDE.md`, `Agent`, or
+  `TodoWrite` leftovers.
 - The plan preserves current naming/import/registration patterns.
 - Open questions are explicit instead of guessed.
 - Verification covers the changed surface area.

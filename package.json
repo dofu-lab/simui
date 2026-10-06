@@ -5,7 +5,7 @@
 	"scripts": {
 		"build": "node scripts/set-env.js && node scripts/generate-sitemap.js && ng build",
 		"codes": "tsc --project tsconfig.tools.json && node dist/tools/generators.js",
-		"codes:test": "tsc --project tsconfig.tools.json && node --test dist/tools/generators.spec.js",
+		"codes:test": "tsc --project tsconfig.tools.json && node --test dist/tools/generators.test.js",
 		"e2e": "playwright test",
 		"e2e:report": "playwright show-report",
 		"e2e:ui": "playwright test --ui",
@@ -55,8 +55,7 @@
 		"posthog-js": "^1.395.0",
 		"rxjs": "~7.8.0",
 		"shiki": "4.3.0",
-		"tailwindcss": "^4.0.17",
-		"zone.js": "~0.15.0"
+		"tailwindcss": "^4.0.17"
 	},
 	"devDependencies": {
 		"@angular/build": "^22.0.3",

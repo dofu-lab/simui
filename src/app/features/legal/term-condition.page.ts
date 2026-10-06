@@ -10,7 +10,7 @@ import { ComponentHeaderComponent } from '@features/component-showcase/shared';
 	},
 	template: `
 		<div class="flex flex-1 flex-col justify-between">
-			<sim-component-header name="Terms and Conditions" description="Last Updated: February 8, 2026" />
+			<sim-component-header name="Terms and Conditions" description="Last Updated: July 28, 2026" />
 			<div class="mt-[50px] mb-auto flex flex-col items-center justify-center px-4">
 				<div class="text-muted-foreground flex max-w-[900px] flex-col items-start justify-start gap-8">
 					<!-- Section 1: Introduction -->
@@ -39,6 +39,7 @@ import { ComponentHeaderComponent } from '@features/component-showcase/shared';
 								<li>Browse, preview, and copy UI component source code</li>
 								<li>Basic theme customization</li>
 								<li>Access to documentation and examples</li>
+								<li>Up to 100 successful MCP component calls per UTC month when MCP is available</li>
 							</ul>
 							<p class="mb-2"><strong>Paid Tier (Pro):</strong></p>
 							<ul class="ml-6 list-disc">
@@ -46,11 +47,14 @@ import { ComponentHeaderComponent } from '@features/component-showcase/shared';
 								<li>Theme version history and management</li>
 								<li>Priority support</li>
 								<li>Priority access to new theme tooling features</li>
+								<li>Unlimited monthly MCP calls, subject to a 60 calls-per-minute fair-use limit</li>
 							</ul>
 						</div>
 						<p class="text-base leading-relaxed">
 							We strive to maintain high availability, but we do not guarantee uninterrupted access to the Service.
-							Features and availability may change without notice.
+							Features and availability, including MCP support and certified clients, may change without notice. You may
+							revoke an MCP client from your profile at any time; revocation invalidates that client’s SimUI MCP tokens
+							but does not sign you out of your browser session.
 						</p>
 					</section>
 

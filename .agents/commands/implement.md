@@ -74,15 +74,14 @@ Rules:
 
 For new component categories, register all required pieces:
 
-- `src/app/components/{category}/`
-- `src/app/constants/{category}.constant.ts`
-- `src/app/constants/index.ts`
-- `src/app/pages/{category}.component.ts`
-- `src/app/pages/index.ts`
-- `src/app/core/thumbnails/{category}-thumbnail.component.ts`
-- `src/app/core/thumbnails/index.ts`
+- `src/app/features/component-showcase/categories/{category}/{category}.page.ts`
+- `src/app/features/component-showcase/categories/{category}/{category}.registry.ts`
+- `src/app/features/component-showcase/categories/{category}/{category}.thumbnail.ts`
+- `src/app/features/component-showcase/categories/{category}/examples/`
+- `src/app/features/component-showcase/categories/{category}/index.ts`
+- `src/app/features/component-showcase/categories/index.ts`
 - `src/app/app.routes.ts`
-- `src/app/constants/home.constant.ts`
+- `src/app/features/component-showcase/home-catalog.ts`
 
 ## Step 5: Plan Sync
 

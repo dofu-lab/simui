@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { buildMcpCatalog, validateMcpCatalog } from './mcp-catalog';
 
 export type RegistryChangelogEntryType = 'feature' | 'improvement' | 'fix' | 'breaking';
 
@@ -116,7 +117,9 @@ export function publishRegistry(options: PublishRegistryOptions = {}): RegistryM
 	const registryDir = path.join(publicDir, 'registry');
 	const manifestPath = path.join(registryDir, 'manifest.json');
 	const changelogPath = path.join(rootDir, 'src/tools/registry-changelog.json');
-	const version = resolveSpartanVersion(readJson(path.join(rootDir, 'package.json')));
+	const mcpCatalogPath = path.join(rootDir, 'src/tools/mcp-component-catalog.json');
+	const packageJson = readJson(path.join(rootDir, 'package.json'));
+	const version = resolveSpartanVersion(packageJson);
 	const changelog = validateChangelogSource(readJson(changelogPath));
 	const existing = fs.existsSync(manifestPath) ? validateExistingManifest(readJson(manifestPath)) : null;
 	const token = `${version}-${process.pid}-${Date.now()}`;
@@ -166,7 +169,24 @@ export function publishRegistry(options: PublishRegistryOptions = {}): RegistryM
 			comparisons: generateComparisons(releases, releaseIndexes),
 			changelog,
 		});
+		const mcpCatalog = buildMcpCatalog({
+			source: readJson(mcpCatalogPath),
+			registryVersion: version,
+			spartanVersion: version,
+			releases,
+			releaseIndexes,
+			packageJson,
+			readRegistrySource(registryPath, releaseVersion) {
+				const index = releaseIndexes.get(releaseVersion);
+				const hash = index?.files[registryPath];
+				if (!hash) {
+					throw new Error(`Registry release ${releaseVersion} does not contain "${registryPath}".`);
+				}
+				return validateBlob(readJson(blobPath(stageDir, hash)), hash).content;
+			},
+		});
 		writeJson(path.join(stageDir, 'manifest.json'), manifest);
+		writeJson(path.join(stageDir, 'mcp', 'catalog.json'), mcpCatalog);
 		validateStagedRegistry(stageDir, manifest);
 
 		if (fs.existsSync(registryDir)) {
@@ -296,13 +316,55 @@ function writeBlob(stageDir: string, hash: string, content: string): void {
 }
 
 function validateStagedRegistry(stageDir: string, manifest: RegistryManifest): void {
+	const releaseIndexes = new Map<string, RegistryReleaseIndex>();
 	for (const release of manifest.releases) {
 		const index = validateReleaseIndex(readJson(resolvePublicPath(stageDir, release.indexPath)), release.version);
+		releaseIndexes.set(release.version, index);
 		if (!arraysEqual(componentIds(index), release.components)) {
 			throw new Error(`Registry release ${release.version} component list does not match its index.`);
 		}
 		for (const hash of Object.values(index.files)) {
 			validateBlob(readJson(blobPath(stageDir, hash)), hash);
+		}
+	}
+	const catalog = validateMcpCatalog(readJson(path.join(stageDir, 'mcp', 'catalog.json')));
+	const latestRelease = manifest.releases.find((release) => release.version === manifest.latest);
+	const latestIndex = releaseIndexes.get(manifest.latest);
+	if (!latestRelease || !latestIndex || catalog.registryVersion !== manifest.latest) {
+		throw new Error('Generated MCP catalog does not match the latest registry release.');
+	}
+	if (
+		!arraysEqual(
+			catalog.components.map((component) => component.id),
+			latestRelease.components,
+		)
+	) {
+		throw new Error('Generated MCP catalog component IDs do not match the latest registry release.');
+	}
+	for (const component of catalog.components) {
+		const expectedVersions = manifest.releases
+			.filter((release) => release.components.includes(component.id))
+			.map((release) => release.version);
+		if (
+			!arraysEqual(
+				component.versions.map((entry) => entry.version),
+				expectedVersions,
+			)
+		) {
+			throw new Error(`Generated MCP catalog component "${component.id}" has incomplete release support.`);
+		}
+		for (const entry of component.versions) {
+			if (releaseIndexes.get(entry.version)?.files[component.registryPath] !== entry.sourceHash) {
+				throw new Error(`Generated MCP catalog component "${component.id}" has an invalid source hash.`);
+			}
+		}
+		for (const registryPath of component.relatedRegistryFiles) {
+			if (!(registryPath in latestIndex.files)) {
+				throw new Error(`Generated MCP catalog component "${component.id}" references a missing registry file.`);
+			}
+		}
+		if (component.simDependencies.some((registryPath) => !component.relatedRegistryFiles.includes(registryPath))) {
+			throw new Error(`Generated MCP catalog component "${component.id}" has an invalid direct Sim dependency.`);
 		}
 	}
 }

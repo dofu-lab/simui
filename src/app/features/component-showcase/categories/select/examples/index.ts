@@ -39,3 +39,4 @@ export * from './select-38.component';
 export * from './select-39.component';
 export * from './select-40.component';
 export * from './select-41.component';
+export * from './select-42.component';

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '@core/guards/auth.guard';
+import { mcpConsentGuard } from '@core/guards/mcp-consent.guard';
 import { unsavedChangesGuard } from '@core/guards/unsaved-changes.guard';
 import { SEO_SITE_ORIGIN } from '@core/services/seo.constants';
 import { SeoRouteData } from '@core/services/seo.types';
@@ -106,6 +107,15 @@ export const routes: Routes = [
 			title: 'Profile Settings - SimUI',
 			description: 'Manage your profile settings and preferences in SimUI.',
 			keywords: 'profile settings, user preferences, simui, angular',
+		},
+	},
+	{
+		path: 'mcp/authorize',
+		loadComponent: () => import('@features/mcp/mcp-consent.page').then((m) => m.McpConsentComponent),
+		canActivate: [mcpConsentGuard],
+		data: {
+			title: 'Authorize MCP Connection - SimUI',
+			description: 'Review and authorize an MCP client connection to SimUI.',
 		},
 	},
 	{

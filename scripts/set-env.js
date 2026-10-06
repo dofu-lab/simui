@@ -15,6 +15,7 @@
  * Optional variables:
  *   NG_APP_POSTHOG_KEY      — PostHog project API key; leave blank to disable analytics
  *   NG_APP_POSTHOG_HOST     — PostHog instance URL (default: https://us.i.posthog.com)
+ *   NG_APP_MCP_ADVERTISEMENT_ENABLED — Show MCP account navigation (default: false)
  */
 
 const fs = require('fs');
@@ -46,6 +47,7 @@ const isProduction = process.env['NG_APP_PRODUCTION'] !== 'false';
 // Optional analytics. Runtime identity persistence is configured in AnalyticsService.
 const posthogKey = process.env['NG_APP_POSTHOG_KEY'] || '';
 const posthogHost = process.env['NG_APP_POSTHOG_HOST'] || 'https://us.i.posthog.com';
+const mcpAdvertisementEnabled = process.env['NG_APP_MCP_ADVERTISEMENT_ENABLED'] === 'true';
 
 const environmentsDir = path.resolve(__dirname, '..', 'src', 'environments');
 fs.mkdirSync(environmentsDir, { recursive: true });
@@ -58,6 +60,7 @@ export const environment = {
 \tgoogleClientId: '${googleClientId}',
 \tposthogKey: '${posthogKey}',
 \tposthogHost: '${posthogHost}',
+\tmcpAdvertisementEnabled: ${mcpAdvertisementEnabled},
 };
 `;
 
@@ -69,6 +72,7 @@ export const environment = {
 \tgoogleClientId: '${googleClientId}',
 \tposthogKey: '${posthogKey}',
 \tposthogHost: '${posthogHost}',
+\tmcpAdvertisementEnabled: ${mcpAdvertisementEnabled},
 };
 `;
 

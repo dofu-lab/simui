@@ -4,6 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, RouterLink } from '@angular/router';
 import { UserRole } from '@core/models/user-role';
 import { AuthService } from '@core/services/auth.service';
+import { MCP_ADVERTISEMENT_ENABLED } from '@core/tokens/mcp-advertisement';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheckCircle, lucideZap } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
@@ -31,9 +32,16 @@ const POLL_INTERVAL_MS = 2000;
 
 				<div class="flex flex-col gap-2">
 					<h1 class="text-2xl font-bold">You're now a Pro member!</h1>
-					<p class="text-muted-foreground text-sm">
-						Thank you for subscribing. Your account has been upgraded — enjoy unlimited themes and full version history.
-					</p>
+					@if (mcpAdvertised) {
+						<p class="text-muted-foreground text-sm">
+							Thank you for subscribing. Enjoy unlimited themes, full version history, and unlimited monthly MCP calls
+							subject to the fair-use rate limit.
+						</p>
+					} @else {
+						<p class="text-muted-foreground text-sm">
+							Thank you for subscribing. Enjoy unlimited themes and full version history.
+						</p>
+					}
 				</div>
 
 				<div class="flex w-full flex-col gap-3 sm:flex-row sm:justify-center">
@@ -41,7 +49,11 @@ const POLL_INTERVAL_MS = 2000;
 						<ng-icon hlm name="lucideZap" size="sm" />
 						Start creating themes
 					</button>
-					<button hlmBtn variant="outline" routerLink="/profile">View profile</button>
+					@if (mcpAdvertised) {
+						<button hlmBtn variant="outline" routerLink="/profile" [queryParams]="{ tab: 'mcp' }">Set up MCP</button>
+					} @else {
+						<button hlmBtn variant="outline" routerLink="/profile">View your profile</button>
+					}
 				</div>
 			}
 		</div>
@@ -52,6 +64,7 @@ export class PaymentSuccessComponent implements OnInit {
 	private readonly router = inject(Router);
 	private readonly platformId = inject(PLATFORM_ID);
 	private readonly destroyRef = inject(DestroyRef);
+	protected readonly mcpAdvertised = inject(MCP_ADVERTISEMENT_ENABLED);
 	private redirectScheduled = false;
 
 	protected readonly isRefreshing = signal(true);

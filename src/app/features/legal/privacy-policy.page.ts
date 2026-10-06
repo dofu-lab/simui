@@ -10,7 +10,7 @@ import { ComponentHeaderComponent } from '@features/component-showcase/shared';
 	},
 	template: `
 		<div class="flex flex-1 flex-col justify-between">
-			<sim-component-header name="Privacy Policy" description="Last Updated: February 8, 2026" />
+			<sim-component-header name="Privacy Policy" description="Last Updated: July 28, 2026" />
 			<div class="mt-[50px] mb-auto flex flex-col items-center justify-center px-4">
 				<div class="text-muted-foreground flex max-w-[900px] flex-col items-start justify-start gap-8">
 					<!-- Section 1: Introduction -->
@@ -136,6 +136,20 @@ import { ComponentHeaderComponent } from '@features/component-showcase/shared';
 									purposes
 								</li>
 							</ul>
+						</div>
+
+						<div class="ml-6">
+							<p class="mb-2 text-base font-semibold">2.6 MCP Connections and Usage</p>
+							<p class="mb-3 text-base leading-relaxed">
+								When you authorize an MCP client, we store the client identifier and name, connection status, and
+								created and last-used timestamps. We also record successful MCP tool usage for quota enforcement,
+								product reliability, and abuse prevention.
+							</p>
+							<p class="text-base leading-relaxed">
+								We do not expose or store client secrets in the account interface, and MCP access does not include your
+								Google password, payment information, saved themes, or unrelated browser sessions. Detailed MCP usage
+								events are retained for a limited period; monthly aggregates may be retained longer.
+							</p>
 						</div>
 					</section>
 

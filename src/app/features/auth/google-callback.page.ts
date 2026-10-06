@@ -59,8 +59,7 @@ export class GoogleCallbackComponent implements OnInit {
 			.pipe(takeUntilDestroyed(this.destroyRef))
 			.subscribe({
 				next: () => {
-					// Successfully authenticated, navigate to home or dashboard
-					this.router.navigate(['/']);
+					this.router.navigateByUrl(this.authService.consumePostSignInReturnTarget(), { replaceUrl: true });
 				},
 				error: (err) => {
 					console.error('Google authentication error:', err);

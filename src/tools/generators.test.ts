@@ -1,4 +1,5 @@
 import * as assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import * as fs from 'node:fs';
 import * as os from 'node:os';
 import * as path from 'node:path';
@@ -9,7 +10,10 @@ import {
 	resolveSpartanVersion,
 	validateManifest,
 	type PublicationFileSystem,
+	type RegistryManifest,
+	type RegistryReleaseIndex,
 } from './generators';
+import { buildMcpCatalog, type McpCatalogSource } from './mcp-catalog';
 
 const fixtureRoots: string[] = [];
 
@@ -130,6 +134,45 @@ describe('registry publication configuration', () => {
 	});
 });
 
+describe('checked-in registry artifacts', () => {
+	it('keeps the manifest, MCP catalog, current release, and blobs coherent', () => {
+		const registryRoot = path.join(process.cwd(), 'public/registry');
+		const manifest = JSON.parse(fs.readFileSync(path.join(registryRoot, 'manifest.json'), 'utf8')) as RegistryManifest;
+		const catalog = JSON.parse(fs.readFileSync(path.join(registryRoot, 'mcp/catalog.json'), 'utf8')) as {
+			registryVersion: string;
+			releaseIndexPath: string;
+			components: Array<{
+				id: string;
+				registryPath: string;
+				versions: Array<{ version: string; sourceHash: string }>;
+			}>;
+		};
+
+		assert.equal(catalog.registryVersion, manifest.latest);
+		assert.equal(catalog.releaseIndexPath, `/registry/releases/${manifest.latest}.json`);
+
+		const release = JSON.parse(
+			fs.readFileSync(path.join(registryRoot, 'releases', `${manifest.latest}.json`), 'utf8'),
+		) as RegistryReleaseIndex;
+		assert.equal(release.version, manifest.latest);
+
+		for (const component of catalog.components) {
+			const catalogRelease = component.versions.find((entry) => entry.version === manifest.latest);
+			assert.ok(catalogRelease, `${component.id} is missing current release metadata`);
+			assert.equal(catalogRelease.sourceHash, release.files[component.registryPath], component.id);
+
+			const blobPath = path.join(
+				registryRoot,
+				'blobs',
+				catalogRelease.sourceHash.slice(0, 2),
+				`${catalogRelease.sourceHash}.json`,
+			);
+			const blob = JSON.parse(fs.readFileSync(blobPath, 'utf8')) as { content: string };
+			assert.equal(createHash('sha256').update(blob.content).digest('hex'), catalogRelease.sourceHash, component.id);
+		}
+	});
+});
+
 describe('transactional registry publication', () => {
 	it('publishes deterministic release indexes and deduplicated content blobs without a legacy alias', () => {
 		const rootDir = createFixture();
@@ -169,8 +212,114 @@ describe('transactional registry publication', () => {
 		assert.equal(index.files['button-01'].length, 64);
 		assert.equal(fs.existsSync(path.join(rootDir, 'public/registry/button-01.json')), false);
 		assert.equal(countRegistryBlobs(rootDir), 3);
+		const catalog = JSON.parse(read('public/registry/mcp/catalog.json', rootDir)) as {
+			schemaVersion: number;
+			registryVersion: string;
+			components: Array<{ id: string; simDependencies: string[]; versions: Array<{ version: string }> }>;
+		};
+		assert.equal(catalog.schemaVersion, 1);
+		assert.equal(catalog.registryVersion, '1.0.2');
+		assert.deepEqual(
+			catalog.components.map((component) => component.id),
+			['button-01', 'card-01'],
+		);
+		assert.deepEqual(catalog.components[0]?.simDependencies, ['sim/demo/index']);
+		assert.deepEqual(catalog.components[0]?.versions, [{ version: '1.0.2', sourceHash: index.files['button-01'] }]);
 		assert.equal(fs.existsSync(path.join(rootDir, 'public/registry/stale.json')), false);
 		assert.deepEqual(toolArtifacts(rootDir), []);
+	});
+
+	it('publishes the MCP catalog deterministically', () => {
+		const rootDir = createFixture();
+		const now = new Date('2026-07-26T14:30:00.000Z');
+		publishRegistry({ rootDir, now, log: () => undefined });
+		const firstCatalog = read('public/registry/mcp/catalog.json', rootDir);
+
+		publishRegistry({ rootDir, now, log: () => undefined });
+
+		assert.equal(read('public/registry/mcp/catalog.json', rootDir), firstCatalog);
+		assert.deepEqual(toolArtifacts(rootDir), []);
+	});
+
+	it('rejects missing, stale, duplicate, and invalid component metadata', () => {
+		const cases: Array<[string, (source: McpCatalogSource) => void, RegExp]> = [
+			[
+				'missing',
+				(source) => {
+					source.categories.shift();
+				},
+				/missing: button-01/,
+			],
+			[
+				'stale',
+				(source) => {
+					source.categories[0]!.componentIds.push('button-99');
+				},
+				/stale: button-99/,
+			],
+			[
+				'duplicate',
+				(source) => {
+					source.categories[1]!.componentIds.unshift('button-01');
+				},
+				/duplicate component ID "button-01"/,
+			],
+			[
+				'preview path',
+				(source) => {
+					source.categories[0]!.previewPath = '/components/not-button';
+				},
+				/invalid preview path/,
+			],
+		];
+
+		for (const [label, mutate, expected] of cases) {
+			const rootDir = createFixture();
+			const source = catalogSource();
+			mutate(source);
+			write('src/tools/mcp-component-catalog.json', JSON.stringify(source), rootDir);
+			assert.throws(() => publishRegistry({ rootDir, log: () => undefined }), expected, label);
+			assert.equal(fs.existsSync(path.join(rootDir, 'public/registry/manifest.json')), false);
+		}
+	});
+
+	it('rejects unresolved and undeclared component dependencies', () => {
+		for (const [source, expected] of [
+			["import '@sim/missing'; export class Button01Component {}", /does not resolve in registry/],
+			["import 'unlisted-package'; export class Button01Component {}", /without a package\.json dependency/],
+		] as const) {
+			const rootDir = createFixture();
+			write('src/app/features/component-showcase/categories/button/examples/button-01.component.ts', source, rootDir);
+			assert.throws(() => publishRegistry({ rootDir, log: () => undefined }), expected);
+			assert.equal(fs.existsSync(path.join(rootDir, 'public/registry/manifest.json')), false);
+		}
+	});
+
+	it('rejects catalog components without support for the current release', () => {
+		assert.throws(
+			() =>
+				buildMcpCatalog({
+					source: catalogSource(),
+					registryVersion: '1.0.2',
+					spartanVersion: '1.0.2',
+					releases: [],
+					releaseIndexes: new Map([
+						[
+							'1.0.2',
+							{
+								version: '1.0.2',
+								files: {
+									'button-01': 'button-hash',
+									'card-01': 'card-hash',
+								},
+							},
+						],
+					]),
+					packageJson: {},
+					readRegistrySource: () => '',
+				}),
+			/does not support the current registry version/,
+		);
 	});
 
 	it('refuses publication when the chronological changelog is empty', () => {
@@ -293,7 +442,7 @@ function createFixture(): string {
 	);
 	write(
 		'src/app/features/component-showcase/categories/button/examples/button-01.component.ts',
-		'export class Button01Component {}',
+		'import \'@sim/demo\'; const template = \'<x [startDate]="from" [endDate]="value">\'; export class Button01Component {}',
 		rootDir,
 	);
 	write(
@@ -318,8 +467,39 @@ function createFixture(): string {
 		}),
 		rootDir,
 	);
+	write('src/tools/mcp-component-catalog.json', JSON.stringify(catalogSource()), rootDir);
 	write('public/registry/stale.json', '{"content":"stale"}', rootDir);
 	return rootDir;
+}
+
+function catalogSource(): McpCatalogSource {
+	return {
+		schemaVersion: 1,
+		categories: [
+			{
+				id: 'button',
+				label: 'Button',
+				description: 'An interactive control that triggers an action.',
+				tags: ['action', 'button'],
+				useCases: ['Form actions'],
+				searchAliases: ['trigger'],
+				previewPath: '/components/button',
+				setupNotes: ['Use a native button interaction.'],
+				componentIds: ['button-01'],
+			},
+			{
+				id: 'card',
+				label: 'Card',
+				description: 'A bounded surface that groups related content.',
+				tags: ['card', 'surface'],
+				useCases: ['Content summaries'],
+				searchAliases: ['panel'],
+				previewPath: '/components/card',
+				setupNotes: ['Preserve a clear heading hierarchy.'],
+				componentIds: ['card-01'],
+			},
+		],
+	};
 }
 
 function seedHistoricalRelease(rootDir: string, components = ['alert-01', 'button-01']): void {

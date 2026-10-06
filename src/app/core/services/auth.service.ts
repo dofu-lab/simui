@@ -12,6 +12,25 @@ const REFRESH_BUFFER_SECONDS = 5 * 60; // 5 minutes
 
 // Max number of consecutive silent-refresh retries before forcing sign-out
 const MAX_REFRESH_RETRIES = 3;
+const MCP_RETURN_TARGET_KEY = 'simui_mcp_return_target';
+const REQUEST_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+export function isSafeMcpReturnTarget(target: string, origin: string): boolean {
+	try {
+		const url = new URL(target, origin);
+		const keys = [...url.searchParams.keys()];
+		return (
+			url.origin === origin &&
+			url.pathname === '/mcp/authorize' &&
+			!url.hash &&
+			keys.length === 1 &&
+			keys[0] === 'requestId' &&
+			REQUEST_ID_PATTERN.test(url.searchParams.get('requestId') ?? '')
+		);
+	} catch {
+		return false;
+	}
+}
 
 @Service()
 export class AuthService implements OnDestroy {
@@ -246,8 +265,15 @@ export class AuthService implements OnDestroy {
 	/**
 	 * Initiates Google OAuth flow by redirecting to Google's consent screen
 	 */
-	signInWithGoogle(): void {
+	signInWithGoogle(returnTarget?: string): void {
 		if (!this.isBrowser) return;
+
+		const candidate = returnTarget ?? `${window.location.pathname}${window.location.search}`;
+		if (isSafeMcpReturnTarget(candidate, window.location.origin)) {
+			sessionStorage.setItem(MCP_RETURN_TARGET_KEY, candidate);
+		} else {
+			sessionStorage.removeItem(MCP_RETURN_TARGET_KEY);
+		}
 
 		const params = new URLSearchParams({
 			client_id: environment.googleClientId,
@@ -259,6 +285,13 @@ export class AuthService implements OnDestroy {
 		});
 
 		window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
+	}
+
+	consumePostSignInReturnTarget(): string {
+		if (!this.isBrowser) return '/';
+		const target = sessionStorage.getItem(MCP_RETURN_TARGET_KEY);
+		sessionStorage.removeItem(MCP_RETURN_TARGET_KEY);
+		return target && isSafeMcpReturnTarget(target, window.location.origin) ? target : '/';
 	}
 
 	/**
