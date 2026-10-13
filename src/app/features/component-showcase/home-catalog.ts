@@ -3,6 +3,8 @@ import { accordionComponents } from './categories/accordion/accordion.registry';
 import { AccordionThumbnailComponent } from './categories/accordion/accordion.thumbnail';
 import { alertComponents } from './categories/alert/alert.registry';
 import { AlertThumbnailComponent } from './categories/alert/alert.thumbnail';
+import { attachmentComponents } from './categories/attachment/attachment.registry';
+import { AttachmentThumbnailComponent } from './categories/attachment/attachment.thumbnail';
 import { avatarComponents } from './categories/avatar/avatar.registry';
 import { AvatarThumbnailComponent } from './categories/avatar/avatar.thumbnail';
 import { badgeComponents } from './categories/badge/badge.registry';
@@ -52,6 +54,13 @@ import { tabsComponents } from './categories/tabs/tabs.registry';
 import { TabsThumbnailComponent } from './categories/tabs/tabs.thumbnail';
 
 export const previewComponents: ComponentInfo[] = [
+	{
+		name: 'Attachment',
+		compNumber: attachmentComponents.length,
+		thumbnail: AttachmentThumbnailComponent,
+		path: 'components/attachment',
+		isNew: true,
+	},
 	{
 		name: 'Sidebar',
 		compNumber: sidebarComponents.length,

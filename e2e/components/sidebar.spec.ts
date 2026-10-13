@@ -105,13 +105,13 @@ test.describe('Sidebar advanced variants', () => {
 		await page.getByRole('menuitem', { name: /Mobile launch/ }).click();
 
 		await expect(projectTrigger).toContainText('Mobile launch');
-		await expect(host.getByLabel('Project health')).toContainText('Needs attention');
+		await expect(host.getByLabel('Project health')).toContainText('Attention');
 		await expect(host.getByLabel('Project health')).toContainText('0%');
 		await expect(host.getByLabel('Project health')).toContainText('0/16 tasks');
 		await expect(host.getByText('No teammates assigned yet.')).toBeVisible();
 		await expect(host.getByText('No upcoming milestones.')).toBeVisible();
 
-		const addTrigger = host.getByRole('button', { name: 'Add new' });
+		const addTrigger = host.getByRole('button', { name: 'Create new' });
 		await addTrigger.click();
 		const menu = page.getByRole('menu');
 		for (const item of ['Task', 'Milestone', 'File', 'Teammate']) {

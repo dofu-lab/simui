@@ -648,7 +648,7 @@ test.describe('Card', () => {
 			await card.scrollIntoViewIfNeeded();
 			await card.getByRole('button', { name: /add event/i }).click();
 			await expect(card.locator('input[placeholder="What\'s on?"]')).toBeVisible({ timeout: 3000 });
-			await expect.soft(card).toHaveScreenshot('card/card-15-form-open.png');
+			await expect.soft(card.locator('sim-card-15')).toHaveScreenshot('card/card-15-form-open.png');
 		});
 
 		test('snapshot — after adding an event', async ({ page }) => {
@@ -662,7 +662,7 @@ test.describe('Card', () => {
 			await selectMeetingCategory(card);
 			await card.getByRole('button', { name: /^Add$/ }).click();
 			await expect(card.getByText('Team standup')).toBeVisible({ timeout: 3000 });
-			await expect.soft(card).toHaveScreenshot('card/card-15-event-added.png');
+			await expect.soft(card.locator('sim-card-15')).toHaveScreenshot('card/card-15-event-added.png');
 		});
 	});
 

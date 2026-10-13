@@ -111,11 +111,12 @@ describe('RegistryVersionService', () => {
 		expect(service.status()).toBe('ready');
 		expect(service.selectedVersion()).toBe('1.0.2');
 		expect(router.navigations).toEqual([]);
+		expect(localStorageService.removeItem).toHaveBeenCalledOnceWith(STORAGE_KEYS.SPARTAN_REGISTRY_VERSION);
 		expect(service.isComponentAvailable('button-02')).toBeTrue();
 		expect(service.selectedComparison()).toEqual(manifest.comparisons[0]);
 	});
 
-	it('consumes a published shared-link value into local storage and removes it from the browser URL', async () => {
+	it('consumes a published shared-link value for the session and removes it from the browser URL', async () => {
 		router.url = '/components/button?spartan=0.9.0&full=#button-01';
 		const service = TestBed.inject(RegistryVersionService);
 		http.expectOne('/registry/manifest.json').flush(manifest);
@@ -123,7 +124,6 @@ describe('RegistryVersionService', () => {
 
 		expect(service.selectedVersion()).toBe('0.9.0');
 		expect(service.selectedComparison()).toBeNull();
-		expect(localStorageService.setItem).toHaveBeenCalledWith(STORAGE_KEYS.SPARTAN_REGISTRY_VERSION, '0.9.0');
 		expect(router.navigations).toEqual([
 			{
 				url: '/components/button?full=#button-01',
@@ -132,28 +132,33 @@ describe('RegistryVersionService', () => {
 		]);
 
 		await service.selectVersion('1.0.2');
-		expect(localStorageService.setItem).toHaveBeenCalledWith(STORAGE_KEYS.SPARTAN_REGISTRY_VERSION, '1.0.2');
+		expect(service.selectedVersion()).toBe('1.0.2');
 		expect(router.navigations).toHaveSize(1);
 	});
 
-	it('restores a saved selection when the URL does not specify a version', async () => {
+	it('ignores a saved selection and defaults to latest when the app opens', async () => {
 		localStorageService.getItem.and.returnValue('0.9.0');
 		const service = TestBed.inject(RegistryVersionService);
 		http.expectOne('/registry/manifest.json').flush(manifest);
 		await Promise.resolve();
 
-		expect(service.selectedVersion()).toBe('0.9.0');
+		expect(service.selectedVersion()).toBe('1.0.2');
+		expect(localStorageService.getItem).not.toHaveBeenCalled();
+		expect(localStorageService.removeItem).toHaveBeenCalledOnceWith(STORAGE_KEYS.SPARTAN_REGISTRY_VERSION);
 		expect(router.navigations).toEqual([]);
 	});
 
-	it('removes an unavailable saved version and falls back to latest', async () => {
-		localStorageService.getItem.and.returnValue('9.9.9');
+	it('keeps a session selection across completed navigations without an explicit version', async () => {
 		const service = TestBed.inject(RegistryVersionService);
 		http.expectOne('/registry/manifest.json').flush(manifest);
 		await Promise.resolve();
 
-		expect(service.selectedVersion()).toBe('1.0.2');
-		expect(localStorageService.removeItem).toHaveBeenCalledWith(STORAGE_KEYS.SPARTAN_REGISTRY_VERSION);
+		await service.selectVersion('0.9.0');
+		router.url = '/components/card';
+		router.events.next(new NavigationEnd(2, router.url, router.url));
+		await Promise.resolve();
+
+		expect(service.selectedVersion()).toBe('0.9.0');
 	});
 
 	it('synchronizes selection when browser history emits a completed navigation', async () => {
@@ -167,7 +172,6 @@ describe('RegistryVersionService', () => {
 		await Promise.resolve();
 
 		expect(service.selectedVersion()).toBe('0.9.0');
-		expect(localStorageService.setItem).toHaveBeenCalledWith(STORAGE_KEYS.SPARTAN_REGISTRY_VERSION, '0.9.0');
 		expect(router.navigations.at(-1)).toEqual({
 			url: '/components/button',
 			replaceUrl: true,

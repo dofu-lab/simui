@@ -27,6 +27,7 @@ export class RegistryVersionService {
 	private readonly manifestState = signal<RegistryManifest | null>(null);
 	private readonly selectedVersionState = signal<string | null>(null);
 	private readonly statusState = signal<RegistryManifestStatus>('loading');
+	private hasSynchronizedFromUrl = false;
 
 	public readonly manifest = this.manifestState.asReadonly();
 	public readonly selectedVersion = this.selectedVersionState.asReadonly();
@@ -91,7 +92,6 @@ export class RegistryVersionService {
 		}
 
 		this.selectedVersionState.set(version);
-		this.localStorageService.setItem(STORAGE_KEYS.SPARTAN_REGISTRY_VERSION, version);
 		return true;
 	}
 
@@ -102,19 +102,18 @@ export class RegistryVersionService {
 		const tree = this.router.parseUrl(this.router.url);
 		const queryValue = tree.queryParams['spartan'];
 		const requestedVersion = typeof queryValue === 'string' && isExactRegistryVersion(queryValue) ? queryValue : null;
-		const savedVersion = this.localStorageService.getItem<string>(STORAGE_KEYS.SPARTAN_REGISTRY_VERSION);
+		const isFirstSynchronization = !this.hasSynchronizedFromUrl;
+		this.hasSynchronizedFromUrl = true;
+		const currentVersion = this.selectedVersion();
 		const selectedVersion =
 			requestedVersion && this.isPublishedVersion(requestedVersion)
 				? requestedVersion
-				: savedVersion && this.isPublishedVersion(savedVersion)
-					? savedVersion
+				: !isFirstSynchronization && currentVersion && this.isPublishedVersion(currentVersion)
+					? currentVersion
 					: manifest.latest;
 
-		if (savedVersion && !this.isPublishedVersion(savedVersion)) {
+		if (isFirstSynchronization) {
 			this.localStorageService.removeItem(STORAGE_KEYS.SPARTAN_REGISTRY_VERSION);
-		}
-		if (requestedVersion && this.isPublishedVersion(requestedVersion)) {
-			this.localStorageService.setItem(STORAGE_KEYS.SPARTAN_REGISTRY_VERSION, requestedVersion);
 		}
 		this.selectedVersionState.set(selectedVersion);
 

@@ -241,6 +241,17 @@ export const routes: Routes = [
 				),
 			},
 			{
+				path: 'attachment',
+				loadComponent: () =>
+					import('@features/component-showcase/categories/attachment').then((m) => m.AttachmentComponent),
+				data: componentSeo(
+					'Attachment',
+					'attachment',
+					'Attachment components for file metadata, image previews, upload states, and grouped files.',
+					'attachment, file preview, upload status, angular component',
+				),
+			},
+			{
 				path: 'avatar',
 				loadComponent: () => import('@features/component-showcase/categories/avatar').then((m) => m.AvatarComponent),
 				data: componentSeo(

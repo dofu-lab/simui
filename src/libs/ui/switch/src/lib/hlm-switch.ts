@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { type ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { ChangeFn, TouchFn } from '@spartan-ng/brain/forms';
-import { BrnSwitch, type BrnSwitchSize, BrnSwitchThumb } from '@spartan-ng/brain/switch';
+import { BrnSwitch, type BrnSwitchSize } from '@spartan-ng/brain/switch';
 import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
 import { HlmSwitchThumb } from './hlm-switch-thumb';
@@ -24,7 +24,7 @@ export const HLM_SWITCH_VALUE_ACCESSOR = {
 
 @Component({
 	selector: 'hlm-switch',
-	imports: [BrnSwitchThumb, BrnSwitch, HlmSwitchThumb],
+	imports: [BrnSwitch, HlmSwitchThumb],
 	providers: [HLM_SWITCH_VALUE_ACCESSOR],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -39,14 +39,15 @@ export const HLM_SWITCH_VALUE_ACCESSOR = {
 			[class]="_computedClass()"
 			[size]="size()"
 			[checked]="checked()"
-			(checkedChange)="handleChange($event)"
-			(touched)="_onTouched?.()"
 			[disabled]="_disabled()"
 			[id]="inputId()"
+			[forceInvalid]="forceInvalid()"
 			[aria-label]="ariaLabel()"
 			[aria-labelledby]="ariaLabelledby()"
-			[aria-describedby]="ariaDescribedby()">
-			<brn-switch-thumb hlm />
+			[aria-describedby]="ariaDescribedby()"
+			(checkedChange)="handleChange($event)"
+			(touched)="_onTouched?.()">
+			<hlm-switch-thumb />
 		</brn-switch>
 	`,
 })
@@ -54,7 +55,7 @@ export class HlmSwitch implements ControlValueAccessor {
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
 	protected readonly _computedClass = computed(() =>
 		hlm(
-			'data-checked:bg-primary data-unchecked:bg-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 dark:data-unchecked:bg-input/80 rounded-full border border-transparent shadow-xs focus-visible:ring-3 data-[matches-spartan-invalid=true]:ring-3 data-[size=default]:h-[18.4px] data-[size=default]:w-[32px] data-[size=sm]:h-[14px] data-[size=sm]:w-[24px] group/switch inline-flex shrink-0 items-center transition-all outline-none data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
+			'data-checked:bg-primary data-unchecked:bg-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 dark:data-unchecked:bg-input/80 rounded-full border border-transparent shadow-xs focus-visible:ring-3 data-[matches-spartan-invalid=true]:ring-3 data-[size=default]:h-[18.4px] data-[size=default]:w-[32px] data-[size=sm]:h-[14px] data-[size=sm]:w-[24px] group/switch inline-flex shrink-0 items-center transition-all outline-none data-disabled:cursor-not-allowed data-disabled:opacity-50',
 			this.userClass(),
 		),
 	);
@@ -76,6 +77,9 @@ export class HlmSwitch implements ControlValueAccessor {
 
 	/** Used to set the id on the underlying brn element. */
 	public readonly inputId = input<string | null>(null);
+
+	/** Whether to force the input into an invalid state. */
+	public readonly forceInvalid = input<boolean, BooleanInput>(false, { transform: booleanAttribute });
 
 	/** Used to set the aria-label attribute on the underlying brn element. */
 	public readonly ariaLabel = input<string | null>(null, { alias: 'aria-label' });

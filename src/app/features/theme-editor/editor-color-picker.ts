@@ -54,7 +54,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 					</button>
 					<div
 						*hlmPopoverPortal="let ctx"
-						class="w-auto max-w-[calc(100vw-1rem)] bg-transparent p-0 shadow-none ring-0">
+						class="max-h-[calc(100dvh-1rem)] w-auto max-w-[calc(100vw-1rem)] overflow-y-auto bg-transparent p-0 shadow-none ring-0">
 						<sim-color-picker
 							[value]="pickerValue()"
 							[format]="pickerFormat()"

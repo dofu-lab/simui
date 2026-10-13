@@ -50,7 +50,7 @@ test.describe('Checkbox', () => {
 
 			await card.locator('button:has(ng-icon[name="lucideCode"])').click();
 			const sheet = page.getByRole('dialog');
-			await expect(sheet.getByRole('heading', { name: 'Code', level: 3 })).toBeVisible();
+			await expect(sheet.getByRole('heading', { name: /^Code for SpartanUI /, level: 4 })).toBeVisible();
 			await expect(sheet.locator('sim-code-preview').last().locator('pre')).toBeVisible();
 		});
 

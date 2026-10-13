@@ -3,13 +3,13 @@
 ## Project
 
 - Use `pnpm`; do not create npm or Yarn lockfiles.
-- This is an Angular 21 standalone-component application using strict TypeScript, Tailwind CSS v4, and SpartanUI.
+- This is an Angular 22 standalone-component application using strict TypeScript, Tailwind CSS v4, and SpartanUI.
 - Inspect nearby code before editing and preserve local naming, import, formatting, and registration patterns.
 
 ## Angular
 
 - Keep components standalone and use signal APIs for new reactive state where appropriate.
-- Prefer `ChangeDetectionStrategy.OnPush` for new stateful components when it fits the surrounding code.
+- Do not add explicit `ChangeDetectionStrategy.OnPush` declarations to components; this Angular 22 project uses OnPush change detection by default.
 - Use inline templates and Tailwind utilities; avoid adding component styles unless utilities cannot express the design.
 - Use semantic theme utilities such as `bg-background`, `text-foreground`, and `border-border` instead of hardcoded theme colors.
 - Import SpartanUI packages from specific entry points such as `@spartan-ng/helm/button`, never from the package root.

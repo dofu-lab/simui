@@ -42,7 +42,7 @@ test.describe('Theme editor OnPush migration', () => {
 		await picker.getByRole('button', { name: 'Select #f43f5e' }).click();
 		await expect(row.getByRole('textbox')).toHaveValue('#F43F5E');
 
-		await picker.getByRole('button', { name: 'Close color picker' }).click();
+		await page.keyboard.press('Escape');
 		await expect(picker).toBeHidden();
 		await expect(trigger).toBeFocused();
 	});

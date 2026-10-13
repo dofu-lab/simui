@@ -4,6 +4,7 @@ import { COMPONENT_IDS } from '../utils/component-ids';
 import { componentCard, snapshotVariants } from '../utils/visual.helpers';
 
 const COLOR_PICKER_ID = 'color-picker-01';
+const TEST_PRESET = '#737373';
 
 async function openColorPicker(page: Page): Promise<{ picker: Locator; trigger: Locator }> {
 	const card = componentCard(page, COLOR_PICKER_ID);
@@ -41,7 +42,7 @@ test.describe('Color Picker', () => {
 		});
 
 		await formatSelect(picker).selectOption('hsl');
-		await picker.getByRole('button', { name: 'Select #f43f5e' }).click();
+		await picker.getByRole('button', { name: `Select ${TEST_PRESET}` }).click();
 		const opacityInput = picker.getByRole('spinbutton', { name: 'Opacity percentage' });
 		await opacityInput.fill('40');
 		await opacityInput.press('Tab');
@@ -122,12 +123,12 @@ test.describe('Color Picker', () => {
 		await valueInput.fill('#7F56D980');
 		await valueInput.press('Enter');
 
-		const preset = picker.getByRole('button', { name: 'Select #f43f5e' });
+		const preset = picker.getByRole('button', { name: `Select ${TEST_PRESET}` });
 		await preset.click();
 
 		await expect(preset).toHaveAttribute('aria-pressed', 'true');
-		await expect(valueInput).toHaveValue('#F43F5E80');
-		await expect(trigger).toContainText('#F43F5E80');
+		await expect(valueInput).toHaveValue('#73737380');
+		await expect(trigger).toContainText('#73737380');
 		await expect(picker.getByRole('spinbutton', { name: 'Opacity percentage' })).toHaveValue('50');
 	});
 
@@ -140,17 +141,17 @@ test.describe('Color Picker', () => {
 		await opacityInput.fill('25');
 		await opacityInput.press('Tab');
 		await expect(opacitySlider).toHaveAttribute('aria-valuenow', '25');
-		await expect(valueInput).toHaveValue('#7F56D940');
+		await expect(valueInput).toHaveValue('#40404040');
 
 		await opacityInput.fill('120');
 		await opacityInput.press('Tab');
 		await expect(opacitySlider).toHaveAttribute('aria-valuenow', '100');
-		await expect(valueInput).toHaveValue('#7F56D9');
+		await expect(valueInput).toHaveValue('#404040');
 
 		await opacityInput.fill('-10');
 		await opacityInput.press('Tab');
 		await expect(opacitySlider).toHaveAttribute('aria-valuenow', '0');
-		await expect(valueInput).toHaveValue('#7F56D900');
+		await expect(valueInput).toHaveValue('#40404000');
 	});
 
 	test('supports keyboard and pointer interaction on the color surface', async ({ page }) => {
@@ -162,7 +163,7 @@ test.describe('Color Picker', () => {
 		await surface.press('ArrowRight');
 		await expect(surface).toHaveAttribute('aria-valuenow', String(initialSaturation + 1));
 		await surface.press('Shift+ArrowLeft');
-		await expect(surface).toHaveAttribute('aria-valuenow', String(initialSaturation - 9));
+		await expect(surface).toHaveAttribute('aria-valuenow', String(Math.max(0, initialSaturation - 9)));
 
 		const box = await surface.boundingBox();
 		expect(box).not.toBeNull();
