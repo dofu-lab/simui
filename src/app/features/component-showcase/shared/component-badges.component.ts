@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavigationService } from '@core/services/navigation.service';
-import { previewComponents } from '@features/component-showcase/home-catalog';
+import { componentCatalog } from '@features/component-showcase/category-catalog';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
@@ -35,7 +35,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ComponentBadgesComponent {
-	components = previewComponents;
+	components = componentCatalog;
 	private readonly navigationService = inject(NavigationService);
 	private readonly router = inject(Router);
 

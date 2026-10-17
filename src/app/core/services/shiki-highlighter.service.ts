@@ -1,6 +1,6 @@
 import { inject, Service } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { createHighlighter, type BundledLanguage, type BundledTheme, type Highlighter } from 'shiki/bundle/web';
+import type { BundledLanguage, BundledTheme, Highlighter } from 'shiki/bundle/web';
 
 export type CodePreviewLanguage = 'angular-ts' | 'angular-html' | 'ts' | 'js' | 'css' | 'json' | 'sh' | 'text';
 
@@ -24,12 +24,11 @@ export class ShikiHighlighterService {
 	private highlighterPromise?: Promise<Highlighter>;
 
 	async highlight(code: string, language: string): Promise<SafeHtml> {
-		const highlighter = await this.getHighlighter();
 		const lang = this.normalizeLanguage(language);
 		const html =
 			lang === 'text'
 				? this.renderPlainText(code)
-				: highlighter.codeToHtml(code, {
+				: (await this.getHighlighter()).codeToHtml(code, {
 						lang,
 						themes: {
 							light: 'github-light',
@@ -47,10 +46,9 @@ export class ShikiHighlighterService {
 	}
 
 	private getHighlighter(): Promise<Highlighter> {
-		this.highlighterPromise ??= createHighlighter({
-			langs: SHIKI_LANGUAGES,
-			themes: SHIKI_THEMES,
-		});
+		this.highlighterPromise ??= import('shiki/bundle/web').then(({ createHighlighter }) =>
+			createHighlighter({ langs: SHIKI_LANGUAGES, themes: SHIKI_THEMES }),
+		);
 
 		return this.highlighterPromise;
 	}

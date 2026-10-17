@@ -2,11 +2,12 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucidePaperclip, lucideUpload, lucideX } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState } from '@sim/file';
+import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 @Component({
 	selector: 'sim-file-upload-08',
-	imports: [NgIcon, FileDragDropDirective, HlmButtonImports, HlmIconImports],
+	imports: [NgIcon, FileDragDropDirective, HlmAttachmentImports, HlmButtonImports, HlmIconImports],
 	providers: [provideIcons({ lucideX, lucideCircleAlert, lucideUpload, lucidePaperclip })],
 	host: {
 		class: 'w-full max-w-[600px]',
@@ -33,22 +34,22 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 					</div>
 				</div>
 				@if (this.files().length > 0) {
-					<div class="space-y-2">
+					<div class="flex flex-col gap-2" role="list" aria-label="Uploaded files">
 						@for (file of this.files(); track file.id; let idx = $index) {
-							<div class="flex h-12.5 w-full items-center justify-start gap-3 rounded-[14px] border px-4 py-2">
-								<ng-icon hlm size="sm" name="lucidePaperclip" class="shrink-0 opacity-60" />
-								<span class="flex-1 text-[13px] font-medium">{{ file.file.name }}</span>
-								<div class="flex items-center">
+							<hlm-attachment size="sm" class="bg-muted w-full" role="listitem">
+								<hlm-attachment-content class="flex items-center gap-2">
+									<ng-icon hlm name="lucidePaperclip" size="sm" />
+									<span hlmAttachmentTitle>{{ file.file.name }}</span>
+								</hlm-attachment-content>
+								<hlm-attachment-actions>
 									<button
-										hlmBtn
-										size="icon"
-										variant="ghost"
-										class="focus-visible:border-ring focus-visible:ring-ring/50 text-muted-foreground/80 hover:text-foreground ease -me-2 inline-flex size-8 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-[color,box-shadow] duration-150 outline-none hover:bg-transparent focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 motion-reduce:transition-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+										hlmAttachmentAction
+										[attr.aria-label]="'Remove ' + file.file.name"
 										(click)="onRemoveImage(file.id)">
-										<ng-icon hlm name="lucideX" size="sm" />
+										<ng-icon hlm name="lucideX" size="xs" />
 									</button>
-								</div>
-							</div>
+								</hlm-attachment-actions>
+							</hlm-attachment>
 						}
 					</div>
 				}

@@ -18,6 +18,8 @@
 		"sitemap": "node scripts/generate-sitemap.js",
 		"start": "node scripts/set-env.js && ng serve",
 		"test": "ng test",
+		"test:ssr": "node --test scripts/ssr.spec.mjs",
+		"test:structure": "node --test scripts/component-catalog.spec.mjs",
 		"update-ui": "ng g @spartan-ng/cli:migrate-helm-libraries",
 		"watch": "ng build --watch --configuration development"
 	},
@@ -55,8 +57,7 @@
 		"posthog-js": "^1.395.0",
 		"rxjs": "~7.8.0",
 		"shiki": "4.3.0",
-		"tailwindcss": "^4.0.17",
-		"zone.js": "~0.15.0"
+		"tailwindcss": "^4.0.17"
 	},
 	"devDependencies": {
 		"@angular/build": "^22.0.3",

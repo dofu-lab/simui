@@ -2,12 +2,13 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideImageUp, lucideTrash2, lucideUpload, lucideX } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState } from '@sim/file';
+import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-06',
-	imports: [NgIcon, FileDragDropDirective, HlmButtonImports, HlmIconImports],
+	imports: [NgIcon, FileDragDropDirective, HlmAttachmentImports, HlmButtonImports, HlmIconImports],
 	providers: [provideIcons({ lucideX, lucideImageUp, lucideCircleAlert, lucideUpload, lucideTrash2 })],
 	host: {
 		class: 'w-full max-w-[600px]',
@@ -50,21 +51,26 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 									</button>
 								</div>
 							</div>
-							<div class="grid grid-cols-2 gap-4 md:grid-cols-3">
+							<div class="grid grid-cols-2 gap-4 md:grid-cols-3" role="list" aria-label="Uploaded images">
 								@for (file of files(); track file.id; let idx = $index) {
-									<div class="relative aspect-square rounded-md">
+									<hlm-attachment
+										class="relative aspect-square w-full min-w-0! overflow-visible rounded-lg border-0 bg-transparent p-0 shadow-none"
+										role="listitem">
 										<img
 											class="size-full rounded-[inherit] object-cover"
 											[src]="file.preview"
-											alt="Preview of uploaded image" />
-										<button
-											hlmBtn
-											size="icon"
-											class="border-background absolute -top-2 -right-2 size-6 cursor-pointer rounded-full border-2"
-											(click)="onRemoveImage(file.id)">
-											<ng-icon hlm name="lucideX" size="xs" />
-										</button>
-									</div>
+											[alt]="file.file.name + ' preview'" />
+										<hlm-attachment-actions class="absolute -end-2 -top-2">
+											<button
+												hlmAttachmentAction
+												variant="default"
+												class="border-background rounded-full border-2"
+												[attr.aria-label]="'Remove ' + file.file.name"
+												(click)="onRemoveImage(file.id)">
+												<ng-icon hlm name="lucideX" size="xs" />
+											</button>
+										</hlm-attachment-actions>
+									</hlm-attachment>
 								}
 							</div>
 						</div>

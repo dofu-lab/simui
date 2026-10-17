@@ -102,12 +102,9 @@ describe('PageGridComponent full view', () => {
 		expect(router.url).toBe('/components/button?spartan=1.0.2&theme=dark&full=#button-01');
 	});
 
-	it('preloads manifest-available components for the selected version', () => {
-		expect(codeLoaderService.preloadComponents).toHaveBeenCalled();
-		const [version, ids, isAvailable] = codeLoaderService.preloadComponents.calls.mostRecent().args;
-		expect(version).toBe('1.0.2');
-		expect(ids).toEqual(['button-01', 'button-02']);
-		expect(isAvailable?.('button-01')).toBeTrue();
+	it('does not fetch registry source while browsing the grid', () => {
+		expect(codeLoaderService.preloadComponents).not.toHaveBeenCalled();
+		expect(codeLoaderService.loadComponentCode).not.toHaveBeenCalled();
 	});
 
 	it('moves between components without closing full view', () => {

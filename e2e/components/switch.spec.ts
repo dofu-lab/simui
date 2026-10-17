@@ -1,6 +1,6 @@
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { componentCard, snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, componentPreview, snapshotVariants } from '../utils/visual.helpers';
 
 function oppositeState(state: string | null): 'true' | 'false' {
 	return state === 'true' ? 'false' : 'true';
@@ -30,7 +30,7 @@ test.describe('Switch', () => {
 
 	test('visual regression — opposite state for enabled variants', async ({ page }) => {
 		for (const id of COMPONENT_IDS.switch) {
-			const card = componentCard(page, id);
+			const card = await componentPreview(page, id);
 			const isPresent = await card
 				.waitFor({ state: 'visible', timeout: 5000 })
 				.then(() => true)

@@ -20,7 +20,6 @@
 						"outputPath": "dist/simui",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
-						"polyfills": ["zone.js"],
 						"tsConfig": "tsconfig.app.json",
 						"inlineStyleLanguage": "css",
 						"assets": [
@@ -37,7 +36,7 @@
 						"styles": ["src/styles.css"],
 						"scripts": [],
 						"server": "src/main.server.ts",
-						"prerender": true,
+						"outputMode": "server",
 						"ssr": {
 							"entry": "src/server.ts"
 						}
@@ -95,7 +94,6 @@
 				"test": {
 					"builder": "@angular/build:karma",
 					"options": {
-						"polyfills": ["zone.js", "zone.js/testing"],
 						"tsConfig": "tsconfig.spec.json",
 						"inlineStyleLanguage": "css",
 						"assets": [

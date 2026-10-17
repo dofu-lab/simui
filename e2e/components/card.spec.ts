@@ -1,6 +1,6 @@
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { componentCard, snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, componentPreview, snapshotVariants } from '../utils/visual.helpers';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -14,9 +14,22 @@ async function isCardPresent(card: ReturnType<import('@playwright/test').Page['l
 }
 
 async function selectMeetingCategory(card: ReturnType<import('@playwright/test').Page['locator']>): Promise<void> {
-	const meetingSwatch = card.locator('label[for="meeting"] div').last();
-	await meetingSwatch.click({ force: true });
+	await card.locator('label[for="meeting"]').dispatchEvent('click');
 	await expect(card.getByText('Meeting')).toBeVisible({ timeout: 3000 });
+}
+
+async function completeOnboarding(card: ReturnType<import('@playwright/test').Page['locator']>): Promise<void> {
+	for (let i = 0; i < 4; i++) {
+		const item = card.locator('hlm-accordion-item').nth(i);
+		await expect(item.locator('button[data-slot="accordion-trigger"]')).toHaveAttribute('aria-expanded', 'true');
+		await item.getByRole('button', { name: 'Got it', exact: true }).dispatchEvent('click');
+		const remaining = 3 - i;
+		await expect(
+			card.getByText(remaining ? `${remaining} ${remaining === 1 ? 'step' : 'steps'} left` : 'All done', {
+				exact: true,
+			}),
+		).toBeVisible();
+	}
 }
 
 // Fixed date so card-15 (calendar) always renders the same month/day regardless of when the test runs.
@@ -61,7 +74,11 @@ test.describe('Card', () => {
 	test('visual regression — all variants', async ({ page }) => {
 		// card-12 shows live exchange rates and card-14 shows pipeline timing —
 		// both change per render. 4% tolerance accommodates the dynamic number pixels.
-		await snapshotVariants(page, 'card', COMPONENT_IDS.card, { maxDiffPixelRatio: 0.04 });
+		await snapshotVariants(page, 'card', COMPONENT_IDS.card, { maxDiffPixelRatio: 0.04 }, async (preview, id) => {
+			if (id === 'card-14') {
+				await expect(preview.getByRole('button', { name: 'Re-run' })).toBeVisible({ timeout: 20_000 });
+			}
+		});
 	});
 
 	// -------------------------------------------------------------------------
@@ -102,7 +119,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — filled form', async ({ page }) => {
-			const card = componentCard(page, 'card-01');
+			const card = await componentPreview(page, 'card-01');
 			await card.scrollIntoViewIfNeeded();
 			await card.locator('input[type="text"]').first().fill('My Project');
 			await expect.soft(card).toHaveScreenshot('card/card-01-filled.png');
@@ -140,7 +157,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — filled login form', async ({ page }) => {
-			const card = componentCard(page, 'card-02');
+			const card = await componentPreview(page, 'card-02');
 			await card.scrollIntoViewIfNeeded();
 			await card.locator('input[type="email"]').first().fill('user@example.com');
 			await card.locator('input[type="password"]').first().fill('s3cr3t!');
@@ -263,8 +280,7 @@ test.describe('Card', () => {
 
 			await card.getByRole('button', { name: 'Change send currency' }).click();
 
-			const after = await rateBadge.innerText();
-			expect(after).not.toEqual(before);
+			await expect.poll(() => rateBadge.innerText()).not.toEqual(before);
 		});
 
 		test('cycle receive currency changes the rate badge', async ({ page }) => {
@@ -314,7 +330,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — after currency swap', async ({ page }) => {
-			const card = componentCard(page, 'card-12');
+			const card = await componentPreview(page, 'card-12');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-12 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -380,15 +396,8 @@ test.describe('Card', () => {
 			test.skip(!present, 'card-13 is not rendered');
 			await card.scrollIntoViewIfNeeded();
 
-			// Complete all 4 steps — always click within the currently open accordion item
-			for (let i = 0; i < 4; i++) {
-				const gotItBtn = card
-					.locator('hlm-accordion-item[data-state="open"] button')
-					.filter({ hasText: /got it/i })
-					.first();
-				if ((await gotItBtn.count()) === 0) break;
-				await gotItBtn.click();
-			}
+			// Complete all 4 steps using the currently open accordion item’s button
+			await completeOnboarding(card);
 
 			await expect(card.getByText("You're all set")).toBeVisible({ timeout: 3000 });
 			const startOverBtn = card.getByRole('button', { name: 'Start over' });
@@ -402,14 +411,7 @@ test.describe('Card', () => {
 			await card.scrollIntoViewIfNeeded();
 
 			// Complete all steps first
-			for (let i = 0; i < 4; i++) {
-				const gotItBtn = card
-					.locator('hlm-accordion-item[data-state="open"] button')
-					.filter({ hasText: /got it/i })
-					.first();
-				if ((await gotItBtn.count()) === 0) break;
-				await gotItBtn.click();
-			}
+			await completeOnboarding(card);
 
 			await card.getByRole('button', { name: 'Start over' }).click();
 
@@ -418,7 +420,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — after first step completed', async ({ page }) => {
-			const card = componentCard(page, 'card-13');
+			const card = await componentPreview(page, 'card-13');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-13 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -431,18 +433,11 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — all steps completed', async ({ page }) => {
-			const card = componentCard(page, 'card-13');
+			const card = await componentPreview(page, 'card-13');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-13 is not rendered');
 			await card.scrollIntoViewIfNeeded();
-			for (let i = 0; i < 4; i++) {
-				const gotItBtn = card
-					.locator('hlm-accordion-item[data-state="open"] button')
-					.filter({ hasText: /got it/i })
-					.first();
-				if ((await gotItBtn.count()) === 0) break;
-				await gotItBtn.click();
-			}
+			await completeOnboarding(card);
 			// Wait for the completion state to fully render (accordion animations settle)
 			await expect(card.getByText("You're all set")).toBeVisible({ timeout: 5000 });
 			await expect(card.getByRole('button', { name: 'Start over' })).toBeVisible({ timeout: 5000 });
@@ -465,7 +460,7 @@ test.describe('Card', () => {
 						requestAnimationFrame(check);
 					}),
 			);
-			await expect.soft(card.locator('sim-card-13')).toHaveScreenshot('card/card-13-done.png');
+			await expect.soft(card).toHaveScreenshot('card/card-13-done.png');
 		});
 	});
 
@@ -510,7 +505,7 @@ test.describe('Card', () => {
 
 		test('snapshot — pipeline completed state', async ({ page }) => {
 			test.setTimeout(30_000);
-			const card = componentCard(page, 'card-14');
+			const card = await componentPreview(page, 'card-14');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-14 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -642,17 +637,17 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — event form open', async ({ page }) => {
-			const card = componentCard(page, 'card-15');
+			const card = await componentPreview(page, 'card-15');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-15 is not rendered');
 			await card.scrollIntoViewIfNeeded();
 			await card.getByRole('button', { name: /add event/i }).click();
 			await expect(card.locator('input[placeholder="What\'s on?"]')).toBeVisible({ timeout: 3000 });
-			await expect.soft(card.locator('sim-card-15')).toHaveScreenshot('card/card-15-form-open.png');
+			await expect.soft(card).toHaveScreenshot('card/card-15-form-open.png');
 		});
 
 		test('snapshot — after adding an event', async ({ page }) => {
-			const card = componentCard(page, 'card-15');
+			const card = await componentPreview(page, 'card-15');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-15 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -662,7 +657,7 @@ test.describe('Card', () => {
 			await selectMeetingCategory(card);
 			await card.getByRole('button', { name: /^Add$/ }).click();
 			await expect(card.getByText('Team standup')).toBeVisible({ timeout: 3000 });
-			await expect.soft(card.locator('sim-card-15')).toHaveScreenshot('card/card-15-event-added.png');
+			await expect.soft(card).toHaveScreenshot('card/card-15-event-added.png');
 		});
 	});
 
@@ -771,7 +766,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — all tools disabled', async ({ page }) => {
-			const card = componentCard(page, 'card-16');
+			const card = await componentPreview(page, 'card-16');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-16 is not rendered');
 			await card.scrollIntoViewIfNeeded();
@@ -783,7 +778,7 @@ test.describe('Card', () => {
 		});
 
 		test('snapshot — all tools enabled', async ({ page }) => {
-			const card = componentCard(page, 'card-16');
+			const card = await componentPreview(page, 'card-16');
 			const present = await isCardPresent(card);
 			test.skip(!present, 'card-16 is not rendered');
 			await card.scrollIntoViewIfNeeded();

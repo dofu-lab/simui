@@ -2,8 +2,7 @@ import type { FilePayload, Locator, Page } from '@playwright/test';
 import { Buffer } from 'node:buffer';
 import { join } from 'node:path';
 import { expect, test } from '../fixtures/base.fixture';
-import { COMPONENT_IDS } from '../utils/component-ids';
-import { componentCard, snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, componentPreview, snapshotVariants } from '../utils/visual.helpers';
 
 const TEST_IMAGE_NAME = 'bg-01.jpg';
 const TEST_IMAGE_PATH = join(process.cwd(), 'src/assets/backgrounds', TEST_IMAGE_NAME);
@@ -119,8 +118,10 @@ const uploadedStateConfigs: Record<string, UploadedStateConfig> = {
 	},
 };
 
+const FILE_UPLOAD_IDS = Object.keys(uploadedStateConfigs);
+
 async function uploadFilesInCard(page: Page, cardId: string, files: string | string[] | FilePayload | FilePayload[]) {
-	const card = componentCard(page, cardId);
+	const card = await componentPreview(page, cardId);
 	const input = card.locator('input[type="file"]');
 	await expect(card).toBeVisible();
 	await input.setInputFiles(files);
@@ -128,7 +129,7 @@ async function uploadFilesInCard(page: Page, cardId: string, files: string | str
 }
 
 async function prepareUploadedState(page: Page, cardId: string): Promise<Locator> {
-	const card = componentCard(page, cardId);
+	const card = await componentPreview(page, cardId);
 	const config = uploadedStateConfigs[cardId];
 
 	await expect(card).toBeVisible();
@@ -151,11 +152,11 @@ test.describe('File Upload', () => {
 	});
 
 	test('visual regression — all variants', async ({ page }) => {
-		await snapshotVariants(page, 'file-upload', COMPONENT_IDS['file-upload']);
+		await snapshotVariants(page, 'file-upload', FILE_UPLOAD_IDS);
 	});
 
 	test('visual regression — uploaded states', async ({ page }) => {
-		for (const id of COMPONENT_IDS['file-upload']) {
+		for (const id of FILE_UPLOAD_IDS) {
 			const card = await prepareUploadedState(page, id);
 			await card.scrollIntoViewIfNeeded();
 			await expect.soft(card).toHaveScreenshot(`file-upload/uploaded-${id}.png`);

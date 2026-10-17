@@ -1,13 +1,13 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { componentCard, snapshotVariants } from '../utils/visual.helpers';
+import { componentPreview, snapshotVariants } from '../utils/visual.helpers';
 
 const COLOR_PICKER_ID = 'color-picker-01';
 const TEST_PRESET = '#737373';
 
 async function openColorPicker(page: Page): Promise<{ picker: Locator; trigger: Locator }> {
-	const card = componentCard(page, COLOR_PICKER_ID);
+	const card = await componentPreview(page, COLOR_PICKER_ID);
 	await page.evaluate(() => {
 		document.body.style.paddingBottom = '32rem';
 	});

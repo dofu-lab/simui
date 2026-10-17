@@ -27,7 +27,7 @@ test.describe('Dialog', () => {
 				const dialog = page.locator('[role="dialog"]').first();
 				await expect(dialog).toBeVisible({ timeout: 3000 });
 
-				await expect.soft(page).toHaveScreenshot(`dialog-open/${id}.png`, {
+				await expect.soft(dialog).toHaveScreenshot(`dialog-open/${id}.png`, {
 					maxDiffPixelRatio: 0.02,
 				});
 

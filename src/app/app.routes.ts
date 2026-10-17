@@ -3,13 +3,6 @@ import { authGuard } from '@core/guards/auth.guard';
 import { unsavedChangesGuard } from '@core/guards/unsaved-changes.guard';
 import { SEO_SITE_ORIGIN } from '@core/services/seo.constants';
 import { SeoRouteData } from '@core/services/seo.types';
-import { GoogleCallbackComponent } from '@features/auth/google-callback.page';
-import { HomeComponent } from '@features/home/home.page';
-import { IntroductionComponent } from '@features/introduction/introduction.page';
-import { PaymentSuccessComponent } from '@features/payment/payment-success.page';
-import { PricingComponent } from '@features/pricing/pricing.page';
-import { ProfileSettingsComponent } from '@features/profile/profile-settings.page';
-import { ThemeEditor } from '@features/theme-editor/theme-editor.page';
 
 const componentSeo = (name: string, path: string, description: string, keywords: string): SeoRouteData => ({
 	title: `${name} Angular Components`,
@@ -40,7 +33,7 @@ const componentSeo = (name: string, path: string, description: string, keywords:
 export const routes: Routes = [
 	{
 		path: '',
-		component: HomeComponent,
+		loadComponent: () => import('@features/home/home.page').then((m) => m.HomeComponent),
 		data: {
 			title: 'SimUI - Angular UI Components Built With Spartan UI',
 			description:
@@ -100,7 +93,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'profile',
-		component: ProfileSettingsComponent,
+		loadComponent: () => import('@features/profile/profile-settings.page').then((m) => m.ProfileSettingsComponent),
 		canActivate: [authGuard],
 		data: {
 			title: 'Profile Settings - SimUI',
@@ -131,7 +124,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'introduction',
-		component: IntroductionComponent,
+		loadComponent: () => import('@features/introduction/introduction.page').then((m) => m.IntroductionComponent),
 		data: {
 			title: 'SimUI Introduction',
 			description:
@@ -170,7 +163,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'theme-editor',
-		component: ThemeEditor,
+		loadComponent: () => import('@features/theme-editor/theme-editor.page').then((m) => m.ThemeEditor),
 		canDeactivate: [unsavedChangesGuard],
 		data: {
 			title: 'Angular Theme Editor',
@@ -189,7 +182,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'auth/google/callback',
-		loadComponent: () => Promise.resolve(GoogleCallbackComponent),
+		loadComponent: () => import('@features/auth/google-callback.page').then((m) => m.GoogleCallbackComponent),
 		data: {
 			title: 'Signing in...',
 			description: 'Google authentication callback',
@@ -197,7 +190,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'pricing',
-		loadComponent: () => Promise.resolve(PricingComponent),
+		loadComponent: () => import('@features/pricing/pricing.page').then((m) => m.PricingComponent),
 		data: {
 			title: 'SimUI Pricing',
 			description:
@@ -208,7 +201,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'payment/success',
-		loadComponent: () => Promise.resolve(PaymentSuccessComponent),
+		loadComponent: () => import('@features/payment/payment-success.page').then((m) => m.PaymentSuccessComponent),
 		canActivate: [authGuard],
 		data: {
 			title: 'Subscription Activated - SimUI',

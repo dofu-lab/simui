@@ -1,6 +1,6 @@
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { componentCard, snapshotVariants } from '../utils/visual.helpers';
+import { componentCard, componentPreview, snapshotVariants } from '../utils/visual.helpers';
 
 test.describe('Checkbox', () => {
 	test.beforeEach(async ({ navigateToComponent }) => {
@@ -62,7 +62,7 @@ test.describe('Checkbox', () => {
 						'checkbox-13 includes interactive label content and is covered by behavior tests',
 					);
 
-					const card = componentCard(page, id);
+					const card = await componentPreview(page, id);
 					const isPresent = await card
 						.waitFor({ state: 'visible', timeout: 5000 })
 						.then(() => true)
@@ -79,32 +79,15 @@ test.describe('Checkbox', () => {
 					const isDisabled = await checkbox.isDisabled();
 					test.skip(isDisabled, `${id} is disabled and is covered by the disabled behavior test`);
 
-					const initialCheckboxState = (await checkbox.getAttribute('aria-checked')) ?? 'false';
-					if (initialCheckboxState !== 'true') {
-						await checkbox.click({ force: true });
-						if ((await checkbox.getAttribute('aria-checked')) !== 'true') {
-							const checkboxId = await checkbox.getAttribute('id');
-							if (checkboxId) {
-								const label = card.locator(`label[for="${checkboxId}"]`).first();
-								if ((await label.count()) > 0) {
-									await label.click({ force: true });
-								}
-							}
-						}
+					if ((await checkbox.getAttribute('aria-checked')) !== 'true') {
+						const checkboxId = await checkbox.getAttribute('id');
+						const label = card.locator(`label[for="${checkboxId}"]`).first();
+						await ((await label.count()) ? label : checkbox).click();
 					}
-
-					const checkedState = await checkbox.getAttribute('aria-checked');
-					test.skip(checkedState !== 'true', `${id} does not expose a toggleable checked state`);
+					await expect(checkbox).toHaveAttribute('aria-checked', 'true');
 
 					if (id === 'checkbox-09') {
-						const emailInput = card.getByPlaceholder('Enter your email address');
-						if (!(await emailInput.isVisible().catch(() => false))) {
-							await checkbox.click({ force: true });
-							if (!(await emailInput.isVisible().catch(() => false))) {
-								await checkbox.click({ force: true });
-							}
-						}
-						await expect(emailInput).toBeVisible({ timeout: 3000 });
+						await expect(card.getByPlaceholder('Enter your email address')).toBeVisible();
 					}
 
 					await expect.soft(card).toHaveScreenshot(`checkbox-checked/${id}.png`, {

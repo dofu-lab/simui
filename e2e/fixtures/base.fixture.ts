@@ -26,9 +26,16 @@ export type TestFixtures = {
 export const test = base.extend<TestFixtures>({
 	page: async ({ page }, use) => {
 		await page.addInitScript((css: string) => {
-			const style = document.createElement('style');
-			style.textContent = css;
-			document.head.appendChild(style);
+			const disableAnimations = () => {
+				const style = document.createElement('style');
+				style.textContent = css;
+				document.head.appendChild(style);
+			};
+			if (document.head) {
+				disableAnimations();
+			} else {
+				document.addEventListener('DOMContentLoaded', disableAnimations, { once: true });
+			}
 		}, DISABLE_ANIMATIONS_CSS);
 		await use(page);
 	},

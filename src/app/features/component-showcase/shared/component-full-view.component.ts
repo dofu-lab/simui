@@ -1,16 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
-import {
-	ChangeDetectionStrategy,
-	Component,
-	DestroyRef,
-	computed,
-	effect,
-	inject,
-	input,
-	output,
-	signal,
-} from '@angular/core';
+import { Component, DestroyRef, computed, effect, inject, input, output, signal } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import type { ComponentNavigationDirection, ComponentNavigationPosition } from '@core/services/analytics.service';
 import { CodeLoaderService } from '@core/services/code-loader.service';
@@ -35,7 +25,6 @@ export type ComponentNavigationRequest = {
 
 @Component({
 	selector: 'sim-component-full-view',
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		NgComponentOutlet,
 		NgTemplateOutlet,
@@ -119,52 +108,56 @@ export type ComponentNavigationRequest = {
 				*hlmSheetPortal="let ctx"
 				showCloseButton="false"
 				class="bg-background text-foreground flex min-h-0 flex-col gap-0 overflow-hidden p-2 data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-dvh data-[side=bottom]:max-h-dvh data-[side=bottom]:w-dvw">
-				<hlm-sheet-header
-					class="border-border bg-background sticky top-0 z-20 flex-row items-center justify-between gap-3 p-0 pb-2">
-					<div class="min-w-0">
-						<p hlmSheetDescription class="sr-only">
-							Preview the selected component and inspect installation and source code.
-						</p>
-					</div>
-					<div class="flex shrink-0 items-center gap-1">
-						@if (isDesktop()) {
+				@if (!previewOnly()) {
+					<hlm-sheet-header
+						class="border-border bg-background sticky top-0 z-20 flex-row items-center justify-between gap-3 p-0 pb-2">
+						<div class="min-w-0">
+							<p hlmSheetDescription class="sr-only">
+								Preview the selected component and inspect installation and source code.
+							</p>
+						</div>
+						<div class="flex shrink-0 items-center gap-1">
+							@if (isDesktop()) {
+								<button
+									hlmBtn
+									size="sm"
+									variant="outline"
+									aria-label="Previous component"
+									class="focus-visible:ring-ring focus-visible:ring-2"
+									[disabled]="!canGoPrevious()"
+									(click)="requestNavigation('previous', 'header')">
+									<ng-icon hlm name="lucideChevronLeft" size="sm" />
+									Previous
+								</button>
+								<button
+									hlmBtn
+									size="sm"
+									variant="outline"
+									aria-label="Next component"
+									class="focus-visible:ring-ring focus-visible:ring-2"
+									[disabled]="!canGoNext()"
+									(click)="requestNavigation('next', 'header')">
+									Next
+									<ng-icon hlm name="lucideChevronRight" size="sm" />
+								</button>
+							}
 							<button
 								hlmBtn
-								size="sm"
-								variant="outline"
-								aria-label="Previous component"
-								class="focus-visible:ring-ring focus-visible:ring-2"
-								[disabled]="!canGoPrevious()"
-								(click)="requestNavigation('previous', 'header')">
-								<ng-icon hlm name="lucideChevronLeft" size="sm" />
-								Previous
+								size="icon-sm"
+								variant="ghost"
+								aria-label="Close full view"
+								class="focus-visible:ring-ring size-9 focus-visible:ring-2"
+								(click)="closeRequested.emit()">
+								<ng-icon hlm name="lucideX" size="sm" />
 							</button>
-							<button
-								hlmBtn
-								size="sm"
-								variant="outline"
-								aria-label="Next component"
-								class="focus-visible:ring-ring focus-visible:ring-2"
-								[disabled]="!canGoNext()"
-								(click)="requestNavigation('next', 'header')">
-								Next
-								<ng-icon hlm name="lucideChevronRight" size="sm" />
-							</button>
-						}
-						<button
-							hlmBtn
-							size="icon-sm"
-							variant="ghost"
-							aria-label="Close full view"
-							class="focus-visible:ring-ring size-9 focus-visible:ring-2"
-							(click)="closeRequested.emit()">
-							<ng-icon hlm name="lucideX" size="sm" />
-						</button>
-					</div>
-				</hlm-sheet-header>
+						</div>
+					</hlm-sheet-header>
+				}
 
 				@if (selectedItem(); as item) {
-					@if (isDesktop()) {
+					@if (previewOnly()) {
+						<ng-container [ngTemplateOutlet]="previewPanel" [ngTemplateOutletContext]="{ $implicit: item }" />
+					} @else if (isDesktop()) {
 						<div class="min-h-0 flex-1 overflow-hidden rounded-lg border">
 							<hlm-resizable-group>
 								<hlm-resizable-panel defaultSize="42" minSize="30">
@@ -202,6 +195,7 @@ export type ComponentNavigationRequest = {
 					@for (previewItem of [item]; track previewItem.id) {
 						<div
 							data-testid="component-preview-animation-host"
+							[attr.data-component-id]="previewItem.id"
 							[animate.enter]="previewEnterAnimationClass()"
 							[animate.leave]="previewLeaveAnimationClass()"
 							class="col-start-1 row-start-1 flex min-h-40 w-full min-w-0 items-center justify-center">
@@ -209,28 +203,30 @@ export type ComponentNavigationRequest = {
 						</div>
 					}
 				</div>
-				<div class="absolute bottom-0 left-1/2 flex shrink-0 -translate-x-1/2 -translate-y-1/2 items-center gap-1">
-					<button
-						hlmBtn
-						size="icon-sm"
-						variant="outline"
-						aria-label="Previous component"
-						class="focus-visible:ring-ring focus-visible:ring-2"
-						[disabled]="!canGoPrevious()"
-						(click)="requestNavigation('previous', 'left_panel')">
-						<ng-icon hlm name="lucideChevronLeft" size="sm" />
-					</button>
-					<button
-						hlmBtn
-						size="icon-sm"
-						variant="outline"
-						aria-label="Next component"
-						class="focus-visible:ring-ring focus-visible:ring-2"
-						[disabled]="!canGoNext()"
-						(click)="requestNavigation('next', 'left_panel')">
-						<ng-icon hlm name="lucideChevronRight" size="sm" />
-					</button>
-				</div>
+				@if (!previewOnly()) {
+					<div class="absolute bottom-0 left-1/2 flex shrink-0 -translate-x-1/2 -translate-y-1/2 items-center gap-1">
+						<button
+							hlmBtn
+							size="icon-sm"
+							variant="outline"
+							aria-label="Previous component"
+							class="focus-visible:ring-ring focus-visible:ring-2"
+							[disabled]="!canGoPrevious()"
+							(click)="requestNavigation('previous', 'left_panel')">
+							<ng-icon hlm name="lucideChevronLeft" size="sm" />
+						</button>
+						<button
+							hlmBtn
+							size="icon-sm"
+							variant="outline"
+							aria-label="Next component"
+							class="focus-visible:ring-ring focus-visible:ring-2"
+							[disabled]="!canGoNext()"
+							(click)="requestNavigation('next', 'left_panel')">
+							<ng-icon hlm name="lucideChevronRight" size="sm" />
+						</button>
+					</div>
+				}
 			</div>
 		</ng-template>
 
@@ -313,6 +309,7 @@ export class ComponentFullViewComponent {
 	public readonly components = input.required<ComponentCardItem[]>();
 	public readonly selectedIndex = input.required<number>();
 	public readonly open = input(false);
+	public readonly previewOnly = input(false);
 	public readonly cliScope = input('@dofu-lab/simui-cli');
 	public readonly previewClass = input<ClassValue>('');
 	public readonly previousRequested = output<ComponentNavigationRequest>();
@@ -365,6 +362,8 @@ export class ComponentFullViewComponent {
 
 	constructor() {
 		effect(() => {
+			if (this.previewOnly()) return;
+
 			const item = this.selectedItem();
 			const manifestStatus = this.registryVersions.status();
 			const version = this.registryVersions.selectedVersion();

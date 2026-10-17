@@ -1,6 +1,14 @@
 {
 	"entries": [
 		{
+			"id": "2026-10-17-file-upload-attachments",
+			"date": "2026-10-17",
+			"spartanVersion": "1.6.1",
+			"type": "improvement",
+			"title": "Consistent file-upload attachments",
+			"description": "Seven file-upload examples now use shared attachment patterns for image previews, file details, and upload progress, with file-specific labels for removal controls and image previews."
+		},
+		{
 			"id": "2026-10-13-attachment-components",
 			"date": "2026-10-13",
 			"spartanVersion": "1.6.1",

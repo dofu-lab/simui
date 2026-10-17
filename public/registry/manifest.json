@@ -4,7 +4,7 @@
 	"releases": [
 		{
 			"version": "1.6.1",
-			"publishedAt": "2026-10-13",
+			"publishedAt": "2026-10-17",
 			"components": [
 				"accordion-01",
 				"accordion-02",
@@ -2239,7 +2239,15 @@
 				"attachment-13",
 				"attachment-14"
 			],
-			"updated": [],
+			"updated": [
+				"file-upload-06",
+				"file-upload-07",
+				"file-upload-08",
+				"file-upload-09",
+				"file-upload-10",
+				"file-upload-12",
+				"file-upload-13"
+			],
 			"removed": []
 		},
 		{
@@ -2260,14 +2268,7 @@
 				"sidebar-12",
 				"sidebar-13"
 			],
-			"updated": [
-				"dialog-12",
-				"dialog-13",
-				"dialog-32",
-				"input-41",
-				"input-42",
-				"input-43"
-			],
+			"updated": ["dialog-12", "dialog-13", "dialog-32", "input-41", "input-42", "input-43"],
 			"removed": []
 		},
 		{
@@ -2279,6 +2280,14 @@
 		}
 	],
 	"changelog": [
+		{
+			"id": "2026-10-17-file-upload-attachments",
+			"date": "2026-10-17",
+			"spartanVersion": "1.6.1",
+			"type": "improvement",
+			"title": "Consistent file-upload attachments",
+			"description": "Seven file-upload examples now use shared attachment patterns for image previews, file details, and upload progress, with file-specific labels for removal controls and image previews."
+		},
 		{
 			"id": "2026-10-13-attachment-components",
 			"date": "2026-10-13",

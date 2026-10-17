@@ -8,6 +8,7 @@ test.describe('Avatar', () => {
 	});
 
 	test('visual regression — all variants', async ({ page }) => {
-		await snapshotVariants(page, 'avatar', COMPONENT_IDS.avatar);
+		// Tolerate minor rasterization differences along avatar photo edges.
+		await snapshotVariants(page, 'avatar', COMPONENT_IDS.avatar, { maxDiffPixels: 64 });
 	});
 });

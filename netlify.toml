@@ -4,3 +4,20 @@ publish = "dist/simui/browser"
 
 [build.environment]
 NODE_VERSION = "24.15.0"
+
+# Netlify revalidates documents by default. Keep mutable metadata explicit.
+[[headers]]
+for = "/registry/manifest.json"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+# Angular production builds fingerprint all root JavaScript and CSS files.
+[[headers]]
+for = "/*.js"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.css"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"

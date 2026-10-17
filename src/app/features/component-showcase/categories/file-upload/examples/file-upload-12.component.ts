@@ -16,12 +16,13 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { FileDragDropDirective, FileMetadata, FileUploadState, formatBytes } from '@sim/file';
+import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 
 @Component({
 	selector: 'sim-file-upload-12',
-	imports: [NgIcon, FileDragDropDirective, HlmButtonImports, HlmIconImports],
+	imports: [NgIcon, FileDragDropDirective, HlmAttachmentImports, HlmButtonImports, HlmIconImports],
 	providers: [
 		provideIcons({
 			lucideX,
@@ -80,33 +81,32 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 									</button>
 								</div>
 							</div>
-							<div class="grid w-full grid-cols-2 gap-4 md:grid-cols-3">
+							<div class="grid w-full grid-cols-2 gap-4 md:grid-cols-3" role="list" aria-label="Uploaded files">
 								@for (file of files(); track file.id; let idx = $index) {
-									<div class="bg-background relative flex flex-col rounded-md border">
-										<div
-											class="bg-accent flex aspect-square items-center justify-center overflow-hidden rounded-t-[inherit]">
+									<hlm-attachment
+										orientation="vertical"
+										class="w-full min-w-0 has-data-[slot=attachment-content]:w-full"
+										role="listitem">
+										<hlm-attachment-media [variant]="file.file.type.startsWith('image/') ? 'image' : 'icon'">
 											@if (file.file.type.startsWith('image/')) {
-												<img
-													class="size-full rounded-[inherit] object-cover"
-													[src]="file.preview"
-													alt="Preview of uploaded image" />
+												<img [src]="file.preview" [alt]="file.file.name + ' preview'" />
 											} @else {
 												<ng-icon hlm [name]="getFileIcon(file)" class="text-muted-foreground" size="lg" />
 											}
-										</div>
-										<button
-											hlmBtn
-											size="icon"
-											class="border-background focus-visible:border-background absolute -top-2 -right-2 size-6 cursor-pointer rounded-full border-2 shadow-none"
-											aria-label="Remove image"
-											(click)="onRemoveImage(file.id)">
-											<ng-icon hlm name="lucideX" class="text-background" size="xs" />
-										</button>
-										<div class="flex min-w-0 flex-col gap-0.5 border-t p-3">
-											<p class="truncate text-[13px] font-medium">{{ file.file.name }}</p>
-											<p class="text-muted-foreground truncate text-xs">{{ formatBytes(file.file.size) }}</p>
-										</div>
-									</div>
+										</hlm-attachment-media>
+										<hlm-attachment-content>
+											<span hlmAttachmentTitle>{{ file.file.name }}</span>
+											<span hlmAttachmentDescription>{{ formatBytes(file.file.size) }}</span>
+										</hlm-attachment-content>
+										<hlm-attachment-actions>
+											<button
+												hlmAttachmentAction
+												[attr.aria-label]="'Remove ' + file.file.name"
+												(click)="onRemoveImage(file.id)">
+												<ng-icon hlm name="lucideX" size="xs" />
+											</button>
+										</hlm-attachment-actions>
+									</hlm-attachment>
 								}
 							</div>
 						</div>

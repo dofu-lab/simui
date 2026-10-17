@@ -23,31 +23,7 @@ async function snapshotOpenDropdownVariant(page: Page, id: string): Promise<void
 	await trigger.click();
 
 	const menu = await getOpenMenu(page);
-	const cardBox = await card.boundingBox();
-	if (!cardBox) {
-		throw new Error(`Unable to capture open dropdown snapshot for ${id}`);
-	}
-
-	const viewport = page.viewportSize();
-	if (!viewport) {
-		throw new Error('Viewport size is not available');
-	}
-
-	const horizontalPadding = 80;
-	const verticalPadding = 280;
-	const x = Math.floor(Math.max(0, cardBox.x - horizontalPadding));
-	const y = Math.floor(Math.max(0, cardBox.y - verticalPadding));
-	const right = Math.ceil(Math.min(viewport.width, cardBox.x + cardBox.width + horizontalPadding));
-	const bottom = Math.ceil(Math.min(viewport.height, cardBox.y + cardBox.height + verticalPadding));
-
-	await expect.soft(page).toHaveScreenshot(`dropdown/open-${id}.png`, {
-		clip: {
-			x,
-			y,
-			width: right - x,
-			height: bottom - y,
-		},
-	});
+	await expect.soft(menu).toHaveScreenshot(`dropdown/open-${id}.png`);
 
 	await page.keyboard.press('Escape');
 	await expect(menu).not.toBeVisible({ timeout: 3000 });

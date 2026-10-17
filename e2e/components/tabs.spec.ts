@@ -1,9 +1,9 @@
 import { expect, test } from '../fixtures/base.fixture';
 import { COMPONENT_IDS } from '../utils/component-ids';
-import { componentCard, snapshotVariants } from '../utils/visual.helpers';
+import { componentPreview, snapshotVariants } from '../utils/visual.helpers';
 
 async function getVisibleCard(page: import('@playwright/test').Page, id: string) {
-	const card = componentCard(page, id);
+	const card = await componentPreview(page, id);
 	const isPresent = await card
 		.waitFor({ state: 'visible', timeout: 5000 })
 		.then(() => true)

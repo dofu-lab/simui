@@ -3,7 +3,7 @@ const path = require('node:path');
 
 const SITE_ORIGIN = 'https://simui.dev';
 const PUBLIC_DIR = path.join(process.cwd(), 'public');
-const HOME_CONSTANT = path.join(process.cwd(), 'src/app/features/component-showcase/home-catalog.ts');
+const CATEGORY_CATALOG = path.join(process.cwd(), 'src/app/features/component-showcase/category-catalog.ts');
 const OUTPUT_PATH = path.join(PUBLIC_DIR, 'sitemap.xml');
 
 const STATIC_ROUTES = [
@@ -18,7 +18,7 @@ const STATIC_ROUTES = [
 ];
 
 function readComponentRoutes() {
-	const source = fs.readFileSync(HOME_CONSTANT, 'utf8');
+	const source = fs.readFileSync(CATEGORY_CATALOG, 'utf8');
 	const routes = [...source.matchAll(/path:\s*'components\/([^']+)'/g)]
 		.map((match) => match[1])
 		.sort((a, b) => a.localeCompare(b));

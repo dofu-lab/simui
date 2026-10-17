@@ -3,8 +3,6 @@ import { Component, computed, effect, inject, input, PLATFORM_ID, signal } from 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AnalyticsService } from '@core/services/analytics.service';
-import { CodeLoaderService } from '@core/services/code-loader.service';
-import { RegistryVersionService } from '@core/services/registry-version.service';
 import type { ClassValue } from 'clsx';
 import { combineLatest } from 'rxjs';
 import { ComponentCardComponent } from './component-card.component';
@@ -19,30 +17,35 @@ const FULL_VIEW_QUERY_PARAM = 'full';
 	selector: 'sim-page-grid',
 	template: `
 		<div class="flex grow flex-col">
-			<div class="mb-20 flex-1 overflow-hidden">
-				<div class="-m-px grid grid-cols-12 *:px-1 *:py-12 *:not-first:-ms-px *:not-first:-mt-px xl:*:px-12">
-					@for (component of components(); track component.id) {
-						<sim-component-card
-							[componentName]="component.id"
-							[layout]="component.layout"
-							[alignment]="component.alignment"
-							[component]="component.component"
-							[highlighted]="highlightedId() === component.id"
-							(fullViewRequested)="openFullView($event)" />
-					}
+			@if (!previewOnly()) {
+				<div class="mb-20 flex-1 overflow-hidden">
+					<div class="-m-px grid grid-cols-12 *:px-1 *:py-12 *:not-first:-ms-px *:not-first:-mt-px xl:*:px-12">
+						@for (component of components(); track component.id) {
+							<sim-component-card
+								[componentName]="component.id"
+								[layout]="component.layout"
+								[alignment]="component.alignment"
+								[component]="component.component"
+								[highlighted]="highlightedId() === component.id"
+								(fullViewRequested)="openFullView($event)" />
+						}
+					</div>
 				</div>
-			</div>
+			}
 			@if (selectedFullViewIndex() !== null) {
 				<sim-component-full-view
 					[components]="components()"
 					[selectedIndex]="selectedFullViewIndex() ?? 0"
 					[open]="fullViewOpen()"
+					[previewOnly]="previewOnly()"
 					[previewClass]="fullViewPreviewClass()"
 					(previousRequested)="goToPreviousFullView($event)"
 					(nextRequested)="goToNextFullView($event)"
 					(closeRequested)="closeFullView()" />
 			}
-			<app-suggestion />
+			@if (!previewOnly()) {
+				<app-suggestion />
+			}
 		</div>
 	`,
 	imports: [ComponentCardComponent, ComponentFullViewComponent, SuggestionComponent],
@@ -50,27 +53,18 @@ const FULL_VIEW_QUERY_PARAM = 'full';
 export class PageGridComponent {
 	public readonly components = input<ComponentCardItem[]>([]);
 	public readonly fullViewPreviewClass = input<ClassValue>('');
-	private readonly codeLoaderService = inject(CodeLoaderService);
-	private readonly registryVersions = inject(RegistryVersionService);
 	private readonly analyticsService = inject(AnalyticsService);
 	private readonly route = inject(ActivatedRoute);
 	private readonly router = inject(Router);
 	private readonly document = inject(DOCUMENT);
 	private readonly platformId = inject(PLATFORM_ID);
+	protected readonly previewOnly = signal(false);
 	protected readonly highlightedId = signal<string | null>(null);
 	protected readonly selectedFullViewIndex = signal<number | null>(null);
 	private readonly routeFullViewComponentId = signal<string | null>(null);
 	protected readonly fullViewOpen = computed(() => this.selectedFullViewIndex() !== null);
 
 	constructor() {
-		effect(() => {
-			const ids = this.components().map((c) => c.id);
-			const version = this.registryVersions.selectedVersion();
-			if (ids.length && version && this.registryVersions.isReady()) {
-				this.codeLoaderService.preloadComponents(version, ids, (id) => this.registryVersions.isComponentAvailable(id));
-			}
-		});
-
 		effect(() => {
 			const selectedIndex = this.selectedFullViewIndex();
 			if (selectedIndex === null) return;
@@ -94,6 +88,7 @@ export class PageGridComponent {
 			combineLatest([this.route.fragment, this.route.queryParamMap])
 				.pipe(takeUntilDestroyed())
 				.subscribe(([fragment, queryParamMap]) => {
+					this.previewOnly.set(queryParamMap.get(FULL_VIEW_QUERY_PARAM) === 'preview');
 					if (queryParamMap.has(FULL_VIEW_QUERY_PARAM)) {
 						this.routeFullViewComponentId.set(fragment);
 						return;

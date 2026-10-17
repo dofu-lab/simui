@@ -1,17 +1,15 @@
-import { readdirSync } from 'fs';
+import { readFileSync } from 'fs';
 import { join } from 'path';
 
-const REGISTRY_DIR = join(process.cwd(), 'public/registry');
+const manifest = JSON.parse(readFileSync(join(process.cwd(), 'public/registry/manifest.json'), 'utf8')) as {
+	latest: string;
+	releases: { version: string; components: string[] }[];
+};
+const latestRelease = manifest.releases.find((release) => release.version === manifest.latest);
+if (!latestRelease?.components.length) throw new Error('The latest registry release must contain component IDs.');
 
 function getIds(prefix: string): string[] {
-	try {
-		return readdirSync(REGISTRY_DIR)
-			.filter((f) => !f.startsWith('.') && f.startsWith(`${prefix}-`) && f.endsWith('.json'))
-			.map((f) => f.replace('.json', ''))
-			.sort();
-	} catch {
-		return [];
-	}
+	return latestRelease!.components.filter((id) => id.startsWith(`${prefix}-`)).sort();
 }
 
 export const COMPONENT_IDS = {

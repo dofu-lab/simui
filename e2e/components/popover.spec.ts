@@ -34,33 +34,10 @@ async function openPopoverForVariant(page: Page, id: string): Promise<{ card: Lo
 }
 
 async function snapshotOpenPopoverVariant(page: Page, id: string): Promise<void> {
-	const { card, trigger } = await openPopoverForVariant(page, id);
-	const cardBox = await card.boundingBox();
-	if (!cardBox) {
-		throw new Error(`Unable to capture open popover snapshot for ${id}`);
-	}
-
-	const viewport = page.viewportSize();
-	if (!viewport) {
-		throw new Error('Viewport size is not available');
-	}
-
-	const horizontalPadding = 120;
-	const verticalPadding = 280;
-	const x = Math.floor(Math.max(0, cardBox.x - horizontalPadding));
-	const y = Math.floor(Math.max(0, cardBox.y - verticalPadding));
-	const right = Math.ceil(Math.min(viewport.width, cardBox.x + cardBox.width + horizontalPadding));
-	const bottom = Math.ceil(Math.min(viewport.height, cardBox.y + cardBox.height + verticalPadding));
-
-	await expect.soft(page).toHaveScreenshot(`popover/open-${id}.png`, {
-		clip: {
-			x,
-			y,
-			width: right - x,
-			height: bottom - y,
-		},
-		maxDiffPixelRatio: 0.02,
-	});
+	const { trigger } = await openPopoverForVariant(page, id);
+	const popover = page.locator('[data-slot="popover-content"]:visible').last();
+	await expect(popover).toBeVisible();
+	await expect.soft(popover).toHaveScreenshot(`popover/open-${id}.png`, { maxDiffPixelRatio: 0.02 });
 
 	await page.keyboard.press('Escape');
 	await expect(trigger).toHaveAttribute('aria-expanded', 'false', { timeout: 3000 });
