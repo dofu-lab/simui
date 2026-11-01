@@ -360,6 +360,17 @@ export const routes: Routes = [
 				),
 			},
 			{
+				path: 'empty-state',
+				loadComponent: () =>
+					import('@features/component-showcase/categories/empty-state').then((m) => m.EmptyStateComponent),
+				data: componentSeo(
+					'Empty State',
+					'empty-state',
+					'Empty state components for search results, projects, team invitations, and integrations.',
+					'empty state, no results, onboarding, angular component',
+				),
+			},
+			{
 				path: 'event-calendar',
 				loadComponent: () =>
 					import('@features/component-showcase/categories/event-calendar').then((m) => m.EventCalendarComponent),

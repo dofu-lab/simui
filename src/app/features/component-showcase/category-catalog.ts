@@ -4,6 +4,12 @@ import type { ComponentInfo } from '@shared/types';
 // scripts/component-catalog.spec.mjs verifies counts against the category registries.
 export const componentCatalog: Omit<ComponentInfo, 'thumbnail'>[] = [
 	{
+		name: 'Empty State',
+		compNumber: 10,
+		path: 'components/empty-state',
+		isNew: true,
+	},
+	{
 		name: 'Attachment',
 		compNumber: 14,
 		path: 'components/attachment',

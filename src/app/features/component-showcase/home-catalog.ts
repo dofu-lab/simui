@@ -14,6 +14,7 @@ import { CheckboxThumbnailComponent } from './categories/checkbox/checkbox.thumb
 import { ColorPickerThumbnailComponent } from './categories/color-picker/color-picker.thumbnail';
 import { DialogThumbnailComponent } from './categories/dialog/dialog.thumbnail';
 import { DropdownThumbnailComponent } from './categories/dropdown/dropdown.thumbnail';
+import { EmptyStateThumbnailComponent } from './categories/empty-state/empty-state.thumbnail';
 import { EventCalendarThumbnailComponent } from './categories/event-calendar/event-calendar.thumbnail';
 import { FileUploadThumbnailComponent } from './categories/file-upload/file-upload.thumbnail';
 import { ImageCropperThumbnailComponent } from './categories/image-cropper/image-cropper.thumbnail';
@@ -30,6 +31,7 @@ import { TabsThumbnailComponent } from './categories/tabs/tabs.thumbnail';
 import { componentCatalog } from './category-catalog';
 
 const thumbnails: Record<string, Type<unknown>> = {
+	'components/empty-state': EmptyStateThumbnailComponent,
 	'components/attachment': AttachmentThumbnailComponent,
 	'components/sidebar': SidebarThumbnailComponent,
 	'components/color-picker': ColorPickerThumbnailComponent,

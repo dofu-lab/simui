@@ -21,6 +21,14 @@ host: { class: 'flex w-full h-full items-center justify-center' },
 4. Use generous negative space and a compact composition rather than a miniature production screen.
 5. Limit hierarchy to two or three muted tones plus one primary accent.
 
+## Keep the composition quiet
+
+- Begin with the category's essential silhouette. Secondary actions, extra text rows, orbit rings, background circles, and stacked illustrations need a recognition purpose before adding them.
+- Reserve separate space for the focal object, supporting bars, and action. Absolutely positioned decoration still occupies visual space: check its full bounds, not just its parent's layout box. Keep it clear of text and action areas unless overlap communicates the component's actual behavior.
+- Prefer one action for simple status or empty-state previews. Multiple actions are appropriate when the choice or grouping is itself part of the category's identity.
+- Use the empty-state thumbnail as a simple status reference: one 40 px icon tile, two centered placeholder bars, and one compact primary action, with visible gaps between groups. Its earlier concentric rings extended beyond a 48 px icon wrapper into the content below; the rings and second action made the miniature crowded. Preserve the simplified hierarchy when refining this category.
+- Judge at the real catalog size in both themes. If removing a decorative element leaves the category just as recognizable, prefer the simpler version. Layered categories such as notifications can still use purposeful overlap.
+
 ## Theme and color
 
 - Use semantic tokens: `bg-card`, `bg-background`, `bg-muted`, `text-card-foreground`, `text-foreground`, `text-muted-foreground`, `border`, `border-input`, `border-border`, `bg-accent`, `bg-primary`, and `text-primary-foreground`.
@@ -92,6 +100,7 @@ export class {PascalCategory}ThumbnailComponent {}
 - Balanced inside 300×170 with no accidental clipping
 - Semantic in light and dark themes
 - One obvious focal state
+- Clear gaps between icon/object, text bars, and actions; no decorative collisions
 - No unnecessary runtime behavior or package imports
 - Decorative SVGs hidden from assistive technology
 - File, selector, class, barrel, and catalog registration consistent

@@ -3,6 +3,7 @@ import { classes } from '@spartan-ng/helm/utils';
 
 @Component({
 	selector: 'hlm-input-otp-fake-caret',
+	exportAs: 'hlmInputOtpFakeCaret',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="animate-caret-blink bg-foreground h-4 w-px duration-1000"></div>

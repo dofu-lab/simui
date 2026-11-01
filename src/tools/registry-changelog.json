@@ -1,6 +1,22 @@
 {
 	"entries": [
 		{
+			"id": "2026-11-01-empty-state-components",
+			"date": "2026-11-01",
+			"spartanVersion": "1.8.0",
+			"type": "feature",
+			"title": "Empty state components",
+			"description": "Explore and copy 10 empty-state patterns for search results, projects, team invitations, integrations, files, and orders, with action outputs ready to connect to your app."
+		},
+		{
+			"id": "2026-11-01-spartanui-1-8-0-compatibility",
+			"date": "2026-11-01",
+			"spartanVersion": "1.8.0",
+			"type": "improvement",
+			"title": "SpartanUI 1.8.0 compatibility",
+			"description": "SimUI component source now targets SpartanUI 1.8.0, keeping copied examples aligned with the supported Brain and Helm components."
+		},
+		{
 			"id": "2026-10-17-file-upload-attachments",
 			"date": "2026-10-17",
 			"spartanVersion": "1.6.1",

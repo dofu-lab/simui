@@ -8,7 +8,8 @@ const attachmentMediaVariants = cva(
 		variants: {
 			variant: {
 				icon: 'bg-muted',
-				image: 'opacity-60 group-data-[state=done]/attachment:opacity-100 group-data-[state=idle]/attachment:opacity-100 *:[img]:aspect-square *:[img]:w-full *:[img]:object-cover',
+				image:
+					'opacity-60 group-data-[state=done]/attachment:opacity-100 group-data-[state=idle]/attachment:opacity-100 *:[img]:aspect-square *:[img]:w-full *:[img]:object-cover',
 			},
 		},
 		defaultVariants: {
@@ -21,6 +22,7 @@ export type AttachmentMediaVariants = VariantProps<typeof attachmentMediaVariant
 
 @Directive({
 	selector: '[hlmAttachmentMedia],hlm-attachment-media',
+	exportAs: 'hlmAttachmentMedia',
 	host: {
 		'data-slot': 'attachment-media',
 		'[attr.data-variant]': 'variant()',

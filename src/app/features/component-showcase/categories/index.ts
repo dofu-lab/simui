@@ -12,6 +12,7 @@ export * from './checkbox';
 export * from './color-picker';
 export * from './dialog';
 export * from './dropdown';
+export * from './empty-state';
 export * from './event-calendar';
 export * from './file-upload';
 export * from './image-cropper';

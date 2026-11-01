@@ -19,9 +19,11 @@ import { HlmPaginationItem } from './hlm-pagination-item';
 import { HlmPaginationLink } from './hlm-pagination-link';
 import { HlmPaginationNext } from './hlm-pagination-next';
 import { HlmPaginationPrevious } from './hlm-pagination-previous';
+import { injectHlmPaginationConfig } from './hlm-pagination.token';
 
 @Component({
 	selector: 'hlm-numbered-pagination-query-params',
+	exportAs: 'hlmNumberedPaginationQueryParams',
 	imports: [
 		HlmPagination,
 		HlmPaginationContent,
@@ -34,11 +36,11 @@ import { HlmPaginationPrevious } from './hlm-pagination-previous';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div class="flex items-center gap-1 text-sm text-nowrap text-gray-600">
+		<div class="text-muted-foreground flex items-center gap-1 text-sm text-nowrap">
 			<b>{{ totalItems() }}</b>
-			total items |
+			{{ totalItemsLabel() }} |
 			<b>{{ _lastPageNumber() }}</b>
-			pages
+			{{ pagesLabel() }}
 		</div>
 
 		<nav hlmPagination>
@@ -48,7 +50,9 @@ import { HlmPaginationPrevious } from './hlm-pagination-previous';
 						<hlm-pagination-previous
 							[link]="link()"
 							[queryParams]="{ page: currentPage() - 1 }"
-							queryParamsHandling="merge" />
+							queryParamsHandling="merge"
+							[text]="previousLabel()"
+							[aria-label]="previousAriaLabel()" />
 					</li>
 				}
 
@@ -74,7 +78,9 @@ import { HlmPaginationPrevious } from './hlm-pagination-previous';
 						<hlm-pagination-next
 							[link]="link()"
 							[queryParams]="{ page: currentPage() + 1 }"
-							queryParamsHandling="merge" />
+							queryParamsHandling="merge"
+							[text]="nextLabel()"
+							[aria-label]="nextAriaLabel()" />
 					</li>
 				}
 			</ul>
@@ -96,6 +102,8 @@ import { HlmPaginationPrevious } from './hlm-pagination-previous';
 	`,
 })
 export class HlmNumberedPaginationQueryParams {
+	private readonly _config = injectHlmPaginationConfig();
+
 	/**
 	 * The current (active) page.
 	 */
@@ -140,6 +148,42 @@ export class HlmNumberedPaginationQueryParams {
 	 * Defaults to [10, 20, 50, 100]
 	 */
 	public readonly pageSizes = input<number[]>([10, 20, 50, 100]);
+
+	/**
+	 * The label for total items or pages to show
+	 * Defaults to config's totalItemsLabel
+	 */
+	public readonly totalItemsLabel = input<string>(this._config.totalItemsLabel);
+
+	/**
+	 * The label for pages to show
+	 * Defaults to config's pagesLabel
+	 */
+	public readonly pagesLabel = input<string>(this._config.pagesLabel);
+
+	/**
+	 * The label to show on the next button
+	 * Defaults to config's nextLabel
+	 */
+	public readonly nextLabel = input<string>(this._config.nextLabel);
+
+	/**
+	 * The aria-label to show on the next button
+	 * Defaults to config's nextAriaLabel
+	 */
+	public readonly nextAriaLabel = input<string>(this._config.nextAriaLabel);
+
+	/**
+	 * The label to show on the previous button
+	 * Defaults to config's previousLabel
+	 */
+	public readonly previousLabel = input<string>(this._config.previousLabel);
+
+	/**
+	 * The aria-label to show on the previous button
+	 * Defaults to config's previousAriaLabel
+	 */
+	public readonly previousAriaLabel = input<string>(this._config.previousAriaLabel);
 
 	protected readonly _pageSizesWithCurrent = computed(() => {
 		const pageSizes = this.pageSizes();

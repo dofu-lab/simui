@@ -32,6 +32,7 @@
 			"@spartan-ng/helm/accordion": ["./src/libs/ui/accordion/src/index.ts"],
 			"@spartan-ng/helm/alert": ["./src/libs/ui/alert/src/index.ts"],
 			"@spartan-ng/helm/aspect-ratio": ["./src/libs/ui/aspect-ratio/src/index.ts"],
+			"@spartan-ng/helm/attachment": ["./src/libs/ui/attachment/src/index.ts"],
 			"@spartan-ng/helm/avatar": ["./src/libs/ui/avatar/src/index.ts"],
 			"@spartan-ng/helm/badge": ["./src/libs/ui/badge/src/index.ts"],
 			"@spartan-ng/helm/breadcrumb": ["./src/libs/ui/breadcrumb/src/index.ts"],
@@ -74,8 +75,7 @@
 			"@spartan-ng/helm/toggle": ["./src/libs/ui/toggle/src/index.ts"],
 			"@spartan-ng/helm/toggle-group": ["./src/libs/ui/toggle-group/src/index.ts"],
 			"@spartan-ng/helm/tooltip": ["./src/libs/ui/tooltip/src/index.ts"],
-			"@spartan-ng/helm/utils": ["./src/libs/ui/utils/src/index.ts"],
-			"@spartan-ng/helm/attachment": ["./src/libs/ui/attachment/src/index.ts"]
+			"@spartan-ng/helm/utils": ["./src/libs/ui/utils/src/index.ts"]
 		}
 	},
 	"angularCompilerOptions": {

@@ -22,6 +22,7 @@ Create a lightweight, static miniature that communicates the category at a glanc
 3. Center the composition with a full-size host. Use `relative` and `overflow-hidden` only for layered or overlay compositions.
 4. Reuse semantic theme tokens, the established surface treatment, muted placeholder bars, primary accents, compact radii, and restrained shadows described in the reference.
 5. Keep the silhouette readable in both themes and at thumbnail size. Prefer two or three tonal levels and one primary focal point.
+   Start with the fewest elements that identify the category. Add decoration or secondary actions only when they help recognition; follow the reference's guidance on visual clutter.
 6. Preserve accessibility: mark decorative SVGs `aria-hidden="true"`; do not introduce focusable controls into a decorative preview.
 
 ## Implement
@@ -36,6 +37,6 @@ Create a lightweight, static miniature that communicates the category at a glanc
 
 1. Format touched files with the configured Prettier setup.
 2. Run `pnpm build` after Angular source changes.
-3. Inspect the home catalog in light and dark themes when browser tooling is available. Confirm centering, clipping, contrast, and recognition at the real 300×170 frame.
+3. Inspect rendered screenshots of the home catalog in light and dark themes when browser tooling is available. Confirm centering, clipping, contrast, and recognition at the real 300×170 frame. Check that decorative layers do not cross text bars or actions and that gaps remain visible at actual size. Remove elements that compete with the focal state. If visual inspection is unavailable, report that limitation.
 4. Review the diff for hardcoded theme colors, accidental full-size UI, unnecessary interactivity, missing SVG accessibility, and unrelated edits.
 5. Report the visual concept, files changed, and verification results.
